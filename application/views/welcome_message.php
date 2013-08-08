@@ -69,7 +69,7 @@
 <body>
 
 <div id="container">
-	<h1>Welcome to B&W</h1>
+	<h1>Welcome to B&W 1.0</h1>
 
 	<div id="body">
             <img src="<?php echo base_url();?>content/images/bnw.jpg" />
