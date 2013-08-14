@@ -13,7 +13,7 @@
 
 <div id="container">
     <div id="header">
-        <h1 id="hd_title">Welcome to B&W Dashboard </h1>
+        <h1 id="hd_title" > Welcome to B&W Dashboard </h1>
         <?php  if ($this->session->userdata('logged_in')){ ?>
         <div id="userinfo">
         <p>
