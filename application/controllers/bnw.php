@@ -77,7 +77,7 @@ class bnw extends CI_Controller {
             $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
-            //$data['query'] = $this->dbmodel->get_all_pages();
+            $data['query'] = $this->dbmodel->get_pages();
             $header = "bnw/templates/header";
             $this->load->view($header,$data);
             $this->load->view('bnw/templates/menu');

@@ -101,6 +101,12 @@ class Dbmodel extends CI_Model {
         $query = $this->db->get('page_event');
         return $query->result();
     }
+    public function get_pages() {
+            
+        $this->db->where('type','page');
+        $query = $this->db->get('page_event');
+        return $query->result();
+    }
 
     public function add_new_page($title, $body, $image, $status,$type) {
         $data = Array(

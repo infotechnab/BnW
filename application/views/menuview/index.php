@@ -27,10 +27,7 @@
                          foreach ($menu as $data)
                          {
                            ?>                    
-           <li> <?php echo $data->title; ?>
-           
-           </li>
-   <?php } ?>   </ul> 
+           <li> <?php echo $data->title; ?> </li> <?php } ?>   </ul> 
             </li>
                 <?php } ?>
             </ul>           

@@ -27,7 +27,8 @@ function get_sublist_title($title)
 }
 
 function get_sublist($id)
-{
+{   
+    die($id);
             $this->db->order_by('order','ASC');
             $this->db->where('listing',$id); 
            $menu = $this->db->get('menu');
