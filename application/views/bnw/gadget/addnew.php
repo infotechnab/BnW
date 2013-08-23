@@ -5,7 +5,8 @@
 <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
 </p>
-  <?php echo form_open('admin/addgadget');?>
+  <?php echo form_open('bnw/addgadget');?>
+<input type="text" name="type" value="gadgets" />
   <p>Title:<br />
   <input type="text" name="title" />
   </p>

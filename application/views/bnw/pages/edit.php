@@ -3,9 +3,9 @@
   {
      echo $error;
   }
-        if($query){
+        if(isset($query)){
             foreach ($query as $data){
-           $pid = $data->pid;
+           $id = $data->id;
            $title = $data->title;
            $body = $data->body;
            $image = $data->image;
@@ -13,15 +13,15 @@
        }
         }
     ?>
-<h2>Edit Page id <?php echo $pid; ?></h2>
+<h2>Edit Page id <?php echo $id; ?></h2>
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-  <?php echo form_open_multipart('admin/update');?>
+  <?php echo form_open_multipart('bnw/update');?>
   <p>Title:<br />
-      <input type="hidden" name="id" value="<?php echo $pid; ?>" />
+      <input type="hidden" name="id" value="<?php echo $id; ?>" />
       <input type="text" name="title" value="<?php echo $title; ?>" />
   </p>
   <p>Body:<br />
@@ -32,7 +32,7 @@
   <p>Present image : <br/>
   <div >
       <img src="<?php echo base_url(); ?>uploads/<?php echo $data->image; ?>" width="250px" height="150px" /> 
-      <a href="<?php echo base_url();?>index.php/admin/delete_page_image/<?php echo $pid; ?>">
+      <a href="<?php echo base_url();?>index.php/bnw/delete_page_image/<?php echo $id; ?>">
         <img src="<?php echo base_url();?>content/images/delete.png" width="20px" height="20px"/></a>
   </div>
   <?php }?>

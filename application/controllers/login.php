@@ -6,18 +6,18 @@ class Login extends CI_Controller {
  {
    parent::__construct();
    $this->load->library('session');
-    
+   $this->load->model('dbmodel'); 
  }
 
  function index()
  {
       $this->load->library('session');
      if(!$this->session->userdata('logged_in'))
-     {
+     {  $data['meta'] = $this->dbmodel->get_meta_data();
         $header ="bnw/templates/";
-        $this->load->view($header.'header');            
+        $this->load->view($header.'header',$data);            
         $this->load->view('bnw/form');
-        $this->load->view('bnw/templates/footer');
+        $this->load->view('bnw/templates/footer',$data);
      }
  else {
          redirect('bnw','refresh');

@@ -38,7 +38,7 @@ return false;
             foreach ($query as $data){
             ?>
           <tr>
-            <td><?php echo $data->gid ?></td>
+            <td><?php echo $data->id ?></td>
             <td><?php echo $data->title ?></td>
             <td><?php if($data->status==0)
             {
@@ -50,7 +50,7 @@ return false;
                     
             }
             ?></td>
-            <td><?php echo anchor('admin/editgadget/'.$data->gid,'Edit') ?>   </td> <td onclick="return del()"> <?php echo anchor('admin/deletegadget/'.$data->gid,'Delete') ?> </td>
+            <td><?php echo anchor('bnw/editgadget/'.$data->id,'Edit') ?>   </td> <td onclick="return del()"> <?php echo anchor('bnw/deletegadget/'.$data->id,'Delete') ?> </td>
         </tr>
             <?php    
             }

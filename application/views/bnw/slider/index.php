@@ -1,10 +1,3 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
 <h2>Slider </h2>
 <a href="addslider">Add New Slider</a>
 <div id="body">
@@ -29,9 +22,9 @@
           <tr>
             <td><?php echo $data->sid ?></td>
             <td><?php echo $data->title ?></td>
-            <td><?php echo $data->image ?>  </td>
-            <td><?php echo anchor('admin/editslider/'.$data->sid,'Edit'); ?> / 
-            <?php echo anchor('admin/deleteslider/'.$data->sid,'Delete'); ?></td>
+            <td><img src="<?php echo base_url()."slider/". $data->image; ?>" width="50px" height="50px" />  </td>
+            <td><?php echo anchor('bnw/editslider/'.$data->sid,'Edit'); ?> / 
+            <?php echo anchor('bnw/deleteslider/'.$data->sid,'Delete'); ?></td>
         </tr>
             <?php    
             }
@@ -39,4 +32,5 @@
     ?>
        
     </table>
+    <?php echo $links; ?>
 </div>

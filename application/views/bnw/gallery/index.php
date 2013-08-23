@@ -8,12 +8,7 @@
 <h2>Manage Photo Gallery</h2>
 <a href="addphoto">Add another photo</a>
 <div id="body">
-      
-    
-     
- 
- 
-        <?php
+         <?php
         if($query){
             
             ?>
@@ -37,8 +32,8 @@
             <td><?php echo $data->title ?></td>
             <td><img src="<?php echo base_url()."/gallery/".$data->image; ?>" width="30" height="30"></td>
             
-            <td><?php //echo anchor('sresadmin/editpage/'.$data->eid,'Edit') ?>
-              <?php echo anchor('admin/deletephoto/'.$data->eid,'Delete') 
+            <td><?php //echo anchor('sresbnw/editpage/'.$data->eid,'Edit') ?>
+              <?php echo anchor('bnw/deletephoto/'.$data->eid,'Delete') 
             ?></td>
         </tr>
             <?php    

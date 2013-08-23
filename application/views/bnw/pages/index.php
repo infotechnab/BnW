@@ -1,10 +1,3 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
 <h2>Pages </h2>
 <a href="addpage">Add New Page</a>
 <div id="body">
@@ -29,9 +22,15 @@
             foreach ($query as $data){
             ?>
           <tr>
-            <td><?php echo $data->pid ?></td>
+            <td><?php echo $data->id ?></td>
             <td><?php echo $data->title ?></td>
-            <td> <img src="<?php echo base_url();?>uploads/<?php echo $data->image;?>" widht="50px" height="50px" />  </td>
+            <?php $image = $data->image;
+                if(($image=='')|| ($image=='0'))
+                {
+                    $image = 'Image not set'; ?>
+            <td> <?php echo $image; ?></td>
+              <?php   } else {
+?><td><img src="<?php echo base_url();?>uploads/<?php echo $image;?>" widht="50px" height="50px" />  </td> <?php } ?>
             <td><?php echo $data->date ?></td>
             
             <td><?php if($data->status==0)
@@ -44,12 +43,13 @@
                     
             }
             ?></td>
-            <td><?php echo anchor('admin/editpage/'.$data->pid,'Edit'); ?> / 
-            <?php echo anchor('admin/deletepage/'.$data->pid,'Delete'); ?></td>
+            <td><?php echo anchor('bnw/editpage/'.$data->id,'Edit'); ?> / 
+            <?php echo anchor('bnw/deletepage/'.$data->id,'Delete'); ?></td>
         </tr>
             <?php    
             }
         }
     ?>
     </table>
+    <?php  echo $links; ?>
 </div>

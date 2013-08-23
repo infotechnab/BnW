@@ -1,32 +1,22 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
-
 <?php 
-if ($query)
+if ($meta)
 {
     $i=0;
-    foreach ($query as $data)
-    {
-        
+    foreach ($meta as $data)
+    {        
        $meta_data[$i] = $data->value;
-       $i++;
-      
+       $i++;      
     }
-}
-
+ }
+ echo validation_errors();
     ?>
 
 
-<h2>B&W Dashboard Management</h2>
+<h2><?php echo $meta_data[1]; ?> Dashboard Management</h2>
 
 <p>This page to setup domain.</p>
 
-<?php echo form_open('admin/setupupdate');?>
+<?php echo form_open('bnw/setupupdate');?>
   <p>Site Url :<br />
   <input type="text" name="url" value="<?php echo $meta_data[0]; ?>" />
   </p>
@@ -41,6 +31,3 @@ if ($query)
   </p>
  <input type="submit" value="Submit" />
   <?php echo form_close();?>
-
-
-

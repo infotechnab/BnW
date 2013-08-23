@@ -1,10 +1,3 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
 <h2>News and Events   </h2>
 <a href="addactivity">Add New Events</a>
 <div id="body">
@@ -16,7 +9,8 @@
     <table border="1" cellpadding="10">
         <tr>
             <th>S.N.</th>
-            <th>News & Events </th>           
+            <th>News & Events </th>  
+            <th> Image </th>
             <th>Action</th>
         </tr>
     
@@ -27,9 +21,16 @@
             foreach ($query as $data){
             ?>
           <tr>
-            <td><?php echo $data->aid ?></td>
+            <td><?php echo $data->id ?></td>
             <td><?php echo $data->title ?></td>
-            <td><?php echo anchor('admin/editactivities/'.$data->aid,'Edit') ?> / <?php echo anchor('admin/deleteactivities/'.$data->aid,'Delete') ?></td>
+             <?php $image = $data->image;
+                if(($image=='')|| ($image=='0'))
+                {
+                    $image = 'Image not set'; ?>
+            <td> <?php echo $image; ?></td>
+              <?php   } else {
+?><td><img src="<?php echo base_url();?>uploads/<?php echo $image;?>" widht="50px" height="50px" />  </td> <?php } ?>
+            <td><?php echo anchor('bnw/editactivities/'.$data->id,'Edit') ?> / <?php echo anchor('bnw/deleteactivities/'.$data->id,'Delete') ?></td>
       
         </tr>
             <?php    
@@ -37,4 +38,5 @@
         }
     ?>
     </table>
+    <?php echo $links; ?>
 </div>

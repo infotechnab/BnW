@@ -1,7 +1,7 @@
  <?php
         if($query){
             foreach ($query as $data){
-           $gid = $data->gid;
+           $id = $data->id;
            $title = $data->title;
            $body = $data->body;
            $status= $data->status;
@@ -9,15 +9,16 @@
             }
         }
     ?>
-<h2>Edit Gadget id <?php echo $gid ?></h2>
+<h2>Edit Gadget id <?php echo $id; ?></h2>
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-  <?php echo form_open('admin/updategadget');?>
+  <?php echo form_open('bnw/updategadget');?>
+    <input type="text" name="type" value="gadgets" />
   <p>Title:<br />
-      <input type="hidden" name="id" value="<?php echo $gid; ?>" />
+      <input type="hidden" name="id" value="<?php echo $id; ?>" />
       <input type="text" name="title" value="<?php echo $title; ?>" />
   </p>
   <p>Body:<br />

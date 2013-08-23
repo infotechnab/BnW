@@ -46,8 +46,7 @@ class Dbmodel extends CI_Model {
         $data = Array(
             'a_name' => $name);
         $this->db->insert('album', $data);
-    
-        
+           
     }
     
      public function delete_album($aid) {
@@ -92,29 +91,46 @@ class Dbmodel extends CI_Model {
     
        
 //pages -----------------------------------------------
-    public function get_all_pages() {
-        $query = $this->db->get('pages');
+    public function record_count_page() {
+        return $this->db->count_all("page_event");
+    }
+    
+    public function get_all_pages($limit, $start) {
+           $this->db->limit($limit, $start); 
+        $this->db->where('type','page');
+        $query = $this->db->get('page_event');
         return $query->result();
     }
 
-    public function add_new_page($title, $body, $image, $status) {
+    public function add_new_page($title, $body, $image, $status,$type) {
         $data = Array(
             'title' => $title,
             'body' => $body,
             'image' => $image,
-            'status' => $status);
-        $this->db->insert('pages', $data);
+            'status' => $status,
+            'type'=> $type);
+        $this->db->insert('page_event', $data);
     }
 
-    public function findpage($pid) {
-        $this->db->select('pid, title, body, image, status');
-        $this->db->from('pages');
-        $this->db->where('pid = ' . "'" . $pid . "'");
+    public function findpage($id) {
+        $this->db->select('id, title, body, image, status');
+        $this->db->from('page_event');
+        $this->db->where('id = ' . "'" . $id . "'");
         $query = $this->db->get();
         return $query->result();
     }
-
-    public function update_page($pid, $title, $body, $image, $status) {
+    
+    public function find_page_id($name)
+    {   
+        
+        $this->db->select('id');
+        $this->db->where('title',$name);
+        $this->db->limit(1);
+        $this->db->order_by('id','DESC');
+        $page = $this->db->get('page_event');
+        return $page->result();
+    }
+    public function update_page($id, $title, $body, $image, $status) {
         $this->load->database();
          if (!isset($image)) {
             $data = array(
@@ -129,52 +145,60 @@ class Dbmodel extends CI_Model {
             'status' => $status);
         }
         
-        $this->db->where('pid', $pid);
-        $this->db->update('pages', $data);
+        $this->db->where('id', $id);
+        $this->db->update('page_event', $data);
     }
 
-    public function delete_page($pid) {
+    public function delete_page($id) {
 
-        $this->db->delete('pages', array('pid' => $pid));
+        $this->db->delete('page_event', array('id' => $id));
     }
     
-    public function delete_page_image($pid)
+    public function delete_page_image($id)
     {
             $data = Array(
             'image' => ""
            );
         
-            $this->db->where('pid', $pid);
+            $this->db->where('id', $id);
             
-            $this->db->update('pages',$data);
+            $this->db->update('page_event',$data);
     }
 
     
-// Activities ----------------------------------------------------------
-    public function get_all_activities() {
-        $query = $this->db->get('activities');
+// ==========================================Activities ----------------------------------------------------------
+   
+    public function record_count_activities() {
+        return $this->db->count_all("page_event");
+    }
+    
+    public function get_all_activities($limit,$start) {
+        $this->db->limit($limit, $start);
+        $this->db->where('type','event');
+        $query = $this->db->get('page_event');
         return $query->result();
     }
 
-    public function add_new_activities($title, $body, $image, $status) {
+    public function add_new_activities($title, $body, $image, $status,$type) {
         $data = Array(
             'title' => $title,
             'body' => $body,
             'image' => $image,
-            'status' => $status);
-        $this->db->insert('activities', $data);
+            'status' => $status,
+            'type'=>$type);
+        $this->db->insert('page_event', $data);
     }
 
-    public function findactivities($aid) {
-        $this->db->select('aid, title, body, status, image');
-        $this->db->from('activities');
-        $this->db->where('aid = ' . "'" . $aid . "'");
+    public function findactivities($id) {
+        $this->db->select('id, title, body, status, image');
+        $this->db->from('page_event');
+        $this->db->where('id = ' . "'" . $id . "'");
         $query = $this->db->get('');
         return $query->result();
     }
 
-    public function deleteactivities($aid) {
-        $this->db->delete('activities', array('aid' => $aid));
+    public function deleteactivities($id) {
+        $this->db->delete('page_event', array('id' => $id));
     }
 
     public function update_activities($id, $title, $body, $image, $status) {
@@ -193,49 +217,86 @@ class Dbmodel extends CI_Model {
                 'status' => $status);
         }
 
-        $this->db->where('aid', $id);
-        $this->db->update('activities', $data);
+        $this->db->where('id', $id);
+        $this->db->update('page_event', $data);
     }
 
     //gadgets --------------------------------------------------------------------------------
-    function get_gadgets() {
-        $this->db->select('gid, title, body, status');
-        $this->db->from('gadget');
+    
+    public function record_count_gadget() {
+        return $this->db->count_all("page_event");
+    } 
+    function get_gadgets($limit,$start) {
+        $this->db->limit($limit, $start);
+        $this->db->select('id, title, body, status');
+        $this->db->where('type','gadgets');
+        $this->db->from('notice_gadget');
         $query = $this->db->get();
         return $query->result();
     }
 
-    function add_new_gadget($title, $body, $status) {
+    function add_new_gadget($title, $body, $status,$type) {
         $data = Array(
+            'type'=>$type,
             'title' => $title,
             'body' => $body,
             'status' => $status);
-        $this->db->insert('gadget', $data);
+        $this->db->insert('notice_gadget', $data);
     }
 
-    function findgadget($gid) {
-        $this->db->select('gid, title, body, status');
-        $this->db->from('gadget');
-        $this->db->where('gid = ' . "'" . $gid . "'");
+    function findgadget($id) {
+        $this->db->select('id, title, body, status');
+        $this->db->from('notice_gadget');
+        $this->db->where('id = ' . "'" . $id . "'");
         $query = $this->db->get();
         return $query->result();
     }
 
-    function update_gadget($id, $title, $body, $status) {
+    function update_gadget($id, $title, $body, $status,$type) {
         $this->load->database();
         $data = array(
+            'type' => $type,
             'title' => $title,
             'body' => $body,
             'status' => $status);
-        $this->db->where('gid', $id);
-        $this->db->update('gadget', $data);
+        $this->db->where('id', $id);
+        $this->db->update('notice_gadget', $data);
     }
 
-    function delete_gadget($gid) {
-        $this->db->delete('gadget', array('gid' => $gid));
+    function delete_gadget($id) {
+        $this->db->delete('notice_gadget', array('id' => $id));
+    }
+    //===============================notice====================================//
+     public function record_count_notice() {
+        return $this->db->count_all("notice_gadget");
     }
     
-    //metadata  --------------------------------------------------------------------------------
+    function get_all_notices($limit, $start) {
+         $this->db->limit($limit, $start);
+        $this->db->select('id, title, body, status');
+        $this->db->where('type','notice');
+        $this->db->from('notice_gadget');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function add_new_notices($title, $body, $status,$type) {
+        $data = Array(
+            'type' => $type,
+            'title' => $title,
+            'body' => $body,
+            'status' => $status);
+        $this->db->insert('notice_gadget', $data);
+    }
+    
+    function findnotice($id) {
+        $this->db->select('id, title, body, status');
+        $this->db->from('notice_gadget');
+        $this->db->where('id = ' . "'" . $id . "'");
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    //=============================metadata  --------------------------------------------------------------------------------
 
     function get_meta_data()
     {
@@ -261,10 +322,10 @@ class Dbmodel extends CI_Model {
 
 
 
-    //others 
+    //======================others 
     function get_documents() {
-        $this->db->select('did, title, image, status, date');
-        $this->db->from('downloads');
+        $this->db->select('id, title, image, status, date');
+        $this->db->from('download');
         //$this -> db -> where('did = ' . "'" . $gid . "'");
         $query = $this->db->get();
         return $query->result();
@@ -275,11 +336,11 @@ class Dbmodel extends CI_Model {
             'title' => $name,
             'image' => $image,
             'status' => $status);
-        $this->db->insert('downloads', $data);
+        $this->db->insert('download', $data);
     }
 
-    function delete_document($did) {
-        $this->db->delete('downloads', array('did' => $did));
+    function delete_document($id) {
+        $this->db->delete('download', array('id' => $id));
     }
 
     function get_all_photos() {
@@ -364,11 +425,7 @@ class Dbmodel extends CI_Model {
 
     function delete_alumni($sid) {
         $this->db->delete('alumni', array('sid' => $sid));
-    }
-
-    public function record_count() {
-        return $this->db->count_all("alumni");
-    }
+    }   
 
     public function fetch_alumni($limit, $start) {
         $this->db->limit($limit, $start);
@@ -383,8 +440,13 @@ class Dbmodel extends CI_Model {
         return false;
     }
     
-    public function get_slider()
+     public function record_count_slider() {
+        return $this->db->count_all("slider");
+    }
+    
+    public function get_slider($limit,$start)
     {
+        $this->db->limit($limit, $start);
         $query = $this->db->get('slider');
         return $query->result();
     }
@@ -421,5 +483,67 @@ class Dbmodel extends CI_Model {
     }
     
     
+    // =========================== menu =================//
+    
+     public function record_count_menu() {
+        return $this->db->count_all("page_event");
+    }
+        
+    public function get_menu($limit,$start)
+    {
+        $this->db->limit($limit,$start);
+        $query = $this->db->get('menu');
+        return $query->result();
+    }
+    
+    
+    function findmenu($id) {
+        $this->db->select('id,title,parmalink,listing,order,link');
 
-}
+        //$this -> db -> from('menu');
+        $this->db->where('id = ' . "'" . $id . "'");
+        $query = $this->db->get('menu');
+        return $query->result();
+    }    
+    
+     public function update_menu($id,$title,$parmalink,$listing,$order,$link) {
+        $this->load->database();
+        $data = array(
+            'title' => $title,
+            'parmalink'=> $parmalink,
+            'listing'=> $listing,
+            'order'=> $order,
+            'link'=> $link);
+        $this->db->where('id', $id);
+        $this->db->update('menu', $data);
+    }    
+    public function add_new_menu($tital,$listing, $order , $id )
+    {   $this->load->database();        
+        $data = array(
+            'p_id'=>$id,
+            'title'=> $tital,
+            
+            'listing' => $listing,
+            'order'=> $order  );
+         $this->db->insert('menu', $data);        
+    }
+    
+    function get_blog() {
+        $this->db->select('id, title, image, status, date');
+        $this->db->from('blog');
+        //$this -> db -> where('did = ' . "'" . $gid . "'");
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    function upload_blog($name, $image, $status) {
+        $data = Array(
+            'title' => $name,
+            'image' => $image,
+            'status' => $status);
+        $this->db->insert('blog', $data);
+    }
+    function deleteblog($id) {
+        $this->db->delete('blog', array('id' => $id));
+    } 
+    }

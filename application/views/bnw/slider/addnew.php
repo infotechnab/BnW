@@ -16,7 +16,7 @@
 <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
 </p>
-  <?php echo form_open_multipart('admin/addslider');?>
+  <?php echo form_open_multipart('bnw/addslider');?>
   <p>Title:<br />
   <input type="text" name="title" />
   </p>
