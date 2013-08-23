@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 14, 2013 at 11:26 AM
+-- Generation Time: Aug 23, 2013 at 11:28 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -30,21 +30,60 @@ CREATE TABLE IF NOT EXISTS `album` (
   `aid` int(11) NOT NULL AUTO_INCREMENT,
   `a_name` varchar(200) NOT NULL,
   PRIMARY KEY (`aid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `album`
 --
 
 INSERT INTO `album` (`aid`, `a_name`) VALUES
-(3, 'sdfdsfdsf'),
-(12, 'sdfsdfsdf'),
-(17, 'lsdjf;l'),
-(18, 'sdjfljsdf'),
-(19, 'new album'),
-(21, 'sdfsdfsdf'),
-(22, 'sdfdsfdsfdsf'),
-(23, 'sdfsdfsdf');
+(26, 'sdfsdf'),
+(27, 'sdfdsfdsfdsf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog`
+--
+
+CREATE TABLE IF NOT EXISTS `blog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(2000) NOT NULL,
+  `image` varchar(2000) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `blog`
+--
+
+INSERT INTO `blog` (`id`, `title`, `image`, `status`, `date`) VALUES
+(1, 'sfdsdf', '8_n1.jpg', 1, '2013-08-23 09:40:55'),
+(3, 'sdff', '8_n2.jpg', 1, '2013-08-23 10:00:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `download`
+--
+
+CREATE TABLE IF NOT EXISTS `download` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `image` varchar(2000) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `download`
+--
+
+INSERT INTO `download` (`id`, `title`, `image`, `status`, `date`) VALUES
+(1, 'dsfdsf', '8_n.jpg', 1, '2013-08-23 09:11:19');
 
 -- --------------------------------------------------------
 
@@ -58,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `gallery` (
   `image` varchar(200) NOT NULL,
   `aid` int(11) NOT NULL,
   PRIMARY KEY (`eid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `gallery`
@@ -79,7 +118,9 @@ INSERT INTO `gallery` (`eid`, `title`, `image`, `aid`) VALUES
 (32, 'dfdsfdsf', '8_n4.jpg', 3),
 (33, 'hfghfgh', '8_n5.jpg', 19),
 (34, 'dsfdsf', 'my_frnsn1.jpg', 12),
-(35, 'sdfsdf', 'my_frnsn2.jpg', 12);
+(35, 'sdfsdf', 'my_frnsn2.jpg', 12),
+(36, 'sdafsdf', '8_n.jpg', 24),
+(38, 'sdfsdsdfsdf', '8_n2.jpg', 26);
 
 -- --------------------------------------------------------
 
@@ -106,6 +147,39 @@ INSERT INTO `members` (`member_id`, `firstname`, `lastname`, `login`, `passwd`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `menu`
+--
+
+CREATE TABLE IF NOT EXISTS `menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) NOT NULL,
+  `parmalink` varchar(1000) NOT NULL,
+  `listing` int(11) DEFAULT NULL,
+  `order` int(11) NOT NULL,
+  `link` varchar(1000) NOT NULL,
+  `is_single` tinyint(1) NOT NULL,
+  `p_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`id`, `title`, `parmalink`, `listing`, `order`, `link`, `is_single`, `p_id`) VALUES
+(1, 'Home', 'home', 0, 1, 'sfsdfsdf', 1, 1),
+(2, 'About us', 'about-us', 0, 2, '', 0, 5),
+(3, 'Introduction', 'introduction', 5, 2, '', 0, 6),
+(4, 'Mission', 'mission', 5, 1, '', 0, 7),
+(5, 'Contact', '', 0, 1, '', 0, 8),
+(6, 'contact', 'jdlsfj', 3, 1, 'sjkldfj', 0, 9),
+(18, 'sdfdsfasdf', '', 3, 0, '', 0, 30),
+(19, 'sdff', '', 3, 0, '', 0, 31),
+(20, 'sdff', '', 3, 0, '', 0, 32);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `meta_data`
 --
 
@@ -121,10 +195,10 @@ CREATE TABLE IF NOT EXISTS `meta_data` (
 --
 
 INSERT INTO `meta_data` (`id`, `name`, `value`) VALUES
-(1, 'siteurl', 'www.alternativeconceptnepal.com'),
-(2, 'title', 'lsjj chaged again sdfsd'),
-(3, 'keywords', 'lsjldjflsldjf ljsldjfl sldfjlsdjf'),
-(4, 'description', 'jsldjf lls dfljs dlfjlss');
+(1, 'siteurl', 'www.BnW.com'),
+(2, 'title', 'B&W'),
+(3, 'keywords', 'cms'),
+(4, 'description', 'cms');
 
 -- --------------------------------------------------------
 
@@ -136,10 +210,29 @@ CREATE TABLE IF NOT EXISTS `notice_gadget` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(200) NOT NULL,
   `body` longtext NOT NULL,
-  `published_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL,
+  `type` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `notice_gadget`
+--
+
+INSERT INTO `notice_gadget` (`id`, `title`, `body`, `date`, `status`, `type`) VALUES
+(1, 'sdfdf', 'sadfdfsf', '2013-08-19 11:27:02', 1, ''),
+(2, 'sdfsdsdfsdf', 'sdfsdfsdf', '2013-08-19 11:28:23', 1, ''),
+(3, 'sdafsdf', 'adsfsdf', '2013-08-19 11:30:01', 1, ''),
+(4, 'sdff', 'sadfsdf', '2013-08-20 06:31:28', 1, ''),
+(5, 'sdfadf', 'sadfadf', '2013-08-20 06:31:41', 1, ''),
+(6, 'new notice', 'lfdkgjflgj', '2013-08-22 06:48:47', 1, 'notice'),
+(7, 'gad', 'sadf', '2013-08-22 06:57:24', 1, ''),
+(8, 'gadgets', 'dffg', '2013-08-22 07:00:14', 1, '0'),
+(9, 'last', 'asdfsaf', '2013-08-22 07:02:20', 1, 'gadgets'),
+(10, 'sdfdsfdsf', 'dsffdf', '2013-08-22 07:02:10', 1, 'gadgets'),
+(11, 'sssssssssssss', 'sssssssssssssssssss', '2013-08-22 07:10:26', 1, 'notice'),
+(12, 'new page', 'lsdfjdsfl', '2013-08-23 09:37:32', 1, 'gadgets');
 
 -- --------------------------------------------------------
 
@@ -152,18 +245,47 @@ CREATE TABLE IF NOT EXISTS `page_event` (
   `title` varchar(200) NOT NULL,
   `body` longtext NOT NULL,
   `image` varchar(200) NOT NULL,
-  `published_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` varchar(200) NOT NULL,
   `type` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `page_event`
 --
 
-INSERT INTO `page_event` (`id`, `title`, `body`, `image`, `published_date`, `status`, `type`) VALUES
-(1, '', '', '', '2013-08-14 07:17:23', '', '');
+INSERT INTO `page_event` (`id`, `title`, `body`, `image`, `date`, `status`, `type`) VALUES
+(1, 'dfsgfg', 'dsfgdfgfg', '', '2013-08-20 07:01:26', '1', 'page'),
+(2, 'dfsgdfg', 'dsgdfg', '', '2013-08-19 07:28:12', '1', ''),
+(3, 'sdff', 'asdfdf', 'door-alarms.jpg', '2013-08-20 07:01:35', '1', 'page'),
+(4, 'lghdfklgh', 'kdshfkljsdhf', '', '2013-08-19 07:51:26', '1', ''),
+(5, 'sdfdsf', 'dfsgdlkfg', 'about_us.jpg', '2013-08-20 07:01:47', '1', 'page'),
+(7, 'sdfsdsdfsdf', 'asdfsdf', '', '2013-08-19 08:17:55', '1', ''),
+(8, 'sdfdf', 'asdfdfsd', '', '2013-08-20 07:01:57', '1', 'page'),
+(9, 'last', 'sd;lfjs', '8_n.jpg', '2013-08-19 11:23:41', '1', ''),
+(10, 'dsfsdfsd', 'dasfsdfsdf', '', '2013-08-20 07:02:07', '1', 'page'),
+(11, 'add new page', 'sadf', 'DSC03742.jpg', '2013-08-20 05:40:25', '1', ''),
+(12, 'sdfsdsdfsdf', 'sadfdfsdaf', 'DSC03739.jpg', '2013-08-20 07:02:16', '1', 'page'),
+(13, 'menu', ';sadfjgj', '', '2013-08-20 07:40:28', '1', ''),
+(14, 'new abc', 'sdffsdf', '', '2013-08-20 07:41:05', '1', ''),
+(15, 'dsff', 'sdf', '', '2013-08-20 10:51:15', '1', 'page'),
+(16, 'new page', '`dsfgjkdfg', '', '2013-08-20 10:51:40', '1', 'page'),
+(17, 'sadfsdf', 'sdfdf', '', '2013-08-20 10:56:58', '1', ''),
+(18, 'new event 2 ', 'dlsfj', '8_n2.jpg', '2013-08-20 10:58:11', '1', 'event'),
+(19, 'new event', 'lskfjd', 'flower_n.jpg', '2013-08-22 05:50:37', '1', 'event'),
+(20, 'add menu', 'sdfdf', '', '2013-08-20 11:02:07', '1', 'page'),
+(22, 'last event', 'asdfsdff', 'canon_logo.jpg', '2013-08-22 05:51:07', '1', 'event'),
+(23, 'pagination test', 'dfkladsjf', '', '2013-08-22 08:30:30', '1', 'page'),
+(24, 'page', 'sdlf', '', '2013-08-22 08:31:09', '1', 'page'),
+(25, 'FGDSGD', 'DFGDFGDFGD', '', '2013-08-22 10:06:14', '1', 'page'),
+(26, 'XDBVGDFG', 'sdgdsgs', '', '2013-08-22 10:06:53', '1', 'page'),
+(27, 'sdfsdf', 'sdfsdfsdf', '', '2013-08-22 10:11:31', '1', 'page'),
+(28, 'sdfsdf', 'sdfsdfsdf', '', '2013-08-22 10:12:26', '1', 'page'),
+(29, 'sdfsdf', 'sdfsdfsdf', '', '2013-08-22 10:13:21', '1', 'page'),
+(30, 'sdfdsfasdf', 'sdff', '', '2013-08-22 10:22:09', '1', 'page'),
+(31, 'sdff', 'sdfsdfdsf', '', '2013-08-22 10:29:22', '1', 'page'),
+(32, 'sdff', 'sdfdfdsfsdf', '', '2013-08-22 10:30:02', '1', 'page');
 
 -- --------------------------------------------------------
 
@@ -176,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `slider` (
   `image` varchar(200) NOT NULL,
   `title` varchar(200) NOT NULL,
   PRIMARY KEY (`sid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `slider`
@@ -186,7 +308,10 @@ INSERT INTO `slider` (`sid`, `image`, `title`) VALUES
 (3, 'handtree.jpg', 'Use ACON'),
 (4, 'comparition.jpg', 'Comparision'),
 (5, 'por3018164_2.jpg', 'Steel Doors And Windows'),
-(6, 'terasprofiiltooted.jpg', 'Windows');
+(6, 'terasprofiiltooted.jpg', 'Windows'),
+(7, 'DSC03734.jpg', 'sadff'),
+(8, 'canon-logo.jpg', 'yuiuiu'),
+(9, 'canon.png', 'sdfsdfdsfdf');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
