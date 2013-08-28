@@ -8,7 +8,7 @@
     <table border="1" cellpadding="10">
         <tr>
             <th>S.N.</th>
-            <th>Page</th> 
+            <th>Page</th>
             <th>Image</th>
             <th>Published On</th>
             <th>Status</th>

@@ -85,7 +85,7 @@ class bnw extends CI_Controller {
             $this->load->library(array('form_validation', 'session'));
             //set validation rules
             $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('body', 'Body', 'required|xss_clean');
+            $this->form_validation->set_rules('area1', 'Body', 'required|xss_clean');
             if (($this->form_validation->run() == TRUE))
             {
              if ($_FILES && $_FILES['file']['name'] !== "")
@@ -119,7 +119,7 @@ class bnw extends CI_Controller {
                 $image = "";
                 $type = $this->input->post('type');
                 $name = $this->input->post('title');
-                $body = $this->input->post('body');
+                $body = $this->input->post('area1');
                 $status = $this->input->post('status');
                 $listing = $this->input->post('listing');
                 $order = $this->input->post('order');
@@ -195,7 +195,7 @@ class bnw extends CI_Controller {
             $id = $this->input->post('id');
             //set validation rules
             $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('body', 'Body', 'required|xss_clean');
+            $this->form_validation->set_rules('area1', 'Body', 'required|xss_clean');
 
              if (($this->form_validation->run() == TRUE))
             {
@@ -215,7 +215,7 @@ class bnw extends CI_Controller {
                 $image = $data['upload_data']['file_name'];
 
                 $name = $this->input->post('title');
-                $body = $this->input->post('body');
+                $body = $this->input->post('area1');
                 $status = $this->input->post('status');
                 $this->dbmodel->update_page($id, $name, $body, $image, $status);
                 $this->session->set_flashdata('message', 'Data Modified Sucessfully');
@@ -228,7 +228,7 @@ class bnw extends CI_Controller {
 
                 $image = "";
                 $name = $this->input->post('title');
-                $body = $this->input->post('body');
+                $body = $this->input->post('area1');
                 $status = $this->input->post('status');
                 $this->dbmodel->update_page($id, $name, $body, $image, $status);
                 $this->session->set_flashdata('message', 'Data Modified Sucessfully');

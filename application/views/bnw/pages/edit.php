@@ -25,7 +25,7 @@
       <input type="text" name="title" value="<?php echo $title; ?>" />
   </p>
   <p>Body:<br />
-  <textarea name="body" rows="5" cols="50" style="resize:none;"><?php echo $body; ?></textarea>
+  <textarea name="area1" rows="5" cols="50" style="resize:none;"><?php echo $body; ?></textarea>
   </p>
   <?php if($image !=="")
   {?>  

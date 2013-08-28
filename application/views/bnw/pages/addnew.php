@@ -14,7 +14,8 @@
   <input type="text" name="title" />
   </p>
   <p>Body:<br />
-  <textarea name="body" rows="5" cols="50" style="resize:none;"></textarea>
+       <textarea name="area1" cols="50" rows="5"></textarea>
+  
     </p>
     <p> Image : <br/> <input type="file" name="file" id="file" /> </p>
    <p>Status:<br />
