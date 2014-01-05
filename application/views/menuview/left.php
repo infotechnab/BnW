@@ -23,7 +23,6 @@ else
 <div class="full">
     <div class="full_left" >
         <div class="header">
-            <!--<img src="<?php echo base_url();?>content/images/logo2.jpg" alt="universal logo" />-->
             <h1> B&W </h1>
         </div>
         <!--<div class="search">

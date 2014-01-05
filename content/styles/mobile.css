@@ -1,10 +1,13 @@
-body{margin: 0;
-        padding: 0;
-          background-color: #EBF3EC;
-         font-family:Arial,Helvetica,sans-serif;
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color: #EBF3EC;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-.full{
+.full
+{
     margin: 0 auto 0 auto;
     padding: 0;
     background-color: #2c5772;
