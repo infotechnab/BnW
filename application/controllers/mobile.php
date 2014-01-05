@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class view extends CI_Controller {
+class mobile extends CI_Controller {
  public function __construct()
     {
         parent::__construct();
@@ -9,8 +9,7 @@ class view extends CI_Controller {
     }
 public function index()
     {
-        
-        $data['query'] = $this->viewmodel->get_menu();
+     $data['query'] = $this->viewmodel->get_menu();
         $data['event'] = $this->viewmodel->get_event();
         $data['slider'] = $this->viewmodel->get_slider();
         $data['download'] = $this->viewmodel->get_download();
@@ -21,10 +20,7 @@ public function index()
         //    $id = $d->id;
        // }
         //$data['menu'] = $this->viewmodel->listing($id); 
-        $this->load->view('menuview/left',$data);
-        $this->load->view('menuview/right',$data);
-        
+        $this->load->view('mobile/left',$data);
         
     }
-  
 }

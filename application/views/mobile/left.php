@@ -10,38 +10,19 @@
     <?php if(isset($pageTitle))
 {echo $pageTitle.' ' .'-'.' '.'B&W' ;}
 else
-{echo $pageTitle = 'B&W';}
+{echo $pageTitle = 'B&W mobile site';}
 ?>
 </title>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>content/styles/me.css" type="text/css" />
+    <link rel="stylesheet" href="http://192.168.1.50:8082/bnw/content/styles/mobile.css" type="text/css" />
     <link rel="shortcut icon" href="<?php echo base_url(); ?>content/images/favicon.ico" type="image/x-icon">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>content/engine1/style.css" />
-    <script type="text/javascript" src="<?php echo base_url(); ?>content/engine1/jquery.js"></script>
-</head>
+    </head>
     <body>
-<div class="full">
-    <div class="full_left" >
+<div class="full">  
         <div class="header">
-            <!--<img src="<?php echo base_url();?>content/images/logo2.jpg" alt="universal logo" />-->
-            <h1> B&W </h1>
+            <h1>  B&W </h1>
         </div>
-        <!--<div class="search">
-<script>
-  (function() {
-    var cx = '003019572812212623629:ogxeyfn2ziy';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-<gcse:search> </gcse:search>
-</div>-->
-        <div class="menu-item">
+          <div class="menu-item">
             <div class="menu-title">
                 <div class="title-name">
                     
@@ -74,16 +55,17 @@ else
                 <?php } ?>              
             </ul>
         </div>
-        <!--<div class="menu-item">
-        <div class="title-name"> <h3> Quick Contact </h3> </div>
-        <div class="quick-contact">
-            <?php // foreach ($gadget as $data)
-            { ?>
-            <p class="n-body"> <b> <?php //echo $data->title;?> </b> : <?php //echo $data->body; ?></p>
-            <?php
-            } ?>
-        </div>
-        </div> -->
+               <div class="content">
+  <div class="title-name">
+  <h3> Page  </h3>
+  </div>
+    <div class="page-pragraph">
+    <p class="para"> This is Content Display View</p>        
+</div>
+</div>
+        
+        
+        
         <div class="menu-item">
             <div class="menu-title">
                 <div class="title-name">
@@ -94,9 +76,7 @@ else
 {
     $id = $data->id;
     $evtitle = $data->title;
-
-    //$image = $data->image;
-?>
+    ?>
             <div class="sub-title-name"> <?php echo $data->title; ?> </div>
          <p class="n-body"> <?php
           $wordsreturned = 150;
@@ -126,5 +106,12 @@ else
             <?php
             } ?>
         </div>
-        </div>       
-    </div>
+        </div> 
+        <div id="footer">
+                 <div  id="copyright">  Copyright &copy;  2013. B&W </div> 
+            
+        <div class="credit"> Designed By: Salyani Technologies(p) LTD.
+             
+        </div>
+            </div>
+</div>  
