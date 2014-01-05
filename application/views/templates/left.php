@@ -8,9 +8,9 @@
 ?>
 <title>
     <?php if(isset($pageTitle))
-{echo $pageTitle.' ' .'-'.' '.'Universal Office Suppliers' ;}
+{echo $pageTitle;}
 else
-{echo $pageTitle = 'Universal Office Suppliers';}
+{echo $pageTitle;}
 ?>
 </title>
     <link rel="stylesheet" href="<?php echo base_url(); ?>content/styles/me.css" type="text/css" />
