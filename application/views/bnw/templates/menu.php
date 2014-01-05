@@ -17,7 +17,7 @@
         <li><?php echo anchor('bnw/album', 'Album') ?></li>
         <li><?php echo anchor('bnw/slider','Slider') ?> </li>
         <li><?php echo anchor('bnw/blog', 'Blog') ?></li>
-         <li><?php echo anchor('bnw/download', 'Download') ?></li>
+         <li><?php echo anchor('bnw/download', 'Media') ?></li>
         <li><?php echo anchor('bnw/setup', 'Setup') ?></li>    
    </ul>
 </div>
