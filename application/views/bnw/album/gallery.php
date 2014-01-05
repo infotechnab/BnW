@@ -124,7 +124,7 @@ else
 <?php echo form_open_multipart('bnw/addphoto'); ?>
     <input type="hidden" name="p_aid" value="<?php echo $album_id; ?>" />
     <label> Image Title :</label> <br/>
-    <input type="text" name="title" />          
+    <input type="text" name="title" required />          
     <input type="file" name="userfile" id="file"   />
     <input type="submit" name="submit" value="add photo"   />
 <?php  echo form_close(); ?>
