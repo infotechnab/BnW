@@ -21,8 +21,8 @@ public function index()
         //    $id = $d->id;
        // }
         //$data['menu'] = $this->viewmodel->listing($id); 
-        $this->load->view('menuview/left',$data);
-        $this->load->view('menuview/right',$data);
+        $this->load->view('menuview/header',$data);
+        /*$this->load->view('menuview/right',$data);*/
         
         
     }
