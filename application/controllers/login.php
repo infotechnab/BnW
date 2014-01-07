@@ -14,8 +14,7 @@ class Login extends CI_Controller {
       $this->load->library('session');
      if(!$this->session->userdata('logged_in'))
      {  $data['meta'] = $this->dbmodel->get_meta_data();
-        $header ="bnw/templates/";
-        $this->load->view($header.'header',$data);            
+        $this->load->view('$bnw/templates/header',$data);            
         $this->load->view('bnw/form');
         $this->load->view('bnw/templates/footer',$data);
      }
