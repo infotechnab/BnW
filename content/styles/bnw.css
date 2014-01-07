@@ -1,6 +1,7 @@
 body
 {
     background-image: url(../images/bgimage.jpg);
+     font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 #fullbody{
     margin: 0;
