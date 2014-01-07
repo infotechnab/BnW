@@ -1173,7 +1173,7 @@ class bnw extends CI_Controller {
     {
         
          if ($this->session->userdata('logged_in')) {
-              $config = array();
+            $config = array();
             $config["base_url"] = base_url() . "index.php/bnw/menu";
             $config["total_rows"] = $this->dbmodel->record_count_menu();
             $config["per_page"] = 6;
