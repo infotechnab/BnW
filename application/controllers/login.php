@@ -6,7 +6,10 @@ class Login extends CI_Controller {
  {
    parent::__construct();
    $this->load->library('session');
-   $this->load->model('dbmodel'); 
+   $this->load->model('dbmodel');     
+        $this->load->helper('url');
+        $this->load->helper(array('form', 'url'));
+        $this->load->library("pagination");
  }
 
  function index()
@@ -14,7 +17,7 @@ class Login extends CI_Controller {
       $this->load->library('session');
      if(!$this->session->userdata('logged_in'))
      {  $data['meta'] = $this->dbmodel->get_meta_data();
-        $this->load->view('$bnw/templates/header',$data);            
+        $this->load->view('bnw/templates/header',$data);            
         $this->load->view('bnw/form');
         $this->load->view('bnw/templates/footer',$data);
      }
