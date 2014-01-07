@@ -22,7 +22,7 @@ public function index()
        // }
         //$data['menu'] = $this->viewmodel->listing($id); 
         $this->load->view('menuview/header',$data);
-        /*$this->load->view('menuview/right',$data);*/
+        
         
         
     }

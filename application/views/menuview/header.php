@@ -74,6 +74,7 @@ else
                     
                  </div>
         <div class="clear"></div>
+        <div class="eventAndDownload">
         <div class="event">
             <div class="eventHeader">
                 <h3>News and Events</h3>
@@ -103,23 +104,24 @@ else
           <?php echo strip_tags($retval); 
           
           } ?></p>
-            <p class="paragraph" > <?php echo anchor('view/index/'.$id,'more','style="color:green;"'); ?> </p> <hr/> <?php } ?>
+            <p class="paragraph" > <?php echo anchor('view/index/'.$id,'more'); ?> </p> <hr/> <?php } ?>
             </div>
-        <div class="clear"></div>
         <div class="download">
             <div class="downloadHeader"><h3> Downloads </h3></div>
             <div>
                 <?php foreach ($download as $data)
             { ?>
                 <div class="paragraph">
-                    <b> Download Files </b> <br/> <a href="<?php echo base_url(); ?>downloads/<?php echo $data->image; ?>" > <?php echo $data->title;?> </a>  </p>
+                   <p><b> Download Files </b> <br/> <a href="<?php echo base_url(); ?>downloads/<?php echo $data->image; ?>" > <?php echo $data->title;?> </a>  </p>
             <?php
             } ?>
                 </div>
             </div>
         </div>
         </div>
-            <div class="clear"></div>
+        <div class="clear"></div>
+        </div>      
+            
                   
             <div class="fullRight">
                 <div class="slider">
@@ -152,7 +154,7 @@ else
                 </div> 
             </div>
             
-        </div>
+            <div class="clear"></div>
         <!class full is closed here>
         <div id="footer">
                  <div  id="copyright">  Copyright &copy;  2013. B&W </div> 
@@ -161,6 +163,7 @@ else
                     <img src="<?php echo base_url(); ?>content/images/salyaniTech.png" alt="salyani logo"  /> 
                 </div>
             <div class="clear" > </div>
+        </div>
         </div>
     </body>
 </html>
