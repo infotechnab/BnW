@@ -9,7 +9,7 @@ body
 {
     background-color: white;
     margin: 0 auto 0 auto;
-    min-height: 350px;
+    min-height: 250px;
     box-shadow: 0px 0px 10px  #333;
     border-radius: 5px;
 }
@@ -32,14 +32,13 @@ a:hover
 {
     text-align: center;
     width: auto!important;
-    //border: 1px solid #000;
     padding: 20px;
     margin: 0px;
-    min-height: 325px;
+    min-height: 225px;
 }
 #form
 {
-    width: 100%;
+    min-width: auto!important;
     margin: 0px;
     padding: 0px;
 }
@@ -47,19 +46,17 @@ a:hover
 #username, #passowrd
 {
     padding: 10px;
-   
-   
 }
 
 #submitMe
 {
-    width:215px;
+    width:250px;
     padding: 10px;
     font-weight: bold;
 }
 #sucessmsg
 {
-    color: #333;  
+    color: red;  
 }
 .clear
 {
@@ -68,7 +65,7 @@ a:hover
 #rightTop
 {
     width: 100%;
-    min-height: 300px;
+    max-height: 300px;
     float: left;
     margin-top: 40px;
 }
@@ -92,16 +89,16 @@ a:hover
     }
     .left
     {
-        width: 40%;
+        width: 43%;
         min-height: 150px;
         float: left;
     }
     .right
     {
-        width: 58%;
-        margin-left: 2%;
+        width:48%;
         float: left;
         min-height: 300px;
+        padding: 20px;
     }
     #name
     {
@@ -110,11 +107,18 @@ a:hover
         margin: 0%;
         padding: 0%;  
     }
+    .frame
+    {
+        width: 100%!important;
+        margin: 0px;
+        padding: 0px;
+        height: 300px;
+    }
     
 }
 
 
-/* css for media screen max of 1500px and min of 1025px*/
+/* css for media screen max of 1025px and min of 800px*/
 @media only screen and (max-width : 1025px)
 {
     .container
@@ -124,21 +128,28 @@ a:hover
     }
     .left
     {
-        width: 40%;
+        width: 43%;
         min-height: 150px;
         float: left;
     }
     .right
     {
-        width: 58%;
-        margin-left: 2%;
+        width: 48%;
+        padding: 20px;
         float: left;
         min-height: 150px;
     }
+    .frame
+    {
+        max-width: 100%!important;
+        margin: 0px;
+        padding: 0px;
+    }
+    
 }
 
 
-/* css for media screen max of 1500px and min of 1025px*/
+/* css for media screen max of 800px and min of 640px*/
 @media only screen and (max-width : 800px)
 {
     .container
@@ -148,42 +159,44 @@ a:hover
     }
     .left
     {
-        width: 40%;
+        width: 47%;
         min-height: 150px;
         float: left;
     }
     .right
     {
-        width: 58%;
-        margin-left: 2%;
+        width: 43%;
         float: left;
-        min-height: 150px;
+        min-height: 125px;
+    }
+    .frame
+    {
+        max-width: 100%!important;
+        margin: 0px;
+        padding: 0px;
     }
 }
 
 
-/* css for media screen max of 1500px and min of 1025px*/
+/* css for media screen max of 640px and min of 480px*/
 @media only screen and (max-width : 640px)
 {
     .container
     {
-        width: 100%;
-        padding: 40px 0px 0px 0px;
+        width: 70%;
+        margin-top: 40px;
     }
     .left
     {
-        width: 40%;
+        width: 100%;
         min-height: 150px;
-        float: left;
     }
     .right
     {
-        width: 58%;
-        margin-left: 2%;
-        float: left;
-        min-height: 150px;
+        display: none;
     }
 }
+
 
 
 /* css for media screen max of 1500px and min of 1025px*/
@@ -191,8 +204,8 @@ a:hover
 {
     .container
     {
-        width: 100%;
-        padding: 25px 0px 0px 0px;
+        width: 80%;
+        margin-top: 35px;
     }
     .left
     {

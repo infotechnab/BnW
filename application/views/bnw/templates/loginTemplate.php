@@ -25,45 +25,53 @@
     <div class="container">
         <div class="left">
             <div id="loginform">
-                <form>
+               
                 <table>
+                    <?php echo form_open('login/validate_credentials'); ?>
                     <tbody>
                         <tr>
+                        <td colspan="2">
+                            <img id="name" src="<?php echo base_url()."/content/images/bnw.png"; ?>"/>
+                                <p id="sucessmsg">
+                                    <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}
+                                echo validation_errors(); ?> </p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td colspan="2">
+                            <input type="text" size="35" id="username" name="username" placeholder="User Name" required/>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td colspan="2">
+                            <input type="password" size="35" id="passowrd" name="password" placeholder="Password" required/>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td colspan="2">
+                            <input type="submit" id="submitMe" value="Login">
+                        </td>
+                        </tr>
+                        <tr>
                         <td>
-                            
+                            <input type="checkbox" value=""/>Stay Logged In
+                        </td>
+                        <td>
+                            <a href="#">Forgot Password</a>
                         </td>
                         </tr>
                     </tbody>
-                </table>
-                <div id="companyLogo">
-                    <img id="name" src="<?php echo base_url()."/content/images/bnw.png"; ?>"/>
-                </div>
-                <div id="form">
-                    <p id="sucessmsg">
-                    <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}
-                        echo validation_errors(); ?> </p>
-                        <?php echo form_open('login/validate_credentials'); ?>
-                  
-                    
-                        <input type="text" size="30" id="username" name="username" placeholder="User Name" required/>
-                   
-                    
-                    <input type="password" size="30" id="passowrd" name="password" placeholder="Password" required/>
-                  
-                    <input type="submit" id="submitMe" value="Login">
-                    
-                    
-                    <input type="checkbox" value=""/>Stay Logged In &nbsp&nbsp&nbsp&nbsp<a href="#">ForGot Password</a>
                     </form>
-                </div>
+                </table>
+                    
             </div>
-        </div>
+         </div>
         
         <!left side is closed here>
         
         <div class="right">
-            <div id="rightTop">
-                <iframe width="470px" height="290px" src="http://salyani.org/sources/iframeContent/bnwIframe.php" frameborder="0" scrolling="no"></iframe>
+            <div>
+                <iframe class="frame" src="http://salyani.org/sources/iframeContent/bnwIframe.php" frameborder="0" scrolling="no"></iframe>
             </div>
             
         </div>
