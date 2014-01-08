@@ -1,0 +1,265 @@
+body
+{
+    margin: 0px;
+    padding: 0px;
+    background-color: #E0E0E0;
+}
+.full
+{
+    margin: 0 auto 0 auto;
+    padding: 0px;
+    background-color: white;
+}
+#top
+{
+    width: auto;
+    margin: 0px;
+    padding: 5px 5px 0px 5px;
+    height: 50px;
+    border-bottom: 1px dotted #E0E0E0;
+}
+#topLeft
+{
+    float: left;
+    width: auto;
+}
+#topRight
+{
+    float: right;
+    width: auto;
+}
+.clear
+{
+    clear: both;
+}
+.leftSide, .rightSide
+{
+    margin: 0px;
+    padding: 0px;
+    background-color: #fff;
+}
+.leftSide
+{
+    width: 200px;
+    float: left;
+}
+.rightSide
+{
+    float: right;
+}
+
+.dashboard
+{
+    width: 100%;
+    min-height: 15px;
+    background-color: #fff;
+    color: #5D5D5D;
+    margin: 0px;
+    padding: 0px 7px 0px 7px;
+    text-align: center;
+}
+#eventHead
+{
+    width: 100%;
+    min-height: 15px;
+    background-color: #000;
+    color: white;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+.logo
+{
+    float: left;
+    padding: 4px 4px 0px 0px;
+}
+h3
+{
+    margin: 0px;
+    padding: 0px;
+}
+.items
+{
+    width: 100%;
+    padding: 5px;
+    margin: 0px;
+    min-height: 125px;
+    float: left;
+    border: 2px dotted #E0E0E0;
+}
+.items ul
+{
+    margin: 0px;
+    padding: 0px;
+}
+.items ul li
+{
+    list-style-type: none;
+    border-bottom: 2px dotted #E0E0E0;
+    background-color: silver;
+    width: auto;
+}
+.items ul li a:link
+{
+    color: #fff;
+}
+.items ul li a:hover
+{
+    color: #999;
+}
+#footer
+{
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+    padding: 0px;
+}
+
+
+/*for media screen 1025-1500px*/
+@media screen and (max-width : 1500px)
+{
+    .full
+    {
+        width: 85%;
+        min-height: 500px;
+    }
+    #topLeft
+    {
+        display: none;
+    }
+    .rightSide
+    {
+        width: 75%;
+    }
+    .leftSide
+    {
+        display: block;
+    }
+    
+    
+}
+
+
+/*for media screen 801-1025px*/
+@media screen and (max-width : 1025px)
+{
+    .full
+    {
+        width: 90%;
+        min-height: 500px;
+    }
+    #topLeft
+    {
+        display: none;
+    }
+    .rightSide
+    {
+        width: 70%;
+    }
+    .leftSide
+    {
+        display: block;
+    }
+    
+}
+
+/*for media screen 640-800px*/
+@media screen and (max-width : 800px)
+{
+    .full
+    {
+        width: 95%;
+        min-height: 500px;
+    }
+    #topLeft
+    {
+        display: none;
+    }
+    .rightSide
+    {
+        width: 65%;
+    }
+    .leftSide
+    {
+        display: block;
+    }
+    
+}
+
+/*for media screen 480-640px*/
+@media screen and (max-width : 640px)
+{
+    .full
+    {
+        width: 100%;
+        min-height: 500px;
+    }
+    #topLeft
+    {
+        display: block;
+    }
+    .leftSide
+    {
+        position: absolute;
+        left: 0;
+        top: 55px;
+        min-width: 150px;
+        display: none;
+    }
+    .rightSide
+    {
+        width: 100%;
+    }
+    .leftSide
+    {
+        width: 300px;
+    }
+}
+
+/*for media screen 320-480px*/
+@media screen and (max-width : 480px)
+{
+    .full
+    {
+        width: 100%;
+        min-height: 800px;
+    }
+    #topLeft
+    {
+        display: block;
+    }
+    .leftSide
+    {
+        display: none;
+        width: 300px;
+    }
+    
+    .rightSide
+    {
+        width: 100%;
+    }
+}
+
+/*for media screen having maximum width 320px*/
+@media screen and (max-width : 320px)
+{
+    .full
+    {
+        width: 100%;
+        min-height: 500px;
+    }
+    #topLeft
+    {
+        display: block;
+    }
+    .rightSide
+    {
+        width: 100%;
+    }
+}
+
+
+
+

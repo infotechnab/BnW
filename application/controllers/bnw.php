@@ -19,10 +19,10 @@ class bnw extends CI_Controller {
             $data['username'] = Array($this->session->userdata('logged_in'));
             $data['meta'] = $this->dbmodel->get_meta_data();
             $header = "bnw/templates/";
-            $this->load->view($header . 'header',$data);
+            /*$this->load->view($header . 'header',$data);
             $this->load->view($header . 'menu');
-            $this->load->view('bnw/index');
-            $this->load->view('bnw/templates/footer',$data);
+            $this->load->view('bnw/index');*/
+            $this->load->view('bnw/templates/dashboard',$data);
         } else {
             redirect('login', 'refresh');
         }
