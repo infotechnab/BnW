@@ -16,6 +16,15 @@ $(document).ready(function(){
   });
 });
 
+$(document).ready(function(){
+  $("#mainMenuItemId").click(function(){
+     $(this).children("ul:first").toggle(); 
+     
+  });
+});
+
+
+
 
   </script>
 	<meta charset="utf-8">
@@ -51,36 +60,40 @@ $(document).ready(function(){
         <!top company name and logged is as and logout div closed here>
     
         <div class="leftSide">
-            <div class="dashboard">
-                <h3>Dashboard</h3>
-            </div>
-            <div class="items">
-                <ul>
-                    <li><?php echo anchor('bnw', 'Home') ?></li>
-                    <li><?php echo anchor('bnw/menu', 'Menu') ?></li>
-                    <li><?php echo anchor('bnw/pages', 'Pages') ?></li>
-                    <li><?php echo anchor('bnw/activities', 'News & Events') ?></li>
-                    <li><?php echo anchor('bnw/notice', 'Notice') ?></li>
-                    <li><?php echo anchor('bnw/gadget', 'Gadget') ?></li>
-                    <li><?php echo anchor('bnw/album', 'Album') ?></li>
-                    <li><?php echo anchor('bnw/slider','Slider') ?> </li>
-                    <li><?php echo anchor('bnw/blog', 'Blog') ?></li>
-                    <li><?php echo anchor('bnw/download', 'Media') ?></li>
-                    <li><?php echo anchor('bnw/setup', 'Setup') ?></li>    
+            <div class="menuItems">
+                <ul class="menu">
+                    <li class="mainMenuItem" id="mainMenuItemId"> <a href="#">Control Panel</a><?php //echo anchor('bnw', 'Control Panel') ?>
+                        <ul class="subMenu">
+                            <li><?php echo anchor('bnw', 'Home') ?></li>
+                            <li><?php echo anchor('bnw/menu', 'Navigation') ?></li>
+                            <li><?php echo anchor('bnw', 'Categories') ?></li>
+                        </ul>
+                    </li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw', 'Pages') ?>
+                        <ul class="subMenu">
+                            <li><?php echo anchor('bnw/pages', 'Add New') ?></li>
+                            <li><?php echo anchor('bnw', 'All Pages') ?></li>
+                        </ul>
+                    </li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw', 'Users') ?>
+                        <ul class="subMenu">
+                            <li><?php echo anchor('bnw', 'Add New') ?></li>
+                            <li><?php echo anchor('bnw', 'All Users') ?></li>
+                            <li><?php echo anchor('bnw', 'My Profile') ?></li>
+                        </ul>
+                    </li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw/menu', 'Menu') ?></li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw/pages', 'Pages') ?></li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw/activities', 'News & Events') ?></li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw/notice', 'Notice') ?></li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw/gadget', 'Gadget') ?></li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw/album', 'Album') ?></li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw/slider','Slider') ?> </li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw/blog', 'Blog') ?></li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw/download', 'Media') ?></li>
+                    <li class="mainMenuItem"><?php echo anchor('bnw/setup', 'Setup') ?></li>    
                 </ul>   
             </div>
-            <div class="items">
-                <div id="eventHead">Next item</div>
-            </div>
-            
-            <div class="items">
-                <div id="eventHead">Next item</div>
-            </div>
-            
-            <div class="items">
-                <div id="eventHead">Next item</div>
-            </div>
-            
         </div>
         
         
