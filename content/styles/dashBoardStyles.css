@@ -16,8 +16,8 @@ body
     width: auto;
     margin: 0px;
     padding: 5px 5px 0px 5px;
-    height: 50px;
-    border-bottom: 1px dotted #E0E0E0;
+    height: 51px;
+    background-color: #222;
 }
 #topLeft
 {
@@ -133,6 +133,10 @@ ul.menu li.mainMenuItem:hover
 {
     color: white;
     text-decoration: none;
+}
+#topRight p, #top a
+{
+    color: white;
 }
 
 
@@ -325,13 +329,15 @@ ul.menu li.mainMenuItem:hover
     padding: 10px;
     margin: 10px;
 }
-
+th{background-color: #444;
+color: #fff;}
+tr:nth-child(even) {background: #CCC}
+tr:nth-child(odd) {background: #FFF}
 
 #close
 {
-    width:20px;
-    float: right;
-    
+   // float: right;
+    width: 20px;
 }
 #galleryimage
 {
@@ -344,5 +350,13 @@ ul.menu li.mainMenuItem:hover
 {
     min-width: 80px;
 }
-
+#newAlbum
+{
+    float: left;
+    width: 150px;
+    border: #999999 dotted 1px;
+    padding: 10px;
+    margin: 10px;
+    height: 200px;
+}
 

@@ -889,7 +889,7 @@ class bnw extends CI_Controller {
             if (($this->form_validation->run() == FALSE)) {
 
                 //if not valid
-                $error = array('error' => $this->upload->display_errors());
+                $error = "Enter Album Name";
 
 
                 $this->load->view('bnw/album/index', $error);
