@@ -1,12 +1,6 @@
 
 <div class="rightSide">
-    <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+    
 <h2>Add new Slider</h2>
   <?php echo validation_errors();
   if(isset($error))

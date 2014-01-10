@@ -68,7 +68,7 @@ else
  
    if ($this->session->userdata('logged_in')) ?>
 <a class="ad" href="#" style="position: relative; top: 50px; left: 0px;" > Create new album </a>
-<div class="frm" style="width:150px; height:90px; position: absolute; top: 170px; left: 350px; display:none; z-index:105; " >
+<div class="frm" style="width:150px; height:90px; float: left; display:none; z-index:105; " >
  <img id="close" src="<?php echo base_url();?>content/images/delete.png "/>
 <?php echo form_open('bnw/add_album'); ?>
       <input type="text" name="addtext" />
