@@ -315,6 +315,34 @@ ul.menu li.mainMenuItem:hover
     }
 }
 
+/*applicable for album*/
+#photodiv
+{
+    float: left;
+    width: 150px;
+  
+    border: #999999 solid 1px;
+    padding: 10px;
+    margin: 10px;
+}
 
+
+#close
+{
+    width:20px;
+    float: right;
+    
+}
+#galleryimage
+{
+    width: 150px;
+    height: 150px;
+    
+}
+#imagetitle
+
+{
+    min-width: 80px;
+}
 
 
