@@ -22,7 +22,9 @@ class bnw extends CI_Controller {
             /*$this->load->view($header . 'header',$data);
             $this->load->view($header . 'menu');
             $this->load->view('bnw/index');*/
-            $this->load->view('bnw/templates/dashboard',$data);
+            $this->load->view('bnw/templates/header',$data);
+            $this->load->view('bnw/templates/menu',$data);
+            $this->load->view('bnw/index',$data);
         } else {
             redirect('login', 'refresh');
         }

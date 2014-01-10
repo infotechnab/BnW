@@ -1,4 +1,5 @@
-<h2> Add New Menu </h2>
+<div class="rightSide">
+ <h2> Add New Menu </h2>
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">
@@ -21,3 +22,6 @@
  
     <input type="submit" value="Submit" />
   <?php echo form_close();?>
+</div>
+<div class="clear"></div>
+</div>

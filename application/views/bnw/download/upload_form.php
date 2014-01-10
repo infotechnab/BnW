@@ -1,3 +1,4 @@
+<div class="rightSide">
 <h2>Add New Documents </h2>
 <div id="body">    
      <p id="sucessmsg">
@@ -22,3 +23,6 @@
 <input type="submit" value="upload" />
 </form>
  <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>  
+ </div>
+<div class="clear"></div>
+</div>

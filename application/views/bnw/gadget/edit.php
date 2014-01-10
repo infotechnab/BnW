@@ -1,3 +1,4 @@
+<div class="rightSide">
  <?php
         if($query){
             foreach ($query as $data){
@@ -34,3 +35,6 @@
   </p>
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
+</div>
+<div class="clear"></div>
+</div>

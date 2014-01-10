@@ -1,3 +1,4 @@
+<div class="rightSide">
 <?php
 
 /*
@@ -28,4 +29,7 @@
     <input type="submit" value="Submit" />
   <?php echo form_close();?>
 <p><b>Note:</b> Max file size: 500KB,  Width: 596px, Height: 220px </p>
+</div>
+<div class="clear"></div>
+</div>
 

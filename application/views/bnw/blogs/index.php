@@ -1,3 +1,4 @@
+<div class="rightSide">
 <h2>Blogs Management</h2>
 <a href="uploads">Upload New Document </a>
 <div id="body">    
@@ -46,4 +47,7 @@
         }
     ?>
     </table>
+</div>
+</div>
+<div class="clear"></div>
 </div>

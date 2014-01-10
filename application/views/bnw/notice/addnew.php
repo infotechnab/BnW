@@ -1,5 +1,5 @@
 
-
+<div class="rightSide">
 <h2>Add New Notice</h2>
   <?php echo validation_errors(); ?>
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
@@ -23,3 +23,6 @@
 </textarea>
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
+</div>
+<div class="clear"></div>
+</div>

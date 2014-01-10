@@ -1,3 +1,4 @@
+<div class="rightSide">
 <?php
 
 /*
@@ -57,4 +58,7 @@ return false;
         }
     ?>
     </table>
+</div>
+</div>
+<div class="clear"></div>
 </div>

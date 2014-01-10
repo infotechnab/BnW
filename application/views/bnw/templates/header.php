@@ -2,12 +2,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>content/styles/bnw.css" type="text/css" /> 
+    <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/styles/dashBoardStyles.css" type="text/css" /> 
     <script src="<?php echo base_url(); ?>content/jquery-1.9.1.min.js" > </script>
-    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
-//<![CDATA[
-        bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-  //]]>
+    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> 
+    
+    <script type="text/javascript" src="<?php echo base_url()."/contents/scripts/jquery.min.js"; ?>"></script>
+    
+    <script type="text/javascript">
+
+$(document).ready(function(){
+  $("#topLeft").click(function(){
+      $(".leftSide").toggle();   
+  });
+});
+
+$(document).ready(function(){
+  $("#mainMenuItemId").click(function(){
+     $(this).children("ul:first").toggle(); 
+     
+  });
+});
+
+
+
+
   </script>
 	<meta charset="utf-8">
 <?php if(isset($meta))
@@ -22,19 +40,21 @@
 
 </head>
 <body>
-   
-<div id="container">
-    <div id="header">
-        <h1 id="hd_title" > Welcome to <?php echo $title[1]; ?> Dashboard </h1>
-        <?php  if ($this->session->userdata('logged_in')){ ?>
-        <div id="userinfo">
-        <p>
-            <?php echo $this->session->userdata('username'); ?>
-            <?php echo anchor('bnw/logout','Log Out') ?>
-        </p>
-        
+    <div class="full">
+        <div id="top">
+            
+            <div id="topLeft">
+                <img src="<?php echo base_url()."/content/images/menu.png"; ?>"/>
+            </div>
+            <img src="<?php echo base_url()."/content/images/bnw.png"; ?>"/>
+            <?php  if ($this->session->userdata('logged_in')){ ?>
+            <div id="topRight">
+                <p>
+                    <?php echo $this->session->userdata('username'); ?>
+                    <?php echo anchor('bnw/logout','Log Out') ?>
+                </p>
+            </div>
+            <?php } ?>
         </div>
-       
-        <?php } ?>
-         <div class="clear"/>
-    </div>
+        <div class="clear"/></div>
+        <!top company name and logged is as and logout div closed here>

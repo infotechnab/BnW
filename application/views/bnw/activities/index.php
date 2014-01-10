@@ -1,3 +1,4 @@
+<div class="rightSide">
 <h2>News and Events   </h2>
 <a href="addactivity">Add New Events</a>
 <div id="body">
@@ -39,4 +40,7 @@
     ?>
     </table>
     <?php echo $links; ?>
+</div>
+</div>
+<div class="clear"></div>
 </div>

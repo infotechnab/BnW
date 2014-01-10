@@ -1,3 +1,4 @@
+<div class="rightSide">
 <?php
 
 /*
@@ -44,4 +45,7 @@
           ?>
     </table>
     <?php echo $links; ?>
+</div>
+</div>
+<div class="clear"></div>
 </div>

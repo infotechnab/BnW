@@ -74,6 +74,7 @@
 	
 	
 </script>
+<div class="rightSide">
 <h2> Photos </h2>
 <?php echo validation_errors();
 if(isset($error))
@@ -130,3 +131,6 @@ else
 <?php  echo form_close(); ?>
 </div> 
 <div style="clear: left;" />
+</div>
+<div class="clear"></div>
+</div>

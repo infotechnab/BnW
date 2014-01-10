@@ -1,4 +1,6 @@
-<h2>Menu list </h2>
+
+<div class="rightSide">
+    <h2>Menu list </h2>
 <a href="addmenu">Add New Menu</a>
 <div id="body">
     <p id="sucessmsg">
@@ -40,4 +42,7 @@
        
     </table>
     <?php echo $links; ?>
+</div>
+</div>
+<div class="clear"></div>
 </div>

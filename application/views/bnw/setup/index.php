@@ -1,3 +1,4 @@
+<div class="rightSide">
 <?php 
 if ($meta)
 {
@@ -31,3 +32,6 @@ if ($meta)
   </p>
  <input type="submit" value="Submit" />
   <?php echo form_close();?>
+</div>
+<div class="clear"></div>
+</div>

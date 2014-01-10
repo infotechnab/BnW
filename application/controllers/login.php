@@ -18,8 +18,8 @@ class Login extends CI_Controller {
      if(!$this->session->userdata('logged_in'))
      {  $data['meta'] = $this->dbmodel->get_meta_data();
         $this->load->view('bnw/templates/loginTemplate',$data);            
-        /*$this->load->view('bnw/form');
-        $this->load->view('bnw/templates/footer',$data);*/
+        /*$this->load->view('bnw/form');*/
+        $this->load->view('bnw/templates/footer',$data);
      }
  else {
          redirect('bnw','refresh');

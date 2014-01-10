@@ -1,3 +1,4 @@
+<div class="rightSide">
 <?php
 
 /*
@@ -46,4 +47,7 @@
         }
     ?>
     </table>
+</div>
+</div>
+<div class="clear"></div>
 </div>

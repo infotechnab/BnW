@@ -1,4 +1,5 @@
-<?php if(isset($query)){
+<div class="rightSide">
+    <?php if(isset($query)){
             foreach ($query as $data){
            $id = $data->id;
            $title = $data->title;
@@ -33,3 +34,6 @@
  
     <input type="submit" value="Submit" />
   <?php echo form_close();?>
+</div>
+<div class="clear"></div>
+</div>

@@ -1,3 +1,4 @@
+<div class="rightSide">
 <?php
 
 /*
@@ -21,3 +22,6 @@
   <?php echo form_close();?>
 
    <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>  
+</div>
+<div class="clear"></div>
+</div>

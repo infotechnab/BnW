@@ -1,3 +1,4 @@
+<div class="rightSide">
 <h2>Add new page</h2>
   <?php echo validation_errors();
   if(isset($error))
@@ -36,3 +37,6 @@
   
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
+</div>
+<div class="clear"></div>
+</div>

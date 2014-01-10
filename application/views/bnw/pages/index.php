@@ -1,3 +1,4 @@
+<div class="rightSide">
 <h2>Pages </h2>
 <a href="addpage">Add New Page</a>
 <div id="body">
@@ -52,4 +53,7 @@
     ?>
     </table>
     <?php  echo $links; ?>
+</div>
+</div>
+<div class="clear"></div>
 </div>

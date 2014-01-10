@@ -1,4 +1,5 @@
-  <h2>Add New News & Events </h2>
+<div class="rightSide">
+<h2>Add New News & Events </h2>
   <?php echo validation_errors();
    if(isset($error))
   {
@@ -28,3 +29,6 @@
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
   <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>
+</div>
+<div class="clear"></div>
+</div>

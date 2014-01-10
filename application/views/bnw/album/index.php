@@ -1,3 +1,4 @@
+
 <script>
     $(document).ready(function(){
   $(".ad").click(function(){
@@ -11,7 +12,7 @@ $(document).ready(function(){
      }); 
 });
 </script>
-
+<div class="rightSide">
 <h2>Album </h2>
  <?php 
        $res = $this->dbmodel->get_album();
@@ -74,4 +75,7 @@ else
 <input type="submit" name="submit" value="create album"   />
 <?php echo form_close(); ?>
 </div> 
-<div style="clear:left;" />
+
+</div>
+<div class="clear"></div>
+</div>

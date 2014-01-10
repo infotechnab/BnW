@@ -1,3 +1,4 @@
+<div class="rightSide">
 <h2>Slider </h2>
 <a href="addslider">Add New Slider</a>
 <div id="body">
@@ -33,4 +34,7 @@
        
     </table>
     <?php echo $links; ?>
+</div>
+</div>
+<div class="clear"></div>
 </div>

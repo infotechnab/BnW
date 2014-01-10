@@ -1,3 +1,4 @@
+<div class="rightSide">
 <h2>Resource Management</h2>
 <a href="upload">Upload New Document </a>
 <div id="body">
@@ -50,4 +51,7 @@
         }
     ?>
     </table>
+</div>
+</div>
+<div class="clear"></div>
 </div>
