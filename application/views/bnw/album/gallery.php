@@ -130,7 +130,8 @@ else
     <input type="submit" name="submit" value="add photo"   />
 <?php  echo form_close(); ?>
 </div> 
-<div style="clear: left;" />
+<div style="clear: left;" >
+</div>
 </div>
 <div class="clear"></div>
 </div>
