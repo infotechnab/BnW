@@ -265,7 +265,7 @@ ul.menu li.mainMenuItem:hover
     .full
     {
         width: 100%;
-        min-height: 600px;
+        min-height: 500px;
     }
     #topLeft
     {
@@ -295,7 +295,7 @@ ul.menu li.mainMenuItem:hover
     .full
     {
         width: 100%;
-        min-height: 600px;
+        min-height: 500px;
     }
     #topLeft
     {
@@ -336,7 +336,6 @@ tr:nth-child(odd) {background: #FFF}
 
 #close
 {
-   // float: right;
     width: 20px;
 }
 #galleryimage
