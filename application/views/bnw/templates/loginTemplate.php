@@ -44,7 +44,7 @@
                         </tr>
                         <tr>
                         <td colspan="2">
-                            <input type="password" size="35" id="passowrd" name="password" placeholder="Password" required/>
+                            <input type="password" size="35" id="password" name="password" placeholder="Password" required/>
                         </td>
                         </tr>
                         <tr>

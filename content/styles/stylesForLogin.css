@@ -43,17 +43,23 @@ a:hover
     padding: 0px;
 }
 
-#username, #passowrd
+#username, #password
 {
     padding: 10px;
+    margin: 0px;
+    border: 1px solid #333;
+    width: 230px;
 }
-
 #submitMe
 {
-    width:250px;
+    width:254px;
     padding: 10px;
     font-weight: bold;
+    margin: 0px; 
 }
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
 #sucessmsg
 {
     color: red;  
