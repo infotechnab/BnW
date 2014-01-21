@@ -10,6 +10,7 @@ body
     margin: 0 auto 0 auto;
     padding: 0px;
     background-color: white;
+    min-height: 400px;
 }
 #top
 {
@@ -91,7 +92,7 @@ ul li.mainMenuItem a
 }
 ul.menu li.mainMenuItem
 {
-    min-height: 35px;
+    
     padding: 0px;
     font-size: 18px;
     list-style-type: none;
@@ -156,7 +157,7 @@ ul.menu li.mainMenuItem:hover
     .full
     {
         width: 100%;
-        min-height: 500px;
+        
     }
     #topLeft
     {
@@ -170,7 +171,10 @@ ul.menu li.mainMenuItem:hover
     {
         display: block;
     }
-    
+    ul.menu, li.mainMenuItem
+    {
+        min-height: 35px;
+    }
     
 }
 
@@ -181,7 +185,7 @@ ul.menu li.mainMenuItem:hover
     .full
     {
         width: 100%;
-        min-height: 500px;
+        min-height: 400px;
     }
     #topLeft
     {
@@ -204,7 +208,7 @@ ul.menu li.mainMenuItem:hover
     .full
     {
         width: 100%;
-        min-height: 500px;
+        min-height: 400px;
     }
     #topLeft
     {
@@ -227,7 +231,7 @@ ul.menu li.mainMenuItem:hover
     .full
     {
         width: 100%;
-        min-height: 600px;
+        min-height: 565px;
     }
     #topLeft
     {
@@ -237,17 +241,23 @@ ul.menu li.mainMenuItem:hover
     {
         position: absolute;
         left: 0;
-        top: 55px;
+        top: 58px;
+        -webkit-top:65px;
         min-width: 150px;
         display: none;
     }
     .rightSide
     {
-        width: 100%;
+        width: 98%;
+        
     }
     .leftSide
     {
         width: 350px;
+    }
+    ul.menu, li.mainMenuItem
+    {
+        min-height: 45px;
     }
     ul.subMenu 
     {
@@ -265,7 +275,7 @@ ul.menu li.mainMenuItem:hover
     .full
     {
         width: 100%;
-        min-height: 500px;
+        min-height: 565px;
     }
     #topLeft
     {
@@ -273,11 +283,15 @@ ul.menu li.mainMenuItem:hover
     }
     .rightSide
     {
-        width: 100%;
+        width: 98%;
     }
     .leftSide
     {
         width: 350px;
+    }
+    ul.menu, li.mainMenuItem
+    {
+        min-height: 45px;
     }
     ul.subMenu 
     {
@@ -295,7 +309,7 @@ ul.menu li.mainMenuItem:hover
     .full
     {
         width: 100%;
-        min-height: 500px;
+        min-height: 565px;
     }
     #topLeft
     {
@@ -303,7 +317,7 @@ ul.menu li.mainMenuItem:hover
     }
     .rightSide
     {
-        width: 100%;
+        width: 97%;
     }
     .leftSide
     {
@@ -316,6 +330,10 @@ ul.menu li.mainMenuItem:hover
     ul.subMenu li
     {
         width: 240px;
+    }
+    ul.menu, li.mainMenuItem
+    {
+        min-height: 45px;
     }
 }
 

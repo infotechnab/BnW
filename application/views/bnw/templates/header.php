@@ -16,12 +16,6 @@ $(document).ready(function(){
   });
 });
 
-/*$(document).ready(function(){
-  $("#mainMenuItemId").click(function(){
-     $(this).children("ul:first").toggle(); 
-     
-  });
-});*/
 
 $(document).ready(function() {
             $('ul li.mainMenuItem a').each(function(i){
@@ -29,6 +23,7 @@ $(document).ready(function() {
             $(this).bind('click',function(){
                     
                     $('.mainMenuItem ul').hide(); // hide all the other ULs
+                    
                     subUl.toggle();
                 }) ;   
             });
