@@ -1,11 +1,10 @@
 <div class="rightSide">
-<h2>Blogs Management</h2>
-<a href="uploads">Upload New Document </a>
+
 <div id="body">    
      <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-    <p>List of Documents </p>
+    <p>List of Blog Documents </p>
     <table border="1" cellpadding="10">
         <tr>            
             <td>S.N.</td>

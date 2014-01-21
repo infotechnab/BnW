@@ -17,8 +17,7 @@ $(document).ready(function(){
 });
 </script>
 <div class="rightSide">
-<h2>Album </h2>
-
+    <h2>Album</h2>
 
  <?php 
        $res = $this->dbmodel->get_album();

@@ -1,13 +1,6 @@
 <div class="rightSide">
-<?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
-<h2>Notices </h2>
-<a href="addnotice">Add New Notices</a>
+
 <div id="body">
     <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>

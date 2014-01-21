@@ -1,6 +1,5 @@
 <div class="rightSide">
-<h2>Pages </h2>
-<a href="addpage">Add New Page</a>
+    
 <div id="body">
     <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>

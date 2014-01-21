@@ -1,11 +1,10 @@
 <div class="rightSide">
-<h2>Slider </h2>
-<a href="addslider">Add New Slider</a>
+
 <div id="body">
     <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-    <p>List of all pages</p>
+    <p>List of all slider pages</p>
     <table border="1" cellpadding="10">
         <tr>
             <th>S.N.</th>
