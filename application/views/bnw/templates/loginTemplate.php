@@ -18,7 +18,9 @@
 }
 ?>        
 	<title>.:Dashboard <?php echo $title[1]; ?></title>
-
+ <script language="javascript" type="text/javascript">
+         document.getElementById("username").focus();
+        </script>
 </head>
 <body>
    

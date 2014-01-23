@@ -1,13 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/styles/dashBoardStyles.css" type="text/css" /> 
     <script src="<?php echo base_url(); ?>content/jquery-1.9.1.min.js" > </script>
-    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> 
-    
-    <script type="text/javascript" src="<?php echo base_url()."/contents/scripts/jquery.min.js"; ?>"></script>
-    
+     <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
+//<![CDATA[
+bkLib.onDomLoaded(function() {
+new nicEditor().panelInstance('area1');
+new nicEditor({fullPanel : true}).panelInstance('area2');
+new nicEditor({iconsPath : '../nicEditorIcons.gif'}).panelInstance('area3');
+new nicEditor({buttonList : ['fontSize','bold','italic','underline','strikeThrough','subscript','superscript','html','image']}).panelInstance('area4');
+new nicEditor({maxHeight : 100}).panelInstance('area5');
+});
+//]]>
+</script>
+
     <script type="text/javascript">
 
 $(document).ready(function(){
@@ -31,7 +39,7 @@ $(document).ready(function() {
 
 
   </script>
-	<meta charset="utf-8">
+	
 <?php if(isset($meta))
 {
      foreach ($meta as $data)
@@ -44,6 +52,7 @@ $(document).ready(function() {
 
 </head>
 <body>
+   
     <div class="full">
         <div id="top">
             
