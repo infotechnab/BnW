@@ -2,7 +2,7 @@
     
 <div id="body">
     <p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+  <?php echo $this->session->flashdata('message'); ?>
     </p>
     <p>List of all pages</p>
     <table border="1" cellpadding="10">

@@ -10,30 +10,36 @@
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
 </p>
   <?php echo form_open_multipart('bnw/addpage');?>
-    <input type="text" name="type" value="page" />
+  
   <p>Title:<br />
-  <input type="text" name="title" />
+  <input type="text" name="page_name" value="<?php echo set_value('page_name'); ?>" />
   </p>
   <p>Body:<br />
-      <textarea name="area1" id="area1" cols="50" rows="5"></textarea>
+      <textarea name="page_content" id="area1" cols="50" rows="5" value="<?php echo set_value('page_content'); ?>" ></textarea>
   
     </p>
-    <p> Image : <br/> <input type="file" name="file" id="file" /> </p>
+    
+  <p>Summary:<br />
+      <textarea name="page_summary" id="area1" cols="50" rows="5" value="<?php echo set_value('page_summary'); ?>" ></textarea>
+  
+     </p>
    <p>Status:<br />
   <?php 
   $options = array(
                   '1'  => 'publish',
                   '0'    => 'draft');
-  echo form_dropdown('status',$options,'1')
+  echo form_dropdown('page_status',$options,'1')
   ?>
   </p>
-  <p>listing : <br/>
-  <select name="listing">
-  <?php foreach ($query as $data)
-  { ?><option value="<?php echo $data->id;; ?>"><?php echo $data->title; ?></option> <?php } ?> 
-      </select> </p>
+  
    <p> Order : <br/>
-       <input type="text" name="order" /> </p>
+       <input type="text" name="page_order" /> </p>
+   
+   <p> Type : <br/>
+       <input type="text" name="page_order" /> </p>
+   
+   <p> Tags : <br/>
+       <input type="text" name="page_order" /> </p>
   
   <input type="submit" value="Submit" />
   <?php echo form_close();?>

@@ -7,10 +7,13 @@
         if(isset($query)){
             foreach ($query as $data){
            $id = $data->id;
-           $title = $data->title;
-           $body = $data->body;
-           $image = $data->image;
-           $status= $data->status;
+           $name = $data->page_name;
+           $body = $data->page_content;
+           $summary = $data->page_summary;
+           $status= $data->page_status;
+           $order= $data->page_order;
+           $type= $data->page_type;
+           $tags= $data->page_tags;
        }
         }
     ?>
@@ -18,27 +21,21 @@
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+  <?php echo $this->session->flashdata('message'); ?>
     </p>
   <?php echo form_open_multipart('bnw/update');?>
   <p>Title:<br />
-      <input type="hidden" name="id" value="<?php echo $id; ?>" />
-      <input type="text" name="title" value="<?php echo $title; ?>" />
+      <input type="hidden" name="id" value="value="<?php echo set_value('id'); ?>"  />
+      <input type="text" name="page_name" value="value="<?php echo set_value('username'); ?>" />
   </p>
   <p>Body:<br />
-  <textarea name="area1" rows="5" cols="50" style="resize:none;"><?php echo $body; ?></textarea>
+  <textarea name="page_content" id="area1" rows="5" cols="50" style="resize:none;"><?php echo $body; ?></textarea>
   </p>
-  <?php if($image !=="")
-  {?>  
-  <p>Present image : <br/>
-  <div >
-      <img src="<?php echo base_url(); ?>uploads/<?php echo $data->image; ?>" width="250px" height="150px" /> 
-      <a href="<?php echo base_url();?>index.php/bnw/delete_page_image/<?php echo $id; ?>">
-        <img src="<?php echo base_url();?>content/images/delete.png" width="20px" height="20px"/></a>
-  </div>
-  <?php }?>
-  <p> Image : <br/> <input type="file" name="file"/> </p>
-    
+  
+  <p>Summary:<br />
+      <textarea name="page_summary" id="area1" cols="50" rows="5"></textarea>
+  
+  
    <p>Status:<br />
   <?php 
   $options = array(
@@ -47,6 +44,15 @@
   echo form_dropdown('status',$options,$status)
   ?>
   </p>
+   <p> Order : <br/>
+       <input type="text" name="page_order" /> </p>
+   
+   <p> Type : <br/>
+       <input type="text" name="page_type" /> </p>
+   
+   <p> Tags : <br/>
+       <input type="text" name="page_tasg "/> </p>
+  
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
 <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>

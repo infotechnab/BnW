@@ -103,24 +103,26 @@ class Dbmodel extends CI_Model {
     }
     public function get_pages() {
             
-        $this->db->where('type','page');
-        $query = $this->db->get('page_event');
+        //$this->db->where('type','page');
+        $query = $this->db->get('page');
         return $query->result();
     }
 
-    public function add_new_page($title, $body, $image, $status,$type) {
+    public function add_new_page($name, $body, $summary, $status, $order, $type, $tags) {
         $data = Array(
-            'title' => $title,
-            'body' => $body,
-            'image' => $image,
-            'status' => $status,
-            'type'=> $type);
-        $this->db->insert('page_event', $data);
+            'page_name' => $name,
+            'page_content' => $body,
+            'page_summary' => $summary,
+            'page_status' => $status,
+            'page_order'=> $order,
+            'page_type'=>$type,
+          'page_tags'=>$tags);
+        $this->db->insert('page', $data);
     }
 
     public function findpage($id) {
-        $this->db->select('id, title, body, image, status');
-        $this->db->from('page_event');
+        $this->db->select('id, page_name, page_content, page_summary, page_status, page_order, page_type, page_tags');
+        $this->db->from('page');
         $this->db->where('id = ' . "'" . $id . "'");
         $query = $this->db->get();
         return $query->result();
@@ -130,34 +132,33 @@ class Dbmodel extends CI_Model {
     {   
         
         $this->db->select('id');
-        $this->db->where('title',$name);
+        $this->db->where('page_name',$name);
         $this->db->limit(1);
         $this->db->order_by('id','DESC');
-        $page = $this->db->get('page_event');
+        $page = $this->db->get('page');
         return $page->result();
     }
-    public function update_page($id, $title, $body, $image, $status) {
-        $this->load->database();
-         if (!isset($image)) {
-            $data = array(
-                'title' => $title,
-                'body' => $body,
-                'status' => $status);
-        } else {
-           $data = array(
-            'title' => $title,
-            'body' => $body,
-            'image'=> $image,
-            'status' => $status);
-        }
+    public function update_page($id, $name, $body, $summary, $status, $order, $type, $tags) {
+       
+        
+       
+           $data = array
+                (
+                'page_name' => $name,
+                'page_content' => $body,
+                'page_summary' => $summary,
+                'page_status' => $status,
+                'page_order' => $order,
+                'page_type' => $type,
+                'page_tags' => $tags);  
         
         $this->db->where('id', $id);
-        $this->db->update('page_event', $data);
+        $this->db->update('page', $data);
     }
 
     public function delete_page($id) {
 
-        $this->db->delete('page_event', array('id' => $id));
+        $this->db->delete('page', array('id' => $id));
     }
     
     public function delete_page_image($id)
@@ -168,7 +169,7 @@ class Dbmodel extends CI_Model {
         
             $this->db->where('id', $id);
             
-            $this->db->update('page_event',$data);
+            $this->db->update('page',$data);
     }
 
     

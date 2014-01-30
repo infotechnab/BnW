@@ -20,9 +20,6 @@ class bnw extends CI_Controller {
             $data['username'] = Array($this->session->userdata('logged_in'));
             $data['meta'] = $this->dbmodel->get_meta_data();
             $header = "bnw/templates/";
-            /* $this->load->view($header . 'header',$data);
-              $this->load->view($header . 'menu');
-              $this->load->view('bnw/index'); */
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu', $data);
             $this->load->view('bnw/index', $data);
@@ -86,8 +83,18 @@ class bnw extends CI_Controller {
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             //set validation rules
-            $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('area1', 'Body', 'required|xss_clean');
+                        $name = $this->input->post('page_name');
+                        $body = $this->input->post('page_content');
+                        $summary = $this->input->post('page_summary');
+                        $status = $this->input->post('page_status');
+                        $order = $this->input->post('page_order');
+                        $type = $this->input->post('page_type');
+                        $tags = $this->input->post('page_tags');
+            $this->form_validation->set_rules('page_name', 'Page Name', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
+              $this->form_validation->set_rules('page_summary', 'Summary', 'xss_clean');
+               // $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
+              
             if (($this->form_validation->run() == TRUE)) {
                 if ($_FILES && $_FILES['file']['name'] !== "") {
                     if (!$this->upload->do_upload('file')) {
@@ -97,39 +104,24 @@ class bnw extends CI_Controller {
                         $data = array('upload_data' => $this->upload->data('file'));
                         $image = $data['upload_data']['file_name'];
 
-                        $type = $this->input->post('type');
-                        $name = $this->input->post('title');
-                        $body = $this->input->post('body');
-                        $status = $this->input->post('status');
-                        $listing = $this->input->post('listing');
-                        $order = $this->input->post('order');
-                        $this->dbmodel->add_new_page($name, $body, $image, $status, $type);
-                        die($name);
-                        //$this->dbmodel->add_new_menu($name,$listing,$order);
+                   
+                        $this->dbmodel->add_new_page($name, $body, $summary, $status, $order, $type, $tags);
                         $this->session->set_flashdata('message', 'One pages added sucessfully');
-                        redirect('bnw/pages');
+                        redirect('bnw/pages/pageListing');
                     }
                 } else {
-                    $image = "";
-                    $type = $this->input->post('type');
-                    $name = $this->input->post('title');
-                    $body = $this->input->post('area1');
-                    $status = $this->input->post('status');
-                    $listing = $this->input->post('listing');
-                    $order = $this->input->post('order');
-
-                    $this->dbmodel->add_new_page($name, $body, $image, $status, $type);
+                    $name = $this->input->post('page_name');
+                    $body = $this->input->post('page_content');
+                    $summary = $this->input->post('page_summary');
+                    $status = $this->input->post('page_status');
+                    $order = $this->input->post('page_order');
+                    $type = $this->input->post('page_type');
+                    $tags = $this->input->post('page_tags');
+                    $this->dbmodel->add_new_page($name, $body, $summary, $status, $order, $type, $tags);
 
                     $pages = $this->dbmodel->find_page_id($name);
-
-
-                    foreach ($pages as $data) {
-                        $id = $data->id;
-                    }
-
-                    $this->dbmodel->add_new_menu($name, $listing, $order, $id);
                     $this->session->set_flashdata('message', 'One pages added sucessfully');
-                    redirect('bnw/pages');
+                    redirect('bnw/pages/pageListing');
                 }
             } else {
 
@@ -161,8 +153,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    //delete page
-
+   //======================UPDATE EDITED PAGE===============================//
 
 
     public function update() {
@@ -183,8 +174,12 @@ class bnw extends CI_Controller {
             $this->load->library(array('form_validation', 'session'));
             $id = $this->input->post('id');
             //set validation rules
-            $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('area1', 'Body', 'required|xss_clean');
+           $this->form_validation->set_rules('page_name', 'Page Name', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
+              $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
+  $this->form_validation->set_rules('page_summary', 'Page summary', 'required|xss_clean');
+  $this->form_validation->set_rules('page_status', 'status', 'required|xss_clean');
+
 
             if (($this->form_validation->run() == TRUE)) {
                 if ($_FILES && $_FILES['file']['name'] !== "") {
@@ -197,22 +192,30 @@ class bnw extends CI_Controller {
                         $data = array('upload_data' => $this->upload->data('file'));
                         $image = $data['upload_data']['file_name'];
 
-                        $name = $this->input->post('title');
-                        $body = $this->input->post('area1');
-                        $status = $this->input->post('status');
-                        $this->dbmodel->update_page($id, $name, $body, $image, $status);
+                        $name = $this->input->post('page_name');
+                        $body = $this->input->post('page_content');
+                        $summary = $this->input->post('page_summary');
+                        $status = $this->input->post('page_status');
+                        $order = $this->input->post('page_order');
+                        $type = $this->input->post('page_type');
+                        $tags = $this->input->post('page_tags');
+                        $this->dbmodel->update_page($name, $body, $summary, $status, $order, $type, $tags);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         redirect('bnw/pages');
                     }
                 } else {
 
                     $image = "";
-                    $name = $this->input->post('title');
-                    $body = $this->input->post('area1');
-                    $status = $this->input->post('status');
-                    $this->dbmodel->update_page($id, $name, $body, $image, $status);
-                    $this->session->set_flashdata('message', 'Data Modified Sucessfully');
-                    redirect('bnw/pages');
+                   $name = $this->input->post('page_name');
+                        $body = $this->input->post('page_content');
+                        $summary = $this->input->post('page_summary');
+                        $status = $this->input->post('page_status');
+                        $order = $this->input->post('page_order');
+                        $type = $this->input->post('page_type');
+                        $tags = $this->input->post('page_tags');
+                        $this->dbmodel->update_page($id, $name, $body, $summary, $status, $order, $type, $tags);
+                        $this->session->set_flashdata('message', 'Data Modified Sucessfully');
+                    redirect('bnw/pages/pageListing');
                 }
             } else {
                 $id = $this->input->post('id');
