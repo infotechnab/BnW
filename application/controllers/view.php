@@ -10,10 +10,10 @@ class view extends CI_Controller {
 public function index()
     {
         
-        $data['query'] = $this->viewmodel->get_menu();
-        $data['event'] = $this->viewmodel->get_event();
-        $data['slider'] = $this->viewmodel->get_slider();
-        $data['download'] = $this->viewmodel->get_download();
+        $data['query'] = $this->viewmodel->get_page();
+        //$data['event'] = $this->viewmodel->get_event();
+        //$data['slider'] = $this->viewmodel->get_slider();
+        //$data['download'] = $this->viewmodel->get_download();
         
         
         //foreach($data['query'] as $d)

@@ -8,9 +8,9 @@ class Dbmodel extends CI_Model {
 
     // This model is to user verified 
     function validate() {
-        $this->db->where('login', $this->input->post('username'));
-        $this->db->where('passwd', md5($this->input->post('password')));
-        $query = $this->db->get('members');
+        $this->db->where('user_name', $this->input->post('username'));
+        $this->db->where('user_pass', md5($this->input->post('password')));
+        $query = $this->db->get('user');
 
         if ($query->num_rows == 1) {
             return true;
@@ -21,10 +21,10 @@ class Dbmodel extends CI_Model {
 
     // this is another method to get user verified 
     function login($username, $password) {
-        $this->db->select('member_id, login, passwd');
-        $this->db->from('members');
-        $this->db->where('login = ' . "'" . $username . "'");
-        $this->db->where('passwd = ' . "'" . MD5($password) . "'");
+        $this->db->select('id, user_name, user_pass');
+        $this->db->from('user');
+        $this->db->where('user_name= ' . "'" . $username . "'");
+        $this->db->where('user_pass = ' . "'" . MD5($password) . "'");
         $this->db->limit(1);
         $query = $this->db->get();
         if ($query->num_rows() == 1) {
@@ -92,13 +92,13 @@ class Dbmodel extends CI_Model {
        
 //pages -----------------------------------------------
     public function record_count_page() {
-        return $this->db->count_all("page_event");
+        return $this->db->count_all("page");
     }
     
     public function get_all_pages($limit, $start) {
            $this->db->limit($limit, $start); 
-        $this->db->where('type','page');
-        $query = $this->db->get('page_event');
+       // $this->db->where('type','page');
+        $query = $this->db->get('page');
         return $query->result();
     }
     public function get_pages() {
