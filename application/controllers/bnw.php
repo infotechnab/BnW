@@ -140,7 +140,7 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findpage($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
-            //$data['id'] = $pid;
+            $data['id'] = $id;
 
             $header = "bnw/templates/";
             $this->load->view($header . 'header', $data);
@@ -176,9 +176,8 @@ class bnw extends CI_Controller {
             //set validation rules
            $this->form_validation->set_rules('page_name', 'Page Name', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
-              $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
-  $this->form_validation->set_rules('page_summary', 'Page summary', 'required|xss_clean');
-  $this->form_validation->set_rules('page_status', 'status', 'required|xss_clean');
+            $this->form_validation->set_rules('page_summary', 'Page summary', 'required|xss_clean');
+  
 
 
             if (($this->form_validation->run() == TRUE)) {
@@ -189,24 +188,17 @@ class bnw extends CI_Controller {
                         $data['query'] = $this->dbmodel->findpage($id);
                         $this->load->view('bnw/pages/edit', $data);
                     } else {
-                        $data = array('upload_data' => $this->upload->data('file'));
-                        $image = $data['upload_data']['file_name'];
+                       //$data = array('upload_data' => $this->upload->data('file'));
+                       //$image = $data['upload_data']['file_name'];
 
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         $name = $this->input->post('page_name');
-                        $body = $this->input->post('page_content');
-                        $summary = $this->input->post('page_summary');
-                        $status = $this->input->post('page_status');
-                        $order = $this->input->post('page_order');
-                        $type = $this->input->post('page_type');
-                        $tags = $this->input->post('page_tags');
-                        $this->dbmodel->update_page($name, $body, $summary, $status, $order, $type, $tags);
-                        $this->session->set_flashdata('message', 'Data Modified Sucessfully');
-                        redirect('bnw/pages');
-                    }
-                } else {
-
-                    $image = "";
-                   $name = $this->input->post('page_name');
                         $body = $this->input->post('page_content');
                         $summary = $this->input->post('page_summary');
                         $status = $this->input->post('page_status');
@@ -215,6 +207,20 @@ class bnw extends CI_Controller {
                         $tags = $this->input->post('page_tags');
                         $this->dbmodel->update_page($id, $name, $body, $summary, $status, $order, $type, $tags);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
+                        redirect('bnw/pages/pageListing');
+                    }
+                } else {
+
+                   
+                        $name = $this->input->post('page_name');
+                        $body = $this->input->post('page_content');
+                        $summary = $this->input->post('page_summary');
+                        $status = $this->input->post('page_status');
+                        $order = $this->input->post('page_order');
+                        $type = $this->input->post('page_type');
+                        $tags = $this->input->post('page_tags');
+                        $this->dbmodel->update_page($name, $body, $summary, $status, $order, $type, $tags);
+                        //$this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     redirect('bnw/pages/pageListing');
                 }
             } else {

@@ -15,12 +15,12 @@
   <input type="text" name="page_name" value="<?php echo set_value('page_name'); ?>" />
   </p>
   <p>Body:<br />
-      <textarea name="page_content" id="area1" cols="50" rows="5" value="<?php echo set_value('page_content'); ?>" ></textarea>
+      <textarea name="page_content" id="area1" cols="50" rows="5" ><?php echo set_value('page_content'); ?></textarea>
   
     </p>
     
   <p>Summary:<br />
-      <textarea name="page_summary" id="area1" cols="50" rows="5" value="<?php echo set_value('page_summary'); ?>" ></textarea>
+      <textarea name="page_summary" id="area1" cols="50" rows="5" ><?php echo set_value('page_summary'); ?></textarea>
   
      </p>
    <p>Status:<br />

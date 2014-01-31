@@ -138,10 +138,8 @@ class Dbmodel extends CI_Model {
         $page = $this->db->get('page');
         return $page->result();
     }
-    public function update_page($id, $name, $body, $summary, $status, $order, $type, $tags) {
-       
-        
-       
+    public function update_page($id, $name, $body, $summary, $status, $order, $type, $tags){
+          
            $data = array
                 (
                 'page_name' => $name,
