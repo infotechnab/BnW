@@ -16,8 +16,8 @@
                     </li>
                     <li class="mainMenuItem"><a href="#">Users</a><?php/* echo anchor('bnw', 'Users') */?>
                         <ul class="subMenu">
-                            <li><?php echo anchor('bnw', 'Add New') ?></li>
-                            <li><?php echo anchor('bnw', 'All Users') ?></li>
+                            <li><?php echo anchor('bnw/adduser', 'Add New') ?></li>
+                            <li><?php echo anchor('bnw/users', 'All Users') ?></li>
                             <li><?php echo anchor('bnw', 'My Profile') ?></li>
                         </ul>
                     </li>

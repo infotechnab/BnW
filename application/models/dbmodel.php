@@ -121,9 +121,9 @@ class Dbmodel extends CI_Model {
     }
 
     public function findpage($id) {
-        $this->db->select('id, page_name, page_content, page_summary, page_status, page_order, page_type, page_tags');
+        $this->db->select();
         $this->db->from('page');
-        $this->db->where('id = ' . "'" . $id . "'");
+        $this->db->where('id','32');
         $query = $this->db->get();
         return $query->result();
     }
@@ -500,6 +500,8 @@ class Dbmodel extends CI_Model {
         $query = $this->db->get('menu');
         return $query->result();
     }
+    
+    
     
     
     function findmenu($id) {

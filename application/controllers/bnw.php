@@ -1,11 +1,10 @@
 <?php
-
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class bnw extends CI_Controller {
 
-    public $load = "";
+   
 
     function __construct() {
         parent::__construct();
@@ -139,9 +138,11 @@ class bnw extends CI_Controller {
     function editpage($id) {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findpage($id);
+            //$myarray = array('ram'=>'shayam', 'hari'=>'Bikash');
+            //echo "<pre>".$myarray;
+            var_dump($data);
             $data['meta'] = $this->dbmodel->get_meta_data();
             $data['id'] = $id;
-
             $header = "bnw/templates/";
             $this->load->view($header . 'header', $data);
             $this->load->view($header . 'menu');
@@ -192,12 +193,6 @@ class bnw extends CI_Controller {
                        //$image = $data['upload_data']['file_name'];
 
                         
-                        
-                        
-                        
-                        
-                        
-                        
                         $name = $this->input->post('page_name');
                         $body = $this->input->post('page_content');
                         $summary = $this->input->post('page_summary');
@@ -211,7 +206,7 @@ class bnw extends CI_Controller {
                     }
                 } else {
 
-                   
+                    
                         $name = $this->input->post('page_name');
                         $body = $this->input->post('page_content');
                         $summary = $this->input->post('page_summary');
@@ -219,7 +214,7 @@ class bnw extends CI_Controller {
                         $order = $this->input->post('page_order');
                         $type = $this->input->post('page_type');
                         $tags = $this->input->post('page_tags');
-                        $this->dbmodel->update_page($name, $body, $summary, $status, $order, $type, $tags);
+                        $this->dbmodel->update_page($id, $name, $body, $summary, $status, $order, $type, $tags);
                         //$this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     redirect('bnw/pages/pageListing');
                 }

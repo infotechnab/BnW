@@ -6,7 +6,7 @@
   }
         if(isset($query)){
             foreach ($query as $data){
-           
+           $id = $data->id;
            $name = $data->page_name;
            $body = $data->page_content;
            $summary = $data->page_summary;
@@ -25,15 +25,16 @@
     </p>
   <?php echo form_open_multipart('bnw/update');?>
   <p>Title:<br />
-      
-      <input type="text" name="page_name" value="<?php echo set_value('page_name'); ?>" />
+      <input type="hidden" name="id" value="<?php echo $id; ?>" >
+      <input type="text" name="page_name" value="<?php echo $name; ?>" />
   </p>
   <p>Body:<br />
-  <textarea name="page_content" id="area1" rows="5" cols="50" style="resize:none;"><?php echo set_value('page_content'); ?></textarea>
+  <textarea name="page_content" id="area1" rows="5" cols="50" style="resize:none;">
+      <?php echo $body; ?></textarea>
   </p>
   
   <p>Summary:<br />
-      <textarea name="page_summary" id="area1" cols="50" rows="5"><?php echo set_value('page_summary'); ?></textarea>
+      <textarea name="page_summary" id="area1" cols="50" rows="5"><?php echo $summary ?></textarea>
   
   
    <p>Status:<br />
