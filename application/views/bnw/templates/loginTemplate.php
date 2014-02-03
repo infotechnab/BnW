@@ -18,12 +18,12 @@
 }
 ?>        
 	<title>.:Dashboard <?php echo $title[1]; ?></title>
- <script language="javascript" type="text/javascript">
-         document.getElementById("username").focus();
-        </script>
+ 
 </head>
 <body>
-   
+   <script language="javascript" type="text/javascript">
+         document.getElementById("username").focus();
+        </script>
     <div class="container">
         <div class="left">
             <div id="loginform">
