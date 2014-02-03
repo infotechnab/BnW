@@ -123,7 +123,7 @@ class Dbmodel extends CI_Model {
     public function findpage($id) {
         $this->db->select();
         $this->db->from('page');
-        $this->db->where('id','32');
+        $this->db->where('id',$id);
         $query = $this->db->get();
         return $query->result();
     }
@@ -170,6 +170,64 @@ class Dbmodel extends CI_Model {
             $this->db->update('page',$data);
     }
 
+   //======================================================================================================
+    //========================================user============================================================
+    //===========================================================================================================
+    
+      public function record_count_user() {
+        return $this->db->count_all("user");
+    }
+     public function get_all_user() {
+           //$this->db->limit($limit, $start); 
+        $query = $this->db->get('user');
+        return $query->result();
+    }
+    public function get_user() {
+        $query = $this->db->get('user');
+        return $query->result();
+    }
+    
+    
+    
+    
+    function finduser($id) {
+        $this->db->select();
+
+       $this -> db -> from('user');
+        $this->db->where('id', $id );
+        $query = $this->db->get();
+        return $query->result();
+    }    
+    
+     public function update_user($id,$name, $fname, $lname, $email, $pass, $status) {
+       
+        $data = array(
+            'user_name'=>$name,
+            'user_fname'=> $fname,
+            'user_lname'=> $lname,
+            'user_email'=> $email,
+            'user_pass'=> $pass,
+            'user_status'=> $status);
+        $this->db->where('id', $id);
+        $this->db->update('user', $data);
+    }    
+    public function add_new_user($name, $fname, $lname, $email, $pass, $status)
+    {   
+                
+        $data = array(
+            'user_name'=>$name,
+            'user_fname'=> $fname,
+            'user_lname'=> $lname,
+            'user_email'=> $email,
+            'user_pass'=> $pass,
+            'user_status'=> $status  );
+         $this->db->insert('user', $data);        
+    }
+    
+      public function delete_user($id) {
+
+        $this->db->delete('user', array('id' => $id));
+    }
     
 // ==========================================Activities ----------------------------------------------------------
    
@@ -491,7 +549,7 @@ class Dbmodel extends CI_Model {
     // =========================== menu =================//
     
      public function record_count_menu() {
-        return $this->db->count_all("page_event");
+        return $this->db->count_all("page");
     }
         
     public function get_menu($limit,$start)

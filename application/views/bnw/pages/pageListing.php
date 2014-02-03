@@ -4,7 +4,7 @@
     <p id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
     </p>
-    <p>List of all pages</p>
+    <p>List of all Pages</p>
     <table border="1" cellpadding="10">
         <tr>
             <th>S.N.</th>

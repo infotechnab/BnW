@@ -51,7 +51,7 @@ class bnw extends CI_Controller {
 
 
 
-            //$data['query'] = $this->dbmodel->get_all_pages();
+           
             $data['meta'] = $this->dbmodel->get_meta_data();
             $header = "bnw/templates/";
 
@@ -91,8 +91,8 @@ class bnw extends CI_Controller {
                         $tags = $this->input->post('page_tags');
             $this->form_validation->set_rules('page_name', 'Page Name', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
-              $this->form_validation->set_rules('page_summary', 'Summary', 'xss_clean');
-               // $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
+            $this->form_validation->set_rules('page_summary', 'Summary', 'xss_clean');
+               
               
             if (($this->form_validation->run() == TRUE)) {
                 if ($_FILES && $_FILES['file']['name'] !== "") {
@@ -140,7 +140,7 @@ class bnw extends CI_Controller {
             $data['query'] = $this->dbmodel->findpage($id);
             //$myarray = array('ram'=>'shayam', 'hari'=>'Bikash');
             //echo "<pre>".$myarray;
-            var_dump($data);
+            //var_dump($data);
             $data['meta'] = $this->dbmodel->get_meta_data();
             $data['id'] = $id;
             $header = "bnw/templates/";
@@ -249,7 +249,142 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
+    
+    
+    //============================================================================//
+    //=============================USER===========================================//
+    //============================================================================//
+  public function users() {
+        if ($this->session->userdata('logged_in')) {
 
+            $config = array();
+            $config["base_url"] = base_url() . "index.php/bnw/users";
+            $config["total_rows"] = $this->dbmodel->record_count_user();
+            $config["per_user"] = 6;
+            
+
+            $this->pagination->initialize($config);
+
+            $user = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            $data["query"] = $this->dbmodel->get_all_user($config["per_user"], $user);
+            $data["links"] = $this->pagination->create_links();
+             $data['query'] = $this->dbmodel->get_user();
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $header = "bnw/templates/";
+           
+            $this->load->view($header . 'header', $data);
+            $this->load->view($header . 'menu');
+            $this->load->view('bnw/users/userListing', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function adduser() {
+        if ($this->session->userdata('logged_in')) {
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('user_name', 'User Name', 'required|xss_clean|max_length[200]');
+             $this->form_validation->set_rules('user_fname', 'First Name', 'required|xss_clean|max_length[200]');
+              $this->form_validation->set_rules('user_lname', 'Last Name', 'required|xss_clean|max_length[200]');
+               $this->form_validation->set_rules('user_email', 'User email', 'required|xss_clean|max_length[200]');
+               $this->form_validation->set_rules('user_pass', 'Password', 'required|xss_clean|md5|max_length[200]');
+
+            if ($this->form_validation->run() == FALSE) {
+
+                $this->load->view('bnw/users/addNew');
+            } else {
+
+                //if valid
+
+                $name = $this->input->post('user_name');
+                $fname = $this->input->post('user_fname');
+                $lname = $this->input->post('user_lname');
+                $email = $this->input->post('user_email');
+                $pass = $this->input->post('user_pass');
+                $status= $this ->input->post('user_status');
+                $this->dbmodel->add_new_user($name, $fname, $lname, $email, $pass, $status);
+                $this->session->set_flashdata('message', 'One user added sucessfully');
+                redirect('bnw/user/userListing');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+
+            redirect('login', 'refresh');
+        }
+    }
+
+    function edituser($id) {
+        if ($this->session->userdata('logged_in')) {
+            $data['query'] = $this->dbmodel->finduser($id);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            //var_dump($data);
+            $header = "bnw/templates/";
+            $this->load->view($header . 'header', $data);
+            $this->load->view($header . 'menu');
+            $this->load->view('bnw/users/editUser', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    function updateuser() {
+        if ($this->session->userdata('logged_in')) {
+            $header = "bnw/templates/header";
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view($header, $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            //set validation rules
+            $this->form_validation->set_rules('user_name', 'User Name', 'required|xss_clean|max_length[200]');
+             $this->form_validation->set_rules('user_fname', 'First Name', 'required|xss_clean|max_length[200]');
+              $this->form_validation->set_rules('user_lname', 'Last Name', 'required|xss_clean|max_length[200]');
+               $this->form_validation->set_rules('user_email', 'User email', 'required|xss_clean|max_length[200]');
+               $this->form_validation->set_rules('user_pass', 'Password', 'required|xss_clean|md5|max_length[200]');
+
+
+            if ($this->form_validation->run() == FALSE) {
+                //if not valid
+                $data['query'] = $this->dbmodel->findmenu($id);
+                $this->load->view('bnw/user/userListing', $data);
+            } else {
+                //if valid
+                $id = $this->input->post('id');
+                $name = $this->input->post('user_name');
+                $fname = $this->input->post('user_fname');
+                $lname = $this->input->post('user_lname');
+                $email = $this->input->post('user_email');
+                $pass = $this->input->post('user_pass');
+                $status= $this ->input->post('user_status');
+                $this->dbmodel->update_user($id, $name, $fname, $lname, $email, $pass, $status);
+                $this->session->set_flashdata('message', 'User data Modified Sucessfully');
+
+                redirect('bnw/users/userListing');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+     public function deleteuser($id) {
+        if ($this->session->userdata('logged_in')) {
+            $this->dbmodel->delete_user($id);
+            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+            redirect('bnw/users');
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    
+    
+    
+ 
     //=========================notice==============================//
 
     public function notice() {

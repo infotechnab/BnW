@@ -22,7 +22,7 @@
     <?php    
         if(isset($query)){
             foreach ($query as $data){
-                $pid = $data->p_id;
+                $id = $data->id;
             ?>
           <tr>
             <td><?php echo $data->id; ?></td>
