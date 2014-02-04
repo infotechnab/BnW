@@ -309,7 +309,7 @@ class bnw extends CI_Controller {
                 $status= $this ->input->post('user_status');
                 $this->dbmodel->add_new_user($name, $fname, $lname, $email, $pass, $status);
                 $this->session->set_flashdata('message', 'One user added sucessfully');
-                redirect('bnw/user/userListing');
+                redirect('bnw/users/userListing');
             }
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -351,7 +351,7 @@ class bnw extends CI_Controller {
 
             if ($this->form_validation->run() == FALSE) {
                 //if not valid
-                $data['query'] = $this->dbmodel->findmenu($id);
+                $data['query'] = $this->dbmodel->finduser($id);
                 $this->load->view('bnw/user/userListing', $data);
             } else {
                 //if valid
