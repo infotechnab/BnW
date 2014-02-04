@@ -11,16 +11,7 @@ public function index()
     {
         
         $data['query'] = $this->viewmodel->get_page();
-        //$data['event'] = $this->viewmodel->get_event();
-        //$data['slider'] = $this->viewmodel->get_slider();
-        //$data['download'] = $this->viewmodel->get_download();
         
-        
-        //foreach($data['query'] as $d)
-        //{
-        //    $id = $d->id;
-       // }
-        //$data['menu'] = $this->viewmodel->listing($id); 
         $this->load->view('menuview/header',$data);
         
         
