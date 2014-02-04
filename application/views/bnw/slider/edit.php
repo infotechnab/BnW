@@ -7,14 +7,15 @@
  */
  if(isset($query)){
             foreach ($query as $data){
-           $sid = $data->sid;
-           $title = $data->title;
-           $image = $data->image;
+           $id = $data->id;
+           $slidename = $data->slide_name;
+           $slideimage = $data->slide_image;
+           $slidecontent = $data->slide_content;
                  
             }
         }
     ?>
-<h2>Edit Slider id <?php echo $sid; ?></h2>
+<h2>Edit Slider id <?php echo $id; ?></h2>
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">
@@ -22,10 +23,13 @@
     </p>
   <?php echo form_open_multipart('admin/updateslider');?>
   <p>Title:<br />
-      <input type="hidden" name="id" value="<?php echo $sid; ?>" />
-      <input type="text" name="title" value="<?php echo $title; ?>" />
+      <input type="hidden" name="id" value="<?php echo $id; ?>" />
+      <input type="text" name="slide_name" value="<?php echo $slidename; ?>" />
   </p>
-  <p> Image : <br/> <input type="file" name="userfile"/> </p>
+  <p> Image : <br/> <input type="file" name="file"/> </p>
+  <p>Content:<br />
+   <input type="text" name="slide_content" value="<?php echo $slidecontent; ?>" />
+  </p>
     <input type="submit" value="Submit" />
   <?php echo form_close();?>
 <p><b>Note:</b> Max file size: 500KB,  Width: 596px, Height: 220px </p>

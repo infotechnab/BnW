@@ -23,8 +23,8 @@
                     </li>
                     <li class="mainMenuItem"><a href="#">Media</a><?php/* echo anchor('bnw', 'Media')*/ ?>
                         <ul class="subMenu">
-                            <li><?php echo anchor('bnw', 'Add New') ?></li>
-                            <li><?php echo anchor('bnw', 'Library') ?></li>
+                            <li><?php echo anchor('bnw/addmedia', 'Add New') ?></li>
+                            <li><?php echo anchor('bnw/media', 'Library') ?></li>
                         </ul>
                     </li>
                     <li class="mainMenuItem"><a href="#">Social Share</a><?php /*echo anchor('bnw', 'Social Share') */?>
@@ -57,7 +57,7 @@
                     </li>
                     <li class="mainMenuItem"><a href="#">Album</a><?php/* echo anchor('bnw/album', 'Album')*/ ?>
                         <ul class="subMenu">
-                            <li><?php echo anchor('bnw/album/index', 'Add New') ?></li>
+                            <li><?php echo anchor('bnw/addalbum', 'Add New') ?></li>
                             <li><?php echo anchor('bnw/album', 'View All Albums') ?></li>
                         </ul>
                     </li><li class="mainMenuItem"><a href="#">Slider</a><?php/* echo anchor('bnw/slider', 'Slider')*/ ?>

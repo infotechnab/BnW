@@ -63,11 +63,11 @@ $(document).ready(function() {
             <?php  if ($this->session->userdata('logged_in')){ ?>
             <div id="topRight">
                 <p>
-                    <?php echo $this->session->userdata('user_name'); ?>
+                    <?php echo $this->session->userdata ('username'); ?>
                     <?php echo anchor('bnw/logout','Log Out') ?>
                 </p>
             </div>
             <?php } ?>
         </div>
         <div class="clear"/></div>
-        <!top company name and logged is as and logout div closed here>
+        <!top company name and logged in as and logout div closed here>

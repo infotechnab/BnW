@@ -44,7 +44,7 @@ class Dbmodel extends CI_Model {
     public function add_album($name)
     {
         $data = Array(
-            'a_name' => $name);
+            'album_name' => $name);
         $this->db->insert('album', $data);
            
     }
@@ -57,8 +57,8 @@ class Dbmodel extends CI_Model {
     
     public function get_gallery($aid)
     {  
-        $this->db->where('aid',$aid);
-        $query = $this->db->get('gallery');
+        $this->db->where('id',$aid);
+        $query = $this->db->get('media');
         return $query->result();  
        
        if ($query->num_rows() == 1) {
@@ -71,21 +71,21 @@ class Dbmodel extends CI_Model {
         
         function get_gallery_image($aid)
         {
-            $this->db->select('image');            
-            $this->db->where('aid',$aid);
-            $this->db->order_by('eid','DESC');
+            $this->db->select();            
+            $this->db->where('id',$aid);
+            //$this->db->order_by('eid','DESC');
             $this->db->limit(1);
-                    $query = $this->db->get('gallery');
+                    $query = $this->db->get('media');
            if ($query->num_rows() == 1) {
             return $query->result();
         } else {
             return false;
         }
         }
-         public function delete_gallery($eid) {
+         public function delete_gallery($aid) {
 
         
-        $this->db->delete('gallery', array('eid' => $eid));
+        $this->db->delete('gallery', array('id' => $aid));
     }
     
     
@@ -228,6 +228,63 @@ class Dbmodel extends CI_Model {
 
         $this->db->delete('user', array('id' => $id));
     }
+    
+    
+    //=========================================================================================================
+    //====================================MEDIA================================================================
+    //=========================================================================================================
+   public function record_count_media() {
+        return $this->db->count_all("media");
+    }
+     public function get_all_media() {
+           //$this->db->limit($limit, $start); 
+        $query = $this->db->get('media');
+        return $query->result();
+    }
+    public function get_media() {
+        $query = $this->db->get('media');
+        return $query->result();
+    }
+    
+    
+    
+    
+    function findmedia($id) {
+        $this->db->select();
+
+       $this -> db -> from('media');
+        $this->db->where('id', $id );
+        $query = $this->db->get();
+        return $query->result();
+    }    
+    
+     public function update_media($id, $medianame, $mediatype, $mediaasscID, $medialink) {
+       
+        $data = array(
+            'media_name'=>$medianame,
+            'media_type'=> $mediatype,
+            'media_association_id'=> $mediaasscID,
+            'media_link'=> $medialink);
+        $this->db->where('id', $id);
+        $this->db->update('media', $data);
+    }    
+    public function add_new_media( $medianame, $mediatype, $mediaasscID, $medialink)
+    {   
+                
+        $data = array(
+            'media_name'=>$medianame,
+            'media_type'=> $mediatype,
+            'media_association_id'=> $mediaasscID,
+            'media_link'=> $medialink);
+         $this->db->insert('media', $data);        
+    }
+    
+      public function delete_media($id) {
+
+        $this->db->delete('media', array('id' => $id));
+    }
+    
+    
     
 // ==========================================Activities ----------------------------------------------------------
    
@@ -502,47 +559,50 @@ class Dbmodel extends CI_Model {
         }
         return false;
     }
-    
+   //========================================================================================================
+    //======================================SLIDER===========================================================
+    //=======================================================================================================
      public function record_count_slider() {
-        return $this->db->count_all("slider");
+        return $this->db->count_all("slide");
     }
     
     public function get_slider($limit,$start)
     {
         $this->db->limit($limit, $start);
-        $query = $this->db->get('slider');
+        $query = $this->db->get('slide');
         return $query->result();
     }
     
-    public function add_new_slider($name,$image)
+    public function add_new_slider($slidename,$slideimage,$slidecontent)
                     {
-        $this->load->database();
+       // $this->load->database();
         $data = array(
-            'title' => $name,
-            'image' => $image);
-        $this->db->insert('slider', $data);
+            'slide_name' => $slidename,
+            'sldie_image' => $slideimage,
+            'slide_content' => $slidecontent);
+        $this->db->insert('slide', $data);
     }
     
-    function findslider($sid) {
-        $this->db->select('sid,image,title');
-
-        //$this -> db -> from('gallery');
-        $this->db->where('sid = ' . "'" . $sid . "'");
-        $query = $this->db->get('slider');
+    function findslider($id) {
+        $this->db->select();
+         $this->db->from('slide');
+        $this->db->where('id',$id);
+        $query = $this->db->get();
         return $query->result();
     }
         
-     public function update_slider($sid, $title,$image) {
+     public function update_slider($id, $slidename,$slideimage,$slidecontent) {
         $this->load->database();
         $data = array(
-            'title' => $title,
-            'image'=> $image);
-        $this->db->where('sid', $sid);
-        $this->db->update('slider', $data);
+            'slide_name' => $slidename,
+            'slide_image' => $slideimage,
+            'slide_content' => $slidecontent);
+        $this->db->where('id', $id);
+        $this->db->update('slide', $data);
     }
     
-    function delete_slider($sid) {
-        $this->db->delete('slider', array('sid' => $sid));
+    function delete_slider($id) {
+        $this->db->delete('slide', array('id' => $id));
     }
     
     

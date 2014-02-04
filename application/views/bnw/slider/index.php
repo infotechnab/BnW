@@ -10,6 +10,7 @@
             <th>S.N.</th>
             <th>Title</th> 
             <th>Image</th>
+            <th>Content</th>
             <th>Action</th>
         </tr>
     
@@ -20,11 +21,12 @@
             foreach ($query as $data){
             ?>
           <tr>
-            <td><?php echo $data->sid ?></td>
-            <td><?php echo $data->title ?></td>
-            <td><img src="<?php echo base_url()."slider/". $data->image; ?>" width="50px" height="50px" />  </td>
-            <td><?php echo anchor('bnw/editslider/'.$data->sid,'Edit'); ?> / 
-            <?php echo anchor('bnw/deleteslider/'.$data->sid,'Delete'); ?></td>
+            <td><?php echo $data->id ?></td>
+            <td><?php echo $data->slide_name ?></td>
+            <td><img src="<?php echo base_url()."slider/". $data->slide_image; ?>" width="50px" height="50px" />  </td>
+            <td><?php echo $data->slide_content ?></td>
+            <td><?php echo anchor('bnw/editslider/'.$data->id,'Edit'); ?> / 
+            <?php echo anchor('bnw/deleteslider/'.$data->id,'Delete'); ?></td>
         </tr>
             <?php    
             }

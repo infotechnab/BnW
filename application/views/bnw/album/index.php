@@ -46,7 +46,7 @@ if(isset($error))
 <?php
 foreach ($res as $r)
 {
-	$aid = $r->aid;	
+	$aid = $r->id;	
         
                    
 	$result = $this->dbmodel->get_gallery_image($aid); 
@@ -76,7 +76,7 @@ else
 
         <img src="<?php echo base_url(); ?>gallery/default.jpg" id="galleryimage" />
         <div id="imagetitle">
-            <?php echo anchor('bnw/photos/'.$r->aid,$r->a_name); ?> 
+            <?php echo anchor('bnw/photos/'.$r->id,$r->a_name); ?> 
         </div>
             <a href="<?php echo base_url();?>index.php/bnw/delete_album/<?php echo $aid; ?> " id="<?php echo $aid; ?>" class="delbutton">
         <img src="<?php echo base_url();?>content/images/delete.png" id="close"/></a>
