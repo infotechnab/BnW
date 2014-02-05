@@ -68,7 +68,7 @@ class bnw extends CI_Controller {
     public function addpage() {
         if ($this->session->userdata('logged_in')) {
 
-            $config['upload_path'] = './uploads/';
+            $config['upload_path'] = './content/images/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '500';
             $config['max_width'] = '1024';
@@ -160,7 +160,7 @@ class bnw extends CI_Controller {
     public function update() {
         if ($this->session->userdata('logged_in')) {
 
-            $config['upload_path'] = './uploads/';
+            $config['upload_path'] = './content/images/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '500';
             $config['max_width'] = '1024';
@@ -183,7 +183,7 @@ class bnw extends CI_Controller {
 
             if (($this->form_validation->run() == TRUE)) {
                 if ($_FILES && $_FILES['file']['name'] !== "") {
-                    if (!$this->upload->do_upload('file')) {
+                    if (!$this->upload->do_upload('slide_image')) {
                         $data['error'] = $this->upload->display_errors('file');
                         $id = $this->input->post('id');
                         $data['query'] = $this->dbmodel->findpage($id);
@@ -215,7 +215,7 @@ class bnw extends CI_Controller {
                         $type = $this->input->post('page_type');
                         $tags = $this->input->post('page_tags');
                         $this->dbmodel->update_page($id, $name, $body, $summary, $status, $order, $type, $tags);
-                        //$this->session->set_flashdata('message', 'Data Modified Sucessfully');
+                        $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     redirect('bnw/pages/pageListing');
                 }
             } else {
@@ -1079,8 +1079,8 @@ class bnw extends CI_Controller {
                 //if valid
                 //$imagedata = Array($this->upload->data());
                 $name = $this->input->post('album_name');
-                //$image = $imagedata['file_name'];
-                $this->dbmodel->add_album($name);
+                
+                $this->dbmodel->add_new_album($name);
                 $this->session->set_flashdata('message', 'One Album added sucessfully');
                 redirect('bnw/album/index');
             }
@@ -1091,9 +1091,43 @@ class bnw extends CI_Controller {
         }
     }
 
-    function delete_album($aid) {
+    function add_new_album(){
+         if ($this->session->userdata('logged_in')) {
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('album_name', 'Album Name', 'required|xss_clean|max_length[200]');
+
+            if (($this->form_validation->run() == FALSE)) {
+
+                //if not valid
+                $error = "Enter Album Name";
+
+
+                $this->load->view('bnw/album/index', $error);
+            } else {
+
+                //if valid
+                //$imagedata = Array($this->upload->data());
+                $name = $this->input->post('album_name');
+                
+                $this->dbmodel->add_new_album($name);
+                $this->session->set_flashdata('message', 'One Album added sucessfully');
+                redirect('bnw/album/index');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+
+            redirect('login', 'refresh');
+        }
+
+        
+    }
+    function delete_album($id) {
         if ($this->session->userdata('logged_in')) {
-            $this->dbmodel->delete_album($aid);
+            $this->dbmodel->delete_album($id);
             redirect('bnw/album');
         } else {
             redirect('login', 'refresh');
@@ -1216,7 +1250,7 @@ class bnw extends CI_Controller {
     function addslider() {
         if ($this->session->userdata('logged_in')) {
 
-            $config['upload_path'] = './slider/';
+            $config['upload_path'] = './content/images/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '500';
             $config['max_width'] = '1024';
@@ -1230,10 +1264,10 @@ class bnw extends CI_Controller {
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('slide_name', 'Title', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('slide_image', 'Image', 'required|xss_clean|max_length[200]');
+            //$this->form_validation->set_rules('slide_image', 'Image', 'required|xss_clean|max_length[200]');
 
 
-            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file'))) {
+            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('slide_image'))) {
                 $data['error'] = $this->upload->display_errors();
                 //var_dump($_SERVER['SCRIPT_FILENAME']);   
                 $this->load->view('bnw/slider/addnew', $data);
@@ -1273,7 +1307,7 @@ class bnw extends CI_Controller {
     public function updateslider() {
         if ($this->session->userdata('logged_in')) {
 
-            $config['upload_path'] = './slider/';
+            $config['upload_path'] = './content/images/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '500';
             $config['max_width'] = '596';
@@ -1288,7 +1322,7 @@ class bnw extends CI_Controller {
             $this->load->library(array('form_validation', 'session'));
             //set validation rules
             $this->form_validation->set_rules('slide_name', 'Title', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('slide_image', 'Image', 'required|xss_clean|max_length[200]');
+            //$this->form_validation->set_rules('slide_image', 'Image', 'required|xss_clean|max_length[200]');
 
             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload())) {
                 //if not valid

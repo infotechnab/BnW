@@ -35,8 +35,8 @@ if(isset($error))
 ?>
 </div>
 <div class="frm" style="width:150px; height:90px; float: left; display:none; z-index:105; " >
-    <?php echo form_open('bnw/add_album'); ?>
-    <input type="text" name="addtext" placeholder="Album Name" required />
+    <?php echo form_open('bnw/addalbum'); ?>
+    <input type="text" name="album_name" placeholder="Album Name" required />
     <input type="submit" name="submit" value="create" />        
     <input type="button" id="albumCancel" name="close" value="cancel"/>
     <?php echo form_close(); ?>
@@ -57,9 +57,9 @@ foreach( $result as $abc)
    ?> 
 
 <div id="photodiv">
-        <img src="<?php echo base_url(); ?>gallery/<?php echo $abc->image;?>" id="galleryimage" />
+        <img src="<?php echo base_url(); ?>gallery/<?php //echo $abc->image;?>" id="galleryimage" />
         <div id="imagetitle">
-            <?php echo anchor('bnw/photos/'.$r->aid,$r->a_name); ?> 
+            <?php//echo anchor('bnw/photos/'.$r->aid,$r->album_name); ?> 
              </div>
             <a href="<?php echo base_url();?>index.php/bnw/delete_album/<?php echo $aid; ?> " id="<?php echo $aid; ?>" class="delbutton">
         <img src="<?php echo base_url();?>content/images/delete.png" id="close"/></a>
@@ -76,7 +76,7 @@ else
 
         <img src="<?php echo base_url(); ?>gallery/default.jpg" id="galleryimage" />
         <div id="imagetitle">
-            <?php echo anchor('bnw/photos/'.$r->id,$r->a_name); ?> 
+            <?php echo anchor('bnw/photos/'.$r->id,$r->album_name); ?> 
         </div>
             <a href="<?php echo base_url();?>index.php/bnw/delete_album/<?php echo $aid; ?> " id="<?php echo $aid; ?>" class="delbutton">
         <img src="<?php echo base_url();?>content/images/delete.png" id="close"/></a>

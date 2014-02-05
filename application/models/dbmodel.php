@@ -35,25 +35,7 @@ class Dbmodel extends CI_Model {
     }
     
     
-     public function get_album()
-    {
-        $query = $this->db->get('album');
-        return $query->result();
-    }
     
-    public function add_album($name)
-    {
-        $data = Array(
-            'album_name' => $name);
-        $this->db->insert('album', $data);
-           
-    }
-    
-     public function delete_album($aid) {
-
-        
-        $this->db->delete('album', array('aid' => $aid));
-    }
     
     public function get_gallery($aid)
     {  
@@ -171,7 +153,7 @@ class Dbmodel extends CI_Model {
     }
 
    //======================================================================================================
-    //========================================user============================================================
+    //========================================USER============================================================
     //===========================================================================================================
     
       public function record_count_user() {
@@ -284,18 +266,45 @@ class Dbmodel extends CI_Model {
         $this->db->delete('media', array('id' => $id));
     }
     
+    //==============================================================================================================
+    //======================================ALBUM===================================================================
+    //==============================================================================================================
+   
     
+     public function get_album()
+    {
+        $query = $this->db->get('album');
+        return $query->result();
+    }
     
+    public function add_album($name)
+    {
+        $data = Array(
+            'album_name' => $name);
+        $this->db->insert('album', $data);
+           
+    }
+        
+    public function add_new_album($name){
+            $data = array (
+                'album_name'=> $name);
+    $this ->db->insert('album', $data);
+    }
+    
+
+     function delete_album($id) {
+        $this->db->delete('album', array('id' => $id));
+    } 
 // ==========================================Activities ----------------------------------------------------------
    
     public function record_count_activities() {
-        return $this->db->count_all("page_event");
+        return $this->db->count_all("page");
     }
     
     public function get_all_activities($limit,$start) {
         $this->db->limit($limit, $start);
         $this->db->where('type','event');
-        $query = $this->db->get('page_event');
+        $query = $this->db->get('page');
         return $query->result();
     }
 
@@ -444,7 +453,7 @@ class Dbmodel extends CI_Model {
 
     //======================others 
     function get_documents() {
-        $this->db->select('id, title, image, status, date');
+        $this->db->select();
         $this->db->from('download');
         //$this -> db -> where('did = ' . "'" . $gid . "'");
         $query = $this->db->get();
@@ -464,9 +473,9 @@ class Dbmodel extends CI_Model {
     }
 
     function get_all_photos() {
-        $this->db->select('eid, title, image');
-        $this->db->from('gallery');
-        //$this -> db -> where('did = ' . "'" . $gid . "'");
+        $this->db->select();
+        $this->db->from('media');
+       $this -> db -> where('id', $id);
         $query = $this->db->get();
         return $query->result();
     }
@@ -578,7 +587,7 @@ class Dbmodel extends CI_Model {
        // $this->load->database();
         $data = array(
             'slide_name' => $slidename,
-            'sldie_image' => $slideimage,
+            'slide_image' => $slideimage,
             'slide_content' => $slidecontent);
         $this->db->insert('slide', $data);
     }
