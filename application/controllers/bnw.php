@@ -75,6 +75,7 @@ class bnw extends CI_Controller {
             $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
+            $data["links"] = $this->pagination->create_links();
             $data['query'] = $this->dbmodel->get_category();
             $header = "bnw/templates/header";
             $this->load->view($header, $data);
@@ -123,20 +124,91 @@ class bnw extends CI_Controller {
     }
     
     //==================================To edit category=======================================================
-    function editcategory($id) {
+   public function editcategory($id) {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findcategory($id);
-            //$myarray = array('ram'=>'shayam', 'hari'=>'Bikash');
-            //echo "<pre>".$myarray;
-            //var_dump($data);
             $data['meta'] = $this->dbmodel->get_meta_data();
+            $data["links"] = $this->pagination->create_links();
             $data['id'] = $id;
             $header = "bnw/templates/";
             $this->load->view($header . 'header', $data);
             $this->load->view($header . 'menu');
-            $this->load->view('bnw/category/addCategory', $data);
+            $this->load->view('bnw/category/edit', $data);
 
             $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    
+    public function updatecategory() {
+        if ($this->session->userdata('logged_in')) {
+
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+            $this->load->library('upload', $config);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data["links"] = $this->pagination->create_links();
+
+            $header = "bnw/templates/header";
+            $this->load->view($header, $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $id = $this->input->post('id');
+            //set validation rules
+           $this->form_validation->set_rules('category_name', 'Category Name', 'required|xss_clean|max_length[200]');
+           
+  
+
+
+            if (($this->form_validation->run() == TRUE)) {
+                if ($_FILES && $_FILES['file']['name'] !== "") {
+                    if (!$this->upload->do_upload('file')) {
+                        $data['error'] = $this->upload->display_errors('file');
+                        $id = $this->input->post('id');
+                        $data['query'] = $this->dbmodel->findcategory($id);
+                        $this->load->view('bnw/category/edit', $data);
+                    } else {
+                     
+
+                        
+                        $categoryname = $this->input->post('category_name');  
+                        $this->dbmodel->update_category($id, $categoryname);
+                        $this->session->set_flashdata('message', 'Data Modified Sucessfully');
+                        redirect('bnw/category/addCategory');
+                    }
+                } else {
+
+                    
+                        $categoryname = $this->input->post('category_name');
+                        $this->dbmodel->update_category($id, $categoryname);
+                        $this->session->set_flashdata('message', 'Data Modified Sucessfully');
+                    redirect('bnw/category/addCategory');
+                }
+            } else {
+                $id = $this->input->post('id');
+                $data['query'] = $this->dbmodel->findcategory($id);
+                $this->load->view('bnw/category/edit', $data);
+            }
+
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    //========================================To delete category=============================================
+    
+    
+    public function deletecategory($id) {
+        if ($this->session->userdata('logged_in')) {
+            $this->dbmodel->delete_category($id);
+            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+            redirect('bnw/category');
         } else {
             redirect('login', 'refresh');
         }
