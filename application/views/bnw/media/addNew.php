@@ -20,7 +20,7 @@
   </p>
   
   <p>Association ID<br />
-  <input type="text" name="media_association_id" value="<?php echo set_value('media_association_id'); ?>" />
+  <input type="text" name="media_association_id" />
   </p>
   
   <p>Link<br />

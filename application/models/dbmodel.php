@@ -37,24 +37,12 @@ class Dbmodel extends CI_Model {
     
     
     
-    public function get_gallery($aid)
-    {  
-        $this->db->where('id',$aid);
-        $query = $this->db->get('media');
-        return $query->result();  
-       
-       if ($query->num_rows() == 1) {
-            return $query->result();
-        } else {
-            return false;
-        }
+   
         
-    }
-        
-        function get_gallery_image($aid)
+        function get_media_image($aid)
         {
             $this->db->select();            
-            $this->db->where('id',$aid);
+            $this->db->where('media_association_id',$aid);
             //$this->db->order_by('eid','DESC');
             $this->db->limit(1);
                     $query = $this->db->get('media');
@@ -64,11 +52,6 @@ class Dbmodel extends CI_Model {
             return false;
         }
         }
-         public function delete_gallery($aid) {
-
-        
-        $this->db->delete('gallery', array('id' => $aid));
-    }
     
     
        
@@ -223,12 +206,19 @@ class Dbmodel extends CI_Model {
         $query = $this->db->get('media');
         return $query->result();
     }
-    public function get_media() {
+       
+     public function get_media()
+    {  
         $query = $this->db->get('media');
-        return $query->result();
+        return $query->result();  
+       
+       if ($query->num_rows() == 1) {
+            return $query->result();
+        } else {
+            return false;
+        }
+        
     }
-    
-    
     
     
     function findmedia($id) {
@@ -240,23 +230,23 @@ class Dbmodel extends CI_Model {
         return $query->result();
     }    
     
-     public function update_media($id, $medianame, $mediatype, $mediaasscID, $medialink) {
+     public function update_media($id, $medianame, $mediatype, $aid, $medialink) {
        
         $data = array(
             'media_name'=>$medianame,
             'media_type'=> $mediatype,
-            'media_association_id'=> $mediaasscID,
+            'media_association_id'=> $aid,
             'media_link'=> $medialink);
         $this->db->where('id', $id);
         $this->db->update('media', $data);
     }    
-    public function add_new_media( $medianame, $mediatype, $mediaasscID, $medialink)
+    public function add_new_media( $medianame, $mediatype, $aid, $medialink)
     {   
                 
         $data = array(
             'media_name'=>$medianame,
             'media_type'=> $mediatype,
-            'media_association_id'=> $mediaasscID,
+            'media_association_id'=> $aid,
             'media_link'=> $medialink);
          $this->db->insert('media', $data);        
     }
@@ -280,6 +270,7 @@ class Dbmodel extends CI_Model {
     public function add_album($name)
     {
         $data = Array(
+            
             'album_name' => $name);
         $this->db->insert('album', $data);
            
@@ -287,14 +278,52 @@ class Dbmodel extends CI_Model {
         
     public function add_new_album($name){
             $data = array (
-                'album_name'=> $name);
+           'album_name'=> $name);
     $this ->db->insert('album', $data);
     }
     
 
-     function delete_album($id) {
-        $this->db->delete('album', array('id' => $id));
+     function delete_album($aid) {
+        $this->db->delete('album', array('id' => $aid));
     } 
+    
+    function edit_album($aid) {
+        $this->db->delete('album', array('id' => $aid));
+    } 
+    
+    function get_all_photos($id) {
+        $this->db->select();
+        $this->db->from('media');
+       $this -> db -> where('id', $aid);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function add_new_photo($medianame, $mediatype, $aid, $medialink) {
+        $data = Array(
+            'media_name' => $medianame,
+            'media_type' => $mediatype,
+            'media_association_id'=> $aid,
+            'media_link'=> $medialink);
+        
+        $this->db->insert('media', $data);
+    }
+    
+    function get_aid($id)
+    {
+         $this->db->select();
+        $this->db->where('id',$id);
+        $this->db->from('media');
+        $aid = $this->db->get();
+         return $aid->result();
+    }
+
+    function delete_photo($id) {
+       
+        $this->db->delete('media', array('id' => $id));
+        
+    }
+
 // ==========================================Activities ----------------------------------------------------------
    
     public function record_count_activities() {
@@ -472,38 +501,7 @@ class Dbmodel extends CI_Model {
         $this->db->delete('download', array('id' => $id));
     }
 
-    function get_all_photos() {
-        $this->db->select();
-        $this->db->from('media');
-       $this -> db -> where('id', $id);
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    function add_new_photo($name, $image,$aid) {
-        $data = Array(
-            'title' => $name,
-            'image' => $image,
-            'aid'=> $aid);
-        
-        $this->db->insert('gallery', $data);
-    }
     
-    function get_aid($id)
-    {
-         $this->db->select('aid');
-        $this->db->where('eid',$id);
-        $this->db->from('gallery');
-        $aid = $this->db->get();
-         return $aid->result();
-    }
-
-    function delete_photo($id) {
-       
-        $this->db->delete('gallery', array('eid' => $id));
-        
-    }
-
     function get_alumni() {
         // $this -> db -> select('eid, title, image');
         //$this -> db -> from('gallery');

@@ -49,7 +49,7 @@ foreach ($res as $r)
 	$aid = $r->id;	
         
                    
-	$result = $this->dbmodel->get_gallery_image($aid); 
+	$result = $this->dbmodel->get_media_image($aid); 
         if($result)
         {
 foreach( $result as $abc)

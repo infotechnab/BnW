@@ -318,7 +318,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function edituser($id) {
+  public function edituser($id) {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->finduser($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
@@ -333,7 +333,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function updateuser() {
+    public function updateuser() {
         if ($this->session->userdata('logged_in')) {
             $header = "bnw/templates/header";
             $data['meta'] = $this->dbmodel->get_meta_data();
@@ -423,7 +423,7 @@ class bnw extends CI_Controller {
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('media_name', 'media Name', 'required|xss_clean|max_length[200]');
              $this->form_validation->set_rules('media_type', 'Type of Media', 'required|xss_clean|max_length[200]');
-              $this->form_validation->set_rules('media_association_id', 'Association ID', 'required|xss_clean|max_length[200]');
+              //$this->form_validation->set_rules('media_association_id', 'Association ID', 'required|xss_clean|max_length[200]');
                $this->form_validation->set_rules('media_link', 'Link', 'required|xss_clean|max_length[200]');
                
             if ($this->form_validation->run() == FALSE) {
@@ -435,9 +435,9 @@ class bnw extends CI_Controller {
 
                 $medianame = $this->input->post('media_name');
                 $mediatype = $this->input->post('media_type');
-                $mediaasscID = $this->input->post('media_association_id');
+                $aid = $this->input->post('media_association_id');
                 $medialink = $this->input->post('media_link');
-                $this->dbmodel->add_new_media($medianame,  $mediatype, $mediaasscID, $medialink);
+                $this->dbmodel->add_new_media($medianame,  $mediatype, $aid, $medialink);
                 $this->session->set_flashdata('message', 'One media added sucessfully');
                 redirect('bnw/media/mediaListing');
             }
@@ -450,7 +450,7 @@ class bnw extends CI_Controller {
 
     //==================================To edit media==================================================
     
-      function editmedia($id) {
+     public function editmedia($id) {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findmedia($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
@@ -478,7 +478,7 @@ class bnw extends CI_Controller {
             //set validation rules
            $this->form_validation->set_rules('media_name', 'media Name', 'required|xss_clean|max_length[200]');
              $this->form_validation->set_rules('media_type', 'Type of Media', 'required|xss_clean|max_length[200]');
-              $this->form_validation->set_rules('media_association_id', 'Association ID', 'required|xss_clean|max_length[200]');
+              //$this->form_validation->set_rules('media_association_id', 'Association ID', 'required|xss_clean|max_length[200]');
                $this->form_validation->set_rules('media_link', 'Link', 'required|xss_clean|max_length[200]');
 
 
@@ -491,9 +491,9 @@ class bnw extends CI_Controller {
                 $id = $this->input->post('id');
                 $medianame = $this->input->post('media_name');
                 $mediatype = $this->input->post('media_type');
-                $mediaasscID = $this->input->post('media_association_id');
+                $aid = $this->input->post('media_association_id');
                 $medialink = $this->input->post('media_link');
-                $this->dbmodel->update_media($id, $medianame, $mediatype, $mediaasscID, $medialink);
+                $this->dbmodel->update_media($id, $medianame, $mediatype, $aid, $medialink);
                 $this->session->set_flashdata('message', 'Media data Modified Sucessfully');
 
                 redirect('bnw/media/mediaListing');
@@ -823,7 +823,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function upload() {
+   public function upload() {
         if ($this->session->userdata('logged_in')) {
 
             $config['upload_path'] = './downloads/';
@@ -867,7 +867,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function deletedocument($id) {
+   public function deletedocument($id) {
         if ($this->session->userdata('logged_in')) {
             $this->dbmodel->delete_document($id);
             $this->session->set_flashdata('message', 'One Document deleted sucessfully');
@@ -879,7 +879,7 @@ class bnw extends CI_Controller {
     }
 
     //======================================Dashboard setup page
-    function setup() {
+  public function setup() {
         if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $header = "bnw/templates/";
@@ -892,7 +892,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function setupupdate() {
+   public function setupupdate() {
         if ($this->session->userdata('logged_in')) {
 
             $this->load->library(array('form_validation', 'session'));
@@ -950,7 +950,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function editgadget($id) {
+   public function editgadget($id) {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findgadget($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
@@ -1044,23 +1044,37 @@ class bnw extends CI_Controller {
     //============album=====
 
 
-    function album() {
-        //$data['query']=  $this->dbmodel->get_album();
-        // $imagesrc = array();
+   public function album() {
+        if ($this->session->userdata('logged_in')) {
+
+            $config = array();
+            $config["base_url"] = base_url() . "index.php/bnw/users";
+            $config["total_rows"] = $this->dbmodel->record_count_user();
+            $config["per_user"] = 6;
+            $this->pagination->initialize($config);
+
+            $user = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            $data["query"] = $this->dbmodel->get_all_user($config["per_user"], $user);
+            $data["links"] = $this->pagination->create_links();     
+        $data['query']=  $this->dbmodel->get_album();
         $data['meta'] = $this->dbmodel->get_meta_data();
         $this->load->view('bnw/templates/header', $data);
         $this->load->view('bnw/templates/menu');
-        $this->load->view('bnw/album/index');
-
-
-
-        //   $this->load->view('bnw/album/index',$data);
+        $this->load->view('bnw/album/albumListing');
         $this->load->view('bnw/templates/footer', $data);
     }
+   }
+   public function addalbum() {
+         if ($this->session->userdata('logged_in')) {
 
-    function addalbum() {
-        if ($this->session->userdata('logged_in')) {
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+            $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['query'] = $this->dbmodel->get_album();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
@@ -1091,9 +1105,17 @@ class bnw extends CI_Controller {
         }
     }
 
-    function add_new_album(){
+   public function add_new_album(){
          if ($this->session->userdata('logged_in')) {
+
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+            $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['query'] = $this->dbmodel->get_album();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
@@ -1111,7 +1133,7 @@ class bnw extends CI_Controller {
 
                 //if valid
                 //$imagedata = Array($this->upload->data());
-                $name = $this->input->post('album_name');
+                 $name = $this->input->post('album_name');
                 
                 $this->dbmodel->add_new_album($name);
                 $this->session->set_flashdata('message', 'One Album added sucessfully');
@@ -1125,20 +1147,29 @@ class bnw extends CI_Controller {
 
         
     }
-    function delete_album($id) {
+    function delete_album($aid) {
         if ($this->session->userdata('logged_in')) {
-            $this->dbmodel->delete_album($id);
+            $this->dbmodel->delete_album($aid);
+            redirect('bnw/album');
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    
+    function editalbum($aid) {
+        if ($this->session->userdata('logged_in')) {
+            $this->dbmodel->edit_album($aid);
             redirect('bnw/album');
         } else {
             redirect('login', 'refresh');
         }
     }
 
-    public function photos($aid) {
+   public function photos($id) {
 
-        $data['query'] = $this->dbmodel->get_gallery($aid);
+        $data['query'] = $this->dbmodel->get_media($aid);
         $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['album_id'] = $aid;
+        $data['id'] = $aid;
         $this->load->view('bnw/templates/header', $data);
         $this->load->view('bnw/templates/menu');
         $this->load->view('bnw/album/gallery', $data);
@@ -1147,7 +1178,7 @@ class bnw extends CI_Controller {
 
     //--------------------------------gallery---------------
 
-    function gallery() {
+   public function gallery() {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->get_all_photos();
             $data['meta'] = $this->dbmodel->get_meta_data();
@@ -1162,10 +1193,10 @@ class bnw extends CI_Controller {
         }
     }
 
-    function addphoto() {
+   public function addphoto() {
         if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $config['upload_path'] = './gallery/';
+            $config['upload_path'] = './content/images/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '500';
             $config['max_width'] = '1024';
@@ -1188,10 +1219,11 @@ class bnw extends CI_Controller {
 
                 //if valid
                 $data = array('upload_data' => $this->upload->data());
-                $image = $data['upload_data']['file_name'];
-                $name = $this->input->post('title');
-                $aid = $this->input->post('p_aid');
-                $this->dbmodel->add_new_photo($name, $image, $aid);
+                $mediatype = $data['upload_data']['file_name'];
+                $medianame = $this->input->post('title');
+                $mediaasscID = $this->input->post('p_aid');
+                $medialink= $this->input->post('media_link');
+                $this->dbmodel->add_new_photo($medianame, $mediatype, $mediaascID, $medialink);
                 $this->session->set_flashdata('message', 'One photo added sucessfully');
                 redirect('bnw/photos/' . $aid);
             }
@@ -1202,7 +1234,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function deletephoto($id) {
+   public function deletephoto($id) {
         if ($this->session->userdata('logged_in')) {
             //$aid = $this->dbmodel->get_aid($id);
             $aid = $this->dbmodel->get_aid($id);
@@ -1247,7 +1279,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function addslider() {
+   public function addslider() {
         if ($this->session->userdata('logged_in')) {
 
             $config['upload_path'] = './content/images/';
@@ -1276,7 +1308,7 @@ class bnw extends CI_Controller {
                 //if valid
                 $data = array('upload_data' => $this->upload->data('file'));
                 $slidename = $this->input->post('slide_name');
-                $slideimage = $data['upload_data']['file_name'];
+                $slideimage = $data['upload_data']['slide_image'];
                 $slidecontent = $this->input->post('slide_content');
                 //var_dump($data);
                 $this->dbmodel->add_new_slider($slidename, $slideimage, $slidecontent);
@@ -1290,7 +1322,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function editslider($id) {
+   public function editslider($id) {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findslider($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
@@ -1304,7 +1336,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    public function updateslider() {
+   public function updateslider() {
         if ($this->session->userdata('logged_in')) {
 
             $config['upload_path'] = './content/images/';
@@ -1335,7 +1367,7 @@ class bnw extends CI_Controller {
                 $data = array('upload_data' => $this->upload->data());
                 $id = $this->input->post('id');
                 $slidename = $this->input->post('slide_name');
-                $slideimage = $data['upload_data']['file_name'];              
+                $slideimage = $data['upload_data']['slide_image'];              
                 $slidecontent = $this->input->post('slide_content');
                 $this->dbmodel->update_slider($id, $slidename, $slideimage, $slidecontent);
                 $this->session->set_flashdata('message', 'Image Modified Sucessfully');
@@ -1360,7 +1392,7 @@ class bnw extends CI_Controller {
 
     // ==================  MENU  ============================ //
 
-    public function menu() {
+   public function menu() {
 
         if ($this->session->userdata('logged_in')) {
             $config = array();
@@ -1387,7 +1419,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    public function addmenu() {
+   public function addmenu() {
         if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view('bnw/templates/header', $data);
@@ -1419,7 +1451,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function editmenu($id) {
+   public function editmenu($id) {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findmenu($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
@@ -1434,7 +1466,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function updatemenu() {
+   public function updatemenu() {
         if ($this->session->userdata('logged_in')) {
             $header = "bnw/templates/header";
             $data['meta'] = $this->dbmodel->get_meta_data();
@@ -1484,7 +1516,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    function uploads() {
+   public function uploads() {
         if ($this->session->userdata('logged_in')) {
 
             $config['upload_path'] = './downloads/';
@@ -1528,7 +1560,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    public function deleteblog($id) {
+ public function deleteblog($id) {
         if ($this->session->userdata('logged_in')) {
             $this->dbmodel->deleteblog($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
@@ -1537,7 +1569,4 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
-
-}
-
-?>
+    }

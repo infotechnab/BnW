@@ -9,7 +9,7 @@
            $id = $data->id;
            $medianame = $data->media_name;
            $mediatype = $data->media_type;
-           $mediaascID = $data->media_association_id;
+           $aid = $data->media_association_id;
            $medialink= $data->media_link;
                  
        }
@@ -31,9 +31,9 @@
   <input type="text" name="media_type" value="<?php echo $mediatype; ?>" />
   </p>
   
-  <p>Association ID<br />
-  <input type="text" name="media_association_id" value="<?php echo $mediaascID ; ?>" />
-  </p>
+  
+  <input type="hidden" name="media_association_id" value="<?php echo $aid ; ?>" />
+  
   
   <p>Link<br />
   <input type="text" name="media_link" value="<?php echo $medialink; ?>" />
