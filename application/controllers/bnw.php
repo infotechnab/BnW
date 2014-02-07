@@ -34,6 +34,116 @@ class bnw extends CI_Controller {
         redirect('login', 'refresh');
     }
 
+    
+    //======================================================================================================
+    //====================================Category==========================================================
+    //======================================================================================================
+   
+    public function category() {
+         if ($this->session->userdata('logged_in')) {
+
+            $config = array();
+            $config["base_url"] = base_url() . "index.php/bnw/category";
+            $config["total_rows"] = $this->dbmodel->record_count_category();
+            $config["per_category"] = 6;
+            $this->pagination->initialize($config);
+            $category = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+            $data["query"] = $this->dbmodel->get_all_category($config["per_category"], $category);
+            $data["links"] = $this->pagination->create_links();
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $header = "bnw/templates/";
+
+            $this->load->view($header . 'header', $data);
+            $this->load->view($header . 'menu');
+            $this->load->view('bnw/category/addCategory', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+//========================================to add category===================================================
+    
+    public function addcategory(){
+         if ($this->session->userdata('logged_in')) {
+
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+            $this->load->library('upload', $config);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['query'] = $this->dbmodel->get_category();
+            $header = "bnw/templates/header";
+            $this->load->view($header, $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            //set validation rules
+                        $categoryname = $this->input->post('category_name');
+                       
+            $this->form_validation->set_rules('category_name', 'Category Name', 'required|xss_clean|max_length[200]');
+            
+               
+              
+            if (($this->form_validation->run() == TRUE)) {
+                if ($_FILES && $_FILES['file']['name'] !== "") {
+                    if (!$this->upload->do_upload('file')) {
+                        $error = array('error' => $this->upload->display_errors('file'));
+                        $this->load->view('bnw/category/addCategory', $error);
+                    } else {
+                        $data = array('upload_data' => $this->upload->data('file'));
+                        $image = $data['upload_data']['file_name'];
+
+                   
+                        $this->dbmodel->add_new_category($categoryname);
+                        $this->session->set_flashdata('message', 'One category item added sucessfully');
+                        redirect('bnw/category/addCategory');
+                    }
+                } else {
+                    $categoryname = $this->input->post('category_name');
+                    
+                    $this->dbmodel->add_new_category($categoryname);
+
+                    $pages = $this->dbmodel->find_category_id($categoryname);
+                    $this->session->set_flashdata('message', 'One category added sucessfully');
+                    redirect('bnw/category/addCategory');
+                }
+            } else {
+
+                $this->load->view('bnw/category/addCategory', $data);
+            }
+
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    
+    //==================================To edit category=======================================================
+    function editcategory($id) {
+        if ($this->session->userdata('logged_in')) {
+            $data['query'] = $this->dbmodel->findcategory($id);
+            //$myarray = array('ram'=>'shayam', 'hari'=>'Bikash');
+            //echo "<pre>".$myarray;
+            //var_dump($data);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['id'] = $id;
+            $header = "bnw/templates/";
+            $this->load->view($header . 'header', $data);
+            $this->load->view($header . 'menu');
+            $this->load->view('bnw/category/addCategory', $data);
+
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    
+
     //==================================== Page ============================//
 
     public function pages() {

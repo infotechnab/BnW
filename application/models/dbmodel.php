@@ -52,8 +52,73 @@ class Dbmodel extends CI_Model {
             return false;
         }
         }
+    //============================================CAtegory==========================================================
+        public function record_count_category() {
+        return $this->db->count_all("category");
+    }
     
+    public function get_all_category($limit, $start) {
+           $this->db->limit($limit, $start); 
+       // $this->db->where('type','page');
+        $query = $this->db->get('category');
+        return $query->result();
+    }
+    public function get_category() {
+            
+        //$this->db->where('type','page');
+        $query = $this->db->get('category');
+        return $query->result();
+    } 
+    public function add_new_category($categoryname) {
+        $data = Array(
+            'category_name' => $categoryname);
+           
+        $this->db->insert('category', $data);
+    }
     
+       public function findcategory($id) {
+        $this->db->select();
+        $this->db->from('page');
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    public function find_category_id($categoryname)
+    {   
+        
+        $this->db->select('id');
+        $this->db->where('category_name',$categoryname);
+        $this->db->limit(1);
+        $this->db->order_by('id','DESC');
+        $page = $this->db->get('category');
+        return $page->result();
+    }
+    public function update_category($id, $categoryname){
+          
+           $data = array
+                (
+                'category_name' => $categoryname);  
+        
+        $this->db->where('id', $id);
+        $this->db->update('category', $data);
+    }
+
+    public function delete_category($id) {
+
+        $this->db->delete('category', array('id' => $id));
+    }
+    
+   /* public function delete_page_image($id)
+    {
+            $data = Array(
+            'image' => ""
+           );
+        
+            $this->db->where('id', $id);
+            
+            $this->db->update('page',$data);
+    }*/
        
 //pages -----------------------------------------------
     public function record_count_page() {

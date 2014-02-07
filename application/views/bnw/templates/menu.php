@@ -5,7 +5,7 @@
                         <ul class="subMenu">
                             <li><?php echo anchor('bnw', 'Home') ?></li>
                             <li><?php echo anchor('bnw/menu', 'Navigation') ?></li>
-                            <li><?php echo anchor('bnw/addmenu', 'Categories') ?></li>
+                            <li><?php echo anchor('bnw/category', 'Categories') ?></li>
                         </ul>
                     </li>
                     <li class="mainMenuItem"><a href="#">Pages</a><?php/* echo anchor('bnw', 'Pages') */?>
