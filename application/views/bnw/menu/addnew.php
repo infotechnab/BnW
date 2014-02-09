@@ -7,20 +7,12 @@
     </p>
   <?php echo form_open_multipart('bnw/addmenu');?>
   
-      
- <p>Title:<br />
-      <input type="text" name="title"  /> </p> 
- <p>Pramalink : <br/>
-       <input type="text" name="parmalink"  /> </p>
- <p> Listing : <br/>
-      <input type="text" name="listing" /> </p>
- <p> Order : <br/>
-       <input type="txt" name="order" /> </p>
- <p> Link : <br/>
-      <input type="text" name="link" /> </p>
   
+      
+ <p>Menu Name:<br />
+      <input type="text" name="menu_name" value="<?php echo set_value('menu_name'); ?>"  /> </p> 
  
-    <input type="submit" value="Submit" />
+ <input type="submit" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>

@@ -52,6 +52,96 @@ class Dbmodel extends CI_Model {
             return false;
         }
         }
+        
+        //=========================================================================================================
+        //=======================================NAVIGATION-=======================================================
+        //==========================================================================================================
+        
+        public function record_count_navigation() {
+        return $this->db->count_all("navigation");
+    }
+        
+    public function get_navigation($limit,$start)
+    {
+        $this->db->limit($limit,$start);
+        $query = $this->db->get('navigation');
+        return $query->result();
+    }
+    
+    function findnavigation($id) {
+        $this->db->select();
+        $this->db->where('id', $id);
+        $query = $this->db->get('navigation');
+        return $query->result();
+    }    
+    
+     public function update_navigation($id, $navigationname, $navigationlink, $pid, $navigationtype, $navigationslug, $mid) {
+        $this->load->database();
+        $data = array(
+            'navigation_name' => $navigationname,
+            'navigation_link'=> $navigationlink,
+            'parent_id'=> $pid,
+            'navigation_type'=> $navigationtype,
+            'navigation_slug'=> $navigationslug,
+            'menu_id'=> $mid);
+        $this->db->where('id', $id);
+        $this->db->update('navigation', $data);
+    }    
+    public function add_new_navigation($navigationname, $navigationlink, $pid, $navigationtype, $navigationslug, $mid)
+    {   $this->load->database();        
+        $data = array(
+            
+            'navigation_name' => $navigationname,
+            'navigation_link'=> $navigationlink,
+            'parent_id'=> $pid,
+            'navigation_type'=> $navigationtype,
+            'navigation_slug'=> $navigationslug,
+            'menu_id'=> $mid);
+         $this->db->insert('navigation', $data);        
+    }
+        
+    
+      // =========================== menu =================//
+    
+     public function record_count_menu() {
+        return $this->db->count_all("menu");
+    }
+        
+    public function get_menu($limit,$start)
+    {
+        $this->db->limit($limit,$start);
+        $query = $this->db->get('menu');
+        return $query->result();
+    }
+    
+    function findmenu($mid) {
+        $this->db->select();
+        $this->db->where('id', $mid);
+        $query = $this->db->get('menu');
+        return $query->result();
+    }    
+    
+     public function update_menu($mid, $menuname) {
+        $this->load->database();
+        $data = array(
+            'id'=>$mid,
+            'menu_name' => $menuname);
+        $this->db->where('id', $mid);
+        $this->db->update('menu', $data);
+    }    
+    public function add_new_menu($mid, $menuname )
+    {   $this->load->database();        
+        $data = array(
+            'id'=>$mid,
+            'menu_name'=> $menuname);
+         $this->db->insert('menu', $data);        
+    }
+  public function delete_menu($mid) {
+
+        $this->db->delete('menu', array('id' => $mid));
+    }
+    
+    
     //============================================CAtegory==========================================================
         public function record_count_category() {
         return $this->db->count_all("category");
@@ -78,7 +168,7 @@ class Dbmodel extends CI_Model {
     
        public function findcategory($id) {
         $this->db->select();
-        $this->db->from('page');
+        $this->db->from('category');
         $this->db->where('id',$id);
         $query = $this->db->get();
         return $query->result();
@@ -678,53 +768,7 @@ class Dbmodel extends CI_Model {
     }
     
     
-    // =========================== menu =================//
-    
-     public function record_count_menu() {
-        return $this->db->count_all("page");
-    }
-        
-    public function get_menu($limit,$start)
-    {
-        $this->db->limit($limit,$start);
-        $query = $this->db->get('menu');
-        return $query->result();
-    }
-    
-    
-    
-    
-    function findmenu($id) {
-        $this->db->select('id,title,parmalink,listing,order,link');
-
-        //$this -> db -> from('menu');
-        $this->db->where('id = ' . "'" . $id . "'");
-        $query = $this->db->get('menu');
-        return $query->result();
-    }    
-    
-     public function update_menu($id,$title,$parmalink,$listing,$order,$link) {
-        $this->load->database();
-        $data = array(
-            'title' => $title,
-            'parmalink'=> $parmalink,
-            'listing'=> $listing,
-            'order'=> $order,
-            'link'=> $link);
-        $this->db->where('id', $id);
-        $this->db->update('menu', $data);
-    }    
-    public function add_new_menu($tital,$listing, $order , $id )
-    {   $this->load->database();        
-        $data = array(
-            'p_id'=>$id,
-            'title'=> $tital,
-            
-            'listing' => $listing,
-            'order'=> $order  );
-         $this->db->insert('menu', $data);        
-    }
-    
+      
     function get_blog() {
         $this->db->select('id, title, image, status, date');
         $this->db->from('blog');

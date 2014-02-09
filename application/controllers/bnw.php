@@ -34,7 +34,124 @@ class bnw extends CI_Controller {
         redirect('login', 'refresh');
     }
 
+    //=====================================================================================================
+    //===================================Navigation========================================================
+    //=====================================================================================================
+   
+       public function navigation() {
+         if ($this->session->userdata('logged_in')) {
+
+            $config = array();
+            $config["base_url"] = base_url() . "index.php/bnw/menu";
+            $config["total_rows"] = $this->dbmodel->record_count_navigation();
+            $config["per_navigation"] = 6;
+            $this->pagination->initialize($config);
+            $navigation = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+            $data["query"] = $this->dbmodel->get_navigation($config["per_navigation"], $navigation);
+            $data["links"] = $this->pagination->create_links();
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $header = "bnw/templates/";
+
+            $this->load->view($header . 'header', $data);
+            $this->load->view($header . 'menu');
+            $this->load->view('bnw/menu/navigationListing', $data); 
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
     
+    //===========================================To Add Navigation=====================================================
+    
+    public function addnavigation() {
+        if ($this->session->userdata('logged_in')) {
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('navigation_name', 'Navigation Name', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('navigation_link', 'Link', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('navigation_type', 'Type', 'required|xss_clean|max_length[200]');
+
+            if ($this->form_validation->run() == FALSE) {
+
+                $this->load->view('bnw/menu/addNavigation');
+            } else {
+
+                //if valid
+                $navigationname = $this->input->post('navigation_name');
+                $navigationlink = $this->input->post('navigation_link');
+                $pid = $this->input->post('parent_id');
+                $navigationtype = $this->input->post('navigation_type');
+                $navigationslug = $this->input->post('navigation_slug');
+                $mid = $this->input->post('menu_id');
+                $this->dbmodel->add_new_navigation($navigationname, $navigationlink, $pid, $navigationtype, $navigationslug, $mid);
+                $this->session->set_flashdata('message', 'One Navigation Menu added sucessfully');
+                redirect('bnw/menu/navigationListing');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+
+            redirect('login', 'refresh');
+        }
+    }
+
+   public function editnavigation($id) {
+        if ($this->session->userdata('logged_in')) {
+            $data['query'] = $this->dbmodel->findnavigation($id);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            //$data['id'] = $pid;
+            $header = "bnw/templates/";
+            $this->load->view($header . 'header', $data);
+            $this->load->view($header . 'menu');
+            $this->load->view('bnw/menu/editNavigation', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+   public function updatenavigation() {
+        if ($this->session->userdata('logged_in')) {
+            $header = "bnw/templates/header";
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view($header, $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            //set validation rules
+            $this->form_validation->set_rules('navigation_name', 'Navigation Name', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('navigation_link', 'Link', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('navigation_type', 'Type', 'required|xss_clean|max_length[200]');
+
+
+            if ($this->form_validation->run() == FALSE) {
+                //if not valid
+                $data['query'] = $this->dbmodel->findnavigation($id);
+                $this->load->view('bnw/menu/navigationListing', $data);
+            } else {
+                //if valid
+                $id = $this->input->post('id');
+                $navigationname = $this->input->post('navigation_name');
+                $navigationlink = $this->input->post('navigation_link');
+                $pid = $this->input->post('parent_id');
+                $navigationtype = $this->input->post('navigation_type');
+                $navigationslug = $this->input->post('navigation_slug');
+                $mid = $this->input->post('menu_id');
+                $this->dbmodel->update_navigation($id, $navigationname, $navigationlink, $pid, $navigationtype, $navigationslug, $mid);
+                $this->session->set_flashdata('message', 'NAvigation Menu Modified Sucessfully');
+
+                redirect('bnw/menu/navigationListing');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+   
     //======================================================================================================
     //====================================Category==========================================================
     //======================================================================================================
@@ -1608,7 +1725,7 @@ class bnw extends CI_Controller {
             $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
-            $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('menu_name', 'Name', 'required|xss_clean|max_length[200]');
 
             if ($this->form_validation->run() == FALSE) {
 
@@ -1617,13 +1734,9 @@ class bnw extends CI_Controller {
 
                 //if valid
 
-                $tital = $this->input->post('title');
-                $parmalink = $this->input->post('parmalink');
-                $listing = $this->input->post('listing');
-                $order = $this->input->post('order');
-                $link = $this->input->post('link');
-                $this->dbmodel->add_new_menu($tital, $parmalink, $listing, $order, $link);
-                $this->session->set_flashdata('message', 'One slider added sucessfully');
+                $menuname = $this->input->post('menu_name');
+                $this->dbmodel->add_new_menu($mid, $menuname);
+                $this->session->set_flashdata('message', 'One menu added sucessfully');
                 redirect('bnw/menu/index');
             }
             $this->load->view('bnw/templates/footer', $data);
@@ -1633,9 +1746,9 @@ class bnw extends CI_Controller {
         }
     }
 
-   public function editmenu($id) {
+   public function editmenu($mid) {
         if ($this->session->userdata('logged_in')) {
-            $data['query'] = $this->dbmodel->findmenu($id);
+            $data['query'] = $this->dbmodel->findmenu($mid);
             $data['meta'] = $this->dbmodel->get_meta_data();
             //$data['id'] = $pid;
             $header = "bnw/templates/";
@@ -1657,27 +1770,34 @@ class bnw extends CI_Controller {
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             //set validation rules
-            $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('menu_name', 'Name', 'required|xss_clean|max_length[200]');
 
 
             if ($this->form_validation->run() == FALSE) {
                 //if not valid
-                $data['query'] = $this->dbmodel->findmenu($id);
-                $this->load->view('bnw/gadget/edit', $data);
+                $data['query'] = $this->dbmodel->findmenu($mid);
+                var_dump($mid);
+                $this->load->view('bnw/menu/edit', $data);
             } else {
                 //if valid
-                $id = $this->input->post('id');
-                $title = $this->input->post('title');
-                $parmalink = $this->input->post('parmalink');
-                $listing = $this->input->post('listing');
-                $order = $this->input->post('order');
-                $link = $this->input->post('link');
-                $this->dbmodel->update_menu($id, $title, $parmalink, $listing, $order, $link);
+                $mid = $this->input->post('id');
+                $menuname = $this->input->post('menu_name');
+                $this->dbmodel->update_menu($mid, $menuname);
                 $this->session->set_flashdata('message', 'Menu Modified Sucessfully');
 
                 redirect('bnw/menu/index');
             }
             $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    
+     public function deletemenu($mid) {
+        if ($this->session->userdata('logged_in')) {
+            $this->dbmodel->delete_menu($mid);
+            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+            redirect('bnw/menu/index');
         } else {
             redirect('login', 'refresh');
         }
