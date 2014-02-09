@@ -55,7 +55,7 @@ class bnw extends CI_Controller {
 
             $this->load->view($header . 'header', $data);
             $this->load->view($header . 'menu');
-            $this->load->view('bnw/menu/navigationListing', $data); 
+            $this->load->view('bnw/menu/index', $data); 
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');
@@ -345,7 +345,7 @@ class bnw extends CI_Controller {
             $this->pagination->initialize($config);
             $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-            $data["query"] = $this->dbmodel->get_all_pages($config["per_page"], $page);
+            $pagedata["query"] = $this->dbmodel->get_all_pages($config["per_page"], $page);
             $data["links"] = $this->pagination->create_links();
 
 
@@ -356,7 +356,7 @@ class bnw extends CI_Controller {
 
             $this->load->view($header . 'header', $data);
             $this->load->view($header . 'menu');
-            $this->load->view('bnw/pages/pageListing', $data);
+            $this->load->view('bnw/pages/pageListing', $pagedata);
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');
@@ -374,7 +374,7 @@ class bnw extends CI_Controller {
             $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $data['query'] = $this->dbmodel->get_pages();
+            $pagedata['query'] = $this->dbmodel->get_pages();
             $header = "bnw/templates/header";
             $this->load->view($header, $data);
             $this->load->view('bnw/templates/menu');
@@ -417,7 +417,7 @@ class bnw extends CI_Controller {
                     $tags = $this->input->post('page_tags');
                     $this->dbmodel->add_new_page($name, $body, $summary, $status, $order, $type, $tags);
 
-                    $pages = $this->dbmodel->find_page_id($name);
+                    $page = $this->dbmodel->find_page_id($name);
                     $this->session->set_flashdata('message', 'One pages added sucessfully');
                     redirect('bnw/pages/pageListing');
                 }
