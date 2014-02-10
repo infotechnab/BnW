@@ -377,3 +377,46 @@ tr:nth-child(odd) {background: #FFF}
     height: 200px;
 }
 
+/*for navigation*/
+.left
+{
+   
+    padding: 10px;
+    margin: 0px;
+    min-height: 200px;
+    max-height: 220px;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.right
+{
+    width: 62%;
+    float: left;
+    margin-left: 45px;
+    min-height: 400px;
+}
+.forLeft
+{
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    width: 30%;
+}
+ul, li
+{
+    list-style-type: none;
+}
+selectMenu
+{
+    width: 50px;
+}
+dt
+{
+    font-size: 20px;
+}
+dl
+{
+    font-size: 18px;
+}

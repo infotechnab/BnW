@@ -99,8 +99,14 @@ class Dbmodel extends CI_Model {
             'menu_id'=> $mid);
          $this->db->insert('navigation', $data);        
     }
+    public function add_for_navigation($name){
+            $this->load->database();
+    $data = array(
+        'page_name'=> $name);
+    $this->db->insert('navigation', $data);
+}
+
         
-    
       // =========================== menu =================//
     
      public function record_count_menu() {
@@ -112,6 +118,13 @@ class Dbmodel extends CI_Model {
         $this->db->limit($limit,$start);
         $query = $this->db->get('menu');
         return $query->result();
+    }
+    
+     public function get_list_of_menu()
+    {
+        $query = $this->db->get('menu');
+        return $query->result();
+        
     }
     
     function findmenu($mid) {
@@ -159,6 +172,19 @@ class Dbmodel extends CI_Model {
         $query = $this->db->get('category');
         return $query->result();
     } 
+     public function get_list_of_category()
+    {
+        $query = $this->db->get('category');
+        return $query->result();
+        
+    }
+    public function get_category_parent_id($data)
+    {
+         $this->db->select('id');
+        $this->db->where('category_name', $data);
+        $query = $this->db->get('category');
+          return $query->result();
+    }
     public function add_new_category($categoryname) {
         $data = Array(
             'category_name' => $categoryname);
@@ -166,7 +192,38 @@ class Dbmodel extends CI_Model {
         $this->db->insert('category', $data);
     }
     
-       public function findcategory($id) {
+    public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $naviation_slug, $menu_id)
+    {
+        $navigationData = Array('navigation_name'=>$navigation_name,
+                                'navigation_link'=>$navigation_link,
+                                'parent_id'=>$parent_id,
+                                'navigation_type'=>$navigation_type,
+                                'navigation_slug'=>$naviation_slug,
+                                'menu_id'=>$menu_id
+            );
+         $this->db->insert('navigation', $navigationData);
+    }
+    
+    public function get_page_parent_id($data)
+    {
+         $this->db->select('id');
+       
+        $this->db->where('page_name', $data);
+        $query = $this->db->get('page');
+          return $query->result();
+    }
+    
+    public function get_menu_info($menuSelected)
+    {
+        $this->db->select('id');
+       
+        $this->db->where('menu_name', $menuSelected);
+        $query = $this->db->get('menu');
+          return $query->result();
+        
+    }
+
+        public function findcategory($id) {
         $this->db->select();
         $this->db->from('category');
         $this->db->where('id',$id);
@@ -221,7 +278,13 @@ class Dbmodel extends CI_Model {
         $query = $this->db->get('page');
         return $query->result();
     }
-    public function get_pages() {
+    public function get_list_of_pages()
+    {
+         $query = $this->db->get('page');
+        return $query->result();
+    }
+    
+   public function get_pages() {
             
         //$this->db->where('type','page');
         $query = $this->db->get('page');
