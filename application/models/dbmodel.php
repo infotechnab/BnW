@@ -229,7 +229,7 @@ class Dbmodel extends CI_Model {
     }
 
     public function add_new_page($name, $body, $summary, $status, $order, $type, $tags) {
-        $data = Array(
+        $pagedata = Array(
             'page_name' => $name,
             'page_content' => $body,
             'page_summary' => $summary,
@@ -237,7 +237,7 @@ class Dbmodel extends CI_Model {
             'page_order'=> $order,
             'page_type'=>$type,
           'page_tags'=>$tags);
-        $this->db->insert('page', $data);
+        $this->db->insert('page', $pagedata);
     }
 
     public function findpage($id) {
@@ -260,7 +260,7 @@ class Dbmodel extends CI_Model {
     }
     public function update_page($id, $name, $body, $summary, $status, $order, $type, $tags){
           
-           $data = array
+           $pagedata = array
                 (
                 'page_name' => $name,
                 'page_content' => $body,
@@ -271,7 +271,7 @@ class Dbmodel extends CI_Model {
                 'page_tags' => $tags);  
         
         $this->db->where('id', $id);
-        $this->db->update('page', $data);
+        $this->db->update('page', $pagedata);
     }
 
     public function delete_page($id) {

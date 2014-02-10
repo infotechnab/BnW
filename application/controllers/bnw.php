@@ -55,7 +55,7 @@ class bnw extends CI_Controller {
 
             $this->load->view($header . 'header', $data);
             $this->load->view($header . 'menu');
-            $this->load->view('bnw/menu/index', $data); 
+            $this->load->view('bnw/menu/listOfItems', $data); 
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');
@@ -166,7 +166,7 @@ class bnw extends CI_Controller {
             $this->pagination->initialize($config);
             $category = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-            $data["query"] = $this->dbmodel->get_all_category($config["per_category"], $category);
+            $categorydata["query"] = $this->dbmodel->get_all_category($config["per_category"], $category);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbmodel->get_meta_data();
             $header = "bnw/templates/";

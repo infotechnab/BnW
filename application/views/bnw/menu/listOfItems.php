@@ -12,10 +12,11 @@
       <?php    
         if(isset($query)){
             foreach ($query as $pagedata){
-                $name = $pagedata->page_name;
+                
             ?>
           <tr>
-            <td><input type="checkbox" value="<?php echo $pagedata->page_name; ?>"/></td> 
+              <td><?php echo $pagedata->id; ?></td>  
+            <td><input type="checkbox" value=""/><?php echo $pagedata->page_name; ?></td> 
           </tr>
           <?php    
             }
@@ -31,7 +32,7 @@
         <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-    <p>List of all pages</p>
+    <p>List of all category</p>
     <table border="1" cellpadding="10">
         <tr>
             <th>S.N.</th>
@@ -40,10 +41,11 @@
       <?php    
         if(isset($query)){
             foreach ($query as $categorydata){
-                $categoryname = $categorydata->page_name;
+               
             ?>
           <tr>
-            <td><input type="checkbox" value="<?php echo $categorydata->category_name; ?>"/></td> 
+              <td><?php echo $categorydata->id; ?></td>  
+            <td><input type="checkbox" value=""/><?php echo $categorydata->category_name; ?></td> 
           </tr>
           <?php    
             }
@@ -54,7 +56,9 @@
     
     
     <div class="right">
-        
+        <ul>
+            <li><?php  ?></li>
+        </ul>
     </div>
     
     
