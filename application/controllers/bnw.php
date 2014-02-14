@@ -474,6 +474,7 @@ class bnw extends CI_Controller {
             $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
+            $data["listOfUser"] = $this->dbmodel->get_list_of_users();
             $pagedata['query'] = $this->dbmodel->get_pages();
             $header = "bnw/templates/header";
             $this->load->view($header, $data);
@@ -483,6 +484,7 @@ class bnw extends CI_Controller {
             //set validation rules
             $name = $this->input->post('page_name');
             $body = $this->input->post('page_content');
+            
             $summary = $this->input->post('page_summary');
             $status = $this->input->post('page_status');
             $order = $this->input->post('page_order');

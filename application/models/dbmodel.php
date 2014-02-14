@@ -127,6 +127,13 @@ class Dbmodel extends CI_Model {
         
     }
     
+    public function get_list_of_users()
+    {
+        $query = $this->db->get('user');
+        return $query->result();
+    }
+
+
     function findmenu($mid) {
         $this->db->select();
         $this->db->where('id', $mid);
