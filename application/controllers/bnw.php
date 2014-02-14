@@ -57,12 +57,13 @@ class bnw extends CI_Controller {
                 
                 $navigation_name= $data;
                  $navigation_link= "http://salyani.com.np";
-                 $parent_info = $this->dbmodel->get_page_parent_id($data);
+                 $parent_id = "default value";
+                 /*$this->dbmodel->get_page_parent_id($data);
                  foreach($parent_info as $id)
                  {
                      
                  $parent_id= $id->id;
-                 }
+                 }*/
                 
                  $navigation_type="Default Value";
                  $navigation_slug= "slug";
@@ -104,12 +105,13 @@ class bnw extends CI_Controller {
             {
                 $navigation_name= $data;
                  $navigation_link= "http://salyani.com.np";
-                 $parent_info = $this->dbmodel->get_category_parent_id($data);
+                 $parent_id = "default value";
+                 /*$this->dbmodel->get_category_parent_id($data);
                  foreach($parent_info as $id)
                  {
                      
                  $parent_id= $id->id;
-                 }
+                 }*/
                 
                  $navigation_type="Default Value";
                  $navigation_slug= "slug";
