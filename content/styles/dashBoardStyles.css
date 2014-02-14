@@ -388,6 +388,7 @@ tr:nth-child(odd) {background: #FFF}
     border: 1px solid black;
     margin-bottom: 5px;
     width: 100%;
+    overflow: auto;
 }
 
 .right
