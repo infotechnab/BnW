@@ -35,7 +35,7 @@ print_r($categoryList);
 </head>
 <body>
 
-	<div id='cssmenu'>
+<div id='cssmenu'>
 		<ul>
 <?php
 function query($parent_id) { //function to run a query
@@ -66,9 +66,12 @@ function fetch_menu($query) {
 	}
 }
 fetch_menu (query(0)); //call this function with 0 parent id
+ 
 ?>
 		</ul>
 	</div>
+    
+   
 
 </body>
 </html>

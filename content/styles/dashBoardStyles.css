@@ -57,7 +57,7 @@ body
     padding: 4px 4px 0px 0px;
 }
 
-ul li, ul
+.leftSide ul li, .leftSide ul
 {
     
     margin: 0;
@@ -405,10 +405,7 @@ tr:nth-child(odd) {background: #FFF}
     padding: 0px;
     width: 30%;
 }
-ul, li
-{
-    list-style-type: none;
-}
+
 selectMenu
 {
     width: 50px;
@@ -421,3 +418,5 @@ dl
 {
     font-size: 18px;
 }
+
+

@@ -84,6 +84,20 @@
     </div> 
     <div class="right">
         <p>List Of all Navigation</p>
+        
+        <div id='cssmenu'>
+		<ul>
+                    
+<?php
+
+$this->load->helper('myHelper');
+
+fetch_menu (query(0));
+
+?>
+
+		</ul>
+	</div>
     
        
        <?php /*

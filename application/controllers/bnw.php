@@ -1974,12 +1974,44 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
+   
     
     public function test()
     {
-        $this->load->view('bnw/menu/test');
-    }
+         function query($parent_id) { //function to run a query
+	//$query = mysql_query ( "SELECT * FROM menus WHERE parent_id=$parent_id" );
+        $query = $this->dbmodel->get_list_by_parent_id($parent_id);
+	return $query;
+        
+        }
+   
 
-            
+function has_child($query) { //This function checks if the menus has childs or not
+	$rows = mysql_num_rows ( $query );
+	if ($rows > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+function fetch_menu($query) {
+	while ( $result = mysql_fetch_array ( $query ) ) {
+		$menu_id = $result ['id'];
+		$menu_name = $result ['menu_name'];
+		$menu_link = $result ['menu_link'];
+		echo "<li  class='has-sub '><a href='{$menu_link}'><span>{$menu_name}</span></a>";
+		if (has_child ( query ( $menu_id ) )) {
+			echo "<ul>";
+			$this->fetch_menu( $this->dbmodel->get_list_by_parent_id($menu_id ) );
+			echo "</ul>";
+		}
+		echo "</li>";
+	}
+}
+fetch_menu (query(0)); //call this function with 0 parent id
+
+		
+    
+    }
 
 }
