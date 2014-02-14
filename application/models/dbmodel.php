@@ -856,5 +856,15 @@ class Dbmodel extends CI_Model {
     }
     function deleteblog($id) {
         $this->db->delete('blog', array('id' => $id));
-    } 
+    }
+    
+    //navigation
+    public function get_list_by_parent_id($parent_id)
+    {
+         $this->db->where('id', $parent_id);
+        $query = $this->db->get('navigation');
+        return $query->result();
+    }
+    
+    
     }

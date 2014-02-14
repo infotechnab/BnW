@@ -1972,5 +1972,12 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
+    
+    public function test()
+    {
+        $this->load->view('bnw/menu/test');
+    }
+
+            
 
 }

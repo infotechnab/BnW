@@ -85,6 +85,8 @@
     <div class="right">
         <p>List Of all Navigation</p>
     
+       
+       <?php /*
         <table border="1" cellpadding="10">
         <tr>
             <th>S.N.</th>
@@ -115,6 +117,9 @@
        
     </table>
     <?php echo $links; ?>
+       
+        
+        */  ?>
     </div>
     
     <div class="clear"></div> 
