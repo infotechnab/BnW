@@ -127,12 +127,13 @@ class Dbmodel extends CI_Model {
         
     }
     
-    public function get_list_of_users()
+     public function get_page_author_id($username)
     {
+         $this->db->select('id');
+        $this->db->where('user_name', $username);
         $query = $this->db->get('user');
-        return $query->result();
+          return $query->result();
     }
-
 
     function findmenu($mid) {
         $this->db->select();
@@ -192,6 +193,7 @@ class Dbmodel extends CI_Model {
         $query = $this->db->get('category');
           return $query->result();
     }
+    
     public function add_new_category($categoryname) {
         $data = Array(
             'category_name' => $categoryname);
@@ -298,10 +300,11 @@ class Dbmodel extends CI_Model {
         return $query->result();
     }
 
-    public function add_new_page($name, $body, $summary, $status, $order, $type, $tags) {
+    public function add_new_page($name, $body,$page_author_id, $summary, $status, $order, $type, $tags) {
         $pagedata = Array(
             'page_name' => $name,
             'page_content' => $body,
+            'page_author_id'=>$page_author_id,
             'page_summary' => $summary,
             'page_status' => $status,
             'page_order'=> $order,
@@ -328,12 +331,13 @@ class Dbmodel extends CI_Model {
         $page = $this->db->get('page');
         return $page->result();
     }
-    public function update_page($id, $name, $body, $summary, $status, $order, $type, $tags){
+    public function update_page($id, $name,$page_author_id, $body, $summary, $status, $order, $type, $tags){
           
            $pagedata = array
                 (
                 'page_name' => $name,
                 'page_content' => $body,
+               'page_author_id'=>$page_author_id,
                 'page_summary' => $summary,
                 'page_status' => $status,
                 'page_order' => $order,

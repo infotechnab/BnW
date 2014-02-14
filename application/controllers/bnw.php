@@ -270,7 +270,7 @@ class bnw extends CI_Controller {
             $this->pagination->initialize($config);
             $category = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-            $categorydata["query"] = $this->dbmodel->get_all_category($config["per_category"], $category);
+            $data["query"] = $this->dbmodel->get_all_category($config["per_category"], $category);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbmodel->get_meta_data();
             $header = "bnw/templates/";
@@ -449,10 +449,6 @@ class bnw extends CI_Controller {
 
             $pagedata["query"] = $this->dbmodel->get_all_pages($config["per_page"], $page);
             $data["links"] = $this->pagination->create_links();
-
-
-
-
             $data['meta'] = $this->dbmodel->get_meta_data();
             $header = "bnw/templates/";
 
@@ -468,7 +464,7 @@ class bnw extends CI_Controller {
     //============== ADD PAGE ==============//
     public function addpage() {
         if ($this->session->userdata('logged_in')) {
-
+            //$data['username'] = ($this->session->userdata('logged_in'));
             $config['upload_path'] = './content/images/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '500';
@@ -476,7 +472,6 @@ class bnw extends CI_Controller {
             $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $data["listOfUser"] = $this->dbmodel->get_list_of_users();
             $pagedata['query'] = $this->dbmodel->get_pages();
             $header = "bnw/templates/header";
             $this->load->view($header, $data);
@@ -486,7 +481,13 @@ class bnw extends CI_Controller {
             //set validation rules
             $name = $this->input->post('page_name');
             $body = $this->input->post('page_content');
-            
+            /*$page_author_info = $this->dbmodel->get_page_author_id($username);
+                 foreach($page_author_info as $id)
+                 {
+                     
+                 $page_author_id= $id->id;
+                 }*/
+            $page_author_id="1";
             $summary = $this->input->post('page_summary');
             $status = $this->input->post('page_status');
             $order = $this->input->post('page_order');
@@ -507,19 +508,25 @@ class bnw extends CI_Controller {
                         $image = $data['upload_data']['file_name'];
 
 
-                        $this->dbmodel->add_new_page($name, $body, $summary, $status, $order, $type, $tags);
+                        $this->dbmodel->add_new_page($name, $body,$page_author_id, $summary, $status, $order, $type, $tags);
                         $this->session->set_flashdata('message', 'One pages added sucessfully');
                         redirect('bnw/pages/pageListing');
                     }
                 } else {
                     $name = $this->input->post('page_name');
                     $body = $this->input->post('page_content');
+                   /* $page_author_info = $this->dbmodel->get_page_author_id($username);
+                        foreach($page_author_info as $id)
+                        {   
+                            $page_author_id= $id->id;
+                        } */
+                    $page_author_id="1";
                     $summary = $this->input->post('page_summary');
                     $status = $this->input->post('page_status');
                     $order = $this->input->post('page_order');
                     $type = $this->input->post('page_type');
                     $tags = $this->input->post('page_tags');
-                    $this->dbmodel->add_new_page($name, $body, $summary, $status, $order, $type, $tags);
+                    $this->dbmodel->add_new_page($name, $body,$page_author_id, $summary, $status, $order, $type, $tags);
 
                     $page = $this->dbmodel->find_page_id($name);
                     $this->session->set_flashdata('message', 'One pages added sucessfully');
@@ -598,12 +605,18 @@ class bnw extends CI_Controller {
 
                         $name = $this->input->post('page_name');
                         $body = $this->input->post('page_content');
+                       /* $page_author_info = $this->dbmodel->get_page_author_id($data);
+                        foreach($page_author_info as $id)
+                        {   
+                            $page_author_id= $id->id;
+                        }*/
+                        $page_author_id="1";
                         $summary = $this->input->post('page_summary');
                         $status = $this->input->post('page_status');
                         $order = $this->input->post('page_order');
                         $type = $this->input->post('page_type');
                         $tags = $this->input->post('page_tags');
-                        $this->dbmodel->update_page($id, $name, $body, $summary, $status, $order, $type, $tags);
+                        $this->dbmodel->update_page($id, $name,$page_author_id, $body, $summary, $status, $order, $type, $tags);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         redirect('bnw/pages/pageListing');
                     }
@@ -612,12 +625,17 @@ class bnw extends CI_Controller {
 
                     $name = $this->input->post('page_name');
                     $body = $this->input->post('page_content');
+                   /* $page_author_id = $this->dbmodel->get_page_author_id($data);
+                        foreach($author_info as $id)
+                        {   
+                            $page_author_id= $id->id;
+                        }*/
                     $summary = $this->input->post('page_summary');
                     $status = $this->input->post('page_status');
                     $order = $this->input->post('page_order');
                     $type = $this->input->post('page_type');
                     $tags = $this->input->post('page_tags');
-                    $this->dbmodel->update_page($id, $name, $body, $summary, $status, $order, $type, $tags);
+                    $this->dbmodel->update_page($id, $name,$page_author_id, $body, $summary, $status, $order, $type, $tags);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     redirect('bnw/pages/pageListing');
                 }

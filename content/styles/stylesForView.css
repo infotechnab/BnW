@@ -110,7 +110,7 @@ p
     width: 100%;
     min-height: 100px;
     z-index: -3000;
-    margin-bottom: 15px;
+    padding-bottom: 15px;
 }
 .content
 {
