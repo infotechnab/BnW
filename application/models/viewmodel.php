@@ -19,6 +19,12 @@ class Viewmodel extends CI_Model
             return $query->result();
         
     }
+    public function get_slider()
+    {
+        $this->db->from('slider');
+        $query = $this->db->get();
+        return $query->result();
+    }
     
 
 }

@@ -436,17 +436,17 @@ class Dbmodel extends CI_Model {
         return $query->result();
     }
        
-     public function get_media()
+     public function get_media($id)
     {  
-        $query = $this->db->get('media');
-        return $query->result();  
+         $this->db->select();
+
+       $this -> db -> from('media');
+        $this->db->where('id', $id );
+        $query = $this->db->get();
+        return $query->result();
        
-       if ($query->num_rows() == 1) {
-            return $query->result();
-        } else {
-            return false;
-        }
-        
+  
+       
     }
     
     

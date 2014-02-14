@@ -38,35 +38,33 @@ class bnw extends CI_Controller {
             
             
             $listOfPage = $this->dbmodel->get_list_of_pages();           
-            $listOfMenu = $this->dbmodel->get_list_of_menu();                    
+            $listOfMenu = $this->dbmodel->get_list_of_menu();
+            $listOfSelectedMenu = Array();
+            
             if(isset($_POST['selectMenu']))
+            {  
+                foreach ($listOfPage as $data)
             {
-                $menuSelected = $_POST['selectMenu'];
-           
-            $pageList = Array();
-            foreach ($listOfPage as $data) {
-                
-                 {
-                    array_push($pageList, $data->page_name);
+                if(isset($_POST[preg_replace('/\s+/', '', $pagedata->page_name)]))
+                {
+                    
+                    array_push($listOfSelectedMenu, array($data-id=>$data-page_name));
                 }
+                
             }
+            
+            
+            
 
-            foreach ($pageList as $data)
+            foreach ($listOfSelectedMenu as $key=>$data)
             {
                 
                 
                 $navigation_name= $data;
-                 $navigation_link= "http://salyani.com.np";
-                 $parent_id = "default value";
-                 /*$this->dbmodel->get_page_parent_id($data);
-                 foreach($parent_info as $id)
-                 {
-                     
-                 $parent_id= $id->id;
-                 }*/
-                
+                 $navigation_link= $data.$key;
+                 $parent_id = 0;    
                  $navigation_type="Default Value";
-                 $navigation_slug= "slug";
+                 $navigation_slug= preg_replace('/\s+/', '', $data);
                  $menu_info = $this->dbmodel->get_menu_info($menuSelected);
                  foreach ($menu_info as $id)
                  {
@@ -80,7 +78,9 @@ class bnw extends CI_Controller {
             $this->load->view('bnw/templates/menu');
             $this->load->view('bnw/menu/test');
             $this->load->view('bnw/templates/footer', $data);
-        }} else {
+        }
+        
+        } else {
             redirect('login', 'refresh');
         }
     }
@@ -1587,9 +1587,9 @@ class bnw extends CI_Controller {
 
     public function photos($id) {
 
-        $data['query'] = $this->dbmodel->get_media($aid);
+        $data['query'] = $this->dbmodel->get_media($id);
         $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['id'] = $aid;
+        $data['id'] = $id;
         $this->load->view('bnw/templates/header', $data);
         $this->load->view('bnw/templates/menu');
         $this->load->view('bnw/album/gallery', $data);
@@ -1630,7 +1630,7 @@ class bnw extends CI_Controller {
             $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
             //$this->form_validation->set_rules('body', 'Body', 'required|xss_clean');
             $aid = $this->input->post('p_aid');
-            $data['query'] = $this->dbmodel->get_gallery($aid);
+            $data['query'] = $this->dbmodel->get_media($id);
             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload())) {
                 $data['error'] = $this->upload->display_errors();
                 $data['album_id'] = $aid;
@@ -1719,7 +1719,7 @@ class bnw extends CI_Controller {
             //$this->form_validation->set_rules('slide_image', 'Image', 'required|xss_clean|max_length[200]');
 
 
-            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('slide_image'))) {
+            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
                 $data['error'] = $this->upload->display_errors();
                 //var_dump($_SERVER['SCRIPT_FILENAME']);   
                 $this->load->view('bnw/slider/addnew', $data);
@@ -1728,7 +1728,7 @@ class bnw extends CI_Controller {
                 //if valid
                 $data = array('upload_data' => $this->upload->data('file'));
                 $slidename = $this->input->post('slide_name');
-                $slideimage = $data['upload_data']['slide_image'];
+                $slideimage = $data['upload_data']['file_name'];
                 $slidecontent = $this->input->post('slide_content');
                 //var_dump($data);
                 $this->dbmodel->add_new_slider($slidename, $slideimage, $slidecontent);
@@ -1787,7 +1787,7 @@ class bnw extends CI_Controller {
                 $data = array('upload_data' => $this->upload->data());
                 $id = $this->input->post('id');
                 $slidename = $this->input->post('slide_name');
-                $slideimage = $data['upload_data']['slide_image'];
+                $slideimage = $data['upload_data']['file_name'];
                 $slidecontent = $this->input->post('slide_content');
                 $this->dbmodel->update_slider($id, $slidename, $slideimage, $slidecontent);
                 $this->session->set_flashdata('message', 'Image Modified Sucessfully');

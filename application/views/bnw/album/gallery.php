@@ -86,11 +86,7 @@ if(isset($error))
 if(isset($query))
 {
 foreach ($query as $data) {
-    $medianame = $data->media_name;
-    $mediatype = $data->media_type;
-    $aid = $data->media_association_id;
-    $medialink = $data->media_link;
-    $id = $data->eid;
+    
     ?>    
 
 
@@ -98,11 +94,11 @@ foreach ($query as $data) {
    
     
 
-    <img class="srcimage" src="<?php echo base_url(); ?>gallery/<?php echo $image; ?>" id="galleryimage" />
+    <img class="srcimage" src="<?php echo base_url(); ?>gallery/<?php //echo $image; ?>" id="galleryimage" />
         <div id="imagetitle">
             
         </div>
-            <a href="<?php echo base_url();?>index.php/bnw/deletephoto/<?php echo $aid; ?> " id="<?php echo $aid; ?>" class="delbutton">
+            <a href="<?php echo base_url();?>index.php/bnw/deletephoto/<?php echo $id; ?> " id="<?php echo $aid; ?>" class="delbutton">
         <img src="<?php echo base_url();?>content/images/delete.png" id="close"/></a>
         
     
@@ -124,7 +120,7 @@ else
 <div class="clear"></div>
 <div class="add" style="width:250px; height:70px; margin: 10px; " >
 <?php echo form_open_multipart('bnw/addphoto'); ?>
-    <input type="hidden" name="p_aid" value="<?php echo $aid; ?>" />
+    <input type="hidden" name="id" value="<?php echo $id; ?>" />
     <label> Image Title :</label> <br/>
     <input type="text" name="title" required />          
     <input type="file" name="userfile" id="file"   />

@@ -16,7 +16,7 @@
   <p>Title:<br />
   <input type="text" name="slide_name" value="<?php echo set_value('slide_name'); ?>" />
   </p>
-   <p> Image : <br/> <input type="file" name="slide_image" id="file" /> </p>
+   <p> Image : <br/> <input type="file" name="file_name" id="file" /> </p>
   <p>Content:<br />
   <input type="text" name="slide_content" />
   </p>
