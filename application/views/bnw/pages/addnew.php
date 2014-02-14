@@ -17,8 +17,7 @@
   <p>Body:<br />
       <textarea name="page_content" id="area1" cols="50" rows="5" ><?php echo set_value('page_content'); ?></textarea>
   
-  </p>
-    
+  </p>    
     
   <p>Summary:<br />
       <textarea name="page_summary" id="area1" cols="50" rows="5" ><?php echo set_value('page_summary'); ?></textarea>

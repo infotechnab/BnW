@@ -23,7 +23,7 @@ function fetch_menu($query) {
 		$menu_id = $result ['id'];
 		$menu_name = $result ['navigation_name'];
 		$menu_link = $result ['navigation_link'];
-		echo "<li  class='has-sub '><a href='{$menu_link}'><span>{$menu_name}</span></a>";
+		echo "<li  class='has-sub '><a href='{$menu_link}'>{$menu_name}</a>";
 		if (has_child ( query ( $menu_id ) )) {
 			echo "<ul>";
 			fetch_menu ( query ( $menu_id ) );
