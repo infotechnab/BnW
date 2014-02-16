@@ -8,6 +8,12 @@
                             <li><?php echo anchor('bnw/category', 'Categories') ?></li>
                         </ul>
                     </li>
+                     <li class="mainMenuItem"><a href="#">Posts</a><?php/* echo anchor('bnw', 'Pages') */?>
+                        <ul class="subMenu">
+                            <li><?php echo anchor('bnw/posts', 'All Posts') ?></li>
+                            <li><?php echo anchor('bnw/addpost', 'Add New Post') ?></li>
+                        </ul>
+                    </li>
                     <li class="mainMenuItem"><a href="#">Pages</a><?php/* echo anchor('bnw', 'Pages') */?>
                         <ul class="subMenu">
                             <li><?php echo anchor('bnw/addpage', 'Add New') ?></li>

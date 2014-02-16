@@ -106,8 +106,69 @@ class Dbmodel extends CI_Model {
     $this->db->insert('navigation', $data);
 }
 
-        
-      // =========================== menu =================//
+
+//=============================POST===============================================================================//
+    public function record_count_post() {
+        return $this->db->count_all("post");
+    }
+    public function get_posts() {
+        $query = $this->db->get('post');
+        return $query->result();
+    }
+
+      public function get_post_category_info($categoryName)
+    {
+         $this->db->select('id');
+        $this->db->where('category_name', $categoryName);
+        $query = $this->db->get('category');
+          return $query->result();
+    }
+    
+     public function get_post_author_id($username)
+    {
+         $this->db->select('id');
+        $this->db->where('user_name', $username);
+        $query = $this->db->get('user');
+          return $query->result();
+    }
+    
+     public function get_all_posts($limit, $start) {
+           $this->db->limit($limit, $start); 
+        $query = $this->db->get('post');
+        return $query->result();
+    }
+    
+    public function findpost($id) {
+        $this->db->select();
+        $this->db->from('post');
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+     public function deletepost($id) {
+
+        $this->db->delete('post', array('id' => $id));
+    }
+    
+    public function add_new_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id)
+        {
+        $this->load->database();        
+        $data = array(
+            
+            'post_title' => $post_title,
+            'post_content'=> $post_content,
+            'post_author_id'=> $post_author_id,
+            'post_summary'=> $post_summary,
+            'post_status'=> $post_status,
+            'comment_status'=> $post_comment_status,
+            'post_tags'=>$post_tags,
+            'post_category'=>$post_category_id);
+         $this->db->insert('post', $data);
+    }
+
+
+    // =========================== menu =================//
     
      public function record_count_menu() {
         return $this->db->count_all("menu");

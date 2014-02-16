@@ -17,7 +17,6 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['username'] = Array($this->session->userdata('logged_in'));
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu', $data);
             $this->load->view('bnw/index', $data);
@@ -189,8 +188,6 @@ class bnw extends CI_Controller {
             $data["query"] = $this->dbmodel->get_navigation($config["per_navigation"], $navigation);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbmodel->get_meta_data();
-            
-
             $data["listOfPage"] = $this->dbmodel->get_list_of_pages();
             $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
             $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
@@ -243,10 +240,8 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findnavigation($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
-            //$data['id'] = $pid;
-            $header = "bnw/templates/";
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/menu/editNavigation', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -256,9 +251,8 @@ class bnw extends CI_Controller {
 
     public function updatenavigation() {
         if ($this->session->userdata('logged_in')) {
-            $header = "bnw/templates/header";
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view($header, $data);
+            $this->load->view("bnw/templates/header", $data);
             $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
@@ -309,10 +303,10 @@ class bnw extends CI_Controller {
             $data["query"] = $this->dbmodel->get_all_category($config["per_category"], $category);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
+           
 
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/category/addCategory', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -334,9 +328,9 @@ class bnw extends CI_Controller {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $data["links"] = $this->pagination->create_links();
             $data['query'] = $this->dbmodel->get_category();
-            $header = "bnw/templates/header";
-            $this->load->view($header, $data);
-            $this->load->view('bnw/templates/menu');
+           
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             //set validation rules
@@ -387,9 +381,9 @@ class bnw extends CI_Controller {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $data["links"] = $this->pagination->create_links();
             $data['id'] = $id;
-            $header = "bnw/templates/";
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/category/edit', $data);
 
             $this->load->view('bnw/templates/footer', $data);
@@ -410,9 +404,9 @@ class bnw extends CI_Controller {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $data["links"] = $this->pagination->create_links();
 
-            $header = "bnw/templates/header";
-            $this->load->view($header, $data);
-            $this->load->view('bnw/templates/menu');
+            
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $id = $this->input->post('id');
@@ -470,6 +464,148 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
+    
+    //==========================================================================================================//
+    //====================================POST==================================================================//
+    //===========================================================================================================//
+
+    public function posts(){
+        if ($this->session->userdata('logged_in')) {
+
+            $config = array();
+            $config["base_url"] = base_url() . "index.php/bnw/posts";
+            $config["total_rows"] = $this->dbmodel->record_count_post();
+            $config["per_page"] = 6;
+            $this->pagination->initialize($config);
+            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+            $data["query"] = $this->dbmodel->get_all_posts($config["per_page"], $page);
+            $data["links"] = $this->pagination->create_links();
+            $data['meta'] = $this->dbmodel->get_meta_data();
+           
+
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/posts/postListing', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    
+    //============================To Add New Post=======================================//
+    
+    public function addpost()
+    {
+         if ($this->session->userdata('logged_in')) {
+            $username = $this->session->userdata( 'username' );
+            $data['username'] = ($this->session->userdata('logged_in'));
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+            $this->load->library('upload', $config);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['query'] = $this->dbmodel->get_posts();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->helper('form');
+             $this->load->helper('date');
+            $this->load->library(array('form_validation', 'session'));
+             $listOfCategory = $this->dbmodel->get_list_of_category();
+             $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
+                               
+            if(($_SERVER['REQUEST_METHOD'] == 'POST'))
+            {
+                $categoryName = $_POST['selectCategory'];
+                 $post_category_info = $this->dbmodel->get_post_category_info($categoryName);
+                foreach($post_category_info as $pid)
+                {
+                    $post_category_id= $pid->id;
+                }
+            }
+            //set validation rules
+            $post_title = $this->input->post('post_title');
+            $post_content = $this->input->post('post_content');
+            
+            $post_summary = $this->input->post('post_summary');
+            $post_status = $this->input->post('page_status');
+            $post_comment_status = $this->input->post('comment_status');
+            $post_tags = $this->input->post('post_tags');
+           
+            $this->form_validation->set_rules('post_title', 'Page Name', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('post_content', 'Body', 'required|xss_clean');
+           // $this->form_validation->set_rules('post_summary', 'Summary', 'xss_clean');
+
+
+            if (($this->form_validation->run() == TRUE)) {
+                if ($_FILES && $_FILES['file']['name'] !== "") {
+                    if (!$this->upload->do_upload('file')) {
+                        $error = array('error' => $this->upload->display_errors('file'));
+                        $this->load->view('bnw/posts/addNewPost', $error);
+                    } else {
+                        $data = array('upload_data' => $this->upload->data('file'));
+                        $image = $data['upload_data']['file_name'];
+                        $this->dbmodel->add_new_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id);
+                        $this->session->set_flashdata('message', 'One pages added sucessfully');
+                        redirect('bnw/posts/postListing');
+                    }
+                } else {
+                     $post_title = $this->input->post('post_title');
+            $post_content = $this->input->post('post_content');
+            $post_author_info = $this->dbmodel->get_post_author_id($username);
+                 foreach($post_author_info as $id)
+                 {    
+                 $post_author_id= $id->id;
+                 }
+            $post_summary = $this->input->post('post_summary');
+            $post_status = $this->input->post('page_status');
+            $post_comment_status = $this->input->post('comment_status');
+            $post_tags = $this->input->post('post_tags');
+            $post_category_info = $this->dbmodel->get_post_category_info($categoryName);
+            $this->dbmodel->add_new_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id);
+            $this->session->set_flashdata('message', 'One post added sucessfully');
+               redirect('bnw/posts/postListing');
+                }
+            } else {
+
+                $this->load->view('bnw/posts/addNewPost', $data);
+            }
+
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    
+    //======================================To Edit Post===========================================================//
+    
+    function editpost($id) {
+        if ($this->session->userdata('logged_in')) {
+            $data['query'] = $this->dbmodel->findpost($id);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['id'] = $id;
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/posts/editPost', $data);
+
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    
+    //=========================================To Delete Post======================================================//
+    public function deletepost($id) {
+        if ($this->session->userdata('logged_in')) {
+            $this->dbmodel->deletepost($id);
+            $this->session->set_flashdata('message', 'Data Deleted Sucessfully');
+            redirect('bnw/posts');
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
 
     //==================================== Page ============================//
 
@@ -486,10 +622,10 @@ class bnw extends CI_Controller {
             $pagedata["query"] = $this->dbmodel->get_all_pages($config["per_page"], $page);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
+           
 
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/pages/pageListing', $pagedata);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -500,7 +636,8 @@ class bnw extends CI_Controller {
     //============== ADD PAGE ==============//
     public function addpage() {
         if ($this->session->userdata('logged_in')) {
-            //$data['username'] = ($this->session->userdata('logged_in'));
+            $username = $this->session->userdata( 'username' );
+            $data['username'] = ($this->session->userdata('logged_in'));
             $config['upload_path'] = './content/images/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '500';
@@ -509,21 +646,19 @@ class bnw extends CI_Controller {
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
             $pagedata['query'] = $this->dbmodel->get_pages();
-            $header = "bnw/templates/header";
-            $this->load->view($header, $data);
-            $this->load->view('bnw/templates/menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
+             $this->load->helper('date');
             $this->load->library(array('form_validation', 'session'));
             //set validation rules
             $name = $this->input->post('page_name');
             $body = $this->input->post('page_content');
-            /*$page_author_info = $this->dbmodel->get_page_author_id($username);
+            $page_author_info = $this->dbmodel->get_page_author_id($username);
                  foreach($page_author_info as $id)
-                 {
-                     
+                 {    
                  $page_author_id= $id->id;
-                 }*/
-            $page_author_id="1";
+                 }
             $summary = $this->input->post('page_summary');
             $status = $this->input->post('page_status');
             $order = $this->input->post('page_order');
@@ -551,15 +686,15 @@ class bnw extends CI_Controller {
                 } else {
                     $name = $this->input->post('page_name');
                     $body = $this->input->post('page_content');
-                   /* $page_author_info = $this->dbmodel->get_page_author_id($username);
+                    $page_author_info = $this->dbmodel->get_page_author_id($username);
                         foreach($page_author_info as $id)
                         {   
                             $page_author_id= $id->id;
-                        } */
-                    $page_author_id="1";
+                        } 
                     $summary = $this->input->post('page_summary');
                     $status = $this->input->post('page_status');
                     $order = $this->input->post('page_order');
+                    
                     $type = $this->input->post('page_type');
                     $tags = $this->input->post('page_tags');
                     $this->dbmodel->add_new_page($name, $body,$page_author_id, $summary, $status, $order, $type, $tags);
@@ -589,9 +724,9 @@ class bnw extends CI_Controller {
             //var_dump($data);
             $data['meta'] = $this->dbmodel->get_meta_data();
             $data['id'] = $id;
-            $header = "bnw/templates/";
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+           
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/pages/edit', $data);
 
             $this->load->view('bnw/templates/footer', $data);
@@ -614,9 +749,9 @@ class bnw extends CI_Controller {
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
 
-            $header = "bnw/templates/header";
-            $this->load->view($header, $data);
-            $this->load->view('bnw/templates/menu');
+          
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $id = $this->input->post('id');
@@ -726,10 +861,9 @@ class bnw extends CI_Controller {
             $data["links"] = $this->pagination->create_links();
             $data['query'] = $this->dbmodel->get_user();
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
-
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/users/userListing', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -739,9 +873,10 @@ class bnw extends CI_Controller {
 
     public function adduser() {
         if ($this->session->userdata('logged_in')) {
+            
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
+            $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('user_name', 'User Name', 'required|xss_clean|max_length[200]');
@@ -779,9 +914,9 @@ class bnw extends CI_Controller {
             $data['query'] = $this->dbmodel->finduser($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
             //var_dump($data);
-            $header = "bnw/templates/";
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/users/editUser', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -791,10 +926,10 @@ class bnw extends CI_Controller {
 
     public function updateuser() {
         if ($this->session->userdata('logged_in')) {
-            $header = "bnw/templates/header";
+           
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view($header, $data);
-            $this->load->view('bnw/templates/menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             //set validation rules
@@ -850,19 +985,14 @@ class bnw extends CI_Controller {
             $config["base_url"] = base_url() . "index.php/bnw/media";
             $config["total_rows"] = $this->dbmodel->record_count_user();
             $config["per_media"] = 6;
-
-
             $this->pagination->initialize($config);
-
             $media = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
             $data["query"] = $this->dbmodel->get_all_user($config["per_media"], $media);
             $data["links"] = $this->pagination->create_links();
             $data['query'] = $this->dbmodel->get_media();
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
-
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/media/mediaListing', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -875,7 +1005,7 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
+            $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('media_name', 'media Name', 'required|xss_clean|max_length[200]');
@@ -911,10 +1041,8 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findmedia($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
-
-            $header = "bnw/templates/";
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/media/editMedia', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -926,10 +1054,9 @@ class bnw extends CI_Controller {
 
     function updatemedia() {
         if ($this->session->userdata('logged_in')) {
-            $header = "bnw/templates/header";
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view($header, $data);
-            $this->load->view('bnw/templates/menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             //set validation rules
@@ -971,7 +1098,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    //=========================notice==============================//
+  /*  //=========================notice==============================//
 
     public function notice() {
 
@@ -1496,6 +1623,8 @@ class bnw extends CI_Controller {
         }
     }
 
+
+*/
     //----------------------------album----------------
     //============album=====
 
@@ -1638,10 +1767,8 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->get_all_photos();
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
-            //echo $this->load->view('tinyMCE', base_url(), true);
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/gallery/index', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -1679,7 +1806,7 @@ class bnw extends CI_Controller {
                 $medianame = $this->input->post('title');
                 $mediaasscID = $this->input->post('p_aid');
                 $medialink = $this->input->post('media_link');
-                $this->dbmodel->add_new_photo($medianame, $mediatype, $mediaascID, $medialink);
+                $this->dbmodel->add_new_photo($medianame, $mediatype, $mediaasscID, $medialink);
                 $this->session->set_flashdata('message', 'One photo added sucessfully');
                 redirect('bnw/photos/' . $aid);
             }
@@ -1692,7 +1819,6 @@ class bnw extends CI_Controller {
 
     public function deletephoto($id) {
         if ($this->session->userdata('logged_in')) {
-            //$aid = $this->dbmodel->get_aid($id);
             $aid = $this->dbmodel->get_aid($id);
             foreach ($aid as $data) {
                 $aid = $data->aid;
@@ -1721,13 +1847,9 @@ class bnw extends CI_Controller {
             $slide = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
             $data["query"] = $this->dbmodel->get_slider($config["per_page"], $slide);
             $data["links"] = $this->pagination->create_links();
-
-            //$data['query'] = $this->dbmodel->get_slider();
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
-            //echo $this->load->view('tinyMCE', base_url(), true);
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/slider/index', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -1782,9 +1904,8 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findslider($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/slider/edit', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -1802,9 +1923,7 @@ class bnw extends CI_Controller {
             $config['max_height'] = '220';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
-
-            $header = "bnw/templates/header";
-            $this->load->view($header, $data);
+            $this->load->view("bnw/templates/header", $data);
             $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
@@ -1864,10 +1983,8 @@ class bnw extends CI_Controller {
             $data["links"] = $this->pagination->create_links();
             // $data['query'] = $this->dbmodel->get_menu();
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
-            //echo $this->load->view('tinyMCE', base_url(), true);
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/menu/index', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -1907,10 +2024,8 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findmenu($mid);
             $data['meta'] = $this->dbmodel->get_meta_data();
-            //$data['id'] = $pid;
-            $header = "bnw/templates/";
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/menu/edit', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -1920,9 +2035,8 @@ class bnw extends CI_Controller {
 
     public function updatemenu() {
         if ($this->session->userdata('logged_in')) {
-            $header = "bnw/templates/header";
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view($header, $data);
+            $this->load->view("bnw/templates/header", $data);
             $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
@@ -1933,7 +2047,7 @@ class bnw extends CI_Controller {
             if ($this->form_validation->run() == FALSE) {
                 //if not valid
                 $data['query'] = $this->dbmodel->findmenu($mid);
-                var_dump($mid);
+               
                 $this->load->view('bnw/menu/edit', $data);
             } else {
                 //if valid
@@ -1965,9 +2079,8 @@ class bnw extends CI_Controller {
             $data['username'] = Array($this->session->userdata('logged_in'));
             $data['query'] = $this->dbmodel->get_blog();
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/blogs/index', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {

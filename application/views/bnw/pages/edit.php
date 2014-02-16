@@ -33,8 +33,6 @@
       <?php echo $body; ?></textarea>
   </p>
   
-  <p>Summary:<br />
-      <textarea name="page_summary" id="area1" cols="50" rows="5"><?php echo $summary ?></textarea>
   
   
    <p>Status:<br />

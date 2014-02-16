@@ -156,6 +156,22 @@ ul.menu li.mainMenuItem:hover
     text-decoration: none;
 }
 
+/*for page */
+#forLeftPage
+{
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    width: 450px;
+}
+#forRightPage
+{
+    width:250px;
+    float: left;
+    margin-left: 45px;
+    min-height: 400px;
+}
+
 
 /*for media screen 1025-1500px*/
 @media screen and (max-width : 1500px)
