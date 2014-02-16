@@ -39,31 +39,37 @@ class bnw extends CI_Controller {
             
             $listOfPage = $this->dbmodel->get_list_of_pages();           
             $listOfMenu = $this->dbmodel->get_list_of_menu();
+            $data["listOfPage"] = $this->dbmodel->get_list_of_pages();           
+            $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
+            $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
+           
             $listOfSelectedMenu = Array();
             
-            if(isset($_POST['selectMenu']))
+            if(($_SERVER['REQUEST_METHOD'] == 'POST'))
             {  
-                foreach ($listOfPage as $data)
+                foreach ($listOfPage as $myData)
             {
-                if(isset($_POST[preg_replace('/\s+/', '', $data->page_name)]))
+                if(isset($_POST[preg_replace('/\s+/', '', $myData->page_name)]))
                 {
                     
-                    array_push($listOfSelectedMenu, array($data->id=>$data->page_name));
+                    array_push($listOfSelectedMenu, array($myData->id=>$myData->page_name));
                 }
                 
             }
-            
-            
-            
-
-            foreach ($listOfSelectedMenu as $key=>$data)
+            $menuSelected = $_POST['selectMenu'];
+            foreach ($listOfSelectedMenu as $myData)
             {
-                 $navigation_name= $data;
-                 $navigation_link= $data.$key;
+                foreach ($myData as $k=>$v)
+                {
+                     $navigation_type="page";
+                 $navigation_name= $v;
+                 $navigation_link= $navigation_type."/".$k;
                  $parent_id = 0;    
-                 $navigation_type="Default Value";
-                 $navigation_slug= preg_replace('/\s+/', '', $data);
+                
+                 $navigation_slug= preg_replace('/\s+/', '', $v);
+                 
                  $menu_info = $this->dbmodel->get_menu_info($menuSelected);
+                }
                  foreach ($menu_info as $id)
                  {
                      $menu_id = $id->id;
@@ -73,9 +79,20 @@ class bnw extends CI_Controller {
             }
             
             $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/menu/listOfItems');
+            $this->load->view('bnw/templates/menu',$data);
+            $this->load->view('bnw/menu/listOfItems',$data);
             $this->load->view('bnw/templates/footer', $data);
+        }
+        else 
+        {
+            $data["listOfPage"] = $this->dbmodel->get_list_of_pages();
+            $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
+            $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu',$data);
+            $this->load->view('bnw/menu/listOfItems',$data);
+            $this->load->view('bnw/templates/footer', $data);
+            
         }
         
         } else {
@@ -85,35 +102,43 @@ class bnw extends CI_Controller {
     
     public function addCategoryForNavigation()
     {
+         if ($this->session->userdata('logged_in')) {
+            $listOfPage = $this->dbmodel->get_list_of_pages();           
+            $listOfMenu = $this->dbmodel->get_list_of_menu();
+            $data["listOfPage"] = $this->dbmodel->get_list_of_pages();           
+            $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
+            $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
             $listOfCategory = $this->dbmodel->get_list_of_category();           
-            $listOfMenu = $this->dbmodel->get_list_of_menu();                    
-            if(isset($_POST['selectMenu']))
+                               
+            if(($_SERVER['REQUEST_METHOD'] == 'POST'))
             {
-                $menuSelected = $_POST['selectMenu'];
+                $menuSelected = $_POST['selectMenuCategory'];
            
             $categoryList = Array();
-            foreach ($listOfCategory as $data) {
+            foreach ($listOfCategory as $myData) {
                 
                  {
-                    array_push($categoryList, $data->category_name);
+                if(isset($_POST[preg_replace('/\s+/', '', $myData->category_name)]))
+                {
+                    
+                    array_push($categoryList, array($myData->id=>$myData->category_name));
+                }
+                    
                 }
             }
+            
 
-            foreach ($categoryList as $data)
+            foreach ($categoryList as $myData)
             {
-                $navigation_name= $data;
-                 $navigation_link= "http://salyani.com.np";
-                 $parent_id = "default value";
-                 /*$this->dbmodel->get_category_parent_id($data);
-                 foreach($parent_info as $id)
-                 {
-                     
-                 $parent_id= $id->id;
-                 }*/
-                
-                 $navigation_type="Default Value";
-                 $navigation_slug= "slug";
+                foreach ($myData as $k=>$v)
+                {
+                $navigation_name= $v;
+                 $parent_id = "0";
+                 $navigation_type="category";
+                 $navigation_link= $navigation_type."/".$k;
+                 $navigation_slug= preg_replace('/\s+/', '', $v); ;
                  $menu_info = $this->dbmodel->get_menu_info($menuSelected);
+                }
                  foreach ($menu_info as $id)
                  {
                      $menu_id = $id->id;
@@ -123,10 +148,23 @@ class bnw extends CI_Controller {
             }
             
             $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/menu/listOfItems');
+            $this->load->view('bnw/templates/menu',$data);
+            $this->load->view('bnw/menu/listOfItems',$data);
             $this->load->view('bnw/templates/footer', $data);
-        }
+            }
+            else 
+            {
+            $data["listOfPage"] = $this->dbmodel->get_list_of_pages();
+            $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
+            $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu',$data);
+            $this->load->view('bnw/menu/listOfItems',$data);
+            $this->load->view('bnw/templates/footer', $data);           
+        
+            }
+    }
+        
     else{
              redirect('login', 'refresh');
     }
@@ -151,13 +189,13 @@ class bnw extends CI_Controller {
             $data["query"] = $this->dbmodel->get_navigation($config["per_navigation"], $navigation);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
+            
 
             $data["listOfPage"] = $this->dbmodel->get_list_of_pages();
             $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
             $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
             $this->load->view('bnw/menu/listOfItems', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {

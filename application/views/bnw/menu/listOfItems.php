@@ -64,7 +64,7 @@
         }
     ?>
     </ul>  
-            <select name="selectMenu">
+            <select name="selectMenuCategory">
                 <?php
                 foreach ($listOfMenu as $data)
                 {
