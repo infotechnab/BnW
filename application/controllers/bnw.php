@@ -45,10 +45,10 @@ class bnw extends CI_Controller {
             {  
                 foreach ($listOfPage as $data)
             {
-                if(isset($_POST[preg_replace('/\s+/', '', $pagedata->page_name)]))
+                if(isset($_POST[preg_replace('/\s+/', '', $data->page_name)]))
                 {
                     
-                    array_push($listOfSelectedMenu, array($data-id=>$data-page_name));
+                    array_push($listOfSelectedMenu, array($data->id=>$data->page_name));
                 }
                 
             }
@@ -58,9 +58,7 @@ class bnw extends CI_Controller {
 
             foreach ($listOfSelectedMenu as $key=>$data)
             {
-                
-                
-                $navigation_name= $data;
+                 $navigation_name= $data;
                  $navigation_link= $data.$key;
                  $parent_id = 0;    
                  $navigation_type="Default Value";
@@ -76,7 +74,7 @@ class bnw extends CI_Controller {
             
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/menu/test');
+            $this->load->view('bnw/menu/listOfItems');
             $this->load->view('bnw/templates/footer', $data);
         }
         
@@ -126,7 +124,7 @@ class bnw extends CI_Controller {
             
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/menu/test');
+            $this->load->view('bnw/menu/listOfItems');
             $this->load->view('bnw/templates/footer', $data);
         }
     else{

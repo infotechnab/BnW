@@ -203,14 +203,14 @@ class Dbmodel extends CI_Model {
     
     public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $naviation_slug, $menu_id)
     {
-        $navigationData = Array('navigation_name'=>$navigation_name,
+        $data = Array('navigation_name'=>$navigation_name,
                                 'navigation_link'=>$navigation_link,
                                 'parent_id'=>$parent_id,
                                 'navigation_type'=>$navigation_type,
                                 'navigation_slug'=>$naviation_slug,
                                 'menu_id'=>$menu_id
             );
-         $this->db->insert('navigation', $navigationData);
+         $this->db->insert('navigation', $data);
     }
     
     public function get_page_parent_id($data)

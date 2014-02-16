@@ -57,7 +57,7 @@
             ?>
      
      
-        <li><input type="checkbox" name="selectCategory"/><?php echo $categorydata->category_name; ?></li>
+        <li><input type="checkbox" name="<?php echo $str = preg_replace('/\s+/', '', $categorydata->category_name); ?>" value="<?php echo $str = preg_replace('/\s+/', '', $categorydata->category_name); ?>"/><?php echo $categorydata->category_name; ?></li>
       
           <?php    
             }

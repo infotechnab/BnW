@@ -22,7 +22,7 @@
     <?php    
         if(isset($query)){
             foreach ($query as $data){
-                $id = $data->id;
+                
             ?>
           <tr>
             <td><?php echo $data->id; ?></td>
@@ -41,7 +41,7 @@
     ?>
        
     </table>
-    <?php echo $links; ?>
+    <?php// echo $links; ?>
 </div>
 </div>
 <div class="clear"></div>
