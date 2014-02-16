@@ -166,7 +166,22 @@ class Dbmodel extends CI_Model {
             'post_category'=>$post_category_id);
          $this->db->insert('post', $data);
     }
-
+   
+    public function update_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id)
+    {
+        $data = array
+                (
+            'post_title' => $post_title,
+            'post_content'=> $post_content,
+            'post_author_id'=> $post_author_id,
+            'post_summary'=> $post_summary,
+            'post_status'=> $post_status,
+            'comment_status'=> $post_comment_status,
+            'post_tags'=>$post_tags,
+            'post_category'=>$post_category_id);
+        $this->db->where('id', $id);
+        $this->db->update('post', $data);
+    }
 
     // =========================== menu =================//
     

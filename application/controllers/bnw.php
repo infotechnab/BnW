@@ -606,6 +606,94 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
+    
+    //===================================To Update Edited Post======================================================//
+    public function updatepost()
+    {
+        if ($this->session->userdata('logged_in')) {
+
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+            $this->load->library('upload', $config);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $username = $this->session->userdata( 'username' );
+            $listOfCategory = $this->dbmodel->get_list_of_category();
+            $data["listOfCategory"] = $this->dbmodel->get_list_of_category();          
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $id = $this->input->post('id');
+            //set validation rules
+             $this->form_validation->set_rules('post_title', 'Page Name', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('post_content', 'Body', 'required|xss_clean');
+            if(($_SERVER['REQUEST_METHOD'] == 'POST'))
+                        {
+                        $categoryName = $_POST['selectCategory'];
+                        $post_category_info = $this->dbmodel->get_post_category_info($categoryName);
+                            foreach($post_category_info as $pid)
+                        {
+                        $post_category_id= $pid->id;
+                             }
+                         }
+
+            if (($this->form_validation->run() == TRUE)) {
+                if ($_FILES && $_FILES['file']['name'] !== "") {
+                    if (!$this->upload->do_upload('slide_image')) {
+                        $data['error'] = $this->upload->display_errors('file');
+                        $id = $this->input->post('id');
+                        $data['query'] = $this->dbmodel->findpost($id);
+                        $this->load->view('bnw/posts/editPost', $data);
+                    } else {
+                        //$data = array('upload_data' => $this->upload->data('file'));
+                        //$image = $data['upload_data']['file_name'];
+                       
+                        $post_title = $this->input->post('post_title');
+                        $post_content = $this->input->post('post_content');
+                        $post_author_info = $this->dbmodel->get_post_author_id($username);
+                            foreach($post_author_info as $id)
+                        {    
+                            $post_author_id= $id->id;
+                         }
+                        $post_summary = $this->input->post('post_summary');
+                        $post_status = $this->input->post('page_status');
+                        $post_comment_status = $this->input->post('comment_status');
+                        $post_tags = $this->input->post('post_tags');
+                        $this->dbmodel->update_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id);
+                        $this->session->set_flashdata('message', 'Data Modified Sucessfully');
+                        redirect('bnw/posts/postListing');
+                    }
+                } else {                 
+                        $post_title = $this->input->post('post_title');
+                        $post_content = $this->input->post('post_content');
+                        $post_author_info = $this->dbmodel->get_post_author_id($username);
+                            foreach($post_author_info as $id)
+                        {    
+                            $post_author_id= $id->id;
+                         }
+                        $post_summary = $this->input->post('post_summary');
+                        $post_status = $this->input->post('page_status');
+                        $post_comment_status = $this->input->post('comment_status');
+                        $post_tags = $this->input->post('post_tags');
+                        $this->dbmodel->update_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id);
+                        $this->session->set_flashdata('message', 'Data Modified Sucessfully');
+                        redirect('bnw/posts/postListing');
+                }
+            } else {
+                $id = $this->input->post('id');
+                $data['query'] = $this->dbmodel->findpost($id);
+                $this->load->view('bnw/posts/editPost', $data);
+            }
+
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
 
     //==================================== Page ============================//
 
@@ -748,7 +836,7 @@ class bnw extends CI_Controller {
             $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
-
+            $username = $this->session->userdata( 'username' );
           
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
@@ -776,12 +864,11 @@ class bnw extends CI_Controller {
 
                         $name = $this->input->post('page_name');
                         $body = $this->input->post('page_content');
-                       /* $page_author_info = $this->dbmodel->get_page_author_id($data);
+                        $page_author_info = $this->dbmodel->get_page_author_id($username);
                         foreach($page_author_info as $id)
                         {   
                             $page_author_id= $id->id;
-                        }*/
-                        $page_author_id="1";
+                        }
                         $summary = $this->input->post('page_summary');
                         $status = $this->input->post('page_status');
                         $order = $this->input->post('page_order');
@@ -796,11 +883,11 @@ class bnw extends CI_Controller {
 
                     $name = $this->input->post('page_name');
                     $body = $this->input->post('page_content');
-                   /* $page_author_id = $this->dbmodel->get_page_author_id($data);
-                        foreach($author_info as $id)
+                    $page_author_info = $this->dbmodel->get_page_author_id($$username);
+                        foreach($page_author_info as $id)
                         {   
                             $page_author_id= $id->id;
-                        }*/
+                        }
                     $summary = $this->input->post('page_summary');
                     $status = $this->input->post('page_status');
                     $order = $this->input->post('page_order');
