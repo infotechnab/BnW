@@ -619,13 +619,14 @@ class bnw extends CI_Controller {
             $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $username = $this->session->userdata( 'username' );
-            $listOfCategory = $this->dbmodel->get_list_of_category();
-            $data["listOfCategory"] = $this->dbmodel->get_list_of_category();          
+            $data['query'] = $this->dbmodel->get_posts();
+            $username = $this->session->userdata( 'username' );         
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
+            $listOfCategory = $this->dbmodel->get_list_of_category();
+            $data["listOfCategory"] = $this->dbmodel->get_list_of_category(); 
             $id = $this->input->post('id');
             //set validation rules
              $this->form_validation->set_rules('post_title', 'Page Name', 'required|xss_clean|max_length[200]');

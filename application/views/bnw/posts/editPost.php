@@ -15,6 +15,7 @@
             $post_comment_status= $data->comment_status;
             $post_tags= $data->post_tags;
             $post_category_id = $data->post_category;
+            $listOfCategory = $this->dbmodel->get_list_of_category();
        }
         }
     ?>
@@ -46,25 +47,26 @@
  <p>Post Comment Status:<br />
   <?php 
   $options = array(
-                '2'=> 'as defined',
-                  '1'  => 'public',
+                '2'=> 'public',
+                  '1'  => 'as defined',
                   '0'    => 'custom');
-  echo form_dropdown('comment_status',$options,'1')
+  echo form_dropdown('comment_status',$options,'2')
   ?>
   </p>   
    <p> Post Tags : <br/>
        <input type="text" name="post_tags" /> </p>
    
    <p>Select Category:<br/>
-       <?php echo $post_category_id; ?>
+      
        <select name="selectCategory">
                 <?php
                 foreach ($listOfCategory as $data)
                 {
                     ?>
-                <option value="<?php echo $data->category_name; ?>">
+               <option value="<?php echo $data->category_name; ?>" selected="<?php echo $post_category_id; ?>">
                     <?php echo $data->category_name; ?>
                 </option>
+                
                     <?php
                 }
                 ?>
