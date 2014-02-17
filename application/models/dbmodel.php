@@ -167,8 +167,9 @@ class Dbmodel extends CI_Model {
          $this->db->insert('post', $data);
     }
    
-    public function update_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id)
+    public function update_post($id, $post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id)
     {
+        $this->load->database(); 
         $data = array
                 (
             'post_title' => $post_title,

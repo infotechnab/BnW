@@ -424,9 +424,6 @@ class bnw extends CI_Controller {
                         $data['query'] = $this->dbmodel->findcategory($id);
                         $this->load->view('bnw/category/edit', $data);
                     } else {
-
-
-
                         $categoryname = $this->input->post('category_name');
                         $this->dbmodel->update_category($id, $categoryname);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
@@ -628,9 +625,7 @@ class bnw extends CI_Controller {
             $listOfCategory = $this->dbmodel->get_list_of_category();
             $data["listOfCategory"] = $this->dbmodel->get_list_of_category(); 
             $id = $this->input->post('id');
-            //set validation rules
-             $this->form_validation->set_rules('post_title', 'Page Name', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('post_content', 'Body', 'required|xss_clean');
+            $data['query'] = $this->dbmodel->findpost($id);
             if(($_SERVER['REQUEST_METHOD'] == 'POST'))
                         {
                         $categoryName = $_POST['selectCategory'];
@@ -639,7 +634,11 @@ class bnw extends CI_Controller {
                         {
                         $post_category_id= $pid->id;
                              }
-                         }
+                        }
+            //set validation rules
+             $this->form_validation->set_rules('post_title', 'Page Name', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('post_content', 'Body', 'required|xss_clean');
+            
 
             if (($this->form_validation->run() == TRUE)) {
                 if ($_FILES && $_FILES['file']['name'] !== "") {
@@ -655,15 +654,15 @@ class bnw extends CI_Controller {
                         $post_title = $this->input->post('post_title');
                         $post_content = $this->input->post('post_content');
                         $post_author_info = $this->dbmodel->get_post_author_id($username);
-                            foreach($post_author_info as $id)
+                            foreach($post_author_info as $pid)
                         {    
-                            $post_author_id= $id->id;
+                            $post_author_id= $pid->id;
                          }
                         $post_summary = $this->input->post('post_summary');
                         $post_status = $this->input->post('page_status');
                         $post_comment_status = $this->input->post('comment_status');
                         $post_tags = $this->input->post('post_tags');
-                        $this->dbmodel->update_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id);
+                        $this->dbmodel->update_post($id, $post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         redirect('bnw/posts/postListing');
                     }
@@ -679,10 +678,10 @@ class bnw extends CI_Controller {
                         $post_status = $this->input->post('page_status');
                         $post_comment_status = $this->input->post('comment_status');
                         $post_tags = $this->input->post('post_tags');
-                        $this->dbmodel->update_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id);
+                        $this->dbmodel->update_post($id, $post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         redirect('bnw/posts/postListing');
-                }
+                } 
             } else {
                 $id = $this->input->post('id');
                 $data['query'] = $this->dbmodel->findpost($id);

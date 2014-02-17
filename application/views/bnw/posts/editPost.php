@@ -31,7 +31,7 @@
       <input type="text" name="post_title" value="<?php echo $post_title; ?>" />
   </p>
   <p>Body:<br />
-  <textarea name="page_content" id="area1" rows="5" cols="50" style="resize:none;">
+  <textarea name="post_content" id="area1" rows="5" cols="50" style="resize:none;">
       <?php echo $post_content; ?></textarea>
   </p>
   
