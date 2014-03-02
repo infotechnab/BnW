@@ -141,7 +141,7 @@ class Dbmodel extends CI_Model {
     public function findpost($id) {
         $this->db->select();
         $this->db->from('post');
-        $this->db->where('id',$id);
+        $this->db->where('id', $id);
         $query = $this->db->get();
         return $query->result();
     }
@@ -342,16 +342,6 @@ class Dbmodel extends CI_Model {
         $this->db->delete('category', array('id' => $id));
     }
     
-   /* public function delete_page_image($id)
-    {
-            $data = Array(
-            'image' => ""
-           );
-        
-            $this->db->where('id', $id);
-            
-            $this->db->update('page',$data);
-    }*/
        
 //pages -----------------------------------------------
     public function record_count_page() {
@@ -378,7 +368,7 @@ class Dbmodel extends CI_Model {
     }
 
     public function add_new_page($name, $body,$page_author_id, $summary, $status, $order, $type, $tags) {
-        $pagedata = Array(
+        $data = Array(
             'page_name' => $name,
             'page_content' => $body,
             'page_author_id'=>$page_author_id,
@@ -387,7 +377,7 @@ class Dbmodel extends CI_Model {
             'page_order'=> $order,
             'page_type'=>$type,
           'page_tags'=>$tags);
-        $this->db->insert('page', $pagedata);
+        $this->db->insert('page', $data);
     }
 
     public function findpage($id) {
@@ -408,10 +398,10 @@ class Dbmodel extends CI_Model {
         $page = $this->db->get('page');
         return $page->result();
     }
-    public function update_page($id, $name,$page_author_id, $body, $summary, $status, $order, $type, $tags){
+    public function update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags){
           
-           $pagedata = array
-                (
+           $data = array
+                (               
                 'page_name' => $name,
                 'page_content' => $body,
                'page_author_id'=>$page_author_id,
@@ -422,7 +412,7 @@ class Dbmodel extends CI_Model {
                 'page_tags' => $tags);  
         
         $this->db->where('id', $id);
-        $this->db->update('page', $pagedata);
+        $this->db->update('page', $data);
     }
 
     public function delete_page($id) {
@@ -508,22 +498,16 @@ class Dbmodel extends CI_Model {
         return $this->db->count_all("media");
     }
      public function get_all_media() {
-           //$this->db->limit($limit, $start); 
         $query = $this->db->get('media');
         return $query->result();
     }
        
-     public function get_media($id)
+     public function get_media()
     {  
-         $this->db->select();
-
+       
        $this -> db -> from('media');
-        $this->db->where('id', $id );
-        $query = $this->db->get();
-        return $query->result();
-       
-  
-       
+       $query = $this->db->get();
+        return $query->result();  
     }
     
     
@@ -536,23 +520,23 @@ class Dbmodel extends CI_Model {
         return $query->result();
     }    
     
-     public function update_media($id, $medianame, $mediatype, $aid, $medialink) {
+     public function update_media($id, $medianame, $mediatype, $media_association_id, $medialink) {
        
         $data = array(
             'media_name'=>$medianame,
             'media_type'=> $mediatype,
-            'media_association_id'=> $aid,
+            'media_association_id'=> $media_association_id,
             'media_link'=> $medialink);
         $this->db->where('id', $id);
         $this->db->update('media', $data);
     }    
-    public function add_new_media( $medianame, $mediatype, $aid, $medialink)
+    public function add_new_media( $medianame, $mediatype, $media_association_id, $medialink)
     {   
                 
         $data = array(
             'media_name'=>$medianame,
             'media_type'=> $mediatype,
-            'media_association_id'=> $aid,
+            'media_association_id'=> $media_association_id,
             'media_link'=> $medialink);
          $this->db->insert('media', $data);        
     }
@@ -560,6 +544,20 @@ class Dbmodel extends CI_Model {
       public function delete_media($id) {
 
         $this->db->delete('media', array('id' => $id));
+    }
+    
+     public function get_media_association_info($mediaName)
+    {
+        $this->db->select('id');
+        $this->db->where('album_name', $mediaName);
+        $query = $this->db->get('album');
+          return $query->result();
+    }
+    
+     public function get_list_of_album()
+    {
+        $query = $this->db->get('album');
+        return $query->result();
     }
     
     //==============================================================================================================
@@ -899,7 +897,7 @@ class Dbmodel extends CI_Model {
     function findslider($id) {
         $this->db->select();
          $this->db->from('slide');
-        $this->db->where('id',$id);
+        $this->db->where('id', $id);
         $query = $this->db->get();
         return $query->result();
     }
@@ -907,6 +905,7 @@ class Dbmodel extends CI_Model {
      public function update_slider($id, $slidename,$slideimage,$slidecontent) {
         $this->load->database();
         $data = array(
+            
             'slide_name' => $slidename,
             'slide_image' => $slideimage,
             'slide_content' => $slidecontent);

@@ -19,9 +19,21 @@
   <input type="text" name="media_type" value="<?php echo set_value('media_type'); ?>" />
   </p>
   
-  <p>Association ID<br />
-  <input type="text" name="media_association_id" />
-  </p>
+  <p>Select Association Id:<br/>
+         <select name="selectAlbum">
+                <?php
+                foreach ($listOfAlbum as $data)
+                {
+                    ?>
+                <option value="<?php echo $data->album_name; ?>">
+                    <?php echo $data->album_name; ?>
+                </option>
+                    <?php
+                }
+                ?>
+          
+            </select>
+   </p>
   
   <p>Link<br />
   <input type="text" name="media_link" value="<?php echo set_value('media_link'); ?>" />

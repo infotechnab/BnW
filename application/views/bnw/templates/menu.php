@@ -16,8 +16,8 @@
                     </li>
                     <li class="mainMenuItem"><a href="#">Pages</a><?php/* echo anchor('bnw', 'Pages') */?>
                         <ul class="subMenu">
-                            <li><?php echo anchor('bnw/addpage', 'Add New') ?></li>
                             <li><?php echo anchor('bnw/pages', 'All Pages') ?></li>
+                            <li><?php echo anchor('bnw/addpage', 'Add New') ?></li>                            
                         </ul>
                     </li>
                     <li class="mainMenuItem"><a href="#">Users</a><?php/* echo anchor('bnw', 'Users') */?>
@@ -29,8 +29,8 @@
                     </li>
                     <li class="mainMenuItem"><a href="#">Media</a><?php/* echo anchor('bnw', 'Media')*/ ?>
                         <ul class="subMenu">
-                            <li><?php echo anchor('bnw/addmedia', 'Add New') ?></li>
                             <li><?php echo anchor('bnw/media', 'Library') ?></li>
+                            <li><?php echo anchor('bnw/addmedia', 'Add New') ?></li>                           
                         </ul>
                     </li>
                     <li class="mainMenuItem"><a href="#">Social Share</a><?php /*echo anchor('bnw', 'Social Share') */?>
@@ -45,38 +45,25 @@
                             <li><?php echo anchor('bnw', 'Header') ?></li>
                             <li><?php echo anchor('bnw', 'Sidebar') ?></li>
                             <li><?php echo anchor('bnw', 'Body') ?></li>
-                            <li><?php echo anchor('bnw', 'Gadgets') ?></li>
+                            <li><?php echo anchor('bnw/gadgets', 'Gadgets') ?></li>
                             <li><?php echo anchor('bnw/setup', 'Setup') ?></li>
                         </ul>
                     </li>
-                    <li class="mainMenuItem"><a href="#">News & Events</a><?php /*echo anchor('bnw/activities', 'News & Events')*/ ?>
-                        <ul class="subMenu">
-                            <li><?php echo anchor('bnw/addactivity', 'Add New') ?></li>
-                            <li><?php echo anchor('bnw/activities', 'View All') ?></li>
-                        </ul>
-                    </li>
-                    <li class="mainMenuItem"><a href="#">Notice</a><?php/* echo anchor('bnw/notice', 'Notice')*/ ?>
-                        <ul class="subMenu">
-                            <li><?php echo anchor('bnw/addnotice', 'Add New') ?></li>
-                            <li><?php echo anchor('bnw/notice', 'View All') ?></li>
-                        </ul>
-                    </li>
+                    
                     <li class="mainMenuItem"><a href="#">Album</a><?php/* echo anchor('bnw/album', 'Album')*/ ?>
                         <ul class="subMenu">
                             <li><?php echo anchor('bnw/addalbum', 'Add New') ?></li>
                             <li><?php echo anchor('bnw/album', 'View All Albums') ?></li>
                         </ul>
-                    </li><li class="mainMenuItem"><a href="#">Slider</a><?php/* echo anchor('bnw/slider', 'Slider')*/ ?>
+                    </li>
+                    
+                    <li class="mainMenuItem"><a href="#">Slider</a><?php/* echo anchor('bnw/slider', 'Slider')*/ ?>
                         <ul class="subMenu">
                             <li><?php echo anchor('bnw/addslider', 'Add New') ?></li>
                             <li><?php echo anchor('bnw/slider', 'View All Slider') ?></li>
                         </ul>
-                    </li><li class="mainMenuItem"><a href="#">Blog</a><?php/* echo anchor('bnw/blog', 'Blog')*/ ?>
-                        <ul class="subMenu">
-                            <li><?php echo anchor('bnw/uploads', 'Add New') ?></li>
-                            <li><?php echo anchor('bnw/blog', 'View Blogs') ?></li>
-                        </ul>
-                    </li>
+                    </li>                    
+                   
                </ul>   
             </div>
         </div>

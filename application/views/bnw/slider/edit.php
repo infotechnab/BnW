@@ -1,15 +1,12 @@
 <div class="rightSide">
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
  if(isset($query)){
             foreach ($query as $data){
            $id = $data->id;
            $slidename = $data->slide_name;
-           $slideimage = $data->slide_image;
+           
            $slidecontent = $data->slide_content;
                  
             }
@@ -21,12 +18,12 @@
   <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-  <?php echo form_open_multipart('admin/updateslider');?>
+  <?php echo form_open_multipart('bnw/updateslider');?>
   <p>Title:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" />
       <input type="text" name="slide_name" value="<?php echo $slidename; ?>" />
   </p>
-  <p> Image : <br/> <input type="file" name="file"/> </p>
+  <p> Image : <br/> <input type="file" name="file_name" id="file"/> </p>
   <p>Content:<br />
    <input type="text" name="slide_content" value="<?php echo $slidecontent; ?>" />
   </p>

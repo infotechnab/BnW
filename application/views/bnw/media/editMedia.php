@@ -9,9 +9,9 @@
            $id = $data->id;
            $medianame = $data->media_name;
            $mediatype = $data->media_type;
-           $aid = $data->media_association_id;
+           $media_association_id = $data->media_association_id;
            $medialink= $data->media_link;
-                 
+           $listOfAlbum = $this->dbmodel->get_list_of_album();     
        }
         }
     ?>
@@ -31,9 +31,21 @@
   <input type="text" name="media_type" value="<?php echo $mediatype; ?>" />
   </p>
   
-  
-  <input type="hidden" name="media_association_id" value="<?php echo $aid ; ?>" />
-  
+  <p>Select Association Id:<br/>
+         <select name="selectAlbum">
+                <?php
+                foreach ($listOfAlbum as $data)
+                {
+                    ?>
+                <option value="<?php echo $data->album_name; ?>" selected="<?php echo $media_association_id; ?>">
+                    <?php echo $data->album_name; ?>
+                </option>
+                    <?php
+                }
+                ?>
+          
+            </select>
+   </p>
   
   <p>Link<br />
   <input type="text" name="media_link" value="<?php echo $medialink; ?>" />
