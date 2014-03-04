@@ -9,7 +9,7 @@
         <tr>
             <th>S.N.</th>
             <th>Album Name</th>
-            
+            <th>Image</th>
             <th>Action</th>
         </tr>
     
@@ -22,7 +22,14 @@
           <tr>
             <td><?php echo $data->id ?></td>
             <td><?php echo $data->album_name ?></td>
-            
+            <?php $image = "";
+                if(($image=='')|| ($image=='0'))
+                {
+                    $image = 'Image not set'; ?>
+            <td> <?php echo $image; ?></td>
+              <?php   } else {
+    ?> <td><img src="<?php echo base_url();?>uploads/<?php echo $image;?>" widht="50px" height="50px" /> 
+</td> <?php } ?>
 
             
             <td><?php echo anchor('bnw/editalbum/'.$data->id,'Edit'); ?> / 

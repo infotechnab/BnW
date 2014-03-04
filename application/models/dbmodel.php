@@ -502,11 +502,22 @@ class Dbmodel extends CI_Model {
         return $query->result();
     }
        
-     public function get_media()
+     public function get_media($id)
     {  
        
        $this -> db -> from('media');
+       $this->db->where('media_association_id',$id);
        $query = $this->db->get();
+       
+        return $query->result();  
+    }
+    public function get_photo_media_id($photoid)
+    {  
+       
+       $this -> db -> from('media');
+       $this->db->where('id',$photoid);
+       $query = $this->db->get();
+       
         return $query->result();  
     }
     
@@ -563,7 +574,9 @@ class Dbmodel extends CI_Model {
     //==============================================================================================================
     //======================================ALBUM===================================================================
     //==============================================================================================================
-   
+    public function record_count_album() {
+        return $this->db->count_all("album");
+    }
     
      public function get_album()
     {
@@ -603,11 +616,12 @@ class Dbmodel extends CI_Model {
         return $query->result();
     }
 
-    function add_new_photo($medianame, $mediatype, $aid, $medialink) {
+    function add_new_photo($medianame, $mediatype, $albumid, $medialink) {
         $data = Array(
+            
             'media_name' => $medianame,
             'media_type' => $mediatype,
-            'media_association_id'=> $aid,
+            'media_association_id'=> $albumid,
             'media_link'=> $medialink);
         
         $this->db->insert('media', $data);
@@ -627,6 +641,7 @@ class Dbmodel extends CI_Model {
         $this->db->delete('media', array('id' => $id));
         
     }
+    
 
 // ==========================================Activities ----------------------------------------------------------
    

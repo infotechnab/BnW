@@ -1071,7 +1071,7 @@ class bnw extends CI_Controller {
             $media = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
             $data["query"] = $this->dbmodel->get_all_user($config["per_media"], $media);
             $data["links"] = $this->pagination->create_links();
-            $data['query'] = $this->dbmodel->get_media();
+            $data['query'] = $this->dbmodel->get_all_media();
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
@@ -1203,6 +1203,129 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
+    
+    //==========================================================================================================//
+    //===================================ALBUM==================================================================//
+    //==========================================================================================================//
+    
+    public function album() {
+        if ($this->session->userdata('logged_in')) {
+
+            $config = array();
+            $config["base_url"] = base_url() . "index.php/bnw/album";
+            $config["total_rows"] = $this->dbmodel->record_count_album();
+            $config["per_user"] = 6;
+            $this->pagination->initialize($config);
+
+            $user = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            $data["query"] = $this->dbmodel->get_all_user($config["per_user"], $user);
+            $data["links"] = $this->pagination->create_links();
+            $data['query'] = $this->dbmodel->get_album();
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->view('bnw/album/albumListing');
+            $this->load->view('bnw/templates/footer', $data);
+        }
+    }
+
+    public function addalbum() {
+        if ($this->session->userdata('logged_in')) {
+
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+            $this->load->library('upload', $config);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['query'] = $this->dbmodel->get_album();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('album_name', 'Album Name', 'required|xss_clean|max_length[200]');
+
+            if (($this->form_validation->run() == FALSE)) {
+
+                //if not valid
+                $error = "Enter Album Name";
+
+
+                $this->load->view('bnw/album/index', $error);
+            } else {
+
+                //if valid
+                //$imagedata = Array($this->upload->data());
+                $name = $this->input->post('album_name');
+
+                $this->dbmodel->add_new_album($name);
+                $this->session->set_flashdata('message', 'One Album added sucessfully');
+                redirect('bnw/album/index');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+
+            redirect('login', 'refresh');
+        }
+    }
+    
+    //===============================To Add Photo================================================================//
+    public function addphoto() {
+        if ($this->session->userdata('logged_in')) {
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+
+            $this->load->library('upload', $config);
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
+            
+            $albumid = $this->input->post('id');
+            $data['query'] = $this->dbmodel->get_album($albumid);
+            
+            
+            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload())) {
+                $data['error'] = $this->upload->display_errors();
+                
+                $this->load->view('bnw/album/gallery', $data);
+            } else {
+
+                //if valid
+                $data = array('upload_data' => $this->upload->data());
+                //$photoid= $data->this->input->post('id');
+                $mediatype = $data['upload_data']['file_name'];
+                $medianame = $this->input->post('title');
+                $albumid = $this->input->post('id');
+                $medialink = $this->input->post('media_link');
+                $this->dbmodel->add_new_photo($medianame, $mediatype, $albumid, $medialink);
+                $this->session->set_flashdata('message', 'One photo added sucessfully');
+                redirect('bnw/addalbum');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function deletephoto($id) {
+       // die($id);
+        if ($this->session->userdata('logged_in')) {
+            $this->dbmodel->delete_photo($id);
+            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+            redirect('bnw/addalbum');
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
 
     //==========================================================================================================//
     //===============================Setting/ Gadgets===========================================================//
@@ -1743,68 +1866,7 @@ class bnw extends CI_Controller {
     //============album=====
 
 
-    public function album() {
-        if ($this->session->userdata('logged_in')) {
-
-            $config = array();
-            $config["base_url"] = base_url() . "index.php/bnw/users";
-            $config["total_rows"] = $this->dbmodel->record_count_user();
-            $config["per_user"] = 6;
-            $this->pagination->initialize($config);
-
-            $user = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-            $data["query"] = $this->dbmodel->get_all_user($config["per_user"], $user);
-            $data["links"] = $this->pagination->create_links();
-            $data['query'] = $this->dbmodel->get_album();
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/album/albumListing');
-            $this->load->view('bnw/templates/footer', $data);
-        }
-    }
-
-    public function addalbum() {
-        if ($this->session->userdata('logged_in')) {
-
-            $config['upload_path'] = './content/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
-            $this->load->library('upload', $config);
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $data['query'] = $this->dbmodel->get_album();
-            $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->helper('form');
-            $this->load->library(array('form_validation', 'session'));
-            $this->form_validation->set_rules('album_name', 'Album Name', 'required|xss_clean|max_length[200]');
-
-            if (($this->form_validation->run() == FALSE)) {
-
-                //if not valid
-                $error = "Enter Album Name";
-
-
-                $this->load->view('bnw/album/index', $error);
-            } else {
-
-                //if valid
-                //$imagedata = Array($this->upload->data());
-                $name = $this->input->post('album_name');
-
-                $this->dbmodel->add_new_album($name);
-                $this->session->set_flashdata('message', 'One Album added sucessfully');
-                redirect('bnw/album/index');
-            }
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-
-            redirect('login', 'refresh');
-        }
-    }
-
+    
     public function add_new_album() {
         if ($this->session->userdata('logged_in')) {
 
@@ -1890,62 +1952,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    public function addphoto() {
-        if ($this->session->userdata('logged_in')) {
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $config['upload_path'] = './content/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
-
-            $this->load->library('upload', $config);
-            $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->helper('form');
-            $this->load->library(array('form_validation', 'session'));
-            $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('body', 'Body', 'required|xss_clean');
-            $aid = $this->input->post('p_aid');
-            $data['query'] = $this->dbmodel->get_media($id);
-            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload())) {
-                $data['error'] = $this->upload->display_errors();
-                $data['album_id'] = $aid;
-                $this->load->view('bnw/album/gallery', $data);
-            } else {
-
-                //if valid
-                $data = array('upload_data' => $this->upload->data());
-                $mediatype = $data['upload_data']['file_name'];
-                $medianame = $this->input->post('title');
-                $mediaasscID = $this->input->post('p_aid');
-                $medialink = $this->input->post('media_link');
-                $this->dbmodel->add_new_photo($medianame, $mediatype, $mediaasscID, $medialink);
-                $this->session->set_flashdata('message', 'One photo added sucessfully');
-                redirect('bnw/photos/' . $aid);
-            }
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-
-            redirect('login', 'refresh');
-        }
-    }
-
-    public function deletephoto($id) {
-        if ($this->session->userdata('logged_in')) {
-            $aid = $this->dbmodel->get_aid($id);
-            foreach ($aid as $data) {
-                $aid = $data->aid;
-            }
-            $this->dbmodel->delete_photo($id);
-            $this->session->set_flashdata('message', 'One photo deleted sucessfully');
-            redirect('bnw/photos/' . $aid);
-        } else {
-
-            redirect('login', 'refresh');
-        }
-    }
-
+    
     //  ===================== slider ===========================================
 
     public function slider() {

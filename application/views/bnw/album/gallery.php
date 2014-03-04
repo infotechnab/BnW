@@ -94,11 +94,11 @@ foreach ($query as $data) {
    
     
 
-    <img class="srcimage" src="<?php echo base_url(); ?>gallery/<?php //echo $image; ?>" id="galleryimage" />
-        <div id="imagetitle">
+    <img class="srcimage" src="<?php echo base_url(); ?>content/images/<?php echo $data->media_type; //echo $image; ?>" id="galleryimage" />
+        <div id="imagetitle"> <?php echo $data->media_name; ?>
             
         </div>
-            <a href="<?php echo base_url();?>index.php/bnw/deletephoto/<?php echo $id; ?> " id="<?php echo $aid; ?>" class="delbutton">
+            <a href="<?php echo base_url();?>index.php/bnw/deletephoto/<?php echo $data->id; ?> " id="<?php echo $id; ?>" class="delbutton">
         <img src="<?php echo base_url();?>content/images/delete.png" id="close"/></a>
         
     

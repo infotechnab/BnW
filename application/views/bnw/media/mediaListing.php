@@ -26,7 +26,7 @@
             <td><?php echo $data->media_name ?></td>
             <td><?php echo $data->media_type ?></td>
             <td><?php echo $data->media_association_id ?></td>
-            <td><?php echo $data->media_link ?></td>
+            <td> <a href='<?php echo base_url().'content/images/'.$data->media_type; ?>'> <?php echo base_url().'content/images/'.$data->media_type;?> </a></td>
             <td><?php echo anchor('bnw/editmedia/'.$data->id,'Edit'); ?> / 
             <?php echo anchor('bnw/deletemedia/'.$data->id,'Delete'); ?></td>
         </tr>

@@ -57,9 +57,9 @@ foreach( $result as $abc)
    ?> 
 
 <div id="photodiv">
-        <img src="<?php echo base_url(); ?>gallery/<?php //echo $abc->image;?>" id="galleryimage" />
+        <img src="<?php echo base_url(); ?>gallery/" id="galleryimage" />
         <div id="imagetitle">
-            <?php//echo anchor('bnw/photos/'.$r->aid,$r->album_name); ?> 
+            <?php echo anchor('bnw/photos/'.$aid,$r->album_name); ?> 
              </div>
             <a href="<?php echo base_url();?>index.php/bnw/delete_album/<?php echo $aid; ?> " id="<?php echo $aid; ?>" class="delbutton">
         <img src="<?php echo base_url();?>content/images/delete.png" id="close"/></a>
