@@ -914,7 +914,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    public function delete_page_image($id) {
+   /* public function delete_page_image($id) {
         if ($this->session->userdata('logged_in')) {
             $this->dbmodel->delete_page_image($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
@@ -922,7 +922,7 @@ class bnw extends CI_Controller {
         } else {
             redirect('login', 'refresh');
         }
-    }
+    }*/
 
     //============================================================================//
     //=============================USER===========================================//
@@ -1325,13 +1325,150 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
+    
+    //============================================================================================================//
+    //====================================SLIDER==================================================================//
+    //============================================================================================================/
 
+    public function slider() {
+        if ($this->session->userdata('logged_in')) {
+            $config = array();
+            $config["base_url"] = base_url() . "index.php/bnw/slider";
+            $config["total_rows"] = $this->dbmodel->record_count_slider();
+            $config["per_page"] = 6;
+            //$config["uri_segment"] = 3;
+
+            $this->pagination->initialize($config);
+
+            $slide = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            $data["query"] = $this->dbmodel->get_slider($config["per_page"], $slide);
+            $data["links"] = $this->pagination->create_links();
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/slider/index', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function addslider() {
+        if ($this->session->userdata('logged_in')) {
+
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+
+            $this->load->library('upload', $config);
+
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('slide_name', 'Title', 'required|xss_clean|max_length[200]');
+            //$this->form_validation->set_rules('slide_image', 'Image', 'required|xss_clean|max_length[200]');
+
+
+            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
+                $data['error'] = $this->upload->display_errors();
+                  
+                $this->load->view('bnw/slider/addnew', $data);
+            } else {
+
+                //if valid
+                $data = array('upload_data' => $this->upload->data('file'));
+                $slidename = $this->input->post('slide_name');
+                $slideimage = $data['upload_data']['file_name'];
+                $slidecontent = $this->input->post('slide_content');
+                
+                $this->dbmodel->add_new_slider($slidename, $slideimage, $slidecontent);
+                $this->session->set_flashdata('message', 'One slider added sucessfully');
+                redirect('bnw/slider');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function editslider($id) {
+        if ($this->session->userdata('logged_in')) {
+            $data['query'] = $this->dbmodel->findslider($id);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/slider/edit', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function updateslider() {
+         if ($this->session->userdata('logged_in')) {
+
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+
+            $this->load->library('upload', $config);
+
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('slide_name', 'Title', 'required|xss_clean|max_length[200]');
+            //$this->form_validation->set_rules('slide_image', 'Image', 'required|xss_clean|max_length[200]');
+
+
+            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
+                $data['error'] = $this->upload->display_errors();
+                $id = $this->input->post('id');
+                $data['query'] = $this->dbmodel->findslider($id);  
+                $this->load->view('bnw/slider/edit', $data);
+            } else {
+
+                //if valid
+                $id = $this->input->post('id');
+                $data = array('upload_data' => $this->upload->data('file'));
+                $slidename = $this->input->post('slide_name');
+                $slideimage = $data['upload_data']['file_name'];
+                $slidecontent = $this->input->post('slide_content');
+                
+                $this->dbmodel->update_slider($id, $slidename, $slideimage, $slidecontent);
+                $this->session->set_flashdata('message', 'One slider added sucessfully');
+                redirect('bnw/slider');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function deleteslider($id) {
+        if ($this->session->userdata('logged_in')) {
+            $this->dbmodel->delete_slider($id);
+            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+            redirect('bnw/slider');
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
 
     //==========================================================================================================//
     //===============================Setting/ Gadgets===========================================================//
     //==========================================================================================================//
     
-     public function gadgets() {
+    /* public function gadgets() {
         if ($this->session->userdata('logged_in')) {
             //$data['username'] = Array($this->session->userdata('logged_in'));
             $config = array();
@@ -1855,7 +1992,7 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
-
+*/
     //======================================Dashboard setup page
     
 
@@ -1953,141 +2090,9 @@ class bnw extends CI_Controller {
     }
 
     
-    //  ===================== slider ===========================================
+    
 
-    public function slider() {
-        if ($this->session->userdata('logged_in')) {
-            $config = array();
-            $config["base_url"] = base_url() . "index.php/bnw/slider";
-            $config["total_rows"] = $this->dbmodel->record_count_slider();
-            $config["per_page"] = 6;
-            //$config["uri_segment"] = 3;
-
-            $this->pagination->initialize($config);
-
-            $slide = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-            $data["query"] = $this->dbmodel->get_slider($config["per_page"], $slide);
-            $data["links"] = $this->pagination->create_links();
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/slider/index', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-    public function addslider() {
-        if ($this->session->userdata('logged_in')) {
-
-            $config['upload_path'] = './content/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
-
-            $this->load->library('upload', $config);
-
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->helper('form');
-            $this->load->library(array('form_validation', 'session'));
-            $this->form_validation->set_rules('slide_name', 'Title', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('slide_image', 'Image', 'required|xss_clean|max_length[200]');
-
-
-            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
-                $data['error'] = $this->upload->display_errors();
-                  
-                $this->load->view('bnw/slider/addnew', $data);
-            } else {
-
-                //if valid
-                $data = array('upload_data' => $this->upload->data('file'));
-                $slidename = $this->input->post('slide_name');
-                $slideimage = $data['upload_data']['file_name'];
-                $slidecontent = $this->input->post('slide_content');
-                
-                $this->dbmodel->add_new_slider($slidename, $slideimage, $slidecontent);
-                $this->session->set_flashdata('message', 'One slider added sucessfully');
-                redirect('bnw/slider');
-            }
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-
-            redirect('login', 'refresh');
-        }
-    }
-
-    public function editslider($id) {
-        if ($this->session->userdata('logged_in')) {
-            $data['query'] = $this->dbmodel->findslider($id);
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/slider/edit', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-    public function updateslider() {
-         if ($this->session->userdata('logged_in')) {
-
-            $config['upload_path'] = './content/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
-
-            $this->load->library('upload', $config);
-
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->helper('form');
-            $this->load->library(array('form_validation', 'session'));
-            $this->form_validation->set_rules('slide_name', 'Title', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('slide_image', 'Image', 'required|xss_clean|max_length[200]');
-
-
-            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
-                $data['error'] = $this->upload->display_errors();
-                $id = $this->input->post('id');
-                $data['query'] = $this->dbmodel->findslider($id);  
-                $this->load->view('bnw/slider/edit', $data);
-            } else {
-
-                //if valid
-                $id = $this->input->post('id');
-                $data = array('upload_data' => $this->upload->data('file'));
-                $slidename = $this->input->post('slide_name');
-                $slideimage = $data['upload_data']['file_name'];
-                $slidecontent = $this->input->post('slide_content');
-                
-                $this->dbmodel->update_slider($id, $slidename, $slideimage, $slidecontent);
-                $this->session->set_flashdata('message', 'One slider added sucessfully');
-                redirect('bnw/slider');
-            }
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-
-            redirect('login', 'refresh');
-        }
-    }
-
-    public function deleteslider($id) {
-        if ($this->session->userdata('logged_in')) {
-            $this->dbmodel->delete_slider($id);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('bnw/slider');
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
+    
 
     // ==================  MENU  ============================ //
 
@@ -2198,7 +2203,7 @@ class bnw extends CI_Controller {
         }
     }
 
-    public function blog() {
+   /* public function blog() {
         if ($this->session->userdata('logged_in')) {
             $data['username'] = Array($this->session->userdata('logged_in'));
             $data['query'] = $this->dbmodel->get_blog();
@@ -2266,7 +2271,7 @@ class bnw extends CI_Controller {
         }
     }
    
-    
+    */
     public function test()
     {
          function query($parent_id) { //function to run a query

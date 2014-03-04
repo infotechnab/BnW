@@ -278,13 +278,13 @@ class Dbmodel extends CI_Model {
         $this->db->insert('category', $data);
     }
     
-    public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $naviation_slug, $menu_id)
+    public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menu_id)
     {
         $data = Array('navigation_name'=>$navigation_name,
                                 'navigation_link'=>$navigation_link,
                                 'parent_id'=>$parent_id,
                                 'navigation_type'=>$navigation_type,
-                                'navigation_slug'=>$naviation_slug,
+                                'navigation_slug'=>$navigation_slug,
                                 'menu_id'=>$menu_id
             );
          $this->db->insert('navigation', $data);
