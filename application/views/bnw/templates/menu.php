@@ -4,6 +4,7 @@
                     <li class="mainMenuItem"> <a href="#">Control Panel</a><?php //echo anchor('bnw', 'Control Panel') ?>
                         <ul class="subMenu">
                             <li><?php echo anchor('bnw', 'Home') ?></li>
+                            <li><?php echo anchor('bnw/addmenu', 'Add Menu') ?></li>
                             <li><?php echo anchor('bnw/navigation', 'Navigation') ?></li>
                             <li><?php echo anchor('bnw/category', 'Categories') ?></li>
                         </ul>

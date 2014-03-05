@@ -550,7 +550,8 @@ class bnw extends CI_Controller {
                  {    
                  $post_author_id= $pid->id;
                  }
-            $post_summary = $this->input->post('post_summary');
+            $string = $this->input->post('post_content');
+                           $post_summary= substr("$string", 0, 100);
             $post_status = $this->input->post('post_status');
             $post_comment_status = $this->input->post('comment_status');
             $post_tags = $this->input->post('post_tags');
@@ -654,7 +655,8 @@ class bnw extends CI_Controller {
                         {    
                             $post_author_id= $pid->id;
                          }
-                        $post_summary = $this->input->post('post_summary');
+                        $string = $this->input->post('post_content');
+                           $post_summary= substr("$string", 0, 100);
                         $post_status = $this->input->post('page_status');
                         $post_comment_status = $this->input->post('comment_status');
                         $post_tags = $this->input->post('post_tags');
@@ -671,7 +673,8 @@ class bnw extends CI_Controller {
                         {    
                             $post_author_id= $pid->id;
                          }
-                        $post_summary = $this->input->post('post_summary');
+                         $string = $this->input->post('post_content');
+                           $post_summary= substr("$string", 0, 100);
                         $post_status = $this->input->post('page_status');
                         $post_comment_status = $this->input->post('comment_status');
                         $post_tags = $this->input->post('post_tags');
@@ -744,7 +747,14 @@ class bnw extends CI_Controller {
                  {    
                  $page_author_id= $id->id;
                  }
-            $summary = $this->input->post('page_summary');
+                 
+                 
+            /*$page_summary = $this->dbmodel->get_page_content($id);
+                            foreach($page_summary as $data)
+                        {    
+                            $summary= $data->page_content;
+                         }*/
+            //$summary = $this->input->post('page_summary');
             $status = $this->input->post('page_status');
             $order = $this->input->post('page_order');
             $type = $this->input->post('page_type');
@@ -767,6 +777,7 @@ class bnw extends CI_Controller {
                         redirect('bnw/pages/pageListing');
                     }
                 } else {
+                    
                     $name = $this->input->post('page_name');
                     $body = $this->input->post('page_content');
                     $page_author_info = $this->dbmodel->get_page_author_id($username);
@@ -774,7 +785,11 @@ class bnw extends CI_Controller {
                         {   
                             $page_author_id= $id->id;
                         } 
-                    $summary = $this->input->post('page_summary');
+                        
+                      $string = $this->input->post('page_content');
+                           $summary= substr("$string", 0, 100);
+                         
+                    //$summary = $this->input->post('page_summary');
                     $status = $this->input->post('page_status');
                     $order = $this->input->post('page_order');
                     
@@ -863,7 +878,8 @@ class bnw extends CI_Controller {
                         {   
                             $page_author_id= $pid->id;
                         }
-                        $summary = $this->input->post('page_summary');
+                         $string = $this->input->post('page_content');
+                           $summary= substr("$string", 0, 100);
                         $status = $this->input->post('page_status');
                         $order = $this->input->post('page_order');
                         $type = $this->input->post('page_type');
@@ -883,7 +899,8 @@ class bnw extends CI_Controller {
                         {   
                             $page_author_id= $pid->id;
                         }
-                    $summary = $this->input->post('page_summary');
+                     $string = $this->input->post('page_content');
+                           $summary= substr("$string", 0, 100);
                     $status = $this->input->post('page_status');
                     $order = $this->input->post('page_order');
                     $type = $this->input->post('page_type');
@@ -2124,6 +2141,8 @@ class bnw extends CI_Controller {
     public function addmenu() {
         if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
+            $data["links"] = $this->pagination->create_links();
+            $data["query"] = $this->dbmodel->get_menu();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
@@ -2138,7 +2157,7 @@ class bnw extends CI_Controller {
                 //if valid
 
                 $menuname = $this->input->post('menu_name');
-                $this->dbmodel->add_new_menu($mid, $menuname);
+                $this->dbmodel->add_new_menu( $menuname);
                 $this->session->set_flashdata('message', 'One menu added sucessfully');
                 redirect('bnw/menu/index');
             }
@@ -2165,24 +2184,28 @@ class bnw extends CI_Controller {
     public function updatemenu() {
         if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
+            
             $this->load->view("bnw/templates/header", $data);
             $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
+            
             $this->load->library(array('form_validation', 'session'));
+            $id = $this->input->post('id');
+            $data['query'] = $this->dbmodel->findmenu($id);
             //set validation rules
             $this->form_validation->set_rules('menu_name', 'Name', 'required|xss_clean|max_length[200]');
 
 
             if ($this->form_validation->run() == FALSE) {
                 //if not valid
-                $data['query'] = $this->dbmodel->findmenu($mid);
-               
+                $data['query'] = $this->dbmodel->findmenu($id);
+                $id = $this->input->post('id');
                 $this->load->view('bnw/menu/edit', $data);
             } else {
                 //if valid
-                $mid = $this->input->post('id');
+                $id = $this->input->post('id');
                 $menuname = $this->input->post('menu_name');
-                $this->dbmodel->update_menu($mid, $menuname);
+                $this->dbmodel->update_menu($id, $menuname);
                 $this->session->set_flashdata('message', 'Menu Modified Sucessfully');
 
                 redirect('bnw/menu/index');
@@ -2193,9 +2216,9 @@ class bnw extends CI_Controller {
         }
     }
 
-    public function deletemenu($mid) {
+    public function deletemenu($id) {
         if ($this->session->userdata('logged_in')) {
-            $this->dbmodel->delete_menu($mid);
+            $this->dbmodel->delete_menu($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
             redirect('bnw/menu/index');
         } else {

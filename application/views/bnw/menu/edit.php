@@ -1,12 +1,12 @@
 <div class="rightSide">
     <?php if(isset($query)){
             foreach ($query as $data){
-           $mid = $data->id;
+           $id = $data->id;
            $menuname = $data->menu_name;
            }
         }
     ?>
-<h2>Edit Menu id <?php echo $mid; ?></h2>
+<h2>Edit Menu id <?php echo $id; ?></h2>
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">
@@ -14,9 +14,9 @@
     </p>
   <?php echo form_open_multipart('bnw/updatemenu');?>
   
-      <input type="hidden" name="id" value="<?php echo $mid; ?>" />
+      <input type="hidden" name="id" value="<?php echo $id; ?>" />
  <p>Menu Name:<br />
-      <input type="text" name="title" value="<?php echo $menuname; ?>" /> </p> 
+      <input type="text" name="menu_name" value="<?php echo $menuname; ?>" /> </p> 
  
     <input type="submit" value="Submit" />
   <?php echo form_close();?>

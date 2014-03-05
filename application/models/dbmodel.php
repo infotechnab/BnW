@@ -43,7 +43,7 @@ class Dbmodel extends CI_Model {
         {
             $this->db->select();            
             $this->db->where('media_association_id',$aid);
-            //$this->db->order_by('eid','DESC');
+            
             $this->db->limit(1);
                     $query = $this->db->get('media');
            if ($query->num_rows() == 1) {
@@ -190,9 +190,9 @@ class Dbmodel extends CI_Model {
         return $this->db->count_all("menu");
     }
         
-    public function get_menu($limit,$start)
+    public function get_menu()
     {
-        $this->db->limit($limit,$start);
+        
         $query = $this->db->get('menu');
         return $query->result();
     }
@@ -212,31 +212,30 @@ class Dbmodel extends CI_Model {
           return $query->result();
     }
 
-    function findmenu($mid) {
+    function findmenu($id) {
         $this->db->select();
-        $this->db->where('id', $mid);
+        $this->db->where('id', $id);
         $query = $this->db->get('menu');
         return $query->result();
     }    
     
-     public function update_menu($mid, $menuname) {
+     public function update_menu($id, $menuname) {
         $this->load->database();
-        $data = array(
-            'id'=>$mid,
+        $data = array(            
             'menu_name' => $menuname);
-        $this->db->where('id', $mid);
+        $this->db->where('id', $id);
         $this->db->update('menu', $data);
     }    
-    public function add_new_menu($mid, $menuname )
+    public function add_new_menu($menuname )
     {   $this->load->database();        
         $data = array(
-            'id'=>$mid,
+            
             'menu_name'=> $menuname);
          $this->db->insert('menu', $data);        
     }
-  public function delete_menu($mid) {
+  public function delete_menu($id) {
 
-        $this->db->delete('menu', array('id' => $mid));
+        $this->db->delete('menu', array('id' => $id));
     }
     
     
@@ -350,7 +349,7 @@ class Dbmodel extends CI_Model {
     
     public function get_all_pages($limit, $start) {
            $this->db->limit($limit, $start); 
-       // $this->db->where('type','page');
+       
         $query = $this->db->get('page');
         return $query->result();
     }
@@ -359,10 +358,11 @@ class Dbmodel extends CI_Model {
          $query = $this->db->get('page');
         return $query->result();
     }
+
     
    public function get_pages() {
             
-        //$this->db->where('type','page');
+        
         $query = $this->db->get('page');
         return $query->result();
     }
@@ -934,7 +934,7 @@ class Dbmodel extends CI_Model {
     
     
       
-    function get_blog() {
+    /*function get_blog() {
         $this->db->select('id, title, image, status, date');
         $this->db->from('blog');
         //$this -> db -> where('did = ' . "'" . $gid . "'");
@@ -953,13 +953,13 @@ class Dbmodel extends CI_Model {
         $this->db->delete('blog', array('id' => $id));
     }
     
-    //navigation
+    navigation
+    */
+    
     public function get_list_by_parent_id($parent_id)
     {
          $this->db->where('id', $parent_id);
         $query = $this->db->get('navigation');
         return $query->result();
     }
-    
-    
     }

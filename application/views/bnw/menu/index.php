@@ -1,8 +1,7 @@
 
 <div class="rightSide">
     <h2>Menu list </h2>
-<a href="addmenu">Add New Menu</a>
-<div id="body">
+    <div id="body">
     <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
