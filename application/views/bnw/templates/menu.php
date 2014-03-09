@@ -25,7 +25,7 @@
                         <ul class="subMenu">
                             <li><?php echo anchor('bnw/adduser', 'Add New') ?></li>
                             <li><?php echo anchor('bnw/users', 'All Users') ?></li>
-                            <li><?php echo anchor('bnw', 'My Profile') ?></li>
+                            <li><?php echo anchor('bnw/profile', 'My Profile') ?></li>
                         </ul>
                     </li>
                     <li class="mainMenuItem"><a href="#">Media</a><?php/* echo anchor('bnw', 'Media')*/ ?>
@@ -43,8 +43,8 @@
                     </li>
                     <li class="mainMenuItem"><a href="#">Settings</a><?php /*echo anchor('bnw', 'Settings') */?>
                         <ul class="subMenu">
-                            <li><?php echo anchor('bnw', 'Header') ?></li>
-                            <li><?php echo anchor('bnw', 'Sidebar') ?></li>
+                            <li><?php echo anchor('bnw/header', 'Header') ?></li>
+                            <li><?php echo anchor('bnw/sidebar', 'Sidebar') ?></li>
                             <li><?php echo anchor('bnw', 'Body') ?></li>
                             <li><?php echo anchor('bnw/gadgets', 'Gadgets') ?></li>
                             <li><?php echo anchor('bnw/setup', 'Setup') ?></li>
@@ -54,7 +54,7 @@
                     <li class="mainMenuItem"><a href="#">Album</a><?php/* echo anchor('bnw/album', 'Album')*/ ?>
                         <ul class="subMenu">
                             <li><?php echo anchor('bnw/addalbum', 'Add New') ?></li>
-                            <li><?php echo anchor('bnw/album', 'View All Albums') ?></li>
+                            
                         </ul>
                     </li>
                     

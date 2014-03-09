@@ -36,6 +36,23 @@
                 ?>
           
             </select>
+    
+    <select name="selectNavigation">
+        <option value="0">
+                    Select none
+                </option>
+                <?php
+                foreach ($listOfNavigation as $data)
+                {
+                    ?>
+                <option value="<?php echo $data->navigation_name; ?>">
+                    <?php echo $data->navigation_name; ?>
+                </option>
+                    <?php
+                }
+                ?>
+          
+            </select>
             <input type="submit" value="Add">
         <?php echo form_close();?>
     </div>

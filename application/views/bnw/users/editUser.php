@@ -47,13 +47,21 @@
   
    <p> User Status:<br />
   <?php 
-  $options = array(
+  $status = array(
                   '1'  => 'publish',
                   '0'    => 'draft');
-  echo form_dropdown('user_status',$options,'1')
+  echo form_dropdown('user_status',$status,'1')
   ?>
   </p>
   
+  <p> User Type:<br />
+  <?php 
+  $user_type = array(
+                  '1'  => 'User',
+                  '0'    => 'Administrator');
+  echo form_dropdown('user_type',$user_type,'1')
+  ?>
+  </p>
   
   <input type="submit" value="Submit" />
   <?php echo form_close();?>

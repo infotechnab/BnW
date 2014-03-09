@@ -36,7 +36,16 @@
   $options = array(
                   '1'  => 'publish',
                   '0'    => 'draft');
-  echo form_dropdown('user_status',$options,'1')
+  echo form_dropdown('user_status',$options)
+  ?>
+  </p>
+  
+  <p> User Type:<br />
+  <?php 
+  $useroptions = array(
+                  '1'  => 'User',
+                  '0'    => 'Administrator');
+  echo form_dropdown('user_type',$useroptions)
   ?>
   </p>
   

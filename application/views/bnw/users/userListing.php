@@ -13,6 +13,7 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Status</th>
+            <th>Type</th>
             <th>Action</th>
         </tr>
     
@@ -29,7 +30,7 @@
             <td><?php echo $data->user_lname ?></td>
             <td><?php echo $data->user_email ?></td>
 
-            <td><?php if($data->user_status=="Active")
+            <td><?php if($data->user_status=="0")
             {
                 echo "Draft";
             }
@@ -39,6 +40,18 @@
                     
             }
             ?></td>
+            
+            <td><?php if($data->user_type=="1")
+            {
+                echo "User";
+            }
+                else
+            {
+                    echo "Administrator";
+                    
+            }
+            ?></td>
+            
             <td><?php echo anchor('bnw/edituser/'.$data->id,'Edit'); ?> / 
             <?php echo anchor('bnw/deleteuser/'.$data->id,'Delete'); ?></td>
         </tr>

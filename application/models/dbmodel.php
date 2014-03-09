@@ -67,6 +67,12 @@ class Dbmodel extends CI_Model {
         $query = $this->db->get('navigation');
         return $query->result();
     }
+    public function get_list_of_navigation()
+    {
+        
+        $query = $this->db->get('navigation');
+        return $query->result();
+    }
     
     function findnavigation($id) {
         $this->db->select();
@@ -106,7 +112,13 @@ class Dbmodel extends CI_Model {
     $this->db->insert('navigation', $data);
 }
 
-
+public function get_navigation_info($navigationName)
+    {
+         $this->db->select('id');
+        $this->db->where('navigation_name', $navigationName);
+        $query = $this->db->get('navigation');
+          return $query->result();
+    }
 //=============================POST===============================================================================//
     public function record_count_post() {
         return $this->db->count_all("post");
@@ -447,10 +459,20 @@ class Dbmodel extends CI_Model {
         $query = $this->db->get('user');
         return $query->result();
     }
-    
-    
-    
-    
+    public function get_user_info($username){
+        $this->db->select();
+
+       $this -> db -> from('user');
+       $this->db->where('user_name', $username );
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
+
+
+
+
     function finduser($id) {
         $this->db->select();
 
@@ -460,7 +482,7 @@ class Dbmodel extends CI_Model {
         return $query->result();
     }    
     
-     public function update_user($id,$name, $fname, $lname, $email, $pass, $status) {
+     public function update_user($id,$name, $fname, $lname, $email, $pass, $status, $user_type) {
        
         $data = array(
             'user_name'=>$name,
@@ -468,11 +490,12 @@ class Dbmodel extends CI_Model {
             'user_lname'=> $lname,
             'user_email'=> $email,
             'user_pass'=> $pass,
-            'user_status'=> $status);
+            'user_status'=> $status,
+            'user_type'=> $user_type);
         $this->db->where('id', $id);
         $this->db->update('user', $data);
     }    
-    public function add_new_user($name, $fname, $lname, $email, $pass, $status)
+    public function add_new_user($name, $fname, $lname, $email, $pass, $status, $user_type)
     {   
                 
         $data = array(
@@ -481,7 +504,8 @@ class Dbmodel extends CI_Model {
             'user_lname'=> $lname,
             'user_email'=> $email,
             'user_pass'=> $pass,
-            'user_status'=> $status  );
+            'user_status'=> $status,
+            'user_type'=> $user_type );
          $this->db->insert('user', $data);        
     }
     
@@ -701,13 +725,13 @@ class Dbmodel extends CI_Model {
     //gadgets --------------------------------------------------------------------------------
     
     public function record_count_gadget() {
-        return $this->db->count_all("page_event");
+        return $this->db->count_all("media");
     } 
-    function get_gadgets($limit,$start) {
-        $this->db->limit($limit, $start);
-        $this->db->select('id, title, body, status');
-        $this->db->where('type','gadgets');
-        $this->db->from('notice_gadget');
+    function get_gadgets() {
+        //$this->db->limit($limit, $start);
+       // $this->db->select('id, title, body, status');
+        //$this->db->where('type','gadgets');
+        $this->db->from('media');
         $query = $this->db->get();
         return $query->result();
     }
@@ -722,9 +746,9 @@ class Dbmodel extends CI_Model {
     }
 
     function findgadget($id) {
-        $this->db->select('id, title, body, status');
-        $this->db->from('notice_gadget');
-        $this->db->where('id = ' . "'" . $id . "'");
+        $this->db->select();
+        $this->db->from('media');
+        $this->db->where('id', $id);
         $query = $this->db->get();
         return $query->result();
     }
