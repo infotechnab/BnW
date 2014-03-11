@@ -1,4 +1,5 @@
-<div class="rightSide">  
+<div class="rightSide"> 
+    <div id="forLeftPage">
 <h2>Add new post</h2>
   <?php echo validation_errors();
   if(isset($error))
@@ -17,7 +18,10 @@
   <p>Body:<br />
       <textarea name="post_content" id="area1" cols="50" rows="5" ><?php echo set_value('post_content'); ?></textarea>
   
-  </p>    
+  </p>   
+    </div>
+    
+    <div id="forRightPage"> 
     
    <p>Post Status:<br />
   <?php 
@@ -58,6 +62,7 @@
   
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
+  </div>
 </div>
 <div class="clear"></div>
 </div>

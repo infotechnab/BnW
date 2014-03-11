@@ -115,7 +115,7 @@ class Dbmodel extends CI_Model {
 public function get_navigation_info($navigationName)
     {
          $this->db->select('id');
-        $this->db->where('navigation_name', $navigationName);
+        $this->db->where('id', $navigationName);
         $query = $this->db->get('navigation');
           return $query->result();
     }
@@ -209,7 +209,11 @@ public function get_navigation_info($navigationName)
         return $query->result();
     }
     
-     public function get_list_of_menu()
+    public function get_menulist(){
+        
+    }
+
+    public function get_list_of_menu()
     {
         $query = $this->db->get('menu');
         return $query->result();
@@ -455,6 +459,25 @@ public function get_navigation_info($navigationName)
         $query = $this->db->get('user');
         return $query->result();
     }
+    
+    public function get_selected_user($useremail){
+       $this->db->where('user_email', $useremail );
+        $query = $this->db->get('user');
+        return $query->result();
+    }
+    public function update_emailed_user($to, $token){
+        $data = array(
+            'user_auth_key'=>$token);
+        $this->db->where('user_email', $to);
+        $this->db->update('user', $data);
+    }
+    public function update_user_password($token, $userPassword){
+        $data = array(
+            'user_pass'=> md5($userPassword));
+        $this->db->where('user_auth_key', $token);
+        $this->db->update('user', $data);
+    }
+
     public function get_user() {
         $query = $this->db->get('user');
         return $query->result();
@@ -468,11 +491,6 @@ public function get_navigation_info($navigationName)
         return $query->result();
     }
 
-
-
-
-
-
     function finduser($id) {
         $this->db->select();
 
@@ -480,7 +498,23 @@ public function get_navigation_info($navigationName)
         $this->db->where('id', $id );
         $query = $this->db->get();
         return $query->result();
-    }    
+    }  
+    
+    function find_user_auth_key($token) {
+        //die($token);
+        $this->db->where('user_auth_key', $token );
+        $query = $this->db->get('user');
+        return $query->result();
+    }  
+    
+    function find_user($email) {
+        $this->db->select();
+
+       $this -> db -> from('user');
+        $this->db->where('user_email', $email );
+        $query = $this->db->get();
+        return $query->result();
+    }  
     
      public function update_user($id,$name, $fname, $lname, $email, $pass, $status, $user_type) {
        

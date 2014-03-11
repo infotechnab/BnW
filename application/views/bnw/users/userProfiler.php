@@ -12,32 +12,29 @@
             foreach ($query as $data){
             ?>
           
-          User Name is: <?php echo $data->user_name ?>
+          User Name : <?php echo $data->user_name ?>
           <br/>
           
-          User First Name is: <?php echo $data->user_fname ?>
+          User full Name: <?php echo $data->user_fname." ".$data->user_lname; ?>
            <br/> 
           
-          User Last Name is: <?php echo $data->user_lname ?>
-          <br/> 
-          
-          User E-mail is: <?php echo $data->user_email ?>
+          User E-mail : <?php echo $data->user_email ?>
            <br/>   
          
 
-            Usre Status: <?php if($data->user_status=="Active")
+            User Status: <?php if($data->user_status=="0")
             {
                 echo "Draft";
             }
                 else
             {
-                    echo "Published";
+                    echo "Active";
                     
             }
             ?>
            <br/>
            
-            User Type: <?php if($data->user_type=="User")
+            User Type: <?php if($data->user_type=="1")
             {
                 echo "User";
             }

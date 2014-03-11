@@ -3,8 +3,8 @@
 <head>
     <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/styles/stylesForLogin.css" type="text/css" /> 
     <script src="<?php echo base_url(); ?>content/jquery-1.9.1.min.js" > </script>
-    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js">
-    </script> <script type="text/javascript">
+    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> 
+    <script type="text/javascript">
 //<![CDATA[
         bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
   //]]>
@@ -22,15 +22,12 @@
  
 </head>
 <body>
-   <script language="javascript" type="text/javascript">
-         document.getElementById("username").focus();
-        </script>
     <div class="container">
         <div class="left">
             <div id="loginform">
                
                 <table>
-                    <?php echo form_open('login/validate_credentials'); ?>
+                    <?php echo form_open('login/email'); ?>
                     <tbody>
                         <tr>
                         <td colspan="2">
@@ -42,37 +39,23 @@
                         </tr>
                         <tr>
                         <td colspan="2">
-                            <input type="text" size="35" id="username" name="username" placeholder="User Name" required/>
+                            <input type="text" size="35" id="username" name="username" placeholder="User Email" required/>
                         </td>
                         </tr>
                         <tr>
                         <td colspan="2">
-                            <input type="password" size="35" id="password" name="password" placeholder="Password" required/>
+                            <input type="submit" id="submitMe" value="Reset My Password">
                         </td>
                         </tr>
-                        <tr>
-                        <td colspan="2">
-                            <input type="submit" id="submitMe" value="Login">
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>
-                            <input type="checkbox" value=""/>Stay Logged In
-                        </td>
-                        <td>
-                            <a href="login/forgotPassword">Forgot Password</a>
-                        </td>
-                        </tr>
+                        
                     </tbody>
                     </form>
                 </table>
                     
             </div>
          </div>
-        
-        <!left side is closed here>
-        
-        <div class="right">
+    
+    <div class="right">
             <div>
                 <iframe class="frame" src="http://salyani.org/sources/iframeContent/bnwIframe.php" frameborder="0" scrolling="no"></iframe>
             </div>
@@ -81,3 +64,4 @@
         <div class="clear"></div>
         
     </div>
+</body>

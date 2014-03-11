@@ -38,14 +38,14 @@
             </select>
     
     <select name="selectNavigation">
-        <option value="0">
-                    Select none
+        <option value=" ">
+                    Make Parent
                 </option>
                 <?php
                 foreach ($listOfNavigation as $data)
                 {
                     ?>
-                <option value="<?php echo $data->navigation_name; ?>">
+                <option value="<?php echo $data->id; ?>">
                     <?php echo $data->navigation_name; ?>
                 </option>
                     <?php
@@ -94,6 +94,23 @@
                 ?>
           
             </select>
+    
+    <select name="selectNavigation">
+        <option value=" ">
+                    Make Parent
+                </option>
+                <?php
+                foreach ($listOfNavigation as $data)
+                {
+                    ?>
+                <option value="<?php echo $data->id; ?>">
+                    <?php echo $data->navigation_name; ?>
+                </option>
+                    <?php
+                }
+                ?>
+          
+            </select>
             <input type="submit" value="Add">
         <?php echo form_close();?>
     </div>
@@ -107,50 +124,27 @@
                     
 <?php
 
-$this->load->helper('myHelper');
+//$this->load->helper('myHelper');
 
-fetch_menu (query(0));
+//fetch_menu (query(0));
 
 ?>
 
 		</ul>
 	</div>
-    
-       
-       <?php /*
-        <table border="1" cellpadding="10">
-        <tr>
-            <th>S.N.</th>
-            <th>Title</th>
-            <th>Link</th>
-            <th>Type</th>
-            <th>Slug</th>
-            <th>Action</th>
-        </tr>
-    
-    <?php    
-        if(isset($query)){
-            foreach ($query as $data){
-            ?>
-          <tr>
-            <td><?php echo $data->id; ?></td>
-            <td><?php echo $data->navigation_name; ?></td>
-            <td><?php echo $data->navigation_link; ?></td>
-            <td><?php echo $data->navigation_type; ?></td>
-            <td><?php echo $data->navigation_slug; ?></td>
-            <td><?php echo anchor('bnw/editmenu/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('bnw/deletemenu/'.$data->id,'Delete'); ?></td>
-        </tr>
-            <?php    
-            }
-        }
-    ?>
-       
-    </table>
-    <?php echo $links; ?>
-       
+        <div>
+            <ul>
+            <?php foreach($listOfMenu as $data){
+                
+                $menu_id= $data->id;
+                $name = $data->menu_name; ?>
+               <h4> <?php echo $name; ?> </h4> <?php
+                $this->load->helper('myHelper');
+                fetch_menu (main_menu_query($menu_id));
+            } ?>
+               </ul>
+        </div>
         
-        */  ?>
     </div>
     
     <div class="clear"></div> 

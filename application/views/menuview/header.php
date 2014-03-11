@@ -67,9 +67,9 @@ fetch_menu (query(0));
                     <!-- Start WOWSlider.com BODY section -->
                     <div id="wowSlider">
                         <div class="ws_images"><ul>
-                                <?php foreach ($query as $data) {
+                                <?php foreach ($slidequery as $data) {
                                     ?>           
-                                    <li> <img src="<?php echo base_url(); ?>content/images/flag2.png" /> </li> <?php } ?>
+                                    <li> <img src="<?php echo base_url(); ?>content/images/<?php echo $data->slide_image; ?>" /> </li> <?php } ?>
                             </ul>
                         </div>
                         
@@ -79,15 +79,15 @@ fetch_menu (query(0));
                     <!-- End WOWSlider.com BODY section --> 
 
                 </div>
-                <?php foreach ($query as $data) {
+                <?php foreach ($pagequery as $page) {
                     ?>
                     <div class="container">
                         <div class="containerHeader">
-                            <h3> <?php echo $data->page_name . "-" . $data->id; ?> </h3>
+                            <h3> <?php echo $page->page_name . "-" . $page->id; ?> </h3>
                         </div>
                         <div class="content">
 
-                            <p class="paragraph"><?php echo $data->page_content; ?></p>        
+                            <p class="paragraph"><?php echo $page->page_content; ?></p>        
                         </div>
                     </div> 
 

@@ -1,4 +1,5 @@
 <div class="rightSide">
+    <div id="forLeftPage"> 
  <?php
  if(isset($error))
   {
@@ -32,9 +33,18 @@
   <textarea name="page_content" id="area1" rows="5" cols="50" style="resize:none;">
       <?php echo $body; ?></textarea>
   </p>
+  </div>
   
-  
-  
+  <div id="forRightPage"> 
+   <p> Order : <br/>
+       <input type="text" name="page_order" /> </p>
+   
+   <p> Type : <br/>
+       <input type="text" name="page_type" /> </p>
+   
+   <p> Tags : <br/>
+       <input type="text" name="page_tasg "/> </p>
+   
    <p>Status:<br />
   <?php 
   $options = array(
@@ -44,18 +54,11 @@
           
   ?>
   </p>
-   <p> Order : <br/>
-       <input type="text" name="page_order" /> </p>
-   
-   <p> Type : <br/>
-       <input type="text" name="page_type" /> </p>
-   
-   <p> Tags : <br/>
-       <input type="text" name="page_tasg "/> </p>
   
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
+  
 <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>
-</div>
+</div></div>
 <div class="clear"></div>
 </div>

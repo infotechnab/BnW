@@ -72,13 +72,16 @@ class bnw extends CI_Controller {
                  if(($_SERVER['REQUEST_METHOD'] == 'POST'))
             {
                 $navigationName = $_POST['selectNavigation'];
+                if($navigationName==" "){
+                    $parent_id='0';
+                }  else {              
                  $post_category_info = $this->dbmodel->get_navigation_info($navigationName);
-                 array_push($post_category_info, "select none");
+                 
                 foreach($post_category_info as $pid)
                 {
                     $parent_id= $pid->id;
                 }
-            }    
+                }            }    
                 
                  $navigation_slug= preg_replace('/\s+/', '', $v);
                  
@@ -125,7 +128,23 @@ class bnw extends CI_Controller {
             $listOfCategory = $this->dbmodel->get_list_of_category(); 
             $listOfNavigation = $this->dbmodel->get_list_of_navigation();
             $data["listOfNavigation"] = $this->dbmodel->get_list_of_navigation();
-                               
+             
+            
+            if(($_SERVER['REQUEST_METHOD'] == 'POST'))
+            {
+                $navigationName = $_POST['selectNavigation'];
+                if($navigationName==" "){
+                    $parent_id='0';
+                }  else {              
+                 $post_category_info = $this->dbmodel->get_navigation_info($navigationName);
+                 
+                foreach($post_category_info as $pid)
+                {
+                    $parent_id= $pid->id;
+                }
+                }            }
+                
+                
             if(($_SERVER['REQUEST_METHOD'] == 'POST'))
             {
                 $menuSelected = $_POST['selectMenuCategory'];
@@ -149,7 +168,6 @@ class bnw extends CI_Controller {
                 foreach ($myData as $k=>$v)
                 {
                 $navigation_name= $v;
-                 $parent_id = "0";
                  $navigation_type="category";
                  $navigation_link= $navigation_type."/".$k;
                  $navigation_slug= preg_replace('/\s+/', '', $v); ;
@@ -186,7 +204,6 @@ class bnw extends CI_Controller {
     }
          
     }
-    
 
     //=====================================================================================================
     //===================================Navigation========================================================
@@ -209,6 +226,7 @@ class bnw extends CI_Controller {
             $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
             $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
             $data["listOfNavigation"] = $this->dbmodel->get_list_of_navigation();
+            //$data['menulisting']= $this->dbmodel->get_menu_list();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
             $this->load->view('bnw/menu/listOfItems', $data);
@@ -765,14 +783,6 @@ class bnw extends CI_Controller {
                  {    
                  $page_author_id= $id->id;
                  }
-                 
-                 
-            /*$page_summary = $this->dbmodel->get_page_content($id);
-                            foreach($page_summary as $data)
-                        {    
-                            $summary= $data->page_content;
-                         }*/
-            //$summary = $this->input->post('page_summary');
             $status = $this->input->post('page_status');
             $order = $this->input->post('page_order');
             $type = $this->input->post('page_type');
@@ -1001,7 +1011,7 @@ class bnw extends CI_Controller {
             $this->form_validation->set_rules('user_lname', 'Last Name', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('user_email', 'User email', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('user_pass', 'Password', 'required|xss_clean|md5|max_length[200]');
-            $this->form_validation->set_rules('user_type', 'User Type', 'required|xss_clean|md5|max_length[200]');   
+            $this->form_validation->set_rules('user_type', 'User Type', 'required|xss_clean|max_length[200]');   
             if ($this->form_validation->run() == FALSE) {
 
                 $this->load->view('bnw/users/addNew');
@@ -1056,7 +1066,7 @@ class bnw extends CI_Controller {
             $this->form_validation->set_rules('user_lname', 'Last Name', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('user_email', 'User email', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('user_pass', 'Password', 'required|xss_clean|md5|max_length[200]');
-            $this->form_validation->set_rules('user_type', 'User Type', 'required|xss_clean|md5|max_length[200]');
+            $this->form_validation->set_rules('user_type', 'User Type', 'required|xss_clean|max_length[200]');
 
             if ($this->form_validation->run() == FALSE) {
                 //if not valid
@@ -1150,14 +1160,22 @@ class bnw extends CI_Controller {
     //===============================to add media=================================================
     public function addmedia() {
         if ($this->session->userdata('logged_in')) {
-            $data['meta'] = $this->dbmodel->get_meta_data();
+
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+
+            $this->load->library('upload', $config);
             $listOfAlbum = $this->dbmodel->get_list_of_album();
             $data["listOfAlbum"] = $this->dbmodel->get_list_of_album();
+            $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view('bnw/templates/header', $data);
-            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
-                               
+            
             if(($_SERVER['REQUEST_METHOD'] == 'POST'))
             {
                 $mediaName = $_POST['selectAlbum'];
@@ -1168,19 +1186,19 @@ class bnw extends CI_Controller {
                 }
             }
             $this->form_validation->set_rules('media_name', 'media Name', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('media_type', 'Type of Media', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('media_link', 'Link', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('media_association_id', 'ID', 'required|xss_clean|max_length[200]');
-            
-            if ($this->form_validation->run() == FALSE) {
+            //$this->form_validation->set_rules('media_type', 'Type of Media', 'required|xss_clean|max_length[200]');
 
-                $this->load->view('bnw/media/addNew');
+
+            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
+                $data['error'] = $this->upload->display_errors();
+                  
+                $this->load->view('bnw/media/addNew', $data);
             } else {
 
                 //if valid
-                
+                $data = array('upload_data' => $this->upload->data('file'));
                 $medianame = $this->input->post('media_name');
-                $mediatype = $this->input->post('media_type');
+                $mediatype = $data['upload_data']['file_name'];
                 $medialink = $this->input->post('media_link');
                 $this->dbmodel->add_new_media($medianame, $mediatype, $media_association_id, $medialink);
                 $this->session->set_flashdata('message', 'One media added sucessfully');
@@ -1213,15 +1231,23 @@ class bnw extends CI_Controller {
 
     function updatemedia() {
         if ($this->session->userdata('logged_in')) {
-            $data['meta'] = $this->dbmodel->get_meta_data();
+
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+
+            $this->load->library('upload', $config);
             $listOfAlbum = $this->dbmodel->get_list_of_album();
             $data["listOfAlbum"] = $this->dbmodel->get_list_of_album();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             
-             if(($_SERVER['REQUEST_METHOD'] == 'POST'))
+            if(($_SERVER['REQUEST_METHOD'] == 'POST'))
             {
                 $mediaName = $_POST['selectAlbum'];
                  $media_association_info = $this->dbmodel->get_media_association_info($mediaName);
@@ -1230,23 +1256,23 @@ class bnw extends CI_Controller {
                     $media_association_id= $id->id;
                 }
             }
-            //set validation rules
             $this->form_validation->set_rules('media_name', 'media Name', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('media_type', 'Type of Media', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('media_association_id', 'Association ID', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('media_link', 'Link', 'required|xss_clean|max_length[200]');
+            //$this->form_validation->set_rules('media_type', 'Type of Media', 'required|xss_clean|max_length[200]');
 
-
-            if ($this->form_validation->run() == FALSE) {
+            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
+                $data['error'] = $this->upload->display_errors();
+                
+                
+                
                 //if not valid
                 $data['query'] = $this->dbmodel->findmedia($id);
                 $this->load->view('bnw/media/mediaListing', $data);
             } else {
                 //if valid
                 $id = $this->input->post('id');
+                $data = array('upload_data' => $this->upload->data('file'));
                 $medianame = $this->input->post('media_name');
-                $mediatype = $this->input->post('media_type');
-                
+                $mediatype = $data['upload_data']['file_name'];
                 $medialink = $this->input->post('media_link');
                 $this->dbmodel->update_media($id, $medianame, $mediatype, $media_association_id, $medialink);
                 $this->session->set_flashdata('message', 'Media data Modified Sucessfully');

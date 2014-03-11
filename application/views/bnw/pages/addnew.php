@@ -17,17 +17,7 @@
   </p>
   <p>Body:<br />
       <textarea name="page_content" id="area1" cols="50" rows="5" ><?php echo set_value('page_content'); ?></textarea>
-  
   </p>    
-    
-   <p>Status:<br />
-  <?php 
-  $options = array(
-                  '1'  => 'publish',
-                  '0'    => 'draft');
-  echo form_dropdown('page_status',$options,'1')
-  ?>
-  </p>
   
     </div>
     
@@ -41,6 +31,14 @@
    
    <p> Tags : <br/>
        <input type="text" name="page_order" /> </p>
+   <p>Status:<br />
+  <?php 
+  $options = array(
+                  '1'  => 'publish',
+                  '0'    => 'draft');
+  echo form_dropdown('page_status',$options,'1')
+  ?>
+  </p>
   
   <input type="submit" value="Submit" />
   <?php echo form_close();?>

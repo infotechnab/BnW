@@ -16,7 +16,8 @@
   </p>
   
   <p>Type<br />
-  <input type="text" name="media_type" value="<?php echo set_value('media_type'); ?>" />
+  <input type="file" name="file_name" id="file" />
+  
   </p>
   
   <p>Select Association Id:<br/>

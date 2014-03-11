@@ -56,6 +56,137 @@ class Login extends CI_Controller {
                     }
 	}
         
+        public function forgotPassword(){
+        $this->load->library('session');
+     if(!$this->session->userdata('logged_in'))
+     {  $data['meta'] = $this->dbmodel->get_meta_data();
+        $this->load->view('bnw/templates/forgotPassword',$data);            
+        $this->load->view('bnw/templates/footer',$data);
+     }
+        else {
+         $this->session->set_flashdata('message', 'UIncorrect User Email');
+                        redirect('login/forgotPassword');
+     } 
+    }
+    
+    public function email(){
+        $data['meta'] = $this->dbmodel->get_meta_data();
+        $this->load->view('bnw/templates/header', $data);
+        
+        $useremail= $_POST['username'];
+       
+        $username =  $this->dbmodel->get_selected_user($useremail);
+        
+        foreach ($username as $dbemail){
+            $to = $dbemail->user_email;
+        }
+        if ($to==$useremail) {                                       
+               $token= $this->getRandomString(10);                          
+                $this->dbmodel->update_emailed_user($to, $token);  
+                $this->test($token);
+                //$this->resetPassword($token);
+                $this->mailresetlink($to, $token);
+                
+               // redirect('login/test');
+            } else {
+                
+                redirect("login/forgotPassword");
+            }
+            $this->load->view('bnw/templates/footer', $data);
+    }
+    
+    public function test($token){
+        
+        $data['query'] = $this->dbmodel->find_user_auth_key($token);
+        $this->load->view('bnw/templates/messageSent',$data);
+    }
+    
+    function getRandomString($length) 
+	   {
+    $validCharacters = "ABCDEFGHIJKLMNPQRSTUXYVWZ123456789";
+    $validCharNumber = strlen($validCharacters);
+    $result = "";
 
+    for ($i = 0; $i < $length; $i++) {
+        $index = mt_rand(0, $validCharNumber - 1);
+        $result .= $validCharacters[$index];
+    }
+    return $result;
+    
+    
+           } 
+           
+  
+function mailresetlink($to,$token){
+ //   $to
+/*$subject = "Forgot Password on Megarush.net";
+$uri = 'http://'. $_SERVER['HTTP_HOST'] ;
+$message = '
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<p>Click on the given link to reset your password <a href="'.$uri.'/reset.php?token='.$token.'">Reset Password</a></p>
+
+</body>
+</html>
+';
+//$headers = "MIME-Version: 1.0" . "\r\n";
+//$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+//$headers .= 'From: Admin<webmaster@example.com>' . "\r\n";
+$headers .= 'rsubedi@salyani.com.np';
+
+ mail('bhomnath@salyani.com.np',$subject,$message,$headers);
+	//echo "We have sent the password reset link to your  email id <b>".$to."</b>"; */
+    
+      
+}
+         
+           
+  public function resetPassword() {
+            
+            //$data['query'] = $this->dbmodel->find_user_auth_key($token);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/resetPassword", $data);
+            
+            $this->load->view('bnw/templates/footer', $data);
+         
+    }        
+ public function setpassword(){
+   $data['meta'] = $this->dbmodel->get_meta_data();
+   $this->load->view('bnw/templates/header', $data);
+       
+   //$this->form_validation->set_rules('user_pass', 'Password', 'required|xss_clean|md5|max_length[200]');
+   //$this->form_validation->set_rules('user_confirm_pass', 'Password', 'required|xss_clean|md5|max_length[200]');
+     
+   
+   $password= $_POST['user_pass'];
+        $token = $_POST['tokenid'];
+       
+        $confirmPassword =  $_POST['user_confirm_pass'];
+        if ($password==$confirmPassword) {                                       
+               
+            $userPassword=  $this->input->post('user_pass');
+            
+                $this->dbmodel->update_user_password($token, $userPassword);  
+                
+                $this->session->set_flashdata('message', 'Your password has been changed successfully');
+                redirect('login', 'refresh');
+               
+            } else {
+                
+                $this->session->set_flashdata('message', 'Password didnot match');
+               redirect('login/forgotPassword', 'refresh');
+            }
+            
+      
+ }
+
+ 
+ 
+ 
+ 
 }
 ?>

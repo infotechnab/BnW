@@ -56,10 +56,8 @@
   
   <p> User Type:<br />
   <?php 
-  $user_type = array(
-                  '1'  => 'User',
-                  '0'    => 'Administrator');
-  echo form_dropdown('user_type',$user_type,'1')
+  $useroptions = array('0' => 'Administrator', '1' => "User" );
+  echo form_dropdown('user_type',$useroptions)
   ?>
   </p>
   

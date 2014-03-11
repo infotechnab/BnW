@@ -1,4 +1,5 @@
 <div class="rightSide">
+    <div id="forLeftPage">
  <?php
  if(isset($error))
   {
@@ -34,6 +35,9 @@
   <textarea name="post_content" id="area1" rows="5" cols="50" style="resize:none;">
       <?php echo $post_content; ?></textarea>
   </p>
+    </div>
+    
+    <div id="forRightPage">
   
    <p>Post Status:<br />
   <?php 
@@ -78,6 +82,7 @@
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
 <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>
+    </div>
 </div>
 <div class="clear"></div>
 </div>

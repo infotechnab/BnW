@@ -10,7 +10,8 @@ class view extends CI_Controller {
 public function index()
     {
         
-        $data['query'] = $this->viewmodel->get_page();
+        $data['pagequery'] = $this->viewmodel->get_page();
+        $data['slidequery'] = $this->viewmodel->get_slider();
         
         $this->load->view('menuview/header',$data);
         

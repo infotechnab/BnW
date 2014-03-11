@@ -40,17 +40,8 @@ return false;
             ?>
           <tr>
             <td><?php echo $data->id ?></td>
-            <td><?php echo $data->title ?></td>
-            <td><?php if($data->status==0)
-            {
-                echo "Draft";
-            }
-                else
-            {
-                    echo "Published";
-                    
-            }
-            ?></td>
+            <td><?php //echo $data->title ?></td>
+            <td><?php echo "Published"; ?></td>
             <td><?php echo anchor('bnw/editgadget/'.$data->id,'Edit') ?>   </td> <td onclick="return del()"> <?php echo anchor('bnw/deletegadget/'.$data->id,'Delete') ?> </td>
         </tr>
             <?php    
