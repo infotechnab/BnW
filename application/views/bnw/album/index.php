@@ -18,7 +18,12 @@ $(document).ready(function(){
 </script>
 <div class="rightSide">
     <h2>Album</h2>
-
+<?php echo validation_errors();
+if(isset($error))
+{
+    echo $error;
+}    
+?>
  <?php 
        $res = $this->dbmodel->get_album();
 ?>
@@ -27,12 +32,7 @@ $(document).ready(function(){
 <div id="newAlbum">
 <a class="ad" href="#" style="position: relative; top: 50px; left: 0px;" >Create new album </a>
 <div id="error">
-    <?php echo validation_errors();
-if(isset($error))
-{
-    echo $error;
-}    
-?>
+    
 </div>
 <div class="frm" style="width:150px; height:90px; float: left; display:none; z-index:105; " >
     <?php echo form_open('bnw/addalbum'); ?>
