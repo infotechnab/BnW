@@ -15,8 +15,6 @@ if ($meta)
 
 <h2><?php echo $meta_data[1]; ?> Dashboard Management</h2>
 
-<p>This page to setup domain.</p>
-
 <?php echo form_open('bnw/setupupdate');?>
   <p>Site Url :<br />
   <input type="text" name="url" value="<?php echo $meta_data[0]; ?>" />
