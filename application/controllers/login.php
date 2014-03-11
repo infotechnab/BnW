@@ -89,7 +89,7 @@ class Login extends CI_Controller {
                 
                // redirect('login/test');
             } else {
-                
+                $this->session->set_flashdata('message', 'Please type valid Email Address');
                 redirect("login/forgotPassword");
             }
             $this->load->view('bnw/templates/footer', $data);
