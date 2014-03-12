@@ -1724,23 +1724,84 @@ class bnw extends CI_Controller {
  {
      if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
+            $set['query'] = $this->dbmodel->get_design_setup();
+           // var_dump($set);
             $this->load->view("bnw/templates/header" , $data);
             $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/setup/addHeader', $data);
+            $this->load->view('bnw/setup/addHeader', $set);
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');
         }
  }
  
-  public function sidebar()
+ public function headerupdate(){
+     if ($this->session->userdata('logged_in')) {
+
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('header_title', 'Title', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('header_logo', 'Logo', 'required|xss_clean');
+            $this->form_validation->set_rules('header_description', 'Description', 'required|xss_clean');
+           // $this->form_validation->set_rules('header_bgcolor', 'Description', 'required|xss_clean');
+            if (($this->form_validation->run() == FALSE)) {
+
+                $data['meta'] = $this->dbmodel->get_meta_data();
+                //$set['query'] = $this->dbmodel->get_design_setup();
+                $this->load->view("bnw/templates/header" , $data);
+                $this->load->view("bnw/templates/menu");
+                $this->load->view('bnw/setup/addHeader');
+                $this->load->view('bnw/templates/footer', $data);
+            } else {
+                $headerTitle = $this->input->post('header_title');
+                $headerLogo = $this->input->post('header_logo');
+                $headerDescription = $this->input->post('header_description');
+                $headerBgColor = $this->input->post('header_bgcolor');
+                $this->dbmodel->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
+                redirect('bnw');
+            }
+        } else {
+            redirect('login', 'refresh');
+        }
+ }
+
+
+ public function sidebar()
  {
      if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
+            $set['query'] = $this->dbmodel->get_design_setup();
             $this->load->view("bnw/templates/header" , $data);
             $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/setup/addSidebar', $data);
+            $this->load->view('bnw/setup/addSidebar', $set);
             $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+ }
+ 
+ public function sidebarupdate(){
+     if ($this->session->userdata('logged_in')) {
+
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('sidebar_title', 'Title', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('sidebar_description', 'Description', 'required|xss_clean');
+            $this->form_validation->set_rules('sidebar_bgcolor', 'Background Color', 'required|xss_clean');
+           // $this->form_validation->set_rules('header_bgcolor', 'Description', 'required|xss_clean');
+            if (($this->form_validation->run() == FALSE)) {
+
+                $data['meta'] = $this->dbmodel->get_meta_data();
+                $this->load->view("bnw/templates/header" , $data);
+                $this->load->view("bnw/templates/menu");
+                $this->load->view('bnw/setup/addSidebar');
+                $this->load->view('bnw/templates/footer', $data);
+            } else {
+                $sideBarTitle = $this->input->post('sidebar_title');
+                $sideBarDescription = $this->input->post('sidebar_description');
+                $sideBarBgColor = $this->input->post('sidebar_bgcolor');
+                
+                $this->dbmodel->update_design_sidebar_setup($sideBarTitle, $sideBarDescription, $sideBarBgColor);
+                redirect('bnw');
+            }
         } else {
             redirect('login', 'refresh');
         }

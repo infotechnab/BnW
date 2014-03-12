@@ -500,8 +500,7 @@ public function get_navigation_info($navigationName)
         return $query->result();
     }  
     
-    function find_user_auth_key($token) {
-        //die($token);
+    function find_user_auth_key($token) {       
         $this->db->where('user_auth_key', $token );
         $query = $this->db->get('user');
         return $query->result();
@@ -829,6 +828,42 @@ public function get_navigation_info($navigationName)
         $this->db->where('id = ' . "'" . $id . "'");
         $query = $this->db->get();
         return $query->result();
+    }
+    
+   //=====================================design_setup========================================================//
+    public function get_design_setup()
+    {
+                $this->db->from('design_setup');
+                $query = $this->db->get();
+                return $query->result();
+    }
+    
+    function update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor)
+    {
+        $data = Array( array('description'=>$headerTitle), array('description'=>$headerLogo), array('description'=>$headerDescription), array('description'=>$headerBgColor));
+        $i= 1;
+              
+        foreach ($data as $value)
+        {
+          
+            $this->db->where('id', $i);
+            $this->db->update('design_setup', $value);        
+            $i++;
+        }
+    }
+    
+    function update_design_sidebar_setup($sideBarTitle, $sideBarDescription, $sideBarBgColor)
+    {
+        $data = Array( array('description'=>$sideBarTitle), array('description'=>$sideBarDescription), array('description'=>$sideBarBgColor));
+        $i= 4;
+              
+        foreach ($data as $value)
+        {
+          
+            $this->db->where('id', $i);
+            $this->db->update('design_setup', $value);        
+            $i++;
+        }
     }
     
     //=============================metadata  --------------------------------------------------------------------------------

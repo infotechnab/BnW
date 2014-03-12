@@ -1,27 +1,35 @@
-<div class="rightSide">  
-<h2>Change Header Content</h2>
-  <?php echo validation_errors();
-  if(isset($error))
-  {
-      echo $error;
-  }
-  ?>
-<p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-</p>
-  <?php echo form_open_multipart('bnw/addHeader');?>
-  
-  <p>Header Title:<br />
-  <input type="text" name="title" value="<?php echo set_value('title'); ?>" />
+<div class="rightSide">
+<?php 
+if ($query)
+    
+{
+    $i=0;
+    foreach ($query as $data)
+    {        
+       $set_data[$i] = $data->description;
+       $i++;      
+    }
+ }
+ echo validation_errors();
+    ?>
+
+
+<h2> Header Content Management</h2>
+
+<?php echo form_open('bnw/headerupdate');?>
+  <p>Header Title :<br />
+  <input type="text" name="header_title" value="<?php echo $set_data[0]; ?>" />
   </p>
-  <p>Header Body:<br />
-      <textarea name="content" id="area1" cols="50" rows="5" ><?php echo set_value('content'); ?></textarea>
-  </p>  
-  <p>Choose Header Colour:<br/> <input type="color" name="favouriteColor" class="color" />
-      
+  <p>Header Logo :<br />
+  <input type="text" name="header_logo" value="<?php echo $set_data[1]; ?>"/>
   </p>
-  
-  <input type="submit" value="Submit" />
+  <p>Header Description :<br />
+  <input type="text" name="header_description" value="<?php echo $set_data[2]; ?>"/>
+  </p>
+  <p>Header Background Color :<br />
+  <input type="color" class="color" name="header_bgcolor" value="<?php echo $set_data[3]; ?>"/>
+  </p>
+ <input type="submit" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>

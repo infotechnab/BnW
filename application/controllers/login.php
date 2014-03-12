@@ -145,8 +145,6 @@ $headers .= 'rsubedi@salyani.com.np';
          
            
   public function resetPassword() {
-            
-            //$data['query'] = $this->dbmodel->find_user_auth_key($token);
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/resetPassword", $data);

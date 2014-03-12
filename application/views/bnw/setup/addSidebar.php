@@ -1,17 +1,32 @@
-<div class="rightSide">  
-<h2>Change Header Content</h2>
-  <?php echo validation_errors();
-  if(isset($error))
-  {
-      echo $error;
-  }
-  ?>
-<p>Choose Sidebar Colour:<br/>
-    <input type="color" class="color" />
-</p>
+<div class="rightSide">
+<?php 
+if ($query)
+   
+{
+    $i=0;
+    foreach ($query as $data)
+    {        
+       $set_data[$i] = $data->description;
+       $i++;      
+    }
+ }
+ echo validation_errors();
+    ?>
 
 
-<input type="submit" value="Submit" />
+<h2> Side bar Content Management</h2>
+
+<?php echo form_open('bnw/sidebarupdate');?>
+  <p>Sidebar Title :<br />
+  <input type="text" name="sidebar_title" value="<?php echo $set_data[4]; ?>" />
+  </p>
+  <p>Sidebar Description :<br />
+  <input type="text" name="sidebar_description" value="<?php echo $set_data[5]; ?>"/>
+  </p>
+  <p>Sidebar Background Color :<br />
+  <input type="color" class="color" name="sidebar_bgcolor" value="<?php echo $set_data[6]; ?>"/>
+  </p>
+ <input type="submit" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>
