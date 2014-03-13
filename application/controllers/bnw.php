@@ -274,6 +274,7 @@ class bnw extends CI_Controller {
 
     public function editnavigation($id) {
         if ($this->session->userdata('logged_in')) {
+            $id = $this->input->post('id');
             $data['query'] = $this->dbmodel->findnavigation($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view("bnw/templates/header", $data);

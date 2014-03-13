@@ -11,42 +11,62 @@
     <body>
         <div class="full">
             <div class="fullLeft">
+                <?php foreach ($headertitle as $header) {
+                    ?>
+    
                 <div class="header">
-                    <h1> B&W </h1>
+                    <h1> <?php echo $header->description ; ?> </h1>
                 </div>
+                <?php } ?>
+                
+                <?php foreach ($headerlogo as $header) {
+                    ?>
+    
+                <div class="header">
+                    <h4> <?php echo $header->description ; ?> </h4>
+                </div>
+                <?php } ?>
+                
+                <?php foreach ($headerdescription as $header) {
+                    ?>
+    
+                <div class="header">
+                    <p> <?php echo $header->description ; ?> </p>
+                </div>
+                <?php } ?>
 
                 <div class="menuItem">
                     <ul class="list">
                                             
-<?php
+        <?php
 
-$this->load->helper('myHelper');
+            $this->load->helper('myHelper');
 
-fetch_menu (query(0));
+            fetch_menu (query(0));
 
-?>
+        ?>
                     </ul>
 
                 </div>
                 <div class="clear"></div>
                 <div class="eventAndDownload">
+                    
+                    
                     <div class="event">
                         <div class="eventHeader">
                             <h3>News and Events</h3>
                         </div>
-                        <?php
-                        $event[] = array(array('id'=>1, 'title'=>"news and events"),array('id'=>2, 'title'=>"news and events"),
-                            array('id'=>3, 'title'=>"news and events"), array('id'=>4, 'title'=>"news and events"));
-                        foreach ($event as $data) {
-                             foreach($data as $singleArray){
-                            ?>
-                            <div class="newNews"><?php $singleArray['id']; ?> </div>
+                        <?php foreach($pagequery as $summary){
+                    ?>
+                            <div class="newNews"></div>
                             <p class="paragraph">
-                                <?php echo $singleArray['title']; ?>
+                                <?php echo $summary->page_summary ?>
                             </p>
                             <p class="paragraph" > <?php echo anchor('view/index/', 'more'); ?> </p>
-                            <hr/> <?php }} ?>
+                            <hr/> 
+                            <?php } ?>
                     </div>
+                    
                     <div class="download">
                         <div class="downloadHeader"><h3> Downloads </h3></div>
                         <div>
@@ -83,7 +103,8 @@ fetch_menu (query(0));
                     ?>
                     <div class="container">
                         <div class="containerHeader">
-                            <h3> <?php echo $page->page_name . "-" . $page->id; ?> </h3>
+                            <h3> <?php echo $page->page_name ; ?> </h3>
+                            
                         </div>
                         <div class="content">
 

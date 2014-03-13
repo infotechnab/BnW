@@ -26,5 +26,40 @@ class Viewmodel extends CI_Model
         return $query->result();
     }
     
+    public function get_design_setup()
+    {
+        $this->db->from('design_setup');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_header_title()
+    {
+        $this->db->select('description');
+        $this->db->from('design_setup');
+        $this->db->where('name', 'header_title');
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
+    public function get_header_logo()
+    {
+        $this->db->select('description');
+        $this->db->from('design_setup');
+        $this->db->where('name', 'header_logo');
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
+    public function get_header_description()
+    {
+        $this->db->select('description');
+        $this->db->from('design_setup');
+        $this->db->where('name', 'header_description');
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
+    
+    
 
 }
