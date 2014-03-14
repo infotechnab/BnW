@@ -30,9 +30,7 @@
                 <div class="header">
                     <p> <?php echo $header->description ; ?> </p>
                 </div>
-                <?php } ?>
-            
-          
+                <?php } ?> 
           
             
             

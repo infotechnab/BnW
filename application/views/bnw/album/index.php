@@ -26,6 +26,7 @@ if(isset($error))
 ?>
  <?php 
        $res = $this->dbmodel->get_album();
+       
 ?>
 
 
