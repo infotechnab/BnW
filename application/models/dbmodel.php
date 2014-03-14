@@ -40,10 +40,17 @@ class Dbmodel extends CI_Model {
    
         
         function get_media_image($aid)
-        {         
-            $this->db->where('media_association_id',$aid);         
-            $query = $this->db->get('media');
+        {
+            $this->db->select();            
+            $this->db->where('media_association_id',$aid);
+            
+            $this->db->limit(1);
+                    $query = $this->db->get('media');
+           if ($query->num_rows() == 1) {
             return $query->result();
+        } else {
+            return false;
+        }
         }
         
         //=========================================================================================================
@@ -650,8 +657,8 @@ public function get_navigation_info($navigationName)
     }
     
 
-     function delete_album($aid) {
-        $this->db->delete('album', array('id' => $aid));
+     function delete_album($id) { 
+        $this->db->delete('album', array('id' => $id));
     } 
     
     function edit_album($aid) {
@@ -688,7 +695,7 @@ public function get_navigation_info($navigationName)
 
     function delete_photo($id) {
        
-        $this->db->delete('media', array('id' => $id));
+        $this->db->delete('media', array('media_association_id' => $id));
         
     }
     

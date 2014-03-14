@@ -1408,8 +1408,9 @@ class bnw extends CI_Controller {
     }
 
     public function deletephoto($id) {
-       // die($id);
+       
         if ($this->session->userdata('logged_in')) {
+           
             $this->dbmodel->delete_photo($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
             redirect('bnw/addalbum');
@@ -2224,9 +2225,10 @@ class bnw extends CI_Controller {
         }
     }
 
-    function delete_album($aid) {
+    function delete_album($id) {
         if ($this->session->userdata('logged_in')) {
-            $this->dbmodel->delete_album($aid);
+            $this->dbmodel->delete_photo($id);
+            $this->dbmodel->delete_album($id);
             redirect('bnw/album');
         } else {
             redirect('login', 'refresh');
