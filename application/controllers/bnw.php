@@ -1316,7 +1316,7 @@ class bnw extends CI_Controller {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/album/albumListing');
+            $this->load->view('bnw/album/index');
             $this->load->view('bnw/templates/footer', $data);
         }
     }
