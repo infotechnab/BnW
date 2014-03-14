@@ -7,12 +7,31 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>content/engine1/jquery.js"></script>
     </head>
     <body>
-        <div>
-         
+        <div class="header">
+            <?php foreach ($headertitle as $header) {
+                    ?>
+    
+                <div class="header">
+                    <h1> <?php echo $header->description ; ?> </h1>
+                </div>
+                <?php } ?>
+                
+                <?php foreach ($headerlogo as $header) {
+                    ?>
+    
+                <div class="header">
+                    <h4> <?php echo $header->description ; ?> </h4>
+                </div>
+                <?php } ?>
+                
+                <?php foreach ($headerdescription as $header) {
+                    ?>
+    
+                <div class="header">
+                    <p> <?php echo $header->description ; ?> </p>
+                </div>
+                <?php } ?>
             
-            
-            
-            <h1>The content is displayed here.</h1>  
           
           
             

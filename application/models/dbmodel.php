@@ -841,7 +841,7 @@ public function get_navigation_info($navigationName)
     function update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor)
     {
         $data = Array( array('description'=>$headerTitle), array('description'=>$headerLogo), array('description'=>$headerDescription), array('description'=>$headerBgColor));
-        $i= 1;
+        $i= 0;
               
         foreach ($data as $value)
         {
