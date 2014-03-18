@@ -33,6 +33,7 @@
   
   <p>Select Association Id:<br/>
          <select name="selectAlbum">
+             <option value=" ">Select None</option>
                 <?php
                 foreach ($listOfAlbum as $data)
                 {
@@ -47,9 +48,7 @@
             </select>
    </p>
   
-  <p>Link<br />
-  <input type="text" name="media_link" value="<?php echo $medialink; ?>" />
-  </p>
+  
   
   <input type="submit" value="Submit" />
   <?php echo form_close();?>

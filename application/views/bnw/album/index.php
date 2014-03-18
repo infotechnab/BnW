@@ -24,9 +24,6 @@ if(isset($error))
     echo $error;
 }    
 ?>
- <?php 
-       $res = $this->dbmodel->get_album();
-?>
 
 
 <div id="newAlbum">
@@ -44,11 +41,12 @@ if(isset($error))
 </div>
 
 <?php
-foreach ($res as $r)
+if($query){
+foreach ($query as $data)
 {
-	$aid = $r->id;	
+	$aid = $data->id;	
         
-                   
+                  
 	$result = $this->dbmodel->get_media_image($aid); 
         if($result)
         {
@@ -63,7 +61,7 @@ foreach( $result as $abc)
 
     <img src="<?php echo base_url(); ?>content/images/<?php echo $abc->media_type; ?>" id="galleryimage" />
         <div id="imagetitle">
-            <?php echo anchor('bnw/photos/'.$r->id,$r->album_name); ?> 
+            <?php echo anchor('bnw/photos/'.$data->id,$data->album_name); ?> 
         </div>
             <a href="<?php echo base_url();?>index.php/bnw/delete_album/<?php echo $aid; ?> " id="<?php echo $aid; ?>" class="delbutton">
         <img src="<?php echo base_url();?>content/images/delete.png" id="close"/></a>
@@ -74,15 +72,14 @@ foreach( $result as $abc)
 
 <?php }}
 else 
- {   
- ?>     
-<div id="photodiv">
-   
+ {  
     
-
-        <img src="<?php echo base_url(); ?>content/images/<?php echo $abc->media_type; ?>" id="galleryimage" />
+ ?>     
+<div id="photodiv"> 
+    
+   
         <div id="imagetitle">
-            <?php echo anchor('bnw/photos/'.$r->id,$r->album_name); ?> 
+            <?php echo anchor('bnw/photos/'.$data->id,$data->album_name); ?> 
         </div>
             <a href="<?php echo base_url();?>index.php/bnw/delete_album/<?php echo $aid; ?> " id="<?php echo $aid; ?>" class="delbutton">
         <img src="<?php echo base_url();?>content/images/delete.png" id="close"/></a>
@@ -92,8 +89,8 @@ else
 
 
 
- <?php     
- }?> 
+ <?php    
+ }}?> 
  
 
 

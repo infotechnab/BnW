@@ -657,8 +657,8 @@ public function get_navigation_info($navigationName)
     }
     
 
-     function delete_album($aid) {
-        $this->db->delete('album', array('id' => $aid));
+     function delete_album($id) { 
+        $this->db->delete('album', array('id' => $id));
     } 
     
     function edit_album($aid) {
@@ -695,7 +695,7 @@ public function get_navigation_info($navigationName)
 
     function delete_photo($id) {
        
-        $this->db->delete('media', array('id' => $id));
+        $this->db->delete('media', array('media_association_id' => $id));
         
     }
     
@@ -852,6 +852,11 @@ public function get_navigation_info($navigationName)
         }
     }
     
+    
+    
+    
+
+
     function update_design_sidebar_setup($sideBarTitle, $sideBarDescription, $sideBarBgColor)
     {
         $data = Array( array('description'=>$sideBarTitle), array('description'=>$sideBarDescription), array('description'=>$sideBarBgColor));

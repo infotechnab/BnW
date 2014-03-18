@@ -1163,8 +1163,8 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
 
             $config['upload_path'] = './content/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf|doc|ppt|odt|pptx|docx|xls|xlsx|key';
+            $config['max_size'] = '2000';
             $config['max_width'] = '1024';
             $config['max_height'] = '768';
 
@@ -1234,8 +1234,8 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
 
             $config['upload_path'] = './content/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf|doc|ppt|odt|pptx|docx|xls|xlsx|key.';
+            $config['max_size'] = '2000';
             $config['max_width'] = '1024';
             $config['max_height'] = '768';
 
@@ -1316,7 +1316,7 @@ class bnw extends CI_Controller {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/album/albumListing');
+            $this->load->view('bnw/album/index');
             $this->load->view('bnw/templates/footer', $data);
         }
     }
@@ -1408,8 +1408,9 @@ class bnw extends CI_Controller {
     }
 
     public function deletephoto($id) {
-       // die($id);
+       
         if ($this->session->userdata('logged_in')) {
+           
             $this->dbmodel->delete_photo($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
             redirect('bnw/addalbum');
@@ -1729,40 +1730,57 @@ class bnw extends CI_Controller {
            // var_dump($set);
             $this->load->view("bnw/templates/header" , $data);
             $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/setup/addHeader', $set);
+            $this->load->view('bnw/setup/test', $set);
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');
         }
  }
  
+ 
  public function headerupdate(){
      if ($this->session->userdata('logged_in')) {
+         
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['query'] = $this->dbmodel->get_design_setup();
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
 
+            $this->load->library('upload', $config);
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('header_title', 'Title', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('header_logo', 'Logo', 'required|xss_clean');
-            $this->form_validation->set_rules('header_description', 'Description', 'required|xss_clean');
-           // $this->form_validation->set_rules('header_bgcolor', 'Description', 'required|xss_clean');
-            if (($this->form_validation->run() == FALSE)) {
-
-                $data['meta'] = $this->dbmodel->get_meta_data();
-                //$set['query'] = $this->dbmodel->get_design_setup();
-                $this->load->view("bnw/templates/header" , $data);
-                $this->load->view("bnw/templates/menu");
-                $this->load->view('bnw/setup/addHeader');
-                $this->load->view('bnw/templates/footer', $data);
+            
+            
+            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
+                $data['error'] = $this->upload->display_errors();
+                
+                $this->load->view('bnw/setup/addHeader', $data);
             } else {
+
+                //if valid
+                $data = array('upload_data' => $this->upload->data('file'));
+                
                 $headerTitle = $this->input->post('header_title');
-                $headerLogo = $this->input->post('header_logo');
+                $headerLogo = $data['upload_data']['file_name'];
+                var_dump($headerLogo);
                 $headerDescription = $this->input->post('header_description');
                 $headerBgColor = $this->input->post('header_bgcolor');
                 $this->dbmodel->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
+                $this->session->set_flashdata('message', 'Header setting done sucessfully');
                 redirect('bnw');
             }
+            $this->load->view('bnw/templates/footer', $data);
         } else {
+
             redirect('login', 'refresh');
-        }
+        
+     }
  }
 
 
@@ -2224,9 +2242,10 @@ class bnw extends CI_Controller {
         }
     }
 
-    function delete_album($aid) {
+    function delete_album($id) {
         if ($this->session->userdata('logged_in')) {
-            $this->dbmodel->delete_album($aid);
+            $this->dbmodel->delete_photo($id);
+            $this->dbmodel->delete_album($id);
             redirect('bnw/album');
         } else {
             redirect('login', 'refresh');

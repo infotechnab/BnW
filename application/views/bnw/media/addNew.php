@@ -1,5 +1,6 @@
 <div class="rightSide">
 <h2>Add new Media</h2>
+<p>Allowed file types: jpg, jpeg, png, gif, pdf, doc, ppt, odt, pptx, docx, xls, xlsx, key</p>
   <?php echo validation_errors();
   if(isset($error))
   {
@@ -22,6 +23,7 @@
   
   <p>Select Association Id:<br/>
          <select name="selectAlbum">
+             <option value=" ">Select None</option>
                 <?php
                 foreach ($listOfAlbum as $data)
                 {
@@ -36,9 +38,6 @@
             </select>
    </p>
   
-  <p>Link<br />
-  <input type="text" name="media_link" value="<?php echo set_value('media_link'); ?>" />
-  </p>
   
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
