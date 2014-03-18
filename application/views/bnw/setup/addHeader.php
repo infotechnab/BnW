@@ -10,8 +10,15 @@ if ($query)
        $i++;      
     }
  }
- echo validation_errors();
-    ?>
+ ?>
+ <?php echo validation_errors();
+  if(isset($error))
+  {
+      echo $error;
+  }
+  ?>
+
+    
 
 
 <h2> Header Content Management</h2>
@@ -21,7 +28,7 @@ if ($query)
   <input type="text" name="header_title" value="<?php echo $set_data[0]; ?>" />
   </p>
   <p>Header Logo :<br />
-  <input type="file" name="file_name" id="file" />
+  <input type="file" name="file_name" id="file"  />
   </p>
   <p>Header Description :<br />
   <input type="text" name="header_description" value="<?php echo $set_data[2]; ?>"/>

@@ -852,6 +852,11 @@ public function get_navigation_info($navigationName)
         }
     }
     
+    
+    
+    
+
+
     function update_design_sidebar_setup($sideBarTitle, $sideBarDescription, $sideBarBgColor)
     {
         $data = Array( array('description'=>$sideBarTitle), array('description'=>$sideBarDescription), array('description'=>$sideBarBgColor));
