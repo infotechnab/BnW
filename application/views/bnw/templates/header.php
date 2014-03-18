@@ -5,7 +5,10 @@
     <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/styles/dashBoardStyles.css" type="text/css" /> 
     <script src="<?php echo base_url(); ?>content/jquery-1.9.1.min.js" > </script>
     <script src="<?php echo base_url(); ?>content/scripts/jscolor.js" > </script>
-     <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
+      <script src="<?php echo base_url(); ?>content/scripts/nicEdit.js"></script>
+
+<!--    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> -->
+<script type="text/javascript">
 //<![CDATA[
 bkLib.onDomLoaded(function() {
 new nicEditor().panelInstance('area1');
