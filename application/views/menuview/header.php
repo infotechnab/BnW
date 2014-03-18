@@ -62,7 +62,7 @@
                             <p class="paragraph">
                                 <?php echo $summary->page_summary ?>
                             </p>
-                            <p class="paragraph" > <?php echo anchor('view/index/', 'more'); ?> </p>
+                            <p class="paragraph" > <?php echo anchor('view/index/page/'.$summary->id , 'more'); ?> </p>
                             <hr/> 
                             <?php } ?>
                     </div>
