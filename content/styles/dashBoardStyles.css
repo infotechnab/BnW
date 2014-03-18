@@ -150,6 +150,31 @@ ul.menu li.mainMenuItem:hover
     padding: 0px;
 }
 /*for navigation item's page and category selection div'*/
+.left
+{
+    border: 1px solid black;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 3px;
+}
+#navigationLeftUp
+{
+    padding: 10px;
+    margin: 0px;
+    max-height: 150px;
+    margin-bottom: 1px;
+    width: 93.5%;
+    overflow: auto;
+}
+#navigationLeftDown
+{
+    padding: 10px;
+    margin: 0px;
+    height: 15px; 
+    margin-bottom: 3px;
+    width: 100%;
+}
+
 .left ul li
 {
     list-style-type: none;
@@ -400,18 +425,7 @@ tr:nth-child(odd) {background: #FFF}
 }
 
 /*for navigation*/
-.left
-{
-   
-    padding: 10px;
-    margin: 0px;
-    min-height: 200px;
-    max-height: 220px;
-    border: 1px solid black;
-    margin-bottom: 5px;
-    width: 100%;
-    overflow: auto;
-}
+
 
 .right
 {

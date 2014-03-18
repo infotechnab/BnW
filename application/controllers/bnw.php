@@ -1200,7 +1200,7 @@ class bnw extends CI_Controller {
                 $data = array('upload_data' => $this->upload->data('file'));
                 $medianame = $this->input->post('media_name');
                 $mediatype = $data['upload_data']['file_name'];
-                $medialink = $this->input->post('media_link');
+                $medialink = base_url().'content/images/'.$mediatype;
                 $this->dbmodel->add_new_media($medianame, $mediatype, $media_association_id, $medialink);
                 $this->session->set_flashdata('message', 'One media added sucessfully');
                 redirect('bnw/media/mediaListing');
@@ -1730,7 +1730,7 @@ class bnw extends CI_Controller {
            // var_dump($set);
             $this->load->view("bnw/templates/header" , $data);
             $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/setup/test', $set);
+            $this->load->view('bnw/setup/addHeader', $set);
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');

@@ -1,8 +1,7 @@
 <div class="rightSide">
     <div class="forLeft">
     <div class="left">
-       
-       <p id="sucessmsg">
+        <div id="navigationLeftUp"> 
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
     
@@ -22,7 +21,12 @@
             }
         }
     ?>
-    </ul>  
+    </ul> 
+    </div>
+    
+    <div id="navigationLeftDown">
+    
+    
             <select name="selectMenu">
                 <?php
                 foreach ($listOfMenu as $data)
@@ -56,11 +60,13 @@
             <input type="submit" value="Add">
         <?php echo form_close();?>
     </div>
+    </div>
            
-            
+      <!-- Top left div for choosing page, menu and parent is closed -->       
             
    
     <div class="left">
+        <div id="navigationLeftUp">    
         <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
@@ -80,7 +86,10 @@
             }
         }
     ?>
-    </ul>  
+    </ul> 
+        </div>
+        
+        <div id="navigationLeftDown">
             <select name="selectMenuCategory">
                 <?php
                 foreach ($listOfMenu as $data)
@@ -113,7 +122,41 @@
             </select>
             <input type="submit" value="Add">
         <?php echo form_close();?>
-    </div>
+    </div></div>
+      
+      <!-- Middle left div for choosing category, menu and parent is closed -->      
+      
+      <div class="left">
+        <div id="navigationLeftUp">    
+        <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+        <?php echo form_open_multipart('bnw/addCustomLink');?>
+            <p>Select Menu:    
+            <select name="selectMenu">
+                <?php
+                foreach ($listOfMenu as $data)
+                {
+                    ?>
+                <option value="<?php echo $data->menu_name; ?>">
+                    <?php echo $data->menu_name; ?>
+                </option>
+                    <?php
+                }
+                ?>
+          
+            </select>
+            </p>
+            <p>Custom Menu Link :
+            <input type="text" placeholder="Type Custom Menu Link" />
+            </p>  
+             
+            <input type="submit" value="Add">
+        <?php echo form_close();?>
+    </div></div>   
+
+      
+     <!-- Bottom left div for creating custom link is closed -->       
+      
+      
         
     </div> 
     <div class="right">
