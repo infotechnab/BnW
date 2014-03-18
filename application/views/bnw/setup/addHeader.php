@@ -21,7 +21,7 @@ if ($query)
   <input type="text" name="header_title" value="<?php echo $set_data[0]; ?>" />
   </p>
   <p>Header Logo :<br />
-  <input type="text" name="header_logo" value="<?php echo $set_data[1]; ?>"/>
+  <input type="file" name="file_name" id="file" />
   </p>
   <p>Header Description :<br />
   <input type="text" name="header_description" value="<?php echo $set_data[2]; ?>"/>

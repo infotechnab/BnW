@@ -1739,23 +1739,36 @@ class bnw extends CI_Controller {
  
  public function headerupdate(){
      if ($this->session->userdata('logged_in')) {
+         $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size'] = '2000';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+
+            $this->load->library('upload', $config);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $set['query'] = $this->dbmodel->get_design_setup();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
 
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('header_title', 'Title', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('header_logo', 'Logo', 'required|xss_clean');
+            $this->form_validation->set_rules('file_name', 'Logo', 'required|xss_clean');
             $this->form_validation->set_rules('header_description', 'Description', 'required|xss_clean');
-           // $this->form_validation->set_rules('header_bgcolor', 'Description', 'required|xss_clean');
-            if (($this->form_validation->run() == FALSE)) {
-
-                $data['meta'] = $this->dbmodel->get_meta_data();
-                //$set['query'] = $this->dbmodel->get_design_setup();
-                $this->load->view("bnw/templates/header" , $data);
-                $this->load->view("bnw/templates/menu");
-                $this->load->view('bnw/setup/addHeader');
-                $this->load->view('bnw/templates/footer', $data);
+            $this->form_validation->set_rules('header_bgcolor', 'Description', 'required|xss_clean');
+            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
+                $data['error'] = $this->upload->display_errors();
+                
+                $this->load->view('bnw/setup/addHeader', $set);
+               
             } else {
+                //if valid
+                
                 $headerTitle = $this->input->post('header_title');
-                $headerLogo = $this->input->post('header_logo');
+                $headerLogo = $data['upload_data']['file_name'];
+                var_dump($headerLogo);
                 $headerDescription = $this->input->post('header_description');
                 $headerBgColor = $this->input->post('header_bgcolor');
                 $this->dbmodel->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
