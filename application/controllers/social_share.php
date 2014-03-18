@@ -26,7 +26,7 @@ class social_share extends CI_Controller {
         }
     }
         
-    }
+    
 
 }
 
