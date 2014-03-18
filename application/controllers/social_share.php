@@ -19,7 +19,7 @@ class social_share extends CI_Controller {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu', $data);
-            $this->load->view('bnw/index', $data);
+            $this->load->view('bnw/socialShare/default', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');
