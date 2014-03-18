@@ -66,7 +66,32 @@
 
     <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
 
+    
+    
+<script>
+function allowDrop(ev)
+{
+ev.preventDefault();
+}
 
+function drag(ev)
+{
+ev.dataTransfer.setData("Text",ev.target.id);
+}
+
+function drop(ev)
+{
+ev.preventDefault();
+var data=ev.dataTransfer.getData("Text");
+ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+<body>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></div>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 </div>
 <div class="clear"></div>
 
