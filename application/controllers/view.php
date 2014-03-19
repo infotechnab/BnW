@@ -18,6 +18,11 @@ public function index()
         $data['headerdescription']= $this->viewmodel->get_header_description();
         
         $this->load->view('menuview/header',$data);
+        $this->load->view('menuview/menu',$data);
+        $this->load->view('menuview/event',$data);
+        $this->load->view('menuview/slider',$data);
+        $this->load->view('menuview/pages',$data);
+        $this->load->view('menuview/footer',$data);
         
     }
     
@@ -30,8 +35,18 @@ public function index()
         $data['headertitle']= $this->viewmodel->get_header_title();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['headerdescription']= $this->viewmodel->get_header_description();
+        $data['selectedpagequery'] = $this->viewmodel->get_desired_page($id);
+        
         
         $this->load->view('menuview/header',$data);
+        $this->load->view('menuview/menu',$data);
+        $this->load->view('menuview/event',$data);
+        $this->load->view('menuview/slider',$data);
+        $this->load->view('menuview/selectedPage',$data);
+        $this->load->view('menuview/footer',$data);
+        
+        
+        
         
     }
   

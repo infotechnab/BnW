@@ -60,6 +60,14 @@ class Viewmodel extends CI_Model
         
     }
     
-    
+    public function get_desired_page($id)
+    {
+        
+        $this->db->from('page');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
 
 }

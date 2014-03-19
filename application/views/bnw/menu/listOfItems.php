@@ -5,6 +5,9 @@
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     
     <p>List of all pages</p>
+        </div>
+    
+    <div id="navigationLeftMiddle">
     <ul>
         <?php echo form_open_multipart('bnw/addPageForNavigation');?>
       <?php    
@@ -66,10 +69,14 @@
    
     <div class="left">
         <div id="navigationLeftUp">    
-        <p id="sucessmsg">
+        
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
     <p>List of all category</p>
+        </div>
+        
+        <div id="navigationLeftMiddle">
+    
     <ul>
         <?php echo form_open_multipart('bnw/addCategoryForNavigation');?>
       <?php    
@@ -126,10 +133,23 @@
       <!-- Middle left div for choosing category, menu and parent is closed -->      
       
       <div class="left">
-        <div id="navigationLeftUp">    
-        <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+        <div id="customLinkLeftUp">
+            <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+            <p>Create Custom Menu Link</p>
+            
+        </div>
+        
+          <div id="customLinkLeftMiddle">
         <?php echo form_open_multipart('bnw/addCustomLink');?>
-            <p>Select Menu:    
+            
+           <p>Navigation Title :
+            <input type="text" name="navigation_name" placeholder="Type Navigation name" required/>
+            </p>
+            
+            <p>Custom Menu Link :
+            <input type="text" name="navigation_link" placeholder="Type Custom Menu Link" required/>
+            </p>
+              
             <select name="selectMenu">
                 <?php
                 foreach ($listOfMenu as $data)
@@ -143,10 +163,8 @@
                 ?>
           
             </select>
-            </p>
-            <p>Custom Menu Link :
-            <input type="text" placeholder="Type Custom Menu Link" />
-            </p>  
+            
+              
              
             <input type="submit" value="Add">
         <?php echo form_close();?>

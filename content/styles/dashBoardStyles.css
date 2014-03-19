@@ -159,12 +159,40 @@ ul.menu li.mainMenuItem:hover
 }
 #navigationLeftUp
 {
-    padding: 10px;
+    padding: 0px 0px 5px 10px;
     margin: 0px;
-    max-height: 150px;
+    max-height: 15px;
+    margin-bottom: 1px;
+    width: 93.5%;
+    border-bottom: 1px dotted;
+}
+#navigationLeftMiddle
+{
+    padding: 0px 0px 5px 10px;
+    margin: 0px;
+    max-height: 163px;
     margin-bottom: 1px;
     width: 93.5%;
     overflow: auto;
+    border-bottom: 1px dotted;
+}
+
+#customLinkLeftUp
+{
+    padding: 0px 0px 5px 10px;
+    margin: 0px;
+    max-height: 15px;
+    margin-bottom: 1px;
+    width: 96.5%;
+    border-bottom: 1px dotted;
+}
+#customLinkLeftMiddle
+{
+    padding: 0px 0px 5px 10px;
+    margin: 0px;
+    max-height: 163px;
+    margin-bottom: 1px;
+    width: 93%;
 }
 #navigationLeftDown
 {

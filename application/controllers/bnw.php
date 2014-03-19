@@ -204,6 +204,55 @@ class bnw extends CI_Controller {
     }
          
     }
+    
+    public function addCustomLink(){
+         if ($this->session->userdata('logged_in')) {
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $listOfMenu = $this->dbmodel->get_list_of_menu();           
+            $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
+            $data["listOfPage"] = $this->dbmodel->get_list_of_pages();
+            $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
+            $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
+            $data["links"] = $this->pagination->create_links();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            
+            if(($_SERVER['REQUEST_METHOD'] == 'POST'))
+            {
+                $menuSelected = $_POST['selectMenu'];
+                 $menu_info = $this->dbmodel->get_menu_info($menuSelected);
+                foreach ($menu_info as $id)
+                 {
+                     $menu_id = $id->id;
+                 }
+            }
+            
+            $this->form_validation->set_rules('navigation_name', 'Name', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('navigation_link', 'Link', 'required|xss_clean|max_length[200]');
+
+            if ($this->form_validation->run() == FALSE) {
+
+                $this->load->view('bnw/menu/listOfItems');
+            } else {
+
+                //if valid
+                $navigationName= $this->input->post('navigation_name');
+                $navigationLink= $this->input->post('navigation_link');
+                $parentID="0";
+                $navigationType= " ";
+                $navigation_slug= preg_replace('/\s+/', '', $navigationName); 
+                $this->dbmodel->add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menu_id);
+                //$this->session->set_flashdata('message', 'One N added sucessfully');
+                redirect('bnw/addCustomLink');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+
+            redirect('login', 'refresh');
+        }
+    }
 
     //=====================================================================================================
     //===================================Navigation========================================================
