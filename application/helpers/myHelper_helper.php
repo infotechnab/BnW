@@ -1,10 +1,6 @@
 
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 function query($parent_id) { //function to run a query
 	$query = mysql_query ( "SELECT * FROM navigation WHERE parent_id=$parent_id" );
@@ -28,6 +24,7 @@ function fetch_menu($query) {
 		$menu_id = $result ['id'];
 		$menu_name = $result ['navigation_name'];
 		$menu_link = $result ['navigation_link'];
+                $menu_type = $result ['navigation_type'];
 		echo "<li  class='has-sub '><a href='{$menu_link}'>{$menu_name}</a>";
 		if (has_child ( query ( $menu_id ) )) {
 			echo "<ul>";
