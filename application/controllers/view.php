@@ -43,10 +43,7 @@ public function index()
         $this->load->view('menuview/event',$data);
         $this->load->view('menuview/slider',$data);
         $this->load->view('menuview/selectedPage',$data);
-        $this->load->view('menuview/footer',$data);
-        
-        
-        
+        $this->load->view('menuview/footer',$data);  
         
     }
   

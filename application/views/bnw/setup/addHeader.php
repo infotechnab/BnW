@@ -24,9 +24,14 @@ if ($query)
 <h2> Header Content Management</h2>
 
 <?php echo form_open('bnw/headerupdate');?>
-  <p>Header Title :<br />
+ <p>Favicon Iamge :<br />
+  <input type="file" name="file_name" id="file"  />
+  </p>
+
+    <p>Header Title :<br />
   <input type="text" name="header_title" value="<?php echo $set_data[0]; ?>" />
   </p>
+  
   <p>Header Logo :<br />
   <input type="file" name="file_name" id="file"  />
   </p>
