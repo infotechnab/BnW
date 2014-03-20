@@ -14,6 +14,14 @@ class Viewmodel extends CI_Model
         $query = $this->db->get();
         return $query->result();  
     }
+    public function get_post()
+    {
+        
+        $this->db->from('post');
+        $query = $this->db->get();
+        return $query->result();  
+    }
+    
     public function get_slider()
     {
         $this->db->from('slide');
@@ -64,5 +72,45 @@ class Viewmodel extends CI_Model
         return $query->result();
         
     }
+    
+    public function get_desired_post($id)
+    {
+        
+        $this->db->from('post');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
+    public function get_selected_album($id)
+    {
+        
+        $this->db->from('media');
+        $this->db->where('media_association_id', $id);
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
+    
+    public function get_album()
+    {  
+        $this->db->from('album');
+        $query = $this->db->get();
+        return $query->result();  
+    }
+    
+    function get_media_image($aid)
+        {
+            $this->db->select();            
+            $this->db->where('media_association_id',$aid);
+            
+            $this->db->limit(1);
+                    $query = $this->db->get('media');
+           if ($query->num_rows() == 1) {
+            return $query->result();
+        } else {
+            return false;
+        }
+        }
 
 }

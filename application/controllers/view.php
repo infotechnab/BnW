@@ -11,6 +11,7 @@ public function index()
     {
         
         $data['pagequery'] = $this->viewmodel->get_page();
+        $data['postquery'] = $this->viewmodel->get_post();
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
@@ -28,7 +29,7 @@ public function index()
     
     public function page($id)
     {
-        
+        $data['postquery'] = $this->viewmodel->get_post();
         $data['pagequery'] = $this->viewmodel->get_page();
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
@@ -46,5 +47,73 @@ public function index()
         $this->load->view('menuview/footer',$data);  
         
     }
+    
+    public function post($id)
+    {
+        $data['postquery'] = $this->viewmodel->get_post();
+        $data['pagequery'] = $this->viewmodel->get_page();
+        $data['slidequery'] = $this->viewmodel->get_slider();
+        $data['headerquery']= $this->viewmodel->get_design_setup();
+        $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['headerdescription']= $this->viewmodel->get_header_description();
+        $data['selectedpostquery'] = $this->viewmodel->get_desired_post($id);
+        
+        
+        $this->load->view('menuview/header',$data);
+        $this->load->view('menuview/menu',$data);
+        $this->load->view('menuview/event',$data);
+        $this->load->view('menuview/slider',$data);
+        $this->load->view('menuview/allPost',$data);
+        $this->load->view('menuview/footer',$data);  
+        
+    }
+    
+    public function photos()
+    {
+        $data['postquery'] = $this->viewmodel->get_post();
+        $data['pagequery'] = $this->viewmodel->get_page();
+        $data['slidequery'] = $this->viewmodel->get_slider();
+        $data['headerquery']= $this->viewmodel->get_design_setup();
+        $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['headerdescription']= $this->viewmodel->get_header_description();
+        $data['albumquery'] = $this->viewmodel->get_album();
+        
+        
+        $this->load->view('menuview/header',$data);
+        $this->load->view('menuview/menu',$data);
+        $this->load->view('menuview/event',$data);
+        $this->load->view('menuview/slider',$data);
+        $this->load->view('menuview/album',$data);
+        $this->load->view('menuview/footer',$data);  
+        
+    }
+    
+    public function photo($id)
+    {
+        $data['postquery'] = $this->viewmodel->get_post();
+        $data['pagequery'] = $this->viewmodel->get_page();
+        $data['slidequery'] = $this->viewmodel->get_slider();
+        $data['headerquery']= $this->viewmodel->get_design_setup();
+        $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['headerdescription']= $this->viewmodel->get_header_description();
+        $data['albumquery'] = $this->viewmodel->get_album();
+        $data['selectedalbumquery'] =  $this->viewmodel->get_selected_album($id);
+        
+        
+        $this->load->view('menuview/header',$data);
+        $this->load->view('menuview/menu',$data);
+        $this->load->view('menuview/event',$data);
+        $this->load->view('menuview/slider',$data);
+        $this->load->view('menuview/photos',$data);
+        $this->load->view('menuview/footer',$data);  
+        
+    }
+    
+    
+    
+    
   
 }

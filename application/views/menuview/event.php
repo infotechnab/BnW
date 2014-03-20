@@ -5,13 +5,17 @@
                         <div class="eventHeader">
                             <h3>News and Events</h3>
                         </div>
-                        <?php foreach($pagequery as $summary){
-                    ?>
+                        
+                        
+                        
                             <div class="newNews"></div>
+                            <?php foreach($postquery as $summary){
+                    ?>
                             <p class="paragraph">
-                                <?php echo $summary->page_summary ?>
+                                
+                                <?php echo $summary->post_summary ?>
                             </p>
-                            <p class="paragraph" > <?php echo anchor('view/page/'.$summary->id , 'more'); ?> </p>
+                            <p class="paragraph" > <?php echo anchor('view/post/'.$summary->id , 'more'); ?> </p>
                             <hr/> 
                             <?php } ?>
                     </div>
