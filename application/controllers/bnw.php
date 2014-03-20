@@ -13,6 +13,7 @@ class bnw extends CI_Controller {
         $this->load->library("pagination");
     }
 
+
     public function index() {
         if ($this->session->userdata('logged_in')) {
             $data['username'] = Array($this->session->userdata('logged_in'));
@@ -257,7 +258,27 @@ class bnw extends CI_Controller {
     //=====================================================================================================
     //===================================Navigation========================================================
     //=====================================================================================================
-
+    public function getAjax(){
+        
+        $id = $this->input->post('select');
+        die($id);
+        if($id == !0 || $id == ! NULL){
+       $identity = $this->dbmodel->get_identity($id);
+       
+         foreach ($identity as $menu){
+             echo "<option>".$menu->navigation_name."</option>";
+             var_dump($identity);
+    }
+        }else{
+            $id= 1;
+            $identity = $this->dbmodel->get_identity($id);
+            var_dump($identity);
+         foreach ($identity as $menu){
+             echo "<option>".$menu->navigation_name."</option>";  
+    }
+        }
+    
+    }
     public function navigation() {
         if ($this->session->userdata('logged_in')) {
 
@@ -275,6 +296,7 @@ class bnw extends CI_Controller {
             $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
             $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
             $data["listOfNavigation"] = $this->dbmodel->get_list_of_navigation();
+            $data["listOfNavigationID"] = $this->dbmodel->get_list_of_navigationID();
             //$data['menulisting']= $this->dbmodel->get_menu_list();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
@@ -612,7 +634,7 @@ class bnw extends CI_Controller {
             //set validation rules
             $this->form_validation->set_rules('post_title', 'Page Name', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('post_content', 'Body', 'required|xss_clean');
-           // $this->form_validation->set_rules('post_summary', 'Summary', 'xss_clean');
+          
 
 
             if (($this->form_validation->run() == TRUE)) {
@@ -2564,6 +2586,4 @@ fetch_menu (query(0)); //call this function with 0 parent id
     }*/
     
  
-}
-
-
+    }

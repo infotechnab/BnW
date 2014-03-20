@@ -67,9 +67,24 @@ class Dbmodel extends CI_Model {
         $query = $this->db->get('navigation');
         return $query->result();
     }
+    
+    public function get_identity($id)
+    {
+        $this->db->where('menu_id',$id);
+        $identity = $this->db->get('navigation');
+        return $identity->result();
+    }
+    
     public function get_list_of_navigation()
     {
         
+        $query = $this->db->get('navigation');
+        return $query->result();
+    }
+     public function get_list_of_navigationID()
+    {
+        $id = 1;
+        $this->db->where('menu_id',$id);
         $query = $this->db->get('navigation');
         return $query->result();
     }

@@ -1,3 +1,54 @@
+ <?php /*
+foreach ($listOfMenu as $data) {
+
+        $id = $data->id;
+        $name = $data->menu_name;
+        $identity = $this->dbmodel->get_identity($id);
+       // var_dump($identity);
+    }
+    //var_dump($identity);
+
+    echo '<script type="text/javascript">' . 'var dat=' . json_encode($identity) . '</script>';
+   */ ?> 
+    <script type="text/javascript">
+//        $(document).ready(function(){   
+//            $.each(dat, function(i, dat){
+//                $("#idselector").append('<option value="'+dat.menu_id+'" id="'+i+'">' + dat.menu_id +'</option>');
+//            }); 
+//     
+//     
+//            $("#idselector").change(function(){
+//                var data = $("#idselector option:selected").attr("id");
+//               
+//               
+//                if(data=="default")
+//                {
+//                    $("#navName").val("");
+//                        }
+//                else
+//                {
+//                    $("#navName").val(dat[data].navigation_name);
+//                    
+//                }
+//                       
+//            });
+//        });
+//        
+        function getNav(){
+         //alert(id);
+         //var getID = 'getID ='+id;
+          
+                     $.ajax({
+                    type: "POST",
+                       url: "http://localhost/bnw/index.php/bnw/getAjax",
+                       data: {select: $('#menuValue').val()},
+                       success: function(result){
+                         $("#somewhere").html(result);
+                       }
+                     });
+        }
+    </script>
+
 <div class="rightSide">
     <div class="forLeft">
     <div class="left">
@@ -28,27 +79,34 @@
     
     <div id="navigationLeftDown">
     
+<!--  onchange="getNav();"     
+<select class="" name="identity" id="idselector">                              
+                <option value="" id="default">Menu List</option>
+            </select>-->
     
-            <select name="selectMenu">
+           <select name="selectMenu" id="menuValue" >
                 <?php
-                foreach ($listOfMenu as $data)
+               foreach ($listOfMenu as $data)
                 {
                     ?>
-                <option value="<?php echo $data->menu_name; ?>">
+                <option value="<?php echo $data->id; ?>">
                     <?php echo $data->menu_name; ?>
                 </option>
                     <?php
-                }
+                } 
                 ?>
           
             </select>
     
-    <select name="selectNavigation">
+    <select name="selectNavigation" id="somewhere">
         <option value=" ">
                     Make Parent
                 </option>
                 <?php
-                foreach ($listOfNavigation as $data)
+                
+             /* if(!empty($result))
+              //{
+                  foreach ($listOfNavigationID as $data)
                 {
                     ?>
                 <option value="<?php echo $data->id; ?>">
@@ -56,9 +114,22 @@
                 </option>
                     <?php
                 }
+              } */
+              
+              foreach ($listOfNavigation as $data)
+                {
+                    ?>
+                <option value="<?php echo $data->id; ?>">
+                    <?php echo $data->navigation_name; ?>
+                </option>
+                    <?php
+            
+              }
+              
                 ?>
           
             </select>
+<!--         <input type="text" id="navName"/>-->
             <input type="submit" value="Add">
         <?php echo form_close();?>
     </div>
@@ -110,12 +181,14 @@
           
             </select>
     
-    <select name="selectNavigation">
+    <select name="selectNavigation" id="somewhere">
         <option value=" ">
                     Make Parent
                 </option>
+                
+                
                 <?php
-                foreach ($listOfNavigation as $data)
+              /*  foreach ($listOfNavigation as $data)
                 {
                     ?>
                 <option value="<?php echo $data->id; ?>">
@@ -123,7 +196,7 @@
                 </option>
                     <?php
                 }
-                ?>
+               */ ?>
           
             </select>
             <input type="submit" value="Add">
