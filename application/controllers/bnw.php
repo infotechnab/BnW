@@ -1766,14 +1766,21 @@ class bnw extends CI_Controller {
 
     public function setupupdate() {
         if ($this->session->userdata('logged_in')) {
+            
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '786';
+            $this->load->library('upload', $config);
 
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('url', 'Url', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('title', 'Title', 'required|xss_clean');
             $this->form_validation->set_rules('keyword', 'Keyword', 'required|xss_clean');
             $this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
-            if (($this->form_validation->run() == FALSE)) {
-
+            if (($this->form_validation->run() == FALSE|| (!$this->upload->do_upload('file_name')))) {
+                $data['error'] = $this->upload->display_errors();
                 $data['meta'] = $this->dbmodel->get_meta_data();
                 $header = "bnw/templates/";
                 $this->load->view($header . 'header', $data);
@@ -1781,11 +1788,14 @@ class bnw extends CI_Controller {
                 $this->load->view('bnw/setup/index', $data);
                 $this->load->view('bnw/templates/footer', $data);
             } else {
+                $data = array('upload_data' => $this->upload->data('file'));
+                $favicone = $data['upload_data']['file_name'];
+                
                 $url = $this->input->post('url');
                 $title = $this->input->post('title');
                 $keyword = $this->input->post('keyword');
                 $description = $this->input->post('description');
-                $this->dbmodel->update_meta_data($url, $title, $keyword, $description);
+                $this->dbmodel->update_meta_data($url, $title, $keyword, $description,$favicone);
                 redirect('bnw/setup');
             }
         } else {

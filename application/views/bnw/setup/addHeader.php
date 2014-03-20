@@ -25,7 +25,7 @@ if ($query)
 
 <?php echo form_open_multipart('bnw/headerupdate');?>
  <p>Favicon Iamge :<br />
-<!--  <input type="file" name="fevicon_name" id="fvicon"  />-->
+<!--  <input type="file" name="favicone_name" id="fvicon"  />-->
   </p>
 
     <p>Header Title :<br />

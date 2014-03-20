@@ -909,9 +909,10 @@ public function get_navigation_info($navigationName)
                 return $query->result();
     }
     
-    function update_meta_data($url, $title, $keyword, $description)
+    function update_meta_data($url, $title, $keyword, $description,$favicone)
     {
-        $data = Array( array('value'=>$url), array('value'=>$title), array('value'=>$keyword), array('value'=>$description));
+        if($favicone !=='' || $favicone !==NULL){
+        $data = Array( array('value'=>$url), array('value'=>$title), array('value'=>$keyword), array('value'=>$description), array('value'=>$favicone));
         $i= 1;
               
         foreach ($data as $value)
@@ -920,6 +921,18 @@ public function get_navigation_info($navigationName)
             $this->db->where('id',$i);
             $this->db->update('meta_data', $value);        
             $i++;
+        }}
+        else{
+            $data = Array( array('value'=>$url), array('value'=>$title), array('value'=>$keyword), array('value'=>$description));
+        $i= 1;
+              
+        foreach ($data as $value)
+        {
+          
+            $this->db->where('id',$i);
+            $this->db->update('meta_data', $value);        
+            $i++;
+        }
         }
     }
     
