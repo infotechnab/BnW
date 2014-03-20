@@ -23,9 +23,9 @@ if ($query)
 
 <h2> Header Content Management</h2>
 
-<?php echo form_open('bnw/headerupdate');?>
+<?php echo form_open_multipart('bnw/headerupdate');?>
  <p>Favicon Iamge :<br />
-  <input type="file" name="file_name" id="file"  />
+<!--  <input type="file" name="fevicon_name" id="fvicon"  />-->
   </p>
 
     <p>Header Title :<br />
@@ -33,7 +33,7 @@ if ($query)
   </p>
   
   <p>Header Logo :<br />
-  <input type="file" name="file_name" id="file"  />
+  <input type="file" name="file_name" id="file" />
   </p>
   <p>Header Description :<br />
   <input type="text" name="header_description" value="<?php echo $set_data[2]; ?>"/>

@@ -1811,16 +1811,16 @@ class bnw extends CI_Controller {
  
  public function headerupdate(){
      if ($this->session->userdata('logged_in')) {
-         
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $data['query'] = $this->dbmodel->get_design_setup();
+                     
             $config['upload_path'] = './content/images/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '500';
             $config['max_width'] = '1024';
-            $config['max_height'] = '768';
+            $config['max_height'] = '786';
 
             $this->load->library('upload', $config);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['query'] = $this->dbmodel->get_design_setup();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
@@ -1829,6 +1829,7 @@ class bnw extends CI_Controller {
             
             
             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
+                //die('not image');
                 $data['error'] = $this->upload->display_errors();
                 
                 $this->load->view('bnw/setup/addHeader', $data);
@@ -1839,7 +1840,7 @@ class bnw extends CI_Controller {
                 
                 $headerTitle = $this->input->post('header_title');
                 $headerLogo = $data['upload_data']['file_name'];
-                var_dump($headerLogo);
+                //var_dump($headerLogo);
                 $headerDescription = $this->input->post('header_description');
                 $headerBgColor = $this->input->post('header_bgcolor');
                 $this->dbmodel->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
