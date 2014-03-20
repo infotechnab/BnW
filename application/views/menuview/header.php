@@ -1,8 +1,10 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>BnW</title>
-
+        <?php foreach ($headertitle as $header) {
+                    ?>
+        <title><?php echo $header->description ; ?></title>
+<?php } ?>
         <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/styles/stylesForView.css" type="text/css" />
         <link rel="shortcut icon" href="<?php echo base_url(); ?>content/images/favicon.ico" type="image/x-icon">
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -24,7 +26,7 @@
                     ?>
     
                 <div class="header">
-                    <h4> <?php echo $header->description ; ?> </h4>
+                    <img src="<?php echo base_url().'content/images/'.$header->description ; ?>" />
                 </div>
                 <?php } ?>
                 
