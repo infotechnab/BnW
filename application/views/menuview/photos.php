@@ -92,10 +92,6 @@ foreach ($selectedalbumquery as $data) {
         <div id="imagetitle"> <?php echo $data->media_name; ?>
             
         </div>
-            <a href="<?php echo base_url();?>index.php/bnw/deletephoto/<?php echo $data->id; ?> " id="<?php echo $data->id; ?>" class="delbutton">
-        <img src="<?php echo base_url();?>content/images/delete.png" id="close"/></a>
-        
-    
 </div> 
 <?php
 }

@@ -6,6 +6,7 @@ class view extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('viewmodel');
+        $this->load->model('dbmodel');
     }
 public function index()
     {
@@ -16,6 +17,8 @@ public function index()
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
+        //$data['faviconicon']= $this->viewmodel->get_favicon_icon();
+        $data['meta'] = $this->dbmodel->get_meta_data();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         
         $this->load->view('menuview/header',$data);
@@ -29,12 +32,14 @@ public function index()
     
     public function page($id)
     {
+        $data['meta'] = $this->dbmodel->get_meta_data();
         $data['postquery'] = $this->viewmodel->get_post();
         $data['pagequery'] = $this->viewmodel->get_page();
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['selectedpagequery'] = $this->viewmodel->get_desired_page($id);
         
@@ -50,12 +55,14 @@ public function index()
     
     public function post($id)
     {
+        $data['meta'] = $this->dbmodel->get_meta_data();
         $data['postquery'] = $this->viewmodel->get_post();
         $data['pagequery'] = $this->viewmodel->get_page();
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['selectedpostquery'] = $this->viewmodel->get_desired_post($id);
         
@@ -71,12 +78,14 @@ public function index()
     
     public function photos()
     {
+        $data['meta'] = $this->dbmodel->get_meta_data();
         $data['postquery'] = $this->viewmodel->get_post();
         $data['pagequery'] = $this->viewmodel->get_page();
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['albumquery'] = $this->viewmodel->get_album();
         
@@ -92,12 +101,14 @@ public function index()
     
     public function photo($id)
     {
+        $data['meta'] = $this->dbmodel->get_meta_data();
         $data['postquery'] = $this->viewmodel->get_post();
         $data['pagequery'] = $this->viewmodel->get_page();
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['albumquery'] = $this->viewmodel->get_album();
         $data['selectedalbumquery'] =  $this->viewmodel->get_selected_album($id);

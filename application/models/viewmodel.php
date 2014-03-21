@@ -53,6 +53,16 @@ class Viewmodel extends CI_Model
         return $query->result();
         
     }
+    
+    public function get_favicon_icon()
+    {
+        $this->db->select('value');
+        $this->db->from('meta_data');
+        $this->db->where('name', 'favicon_icon');
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
     public function get_header_description()
     {
         $this->db->select('description');

@@ -53,7 +53,7 @@ $(document).ready(function() {
      }
 }
 ?>        
-	<title>.:Dashboard <?php echo $title[1]; ?></title>
+	<title><?php echo $title[1]; ?></title>
 
 </head>
 <body>
