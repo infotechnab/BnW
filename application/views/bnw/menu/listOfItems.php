@@ -37,7 +37,7 @@ foreach ($listOfMenu as $data) {
         $(document).ready(function(){  
             $('#menuValue').change(function(){
                 var id = $('this').val(); 
-                alert (id);
+               // alert (id);
                 
                  $.ajax({
                     type: "POST",
