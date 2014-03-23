@@ -28,7 +28,7 @@
             <div class="fullLeft">
                 <?php foreach ($headertitle as $header) {
                     ?>
-    
+                
                 <div class="header">
                     <h1> <?php echo $header->description ; ?> </h1>
                 </div>

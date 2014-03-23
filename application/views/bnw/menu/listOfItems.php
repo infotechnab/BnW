@@ -11,32 +11,10 @@ foreach ($listOfMenu as $data) {
     echo '<script type="text/javascript">' . 'var dat=' . json_encode($identity) . '</script>';
    */ ?> 
     <script type="text/javascript">
-//        $(document).ready(function(){   
-//            $.each(dat, function(i, dat){
-//                $("#idselector").append('<option value="'+dat.menu_id+'" id="'+i+'">' + dat.menu_id +'</option>');
-//            }); 
-//     
-//     
-//            $("#idselector").change(function(){
-//                var data = $("#idselector option:selected").attr("id");
-//               
-//               
-//                if(data=="default")
-//                {
-//                    $("#navName").val("");
-//                        }
-//                else
-//                {
-//                    $("#navName").val(dat[data].navigation_name);
-//                    
-//                }
-//                       
-//            });
-//        });
-//        
+     
         $(document).ready(function(){  
             $('#menuValue').change(function(){
-                var id = $('this').val(); 
+                var id = $(this).val(); 
                // alert (id);
                 
                  $.ajax({
