@@ -36,7 +36,7 @@ class bnw extends CI_Controller {
     public function addPageForNavigation() {
         if ($this->session->userdata('logged_in')) {
             
-            
+            $data['meta'] = $this->dbmodel->get_meta_data();
             $listOfPage = $this->dbmodel->get_list_of_pages();           
             $listOfMenu = $this->dbmodel->get_list_of_menu();
             $data["listOfPage"] = $this->dbmodel->get_list_of_pages();           
@@ -103,6 +103,7 @@ class bnw extends CI_Controller {
         }
         else 
         {
+            $data['meta'] = $this->dbmodel->get_meta_data();
             $data["listOfPage"] = $this->dbmodel->get_list_of_pages();
             $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
             $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
@@ -121,6 +122,7 @@ class bnw extends CI_Controller {
     public function addCategoryForNavigation()
     {
          if ($this->session->userdata('logged_in')) {
+             $data['meta'] = $this->dbmodel->get_meta_data();
             $listOfPage = $this->dbmodel->get_list_of_pages();           
             $listOfMenu = $this->dbmodel->get_list_of_menu();
             $data["listOfPage"] = $this->dbmodel->get_list_of_pages();           
@@ -189,6 +191,7 @@ class bnw extends CI_Controller {
             }
             else 
             {
+                $data['meta'] = $this->dbmodel->get_meta_data();
             $data["listOfPage"] = $this->dbmodel->get_list_of_pages();
             $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
             $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
