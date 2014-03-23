@@ -34,19 +34,23 @@ foreach ($listOfMenu as $data) {
 //            });
 //        });
 //        
-        function getNav(){
-         //alert(id);
-         //var getID = 'getID ='+id;
-          
-                     $.ajax({
+        $(document).ready(function(){  
+            $('#menuValue').change(function(){
+                var id = $('this').val(); 
+                alert (id);
+                
+                 $.ajax({
                     type: "POST",
-                       url: "http://localhost/bnw/index.php/bnw/getAjax",
+                       url: "http://localhost/bnw/index.php/bnw/getAjax/"+id,
                        data: {select: $('#menuValue').val()},
                        success: function(result){
                          $("#somewhere").html(result);
                        }
                      });
-        }
+            });
+        });
+
+       
     </script>
 
 <div class="rightSide">
