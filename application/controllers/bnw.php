@@ -34,8 +34,7 @@ class bnw extends CI_Controller {
     }
 
     public function addPageForNavigation() {
-        if ($this->session->userdata('logged_in')) {
-            
+        if ($this->session->userdata('logged_in')) {            
             $data['meta'] = $this->dbmodel->get_meta_data();
             $listOfPage = $this->dbmodel->get_list_of_pages();           
             $listOfMenu = $this->dbmodel->get_list_of_menu();
@@ -44,9 +43,6 @@ class bnw extends CI_Controller {
             $data["listOfCategory"] = $this->dbmodel->get_list_of_category();
             $listOfNavigation = $this->dbmodel->get_list_of_navigation();
             $data["listOfNavigation"] = $this->dbmodel->get_list_of_navigation();
-           
-            
-            
             $listOfSelectedMenu = Array();
             
             if(($_SERVER['REQUEST_METHOD'] == 'POST'))
@@ -58,7 +54,6 @@ class bnw extends CI_Controller {
                     
                     array_push($listOfSelectedMenu, array($myData->id=>$myData->page_name));
                 }
-                
             }
             $menuSelected = $_POST['selectMenu'];
             foreach ($listOfSelectedMenu as $myData)
@@ -68,16 +63,23 @@ class bnw extends CI_Controller {
                      $navigation_type="page";
                  $navigation_name= $v;
                  $navigation_link= $navigation_type."/".$k;
-                 
-                 
                  if(($_SERVER['REQUEST_METHOD'] == 'POST'))
             {
-                $navigationName = $_POST['selectNavigation'];
-                if($navigationName==" "){
+                //$navigationName = $_POST['selectNavigation'];
+               //die($navigationName);
+//                 if(isset ($_POST['selectNavigation'])){
+//                    
+//                    
+//                }else
+                 if(isset($_POST['parent'])){
                     $parent_id='0';
-                }  else {              
-                 $post_category_info = $this->dbmodel->get_navigation_info($navigationName);
-                 
+                    
+                }
+               
+                else {    
+                    $navigationName = $_POST['selectNavigation'];
+                   //die($navigationName);
+                 $post_category_info = $this->dbmodel->get_navigation_info($navigationName);  
                 foreach($post_category_info as $pid)
                 {
                     $parent_id= $pid->id;
@@ -87,19 +89,22 @@ class bnw extends CI_Controller {
                  $navigation_slug= preg_replace('/\s+/', '', $v);
                  
                  $menu_info = $this->dbmodel->get_menu_info($menuSelected);
+                 //print_r($menu_info);
                 }
                  foreach ($menu_info as $id)
                  {
                      $menu_id = $id->id;
                  }
+                 //die($parent_id);
                 $this->dbmodel->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menu_id);
                  
             }
             
-            $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu',$data);
-            $this->load->view('bnw/menu/listOfItems',$data);
-            $this->load->view('bnw/templates/footer', $data);
+//            $this->load->view('bnw/templates/header', $data);
+//            $this->load->view('bnw/templates/menu',$data);
+//            $this->load->view('bnw/menu/listOfItems',$data);
+//            $this->load->view('bnw/templates/footer', $data);
+            redirect('bnw/navigation');
         }
         else 
         {
@@ -111,14 +116,11 @@ class bnw extends CI_Controller {
             $this->load->view('bnw/templates/menu',$data);
             $this->load->view('bnw/menu/listOfItems',$data);
             $this->load->view('bnw/templates/footer', $data);
-            
         }
-        
         } else {
             redirect('login', 'refresh');
         }
     }
-    
     public function addCategoryForNavigation()
     {
          if ($this->session->userdata('logged_in')) {
@@ -337,9 +339,9 @@ class bnw extends CI_Controller {
                 $mid = $this->input->post('menu_id');
                 $this->dbmodel->add_new_navigation($navigationname, $navigationlink, $pid, $navigationtype, $navigationslug, $mid);
                 $this->session->set_flashdata('message', 'One Navigation Menu added sucessfully');
-                redirect('bnw/menu/navigationListing');
+                //redirect('bnw/menu/navigationListing');
             }
-            $this->load->view('bnw/templates/footer', $data);
+            redirect('bnw/menu/navigation');
         } else {
 
             redirect('login', 'refresh');

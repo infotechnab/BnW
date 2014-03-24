@@ -70,6 +70,7 @@ class Dbmodel extends CI_Model {
     
     public function get_identity($id)
     {
+       // die($id);
         $this->db->where('menu_id',$id);
         $identity = $this->db->get('navigation');
         return $identity->result();
@@ -345,9 +346,9 @@ public function get_navigation_info($navigationName)
     
     public function get_menu_info($menuSelected)
     {
-        $this->db->select('id');
+        //die($menuSelected);
        
-        $this->db->where('menu_name', $menuSelected);
+        $this->db->where('id', $menuSelected);
         $query = $this->db->get('menu');
           return $query->result();
         

@@ -56,7 +56,7 @@ $(document).ready(function() {
 	<title><?php echo $title[1]; ?></title>
 
 </head>
-<body>
+<body onload='loadCategories()'>
    
     <div class="full">
         <div id="top">

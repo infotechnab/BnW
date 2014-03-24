@@ -1,40 +1,49 @@
- <?php /*
-foreach ($listOfMenu as $data) {
-
-        $id = $data->id;
-        $name = $data->menu_name;
-        $identity = $this->dbmodel->get_identity($id);
-       // var_dump($identity);
-    }
-    //var_dump($identity);
-
-    echo '<script type="text/javascript">' . 'var dat=' . json_encode($identity) . '</script>';
-   */ ?> 
-    <script type="text/javascript">
-     
-        $(document).ready(function(){  
-            $('#menuValue').change(function(){
-                var id = $(this).val(); 
-               // alert (id);
+<?php     foreach ($listOfMenu as $data)
+                {
+                  $categories[] = array('id'=> $data->id,'menu_name'=>$data->menu_name); 
+                } 
+                if(!empty($listOfNavigation)){
+                foreach ($listOfNavigation as $data){
+                   $subcats[$data->menu_id][] = array('nid'=>$data->id,'menu_id'=>$data->menu_id,'nname'=>$data->navigation_name); 
+                }
                 
-                 $.ajax({
-                    type: "POST",
-                       url: "http://localhost/bnw/index.php/bnw/getAjax/"+id,
-                       data: {select: $('#menuValue').val()},
-                       success: function(result){
-                         $("#somewhere").html(result);
-                       }
-                     });
-            });
-        });
+                }
+ $jsonCats = json_encode($categories);
+  $jsonSubCats = json_encode($subcats);
 
-       
+?><script type='text/javascript'>
+      <?php
+        echo "var categories = $jsonCats; \n";
+        echo "var subcats = $jsonSubCats; \n";
+      ?>
+      function loadCategories(){
+        var select = document.getElementById("categoriesSelect");
+        select.onchange = updateSubCats;
+        for(var i = 0; i < categories.length; i++){
+          select.options[i] = new Option(categories[i].menu_name,categories[i].id);          
+        }
+      }
+      function updateSubCats(){
+        var catSelect = this;
+        var menu_id = this.value;
+        var subcatSelect = document.getElementById("subcatsSelect");
+        subcatSelect.options.length = 0; //delete all options if any present
+        for(var i = 0; i < subcats[menu_id].length; i++){
+          subcatSelect.options[i] = new Option(subcats[menu_id][i].nname,subcats[menu_id][i].nid);
+        }
+      }
+      $(document).ready(function(){
+          $('#parent').click(function(){
+            $('#subcatsSelect').toggle();
+        });
+      });
     </script>
 
 <div class="rightSide">
     <div class="forLeft">
     <div class="left">
         <div id="navigationLeftUp"> 
+         
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     
     <p>List of all pages</p>
@@ -46,10 +55,7 @@ foreach ($listOfMenu as $data) {
       <?php    
         if(isset($listOfPage)){
             foreach ($listOfPage as $pagedata){
-                
             ?>
-     
-     
         <li><input type="checkbox" name="<?php echo $str = preg_replace('/\s+/', '', $pagedata->page_name); ?>" value="<?php echo $pagedata->page_name; ?>"/><?php echo $pagedata->page_name; ?></li>
       
           <?php    
@@ -60,58 +66,13 @@ foreach ($listOfMenu as $data) {
     </div>
     
     <div id="navigationLeftDown">
-    
-<!--  onchange="getNav();"     
-<select class="" name="identity" id="idselector">                              
-                <option value="" id="default">Menu List</option>
-            </select>-->
-    
-           <select name="selectMenu" id="menuValue" >
-                <?php
-               foreach ($listOfMenu as $data)
-                {
-                    ?>
-                <option value="<?php echo $data->id; ?>">
-                    <?php echo $data->menu_name; ?>
-                </option>
-                    <?php
-                } 
-                ?>
-          
-            </select>
-    
-    <select name="selectNavigation" id="somewhere">
-        <option value=" ">
-                    Make Parent
-                </option>
-                <?php
-                
-             /* if(!empty($result))
-              //{
-                  foreach ($listOfNavigationID as $data)
-                {
-                    ?>
-                <option value="<?php echo $data->id; ?>">
-                    <?php echo $data->navigation_name; ?>
-                </option>
-                    <?php
-                }
-              } */
-              
-              foreach ($listOfNavigation as $data)
-                {
-                    ?>
-                <option value="<?php echo $data->id; ?>">
-                    <?php echo $data->navigation_name; ?>
-                </option>
-                    <?php
-            
-              }
-              
-                ?>
-          
-            </select>
-<!--         <input type="text" id="navName"/>-->
+     <select id='categoriesSelect' name="selectMenu" >
+         <option value="0">Select Menu</option>
+    </select>
+      <select id='subcatsSelect' name="selectNavigation">   </select>
+      
+      <input id="parent" type="checkbox" name="parent" > Make Parent </input> 
+       
             <input type="submit" value="Add">
         <?php echo form_close();?>
     </div>
@@ -265,4 +226,13 @@ foreach ($listOfMenu as $data) {
     <div class="clear"></div> 
 </div>
 <div class="clear"></div>
-</div>
+</div> 
+
+
+
+  <body >
+   
+
+    
+  </body>
+</html>
