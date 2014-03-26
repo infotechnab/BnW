@@ -16,32 +16,6 @@
     }
  }
                      ?>
-        
-        <script>
-            FB.getLoginStatus(function(response) {
-  // this will be called when the roundtrip to Facebook has completed
-}, true);
-        FB.getLoginStatus(function(response) {
-  if (response.status === 'connected') {
-    // the user is logged in and has authenticated your
-    // app, and response.authResponse supplies
-    // the user's ID, a valid access token, a signed
-    // request, and the time the access token 
-    // and signed request each expire
-    
-    
-    var uid = response.authResponse.userID;
-    alert(uid);
-    var accessToken = response.authResponse.accessToken;
-  } else if (response.status === 'not_authorized') {
-    // the user is logged in to Facebook, 
-    // but has not authenticated your app
-  } else {
-    // the user isn't logged in to Facebook.
-  }
- }); 
-        </script>
-      
         <link rel="shortcut icon" href="<?php echo base_url().'content/images/'. $meta_data[4]; ?>" type="image/x-icon">
        
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />

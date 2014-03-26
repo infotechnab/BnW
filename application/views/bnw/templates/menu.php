@@ -39,7 +39,7 @@
                             <li><?php echo anchor('social_share', 'Accounts') ?></li>
                             <li><?php echo anchor('bnw', 'Preferences') ?></li>
                             <li><?php echo anchor('bnw', 'APIs') ?></li>
-                            <li><?php echo anchor('login_status_cheak', 'Login Status') ?></li>
+                            <li><?php echo anchor('login_status_cheack', 'Login Status') ?></li>
                             <li><?php echo anchor('facebookShare', 'Facebook Share') ?></li>
                         </ul>
                     </li>
