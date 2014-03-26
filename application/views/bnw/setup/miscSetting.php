@@ -15,11 +15,11 @@
 
 <?php echo form_open_multipart('bnw/miscsettingupdate');?>
 <h4>Default Article Setting</h4>
-<input type="checkbox" >Allow people to post comment</input>
+<input type="checkbox" name="allow_coment" value="1" >Allow people to post comment</input>
 <br/><br/>
-<input type="checkbox" >Allow people to like page/ post</input>
+<input type="checkbox" name="allow_like" value="1" >Allow people to like page/ post</input>
 <br/><br/>
-<input type="checkbox" >Allow people to share page/ post</input>
+<input type="checkbox" name="allow_share" value="1">Allow people to share page/ post</input>
 <br/><br/>
 
  <input type="submit" value="Submit" />

@@ -60,11 +60,11 @@
        
    </p>
    
-   <input type="checkbox" >Allow people to post comment</input>
+   <input type="checkbox" name="allow_comment" value="1" >Allow people to post comment</input>
 <br/>
-<input type="checkbox" >Allow people to like </input>
+<input type="checkbox" name="allow_like" value="1" >Allow people to like </input>
 <br/>
-<input type="checkbox" >Allow people to share</input>
+<input type="checkbox" name="allow_share" value="1" >Allow people to share</input>
 <br/>
   
   <input type="submit" value="Submit" />
