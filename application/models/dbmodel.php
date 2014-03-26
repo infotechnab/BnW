@@ -35,11 +35,15 @@ class Dbmodel extends CI_Model {
     }
     
     
-    
-    
-   
-        
-        function get_media_image($aid)
+
+
+
+
+
+
+
+
+    function get_media_image($aid)
         {
             $this->db->select();            
             $this->db->where('media_association_id',$aid);
@@ -909,15 +913,25 @@ public function get_navigation_info($navigationName)
     }
     
     //======================================misc_setting=====================================================//
-    public function update_misc_setting($id, $allow_comment, $allow_like, $allow_share)
+    public function update_misc_setting($allowComment, $allowLike, $allowShare)
     {
-        $this->load->database();
-        $data = array(
-            'allow_comment' => $allow_comment,
-            'allow_like' => $allow_like,
-            'allow_share' => $allow_share);
-        $this->db->where('id', $id);
-        $this->db->update('misc_setting', $data);
+        $data = Array( array('description'=>$allowComment), array('description'=>$allowLike), array('description'=>$allowShare));
+        $i= 0;
+              
+        foreach ($data as $value)
+        {
+          
+            $this->db->where('id', $i);
+            $this->db->update('misc_setting', $value);        
+            $i++;
+        }
+    }
+    
+    public function get_misc_setting()
+    {
+                $this->db->from('misc_setting');
+                $query = $this->db->get();
+                return $query->result();
     }
 
         

@@ -211,7 +211,8 @@ class bnw extends CI_Controller {
          
     }
     
-    public function addCustomLink(){
+
+        public function addCustomLink(){
          if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $listOfMenu = $this->dbmodel->get_list_of_menu();           
@@ -1877,7 +1878,7 @@ class bnw extends CI_Controller {
                 
                 $headerTitle = $this->input->post('header_title');
                 $headerLogo = $data['upload_data']['file_name'];
-                //var_dump($headerLogo);
+                
                 $headerDescription = $this->input->post('header_description');
                 $headerBgColor = $this->input->post('header_bgcolor');
                 $this->dbmodel->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
@@ -1940,10 +1941,10 @@ class bnw extends CI_Controller {
  {
      if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
-            $set['query'] = $this->dbmodel->get_design_setup();
+            $data['query'] = $this->dbmodel->get_misc_setting();
             $this->load->view("bnw/templates/header" , $data);
             $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/setup/miscSetting', $set);
+            $this->load->view('bnw/setup/miscSetting');
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');
@@ -1953,19 +1954,8 @@ class bnw extends CI_Controller {
  public function miscsettingupdate(){
      if ($this->session->userdata('logged_in')) {
 
-            $this->load->library(array('form_validation', 'session'));
-            //$this->form_validation->set_rules('sidebar_title', 'Title', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('sidebar_description', 'Description', 'required|xss_clean');
-            //$this->form_validation->set_rules('sidebar_bgcolor', 'Background Color', 'required|xss_clean');
-           // $this->form_validation->set_rules('header_bgcolor', 'Description', 'required|xss_clean');
-            if (($this->form_validation->run() == FALSE)) {
-
-                $data['meta'] = $this->dbmodel->get_meta_data();
-                $this->load->view("bnw/templates/header" , $data);
-                $this->load->view("bnw/templates/menu");
-                $this->load->view('bnw/setup/miscSetting');
-                $this->load->view('bnw/templates/footer', $data);
-            } else {
+            $this->load->library('session');           
+            
                 $allowComment = $this->input->post('allow_comment');
                 $allowLike = $this->input->post('allow_like');
                 $allowShare = $this->input->post('allow_share');
@@ -1973,7 +1963,7 @@ class bnw extends CI_Controller {
                 $this->dbmodel->update_misc_setting($allowComment, $allowLike, $allowShare);
                 redirect('bnw');
             }
-        } else {
+         else {
             redirect('login', 'refresh');
         }
  }

@@ -19,7 +19,7 @@
 <br/><br/>
 <input type="checkbox" name="allow_like" value="1" >Allow people to like page/ post</input>
 <br/><br/>
-<input type="checkbox" name="allow_share" value="1">Allow people to share page/ post</input>
+<input type="checkbox" name="allow_share" value="1" >Allow people to share page/ post</input>
 <br/><br/>
 
  <input type="submit" value="Submit" />

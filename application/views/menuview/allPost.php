@@ -9,9 +9,25 @@
 
                             <p class="paragraph"><?php echo $post->post_content; ?></p>        
                         </div>
+                        
+                        
+   <?php if($post->allow_comment == 1)
+     {
+    echo 'comment allowed';
+     }
+ else {
+    echo 'comment not allowed';    
+    }
+
+    ?>
+                        
+                        
                     </div> 
 
                 <?php } ?>
+
+
+
             </div>
 
             <div class="clear"></div>
