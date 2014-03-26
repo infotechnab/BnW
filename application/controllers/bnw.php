@@ -669,8 +669,11 @@ class bnw extends CI_Controller {
             $post_comment_status = $this->input->post('comment_status');
             $post_tags = $this->input->post('post_tags');
             $post_category_info = $this->dbmodel->get_post_category_info($categoryName);
+            $allowComment = $this->input->post('allow_comment');
+            $allowLike = $this->input->post('allow_like');
+            $allowShare = $this->input->post('allow_share');
              
-            $this->dbmodel->add_new_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id);
+            $this->dbmodel->add_new_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id, $allowComment, $allowLike, $allowShare);
             $this->session->set_flashdata('message', 'One post added sucessfully');
                redirect('bnw/posts/postListing');
                 }
@@ -773,7 +776,10 @@ class bnw extends CI_Controller {
                         $post_status = $this->input->post('page_status');
                         $post_comment_status = $this->input->post('comment_status');
                         $post_tags = $this->input->post('post_tags');
-                        $this->dbmodel->update_post($id, $post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id);
+                        $allowComment = $this->input->post('allow_comment');
+                        $allowLike = $this->input->post('allow_like');
+                        $allowShare = $this->input->post('allow_share');
+                        $this->dbmodel->update_post($id, $post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id, $allowComment, $allowLike, $allowShare);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         redirect('bnw/posts/postListing');
                     }
@@ -791,7 +797,10 @@ class bnw extends CI_Controller {
                         $post_status = $this->input->post('page_status');
                         $post_comment_status = $this->input->post('comment_status');
                         $post_tags = $this->input->post('post_tags');
-                        $this->dbmodel->update_post($id, $post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id);
+                        $allowComment = $this->input->post('allow_comment');
+                        $allowLike = $this->input->post('allow_like');
+                        $allowShare = $this->input->post('allow_share');
+                        $this->dbmodel->update_post($id, $post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id, $allowComment, $allowLike, $allowShare);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         redirect('bnw/posts/postListing');
                 } 
@@ -860,10 +869,15 @@ class bnw extends CI_Controller {
                  {    
                  $page_author_id= $id->id;
                  }
+                 $string = $this->input->post('page_content');
+                  $summary= substr("$string", 0, 100);
             $status = $this->input->post('page_status');
             $order = $this->input->post('page_order');
             $type = $this->input->post('page_type');
             $tags = $this->input->post('page_tags');
+            $allowComment = $this->input->post('allow_comment');
+            $allowLike = $this->input->post('allow_like');
+            $allowShare = $this->input->post('allow_share');
             $this->form_validation->set_rules('page_name', 'Page Name', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
             $this->form_validation->set_rules('page_summary', 'Summary', 'xss_clean');
@@ -877,7 +891,7 @@ class bnw extends CI_Controller {
                     } else {
                         $data = array('upload_data' => $this->upload->data('file'));
                         $image = $data['upload_data']['file_name'];
-                        $this->dbmodel->add_new_page($name, $body,$page_author_id, $summary, $status, $order, $type, $tags);
+                        $this->dbmodel->add_new_page($name, $body,$page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare);
                         $this->session->set_flashdata('message', 'One pages added sucessfully');
                         redirect('bnw/pages/pageListing');
                     }
@@ -900,7 +914,10 @@ class bnw extends CI_Controller {
                     
                     $type = $this->input->post('page_type');
                     $tags = $this->input->post('page_tags');
-                    $this->dbmodel->add_new_page($name, $body,$page_author_id, $summary, $status, $order, $type, $tags);
+                    $allowComment = $this->input->post('allow_comment');
+                    $allowLike = $this->input->post('allow_like');
+                    $allowShare = $this->input->post('allow_share');
+                   $this->dbmodel->add_new_page($name, $body,$page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare);
 
                     $page = $this->dbmodel->find_page_id($name);
                     $this->session->set_flashdata('message', 'One pages added sucessfully');
@@ -989,8 +1006,10 @@ class bnw extends CI_Controller {
                         $order = $this->input->post('page_order');
                         $type = $this->input->post('page_type');
                         $tags = $this->input->post('page_tags');
-                        var_dump($tags);
-                        $this->dbmodel->update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags);
+                        $allowComment = $this->input->post('allow_comment');
+                        $allowLike = $this->input->post('allow_like');
+                        $allowShare = $this->input->post('allow_share');
+                        $this->dbmodel->update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         redirect('bnw/pages/pageListing');
                     }
@@ -1010,7 +1029,10 @@ class bnw extends CI_Controller {
                     $order = $this->input->post('page_order');
                     $type = $this->input->post('page_type');
                     $tags = $this->input->post('page_tags');
-                    $this->dbmodel->update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags);
+                    $allowComment = $this->input->post('allow_comment');
+                    $allowLike = $this->input->post('allow_like');
+                    $allowShare = $this->input->post('allow_share');
+                    $this->dbmodel->update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     redirect('bnw/pages/pageListing');
                 }
@@ -1906,6 +1928,49 @@ class bnw extends CI_Controller {
                 $sideBarBgColor = $this->input->post('sidebar_bgcolor');
                 
                 $this->dbmodel->update_design_sidebar_setup($sideBarTitle, $sideBarDescription, $sideBarBgColor);
+                redirect('bnw');
+            }
+        } else {
+            redirect('login', 'refresh');
+        }
+ }
+ 
+ //=====================================Miscellaneous Setting===============================================/
+ public function miscsetting()
+ {
+     if ($this->session->userdata('logged_in')) {
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $set['query'] = $this->dbmodel->get_design_setup();
+            $this->load->view("bnw/templates/header" , $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/setup/miscSetting', $set);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+ }
+ 
+ public function miscsettingupdate(){
+     if ($this->session->userdata('logged_in')) {
+
+            $this->load->library(array('form_validation', 'session'));
+            //$this->form_validation->set_rules('sidebar_title', 'Title', 'required|xss_clean|max_length[200]');
+            //$this->form_validation->set_rules('sidebar_description', 'Description', 'required|xss_clean');
+            //$this->form_validation->set_rules('sidebar_bgcolor', 'Background Color', 'required|xss_clean');
+           // $this->form_validation->set_rules('header_bgcolor', 'Description', 'required|xss_clean');
+            if (($this->form_validation->run() == FALSE)) {
+
+                $data['meta'] = $this->dbmodel->get_meta_data();
+                $this->load->view("bnw/templates/header" , $data);
+                $this->load->view("bnw/templates/menu");
+                $this->load->view('bnw/setup/miscSetting');
+                $this->load->view('bnw/templates/footer', $data);
+            } else {
+                $allowComment = $this->input->post('allow_comment');
+                $allowLike = $this->input->post('allow_like');
+                $allowShare = $this->input->post('allow_share');
+                
+                $this->dbmodel->update_misc_setting($allowComment, $allowLike, $allowShare);
                 redirect('bnw');
             }
         } else {

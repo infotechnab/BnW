@@ -194,7 +194,7 @@ public function get_navigation_info($navigationName)
         $this->db->delete('post', array('id' => $id));
     }
     
-    public function add_new_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id)
+    public function add_new_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id, $allow_comment, $allow_like, $allow_share)
         {
         $this->load->database();        
         $data = array(
@@ -206,11 +206,14 @@ public function get_navigation_info($navigationName)
             'post_status'=> $post_status,
             'comment_status'=> $post_comment_status,
             'post_tags'=>$post_tags,
-            'post_category'=>$post_category_id);
+            'post_category'=>$post_category_id,
+            'allow_comment'=>$allow_comment,
+            'allow_like'=>$allow_like,
+            'allow_share'=>$allow_share);
          $this->db->insert('post', $data);
     }
    
-    public function update_post($id, $post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id)
+    public function update_post($id, $post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id, $allow_comment, $allow_like, $allow_share)
     {
         $this->load->database(); 
         $data = array
@@ -222,7 +225,10 @@ public function get_navigation_info($navigationName)
             'post_status'=> $post_status,
             'comment_status'=> $post_comment_status,
             'post_tags'=>$post_tags,
-            'post_category'=>$post_category_id);
+            'post_category'=>$post_category_id,
+            'allow_comment'=>$allow_comment,
+            'allow_like'=>$allow_like,
+            'allow_share'=>$allow_share);
         $this->db->where('id', $id);
         $this->db->update('post', $data);
     }
@@ -414,7 +420,7 @@ public function get_navigation_info($navigationName)
         return $query->result();
     }
 
-    public function add_new_page($name, $body,$page_author_id, $summary, $status, $order, $type, $tags) {
+    public function add_new_page($name, $body,$page_author_id, $summary, $status, $order, $type, $tags, $allow_comment, $allow_like, $allow_share) {
         $data = Array(
             'page_name' => $name,
             'page_content' => $body,
@@ -423,7 +429,10 @@ public function get_navigation_info($navigationName)
             'page_status' => $status,
             'page_order'=> $order,
             'page_type'=>$type,
-          'page_tags'=>$tags);
+          'page_tags'=>$tags,
+            'allow_comment'=>$allow_comment,
+            'allow_like'=>$allow_like,
+            'allow_share'=>$allow_share);
         $this->db->insert('page', $data);
     }
 
@@ -445,7 +454,7 @@ public function get_navigation_info($navigationName)
         $page = $this->db->get('page');
         return $page->result();
     }
-    public function update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags){
+    public function update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allow_comment, $allow_like, $allow_share){
           
            $data = array
                 (               
@@ -456,8 +465,10 @@ public function get_navigation_info($navigationName)
                 'page_status' => $status,
                 'page_order' => $order,
                 'page_type' => $type,
-                'page_tags' => $tags);  
-        
+                'page_tags' => $tags, 
+                'allow_comment'=>$allow_comment,
+                'allow_like'=>$allow_like,
+                'allow_share'=>$allow_share);
         $this->db->where('id', $id);
         $this->db->update('page', $data);
     }
@@ -882,11 +893,6 @@ public function get_navigation_info($navigationName)
             $i++;
         }
     }
-    
-    
-    
-    
-
 
     function update_design_sidebar_setup($sideBarTitle, $sideBarDescription, $sideBarBgColor)
     {
@@ -902,6 +908,21 @@ public function get_navigation_info($navigationName)
         }
     }
     
+    //======================================misc_setting=====================================================//
+    public function update_misc_setting($id, $allow_comment, $allow_like, $allow_share)
+    {
+        $this->load->database();
+        $data = array(
+            'allow_comment' => $allow_comment,
+            'allow_like' => $allow_like,
+            'allow_share' => $allow_share);
+        $this->db->where('id', $id);
+        $this->db->update('misc_setting', $data);
+    }
+
+        
+    
+
     //=============================metadata  --------------------------------------------------------------------------------
 
     function get_meta_data()

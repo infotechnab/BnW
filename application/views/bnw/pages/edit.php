@@ -55,6 +55,13 @@
   ?>
   </p>
   
+  <input type="checkbox" >Allow people to post comment</input>
+<br/>
+<input type="checkbox" >Allow people to like </input>
+<br/>
+<input type="checkbox" >Allow people to share</input>
+<br/>
+  
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
   
