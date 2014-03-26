@@ -40,6 +40,7 @@
                             <li><?php echo anchor('bnw', 'Preferences') ?></li>
                             <li><?php echo anchor('bnw', 'APIs') ?></li>
                             <li><?php echo anchor('login_status_cheak', 'Login Status') ?></li>
+                            <li><?php echo anchor('facebookShare', 'Facebook Share') ?></li>
                         </ul>
                     </li>
                     <li class="mainMenuItem"><a href="#">Settings</a><?php /*echo anchor('bnw', 'Settings') */?>
