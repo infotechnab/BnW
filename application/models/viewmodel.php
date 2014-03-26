@@ -72,6 +72,15 @@ class Viewmodel extends CI_Model
         return $query->result();
         
     }
+    public function get_comment_allow()
+    {
+        $this->db->select('description');
+        $this->db->from('misc_setting');
+        $this->db->where('name', 'show_comment');
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
     
     public function get_desired_page($id)
     {

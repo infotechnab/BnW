@@ -1957,7 +1957,10 @@ class bnw extends CI_Controller {
             $this->load->library('session');           
             
                 $allowComment = $this->input->post('allow_comment');
+              
+                
                 $allowLike = $this->input->post('allow_like');
+                
                 $allowShare = $this->input->post('allow_share');
                 
                 $this->dbmodel->update_misc_setting($allowComment, $allowLike, $allowShare);

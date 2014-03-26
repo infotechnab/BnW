@@ -10,17 +10,33 @@
                             <p class="paragraph"><?php echo $post->post_content; ?></p>        
                         </div>
                         
-                        
-   <?php if($post->allow_comment == 1)
+                        <div class="comment">                    
+   <?php foreach ($commentallowquery as $data) {
+                    ?>
+                       
+    <?php if($data->description==1)
+    {
+     echo 'allowed for all';                   
+    }
+ else {
+     if($post->allow_comment==1)
      {
-    echo 'comment allowed';
+         echo 'allowed for this post';
      }
  else {
-    echo 'comment not allowed';    
+         echo 'for this not allowed ';    
+     }
+     
+       
     }
-
-    ?>
                         
+                        
+       ?>                  
+                
+                <?php } ?>                   
+                        
+   
+                        </div>         
                         
                     </div> 
 

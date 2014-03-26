@@ -63,6 +63,8 @@ public function index()
         $data['headertitle']= $this->viewmodel->get_header_title();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
+        $data['commentallowquery']= $this->viewmodel->get_comment_allow();
+       // var_dump($data);
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['selectedpostquery'] = $this->viewmodel->get_desired_post($id);
         
