@@ -39,6 +39,7 @@
                             <li><?php echo anchor('social_share', 'Accounts') ?></li>
                             <li><?php echo anchor('bnw', 'Preferences') ?></li>
                             <li><?php echo anchor('bnw', 'APIs') ?></li>
+                            <li><?php echo anchor('login_status_cheak', 'Login Status') ?></li>
                         </ul>
                     </li>
                     <li class="mainMenuItem"><a href="#">Settings</a><?php /*echo anchor('bnw', 'Settings') */?>
