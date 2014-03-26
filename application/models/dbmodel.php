@@ -68,7 +68,8 @@ class Dbmodel extends CI_Model {
         return $query->result();
     }
     
-    public function get_identity($id)
+   
+        public function get_identity($id)
     {
        // die($id);
         $this->db->where('menu_id',$id);
