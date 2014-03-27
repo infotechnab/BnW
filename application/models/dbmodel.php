@@ -34,7 +34,14 @@ class Dbmodel extends CI_Model {
         }
     }
     
-    
+    public function add_new_comment($comment, $comment_association_id)
+    {
+        $data = array(
+            'comment' => $comment,
+            'comment_association_id'=> $comment_association_id);
+            
+         $this->db->insert('comment_store', $data);
+    }
 
 
 
@@ -94,6 +101,8 @@ class Dbmodel extends CI_Model {
         $query = $this->db->get('navigation');
         return $query->result();
     }
+    
+    
     
     public function add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menu_id)
     {      

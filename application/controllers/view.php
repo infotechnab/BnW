@@ -7,6 +7,7 @@ class view extends CI_Controller {
         $this->load->helper('url');
         $this->load->model('viewmodel');
         $this->load->model('dbmodel');
+        $this->load->model('dbmodel');
     }
 public function index()
     {
@@ -56,6 +57,8 @@ public function index()
     
     public function post($id)
     {
+        $assc_id=  $this->uri->uri_string(2);
+        var_dump($assc_id);
         $data['meta'] = $this->dbmodel->get_meta_data();
         $data['postquery'] = $this->viewmodel->get_post();
         $data['pagequery'] = $this->viewmodel->get_page();
@@ -65,7 +68,7 @@ public function index()
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['commentallowquery']= $this->viewmodel->get_comment_allow();
-       
+        $data['viewcomments'] = $this->viewmodel->get_comments($assc_id);
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['selectedpostquery'] = $this->viewmodel->get_desired_post($id);
         
@@ -78,6 +81,8 @@ public function index()
         $this->load->view('menuview/footer',$data);  
         
     }
+    
+    
     
     public function photos()
     {
@@ -114,6 +119,8 @@ public function index()
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['albumquery'] = $this->viewmodel->get_album();
+        
+        
         $data['selectedalbumquery'] =  $this->viewmodel->get_selected_album($id);
         
         
@@ -125,7 +132,17 @@ public function index()
         $this->load->view('menuview/footer',$data);  
         
     }
-    
+    public function addcomment()
+    {
+        
+        $comment = $this->input->post('comment');
+       $comment_association_id='post/3';
+        
+            
+        $this->dbmodel->add_new_comment($comment, $comment_association_id);
+        $this->session->set_flashdata('message', 'Thank You for comment');
+        redirect('view/index');
+    }
     
     
     

@@ -63,8 +63,8 @@
     
     <input id="loginButton" type="button" value="Login!" onclick="authUser();" />
     <div id="subformDiv">
-        <?php echo form_open_multipart();?>
-        <textarea name="txtarea"></textarea>
+        <?php echo form_open_multipart('view/addcomment');?>
+        <textarea name="comment"></textarea>
         <input type="submit" value="Submit" />
         <?php echo form_close();?>
     </div>                   
@@ -118,8 +118,8 @@
     
     <input id="loginButton" type="button" value="Login!" onclick="authUser();" />
     <div id="subformDiv">
-        <?php echo form_open_multipart();?>
-        <textarea name="txtarea"></textarea>
+        <?php echo form_open_multipart('view/addcomment');?>
+        <textarea name="comment"></textarea>
         <input type="submit" value="Submit" />
         <?php echo form_close();?>
     </div>
@@ -130,10 +130,21 @@
                         
        ?>                  
                 
-                <?php } ?>                   
-                        
+                <?php } ?>                      
    
-                        </div>         
+                        </div> 
+                        
+   <div class="showComments">
+        <h3>Comments:</h3>
+      <?php foreach ($viewcomments as $data){   ?> 
+        
+        <div class="paragraph"> <?php echo $data->comment ; ?></div>
+       
+          
+     <?php }  ?>
+              
+        
+    </div>
                         
                     </div> 
 

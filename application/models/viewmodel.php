@@ -21,6 +21,14 @@ class Viewmodel extends CI_Model
         $query = $this->db->get();
         return $query->result();  
     }
+    public function get_comments($assc_id)
+    {
+        
+        $this->db->from('comment_store');
+        $this->db->where('comment_association_id', $assc_id);
+        $query = $this->db->get();
+        return $query->result();  
+    }
     
     public function get_slider()
     {
