@@ -34,11 +34,12 @@ class Dbmodel extends CI_Model {
         }
     }
     
-    public function add_new_comment($comment, $comment_association_id)
+    public function add_new_comment($comment, $comment_association_id, $user_name)
     {
         $data = array(
             'comment' => $comment,
-            'comment_association_id'=> $comment_association_id);
+            'comment_association_id'=> $comment_association_id,
+            'comment_user_name'=>$user_name);
             
          $this->db->insert('comment_store', $data);
     }

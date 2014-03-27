@@ -61,11 +61,16 @@
       }
     </script>
     
-    <input id="loginButton" type="button" value="Login!" onclick="authUser();" />
+    <input id="loginButton" type="button" value="Comment" onclick="authUser();" />
     <div id="subformDiv">
-        <?php echo form_open_multipart('view/addcomment');?>
-        <textarea name="comment"></textarea>
-        <input type="submit" value="Submit" />
+        <?php $nav= $this->uri->uri_string();
+        $assc_id= str_replace('view/','', $nav); ?>
+        <?php echo form_open_multipart('view/addcomment/?post_id='.$assc_id); ?>
+       
+        <input type="hidden" value="<?php echo $assc_id ;?>" />
+        
+        <textarea style="overflow:auto;resize:none" rows="5" cols="50" name="comment" placeholder="leave comment here"></textarea><br/>
+        <input type="submit" value="comment" />
         <?php echo form_close();?>
     </div>                   
     <?php }
@@ -116,10 +121,15 @@
       }
     </script>
     
-    <input id="loginButton" type="button" value="Login!" onclick="authUser();" />
+    <input id="loginButton" type="button" value="Comment" onclick="authUser();" />
     <div id="subformDiv">
-        <?php echo form_open_multipart('view/addcomment');?>
-        <textarea name="comment"></textarea>
+        <?php $nav= $this->uri->uri_string();
+        $assc_id= str_replace('view/','', $nav); ?>
+        <?php echo form_open_multipart('view/addcomment/?post_id='.$assc_id); ?>
+       
+        <input type="hidden" value="<?php echo $assc_id ;?>" />
+        
+        <textarea style="overflow:auto;resize:none" rows="5" cols="50" name="comment" placeholder="leave comment here"></textarea>
         <input type="submit" value="Submit" />
         <?php echo form_close();?>
     </div>
@@ -133,12 +143,18 @@
                 <?php } ?>                      
    
                         </div> 
-                        
+     <h3>Comments:</h3>  
+     
    <div class="showComments">
-        <h3>Comments:</h3>
-      <?php foreach ($viewcomments as $data){   ?> 
+     <?php foreach ($viewcomments as $data){   ?>    
+      
         
-        <div class="paragraph"> <?php echo $data->comment ; ?></div>
+        <div class="showEachComment"> 
+            <p><?php echo $data->comment_user_name ?> commented :</p>
+            <p><?php echo $data->comment ; ?></p>
+        
+        
+        </div>
        
           
      <?php }  ?>

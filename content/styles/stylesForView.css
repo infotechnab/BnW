@@ -166,7 +166,20 @@ p
     margin-top: -25px;
     font-size: 10px;
 }
-
+/* applicable for the sowing comments */
+.showComments
+{
+    width: 100%;
+    min-height: 100px;
+    
+    border: 1px dotted #000;
+}
+.showEachComment
+{
+    margin: 0px 0px 0px 5px;
+    border-bottom: 1px solid;
+        
+}
 /* for media screen max of 1500px and min of 1025px*/
 @media only screen and (max-width : 1500px)
 {

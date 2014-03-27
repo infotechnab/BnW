@@ -33,6 +33,8 @@ public function index()
     
     public function page($id)
     {
+        $nav= $this->uri->uri_string();
+        $assc_id= str_replace('view/','', $nav);
         $data['meta'] = $this->dbmodel->get_meta_data();
         $data['postquery'] = $this->viewmodel->get_post();
         $data['pagequery'] = $this->viewmodel->get_page();
@@ -44,6 +46,7 @@ public function index()
         $data['commentallowquery']= $this->viewmodel->get_comment_allow();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['selectedpagequery'] = $this->viewmodel->get_desired_page($id);
+         $data['viewcomments'] = $this->viewmodel->get_comments($assc_id);
         
         
         $this->load->view('menuview/header',$data);
@@ -57,8 +60,8 @@ public function index()
     
     public function post($id)
     {
-        $assc_id=  $this->uri->uri_string(2);
-        var_dump($assc_id);
+        $nav= $this->uri->uri_string();
+        $assc_id= str_replace('view/','', $nav);
         $data['meta'] = $this->dbmodel->get_meta_data();
         $data['postquery'] = $this->viewmodel->get_post();
         $data['pagequery'] = $this->viewmodel->get_page();
@@ -134,14 +137,15 @@ public function index()
     }
     public function addcomment()
     {
+        $a=$_GET['post_id'];
         
-        $comment = $this->input->post('comment');
-       $comment_association_id='post/3';
-        
+        $comment_association_id=$a;
+        $user_name=' ';
+        $comment = $this->input->post('comment');   
             
-        $this->dbmodel->add_new_comment($comment, $comment_association_id);
-        $this->session->set_flashdata('message', 'Thank You for comment');
-        redirect('view/index');
+        $this->dbmodel->add_new_comment($comment, $comment_association_id, $user_name);
+        
+        redirect('view/'.$a );
     }
     
     
