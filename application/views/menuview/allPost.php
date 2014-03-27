@@ -16,7 +16,7 @@
                        
     <?php if($data->description==1)
     { 
-        //================ IF ALL ALLOW COMMIT ================//
+        //================ IF ALL ALLOW COMMENT ================//
         ?>
                             
     <div id="fb-root"></div>
@@ -29,7 +29,7 @@
         appId: '798589833503780',
         xfbml: true,
         status: true,
-        cookie: true,
+        cookie: true
       });
       
       // Check if the current user is logged in and has authorized the app
@@ -84,7 +84,7 @@
         appId: '798589833503780',
         xfbml: true,
         status: true,
-        cookie: true,
+        cookie: true
       });
       
       // Check if the current user is logged in and has authorized the app

@@ -9,6 +9,36 @@
 
                             <p class="paragraph"><?php echo $page->page_content; ?></p>        
                         </div>
+                        
+       <div class="comment">                    
+   <?php foreach ($commentallowquery as $data) {
+                    ?>
+                       
+    <?php if($data->description==1)
+    {
+     echo 'allowed for all';                   
+    }
+        else {
+            if($page->allow_comment==1)
+            {
+         echo 'allowed for this post';
+            }
+       
+     }
+                        
+                        
+       ?>                  
+                
+                <?php } ?>                   
+                        
+   
+                        </div>                  
+                        
+                        
+                        
+                        
+                        
+                        
                     </div> 
 
                 <?php } ?>
