@@ -20,7 +20,7 @@
        
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <script type="text/javascript" src="<?php echo base_url(); ?>content/engine1/jquery.js"></script>
-        <link rel="icon" type="image/jpg" href="<?php echo base_url(); ?>content/images/bnw.jpg">
+<!--        <link rel="icon" type="image/jpg" href="<?php echo base_url(); ?>content/images/bnw.jpg">-->
     </head>
     <body>
         <div class="full">
