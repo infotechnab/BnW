@@ -24,9 +24,7 @@ if ($query)
 <h2> Header Content Management</h2>
 
 <?php echo form_open_multipart('bnw/headerupdate');?>
- <p>Favicon Iamge :<br />
-<!--  <input type="file" name="favicone_name" id="fvicon"  />-->
-  </p>
+ 
 
     <p>Header Title :<br />
   <input type="text" name="header_title" value="<?php echo $set_data[0]; ?>" />

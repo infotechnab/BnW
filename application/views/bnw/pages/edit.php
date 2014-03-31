@@ -1,4 +1,16 @@
 <div class="rightSide">
+     <?php 
+if ($miscSetting)
+    
+{
+    $i=0;
+    foreach ($miscSetting as $data)
+    {        
+       $set_data[$i] = $data->description;
+       $i++;      
+    }
+ }
+ ?>
     <div id="forLeftPage"> 
  <?php
  if(isset($error))
@@ -15,6 +27,9 @@
            $order= $data->page_order;
            $type= $data->page_type;
            $tags= $data->page_tags;
+           $comment=$data->allow_comment;
+           $like=$data->allow_like;
+           $share=$data->allow_share;
        }
         }
     ?>
@@ -55,11 +70,11 @@
   ?>
   </p>
   
-  <input type="checkbox" name="allow_comment" value="1" >Allow people to post comment</input>
+  <input type="checkbox" name="allow_comment" value="1" <?php if($set_data[0]==1 OR $comment==1 ) echo 'checked' ;?>>Allow people to post comment</input>
 <br/>
-<input type="checkbox" name="allow_like" value="1" >Allow people to like </input>
+<input type="checkbox" name="allow_like" value="1" <?php if($set_data[1]==1 OR $like==1 ) echo 'checked' ;?>>Allow people to like </input>
 <br/>
-<input type="checkbox" name="allow_share" value="1" >Allow people to share</input>
+<input type="checkbox" name="allow_share" value="1" <?php if($set_data[2]==1 OR $share==1 ) echo 'checked' ;?>>Allow people to share</input>
 <br/>
   
   <input type="submit" value="Submit" />

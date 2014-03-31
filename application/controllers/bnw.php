@@ -593,6 +593,7 @@ class bnw extends CI_Controller {
             $data["query"] = $this->dbmodel->get_all_posts($config["per_page"], $page);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbmodel->get_meta_data();
+            
            
 
             $this->load->view("bnw/templates/header", $data);
@@ -696,6 +697,7 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findpost($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
+              $data['miscSetting'] = $this->dbmodel->get_misc_setting();
             $data['id'] = $id;
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
@@ -730,6 +732,7 @@ class bnw extends CI_Controller {
             $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
+              $data['miscSetting'] = $this->dbmodel->get_misc_setting();
             $data['query'] = $this->dbmodel->get_posts();
             $username = $this->session->userdata( 'username' );         
             $this->load->view("bnw/templates/header", $data);
@@ -737,6 +740,7 @@ class bnw extends CI_Controller {
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $listOfCategory = $this->dbmodel->get_list_of_category();
+            
             $data["listOfCategory"] = $this->dbmodel->get_list_of_category(); 
             $id = $this->input->post('id');
             $data['query'] = $this->dbmodel->findpost($id);
@@ -946,6 +950,7 @@ class bnw extends CI_Controller {
             //echo "<pre>".$myarray;
             //var_dump($data);
             $data['meta'] = $this->dbmodel->get_meta_data();
+             $data['miscSetting'] = $this->dbmodel->get_misc_setting();
             $data['id'] = $id;
            
             $this->load->view("bnw/templates/header", $data);
@@ -971,6 +976,7 @@ class bnw extends CI_Controller {
             $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
+              $data['miscSetting'] = $this->dbmodel->get_misc_setting();
             $username = $this->session->userdata( 'username' );
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
@@ -1662,7 +1668,7 @@ class bnw extends CI_Controller {
     //===============================Setting/ Gadgets===========================================================//
     //==========================================================================================================//
     
-     public function gadgets() {
+    /* public function gadgets() {
         if ($this->session->userdata('logged_in')) {
             //$data['username'] = Array($this->session->userdata('logged_in'));
             $config = array();
@@ -1687,7 +1693,7 @@ class bnw extends CI_Controller {
         } else {
             redirect('login', 'refresh');
         }
-    }
+    }*/
 
     public function editgadget($id) {
         if ($this->session->userdata('logged_in')) {

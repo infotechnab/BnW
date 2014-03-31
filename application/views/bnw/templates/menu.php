@@ -39,7 +39,7 @@
                             <li><?php echo anchor('social_share', 'Accounts') ?></li>
                             <li><?php echo anchor('bnw', 'Preferences') ?></li>
                             <li><?php echo anchor('bnw', 'APIs') ?></li>
-                            <li><?php echo anchor('login_status_cheack', 'Login Status') ?></li>
+                            
                             <li><?php echo anchor('facebookShare', 'Facebook Share') ?></li>
                         </ul>
                     </li>
@@ -48,7 +48,7 @@
                             <li><?php echo anchor('bnw/header', 'Header') ?></li>
                             <li><?php echo anchor('bnw/sidebar', 'Sidebar') ?></li>
                             <li><?php echo anchor('bnw/miscsetting', 'Miscellaneous Setting') ?></li>
-                            <li><?php echo anchor('bnw/gadgets', 'Gadgets') ?></li>
+                            
                             <li><?php echo anchor('bnw/setup', 'Setup') ?></li>
                         </ul>
                     </li>
