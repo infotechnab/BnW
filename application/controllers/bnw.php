@@ -619,6 +619,7 @@ class bnw extends CI_Controller {
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
             $data['query'] = $this->dbmodel->get_posts();
+            $data['query'] = $this->dbmodel->get_misc_setting();
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
@@ -857,6 +858,7 @@ class bnw extends CI_Controller {
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbmodel->get_meta_data();
             $pagedata['query'] = $this->dbmodel->get_pages();
+            $data['query'] = $this->dbmodel->get_misc_setting();
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
@@ -1954,7 +1956,8 @@ class bnw extends CI_Controller {
  public function miscsettingupdate(){
      if ($this->session->userdata('logged_in')) {
 
-            $this->load->library('session');           
+            $this->load->library('session');    
+            $data['query'] = $this->dbmodel->get_misc_setting();
             
                 $allowComment = $this->input->post('allow_comment');
               
@@ -1962,6 +1965,7 @@ class bnw extends CI_Controller {
                 $allowLike = $this->input->post('allow_like');
                 
                 $allowShare = $this->input->post('allow_share');
+               
                 
                 $this->dbmodel->update_misc_setting($allowComment, $allowLike, $allowShare);
                 redirect('bnw');

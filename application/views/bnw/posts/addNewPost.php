@@ -1,4 +1,16 @@
-<div class="rightSide"> 
+<div class="rightSide">
+    <?php 
+if ($query)
+    
+{
+    $i=0;
+    foreach ($query as $data)
+    {        
+       $set_data[$i] = $data->description;
+       $i++;      
+    }
+ }
+ ?>
     <div id="forLeftPage">
 <h2>Add new post</h2>
   <?php echo validation_errors();
@@ -60,11 +72,11 @@
        
    </p>
    
-   <input type="checkbox" name="allow_comment" value="1" >Allow people to post comment</input>
+   <input type="checkbox" name="allow_comment" value="1" <?php if($set_data[0]==1) echo 'checked' ;?> >Allow people to post comment</input>
 <br/>
-<input type="checkbox" name="allow_like" value="1" >Allow people to like </input>
+<input type="checkbox" name="allow_like" value="1" <?php if($set_data[1]==1) echo 'checked' ;?> >Allow people to like </input>
 <br/>
-<input type="checkbox" name="allow_share" value="1" >Allow people to share</input>
+<input type="checkbox" name="allow_share" value="1" <?php if($set_data[2]==1) echo 'checked' ;?> >Allow people to share</input>
 <br/>
   
   <input type="submit" value="Submit" />
