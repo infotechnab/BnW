@@ -71,6 +71,7 @@ public function index()
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['commentallowquery']= $this->viewmodel->get_comment_allow();
+        
         $data['viewcomments'] = $this->viewmodel->get_comments($assc_id);
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['selectedpostquery'] = $this->viewmodel->get_desired_post($id);
@@ -137,6 +138,7 @@ public function index()
     }
     public function addcomment()
     {
+        
         $a=$_GET['post_id'];
         
         $comment_association_id=$a;

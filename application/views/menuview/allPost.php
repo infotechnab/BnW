@@ -150,7 +150,7 @@
       
         
         <div class="showEachComment"> 
-            <p><?php echo $data->comment_user_name ?> commented :</p>
+            <p></p>
             <p><?php echo $data->comment ; ?></p>
         
         
@@ -161,6 +161,7 @@
               
         
     </div>
+     <?php $return['rows'] = $this->db->query('SELECT FOUND_ROWS() count;')->row()->count; if($return>5)  echo  'View More' ;  ?>
                         
                     </div> 
 

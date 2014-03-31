@@ -26,6 +26,8 @@ class Viewmodel extends CI_Model
         
         $this->db->from('comment_store');
         $this->db->where('comment_association_id', $assc_id);
+        $this->db->limit($limit=5);
+        $this->db->order_by("id", "desc");
         $query = $this->db->get();
         return $query->result();  
     }
