@@ -82,7 +82,9 @@ public function index()
         $this->load->view('menuview/event',$data);
         $this->load->view('menuview/slider',$data);
         $this->load->view('menuview/allPost',$data);
-        $this->load->view('menuview/footer',$data);  
+       // $this->load->view('menuview/facebookUserName');
+        $this->load->view('menuview/footer',$data);
+        
         
     }
     

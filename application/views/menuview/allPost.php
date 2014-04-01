@@ -20,6 +20,9 @@
         ?>
                             
     <div id="fb-root"></div>
+     <div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+<fb:comments href="http://localhost/bnw/index.php/view/post/3" ></fb:comments>
     <script src="//connect.facebook.net/en_US/all.js"></script>
     
     <script type="text/javascript">
@@ -80,8 +83,16 @@
          //============== IF ONE POST ALLOW ==========//
          ?>
          <div id="fb-root"></div>
+         
+          <div id="fb-root"></div>
+          <script type="text/javascript">
+var sUrl = location.href;
+document.getElementById('fb').setAttribute('href', sUrl);
+</script>
+<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+<fb:comments href="http://localhost/bnw/index.php/view/post/3" ></fb:comments>
     <script src="//connect.facebook.net/en_US/all.js"></script>
-    
+     
     <script type="text/javascript">
       
       // Initialize the Facebook JavaScript SDK
@@ -143,7 +154,8 @@
                 <?php } ?>                      
    
                         </div> 
-     <h3>Comments:</h3>  
+     <h3>Comments:</h3>
+      
      
    <div class="showComments">
      <?php foreach ($viewcomments as $data){   ?>    
