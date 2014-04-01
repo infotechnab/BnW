@@ -91,7 +91,23 @@ class Viewmodel extends CI_Model
         return $query->result();
         
     }
-    
+    public function get_like_allow()
+    {
+        $this->db->select('description');
+        $this->db->from('misc_setting');
+        $this->db->where('name', 'show_like');
+        $query = $this->db->get();
+        return $query->result();
+        
+    }public function get_share_allow()
+    {
+        $this->db->select('description');
+        $this->db->from('misc_setting');
+        $this->db->where('name', 'show_share');
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
     public function get_desired_page($id)
     {
         

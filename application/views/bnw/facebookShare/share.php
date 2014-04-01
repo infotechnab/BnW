@@ -15,6 +15,7 @@
 
 <script type="text/javascript">
 var sUrl = location.href;
+document.write(sUrl);
 document.getElementById('fb').setAttribute('href', sUrl);
 </script>
 <div class="fb-like" data-href="http://localhost/bnw/index.php/facebookShare" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>

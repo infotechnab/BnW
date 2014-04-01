@@ -71,6 +71,8 @@ public function index()
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['commentallowquery']= $this->viewmodel->get_comment_allow();
+         $data['likeallowquery']= $this->viewmodel->get_like_allow();
+          $data['shareallowquery']= $this->viewmodel->get_share_allow();
         
         $data['viewcomments'] = $this->viewmodel->get_comments($assc_id);
         $data['headerdescription']= $this->viewmodel->get_header_description();
@@ -81,8 +83,8 @@ public function index()
         $this->load->view('menuview/menu',$data);
         $this->load->view('menuview/event',$data);
         $this->load->view('menuview/slider',$data);
-        $this->load->view('menuview/allPost',$data);
-       // $this->load->view('menuview/facebookUserName');
+       // $this->load->view('menuview/allPost',$data);
+        $this->load->view('menuview/selectedPost', $data);
         $this->load->view('menuview/footer',$data);
         
         

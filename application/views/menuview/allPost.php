@@ -85,10 +85,6 @@
          <div id="fb-root"></div>
          
           <div id="fb-root"></div>
-          <script type="text/javascript">
-var sUrl = location.href;
-document.getElementById('fb').setAttribute('href', sUrl);
-</script>
 <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
 <fb:comments href="http://localhost/bnw/index.php/view/post/3" ></fb:comments>
     <script src="//connect.facebook.net/en_US/all.js"></script>
