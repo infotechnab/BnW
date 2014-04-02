@@ -13,16 +13,17 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<script type="text/javascript">
-var sUrl = location.href;
-document.write(sUrl);
-document.getElementById('fb').setAttribute('href', sUrl);
-</script>
-<div class="fb-like" data-href="http://localhost/bnw/index.php/facebookShare" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+<div class="fb-like" data-href="http://facebook.com/salyani.organization" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+<!--<div id="fb-comments" class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>-->
+<!--<div class="fb-like" data-href="http://facebook.com/salyani.organization" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div>-->
+<?php $nav= $this->uri->uri_string();
+        $assc_id= str_replace('','', $nav); ?>
+
+<div id="fb-comments" class="fb-share-button" data-href="" data-type="button_count"></div>
+
+<div id="fb-comments" class="fb-comments" data-href=<?php echo 'http://localhost/bnw/index.php/'.$assc_id;?> data-numposts="5" data-colorscheme="light"></div>
 
 
-<div class="fb-share-button" data-href="http://localhost/bnw/index.php/facebookShare" data-type="button_count">
-    
 </div>
     </body>
 </html>
