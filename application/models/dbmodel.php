@@ -948,7 +948,12 @@ public function get_navigation_info($navigationName)
     
 
     //=============================metadata  --------------------------------------------------------------------------------
-
+function delete_favicone($id) {
+       
+       $this->db->where('value',$id);
+        $this->db->update('meta_data', array('value' => " "));
+        
+    }
     function get_meta_data()
     {
                 $this->db->from('meta_data');

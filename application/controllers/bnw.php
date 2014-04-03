@@ -1800,14 +1800,26 @@ class bnw extends CI_Controller {
         }
     }
 
+    public function deletefavicone($id) {
+       
+        if ($this->session->userdata('logged_in')) {
+            
+            $this->dbmodel->delete_favicone($id);
+            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+            redirect('bnw/setup');
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    
     public function setupupdate() {
         if ($this->session->userdata('logged_in')) {
             
             $config['upload_path'] = './content/images/';
             $config['allowed_types'] = 'gif|jpg|png|ico';
             $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '786';
+            $config['max_width'] = '70';
+            $config['max_height'] = '70';
             $this->load->library('upload', $config);
 
             $this->load->library(array('form_validation', 'session'));
@@ -1815,7 +1827,7 @@ class bnw extends CI_Controller {
             $this->form_validation->set_rules('title', 'Title', 'required|xss_clean');
             $this->form_validation->set_rules('keyword', 'Keyword', 'required|xss_clean');
             $this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
-            if (($this->form_validation->run() == FALSE|| (!$this->upload->do_upload('file_name')))) {
+            if (($this->form_validation->run() == FALSE)) {
                 $data['error'] = $this->upload->display_errors();
                 $data['meta'] = $this->dbmodel->get_meta_data();
                 $header = "bnw/templates/";
@@ -1824,7 +1836,20 @@ class bnw extends CI_Controller {
                 $this->load->view('bnw/setup/index', $data);
                 $this->load->view('bnw/templates/footer', $data);
             } else {
-                $data = array('upload_data' => $this->upload->data('file'));
+                if(!$this->upload->do_upload('file_name')){
+                   
+                
+                $favicone = $this->input->post('faviconeName');
+                //die($favicone);
+                $url = $this->input->post('url');
+                $title = $this->input->post('title');
+                $keyword = $this->input->post('keyword');
+                $description = $this->input->post('description');
+                $this->dbmodel->update_meta_data($url, $title, $keyword, $description,$favicone);
+               
+                }                
+                else{$data = array('upload_data' => $this->upload->data('file'));
+                
                 $favicone = $data['upload_data']['file_name'];
                 
                 $url = $this->input->post('url');
@@ -1832,7 +1857,8 @@ class bnw extends CI_Controller {
                 $keyword = $this->input->post('keyword');
                 $description = $this->input->post('description');
                 $this->dbmodel->update_meta_data($url, $title, $keyword, $description,$favicone);
-                redirect('bnw/setup');
+                }
+                 redirect('bnw/setup');
             }
         } else {
             redirect('login', 'refresh');
