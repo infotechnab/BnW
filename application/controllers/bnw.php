@@ -1804,7 +1804,7 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             
             $config['upload_path'] = './content/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
+            $config['allowed_types'] = 'gif|jpg|png|ico';
             $config['max_size'] = '500';
             $config['max_width'] = '1024';
             $config['max_height'] = '786';

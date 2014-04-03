@@ -72,6 +72,8 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'jpg'	=>	array('image/jpeg', 'image/pjpeg'),
 				'jpe'	=>	array('image/jpeg', 'image/pjpeg'),
 				'png'	=>	array('image/png',  'image/x-png'),
+                                'ico'   =>      array('image/ico', 'image/x-icon', 'application/ico', 'application/x-ico', 'application/x-win-bitmap', 'image/x-win-bitmap', 'application/octet-stream'),
+
 				'tiff'	=>	'image/tiff',
 				'tif'	=>	'image/tiff',
 				'css'	=>	'text/css',
@@ -99,6 +101,7 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'xl'	=>	'application/excel',
 				'eml'	=>	'message/rfc822',
 				'json' => array('application/json', 'text/json')
+    
 			);
 
 
