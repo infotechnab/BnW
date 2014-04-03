@@ -33,6 +33,7 @@ if ($meta)
   </p>
   
   <?php if((trim($meta_data[4]== NULL)) || trim($meta_data[4] !== ' ')){ ?>
+  
   <p>Favicone Image : <br/>
   <div style="width: 70px; height: 70px;">
       <img src="<?php echo base_url().'content/images/'.$meta_data[4]; ?>" >
