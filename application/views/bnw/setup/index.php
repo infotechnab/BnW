@@ -49,6 +49,8 @@ if ($meta)
   <input type="file" name="file_name" id="file" /></p>
  <input type="submit" value="Submit" />
   <?php echo form_close();?>
+ <p><b>Note:</b> Max file size: 500KB,  Width: 100px, Height: 100px</p>
 </div>
+
 <div class="clear"></div>
 </div>
