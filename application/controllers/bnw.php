@@ -1018,7 +1018,12 @@ class bnw extends CI_Controller {
                         $allowComment = $this->input->post('allow_comment');
                         $allowLike = $this->input->post('allow_like');
                         $allowShare = $this->input->post('allow_share');
+                        $navigationName= $name;
+                        $navigationLink='page/'.$id;
+                        $navigationSlug= preg_replace('/\s+/', '', $name);
+                        $pageid=$id;
                         $this->dbmodel->update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare);
+                         $this->dbmodel->update_navigation_on_page_update($pageid,$navigationName,$navigationLink,$navigationSlug);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         redirect('bnw/pages/pageListing');
                     }
@@ -1041,7 +1046,12 @@ class bnw extends CI_Controller {
                     $allowComment = $this->input->post('allow_comment');
                     $allowLike = $this->input->post('allow_like');
                     $allowShare = $this->input->post('allow_share');
+                    $navigationName= $name;
+                    $navigationLink='page/'.$id;
+                    $navigationSlug= preg_replace('/\s+/', '', $name);
+                    $pageid=$id;
                     $this->dbmodel->update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare);
+                    $this->dbmodel->update_navigation_on_page_update($pageid,$navigationName,$navigationLink,$navigationSlug);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     redirect('bnw/pages/pageListing');
                 }
@@ -1060,6 +1070,7 @@ class bnw extends CI_Controller {
     public function deletepage($id) {
         if ($this->session->userdata('logged_in')) {
             $this->dbmodel->delete_page($id);
+            $this->dbmodel->delete_navigation_related_to_page($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
             redirect('bnw/pages');
         } else {

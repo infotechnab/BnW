@@ -138,6 +138,24 @@ class Dbmodel extends CI_Model {
         $this->db->where('id', $id);
         $this->db->update('navigation', $data);
     }    
+    public function update_navigation_on_page_update($pageid,$navigationName,$navigationLink,$navigationSlug){
+        $this->load->database();
+        $data = array(
+            'navigation_name' => $navigationName,
+            'navigation_link'=> $navigationLink,            
+            'navigation_slug'=> $navigationSlug);
+        $this->db->where('navigation_link', 'page/'.$pageid);
+        $this->db->update('navigation', $data);
+    }
+    public function delete_navigation_related_to_page($id)
+    {
+
+        $this->db->delete('navigation', array('navigation_link' => 'page/'.$id));
+    }
+
+    
+
+
     public function add_new_navigation($navigationname, $navigationlink, $pid, $navigationtype, $navigationslug, $mid)
     {   $this->load->database();        
         $data = array(
