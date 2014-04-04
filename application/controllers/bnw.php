@@ -1625,9 +1625,9 @@ class bnw extends CI_Controller {
 
             $config['upload_path'] = './content/images/';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
+            $config['max_size'] = '2000';
+            $config['max_width'] = '2000';
+            $config['max_height'] = '2000';
 
             $this->load->library('upload', $config);
 
@@ -1704,7 +1704,7 @@ class bnw extends CI_Controller {
         } else {
             redirect('login', 'refresh');
         }
-    }*/
+    }
 
     public function editgadget($id) {
         if ($this->session->userdata('logged_in')) {
@@ -1792,7 +1792,7 @@ class bnw extends CI_Controller {
         } else {
             redirect('login', 'refresh');
         }
-    }
+    }*/
 
     //============================================================================================================//
     //================================Settings/ Setup ============================================================//

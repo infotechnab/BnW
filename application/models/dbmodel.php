@@ -732,6 +732,7 @@ public function get_navigation_info($navigationName)
     
 
      function delete_album($id) { 
+        $this->db->delete('media', array('media_association_id' => $id));
         $this->db->delete('album', array('id' => $id));
     } 
     
@@ -769,8 +770,7 @@ public function get_navigation_info($navigationName)
 
     function delete_photo($id) {
        
-        $this->db->delete('media', array('media_association_id' => $id));
-        
+        $this->db->delete('media', array('id' => $id));  
     }
     
 
