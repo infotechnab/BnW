@@ -57,7 +57,32 @@ public function index()
         $this->load->view('menuview/footer',$data);  
         
     }
-    
+    public function category($id)
+    {
+        $nav= $this->uri->uri_string();
+        $assc_id= str_replace('view/','', $nav);
+        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['postquery'] = $this->viewmodel->get_post();
+      // $data['categoryquery'] = $this->viewmodel->get_category();
+        $data['slidequery'] = $this->viewmodel->get_slider();
+        $data['headerquery']= $this->viewmodel->get_design_setup();
+        $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['faviconicon']= $this->viewmodel->get_favicon_icon();
+        $data['commentallowquery']= $this->viewmodel->get_comment_allow();
+        $data['headerdescription']= $this->viewmodel->get_header_description();
+        $data['selectedcategoryquery'] = $this->viewmodel->get_desired_category($id);
+         $data['viewcomments'] = $this->viewmodel->get_comments($assc_id);
+        
+        
+        $this->load->view('menuview/header',$data);
+        $this->load->view('menuview/menu',$data);
+        $this->load->view('menuview/event',$data);
+        $this->load->view('menuview/slider',$data);
+        $this->load->view('menuview/selectedCategory',$data);
+        $this->load->view('menuview/footer',$data);  
+        
+    }
     public function post($id)
     {
         $nav= $this->uri->uri_string();

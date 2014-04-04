@@ -136,7 +136,15 @@ class Viewmodel extends CI_Model
         return $query->result();
         
     }
-    
+     public function get_desired_category($id)
+    {
+        
+        $this->db->from('category');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
     public function get_album()
     {  
         $this->db->from('album');
