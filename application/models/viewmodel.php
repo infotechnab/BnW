@@ -18,6 +18,16 @@ class Viewmodel extends CI_Model
     {
         
         $this->db->from('post');
+        $this->db->limit($limit=4);
+        $this->db->order_by("id", "desc");
+        $query = $this->db->get();
+        return $query->result();  
+    }
+    
+    public function get_all_post()
+    {
+        
+        $this->db->from('post');
         $query = $this->db->get();
         return $query->result();  
     }

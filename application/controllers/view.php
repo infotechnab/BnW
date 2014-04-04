@@ -114,6 +114,33 @@ public function index()
         
         
     }
+    public function posts()
+    {
+        $nav= $this->uri->uri_string();
+        $assc_id= str_replace('view/','', $nav);
+        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['postquery'] = $this->viewmodel->get_post();
+        $data['allpostquery'] = $this->viewmodel->get_all_post();
+        $data['pagequery'] = $this->viewmodel->get_page();
+        $data['slidequery'] = $this->viewmodel->get_slider();
+        $data['headerquery']= $this->viewmodel->get_design_setup();
+        $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['faviconicon']= $this->viewmodel->get_favicon_icon();        
+       $data['headerdescription']= $this->viewmodel->get_header_description();
+        
+        
+        $this->load->view('menuview/header',$data);
+        $this->load->view('menuview/menu',$data);
+        $this->load->view('menuview/event',$data);
+        $this->load->view('menuview/slider',$data);
+        $this->load->view('menuview/posts',$data);
+       // $this->load->view('menuview/allPost',$data);
+        //$this->load->view('menuview/selectedPost', $data);
+        $this->load->view('menuview/footer',$data);
+        
+        
+    }
     
     
     

@@ -14,10 +14,14 @@
                             <p class="paragraph">
                                 
                                 <?php echo $summary->post_summary ?>
+                                
                             </p>
+                            
                             <p class="paragraph" > <?php echo anchor('view/post/'.$summary->id , 'more'); ?> </p>
                             <hr/> 
+                            
                             <?php } ?>
+                     <?php $return['rows'] = $this->db->query('SELECT FOUND_ROWS() count;')->row()->count; if($return>3)  echo  anchor('view/posts', 'View All') ;  ?>       
                     </div>
                     
                     <div class="download">
@@ -30,6 +34,7 @@
                             </div>
                         </div>
                     </div>
+    
                 </div>
                 <div class="clear"></div>
             </div>      
