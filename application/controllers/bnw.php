@@ -13,6 +13,7 @@ class bnw extends CI_Controller {
         $this->load->library("pagination");
     }
 
+    
 
     public function index() {
         if ($this->session->userdata('logged_in')) {
