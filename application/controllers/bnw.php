@@ -2053,7 +2053,7 @@ class bnw extends CI_Controller {
                 $allowComment = $this->input->post('allow_comment');
                 $allowLike = $this->input->post('allow_like');
                 $allowShare = $this->input->post('allow_share');
-                 $slideHeight = $this->input->post('slide_heigth');
+                $slideHeight = $this->input->post('slide_height');
                 $slideWidth = $this->input->post('slide_width');
               
                 

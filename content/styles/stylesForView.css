@@ -678,7 +678,7 @@ p
 	/*table-layout:fixed;*/
 }
 #wowSlider .ws_images ul li{
-	width:1%;
+	
 	line-height:0; /*opera*/
 	float:left;
 	font-size:0;
@@ -692,7 +692,7 @@ p
 	position: relative;
 	left:0;
 	top:0;
-	width:100%;
+	
 	height:100%;
 	overflow:hidden;
 }
