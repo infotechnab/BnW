@@ -220,7 +220,7 @@
             } ?>
                </ul>
         </div>
-        
+      <?php echo anchor('bnw/shownavigation/','Edit Navigation'); ?>   
     </div>
     
     <div class="clear"></div> 
@@ -236,3 +236,6 @@
     
   </body>
 </html>
+
+
+

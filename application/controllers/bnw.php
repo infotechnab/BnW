@@ -350,14 +350,28 @@ class bnw extends CI_Controller {
         }
     }
 
-    public function editnavigation($id) {
+   public function editnavigation($id) {
         if ($this->session->userdata('logged_in')) {
-            $id = $this->input->post('id');
+           
             $data['query'] = $this->dbmodel->findnavigation($id);
+           
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/menu/editNavigation', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function shownavigation() {
+        if ($this->session->userdata('logged_in')) {
+            $data['query'] = $this->dbmodel->get_list_of_navigation();
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/menu/navigationListing', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');
@@ -947,9 +961,7 @@ class bnw extends CI_Controller {
     function editpage($id) {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->findpage($id);
-            //$myarray = array('ram'=>'shayam', 'hari'=>'Bikash');
-            //echo "<pre>".$myarray;
-            //var_dump($data);
+            
             $data['meta'] = $this->dbmodel->get_meta_data();
              $data['miscSetting'] = $this->dbmodel->get_misc_setting();
             $data['id'] = $id;
