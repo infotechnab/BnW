@@ -1614,12 +1614,12 @@ class bnw extends CI_Controller {
                
                 //for cropper
                 require_once('ImageManipulator.php');
-                $newNamePrefix = time() . '_';
+                
 		$manipulator = new ImageManipulator($_FILES['file_name']['tmp_name']);
 		$width 	= $manipulator->getWidth();
 		$height = $manipulator->getHeight();
-		$centreX = round($width / 2);
-		$centreY = round($height / 2);
+                
+		
                 $slideWidth=  $this->dbmodel->get_slide_width();
                 foreach ($slideWidth as $a)
                  {
@@ -1630,8 +1630,13 @@ class bnw extends CI_Controller {
                  {
                      $fullHeight = $b->description;
                  }
-                 $halfWidth =round($fullWidth / 2);
+                $halfWidth =round($fullWidth / 2);
 		$halfHeight = round($fullHeight / 2);
+                
+                $centreX = round($width / 2);
+                
+		$centreY = round($height / 2);
+                
 		// our dimensions will be 200x130
 		$x1 = $centreX - $halfWidth; // 200 / 2
 		$y1 = $centreY - $halfHeight; // 130 / 2

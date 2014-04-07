@@ -1,4 +1,8 @@
-<?php foreach ($selectedpagequery as $page) {
+
+
+<?php 
+if($selectedpagequery){
+foreach ($selectedpagequery as $page) {
                     ?>
                     <div class="container">
                         <div class="containerHeader">
@@ -161,11 +165,15 @@
                         
                         
                         
-                        
+                      
                     </div> 
 
                 <?php } ?>
-            </div>
+
+<?php } else {
+     echo '<h3> Sorry the requested page is not found.</h3>';
+}
+    ?>        </div>
 
             <div class="clear"></div>
             <!class full is closed here>
