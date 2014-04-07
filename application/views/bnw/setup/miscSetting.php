@@ -31,10 +31,23 @@ if ($query)
 <input type="checkbox" name="allow_like" value="1" <?php if($set_data[1]==1) echo 'checked' ; ?> >Allow people to like page/ post</input>
 <br/><br/>
 <input type="checkbox" name="allow_share" value="1" <?php if($set_data[2]==1) echo 'checked' ; ?> >Allow people to share page/ post</input>
-<br/><br/>
+<br/>
+<h4>Slide Setting</h4>
+<p>Slide Height:<br/>
+<input type="text" name="slide_height" value="<?php echo $set_data[3]; ?>" required/></p>
+<p>Slide Width:<br/>
+<input type="text" name="slide_width" value="<?php echo $set_data[4]; ?>" required/></p>
 
  <input type="submit" value="Submit" />
   <?php echo form_close();?>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 </div>
 
 <div class="clear"></div>

@@ -941,9 +941,9 @@ public function get_navigation_info($navigationName)
     }
     
     //======================================misc_setting=====================================================//
-    public function update_misc_setting($allowComment, $allowLike, $allowShare)
+    public function update_misc_setting($allowComment, $allowLike, $allowShare, $slideHeight, $slideWidth )
     {
-        $data = Array( array('description'=>$allowComment), array('description'=>$allowLike), array('description'=>$allowShare));
+        $data = Array( array('description'=>$allowComment), array('description'=>$allowLike), array('description'=>$allowShare),array('description'=>$slideHeight),array('description'=>$slideWidth));
         $i= 0;
               
         foreach ($data as $value)
@@ -1118,6 +1118,26 @@ function delete_favicone($id) {
             'slide_content' => $slidecontent);
         $this->db->insert('slide', $data);
     }
+    public function get_slide_width()
+    {
+        $this->db->select('description');
+        $this->db->from('misc_setting');
+        $this->db->where('name', 'slide_width');
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
+    
+    public function get_slide_height()
+    {
+        $this->db->select('description');
+        $this->db->from('misc_setting');
+        $this->db->where('name', 'slide_height');
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
+    
     
     function findslider($id) {
         $this->db->select();

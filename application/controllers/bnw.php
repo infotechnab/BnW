@@ -1591,6 +1591,7 @@ class bnw extends CI_Controller {
             $this->load->library('upload', $config);
 
             $data['meta'] = $this->dbmodel->get_meta_data();
+           
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
@@ -1610,7 +1611,7 @@ class bnw extends CI_Controller {
                 $slidename = $this->input->post('slide_name');
                 $slideimage = $data['upload_data']['file_name'];
                 $slidecontent = $this->input->post('slide_content');
-              
+               
                 //for cropper
                 require_once('ImageManipulator.php');
                 $newNamePrefix = time() . '_';
@@ -1619,21 +1620,30 @@ class bnw extends CI_Controller {
 		$height = $manipulator->getHeight();
 		$centreX = round($width / 2);
 		$centreY = round($height / 2);
+                $slideWidth=  $this->dbmodel->get_slide_width();
+                foreach ($slideWidth as $a)
+                 {
+                     $fullWidth = $a->description;
+                 }    
+                $slideHeight=  $this->dbmodel->get_slide_height();
+                foreach ($slideHeight as $b)
+                 {
+                     $fullHeight = $b->description;
+                 }
+                 $halfWidth =round($fullWidth / 2);
+		$halfHeight = round($fullHeight / 2);
 		// our dimensions will be 200x130
-		$x1 = $centreX - 450; // 200 / 2
-		$y1 = $centreY - 250; // 130 / 2
+		$x1 = $centreX - $halfWidth; // 200 / 2
+		$y1 = $centreY - $halfHeight; // 130 / 2
 
-		$x2 = $centreX + 450; // 200 / 2
-		$y2 = $centreY + 250; // 130 / 2
+		$x2 = $centreX + $halfWidth; // 200 / 2
+		$y2 = $centreY + $halfHeight; // 130 / 2
 
 		// center cropping to 200x130
 		$newImage = $manipulator->crop($x1, $y1, $x2, $y2);
 		// saving file to uploads folder
-		$manipulator->save('./content/images/' . $newNamePrefix . $_FILES['file_name']['name']);
-                //cropper closed
-                
-               
-                
+		$manipulator->save('./content/images/' . $_FILES['file_name']['name']);
+                //cropper closed               
                 $this->dbmodel->add_new_slider($slidename, $slideimage, $slidecontent);
                 $this->session->set_flashdata('message', 'One slider added sucessfully');
                 redirect('bnw/slider');
@@ -2041,14 +2051,13 @@ class bnw extends CI_Controller {
             $data['query'] = $this->dbmodel->get_misc_setting();
             
                 $allowComment = $this->input->post('allow_comment');
+                $allowLike = $this->input->post('allow_like');
+                $allowShare = $this->input->post('allow_share');
+                 $slideHeight = $this->input->post('slide_heigth');
+                $slideWidth = $this->input->post('slide_width');
               
                 
-                $allowLike = $this->input->post('allow_like');
-                
-                $allowShare = $this->input->post('allow_share');
-               
-                
-                $this->dbmodel->update_misc_setting($allowComment, $allowLike, $allowShare);
+                $this->dbmodel->update_misc_setting($allowComment, $allowLike, $allowShare, $slideHeight, $slideWidth );
                 redirect('bnw');
             }
          else {
