@@ -387,24 +387,25 @@ class bnw extends CI_Controller {
             $this->load->library(array('form_validation', 'session'));
             //set validation rules
             $this->form_validation->set_rules('navigation_name', 'Navigation Name', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('navigation_link', 'Link', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('navigation_type', 'Type', 'required|xss_clean|max_length[200]');
+           // $this->form_validation->set_rules('navigation_link', 'Link', 'required|xss_clean|max_length[200]');
+           // $this->form_validation->set_rules('navigation_type', 'Type', 'required|xss_clean|max_length[200]');
 
 
             if ($this->form_validation->run() == FALSE) {
                 //if not valid
-                $data['query'] = $this->dbmodel->findnavigation($id);
-                $this->load->view('bnw/menu/navigationListing', $data);
+               //  $id=  $this->input->post('id');
+               // $data['query'] = $this->dbmodel->findnavigation($id);
+               // $this->load->view('bnw/menu/navigationListing', $data);
             } else {
                 //if valid
                 $id = $this->input->post('id');
                 $navigationname = $this->input->post('navigation_name');
-                $navigationlink = $this->input->post('navigation_link');
-                $pid = $this->input->post('parent_id');
-                $navigationtype = $this->input->post('navigation_type');
-                $navigationslug = $this->input->post('navigation_slug');
-                $mid = $this->input->post('menu_id');
-                $this->dbmodel->update_navigation($id, $navigationname, $navigationlink, $pid, $navigationtype, $navigationslug, $mid);
+               // $navigationlink = $this->input->post('navigation_link');
+              //  $pid = $this->input->post('parent_id');
+              //  $navigationtype = $this->input->post('navigation_type');
+               // $navigationslug = $this->input->post('navigation_slug');
+               // $mid = $this->input->post('menu_id');
+                $this->dbmodel->update_navigation($id, $navigationname);
                 $this->session->set_flashdata('message', 'NAvigation Menu Modified Sucessfully');
 
                 redirect('bnw/menu/navigationListing');
@@ -414,6 +415,7 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
+
 
     //======================================================================================================
     //====================================Category==========================================================
