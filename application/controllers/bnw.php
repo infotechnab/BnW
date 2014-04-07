@@ -1584,9 +1584,9 @@ class bnw extends CI_Controller {
 
             $config['upload_path'] = './content/images/';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
+            $config['max_size'] = '2000';
+            $config['max_width'] = '2000';
+            $config['max_height'] = '2000';
 
             $this->load->library('upload', $config);
 
@@ -1606,10 +1606,33 @@ class bnw extends CI_Controller {
             } else {
 
                 //if valid
-                $data = array('upload_data' => $this->upload->data('file'));
+                 $data = array('upload_data' => $this->upload->data('file'));
                 $slidename = $this->input->post('slide_name');
                 $slideimage = $data['upload_data']['file_name'];
                 $slidecontent = $this->input->post('slide_content');
+              
+                //for cropper
+                require_once('ImageManipulator.php');
+                $newNamePrefix = time() . '_';
+		$manipulator = new ImageManipulator($_FILES['file_name']['tmp_name']);
+		$width 	= $manipulator->getWidth();
+		$height = $manipulator->getHeight();
+		$centreX = round($width / 2);
+		$centreY = round($height / 2);
+		// our dimensions will be 200x130
+		$x1 = $centreX - 450; // 200 / 2
+		$y1 = $centreY - 250; // 130 / 2
+
+		$x2 = $centreX + 450; // 200 / 2
+		$y2 = $centreY + 250; // 130 / 2
+
+		// center cropping to 200x130
+		$newImage = $manipulator->crop($x1, $y1, $x2, $y2);
+		// saving file to uploads folder
+		$manipulator->save('./content/images/' . $newNamePrefix . $_FILES['file_name']['name']);
+                //cropper closed
+                
+               
                 
                 $this->dbmodel->add_new_slider($slidename, $slideimage, $slidecontent);
                 $this->session->set_flashdata('message', 'One slider added sucessfully');
