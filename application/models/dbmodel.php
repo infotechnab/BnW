@@ -1139,8 +1139,7 @@ function delete_favicone($id) {
     }
     
     
-    function findslider($id) {
-        $this->db->select();
+    public function findslider($id) {
          $this->db->from('slide');
         $this->db->where('id', $id);
         $query = $this->db->get();

@@ -48,6 +48,7 @@
                             <li><?php echo anchor('bnw/header', 'Header') ?></li>
                             <li><?php echo anchor('bnw/sidebar', 'Sidebar') ?></li>
                             <li><?php echo anchor('bnw/miscsetting', 'Miscellaneous Setting') ?></li>
+                            <li><?php echo anchor('gadgets', 'Gadgets') ?></li>
                             
                             <li><?php echo anchor('bnw/setup', 'Setup') ?></li>
                         </ul>

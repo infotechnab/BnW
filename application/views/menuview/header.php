@@ -6,6 +6,7 @@
         <title><?php echo $header->description ; ?></title>
 <?php } ?>
         <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/styles/stylesForView.css" type="text/css" />
+        
         <?php if ($meta)
 {
     $i=0;
