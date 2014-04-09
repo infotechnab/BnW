@@ -1108,7 +1108,14 @@ function delete_favicone($id) {
         $query = $this->db->get('slide');
         return $query->result();
     }
-    
+    public function get_all_slider()
+    {
+       
+        $this->db->from('slide');
+       
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function add_new_slider($slidename,$slideimage,$slidecontent)
                     {
        // $this->load->database();

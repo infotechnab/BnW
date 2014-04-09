@@ -1720,12 +1720,13 @@ class bnw extends CI_Controller {
 
     public function deleteslider($id) {
         if ($this->session->userdata('logged_in')) {
-            $data['query'] = $this->dbmodel->findslider($id);
-            die($data);
+            $query = $this->dbmodel->get_all_slider();
+     
+            
+          unlink('./content/images/');  
+                
+            
             $this->dbmodel->delete_slider($id);
-           
-           
-            unlink('./content/images/'.$a);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
             redirect('bnw/slider');
         } else {
