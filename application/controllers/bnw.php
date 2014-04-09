@@ -2058,11 +2058,13 @@ class bnw extends CI_Controller {
                 $allowComment = $this->input->post('allow_comment');
                 $allowLike = $this->input->post('allow_like');
                 $allowShare = $this->input->post('allow_share');
+                $maximunPost = $this->input->post('max_post_to_show');
+                $maximumPage = $this->input->post('max_page_to_show');
                 $slideHeight = $this->input->post('slide_height');
                 $slideWidth = $this->input->post('slide_width');
               
                 
-                $this->dbmodel->update_misc_setting($allowComment, $allowLike, $allowShare, $slideHeight, $slideWidth );
+                $this->dbmodel->update_misc_setting($allowComment, $allowLike, $allowShare,$maximunPost,$maximumPage, $slideHeight, $slideWidth );
                 redirect('bnw');
             }
          else {

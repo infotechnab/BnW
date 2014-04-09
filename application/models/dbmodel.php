@@ -941,9 +941,9 @@ public function get_navigation_info($navigationName)
     }
     
     //======================================misc_setting=====================================================//
-    public function update_misc_setting($allowComment, $allowLike, $allowShare, $slideHeight, $slideWidth )
+    public function update_misc_setting($allowComment, $allowLike, $allowShare,$maximunPost,$maximumPage, $slideHeight, $slideWidth )
     {
-        $data = Array( array('description'=>$allowComment), array('description'=>$allowLike), array('description'=>$allowShare),array('description'=>$slideHeight),array('description'=>$slideWidth));
+        $data = Array( array('description'=>$allowComment), array('description'=>$allowLike), array('description'=>$allowShare),array('description'=>$maximunPost),array('description'=>$maximumPage),array('description'=>$slideHeight),array('description'=>$slideWidth));
         $i= 0;
               
         foreach ($data as $value)
