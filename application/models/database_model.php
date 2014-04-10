@@ -6,19 +6,14 @@ class database_model extends CI_Model {
 		$this->load->database();
 	}
         
-        public function get_news()
-        {
-            $query = $this->db->get('news');
-            return $query->result_array();
-	}
-        
-        function addText($title,$description){
+             
+        function addText($name,$type){
             $data = array(
-                'title'=>$title,
-                'description'=>$description
+                'name'=>$name,
+                'type'=>$type
             );
             
-            $this->db->insert('gadget_collection',$data);
+            $this->db->insert('gadgets',$data);
             
         }
         

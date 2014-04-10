@@ -8,28 +8,43 @@
     });
 </script>
     <div id="main">
+        <div><h3>Gadgets Warehouse</h3></div>
         <div id="nav_location">
-            <div id="header">HEADER</div>
-            <div id="header_gadget" class="gadget">header ko gadget</div>
-            
-            
-            <div id="nav">NAVIGATION</div>
-            <div id="nav_gadget" class="gadget">Navigation ko gadget</div>
-            
-            
-            <div id="body">BODY</div>
-            <div id="body_gadget" class="gadget">Body ko gadget</div>
-            
-            
-            <div id="footer">FOOTER</div>
-            <div id="footer_gadget">footer ko gadget</div>
-            
-            
+            <ul>
+                <li class="list-item">Header</li>
+                    <ul>
+                        <li>
+                          Header ko gadget  
+                        </li>
+                    </ul>
+                
+                <li class="list-item">Navigation</li>
+                    <ul>
+                        <li>
+                          Nav ko gadget  
+                        </li>
+                    </ul>
+                
+                <li class="list-item">body</li>
+                    <ul>
+                        <li>
+                          body ko gadget  
+                        </li>
+                    </ul>
+                
+                <li class="list-item">Footer</li>
+                    <ul>
+                        <li>
+                          Footer ko gadget  
+                        </li>
+                    </ul>
+                
+            </ul>
         </div>
        
             
         <div id="gadget_collection">
-            <div id="its_title"> Gadgets Warehouse</div>
+            
             
             <div id="add_gadget">
                 <div style="font-size: 12px; border: thin solid #cccccc;">
@@ -38,9 +53,9 @@
             <div id="title">Gadget title</div>
             <div id="description">
                 
-                    <?php echo form_open('welcome/addText'); ?>
-                <input type="text" id="inputtype" placeholder="Title" name="title">
-                <textarea id="txtarea" placeholder="Description" name="description"></textarea>
+                    <?php echo form_open('gadgets/addText'); ?>
+                <input type="text" id="inputtype" placeholder="Title" name="name_gadget">
+                <textarea id="txtarea" placeholder="Description" name="type_gadget"></textarea>
                 
                 <?php
                    $gadgets=array('Header','Navigation','Body','Footer');

@@ -1,66 +1,50 @@
 
 #main
 {
+    margin-left: 75px;
+    float: left;
+    width: 78%;
     height: auto;
+    overflow:hidden;
 }
 
 #add_gadget{
-    float: left;
-    margin: 30px;
+    margin: 20px;
     width:300px;
     height:auto;
-    position:relative;
 }
 
 #gadget_collection
 {
-    margin-top: 20px;
-    margin-left: 20px;
-    border: thin solid #cccccc;
-    width:1100px;
+    margin-left: 100px;
+    margin-top: 40px;
+    width: 50%;
     height:auto;
-    overflow: hidden;
-    float: left;
+    float: left; 
 }
 
 #description, #title
 {
     border: thin solid #cccccc;
-    width:288px;
+    width:290px;
     height:auto;
     padding: 5px;
-    
-}
-#title, #its_title{
+    background: #cccccc;
     text-align:center;
     font-size: 20px;
-    background: #cccccc;
-    color:black;
-    height: auto;
 }
 
 #main #inputtype
 {
-    width:288px;
+    width:285px;
     height: 30px;
 }
 
 #main #txtarea
 {
-    width:288px;
+    width:285px;
     height:150px;
   
-}
-
-#main #btn
-{
-    font-size: 16px;
-    font-weight: bold;
-    background:#cccccc;
-    border:none;
-    width: 120px;
-    height: 30px;
-    margin-top: 5px;
 }
 
 #description
@@ -68,22 +52,13 @@
     display: none;
 }
 
-select{
-    font-size: 14px;
-    background:#cccccc;
-    border:none;
-    width: auto;
-    height: auto;
-    margin-top: 5px;
-}
 
 #sub_gadget
 {
     height:auto;
-    margin: 30px;
+    margin: 20px;
     width: 300px;
     border: thin solid #cccccc;
-    float: left;
 }
 
 #description_in_collection
@@ -100,44 +75,23 @@ select{
  border: thin solid #cccccc;    
 }
 
-#wheretodisplay
-{
-    float: right;
-    background: #cccccc;
-}
-
 #nav_location
 {
-    border: thin solid #cccccc;
+    
     float: left;
-    width: 200px;
+    width: 300px;
     height: auto;
-    margin: 20px 0px;
+    margin-left: 10px;
+    margin: 10px 0px;
 }
 
-#header,#nav,#body,#footer
+iframe{
+    height: 300px;
+}
+
+.list-item
 {
-    padding: 10px;
     font-weight: bold;
-    font-size: 16px;
-    background: black;
-    color: white;
+    margin-top: 20px;
 }
 
-.gadget
-{
-    padding: 3px;
-    background:#4F5155;
-    color: white;
-}
-
-.gadget:hover
-{
-    width: 200px;
-    padding: 3px;
-    background:#4F5155;
-    color: white;
-    -webkit-box-shadow: 10px 0px 5px -1px #888;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}

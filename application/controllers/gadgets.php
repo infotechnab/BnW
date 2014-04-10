@@ -52,14 +52,14 @@ class Gadgets extends CI_Controller {
         function addText(){
              $this->load->model('database_model');
             
-            $title = $this->input->post('title');
-            $description = $this->input->post('description');
+            $name = $this->input->post('name_gadget');
+            $type = $this->input->post('type_gadget');
             
-             $this->database_model->addText($title,$description);
+             $this->database_model->addText($name,$type);
              $mess = $this->session->set_flashdata('mess','Data added sucessfully !!! ');
              //redirect('welcome/index',$mess);
              //$mess='added data';
-             $this->load->view('bnw_design',$mess);
+             $this->load->view('bnw/gadget/gadgetsListing',$mess);
         }
        
 }
