@@ -14,13 +14,13 @@ public function index()
         
         $data['pagequery'] = $this->viewmodel->get_page();
         $data['a'] = $this->viewmodel->max_post();
-        //var_dump($data);
+        
         $data['postquery'] = $this->viewmodel->get_post();
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
-        //$data['faviconicon']= $this->viewmodel->get_favicon_icon();
+      
         $data['meta'] = $this->dbmodel->get_meta_data();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         
@@ -65,7 +65,7 @@ public function index()
         $assc_id= str_replace('view/','', $nav);
         $data['meta'] = $this->dbmodel->get_meta_data();
         $data['postquery'] = $this->viewmodel->get_post();
-      // $data['categoryquery'] = $this->viewmodel->get_category();
+    
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();

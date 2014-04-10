@@ -1418,9 +1418,24 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
-
+public function delmedia($id) {
+        if ($this->session->userdata('logged_in')) {
+             $data['query'] = $this->dbmodel->findmedia($id);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/media/deleteMedia', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
     public function deletemedia($id) {
         if ($this->session->userdata('logged_in')) {
+             $id=$_GET['image'];
+          //  die($a);
+           unlink('./content/images/'.$id);  
+                
             $this->dbmodel->delete_media($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
             redirect('bnw/media');
@@ -1539,12 +1554,26 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
+public function delphoto($photoid) {
+        if ($this->session->userdata('logged_in')) {
+            $data['query'] = $this->dbmodel->get_photo_media_id($photoid);
 
-    public function deletephoto($id) {
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/album/deletePhoto', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+    public function deletephoto($a) {
        
         if ($this->session->userdata('logged_in')) {
-           
-            $this->dbmodel->delete_photo($id);
+           $a=$_GET['image'];
+          
+           unlink('./content/images/'.$a);
+            $this->dbmodel->delete_photo($a);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
             redirect('bnw/addalbum');
         } else {
@@ -1672,6 +1701,18 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
+    public function delslider($id) {
+        if ($this->session->userdata('logged_in')) {
+            $data['query'] = $this->dbmodel->findslider($id);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/slider/delete', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
 
     public function updateslider() {
          if ($this->session->userdata('logged_in')) {
@@ -1718,15 +1759,14 @@ class bnw extends CI_Controller {
         }
     }
 
-    public function deleteslider($id) {
+    public function deleteslider($a) {
         if ($this->session->userdata('logged_in')) {
-            $query = $this->dbmodel->get_all_slider();
-     
-            
-          unlink('./content/images/');  
+            $a=$_GET['image'];
+          //  die($a);
+           unlink('./content/images/'.$a);  
                 
             
-            $this->dbmodel->delete_slider($id);
+            $this->dbmodel->delete_slider($a);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
             redirect('bnw/slider');
         } else {

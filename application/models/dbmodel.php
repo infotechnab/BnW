@@ -635,8 +635,7 @@ public function get_navigation_info($navigationName)
        
      public function get_media($id)
     {  
-       
-       $this -> db -> from('media');
+       $this->db-> from('media');
        $this->db->where('media_association_id',$id);
        $query = $this->db->get();
        
@@ -685,7 +684,7 @@ public function get_navigation_info($navigationName)
     
       public function delete_media($id) {
 
-        $this->db->delete('media', array('id' => $id));
+        $this->db->delete('media', array('media_type' => $id));
     }
     
      public function get_media_association_info($mediaName)
@@ -768,9 +767,9 @@ public function get_navigation_info($navigationName)
          return $aid->result();
     }
 
-    function delete_photo($id) {
+    function delete_photo($a) {
        
-        $this->db->delete('media', array('id' => $id));  
+        $this->db->delete('media', array('media_type' => $a));  
     }
     
 
@@ -1108,11 +1107,11 @@ function delete_favicone($id) {
         $query = $this->db->get('slide');
         return $query->result();
     }
-    public function get_all_slider()
+    public function get_selected_slider($id)
     {
-       
+        $this->db->select('slide_name');
+        $this->db->where('id', $id);
         $this->db->from('slide');
-       
         $query = $this->db->get();
         return $query->result();
     }
@@ -1164,8 +1163,8 @@ function delete_favicone($id) {
         $this->db->update('slide', $data);
     }
     
-    function delete_slider($id) {
-        $this->db->delete('slide', array('id' => $id));
+    function delete_slider($a) {
+        $this->db->delete('slide', array('slide_image' => $a));
     }
     
     
