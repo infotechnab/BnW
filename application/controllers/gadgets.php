@@ -41,7 +41,8 @@ class Gadgets extends CI_Controller {
                // $this->load->view('body');
                // $this->load->view('footer');
             $data['gaget']= $this->database_model->get_gaget();
-           $this->load->view('bnw/gadget/gadgetsListing',$data);
+           // var_dump($data);
+           $this->load->view('bnw/gadget/gadgetsListing', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');
@@ -50,16 +51,26 @@ class Gadgets extends CI_Controller {
         
         
         function addText(){
+            if ($this->session->userdata('logged_in')) {
              $this->load->model('database_model');
-            
+            $data['gaget']= $this->database_model->get_gaget();
+             $data['meta'] = $this->dbmodel->get_meta_data();
             $name = $this->input->post('name_gadget');
             $type = $this->input->post('type_gadget');
             
              $this->database_model->addText($name,$type);
-             $mess = $this->session->set_flashdata('mess','Data added sucessfully !!! ');
+             $this->session->set_flashdata('mess','Data added sucessfully !!! ');
              //redirect('welcome/index',$mess);
              //$mess='added data';
-             $this->load->view('bnw/gadget/gadgetsListing',$mess);
+              $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu', $data);
+             $this->load->view('bnw/gadget/gadgetsListing',$data);
+            $this->load->view('bnw/templates/footer', $data);
+             
+            } else {
+            redirect('login', 'refresh');
+        } 
+            
         }
        
 }
