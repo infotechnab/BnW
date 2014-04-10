@@ -1,7 +1,7 @@
 
 <div class="rightSide">
     
-<h2>Add new Slider</h2>
+<h2>Add new Slide Image</h2>
   <?php echo validation_errors();
   if(isset($error))
   {

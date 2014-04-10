@@ -46,7 +46,7 @@
          
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     
-    <p>List of all pages</p>
+    <h3>List of all pages</h3>
         </div>
     
     <div id="navigationLeftMiddle">
@@ -86,7 +86,7 @@
         
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-    <p>List of all category</p>
+    <h3>List of all category</h3>
         </div>
         
         <div id="navigationLeftMiddle">
@@ -151,7 +151,7 @@
       <div class="left">
         <div id="customLinkLeftUp">
             <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-            <p>Create Custom Menu Link</p>
+            <h3>Create Custom Menu Link</h3>
             
         </div>
         
@@ -193,7 +193,7 @@
         
     </div> 
     <div class="right">
-        <p>List Of all Navigation</p>
+        <h2>List Of all Navigation</h2>
         
         <div id='cssmenu'>
 		<ul>

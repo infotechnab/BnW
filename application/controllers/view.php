@@ -11,9 +11,9 @@ class view extends CI_Controller {
     }
 public function index()
     {
-        
+       
         $data['pagequery'] = $this->viewmodel->get_page();
-        $data['a'] = $this->viewmodel->max_post();
+        
         
         $data['postquery'] = $this->viewmodel->get_post();
         $data['slidequery'] = $this->viewmodel->get_slider();
@@ -91,6 +91,7 @@ public function index()
         $assc_id= str_replace('view/','', $nav);
         $data['meta'] = $this->dbmodel->get_meta_data();
         $data['postquery'] = $this->viewmodel->get_post();
+        $data['limitquery'] = $this->viewmodel->max_post();
         $data['pagequery'] = $this->viewmodel->get_page();
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();

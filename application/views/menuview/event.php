@@ -21,7 +21,7 @@
                             <hr/> 
                             
                             <?php } ?>
-                     <?php $return['rows'] = $this->db->query('SELECT FOUND_ROWS() count;')->row()->count; if($return>3)  echo  anchor('view/posts', 'View All') ;  ?>       
+                     <?php $return['rows'] = $this->db->query('SELECT FOUND_ROWS() count;')->row()->count; if($return>700) echo  anchor('view/posts', 'View All') ;  ?>       
                     </div>
                     
                     <div class="download">
