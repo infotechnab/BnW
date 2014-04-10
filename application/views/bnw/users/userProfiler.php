@@ -4,14 +4,14 @@
     <p id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
     </p>
-    <p>Your profile details are listed below.</p>
+    
     <?php
     
     
         if($query){
             foreach ($query as $data){
             ?>
-          
+       <h2>Dear <?php echo $data->user_name ?>, Your profile details are listed below.</h2>   
           User Name : <?php echo $data->user_name ?>
           <br/>
           

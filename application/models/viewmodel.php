@@ -15,21 +15,18 @@ class Viewmodel extends CI_Model
         return $query->result();  
     }
     
-    public function max_post()
-    {
-       $this->db->select('description');
-        $this->db->from('misc_setting');
-        $this->db->where('name', 'max_post_to_show');
-        $a= $this->db->get();
-        return $a->result();
-    }
+   
 
     public function get_post()
     {
-        $this->db->from('post');
-       
-        $this->db->limit($limit=5);
-        $this->db->order_by("id", "desc");
+       $this->db->select('SQL_CALC_FOUND_ROWS description', FALSE);
+        $this->db->from('misc_setting');
+        $this->db->where('name', 'max_post_to_show');
+        $query = $this->db->get();
+        var_dump($query);
+          $this->db->from('post'); 
+        $this->db->limit(5);
+       $this->db->order_by("id", "desc");
         $query = $this->db->get();
         return $query->result();  
     }

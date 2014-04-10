@@ -1,5 +1,5 @@
 <div class="rightSide">
- 
+ <h2>Add new Menu</h2>
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">
