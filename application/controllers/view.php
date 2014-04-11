@@ -11,11 +11,10 @@ class view extends CI_Controller {
     }
 public function index()
     {
-       
-        $data['pagequery'] = $this->viewmodel->get_page();
-        
-        
-        $data['postquery'] = $this->viewmodel->get_post();
+        $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
+        $data['pagequery'] = $this->viewmodel->get_page($limit["page_limit"]);
+        $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
+        $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
@@ -38,8 +37,10 @@ public function index()
         $nav= $this->uri->uri_string();
         $assc_id= str_replace('view/','', $nav);
         $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['postquery'] = $this->viewmodel->get_post();
-        $data['pagequery'] = $this->viewmodel->get_page();
+        $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
+        $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
+        $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
+        $data['pagequery'] = $this->viewmodel->get_page($limit["page_limit"]);
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
@@ -64,7 +65,8 @@ public function index()
         $nav= $this->uri->uri_string();
         $assc_id= str_replace('view/','', $nav);
         $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['postquery'] = $this->viewmodel->get_post();
+       $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
+        $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
     
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
@@ -90,9 +92,10 @@ public function index()
         $nav= $this->uri->uri_string();
         $assc_id= str_replace('view/','', $nav);
         $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['postquery'] = $this->viewmodel->get_post();
-        $data['limitquery'] = $this->viewmodel->max_post();
-        $data['pagequery'] = $this->viewmodel->get_page();
+        $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
+        $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
+        $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
+        $data['pagequery'] = $this->viewmodel->get_page($limit["page_limit"]);
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
@@ -104,7 +107,7 @@ public function index()
         
         $data['viewcomments'] = $this->viewmodel->get_comments($assc_id);
         $data['headerdescription']= $this->viewmodel->get_header_description();
-        $data['selectedpostquery'] = $this->viewmodel->get_desired_post($id);
+        $data['selectedpostquery'] = $this->viewmodel->get_desired_post($id, $limit);
         
         
         $this->load->view('menuview/header',$data);
@@ -122,9 +125,11 @@ public function index()
         $nav= $this->uri->uri_string();
         $assc_id= str_replace('view/','', $nav);
         $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['postquery'] = $this->viewmodel->get_post();
+        $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
+        $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
         $data['allpostquery'] = $this->viewmodel->get_all_post();
-        $data['pagequery'] = $this->viewmodel->get_page();
+        $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
+        $data['pagequery'] = $this->viewmodel->get_page($limit["page_limit"]);
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
@@ -150,8 +155,10 @@ public function index()
     public function photos()
     {
         $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['postquery'] = $this->viewmodel->get_post();
-        $data['pagequery'] = $this->viewmodel->get_page();
+       $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
+        $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
+        $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
+        $data['pagequery'] = $this->viewmodel->get_page($limit["page_limit"]);
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
@@ -173,8 +180,10 @@ public function index()
     public function photo($id)
     {
         $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['postquery'] = $this->viewmodel->get_post();
-        $data['pagequery'] = $this->viewmodel->get_page();
+        $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
+        $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
+        $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
+        $data['pagequery'] = $this->viewmodel->get_page($limit["page_limit"]);
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();

@@ -6,26 +6,40 @@ class Viewmodel extends CI_Model
     public function __construct() {
         $this->load->database();
     }
-    
-    public function get_page()
+   public function get_page($limit)
     {
-        
-        $this->db->from('page');
+        foreach ($limit as $lim){
+            $a= $lim->description;
+        }
+      $this->db->from('page'); 
+       $this->db->limit($a);
+       $this->db->order_by("id", "desc");
         $query = $this->db->get();
         return $query->result();  
     }
     
-   
-
-    public function get_post()
-    {
-       $this->db->select('SQL_CALC_FOUND_ROWS description', FALSE);
-        $this->db->from('misc_setting');
+    public function get_max_post_to_show(){
+        $this->db->select('description');
+         $this->db->from('misc_setting');
         $this->db->where('name', 'max_post_to_show');
         $query = $this->db->get();
-        var_dump($query);
-          $this->db->from('post'); 
-        $this->db->limit(5);
+        return $query->result(); 
+    }
+    public function get_max_page_to_show(){
+        $this->db->select('description');
+         $this->db->from('misc_setting');
+        $this->db->where('name', 'max_page_to_show');
+        $query = $this->db->get();
+        return $query->result(); 
+    }
+    
+    public function get_post($limit)
+    {
+        foreach ($limit as $lim){
+            $a= $lim->description;
+        }
+      $this->db->from('post'); 
+       $this->db->limit($a);
        $this->db->order_by("id", "desc");
         $query = $this->db->get();
         return $query->result();  
