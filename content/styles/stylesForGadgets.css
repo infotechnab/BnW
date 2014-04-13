@@ -75,7 +75,6 @@
     float: left;
     width: 300px;
     height: auto;
- 
 }
 
 iframe{
@@ -98,4 +97,11 @@ iframe{
     background:#f0f0f0;
     border-bottom:thin solid;
     display: none;
+}
+
+
+
+#nav_location ul
+{
+    margin-left:-40px;
 }
