@@ -2,15 +2,10 @@
 <?php
 
 
- if(isset($photoquery)){
-            foreach ($photoquery as $adata){
-           $id = $adata->id;
-           
-           $image = $adata->media_type;
-           
-           var_dump($image);      
-            }
-        }
+ if(isset($photoquery))
+                 
+            
+        
     ?>
    
   <?php
@@ -18,7 +13,7 @@
 
  if(isset($albumquery)){
             foreach ($albumquery as $data){
-           $id = $data->id;
+           $aid = $data->id;
            $album_name= $data->album_name;
                  
             }
@@ -30,10 +25,10 @@
   <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-  <?php echo form_open_multipart('bnw/deletealbum/?image='.$image);?>
+  <?php echo form_open_multipart('bnw/delete_album/?image'.$photoquery);?>
   
-      <input type="hidden" name="id" value="<?php echo $id; ?>" />
-      <input type="hidden" name="" value="<?php echo $image; ?>" />
+      <input type="hidden" name="id" value="<?php echo $aid; ?>" />
+      
       
   </p>
     <input type="submit" value="Yes" />

@@ -2533,9 +2533,28 @@ public function delphoto($photoid) {
             redirect('login', 'refresh');
         }
     }
+    
+    public function delalbum($id){
+        if ($this->session->userdata('logged_in')) {
+            $data['photoquery'] = $this->dbmodel->get_all_photos($id);
+            $data['albumquery'] = $this->dbmodel->get_selected_album($id);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/album/deleteAlbum', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+            
+    
+    
 
     function delete_album($id) {
         if ($this->session->userdata('logged_in')) {
+             $a=$_GET['image'];
+             var_dump($a);
             $this->dbmodel->delete_photo($id);
             $this->dbmodel->delete_album($id);
             redirect('bnw/album');

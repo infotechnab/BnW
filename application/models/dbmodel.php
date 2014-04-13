@@ -740,9 +740,16 @@ public function get_navigation_info($navigationName)
     } 
     
     function get_all_photos($id) {
-        $this->db->select();
+        $this->db->select('media_type');
         $this->db->from('media');
-       $this -> db -> where('id', $aid);
+       $this -> db -> where('media_association_id', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    public function get_selected_album($id){
+        $this->db->from('album');
+        $this->db->where('id', $id);
         $query = $this->db->get();
         return $query->result();
     }
