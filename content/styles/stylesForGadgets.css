@@ -1,24 +1,24 @@
 
 #main
 {
-    margin-left: 75px;
+    
     float: left;
-    width: 78%;
+    width: 100%;
     height: auto;
     overflow:hidden;
 }
 
 #add_gadget{
     margin: 20px;
+    float: left;
     width:300px;
     height:auto;
 }
 
 #gadget_collection
 {
-    margin-left: 100px;
-    margin-top: 40px;
-    width: 50%;
+    
+    width: 68%;
     height:auto;
     float: left; 
 }
@@ -55,8 +55,9 @@
 
 #sub_gadget
 {
-    height:auto;
     margin: 20px;
+    float: left;
+    height:auto;
     width: 300px;
     border: thin solid #cccccc;
 }
@@ -67,22 +68,14 @@
  border: thin solid #cccccc;
  margin-top: 5px;
 }
-#title_in_collection
-{
- font-weight: bold;
- text-align:center;
- height:30px;
- border: thin solid #cccccc;    
-}
+
 
 #nav_location
 {
-    
     float: left;
     width: 300px;
     height: auto;
-    margin-left: 10px;
-    margin: 10px 0px;
+ 
 }
 
 iframe{
@@ -91,7 +84,18 @@ iframe{
 
 .list-item
 {
+    list-style: none;
+    background: #cccccc;
+    border: thin solid;
     font-weight: bold;
     margin-top: 20px;
 }
 
+
+#option_gadget
+{
+    list-style: none;
+    background:#f0f0f0;
+    border-bottom:thin solid;
+    display: none;
+}

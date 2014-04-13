@@ -7,7 +7,7 @@
     <script src="<?php echo base_url(); ?>content/jquery-1.9.1.min.js" > </script>
     <script src="<?php echo base_url(); ?>content/scripts/jscolor.js" > </script>
       <script src="<?php echo base_url(); ?>content/scripts/nicEdit.js"></script>
-
+       <script src="<?php echo base_url(); ?>content/scripts/gadgets.js"></script>
 <!--    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> -->
 <script type="text/javascript">
 
