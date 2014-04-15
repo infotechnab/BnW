@@ -11,7 +11,7 @@
 
 
                        
-                        <a href="<?php echo base_url().'index.php/view/download/?download='.$filename; ?>" ><?php echo $filename;  ?></a>
+                        <a href="<?php echo base_url().'index.php/view/download/?download='.$filename; ?>" ><?php echo $filename;  ?></a><br/>
 
                      <?php   } ?>
                     </div> 

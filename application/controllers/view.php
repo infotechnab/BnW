@@ -243,20 +243,13 @@ public function index()
     }
     
   public function download(){
+$this->load->helper('download');
       $filename= $_GET['download'];
-      die($filename);
-      
-      header('Pragma: public');
-header('Expires: 0');
-header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-header('Cache-Control: private', false); // required for certain browsers 
-header('Content-Type: application/pdf');
+ $data = file_get_contents("./content/images/".$filename); // Read the file's contents
+$name = $filename;
 
-header('Content-Disposition: attachment; filename="'. basename($filename) . '";');
-header('Content-Transfer-Encoding: binary');
-header('Content-Length: ' . filesize($filename));
+force_download($name, $data);      
 
-/*readfile(<?php echo base_url().'/contents/images/'.$filename; ?>);*/
 
 exit;
         
