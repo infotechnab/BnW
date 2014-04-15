@@ -31,7 +31,7 @@
                         <div>
 
                             <div class="paragraph">
-                                <p><b> Download Files </b> <br/> <a href="downloads/" > Downlaod</a>  </p>
+                                <p><b> Download Files </b> <br/> <a href="downloads/" > Download</a>  </p>
 
                             </div>
                         </div>

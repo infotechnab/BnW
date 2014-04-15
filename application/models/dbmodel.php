@@ -208,7 +208,8 @@ public function get_navigation_info($navigationName)
     }
     
      public function get_all_posts($limit, $start) {
-           $this->db->limit($limit, $start); 
+           $this->db->limit($limit, $start);
+            $this->db->order_by('id','DESC');
         $query = $this->db->get('post');
         return $query->result();
     }
@@ -434,7 +435,7 @@ public function get_navigation_info($navigationName)
     
     public function get_all_pages($limit, $start) {
            $this->db->limit($limit, $start); 
-       
+        $this->db->order_by('id','DESC');
         $query = $this->db->get('page');
         return $query->result();
     }
@@ -629,6 +630,7 @@ public function get_navigation_info($navigationName)
         return $this->db->count_all("media");
     }
      public function get_all_media() {
+          $this->db->order_by('id','DESC');
         $query = $this->db->get('media');
         return $query->result();
     }
@@ -1111,6 +1113,7 @@ function delete_favicone($id) {
     public function get_slider($limit,$start)
     {
         $this->db->limit($limit, $start);
+         $this->db->order_by('id','DESC');
         $query = $this->db->get('slide');
         return $query->result();
     }

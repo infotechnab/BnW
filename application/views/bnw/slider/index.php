@@ -4,10 +4,10 @@
     <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-    <h2>List of all slide</h2>
+    <h2>All slides</h2>
     <table border="1" cellpadding="10">
         <tr>
-            <th>S.N.</th>
+           
             <th>Title</th> 
             <th>Image</th>
             <th>Content</th>
@@ -21,7 +21,7 @@
             foreach ($query as $data){
             ?>
           <tr>
-            <td><?php echo $data->id ?></td>
+            
             <td><?php echo $data->slide_name ?></td>
             <td><img src="<?php echo base_url()."content/images/".$data->slide_image; ?>" width="50px" height="50px" />  </td>
             <td><?php echo $data->slide_content ?></td>

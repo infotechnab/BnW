@@ -1679,7 +1679,7 @@ public function delphoto($photoid) {
 		$manipulator->save('./content/images/' . $_FILES['file_name']['name']);
                 //cropper closed               
                 $this->dbmodel->add_new_slider($slidename, $slideimage, $slidecontent);
-                $this->session->set_flashdata('message', 'One slider added sucessfully');
+                $this->session->set_flashdata('message', 'One slide added sucessfully');
                 redirect('bnw/slider');
             }
             $this->load->view('bnw/templates/footer', $data);
@@ -1749,7 +1749,7 @@ public function delphoto($photoid) {
                 $slidecontent = $this->input->post('slide_content');
                 
                 $this->dbmodel->update_slider($id, $slidename, $slideimage, $slidecontent);
-                $this->session->set_flashdata('message', 'One slider added sucessfully');
+                $this->session->set_flashdata('message', 'One slide modified sucessfully');
                 redirect('bnw/slider');
             }
             $this->load->view('bnw/templates/footer', $data);
@@ -2553,11 +2553,17 @@ public function delphoto($photoid) {
 
     function delete_album($id) {
         if ($this->session->userdata('logged_in')) {
-             $a=$_GET['image'];
-             var_dump($a);
+            
+             $data['photoquery'] = $this->dbmodel->get_all_photos($id);
+             foreach($data['photoquery'] as $photo)
+             {
+                 $image= $photo->media_type;
+                 unlink('./content/images/'.$image);
+             }
+                 
             $this->dbmodel->delete_photo($id);
             $this->dbmodel->delete_album($id);
-            redirect('bnw/album');
+           // redirect('bnw/album');
         } else {
             redirect('login', 'refresh');
         }

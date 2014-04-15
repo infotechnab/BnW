@@ -11,40 +11,30 @@
         if($query){
             foreach ($query as $data){
             ?>
-       <h2>Dear <?php echo $data->user_name ?>, Your profile details are listed below.</h2>   
-          User Name : <?php echo $data->user_name ?>
-          <br/>
-          
-          User full Name: <?php echo $data->user_fname." ".$data->user_lname; ?>
-           <br/> 
-          
-          User E-mail : <?php echo $data->user_email ?>
-           <br/>   
+       <h2>Dear <?php echo $data->user_name ?>, Your profile details are listed below.</h2> 
+       <h3>Basic Details</h3>
+       <table border="1" cellpadding="10">  
+         <tr><td width="100"> User Name </td><td width="200"><?php echo $data->user_name ?></td>
+         </tr>
+         <tr><td> First Name </td><td><?php echo $data->user_fname ?></td>
+         </tr>
+         <tr><td> Last Name </td><td><?php echo $data->user_lname ?></td>
+         </tr>
+         <tr><td> Full Name </td><td><?php echo $data->user_fname." ".$data->user_lname; ?></td>
+         </tr>
+        </table> 
+       <br/>
+       <h3>Contact Details</h3>
+        <table border="1" cellpadding="10">  
+         <tr><td width="100"> Email </td><td width="200"><?php echo $data->user_email ?></td>
+         </tr>
+         <tr><td> Phone </td><td></td>
+         </tr>
+         <tr><td> Mobile </td><td></td>
+         </tr>
          
-
-            User Status: <?php if($data->user_status=="0")
-            {
-                echo "Draft";
-            }
-                else
-            {
-                    echo "Active";
-                    
-            }
-            ?>
-           <br/>
-           
-            User Type: <?php if($data->user_type=="1")
-            {
-                echo "User";
-            }
-                else
-            {
-                    echo "Administrator";
-                    
-            }
-            ?>
-           <br/>
+        </table>   
+    
            
         
             <?php    
