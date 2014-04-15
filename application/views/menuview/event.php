@@ -31,8 +31,8 @@
                         <div>
 
                             <div class="paragraph">
-                                <p><b> Download Files </b> <br/> <a href="downloads/" > Download</a>  </p>
-
+                               
+<p><b> Download Files </b> <br/> <a href="<?php echo base_url().'index.php/view/downloads'; ?>" >Click here for Downlaod</a>  </p>
                             </div>
                         </div>
                     </div>

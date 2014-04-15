@@ -634,7 +634,8 @@ public function get_navigation_info($navigationName)
         $query = $this->db->get('media');
         return $query->result();
     }
-       
+    
+   
      public function get_media($id)
     {  
        $this->db-> from('media');

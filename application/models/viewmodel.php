@@ -196,4 +196,15 @@ class Viewmodel extends CI_Model
         }
         }
 
+        
+        public function get_all_media(){
+        $this->db->from('media');
+        $query=$this->db->get();
+        return $query->result();
+    }
+        
+        
+        
+        
+        
 }

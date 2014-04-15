@@ -218,7 +218,51 @@ public function index()
         redirect('view/'.$a );
     }
     
+     public function downloads(){
+      $data['meta'] = $this->dbmodel->get_meta_data();
+        $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
+        $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
+        $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
+        $data['pagequery'] = $this->viewmodel->get_page($limit["page_limit"]);
+        $data['slidequery'] = $this->viewmodel->get_slider();
+        $data['headerquery']= $this->viewmodel->get_design_setup();
+        $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['faviconicon']= $this->viewmodel->get_favicon_icon();
+        $data['headerdescription']= $this->viewmodel->get_header_description();
+        $data['mediaquery']= $this->viewmodel->get_all_media();        
+        
+        
+        $this->load->view('menuview/header',$data);
+        $this->load->view('menuview/menu',$data);
+        $this->load->view('menuview/event',$data);
+        $this->load->view('menuview/slider',$data);
+        $this->load->view('menuview/downloads',$data);
+        $this->load->view('menuview/footer',$data); 
+
+    }
     
-    
+  public function download(){
+      $filename= $_GET['download'];
+      die($filename);
+      
+      header('Pragma: public');
+header('Expires: 0');
+header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+header('Cache-Control: private', false); // required for certain browsers 
+header('Content-Type: application/pdf');
+
+header('Content-Disposition: attachment; filename="'. basename($filename) . '";');
+header('Content-Transfer-Encoding: binary');
+header('Content-Length: ' . filesize($filename));
+
+/*readfile(<?php echo base_url().'/contents/images/'.$filename; ?>);*/
+
+exit;
+        
+  }
+  
+  
+  
   
 }
