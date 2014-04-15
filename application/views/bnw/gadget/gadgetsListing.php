@@ -14,15 +14,22 @@
                                 echo "<li id='option_gadget' class='header_gadgets'>";
                                 echo $datas->name;
                                 echo "<br>";
+                                echo "<div id='option'>";
+                                echo "<div id='enable'>";
                                 echo form_open('gadgets/hide'); 
                                 echo "<select name='hide'><option value='1'>Show</option><option value='0'>Hide</option></select>";
                                 echo "<input type='submit' value='submit'>";
                                 echo "<input type='hidden' value='$datas->name' name='name_hide'>";
                                 echo form_close();
+                                echo "</div>"; //enable div close
+                                echo "<div id='delete_option'>";
                                 echo form_open('gadgets/delete'); 
                                 echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo "<input type='submit' value='Delete' name='delete'>";
+                                echo "<input type='hidden' value='header' name='display'>";
+                                echo "<input type='submit' value='' name='delete' id='delete'>";
                                 echo form_close();
+                                echo "</div>"; //delete_option div close
+                                echo "</div>"; //option div close
                                 echo "</li>";
                                 }
                             }
@@ -46,7 +53,8 @@
                                 echo form_close();
                                 echo form_open('gadgets/delete'); 
                                 echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo "<input type='submit' value='Delete' name='delete'>";
+                                echo "<input type='hidden' value='sidebar' name='display'>";
+                                echo "<input type='submit' value='' name='delete' id='delete'>";
                                 echo form_close();
                                 echo "</li>";
                                 }
@@ -72,7 +80,8 @@
                                 echo form_close();
                                 echo form_open('gadgets/delete'); 
                                 echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo "<input type='submit' value='Delete' name='delete'>";
+                                echo "<input type='hidden' value='body' name='display'>";
+                                echo "<input type='submit' value='' name='delete' id='delete'>";
                                 echo form_close();
                                 echo "</li>";
                                 }
@@ -97,7 +106,8 @@
                                 echo form_close();
                                 echo form_open('gadgets/delete'); 
                                 echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo "<input type='submit' value='Delete' name='delete'>";
+                                echo "<input type='hidden' value='footer' name='display'>";
+                                echo "<input type='submit' value='' name='delete'  id='delete'>";
                                 echo form_close();
                                 echo "</li>";
                                 }
@@ -116,7 +126,7 @@
         <div id="gadget_collection"> <!-- gadget_collections open -->
             
             
-            <div id="add_gadget"> <!-- add_gadget open -->
+            <div id="sub_gadget"> <!-- sub_gadget open -->
        <!--<div style="font-size: 12px; border: thin solid #cccccc;">
         <?php 
         //if($this->session->flashdata('mess'))
@@ -127,13 +137,14 @@
         ?>
         </div>-->
             <div id="title">Click to Add Widgets</div>
-            <div id="description">
-                
+            
+                <div id="description">
                     <?php echo form_open('gadgets/addText'); ?>
-                <input type="text" id="inputtype" placeholder="Title" name="name_gadget" required="required">
+                <input type="text" id="inputtype" placeholder="Title" name="name_gadget">
+             
                 <textarea id="txtarea" placeholder="Description" name="type_gadget" required="required"></textarea>
-         
-                Where to display:
+            </div>
+            Where to display:<br>
                 <select name="wheretodisplay">
                     <?php 
                     foreach($var as $temp)
@@ -146,18 +157,16 @@
                     <input type="submit" value="Add Gadget" id="btn" name="submit">
                     <?php echo form_close(); ?>
             </div>
-        </div>
+     
       
                              <?php
-                    //die($gaget);
-                    //$gaget = array($data->name,$data->type,$data->display,$data->setting);    
-                     foreach ($gaget as $data){ 
-                         //echo $data;
+                        foreach ($gaget as $data){ 
+                   
                          ?>
    
              <div id='sub_gadget'>                     
                           <div id='title'><?php echo $data->name; ?></div>
-                          <div id='description_in_collection'><?php echo $data->type; ?> </div>                
+                          <div id='description_for_gadget'><?php echo $data->type; ?> </div>                
                 Where to display:
                 <?php echo form_open('gadgets/updateText'); ?>
                     <select name="display">

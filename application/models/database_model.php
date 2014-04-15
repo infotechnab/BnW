@@ -29,6 +29,7 @@ class database_model extends CI_Model {
         {
             $gadget = $this->db->get_where('gadgets', array('display' => $display));
             return $gadget->result();
+            var_dump($gadget);
         }
         
         function updateText($gadget_name, $gadget_type, $updateDisplay)
@@ -56,8 +57,8 @@ class database_model extends CI_Model {
         
         function delete($gadget_delete, $name_hide)
         {
-        $this->db->where('name', $name_hide)->delete('gadgets');
-        //return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
+            $sql = "DELETE FROM gadgets WHERE name = '$name_hide' and display = '$gadget_delete'";
+            $this->db->query($sql);
         }
 
 

@@ -8,12 +8,6 @@
     overflow:hidden;
 }
 
-#add_gadget{
-    margin: 20px;
-    float: left;
-    width:300px;
-    height:auto;
-}
 
 #gadget_collection
 {
@@ -29,7 +23,6 @@
     width:290px;
     height:auto;
     padding: 5px;
-    background: #cccccc;
     text-align:center;
     font-size: 20px;
 }
@@ -62,11 +55,12 @@
     border: thin solid #cccccc;
 }
 
-#description_in_collection
+#description_for_gadget
 {
- height:auto;
- border: thin solid #cccccc;
- margin-top: 5px;
+    height:auto;
+    width: 300px;
+    border: thin solid #cccccc;
+   
 }
 
 
@@ -95,7 +89,7 @@ iframe{
 {
     list-style: none;
     background:#f0f0f0;
-    border-bottom:thin solid;
+    height: 50px;
     display: none;
 }
 
@@ -104,4 +98,29 @@ iframe{
 #nav_location ul
 {
     margin-left:-40px;
+}
+
+#delete
+{
+    margin-left: 10px;
+    cursor: pointer;
+    border: none;
+    background-size: 100%;
+    background-image:  url(../images/delete.png);
+    height: 20px;;
+}
+
+#enable
+{
+    padding-right:10px;
+    border-right: thin solid;
+    float: left;
+    width: auto;
+    
+}
+
+#delete_option
+{
+   // float: left;
+    
 }
