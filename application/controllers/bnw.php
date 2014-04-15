@@ -101,10 +101,6 @@ class bnw extends CI_Controller {
                  
             }
             
-//            $this->load->view('bnw/templates/header', $data);
-//            $this->load->view('bnw/templates/menu',$data);
-//            $this->load->view('bnw/menu/listOfItems',$data);
-//            $this->load->view('bnw/templates/footer', $data);
             redirect('bnw/navigation');
         }
         else 

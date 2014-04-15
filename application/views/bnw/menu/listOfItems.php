@@ -1,6 +1,6 @@
 <?php     foreach ($listOfMenu as $data)
                 {
-                  $categories[] = array('id'=> $data->id,'menu_name'=>$data->menu_name); 
+                  $categories[] = array( 'id'=> $data->id,'menu_name'=>$data->menu_name); 
                 } 
                 if(!empty($listOfNavigation)){
                 foreach ($listOfNavigation as $data){
@@ -37,7 +37,53 @@
             $('#subcatsSelect').toggle();
         });
       });
-    </script>
+   
+//now changed
+
+(function($) {
+
+$.fn.changeType = function(){
+ var options_departments = '<option>Select<\/option>';
+        $.each(data, function(i,d){
+            options_departments += '<option value="' + d.department + '">' + d.department + '<\/option>';
+        });
+        $("select#selectMenu", this).html(options_departments);
+       
+        $("select#selectMenu", this).change(function(){
+            var index = $(this).get(0).selectedIndex;
+            var d = data[index-1];  // -1 because index 0 is for empty 'Select' option
+            var options = '';
+            if (index > 0) {
+                $.each(d.jobs, function(i,j){
+                            options += '<option value="'+ index + j.title + '">' + j.title + '<\/option>';
+                });
+            } else {
+                options += '<option>Select<\/option>';
+            }
+            $("select#selectNavigation").html(options);
+        })
+};
+   
+})(jQuery);
+
+
+$(document).ready(function() {
+    $("form#search").changeType();
+});
+
+$(document).ready(function() {
+    $("form#search").changeType();
+});
+/* ]]> */
+</script>
+      
+      
+      
+      
+      
+      
+      
+   
 
 <div class="rightSide">
     <div class="forLeft">
@@ -66,10 +112,22 @@
     </div>
     
     <div id="navigationLeftDown">
-     <select id='categoriesSelect' name="selectMenu" >
+        
+        <select name="selectMenu" id='categoriesSelect'>
+        <option value="0">Select Menu</option>
+    </select>
+           
+    <select name="selectNavigation" id='subcatsSelect'>
+        <option>Select Parent</option>
+    </select>
+        
+        
+        
+        
+  <!--   <select id='categoriesSelect' name="selectMenu" >
          <option value="0">Select Menu</option>
     </select>
-      <select id='subcatsSelect' name="selectNavigation">   </select>
+      <select id='subcatsSelect' name="selectNavigation">   </select>-->
       
       <input id="parent" type="checkbox" name="parent" > Make Parent </input> 
        
@@ -110,38 +168,16 @@
         </div>
         
         <div id="navigationLeftDown">
-            <select name="selectMenuCategory">
-                <?php
-                foreach ($listOfMenu as $data)
-                {
-                    ?>
-                <option value="<?php echo $data->menu_name; ?>">
-                    <?php echo $data->menu_name; ?>
-                </option>
-                    <?php
-                }
-                ?>
-          
-            </select>
-    
-    <select name="selectNavigation" id="somewhere">
-        <option value=" ">
-                    Make Parent
-                </option>
+            
+         <select name="selectMenu" id='categoriesSelect'>
+        <option>Select Menu</option>
+    </select>
+           
+    <select name="selectNavigation" id='subcatsSelect'>
+        <option>Select Parent</option>
+    </select>
                 
                 
-                <?php
-              /*  foreach ($listOfNavigation as $data)
-                {
-                    ?>
-                <option value="<?php echo $data->id; ?>">
-                    <?php echo $data->navigation_name; ?>
-                </option>
-                    <?php
-                }
-               */ ?>
-          
-            </select>
             <input type="submit" value="Add">
         <?php echo form_close();?>
     </div></div>
