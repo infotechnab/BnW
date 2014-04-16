@@ -1,6 +1,7 @@
+
 <?php     foreach ($listOfMenu as $data)
                 {
-                  $categories[] = array( 'id'=> $data->id,'menu_name'=>$data->menu_name); 
+                  $categories[] = array('id'=> $data->id,'menu_name'=>$data->menu_name); 
                 } 
                 if(!empty($listOfNavigation)){
                 foreach ($listOfNavigation as $data){
@@ -10,46 +11,47 @@
                 }
  $jsonCats = json_encode($categories);
   $jsonSubCats = json_encode($subcats);
+ 
+  
+?>
 
-?><script type='text/javascript'>
-      <?php
+<script type="text/javascript">
+
+(function($) { 
+$.fn.changeType = function(){
+    <?php
         echo "var categories = $jsonCats; \n";
         echo "var subcats = $jsonSubCats; \n";
       ?>
-      function loadCategories(){
-        var select = document.getElementById("categoriesSelect");
-        select.onchange = updateSubCats;
-        for(var i = 0; i < categories.length; i++){
-          select.options[i] = new Option(categories[i].menu_name,categories[i].id);          
-        }
-      }
-      function updateSubCats(){
-        var catSelect = this;
-        var menu_id = this.value;
-        var subcatSelect = document.getElementById("subcatsSelect");
-        subcatSelect.options.length = 0; //delete all options if any present
-        for(var i = 0; i < subcats[menu_id].length; i++){
-          subcatSelect.options[i] = new Option(subcats[menu_id][i].nname,subcats[menu_id][i].nid);
-        }
-      }
-      $(document).ready(function(){
-          $('#parent').click(function(){
-            $('#subcatsSelect').toggle();
-        });
-      });
-   
-//now changed
+              <?php
+              
+                $initial= '             
 
-(function($) {
+    
+    var data = [';
+                echo $initial;
+                
+                foreach ($listOfMenu as $data)
+                {
+                    echo'{"department":'.'"'.$data->menu_name.'",'.'"jobs":[';
+                    $subCategory = $this->dbmodel->get_subList($data->id);
+                    foreach ($subCategory as $nextData)
+                    {
+                        echo '{"title":"'.$nextData->navigation_name.'"},';
+                    }
+                    echo "]},";
+                }
+                echo ']';
+              ?>
 
-$.fn.changeType = function(){
- var options_departments = '<option>Select<\/option>';
+
+        var options_departments = '<option>Select Menu<\/option>';
         $.each(data, function(i,d){
             options_departments += '<option value="' + d.department + '">' + d.department + '<\/option>';
         });
-        $("select#selectMenu", this).html(options_departments);
+        $("select#departments", this).html(options_departments);
        
-        $("select#selectMenu", this).change(function(){
+        $("select#departments", this).change(function(){
             var index = $(this).get(0).selectedIndex;
             var d = data[index-1];  // -1 because index 0 is for empty 'Select' option
             var options = '';
@@ -58,9 +60,9 @@ $.fn.changeType = function(){
                             options += '<option value="'+ index + j.title + '">' + j.title + '<\/option>';
                 });
             } else {
-                options += '<option>Select<\/option>';
+                options += '<option>Select Parent<\/option>';
             }
-            $("select#selectNavigation").html(options);
+            $("select#jobs").html(options);
         })
 };
    
@@ -76,16 +78,9 @@ $(document).ready(function() {
 });
 /* ]]> */
 </script>
-      
-      
-      
-      
-      
-      
-      
-   
 
-<div class="rightSide">
+<!-- changed from here  -->
+ <div class="rightSide">
     <div class="forLeft">
     <div class="left">
         <div id="navigationLeftUp"> 
@@ -94,10 +89,10 @@ $(document).ready(function() {
     
     <h3>List of all pages</h3>
         </div>
-    
+    <?php echo form_open_multipart('bnw/addPageForNavigation', array('id' => 'search', 'name'=>'search'));?> 
     <div id="navigationLeftMiddle">
     <ul>
-        <?php echo form_open_multipart('bnw/addPageForNavigation');?>
+        
       <?php    
         if(isset($listOfPage)){
             foreach ($listOfPage as $pagedata){
@@ -112,28 +107,21 @@ $(document).ready(function() {
     </div>
     
     <div id="navigationLeftDown">
-        
-        <select name="selectMenu" id='categoriesSelect'>
-        <option value="0">Select Menu</option>
+     <select name="departments" id="departments">
+        <option>Select Menu</option>
     </select>
            
-    <select name="selectNavigation" id='subcatsSelect'>
+    <select name="jobs" id="jobs">
         <option>Select Parent</option>
     </select>
-        
-        
-        
-        
-  <!--   <select id='categoriesSelect' name="selectMenu" >
-         <option value="0">Select Menu</option>
-    </select>
-      <select id='subcatsSelect' name="selectNavigation">   </select>-->
+
       
       <input id="parent" type="checkbox" name="parent" > Make Parent </input> 
        
             <input type="submit" value="Add">
-        <?php echo form_close();?>
+        
     </div>
+        <?php echo form_close();?>
     </div>
            
       <!-- Top left div for choosing page, menu and parent is closed -->       
@@ -146,11 +134,11 @@ $(document).ready(function() {
     </p>
     <h3>List of all category</h3>
         </div>
-        
+    <?php echo form_open_multipart('bnw/addCategoryForNavigation',array('id' => 'search', 'name'=>'search'));?>    
         <div id="navigationLeftMiddle">
     
     <ul>
-        <?php echo form_open_multipart('bnw/addCategoryForNavigation');?>
+        
       <?php    
         if(isset($listOfCategory)){
             foreach ($listOfCategory as $categorydata){
@@ -168,19 +156,20 @@ $(document).ready(function() {
         </div>
         
         <div id="navigationLeftDown">
-            
-         <select name="selectMenu" id='categoriesSelect'>
+            <select name="departments" id="departments">
         <option>Select Menu</option>
     </select>
            
-    <select name="selectNavigation" id='subcatsSelect'>
+    <select name="jobs" id="jobs">
         <option>Select Parent</option>
     </select>
-                
-                
+      <input id="parent" type="checkbox" name="parent" > Make Parent </input> 
+       
             <input type="submit" value="Add">
-        <?php echo form_close();?>
-    </div></div>
+       
+    </div>
+     <?php echo form_close();?>
+    </div>
       
       <!-- Middle left div for choosing category, menu and parent is closed -->      
       
@@ -234,11 +223,10 @@ $(document).ready(function() {
         <div id='cssmenu'>
 		<ul>
                     
-<?php
+<?php 
+$this->load->helper('myHelper');
 
-//$this->load->helper('myHelper');
-
-//fetch_menu (query(0));
+fetch_menu (query(0));
 
 ?>
 
@@ -247,12 +235,12 @@ $(document).ready(function() {
         <div>
             <ul>
             <?php foreach($listOfMenu as $data){
-                
+               
                 $menu_id= $data->id;
-                $name = $data->menu_name; ?>
-               <h4> <?php echo $name; ?> </h4> <?php
-                $this->load->helper('myHelper');
-                fetch_menu (main_menu_query($menu_id));
+               $name = $data->menu_name; ?>
+               <h4> <?php// echo $name; ?> </h4> <?php
+               // $this->load->helper('myHelper');
+               // fetch_menu (main_menu_query($menu_id));
             } ?>
                </ul>
         </div>
@@ -262,16 +250,12 @@ $(document).ready(function() {
     <div class="clear"></div> 
 </div>
 <div class="clear"></div>
-</div> 
+</div>
 
 
 
-  <body >
-   
-
-    
-  </body>
-</html>
 
 
+<!-- upto here -->
 
+ 

@@ -178,7 +178,7 @@ class Dbmodel extends CI_Model {
 public function get_navigation_info($navigationName)
     {
          $this->db->select('id');
-        $this->db->where('id', $navigationName);
+        $this->db->where('navigation_name', $navigationName);
         $query = $this->db->get('navigation');
           return $query->result();
     }
@@ -388,7 +388,7 @@ public function get_navigation_info($navigationName)
     {
         //die($menuSelected);
        
-        $this->db->where('id', $menuSelected);
+        $this->db->where('menu_name', $menuSelected);
         $query = $this->db->get('menu');
           return $query->result();
         
@@ -1208,4 +1208,15 @@ function delete_favicone($id) {
         $query = $this->db->get('navigation');
         return $query->result();
     }
+ 
+    
+    // for listing in navigation 
+    public function get_subList($id)
+    {
+        $this->db->where('menu_id', $id);
+        $query = $this->db->get('navigation');
+        return $query->result();
+        
     }
+    
+       }

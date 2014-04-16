@@ -67,7 +67,7 @@ $.fn.changeType = function(){
        
         ]
 
-        var options_departments = '<option>Select<\/option>';
+        var options_departments = '<option>Select Menu<\/option>';
         $.each(data, function(i,d){
             options_departments += '<option value="' + d.department + '">' + d.department + '<\/option>';
         });
@@ -106,7 +106,7 @@ $(document).ready(function() {
  <body>
  <form id="search" action="" name="search">
     <select name="departments" id="departments">
-        <option>Select Menu</option>
+        <option> Menu</option>
     </select>
            
     <select name="jobs" id="jobs">
