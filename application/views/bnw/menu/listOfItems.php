@@ -218,10 +218,22 @@ $(document).ready(function() {
    function changeFunc() {
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    $a= selectedValue;
     
-    alert($a);
+    var dataString = 'menu_id_next=' + selectedValue;
+    $a= dataString;
+    
+   // alert($a);
+  $.ajax({
+  type: "POST",
+  url: "<?php echo base_url().'index.php/bnw/menu_id_from_ajax' ;?>",
+  data: dataString,
+   success: function(msg) 
+         {
+             $("#cssmenu").html(msg);
+         }
   
+    
+  });
    }
 
   </script>
@@ -240,20 +252,19 @@ $(document).ready(function() {
           
             </select>
   
-        
         <div id='cssmenu'>
 		<ul>
                     
 <?php 
 $this->load->helper('myHelper');
 
-fetch_menu (query(0));
+fetch_menu (query(0,0));
 
 ?>
 
 		</ul>
 	</div>
-        
+     <br/><br/>   
       <?php echo anchor('bnw/shownavigation/','Edit Navigation'); ?>   
     </div>
     

@@ -34,6 +34,22 @@ class bnw extends CI_Controller {
         redirect('login', 'refresh');
     }
 
+  /*  public function menuDropDown(){
+        $tnmnt_id = $this->input->post('tnmnt');
+        die($tnmnt_id);
+    }*/
+
+
+ public function menu_id_from_ajax(){
+   $this->load->helper('myHelper_helper');  
+    $menu_id_next = ($_POST['menu_id_next']);
+    //$this->load->helper('myHelper');
+
+       fetch_menu (query(0,$menu_id_next));
+     //echo $menu_id;
+  }
+ 
+
     public function addPageForNavigation() {
         if ($this->session->userdata('logged_in')) {            
             $data['meta'] = $this->dbmodel->get_meta_data();
@@ -257,8 +273,7 @@ class bnw extends CI_Controller {
             $config["per_navigation"] = 6;
             $this->pagination->initialize($config);
             $navigation = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-$search = $this->input->post('selectMenu');
-var_dump($search);
+        
             $data["query"] = $this->dbmodel->get_navigation($config["per_navigation"], $navigation);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbmodel->get_meta_data();
