@@ -63,13 +63,18 @@ class bnw extends CI_Controller {
                      $menu_id = $id->id;
                  }
             $navigationName = $_POST['jobs'];
-            die($navigationName);
-                 $post_category_info = $this->dbmodel->get_navigation_info($navigationName);  
+            if ($navigationName =='Make Parent')
+            $parent_id='0';
+         else {
+            $post_category_info = $this->dbmodel->get_navigation_info($navigationName);  
                 foreach($post_category_info as $pid)
                 {
                     $parent_id= $pid->id;
-                }     
-                 
+                }
+            }
+           
+             
+            
                  
                  
             foreach ($listOfSelectedMenu as $myData)
@@ -78,31 +83,9 @@ class bnw extends CI_Controller {
                 {
                      $navigation_type="page";
                  $navigation_name= $v;
-                 $navigation_link= $navigation_type."/".$k;
-                 if(($_SERVER['REQUEST_METHOD'] == 'POST'))
-            {
-                //$navigationName = $_POST['selectNavigation'];
-               //die($navigationName);
-//                 if(isset ($_POST['selectNavigation'])){
-//                    
-//                    
-//                }else
-                 if(isset($_POST['parent'])){
-                    $parent_id='0';
-                    
-                }
-               
-                else {    
-                    
-                }            }    
-                
-                 $navigation_slug= preg_replace('/\s+/', '', $v);
-                 
-                 
-                 
-                }
-                 
-                 //die($parent_id);
+                 $navigation_link= $navigation_type."/".$k;    
+                 $navigation_slug= preg_replace('/\s+/', '', $v);                 
+                }                
                 $this->dbmodel->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menu_id);
                  
             }
@@ -139,29 +122,24 @@ class bnw extends CI_Controller {
              
             
             if(($_SERVER['REQUEST_METHOD'] == 'POST'))
-            {
-                $navigationName = $_POST['jobs'];
-                if($navigationName==" "){
-                    $parent_id='0';
-                }  else {              
-                 $post_category_info = $this->dbmodel->get_navigation_info($navigationName);
-                 
+            {               
+            $menuSelected = $_POST['departments'];
+            $menu_info = $this->dbmodel->get_menu_info($menuSelected);
+            foreach ($menu_info as $id)
+                 {
+                     $menu_id = $id->id;
+                 }
+            $navigationName = $_POST['jobs'];
+            if ($navigationName =='Make Parent')
+            $parent_id='0';
+         else {
+            $post_category_info = $this->dbmodel->get_navigation_info($navigationName);  
                 foreach($post_category_info as $pid)
                 {
                     $parent_id= $pid->id;
                 }
-                }            }
+            }
                 
-                
-            if(($_SERVER['REQUEST_METHOD'] == 'POST'))
-            {
-                $menuSelected = $_POST['departments'];
-            $menu_info = $this->dbmodel->get_menu_info($menuSelected);
-           foreach ($menu_info as $id)
-                 {
-                     $menu_id = $id->id;
-                 }
-           
             $categoryList = Array();
             foreach ($listOfCategory as $myData) {
                 
@@ -279,7 +257,8 @@ class bnw extends CI_Controller {
             $config["per_navigation"] = 6;
             $this->pagination->initialize($config);
             $navigation = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-
+$search = $this->input->post('selectMenu');
+var_dump($search);
             $data["query"] = $this->dbmodel->get_navigation($config["per_navigation"], $navigation);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbmodel->get_meta_data();

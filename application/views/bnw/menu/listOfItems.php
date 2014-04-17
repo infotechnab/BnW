@@ -54,13 +54,13 @@ $.fn.changeType = function(){
         $("select#departments", this).change(function(){
             var index = $(this).get(0).selectedIndex;
             var d = data[index-1];  // -1 because index 0 is for empty 'Select' option
-            var options = '';
+            var options = '<option>Make Parent<\/option>';
             if (index > 0) {
                 $.each(d.jobs, function(i,j){
-                            options += '<option value="'+ index + j.title + '">' + j.title + '<\/option>';
+                            options += '<option value="'+ j.title + '">' + j.title + '<\/option>';
                 });
             } else {
-                options += '<option>Select Parent<\/option>';
+                options += '<option>Make Parent<\/option>';
             }
             $("select#jobs").html(options);
         })
@@ -107,17 +107,13 @@ $(document).ready(function() {
     </div>
     
     <div id="navigationLeftDown">
-     <select name="departments" id="departments">
+     <select style="width: 110px" name="departments" id="departments">
         <option>Select Menu</option>
     </select>
            
-    <select name="jobs" id="jobs">
-        <option>Select Parent</option>
-    </select>
-
-      
-      <input id="parent" type="checkbox" name="parent" > Make Parent </input> 
-       
+    <select style="width: 150px" name="jobs" id="jobs">
+        <option>Make Parent</option>
+    </select>      
             <input type="submit" value="Add">
         
     </div>
@@ -156,15 +152,13 @@ $(document).ready(function() {
         </div>
         
         <div id="navigationLeftDown">
-            <select name="departments" id="departments">
+            <select style="width: 110px" name="departments" id="departments">
         <option>Select Menu</option>
     </select>
            
-    <select name="jobs" id="jobs">
-        <option>Select Parent</option>
+    <select style="width: 150px" name="jobs" id="jobs">
+        <option>Make Parent</option>
     </select>
-      <input id="parent" type="checkbox" name="parent" > Make Parent </input> 
-       
             <input type="submit" value="Add">
        
     </div>
@@ -191,7 +185,7 @@ $(document).ready(function() {
             <input type="text" name="navigation_link" placeholder="Type Custom Menu Link" required/>
             </p>
               
-            <select name="selectMenu">
+            <select name="selectMenu" style="width: 110px">
                 <?php
                 foreach ($listOfMenu as $data)
                 {
@@ -220,6 +214,33 @@ $(document).ready(function() {
     <div class="right">
         <h2>List Of all Navigation</h2>
         
+       <script type="text/javascript">
+   function changeFunc() {
+    var selectBox = document.getElementById("selectBox");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    $a= selectedValue;
+    
+    alert($a);
+  
+   }
+
+  </script>
+  
+        <select name="selectMenu" style="width: 110px"  id="selectBox" onchange="changeFunc();">
+                <?php
+                foreach ($listOfMenu as $data)
+                {
+                    ?>
+                <option value="<?php echo $data->id; ?>">
+                    <?php echo $data->menu_name; ?>
+                </option>
+                    <?php
+                }
+                ?>
+          
+            </select>
+  
+        
         <div id='cssmenu'>
 		<ul>
                     
@@ -232,18 +253,7 @@ fetch_menu (query(0));
 
 		</ul>
 	</div>
-        <div>
-            <ul>
-            <?php foreach($listOfMenu as $data){
-               
-                $menu_id= $data->id;
-               $name = $data->menu_name; ?>
-               <h4> <?php// echo $name; ?> </h4> <?php
-               // $this->load->helper('myHelper');
-               // fetch_menu (main_menu_query($menu_id));
-            } ?>
-               </ul>
-        </div>
+        
       <?php echo anchor('bnw/shownavigation/','Edit Navigation'); ?>   
     </div>
     

@@ -6,13 +6,9 @@
  * and open the template in the editor.
  */
 
+
 function query($parent_id) { //function to run a query
 	$query = mysql_query ( "SELECT * FROM navigation WHERE parent_id=$parent_id" );
-	return $query;
-}
-
-function main_menu_query($id){
-    $query = mysql_query ( "SELECT * FROM navigation WHERE menu_id=$id" );
 	return $query;
 }
 function has_child($query) { //This function checks if the menus has childs or not
