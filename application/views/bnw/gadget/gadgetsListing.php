@@ -1,3 +1,9 @@
+<?php
+    $this->load->helper('tamplate_helper'); 
+    $gadgetDisplay = tamplate_function(); 
+    $recentPostGadget = recent_post();
+    ?>
+
 <div class="rightSide"> <!-- rightside open -->
     <div id="forLeftPage"><h2>Gadgets Warehouse</h2></div>
     <div id="main"> <!-- main open -->
@@ -5,111 +11,125 @@
         <div id="nav_location"> <!-- nav_location open -->
             <ul>
                 <li class="list-item" id="header_display">Header</li>
-                    <ul>
+                    <ul class='header_gadgets'  id='option_gadget'>
                         <?php
                             foreach ($gaget as $datas)
                             { 
                                 if($datas->display == "Header")
                                 {
-                                echo "<li id='option_gadget' class='header_gadgets'>";
-                                echo $datas->name;
-                                echo "<br>";
-                                echo "<div id='option'>";
-                                echo "<div id='enable'>";
-                                echo form_open('gadgets/hide'); 
-                                echo "<select name='hide'><option value='1'>Show</option><option value='0'>Hide</option></select>";
-                                echo "<input type='submit' value='submit'>";
-                                echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo form_close();
-                                echo "</div>"; //enable div close
-                                echo "<div id='delete_option'>";
-                                echo form_open('gadgets/delete'); 
-                                echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo "<input type='hidden' value='header' name='display'>";
-                                echo "<input type='submit' value='' name='delete' id='delete'>";
-                                echo form_close();
-                                echo "</div>"; //delete_option div close
-                                echo "</div>"; //option div close
-                                echo "</li>";
+                                ?>
+                                <li>
+                                <div class='whole'>
+                                <div class='name'>
+                                <?php echo $datas->name; ?> 
+                                </div>              <!-- close name div-->
+                                <div id='option'>
+                                <div id='edit'>Edit</div> <!--close edit div-->
+                                <div id='delete_option'>
+                                <?php echo form_open('gadgets/delete'); ?> 
+                                <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
+                                <input type='hidden' value='header' name='display'>
+                                <input type='submit' value='' name='delete' id='delete'>
+                                <?php echo form_close(); ?>
+                                </div> <!--delete_option div close-->
+                                </div> <!--option div close-->
+                                </div> <!--close whole div-->
+                                 </li>
+                                <?php
                                 }
+                                
                             }
                             ?>
                     </ul>
                 
                 <li class="list-item" id="sidebar_display">Sidebar</li>
-                    <ul>
+                    <ul  id='option_gadget' class='sidebar_gadgets'>
                         <?php
                             foreach ($gaget as $datas)
                             {
                                 if($datas->display == "Sidebar")
                                 {
-                                echo "<li id='option_gadget' class='sidebar_gadgets'>";
-                                echo $datas->name;
-                                echo "<br>";
-                                echo form_open('gadgets/hide');
-                                echo "<select name='hide'><option value='1'>Show</option><option value='0'>Hide</option></select>";
-                                echo "<input type='submit' value='submit'>";
-                                echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo form_close();
-                                echo form_open('gadgets/delete'); 
-                                echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo "<input type='hidden' value='sidebar' name='display'>";
-                                echo "<input type='submit' value='' name='delete' id='delete'>";
-                                echo form_close();
-                                echo "</li>";
+                                    ?>
+                                <li>
+                                <div class='whole'>
+                                <div class='name'>
+                                <?php echo $datas->name;  ?>
+                                </div>                       <!--close name div-->
+                                <div id='option'>
+                                    <div id='edit'>Edit</div> <!--close edit div-->
+                                <div id='delete_option'>
+                                <?php echo form_open('gadgets/delete');  ?>
+                                <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
+                                <input type='hidden' value='sidebar' name='display'>
+                                <input type='submit' value='' name='delete' id='delete'>
+                                <?php echo form_close(); ?>
+                                 </div> <!--delete_option div close-->
+                                </div> <!--option div close-->
+                                </div> <!--close whole div-->
+                                </li>
+                                <?php
                                 }
                             }
                             ?> 
                     </ul>
                 
-                <li class="list-item" id="body_display">body</li>
-                    <ul>
+                <li class="list-item" id="body_display">Body</li>
+                    <ul  id='option_gadget' class='body_gadgets'>
                         <?php
                             foreach ($gaget as $datas)
                             { 
-                            
                                 if($datas->display == "Body")
                                 {    
-                                echo "<li id='option_gadget' class='body_gadgets'>";
-                                echo $datas->name;
-                                echo "<br>";
-                                echo form_open('gadgets/hide');
-                                echo "<select name='hide'><option value='1'>Show</option><option value='0'>Hide</option></select>";
-                                echo "<input type='submit' value='submit'>";
-                                echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo form_close();
-                                echo form_open('gadgets/delete'); 
-                                echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo "<input type='hidden' value='body' name='display'>";
-                                echo "<input type='submit' value='' name='delete' id='delete'>";
-                                echo form_close();
-                                echo "</li>";
-                                }
+                                    ?>
+                                <li>
+                                <div class='whole'>
+                                <div class='name'>
+                                <?php echo $datas->name;  ?>
+                                </div>              <!--close name div-->
+                                <div id='option'>
+                                <div id='edit'>Edit</div> <!--close edit div-->
+                                <div id='delete_option'>
+                                <?php echo form_open('gadgets/delete'); ?>
+                                <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
+                                <input type='hidden' value='body' name='display'>
+                                <input type='submit' value='' name='delete' id='delete'>
+                                <?php echo form_close(); ?>
+                                </div> <!--delete_option div close-->
+                                </div> <!--option div close-->
+                                </div> <!--close whole div-->
+                                </li>
+                                <?php
+                                }    
                             }
                             ?>
                     </ul>
                 
                 <li class="list-item" id="footer_display">Footer</li>
-                    <ul>
+                    <ul  id='option_gadget' class='footer_gadgets'>
                            <?php
                             foreach ($gaget as $datas)
                             { 
                                 if($datas->display == "Footer")
                                 {
-                                echo "<li id='option_gadget' class='footer_gadgets'>";
-                                echo $datas->name;
-                                echo "<br>";
-                                echo form_open('gadgets/hide');
-                                echo "<select name='hide'><option value='1'>Show</option><option value='0'>Hide</option></select>";
-                                echo "<input type='submit' value='submit'>";
-                                echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo form_close();
-                                echo form_open('gadgets/delete'); 
-                                echo "<input type='hidden' value='$datas->name' name='name_hide'>";
-                                echo "<input type='hidden' value='footer' name='display'>";
-                                echo "<input type='submit' value='' name='delete'  id='delete'>";
-                                echo form_close();
-                                echo "</li>";
+                                    ?>
+                                <li>
+                                <div class='whole'>
+                                <div class='name'>
+                                <?php echo $datas->name; ?>
+                                </div>                      <!--close name div-->
+                                <div id='option'>
+                                <div id='edit'>Edit</div> <!--close edit div-->
+                                <div id='delete_option'>
+                                <?php echo form_open('gadgets/delete'); ?>
+                                <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
+                                <input type='hidden' value='footer' name='display'>
+                                <input type='submit' value='' name='delete'  id='delete'>
+                                <?php echo form_close(); ?>
+                                </div> <!--delete_option div close-->
+                                </div> <!--option div close-->
+                                </div> <!--close whole div-->
+                                </li>
+                                <?php
                                 }
                             }
                             ?>
@@ -120,14 +140,14 @@
        
     <?php
     $this->load->helper('tamplate_helper'); 
-    $var = tamplate_function();
+    $gadgetDisplay = tamplate_function(); 
     ?>
         
         <div id="gadget_collection"> <!-- gadget_collections open -->
             
             
             <div id="sub_gadget"> <!-- sub_gadget open -->
-       <!--<div style="font-size: 12px; border: thin solid #cccccc;">
+       
         <?php 
         //if($this->session->flashdata('mess'))
           //  {
@@ -135,7 +155,7 @@
             
           //  }
         ?>
-        </div>-->
+        
             <div id="title">Click to Add Widgets</div>
             
                 <div id="description">
@@ -147,7 +167,7 @@
             Where to display:<br>
                 <select name="wheretodisplay">
                     <?php 
-                    foreach($var as $temp)
+                    foreach($gadgetDisplay as $temp)
                     {
                         echo "<option value=".$temp.">".$temp."</option>";
 
@@ -159,6 +179,42 @@
             </div>
      
       
+            <!-- Default gadget -->
+              <div id="sub_gadget"> <!-- sub_gadget open -->
+                <div id="title">Recent Post</div>
+            
+                <div id="description_for_gadget">
+                    <?php echo form_open('gadgets/defaultGadget'); ?>
+                <input type="text" id="inputtype" placeholder="Title" name="name_gadget">
+             <?php
+             foreach($recentPostGadget as $element)
+             {
+              echo "No. of Post:"."<input type=".$element['noOfPost']." name='noOfPost'>"."<br>";
+              echo "View More:"."<input type=".$element['viewMore']." name='viewMore' value='View More'>";
+              
+             }
+             ?>
+                
+            </div>
+            Where to display:<br>
+                <select name="wheretodisplay">
+                    <?php 
+                    foreach($gadgetDisplay as $temp)
+                    {
+                        echo "<option value=".$temp.">".$temp."</option>";
+
+                    }
+                        ?>
+                    </select>
+                    <?php $concate =$element['noOfPost'].$element['viewMore']; ?>
+                   
+                    <input type="submit" value="Add Gadget" id="btn" name="submit">
+                    <?php echo form_close(); ?>
+            </div>
+            <!-- Default gadget - upto here-->
+            
+            
+            
                              <?php
                         foreach ($gaget as $data){ 
                    
@@ -172,7 +228,7 @@
                     <select name="display">
                     <?php 
 
-                    foreach($var as $temp)
+                    foreach($gadgetDisplay as $temp)
                     {
                         echo "<option value=".$temp.">".$temp."</option>";
 

@@ -8,7 +8,7 @@ class view extends CI_Controller {
         $this->load->model('viewmodel');
         $this->load->model('dbmodel');
         $this->load->model('dbmodel');
-        $this->load->model('database_model');
+        $this->load->model('model1');
     }
 public function index()
     {
@@ -24,7 +24,7 @@ public function index()
         $data['meta'] = $this->dbmodel->get_meta_data();
         $data['headerdescription']= $this->viewmodel->get_header_description();
       
-        $data['gadget'] = $this->database_model->get_gaget();
+        $data['gadget'] = $this->model1->get_gaget();
         
         $this->load->view('menuview/header',$data);
         $this->load->view('menuview/menu',$data);

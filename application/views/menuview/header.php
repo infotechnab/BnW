@@ -47,10 +47,34 @@
     
                 <div class="header">
                     <p> <?php echo $header->description ; ?> </p>
+            
+                <!-- For diplaying gadgets -->
+            <?php
+            $this->load->helper('header_helper'); 
+             $type = get_gadget_header();
+            ?>
+
+            
+                <div class="gadget_collection">
+
+                <?php
+                   foreach ($type as $dat){ 
+                ?>
+                   <div class="subgadget">
+                   <div id='title'><?php echo $dat['name']; ?></div>
+                   <div id='description'><?php echo $dat['type']; ?> </div>
+                    </div>
+               <?php        
+               }
+               ?>
+               </div>
+            <!-- For diplaying gadgets -->
+    
+                
+                
                 </div>
                 <?php } ?>
 
-                
                 <div class="clear"></div>
                 
 

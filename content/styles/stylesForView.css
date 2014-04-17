@@ -883,14 +883,14 @@ p
 
 
 <!-- This is for gadget view -->
-#footer_gadget_collection
+.gadget_collection
 {
     width: 100%;
     height: auto;
     
 }
 
-#footer_subgadget
+.subgadget
 {
     width: 20%;
     float: left;

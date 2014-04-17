@@ -77,11 +77,13 @@ iframe{
 
 .list-item
 {
+   
     list-style: none;
     background: #cccccc;
-    border: thin solid;
     font-weight: bold;
-    margin-top: 20px;
+    margin-bottom: 2px;
+    margin-top:5px;
+    padding: 5px;
 }
 
 
@@ -89,7 +91,6 @@ iframe{
 {
     list-style: none;
     background:#f0f0f0;
-    height: 50px;
     display: none;
 }
 
@@ -107,11 +108,12 @@ iframe{
     border: none;
     background-size: 100%;
     background-image:  url(../images/delete.png);
-    height: 20px;;
+    height: 20px;
 }
 
-#enable
+#edit
 {
+    color: #666666;
     padding-right:10px;
     border-right: thin solid;
     float: left;
@@ -119,8 +121,22 @@ iframe{
     
 }
 
-#delete_option
+.whole
 {
-   // float: left;
-    
+    width: 100%;
+    padding-bottom: 40px;
+    border-bottom: thin solid cadetblue;
 }
+
+.name
+{
+    width: 75%;
+    float: left;
+}
+
+#option
+{
+    width: 25%;
+    float: left;
+}
+

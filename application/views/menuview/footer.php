@@ -1,24 +1,24 @@
+<?php
+    $this->load->helper('footer_helper'); 
+     $type = get_gadget_footer();
+?>
+
+
+
 <div id="footer">
-    <div id="footer_gadget_collection">
+    <div class="gadget_collection">
     
         
      <?php
-        foreach ($gadget as $dat){ 
+        foreach ($type as $dat){ 
      ?>
-        
-    <?php
-    if($dat->display == 'Footer' && $dat->setting == '1')
-    {
-    ?>
-        <div id="footer_subgadget">
-        <div id='title'><?php echo $dat->name; ?></div>
-        <div id='description'><?php echo $dat->type; ?> </div>
+        <div class="subgadget">
+        <div id='title'><?php echo $dat['name']; ?></div>
+        <div id='description'><?php echo $dat['type']; ?> </div>
          </div>
-    <?php
-    }
+    <?php        
     }
     ?>
-       
     </div>
     
     

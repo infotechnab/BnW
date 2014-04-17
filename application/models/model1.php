@@ -1,5 +1,5 @@
 <?php
-class database_model extends CI_Model {
+class model1 extends CI_Model {
 
 	public function __construct()
 	{
@@ -13,8 +13,7 @@ class database_model extends CI_Model {
                 'name'=>$name,
                 'type'=>$type,
                 'display'=>$display,
-                'setting'=>'1'
-            );
+                );
         $this->db->insert('gadgets',$data);
             
         }
@@ -60,7 +59,17 @@ class database_model extends CI_Model {
             $sql = "DELETE FROM gadgets WHERE name = '$name_hide' and display = '$gadget_delete'";
             $this->db->query($sql);
         }
-
+            
+        
+        function defaultGadget($name_title,$display_recentPost,$arr)
+        {
+             $dat = array(
+                'name'=>$name_title,
+                'display'=>$display_recentPost,
+                'setting'=>$arr
+            );
+        $this->db->insert('gadgets',$dat);
+        }
 
 
 

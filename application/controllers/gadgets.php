@@ -8,7 +8,7 @@ class Gadgets extends CI_Controller {
     function __construct() {
     parent::__construct();
     $this->load->model('dbmodel');
-    $this->load->model('database_model');
+    $this->load->model('model1');
     $this->load->helper('url');
     $this->load->helper(array('form', 'url'));
     $this->load->library("pagination");
@@ -40,11 +40,11 @@ class Gadgets extends CI_Controller {
 		//$this->load->view('header',$querydata);
                // $this->load->view('body');
                // $this->load->view('footer');
-            $data['gaget']= $this->database_model->get_gaget();
+            $data['gaget']= $this->model1->get_gaget();
             $display = $this->input->post('wheretodisplay');
             
             
-            $dataa['gadget']= $this->database_model->get_gaget_display($display);
+            $dataa['gadget']= $this->model1->get_gaget_display($display);
            $this->load->view('bnw/gadget/gadgetsListing', $data,$dataa);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -55,8 +55,8 @@ class Gadgets extends CI_Controller {
         
         function addText(){
             if ($this->session->userdata('logged_in')) {
-             $this->load->model('database_model');
-            $data['gaget']= $this->database_model->get_gaget();
+             $this->load->model('model1');
+            $data['gaget']= $this->model1->get_gaget();
              $data['meta'] = $this->dbmodel->get_meta_data();
             $name = $this->input->post('name_gadget');
             $type = $this->input->post('type_gadget');
@@ -66,8 +66,8 @@ class Gadgets extends CI_Controller {
             //$default_template = $this->input->post('display');
             //$updateDisplay = trim($default_template, "/");
             
-            //$this->database_model->updateText($updateDisplay);
-             $this->database_model->addText($name,$type,$display);
+            //$this->model1->updateText($updateDisplay);
+             $this->model1->addText($name,$type,$display);
              //$this->session->set_flashdata('mess','Data added sucessfully !!! ');
              redirect('gadgets', 'refresh');
              
@@ -81,8 +81,8 @@ class Gadgets extends CI_Controller {
         
         function updateText(){
             if ($this->session->userdata('logged_in')) {
-             $this->load->model('database_model');
-            $data['gaget']= $this->database_model->get_gaget();
+             $this->load->model('model1');
+            $data['gaget']= $this->model1->get_gaget();
              $data['meta'] = $this->dbmodel->get_meta_data();
        
              
@@ -93,7 +93,7 @@ class Gadgets extends CI_Controller {
             $gadget_type = $this->input->post('gadget_type');
             //echo $gadget_name;
             
-            $this->database_model->updateText($gadget_name, $gadget_type, $updateDisplay);
+            $this->model1->updateText($gadget_name, $gadget_type, $updateDisplay);
              //$this->session->set_flashdata('mess','Data added sucessfully !!! ');
              redirect('gadgets', 'refresh');
              
@@ -104,41 +104,39 @@ class Gadgets extends CI_Controller {
             
         }
         
-          function hide()
-          {
-               if ($this->session->userdata('logged_in')) {
-             $this->load->model('database_model');
-            $data['gaget']= $this->database_model->get_gaget();
-             $data['meta'] = $this->dbmodel->get_meta_data();
-       
-             
-            $gadget_hide = $this->input->post('hide');
-            $name_hide = $this->input->post('name_hide');
-            $this->database_model->hide($gadget_hide, $name_hide);
-             //$this->session->set_flashdata('mess','Data added sucessfully !!! ');
-            
-            redirect('gadgets', 'refresh');
-             
-            
-            } else {
-            redirect('login', 'refresh');
-        } 
-          }  
         
                function delete()
           {
                if ($this->session->userdata('logged_in')) {
-             $this->load->model('database_model');
-            $data['gaget']= $this->database_model->get_gaget();
+             $this->load->model('model1');
+            $data['gaget']= $this->model1->get_gaget();
              $data['meta'] = $this->dbmodel->get_meta_data();
             
              $name_hide = $this->input->post('name_hide');
             $gadget_delete = $this->input->post('display');
-            $this->database_model->delete($gadget_delete, $name_hide);
+            $this->model1->delete($gadget_delete, $name_hide);
            redirect('gadgets', 'refresh');
             } else {
             redirect('login', 'refresh');
         } 
           }
-        
+          
+          function defaultGadget()
+          {
+               if ($this->session->userdata('logged_in')) {
+             $this->load->model('model1');
+            $data['gaget']= $this->model1->get_gaget();
+             $data['meta'] = $this->dbmodel->get_meta_data();
+            
+            $name_title = $this->input->post('name_gadget');
+            $display_recentPost  = $this->input->post('wheretodisplay');
+            $NoOfPost = $this->input->post('noOfPost');
+            $ViewMore = $this->input->post('viewMore');
+            $arr = "<input type='text' value=".$NoOfPost."><input type='checkbox' value=".$ViewMore.">";
+            $this->model1->defaultGadget($name_title,$display_recentPost,$arr);
+           redirect('gadgets', 'refresh');
+            } else {
+            redirect('login', 'refresh');
+          }
+          }
 }
