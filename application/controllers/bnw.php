@@ -344,12 +344,12 @@ class bnw extends CI_Controller {
         }
     }
 
-    public function shownavigation() {
+    public function showNavigation($id) {
         if ($this->session->userdata('logged_in')) {
-            
+            //die($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
             
-            $data['query'] = $this->dbmodel->get_list_of_selected_menu_navigation();
+            $data['query'] = $this->dbmodel->get_list_of_selected_menu_navigation($id);
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/menu/navigationListing', $data);
@@ -2812,5 +2812,11 @@ fetch_menu (query(0)); //call this function with 0 parent id
     
     }*/
     
+    
+ public function editSelectedNavigation($id)
+ {
+     die($id);
+     
+ }
  
     }

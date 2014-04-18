@@ -1,11 +1,11 @@
-<?php var_dump($_POST['menu_id_next']); ?>
+
 <div class="rightSide">
 
 <div id="body">
     <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-    <p>List of all Navigation</p>
+    <h2>List of Navigation</h2>
     <table border="1" cellpadding="10">
         <tr>
             <th>S.N.</th>
@@ -14,7 +14,7 @@
             <th>Parent</th>
             <th>Type</th>
             <th>Navigation Slug</th>
-            <th>Menu id </th>
+            
             <th>Action</th>
         </tr>
     
@@ -30,7 +30,7 @@
             <td><?php echo $data->parent_id; ?>  </td>
             <td><?php echo $data->navigation_type; ?>  </td>
             <td><?php echo $data->navigation_slug; ?>  </td>
-            <td><?php echo $data->menu_id; ?></td>
+            
             <td><?php echo anchor('bnw/editnavigation/'.$data->id,'Edit'); ?> / 
             <?php echo anchor('bnw/deletenavigation/'.$data->id,'Delete'); ?></td>
         </tr>

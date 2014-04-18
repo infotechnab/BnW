@@ -218,7 +218,8 @@ $(document).ready(function() {
     
     var dataString = 'menu_id_next=' + selectedValue;
     $a= dataString;
-    
+    var link = '<?php echo base_url();?>'+'index.php/bnw/showNavigation/'+selectedValue;
+    var editLink = '<a href='+link+'>'+'Edit Navigation'+'</a>';
    
   $.ajax({
   type: "POST",
@@ -227,7 +228,7 @@ $(document).ready(function() {
    success: function(msg) 
          {
              $("#cssmenu").html(msg);
-             $("#editLink").html(selectedValue);
+             $("#editLink").html(editLink);
          }
   
     
@@ -267,7 +268,8 @@ fetch_menu (query(0));
   </div> 
   
   <p id="editLink">
- <?php echo anchor('bnw/shownavigation/','Edit Navigation'); ?>  </p>
+      <?php  ?>
+ <?php //echo anchor('bnw/editSelectedNavigation/'.$sel,'Edit Navigation'); ?>  </p>
     </div>
     
     <div class="clear"></div> 

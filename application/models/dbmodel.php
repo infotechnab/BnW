@@ -89,8 +89,8 @@ class Dbmodel extends CI_Model {
         return $identity->result();
     }
     
-    public function get_list_of_selected_menu_navigation(){
-      //  $this->db->where('menu_id',$menu_id_next);
+    public function get_list_of_selected_menu_navigation($id){
+        $this->db->where('menu_id',$id);
         $query = $this->db->get('navigation');
         return $query->result();
     }
