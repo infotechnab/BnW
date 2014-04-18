@@ -17,7 +17,9 @@ myHelper_helper
 
 This is a helper file. This file mainly deals with fetching the navigation items on dashboard. According to the user selected menu this file fetches navigation items associated with that selected menu and these navigation items are shown on their own hierarchial order.
 
+Change in gadget database.
 
+One field called 'defaultGadget' is added to gadgets table in database. This addition was necessary for default gadget because it is necessary for controller to know the name of the default gadget.
 
 ##BnW 1.1 
 Working on. 
