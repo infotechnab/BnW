@@ -41,19 +41,13 @@ class bnw extends CI_Controller {
 
 
  public function menu_id_from_ajax(){
-   $this->load->helper('myHelper_helper');  
+   $this->load->helper('myHelper_helper'); 
+   
     $menu_id_next = ($_POST['menu_id_next']);
-   // $navigaion_parent_id=  $this->dbmodel->get_navigation_parent($menu_id_next);
-   // foreach ($navigaion_parent_id as $data){
-   //     $parent_id= $data->parent_id;
-   // }
-   // var_dump($parent_id);
-    //$this->load->helper('myHelper');
+   
+      
     
-    
-    fetch_menu (query(0,$menu_id_next));
-   // query(0,$menu_id_next);
-     //echo $menu_id;
+    fetch_menu (query(0));
   }
  
 
@@ -352,8 +346,10 @@ class bnw extends CI_Controller {
 
     public function shownavigation() {
         if ($this->session->userdata('logged_in')) {
-            $data['query'] = $this->dbmodel->get_list_of_navigation();
+            
             $data['meta'] = $this->dbmodel->get_meta_data();
+            
+            $data['query'] = $this->dbmodel->get_list_of_selected_menu_navigation();
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/menu/navigationListing', $data);

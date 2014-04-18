@@ -17,9 +17,16 @@ $GLOBALS['a']=$a;
  function query($parent_id) { //function to run a query
     $b=$GLOBALS['a'];
    // var_dump($b);
+    if(isset($b)) {
+             $query = mysql_query ( "SELECT * FROM navigation WHERE parent_id=$parent_id && menu_id=$b"   );         
+
+     return $query;
+    }
+     else {
+       $query = 'please select menu';  
+       return $query;
+     }
      
-	$query = mysql_query ( "SELECT * FROM navigation WHERE parent_id=$parent_id && menu_id=$b"   );
-	return $query;
 }
 function has_child($query) { //This function checks if the menus has childs or not
 	$rows = mysql_num_rows ( $query );

@@ -1,4 +1,4 @@
-
+<?php var_dump($_POST['menu_id_next']); ?>
 <div class="rightSide">
 
 <div id="body">

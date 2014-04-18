@@ -79,7 +79,7 @@ $(document).ready(function() {
 /* ]]> */
 </script>
 
-<!-- changed from here  -->
+<!-- NAvigation items list shown here  -->
  <div class="rightSide">
     <div class="forLeft">
     <div class="left">
@@ -197,10 +197,7 @@ $(document).ready(function() {
                 }
                 ?>
           
-            </select>
-            
-              
-             
+            </select>             
             <input type="submit" value="Add">
         <?php echo form_close();?>
     </div></div>   
@@ -222,7 +219,7 @@ $(document).ready(function() {
     var dataString = 'menu_id_next=' + selectedValue;
     $a= dataString;
     
-   // alert($a);
+   
   $.ajax({
   type: "POST",
   url: "<?php echo base_url().'index.php/bnw/menu_id_from_ajax' ;?>",
@@ -230,6 +227,7 @@ $(document).ready(function() {
    success: function(msg) 
          {
              $("#cssmenu").html(msg);
+             $("#editLink").html(selectedValue);
          }
   
     
@@ -238,8 +236,10 @@ $(document).ready(function() {
 
   </script>
   <div id="navigation">
-        <select name="selectMenu" style="width: 110px"  id="selectBox" onchange="changeFunc();">
-                <?php
+        <select name="selectMenu" style="width: 125px"  id="selectBox" onchange="changeFunc();">
+             <option value="0" selected="selected"> Select Menu                    
+                </option>
+               <?php
                 foreach ($listOfMenu as $data)
                 {
                     ?>
@@ -266,7 +266,8 @@ fetch_menu (query(0));
 	</div>
   </div> 
   
-      <?php echo anchor('bnw/shownavigation/','Edit Navigation'); ?>   
+  <p id="editLink">
+ <?php echo anchor('bnw/shownavigation/','Edit Navigation'); ?>  </p>
     </div>
     
     <div class="clear"></div> 
