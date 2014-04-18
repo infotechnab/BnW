@@ -237,7 +237,7 @@ $(document).ready(function() {
    }
 
   </script>
-  
+  <div id="navigation">
         <select name="selectMenu" style="width: 110px"  id="selectBox" onchange="changeFunc();">
                 <?php
                 foreach ($listOfMenu as $data)
@@ -253,18 +253,19 @@ $(document).ready(function() {
             </select>
   
         <div id='cssmenu'>
-		<ul>
+		
                     
 <?php 
 $this->load->helper('myHelper');
 
-fetch_menu (query(0,0));
+fetch_menu (query(0));
 
 ?>
 
-		</ul>
+		
 	</div>
-     <br/><br/>   
+  </div> 
+  
       <?php echo anchor('bnw/shownavigation/','Edit Navigation'); ?>   
     </div>
     

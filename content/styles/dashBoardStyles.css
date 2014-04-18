@@ -139,6 +139,12 @@ ul.menu li.mainMenuItem:hover
 {
     color: white;
 }
+#navigation
+{
+    margin: 5px;
+    padding: 0px;
+    min-height: 250px;
+}
 
 
 #footer

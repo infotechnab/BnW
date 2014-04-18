@@ -3,7 +3,7 @@
                                             
         <?php
 
-            $this->load->helper('myHelper');
+            $this->load->helper('viewMenuHelper');
 
             fetch_menu (query(0));
 

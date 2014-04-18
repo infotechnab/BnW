@@ -103,8 +103,15 @@ class Dbmodel extends CI_Model {
         return $query->result();
     }
     
+    public function get_navigation_parent($menu_id_next){
+        $this->db->select('parent_id');
+        $this->db->where('menu_id', $menu_id_next);
+        $query = $this->db->get('navigation');
+        return $query->result();
+    }
+
     
-    
+
     public function add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menu_id)
     {      
         $data = array(
