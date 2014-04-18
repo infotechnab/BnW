@@ -3,7 +3,8 @@ A complete Open CMS
 
 =====================================================================================================================
 
-FILE:
+#FILEs:
+=====================================================================================================================
 Template_meta_data.php
 
 This file is to store information about the template meta data. All the info about template is stored on this file. This file is located on template folder. 
