@@ -61,20 +61,32 @@ class model1 extends CI_Model {
         }
             
         
-        function defaultGadget($name_title,$display_recentPost,$arr)
+        function defaultGadget($name_title,$recentPost,$display_recentPost,$arr)
         {
              $dat = array(
                 'name'=>$name_title,
+                'defaultGadget'=>$recentPost,
                 'display'=>$display_recentPost,
                 'setting'=>$arr
             );
         $this->db->insert('gadgets',$dat);
         }
 
+         function get_gaget_recentPost()
+        {
+            $gadget = $this->db->get_where('gadgets', array('defaultGadget' => 'recent post'));
+            return $gadget->result();
+            var_dump($gadget);
+        }
 
 
-
-
-        //$query = $this->db->get_where('news', array('slug' => $slug));
-	//return $query->row_array();
+        public function get_post($limit)
+        {
+        $this->db->from('post'); 
+        $this->db->limit($a);
+        $this->db->order_by("id", "desc");
+        $query = $this->db->get();
+        return $query->result();  
+        }
+    
 }

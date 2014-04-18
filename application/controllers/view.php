@@ -20,11 +20,25 @@ public function index()
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['allpostquery'] = $this->viewmodel->get_all_post();
       
         $data['meta'] = $this->dbmodel->get_meta_data();
         $data['headerdescription']= $this->viewmodel->get_header_description();
       
-        $data['gadget'] = $this->model1->get_gaget();
+        $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
+        $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
+         foreach ($data['recentPost'] as $dat)
+        {
+             $setting = $dat->setting;
+             parse_str($setting);
+            //echo $text."<br>";
+            
+            //echo $checkbox;
+             $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($text);
+            // var_dump($data['noOfRecentPost']);
+        }
+            
+           
         
         $this->load->view('menuview/header',$data);
         $this->load->view('menuview/menu',$data);
@@ -257,7 +271,6 @@ force_download($name, $data);
 exit;
         
   }
-  
   
   
   

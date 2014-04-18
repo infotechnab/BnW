@@ -12,7 +12,7 @@
     //$ci->db->select('name, type, setting');
  
     //tell the db class the criteria
-    $ci->db->where('display', 'Footer');
+    $ci->db->where('display', 'Header');
  
     //supply the table name and get the data
     $query = $ci->db->get('gadgets');

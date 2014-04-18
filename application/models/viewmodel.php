@@ -44,6 +44,18 @@ class Viewmodel extends CI_Model
         $query = $this->db->get();
         return $query->result();  
     }
+    
+    public function recentpost_get_post($text)
+    {
+      
+      $this->db->from('post'); 
+       $this->db->limit($text);
+       $this->db->order_by("id", "desc");
+        $query = $this->db->get();
+        return $query->result();  
+    }
+   
+    
     public function get_all_post()
     {
         
@@ -203,8 +215,7 @@ class Viewmodel extends CI_Model
         return $query->result();
     }
         
-        
-        
-        
+    
+ 
         
 }

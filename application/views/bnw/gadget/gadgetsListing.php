@@ -186,6 +186,7 @@
                 <div id="description_for_gadget">
                     <?php echo form_open('gadgets/defaultGadget'); ?>
                 <input type="text" id="inputtype" placeholder="Title" name="name_gadget">
+                <input type="hidden" value="recent post" name="recentPost_gadget">
              <?php
              foreach($recentPostGadget as $element)
              {

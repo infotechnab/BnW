@@ -121,7 +121,7 @@ class Gadgets extends CI_Controller {
         } 
           }
           
-          function defaultGadget()
+          function defaultGadget()      //inserting value from default gadget.
           {
                if ($this->session->userdata('logged_in')) {
              $this->load->model('model1');
@@ -129,11 +129,12 @@ class Gadgets extends CI_Controller {
              $data['meta'] = $this->dbmodel->get_meta_data();
             
             $name_title = $this->input->post('name_gadget');
+            $recentPost = $this->input->post('recentPost_gadget');
             $display_recentPost  = $this->input->post('wheretodisplay');
             $NoOfPost = $this->input->post('noOfPost');
             $ViewMore = $this->input->post('viewMore');
-            $arr = "<input type='text' value=".$NoOfPost."><input type='checkbox' value=".$ViewMore.">";
-            $this->model1->defaultGadget($name_title,$display_recentPost,$arr);
+            $arr = "text=$NoOfPost&checkbox=$ViewMore";
+            $this->model1->defaultGadget($name_title,$recentPost,$display_recentPost,$arr);
            redirect('gadgets', 'refresh');
             } else {
             redirect('login', 'refresh');

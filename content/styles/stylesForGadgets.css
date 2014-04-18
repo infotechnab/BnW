@@ -124,7 +124,9 @@ iframe{
 .whole
 {
     width: 100%;
-    padding-bottom: 40px;
+    padding-left: 0px;
+    padding-top: 5px;
+    padding-bottom: 30px;
     border-bottom: thin solid cadetblue;
 }
 

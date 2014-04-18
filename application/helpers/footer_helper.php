@@ -20,7 +20,7 @@
     foreach($query->result() as $row)
     {
  
-      $type[] = array('name' => $row->name, 'type' => $row->type);
+      $type[] = array('name' => $row->name, 'type' => $row->type, 'defaultGadget' => $row->defaultGadget);
     }
 return $type;    
 
