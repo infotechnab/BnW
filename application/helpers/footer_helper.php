@@ -1,5 +1,5 @@
 <?php
-  
+  //error_reporting(0);
     function get_gadget_footer() {
  
     //the database functions can not be called from within the helper
@@ -13,7 +13,8 @@
  
     //tell the db class the criteria
     $ci->db->where('display', 'Footer');
- 
+    $ci->db->where('defaultGadget','');
+   $ci->db->where('type IS NOT NULL',null,FALSE);
     //supply the table name and get the data
     $query = $ci->db->get('gadgets');
  
@@ -22,6 +23,14 @@
  
       $type[] = array('name' => $row->name, 'type' => $row->type, 'defaultGadget' => $row->defaultGadget);
     }
-return $type;    
+    //var_dump($type);
+    if(empty($type))
+    {
+       echo " ";   
+    }
+ else {
+        return $type;
+    }
+
 
 }

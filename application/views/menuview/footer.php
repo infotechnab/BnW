@@ -17,8 +17,10 @@
         <?php
           foreach($noOfRecentPost as $recent_post)
          {
+             // var_dump($recent_post);
+        $post_id = $recent_post->id;
         
-         echo "<a href='#'>".$recent_post->post_title."</a>"."<br>"; 
+        echo anchor('view/post/'.$post_id , $recent_post->post_title); 
          }
          ?>
           </div>  
@@ -33,6 +35,13 @@
     
     <div class="gadget_collection">
      <?php
+        if(empty($type))  //checking whether $type is null or not that is coming from database and header_helper.php and if its null then handling error.
+                {
+                    echo " ";
+                }
+                else {
+                    
+                
         foreach ($type as $dat){ 
             if($dat['defaultGadget'] != 'recent post') {
      ?>
@@ -43,6 +52,8 @@
     <?php        
             }
     }
+                }
+                
     ?>
     </div>
     

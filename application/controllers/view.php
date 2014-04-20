@@ -27,19 +27,22 @@ public function index()
       
         $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
         $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
+        //var_dump($data['recentPost']);
          foreach ($data['recentPost'] as $dat)
         {
              $setting = $dat->setting;
-             parse_str($setting);
-            //echo $text."<br>";
+         //    var_dump($setting);
+           parse_str($setting);  //parsing from database gadget table settings field.
+          //  echo $post."<br>";
             
             //echo $checkbox;
-             $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($text);
+             $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);  
             // var_dump($data['noOfRecentPost']);
         }
             
-           
-        
+         
+         //var_dump($data['noOfRecentPost']);
+         
         $this->load->view('menuview/header',$data);
         $this->load->view('menuview/menu',$data);
         $this->load->view('menuview/event',$data);
@@ -67,7 +70,19 @@ public function index()
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['selectedpagequery'] = $this->viewmodel->get_desired_page($id);
          $data['viewcomments'] = $this->viewmodel->get_comments($assc_id);
-        
+       $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
+        $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
+         foreach ($data['recentPost'] as $dat)
+        {
+             $setting = $dat->setting;
+             parse_str($setting);
+            //echo $post."<br>";
+            
+            //echo $checkbox;
+             
+            // var_dump($data['noOfRecentPost']);
+        }
+         $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
         $this->load->view('menuview/header',$data);
         $this->load->view('menuview/menu',$data);
@@ -94,7 +109,19 @@ public function index()
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['selectedcategoryquery'] = $this->viewmodel->get_desired_category($id);
          $data['viewcomments'] = $this->viewmodel->get_comments($assc_id);
-        
+       $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
+        $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
+         foreach ($data['recentPost'] as $dat)
+        {
+             $setting = $dat->setting;
+             parse_str($setting);
+            //echo $post."<br>";
+            
+            //echo $checkbox;
+             
+            // var_dump($data['noOfRecentPost']);
+        }
+         $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
         $this->load->view('menuview/header',$data);
         $this->load->view('menuview/menu',$data);
@@ -125,7 +152,19 @@ public function index()
         $data['viewcomments'] = $this->viewmodel->get_comments($assc_id);
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['selectedpostquery'] = $this->viewmodel->get_desired_post($id, $limit);
-        
+        $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
+        $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
+         foreach ($data['recentPost'] as $dat)
+        {
+             $setting = $dat->setting;
+             parse_str($setting);
+            //echo $post."<br>";
+            
+            //echo $checkbox;
+             
+            // var_dump($data['noOfRecentPost']);
+        }
+        $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
         $this->load->view('menuview/header',$data);
         $this->load->view('menuview/menu',$data);
@@ -153,7 +192,19 @@ public function index()
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();        
        $data['headerdescription']= $this->viewmodel->get_header_description();
-        
+       $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
+        $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
+         foreach ($data['recentPost'] as $dat)
+        {
+             $setting = $dat->setting;
+             parse_str($setting);
+            //echo $post."<br>";
+            
+            //echo $checkbox;
+             
+            // var_dump($data['noOfRecentPost']);
+        }
+       $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
         $this->load->view('menuview/header',$data);
         $this->load->view('menuview/menu',$data);
@@ -183,7 +234,19 @@ public function index()
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['albumquery'] = $this->viewmodel->get_album();
-        
+       $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
+        $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
+         foreach ($data['recentPost'] as $dat)
+        {
+             $setting = $dat->setting;
+             parse_str($setting);
+            //echo $post."<br>";
+            
+            //echo $checkbox;
+             
+            // var_dump($data['noOfRecentPost']);
+        }
+        $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
         $this->load->view('menuview/header',$data);
         $this->load->view('menuview/menu',$data);
@@ -208,7 +271,19 @@ public function index()
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['albumquery'] = $this->viewmodel->get_album();
-        
+        $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
+        $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
+         foreach ($data['recentPost'] as $dat)
+        {
+             $setting = $dat->setting;
+             parse_str($setting);
+            //echo $post."<br>";
+            
+            //echo $checkbox;
+             
+            // var_dump($data['noOfRecentPost']);
+        }
+        $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
         $data['selectedalbumquery'] =  $this->viewmodel->get_selected_album($id);
         
@@ -248,7 +323,19 @@ public function index()
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['mediaquery']= $this->viewmodel->get_all_media();        
-        
+        $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
+        $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
+         foreach ($data['recentPost'] as $dat)
+        {
+             $setting = $dat->setting;
+             parse_str($setting);
+            //echo $post."<br>";
+            
+            //echo $checkbox;
+             
+            // var_dump($data['noOfRecentPost']);
+        }
+        $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
         $this->load->view('menuview/header',$data);
         $this->load->view('menuview/menu',$data);
@@ -261,6 +348,7 @@ public function index()
     
   public function download(){
 $this->load->helper('download');
+
       $filename= $_GET['download'];
  $data = file_get_contents("./content/images/".$filename); // Read the file's contents
 $name = $filename;

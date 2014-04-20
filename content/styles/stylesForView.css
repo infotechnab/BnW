@@ -121,6 +121,7 @@ a:hover
     text-align: center;
     min-height: 5px;
 }
+
 p
 {
     text-align: justify;
@@ -245,6 +246,12 @@ p
     margin: 0px;
     padding: 0px;
 }
+
+.event a
+{
+    text-decoration: none;
+}
+
     .eventHeader, .downloadHeader, .containerHeader
     {
         width: auto!important;

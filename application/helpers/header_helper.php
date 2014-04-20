@@ -22,6 +22,14 @@
  
       $type[] = array('name' => $row->name, 'type' => $row->type);
     }
-return $type;    
+    
+if(empty($type))
+    {
+       echo " ";   
+    }
+ else {
+        return $type;
+    }
+ 
 
 }

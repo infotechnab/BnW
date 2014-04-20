@@ -7,6 +7,7 @@
 <?php } ?>
         <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/styles/stylesForView.css" type="text/css" />
         
+        
         <?php if ($meta)
 {
     $i=0;
@@ -52,12 +53,18 @@
             <?php
             $this->load->helper('header_helper'); 
              $type = get_gadget_header();
+             //var_dump($type);
             ?>
 
             
                 <div class="gadget_collection">
 
                 <?php
+                if(empty($type))  //checking whether $type is null or not that is coming from database and header_helper.php and if its null then handling error.
+                {
+                    echo " ";
+                }
+                else {
                    foreach ($type as $dat){ 
                 ?>
                    <div class="subgadget">
@@ -66,6 +73,7 @@
                     </div>
                <?php        
                }
+                }
                ?>
                </div>
             <!-- For diplaying gadgets -->

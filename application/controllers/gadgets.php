@@ -132,8 +132,10 @@ class Gadgets extends CI_Controller {
             $recentPost = $this->input->post('recentPost_gadget');
             $display_recentPost  = $this->input->post('wheretodisplay');
             $NoOfPost = $this->input->post('noOfPost');
-            $ViewMore = $this->input->post('viewMore');
-            $arr = "text=$NoOfPost&checkbox=$ViewMore";
+            $titleBold = $this->input->post('titleBold');
+            $titleUnderline = $this->input->post('titleUnderline');
+             $titleColor = $this->input->post('titleColor');
+            $arr = "post=$NoOfPost&titleBold=$titleBold&titleUnderline=$titleUnderline&titleColor=$titleColor";
             $this->model1->defaultGadget($name_title,$recentPost,$display_recentPost,$arr);
            redirect('gadgets', 'refresh');
             } else {

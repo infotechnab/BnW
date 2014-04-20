@@ -185,14 +185,15 @@
             
                 <div id="description_for_gadget">
                     <?php echo form_open('gadgets/defaultGadget'); ?>
-                <input type="text" id="inputtype" placeholder="Title" name="name_gadget">
+                    <input type="text" id="inputtype" placeholder="Title" name="name_gadget" required>
                 <input type="hidden" value="recent post" name="recentPost_gadget">
              <?php
              foreach($recentPostGadget as $element)
              {
-              echo "No. of Post:"."<input type=".$element['noOfPost']." name='noOfPost'>"."<br>";
-              echo "View More:"."<input type=".$element['viewMore']." name='viewMore' value='View More'>";
-              
+              echo "No. of Post:"."<input type=".$element['noOfPost']." name='noOfPost' class='onlyNumerics' size='5' required>"."<div style='font-size:12px; float:right;'> Enter Only numbers.</div>"."<br>";
+              echo "Title Bold:"."<input type=".$element['titleBold']." name='titleBold' value='b'><br>";
+              echo "Title Underline:"."<input type=".$element['titleUnderline']." name='titleUnderline' value='u'><br>";
+              echo "Title Color:"."<input type=".$element['titleColor']." name='titleColor' value=''>";
              }
              ?>
                 
@@ -207,7 +208,7 @@
                     }
                         ?>
                     </select>
-                    <?php $concate =$element['noOfPost'].$element['viewMore']; ?>
+                    
                    
                     <input type="submit" value="Add Gadget" id="btn" name="submit">
                     <?php echo form_close(); ?>

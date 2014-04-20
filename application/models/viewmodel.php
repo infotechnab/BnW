@@ -45,11 +45,11 @@ class Viewmodel extends CI_Model
         return $query->result();  
     }
     
-    public function recentpost_get_post($text)
+    public function recentpost_get_post($post)
     {
       
       $this->db->from('post'); 
-       $this->db->limit($text);
+       $this->db->limit($post);
        $this->db->order_by("id", "desc");
         $query = $this->db->get();
         return $query->result();  
