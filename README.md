@@ -21,6 +21,10 @@ Change in gadget database.
 
 One field called 'defaultGadget' is added to gadgets table in database. This addition was necessary for default gadget because it is necessary for controller to know the name of the default gadget.
 
+Spectrum.css and specturm.js
+
+Add this two files css and js file which is jquery plugin of color chooser. I used it to add option on default gadget about what color the title of post to be displayed.
+
 ##BnW 1.1 
 Working on. 
 Changes: 
