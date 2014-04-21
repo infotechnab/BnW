@@ -76,7 +76,8 @@
 
   <?php $nav= $this->uri->uri_string();
         $assc_id= str_replace('','', $nav); ?>   
-    <?php foreach ($selectedpostquery as $post) {
+    <?php if($selectedpostquery){
+    foreach ($selectedpostquery as $post) {
                     ?>
                     <div class="container">
                         <div class="containerHeader">
@@ -194,7 +195,10 @@
      
                     </div> 
 
-                <?php } ?>
+                <?php }}
+                else {
+     echo '<h3> Sorry the page you requested is not found.</h3>';
+} ?>
 
 
 

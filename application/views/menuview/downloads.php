@@ -5,7 +5,8 @@
                             <h3> Available Download Files </h3>
                             
                         </div>
-                        <?php foreach ($mediaquery as $page) {   
+                        <?php if($mediaquery){
+                        foreach ($mediaquery as $page) {   
                         $filename = $page->media_type; ?>
                          
 
@@ -13,7 +14,11 @@
                        
                         <a href="<?php echo base_url().'index.php/view/download/?download='.$filename; ?>" ><?php echo $filename;  ?></a><br/>
 
-                     <?php   } ?>
+                     <?php   }}
+ else {
+     echo '<h3> No download files are available now.</h3>';
+ }
+                     ?>
                     </div> 
 
                 
