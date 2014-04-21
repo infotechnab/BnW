@@ -84,10 +84,10 @@ class Login extends CI_Controller {
                $token= $this->getRandomString(10);                          
                 $this->dbmodel->update_emailed_user($to, $token);  
                 $this->test($token);
-                //$this->resetPassword($token);
+                
                 $this->mailresetlink($to, $token);
                 
-               // redirect('login/test');
+               
             } else {
                 $this->session->set_flashdata('message', 'Please type valid Email Address');
                 redirect("login/forgotPassword");

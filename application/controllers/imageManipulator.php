@@ -33,13 +33,6 @@ $this->setImageString($file);
 }
 }
  
-/**
-* Set image resource from file
-*
-* @param string $file Path to image file
-* @return ImageManipulator for a fluent interface
-* @throws InvalidArgumentException
-*/
 public function setImageFile($file)
 {
 if (!(is_readable($file) && is_file($file))) {
@@ -71,9 +64,7 @@ return $this;
 /**
 * Set image resource from string data
 *
-* @param string $data
-* @return ImageManipulator for a fluent interface
-* @throws RuntimeException
+
 */
 public function setImageString($data)
 {
@@ -91,12 +82,7 @@ return $this;
  
 /**
 * Resamples the current image
-*
-* @param int $width New width
-* @param int $height New height
-* @param bool $constrainProportions Constrain current image proportions when resizing
-* @return ImageManipulator for a fluent interface
-* @throws RuntimeException
+
 */
 public function resample($width, $height, $constrainProportions = true)
 {
@@ -117,13 +103,7 @@ return $this->_replace($temp);
 /**
 * Enlarge canvas
 *
-* @param int $width Canvas width
-* @param int $height Canvas height
-* @param array $rgb RGB colour values
-* @param int $xpos X-Position of image in new canvas, null for centre
-* @param int $ypos Y-Position of image in new canvas, null for centre
-* @return ImageManipulator for a fluent interface
-* @throws RuntimeException
+
 */
 public function enlargeCanvas($width, $height, array $rgb = array(), $xpos = null, $ypos = null)
 {

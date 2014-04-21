@@ -27,21 +27,21 @@ public function index()
       
         $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
         $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
-        //var_dump($data['recentPost']);
+       
          foreach ($data['recentPost'] as $dat)
         {
              $setting = $dat->setting;
-         //    var_dump($setting);
+        
            parse_str($setting);  //parsing from database gadget table settings field.
-          //  echo $post."<br>";
+         
             
-            //echo $checkbox;
+           
              $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);  
-            // var_dump($data['noOfRecentPost']);
+           
         }
             
          
-         //var_dump($data['noOfRecentPost']);
+       
          
         $this->load->view('menuview/header',$data);
         $this->load->view('menuview/menu',$data);
@@ -76,11 +76,7 @@ public function index()
         {
              $setting = $dat->setting;
              parse_str($setting);
-            //echo $post."<br>";
             
-            //echo $checkbox;
-             
-            // var_dump($data['noOfRecentPost']);
         }
          $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
@@ -115,11 +111,7 @@ public function index()
         {
              $setting = $dat->setting;
              parse_str($setting);
-            //echo $post."<br>";
-            
-            //echo $checkbox;
-             
-            // var_dump($data['noOfRecentPost']);
+           
         }
          $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
@@ -158,11 +150,7 @@ public function index()
         {
              $setting = $dat->setting;
              parse_str($setting);
-            //echo $post."<br>";
-            
-            //echo $checkbox;
-             
-            // var_dump($data['noOfRecentPost']);
+           
         }
         $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
@@ -170,7 +158,7 @@ public function index()
         $this->load->view('menuview/menu',$data);
         $this->load->view('menuview/event',$data);
         $this->load->view('menuview/slider',$data);
-       // $this->load->view('menuview/allPost',$data);
+      
         $this->load->view('menuview/selectedPost', $data);
         $this->load->view('menuview/footer',$data);
         
@@ -198,11 +186,7 @@ public function index()
         {
              $setting = $dat->setting;
              parse_str($setting);
-            //echo $post."<br>";
-            
-            //echo $checkbox;
-             
-            // var_dump($data['noOfRecentPost']);
+           
         }
        $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
@@ -211,8 +195,7 @@ public function index()
         $this->load->view('menuview/event',$data);
         $this->load->view('menuview/slider',$data);
         $this->load->view('menuview/posts',$data);
-       // $this->load->view('menuview/allPost',$data);
-        //$this->load->view('menuview/selectedPost', $data);
+      
         $this->load->view('menuview/footer',$data);
         
         
@@ -240,11 +223,7 @@ public function index()
         {
              $setting = $dat->setting;
              parse_str($setting);
-            //echo $post."<br>";
             
-            //echo $checkbox;
-             
-            // var_dump($data['noOfRecentPost']);
         }
         $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
@@ -277,11 +256,7 @@ public function index()
         {
              $setting = $dat->setting;
              parse_str($setting);
-            //echo $post."<br>";
-            
-            //echo $checkbox;
-             
-            // var_dump($data['noOfRecentPost']);
+           
         }
         $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         
@@ -329,11 +304,7 @@ public function index()
         {
              $setting = $dat->setting;
              parse_str($setting);
-            //echo $post."<br>";
             
-            //echo $checkbox;
-             
-            // var_dump($data['noOfRecentPost']);
         }
         $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
         

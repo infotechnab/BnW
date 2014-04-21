@@ -13,21 +13,7 @@ class Gadgets extends CI_Controller {
     $this->load->helper(array('form', 'url'));
     $this->load->library("pagination");
     }
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
+	
 	public function index()
 	{
             
@@ -37,9 +23,6 @@ class Gadgets extends CI_Controller {
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu', $data);
 
-		//$this->load->view('header',$querydata);
-               // $this->load->view('body');
-               // $this->load->view('footer');
             $data['gaget']= $this->model1->get_gaget();
             $display = $this->input->post('wheretodisplay');
             
@@ -63,12 +46,8 @@ class Gadgets extends CI_Controller {
              $display  = $this->input->post('wheretodisplay');
         
             
-            //$default_template = $this->input->post('display');
-            //$updateDisplay = trim($default_template, "/");
-            
-            //$this->model1->updateText($updateDisplay);
              $this->model1->addText($name,$type,$display);
-             //$this->session->set_flashdata('mess','Data added sucessfully !!! ');
+            
              redirect('gadgets', 'refresh');
              
             
@@ -91,10 +70,10 @@ class Gadgets extends CI_Controller {
             
             $gadget_name = $this->input->post('gadget_name');
             $gadget_type = $this->input->post('gadget_type');
-            //echo $gadget_name;
+           
             
             $this->model1->updateText($gadget_name, $gadget_type, $updateDisplay);
-             //$this->session->set_flashdata('mess','Data added sucessfully !!! ');
+            
              redirect('gadgets', 'refresh');
              
             

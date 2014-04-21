@@ -1916,7 +1916,240 @@ public function delphoto($photoid) {
  }
  
  
-    //=========================notice==============================//
+  
+    
+    //============album=====
+
+
+    
+    public function add_new_album() {
+        if ($this->session->userdata('logged_in')) {
+
+            $config['upload_path'] = './content/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '500';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+            $this->load->library('upload', $config);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['query'] = $this->dbmodel->get_album();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('album_name', 'Album Name', 'required|xss_clean|max_length[200]');
+
+            if (($this->form_validation->run() == FALSE)) {
+
+                //if not valid
+                $error = "Enter Album Name";
+
+
+                $this->load->view('bnw/album/index', $error);
+            } else {
+
+                //if valid
+                $name = $this->input->post('album_name');
+
+                $this->dbmodel->add_new_album($name);
+                $this->session->set_flashdata('message', 'One Album added sucessfully');
+                redirect('bnw/album/index');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+
+            redirect('login', 'refresh');
+        }
+    }
+    
+    public function delalbum($id){
+        if ($this->session->userdata('logged_in')) {
+            $data['photoquery'] = $this->dbmodel->get_all_photos($id);
+            $data['albumquery'] = $this->dbmodel->get_selected_album($id);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/album/deleteAlbum', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    function delete_album($id) {
+        if ($this->session->userdata('logged_in')) {
+            
+             $data['photoquery'] = $this->dbmodel->get_all_photos($id);
+             foreach($data['photoquery'] as $photo)
+             {
+                 $image= $photo->media_type;
+                 unlink('./content/images/'.$image);
+             }
+                 
+            $this->dbmodel->delete_photo($id);
+            $this->dbmodel->delete_album($id);
+           
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    function editalbum($aid) {
+        if ($this->session->userdata('logged_in')) {
+            $this->dbmodel->edit_album($aid);
+            redirect('bnw/album');
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function photos($id) {
+
+        $data['query'] = $this->dbmodel->get_media($id);
+        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['id'] = $id;
+        $this->load->view('bnw/templates/header', $data);
+        $this->load->view('bnw/templates/menu');
+        $this->load->view('bnw/album/gallery', $data);
+        $this->load->view('bnw/templates/footer', $data);
+    }
+
+    //--------------------------------gallery---------------
+
+    public function gallery() {
+        if ($this->session->userdata('logged_in')) {
+            $data['query'] = $this->dbmodel->get_all_photos();
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/gallery/index', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    
+    
+
+    
+
+    // ==================  MENU  ============================ //
+
+    public function menu() {
+
+        if ($this->session->userdata('logged_in')) {
+            $config = array();
+            $config["base_url"] = base_url() . "index.php/bnw/menu";
+            $config["total_rows"] = $this->dbmodel->record_count_menu();
+            $config["per_page"] = 6;
+            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+            $this->pagination->initialize($config);
+
+            
+            $data["query"] = $this->dbmodel->get_menu($config["per_page"], $page);
+            $data["links"] = $this->pagination->create_links();
+           
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/menu/index', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function addmenu() {
+        if ($this->session->userdata('logged_in')) {
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data["links"] = $this->pagination->create_links();
+            $data["query"] = $this->dbmodel->get_menu();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('menu_name', 'Name', 'required|xss_clean|max_length[200]');
+
+            if ($this->form_validation->run() == FALSE) {
+
+                $this->load->view('bnw/menu/addnew');
+            } else {
+
+                //if valid
+
+                $menuname = $this->input->post('menu_name');
+                $this->dbmodel->add_new_menu( $menuname);
+                $this->session->set_flashdata('message', 'One menu added sucessfully');
+                redirect('bnw/menu/index');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function editmenu($mid) {
+        if ($this->session->userdata('logged_in')) {
+            $data['query'] = $this->dbmodel->findmenu($mid);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/menu/edit', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function updatemenu() {
+        if ($this->session->userdata('logged_in')) {
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            
+            $this->load->library(array('form_validation', 'session'));
+            $id = $this->input->post('id');
+            $data['query'] = $this->dbmodel->findmenu($id);
+            //set validation rules
+            $this->form_validation->set_rules('menu_name', 'Name', 'required|xss_clean|max_length[200]');
+
+
+            if ($this->form_validation->run() == FALSE) {
+                //if not valid
+                $data['query'] = $this->dbmodel->findmenu($id);
+                $id = $this->input->post('id');
+                $this->load->view('bnw/menu/edit', $data);
+            } else {
+                //if valid
+                $id = $this->input->post('id');
+                $menuname = $this->input->post('menu_name');
+                $this->dbmodel->update_menu($id, $menuname);
+                $this->session->set_flashdata('message', 'Menu Modified Sucessfully');
+
+                redirect('bnw/menu/index');
+            }
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+    public function deletemenu($id) {
+        if ($this->session->userdata('logged_in')) {
+            $this->dbmodel->delete_menu($id);
+            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+            redirect('bnw/menu/index');
+        } else {
+            redirect('login', 'refresh');
+        }
+    }
+
+     //=========================notice==============================//
 
    /* public function notice() {
 
@@ -2264,244 +2497,11 @@ public function delphoto($photoid) {
             redirect('login', 'refresh');
         }
     }
-*/
-    
-    //============album=====
-
-
-    
-    public function add_new_album() {
-        if ($this->session->userdata('logged_in')) {
-
-            $config['upload_path'] = './content/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
-            $this->load->library('upload', $config);
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $data['query'] = $this->dbmodel->get_album();
-            $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->helper('form');
-            $this->load->library(array('form_validation', 'session'));
-            $this->form_validation->set_rules('album_name', 'Album Name', 'required|xss_clean|max_length[200]');
-
-            if (($this->form_validation->run() == FALSE)) {
-
-                //if not valid
-                $error = "Enter Album Name";
-
-
-                $this->load->view('bnw/album/index', $error);
-            } else {
-
-                //if valid
-                //$imagedata = Array($this->upload->data());
-                $name = $this->input->post('album_name');
-
-                $this->dbmodel->add_new_album($name);
-                $this->session->set_flashdata('message', 'One Album added sucessfully');
-                redirect('bnw/album/index');
-            }
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-
-            redirect('login', 'refresh');
-        }
-    }
-    
-    public function delalbum($id){
-        if ($this->session->userdata('logged_in')) {
-            $data['photoquery'] = $this->dbmodel->get_all_photos($id);
-            $data['albumquery'] = $this->dbmodel->get_selected_album($id);
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/album/deleteAlbum', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-            
-    
-    
-
-    function delete_album($id) {
-        if ($this->session->userdata('logged_in')) {
-            
-             $data['photoquery'] = $this->dbmodel->get_all_photos($id);
-             foreach($data['photoquery'] as $photo)
-             {
-                 $image= $photo->media_type;
-                 unlink('./content/images/'.$image);
-             }
-                 
-            $this->dbmodel->delete_photo($id);
-            $this->dbmodel->delete_album($id);
-           
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-    function editalbum($aid) {
-        if ($this->session->userdata('logged_in')) {
-            $this->dbmodel->edit_album($aid);
-            redirect('bnw/album');
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-    public function photos($id) {
-
-        $data['query'] = $this->dbmodel->get_media($id);
-        $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['id'] = $id;
-        $this->load->view('bnw/templates/header', $data);
-        $this->load->view('bnw/templates/menu');
-        $this->load->view('bnw/album/gallery', $data);
-        $this->load->view('bnw/templates/footer', $data);
-    }
-
-    //--------------------------------gallery---------------
-
-    public function gallery() {
-        if ($this->session->userdata('logged_in')) {
-            $data['query'] = $this->dbmodel->get_all_photos();
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/gallery/index', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
 
     
     
-
     
-
-    // ==================  MENU  ============================ //
-
-    public function menu() {
-
-        if ($this->session->userdata('logged_in')) {
-            $config = array();
-            $config["base_url"] = base_url() . "index.php/bnw/menu";
-            $config["total_rows"] = $this->dbmodel->record_count_menu();
-            $config["per_page"] = 6;
-            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-
-            $this->pagination->initialize($config);
-
-            
-            $data["query"] = $this->dbmodel->get_menu($config["per_page"], $page);
-            $data["links"] = $this->pagination->create_links();
-           
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/menu/index', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-    public function addmenu() {
-        if ($this->session->userdata('logged_in')) {
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $data["links"] = $this->pagination->create_links();
-            $data["query"] = $this->dbmodel->get_menu();
-            $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->helper('form');
-            $this->load->library(array('form_validation', 'session'));
-            $this->form_validation->set_rules('menu_name', 'Name', 'required|xss_clean|max_length[200]');
-
-            if ($this->form_validation->run() == FALSE) {
-
-                $this->load->view('bnw/menu/addnew');
-            } else {
-
-                //if valid
-
-                $menuname = $this->input->post('menu_name');
-                $this->dbmodel->add_new_menu( $menuname);
-                $this->session->set_flashdata('message', 'One menu added sucessfully');
-                redirect('bnw/menu/index');
-            }
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-
-            redirect('login', 'refresh');
-        }
-    }
-
-    public function editmenu($mid) {
-        if ($this->session->userdata('logged_in')) {
-            $data['query'] = $this->dbmodel->findmenu($mid);
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/menu/edit', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-    public function updatemenu() {
-        if ($this->session->userdata('logged_in')) {
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->helper('form');
-            
-            $this->load->library(array('form_validation', 'session'));
-            $id = $this->input->post('id');
-            $data['query'] = $this->dbmodel->findmenu($id);
-            //set validation rules
-            $this->form_validation->set_rules('menu_name', 'Name', 'required|xss_clean|max_length[200]');
-
-
-            if ($this->form_validation->run() == FALSE) {
-                //if not valid
-                $data['query'] = $this->dbmodel->findmenu($id);
-                $id = $this->input->post('id');
-                $this->load->view('bnw/menu/edit', $data);
-            } else {
-                //if valid
-                $id = $this->input->post('id');
-                $menuname = $this->input->post('menu_name');
-                $this->dbmodel->update_menu($id, $menuname);
-                $this->session->set_flashdata('message', 'Menu Modified Sucessfully');
-
-                redirect('bnw/menu/index');
-            }
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-    public function deletemenu($id) {
-        if ($this->session->userdata('logged_in')) {
-            $this->dbmodel->delete_menu($id);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('bnw/menu/index');
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-   /* public function blog() {
+    public function blog() {
         if ($this->session->userdata('logged_in')) {
             $data['username'] = Array($this->session->userdata('logged_in'));
             $data['query'] = $this->dbmodel->get_blog();
