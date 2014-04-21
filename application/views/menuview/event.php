@@ -7,7 +7,6 @@
 
 <div class="eventAndDownload">
                     
-                    
                     <div class="event">
                         <div class="eventHeader">
                             
@@ -18,9 +17,9 @@
     {
         $setting = $data->setting;
          parse_str($setting);
-         echo $post;
-         echo $titleBold;
-         echo $titleUnderline;
+         //echo $post;
+         //echo $titleBold;
+         //echo $titleUnderline;
          echo $titleColor;
         ?>
                             <h3><?php echo $data->name; ?></h3>
@@ -28,7 +27,7 @@
                         
                         
                         
-                            <div class="newNews"></div>
+                            <div class="newNews">
                             <?php
           foreach($noOfRecentPost as $recent_post)
          {
@@ -61,13 +60,19 @@
         
          } 
     }
-    }?></p>
+    ?>
+                                
+    
+                            <div style="text-align: center">
+                   <?php $return['rows'] = $this->db->query('SELECT FOUND_ROWS() count;')->row()->count; if($return>700) echo  anchor('view/posts', 'View All News') ;  ?>       
+                    </div>
+    <?php    }  ?>
+                            </p>
+                            
+                            
                             
                             
                         
-                            <div style="text-align: center">
-                     <?php $return['rows'] = $this->db->query('SELECT FOUND_ROWS() count;')->row()->count; if($return>700) echo  anchor('view/posts', 'View All News') ;  ?>       
-                    </div>
                     </div>
                     
                     <div class="download">
@@ -82,5 +87,6 @@
                     </div>
     
                 </div>
+</div>
                 <div class="clear"></div>
             </div>      
