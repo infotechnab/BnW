@@ -1,7 +1,8 @@
 
 <div class="rightSide">
     
-<h2>Add new Slide Image</h2>
+<h2>Add new Slide</h2>
+<hr class="hr-gradient"/>
   <?php echo validation_errors();
   if(isset($error))
   {

@@ -17,7 +17,8 @@ $(document).ready(function(){
 });
 </script>
 <div class="rightSide">
-    <h2>Album</h2>
+    <h2> Add Album</h2>
+    <hr class="hr-gradient"/>
 <?php echo validation_errors();
 if(isset($error))
 {

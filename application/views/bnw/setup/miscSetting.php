@@ -23,6 +23,7 @@ if ($query)
 
 
 <h2> Miscellaneous Setting</h2>
+<hr class="hr-gradient"/>
 
 <?php echo form_open_multipart('bnw/miscsettingupdate');?>
 <h4>Default Article Setting</h4>

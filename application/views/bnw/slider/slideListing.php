@@ -4,7 +4,15 @@
     <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-    <h2>All slides</h2>
+    <h2>All Slides</h2>
+       
+   <hr class="hr-gradient"/>
+   
+   <?php     if(empty($query)){
+           echo '<h3>Sorry slides are not available</h3>' ;
+       }
+?>
+   
     <table border="1" cellpadding="10">
         <tr>
            
@@ -17,7 +25,7 @@
     <?php
     
     
-        if(isset($query)){
+        if(!empty($query)){
             foreach ($query as $data){
             ?>
           <tr>
@@ -31,6 +39,7 @@
             <?php    
             }
         }
+ 
     ?>
        
     </table>

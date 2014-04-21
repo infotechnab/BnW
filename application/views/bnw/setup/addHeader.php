@@ -22,7 +22,7 @@ if ($query)
 
 
 <h2> Header Content Management</h2>
-
+<hr class="hr-gradient"/>
 <?php echo form_open_multipart('bnw/headerupdate');?>
  
 

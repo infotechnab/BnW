@@ -17,6 +17,7 @@ if ($meta)
 
 
 <h2><?php echo $meta_data[1]; ?> Dashboard Management</h2>
+<hr class="hr-gradient"/>
 
 <?php echo form_open_multipart('bnw/setupupdate');?>
   <p>Site Url :<br />

@@ -75,7 +75,8 @@
 	
 </script>
 <div class="rightSide">
-<h2> Photos </h2>
+<h2>Album/ Photos </h2>
+<hr class="hr-gradient"/>
 <?php echo validation_errors();
 if(isset($error))
 {
@@ -94,7 +95,7 @@ foreach ($query as $data) {
    
     
 
-    <img class="srcimage" src="<?php echo base_url(); ?>content/images/<?php echo $data->media_type; //echo $image; ?>" id="galleryimage" />
+    <img class="srcimage" src="<?php echo base_url(); ?>content/images/<?php echo $data->media_type; ?>" id="galleryimage" />
         <div id="imagetitle"> <?php echo $data->media_name; ?>
             
         </div>
@@ -117,8 +118,8 @@ else
 <img  src="" width="500px" height="400px" id="pqr"  />
  <a id="popupBoxClose">Close</a>	
 </div>
-<div class="clear"></div>
-<div class="add" style="width:250px; height:70px; margin: 10px; " >
+
+<div class="add" style="width:250px; height:100px; margin: 10px; float: left " >
 <?php echo form_open_multipart('bnw/addphoto'); ?>
     <input type="hidden" name="id" value="<?php echo $id; ?>" />
     <label> Image Title :</label> <br/>
@@ -127,6 +128,7 @@ else
     <input type="submit" name="submit" value="add photo"   />
 <?php  echo form_close(); ?>
 </div> 
+<div class="clear"></div>
 <div style="clear: left;" >
 </div>
 </div>

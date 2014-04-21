@@ -20,7 +20,7 @@
     <?php
     
     
-        if($query){
+         if(!empty($query)){
             foreach ($query as $data){
             ?>
           <tr>
@@ -46,6 +46,10 @@
             <?php    
             }
         }
+        else{
+            echo '<h3>Sorry posts are not available</h3>';
+        }
+            
     ?>
     </table>
     <?php  echo $links; ?>

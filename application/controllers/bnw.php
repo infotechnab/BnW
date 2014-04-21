@@ -1516,7 +1516,7 @@ public function delphoto($photoid) {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/slider/index', $data);
+            $this->load->view('bnw/slider/slideListing', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');

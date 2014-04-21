@@ -37,8 +37,7 @@
                     <li class="mainMenuItem"><a href="#">Social Share</a><?php /*echo anchor('bnw', 'Social Share') */?>
                         <ul class="subMenu">
                             <li><?php echo anchor('social_share', 'Accounts') ?></li>
-                            <li><?php echo anchor('bnw', 'Preferences') ?></li>
-                            <li><?php echo anchor('bnw', 'APIs') ?></li>
+                            
                         </ul>
                     </li>
                     <li class="mainMenuItem"><a href="#">Settings</a><?php /*echo anchor('bnw', 'Settings') */?>

@@ -14,7 +14,8 @@ if ($query)
     ?>
 
 
-<h2> Side bar Content Management</h2>
+<h2> Sidebar Content Management</h2>
+<hr class="hr-gradient"/>
 
 <?php echo form_open('bnw/sidebarupdate');?>
   <p>Sidebar Title :<br />
