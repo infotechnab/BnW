@@ -69,7 +69,9 @@ public function index()
         $data['commentallowquery']= $this->viewmodel->get_comment_allow();
         $data['headerdescription']= $this->viewmodel->get_header_description();
         $data['selectedpagequery'] = $this->viewmodel->get_desired_page($id);
-         $data['viewcomments'] = $this->viewmodel->get_comments($assc_id);
+       $data['commentallowquery']= $this->viewmodel->get_comment_allow();
+        $data['likeallowquery']= $this->viewmodel->get_like_allow();
+        $data['shareallowquery']= $this->viewmodel->get_share_allow();
        $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
         $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
          foreach ($data['recentPost'] as $dat)
@@ -138,8 +140,8 @@ public function index()
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['commentallowquery']= $this->viewmodel->get_comment_allow();
-         $data['likeallowquery']= $this->viewmodel->get_like_allow();
-          $data['shareallowquery']= $this->viewmodel->get_share_allow();
+        $data['likeallowquery']= $this->viewmodel->get_like_allow();
+        $data['shareallowquery']= $this->viewmodel->get_share_allow();
         
         $data['viewcomments'] = $this->viewmodel->get_comments($assc_id);
         $data['headerdescription']= $this->viewmodel->get_header_description();

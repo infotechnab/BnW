@@ -1,6 +1,4 @@
-<div class="rightSide">
-    <div id="forLeftPage"> 
- <?php
+<?php
  if(isset($error))
   {
      echo $error;
@@ -12,7 +10,12 @@
        }
         }
     ?>
-<h2>Edit Navigation id <?php echo $navdata->id; ?></h2>
+<div class="rightSide">
+    <h2>Edit Navigation/ <?php echo $navdata->navigation_name; ?></h2>
+<hr class="hr-gradient"/>
+    <div id="forLeftPage"> 
+ 
+
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">

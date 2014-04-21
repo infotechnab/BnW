@@ -10,9 +10,7 @@
         <tr>
            
             <th>Page</th>
-            <th>Page Summary</th>
-            
-            
+            <th>Page Summary</th>         
             <th>Status</th>
             <th>Action</th>
         </tr>
@@ -21,6 +19,7 @@
     
     
         if(!empty($query)){
+            
             foreach ($query as $data){
             ?>
           <tr>
@@ -55,10 +54,4 @@
 </div>
 </div>
 <div class="clear"></div>
-</div><?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+</div>

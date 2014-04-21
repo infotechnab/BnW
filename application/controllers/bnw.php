@@ -255,8 +255,6 @@ class bnw extends CI_Controller {
     public function navigation() {
         if ($this->session->userdata('logged_in')) {
 
-            $config = array();
-            $config["base_url"] = base_url() . "index.php/bnw/menu";
             $config["total_rows"] = $this->dbmodel->record_count_navigation();
             $config["per_navigation"] = 6;
             $this->pagination->initialize($config);
@@ -337,10 +335,10 @@ class bnw extends CI_Controller {
               //  $navigationtype = $this->input->post('navigation_type');
                // $navigationslug = $this->input->post('navigation_slug');
                // $mid = $this->input->post('menu_id');
-                $this->dbmodel->update_navigation($id, $navigationname);
-                $this->session->set_flashdata('message', 'NAvigation Menu Modified Sucessfully');
+                $this->dbmodel->update_edited_navigation($id, $navigationname);
+              //  $this->session->set_flashdata('message', 'Navigation Menu Modified Sucessfully');
 
-                redirect('bnw/menu/navigationListing');
+                redirect('bnw/navigation');
             }
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -2054,7 +2052,7 @@ public function delphoto($photoid) {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/menu/index', $data);
+            $this->load->view('bnw/menu/addnew', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login', 'refresh');
@@ -2082,7 +2080,7 @@ public function delphoto($photoid) {
                 $menuname = $this->input->post('menu_name');
                 $this->dbmodel->add_new_menu( $menuname);
                 $this->session->set_flashdata('message', 'One menu added sucessfully');
-                redirect('bnw/menu/index');
+                redirect('bnw/menu/addnew');
             }
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -2131,7 +2129,7 @@ public function delphoto($photoid) {
                 $this->dbmodel->update_menu($id, $menuname);
                 $this->session->set_flashdata('message', 'Menu Modified Sucessfully');
 
-                redirect('bnw/menu/index');
+                redirect('bnw/menu/addnew');
             }
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -2143,7 +2141,7 @@ public function delphoto($photoid) {
         if ($this->session->userdata('logged_in')) {
             $this->dbmodel->delete_menu($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('bnw/menu/index');
+            redirect('bnw/menu/addnew');
         } else {
             redirect('login', 'refresh');
         }

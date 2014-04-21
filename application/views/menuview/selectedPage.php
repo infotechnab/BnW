@@ -1,4 +1,13 @@
 <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
   FB.init({
@@ -58,8 +67,16 @@
   }
 </script>
 
+<!--
+  Below we include the Login Button social plugin. This button uses the JavaScript SDK to
+  present a graphical Login button that triggers the FB.login() function when clicked. -->
 
-<?php 
+<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+
+
+  <?php $nav= $this->uri->uri_string();
+        $assc_id= str_replace('','', $nav); ?>   
+    <?php 
 if($selectedpagequery){
 foreach ($selectedpagequery as $page) {
                     ?>
@@ -72,8 +89,8 @@ foreach ($selectedpagequery as $page) {
 
                             <p class="paragraph"><?php echo $page->page_content; ?></p>        
                         </div>
-                        
-                             <div class="comment">                    
+       <!--comment button and show comment-->                 
+                        <div class="comment">                    
    <?php foreach ($commentallowquery as $data) {
                     ?>
                        
@@ -81,29 +98,89 @@ foreach ($selectedpagequery as $page) {
     { 
         //================ IF ALL ALLOW COMMENT ================//
         ?>
-                            
-
-                      
+        
+                
+ <div class="fb-comments" data-href="<?php echo 'http://localhost/bnw/index.php/'.$assc_id;?>" data-numposts="5" data-colorscheme="light"></div>
+ 
+ <script src="//connect.facebook.net/en_US/all.js"></script>
     <?php }
  else {
      if($page->allow_comment==1)
      {
          //============== IF ONE POST ALLOW ==========//
          ?>
-          } ?>
+                
+ <div class="fb-comments" data-href="<?php echo 'http://localhost/bnw/index.php/'.$assc_id;?>" data-numposts="5" data-colorscheme="light"></div>
+ 
+ <script src="//connect.facebook.net/en_US/all.js"></script>
+                
+  
+     <?php }  }   ?>                      
+                <?php } ?>                      
+   
+                        </div> 
+     
+      <!--comment button closed -->
+     
+         <!--like button-->                 
+                        <div class="comment">                    
+   <?php foreach ($likeallowquery as $likedata) {
+                    ?>
+                       
+    <?php if($likedata->description==1)
+    { 
+        //================ IF ALL ALLOW LIKE ================//
+        ?>
+                            
+    <div class="fb-like" data-href="<?php echo 'http://localhost/bnw/index.php/'.$assc_id;?>" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div>
+
+     <!--<div class="fb-like" data-href="<?php echo 'http://localhost/bnw/index.php/'.$assc_id;?>" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div>-->
+      
+     
+                
+    <?php }
+ else {
+     if($page->allow_like==1)
+     {
+         //============== IF ONE POST ALLOW ==========//
+         ?>
+                        
+ <div class="fb-like" data-href="<?php echo 'http://localhost/bnw/index.php/'.$assc_id;?>" data-layout="standard" data-action="like" data-show-faces="false" data-share="false"></div>
+     <?php }   }    ?>                  
+                
+                <?php } ?>                      
+   
+                        </div> 
+     
+      <!--like button closed -->
+                    
+       <!--share button -->                 
+                        <div class="comment">                    
+   <?php foreach ($shareallowquery as $sharedata) {
+                    ?>
+                       
+    <?php if($sharedata->description==1)
+    { 
+        //================ IF ALL ALLOW share ================//
+        ?>
+                           
+   
+<div class="fb-share-button" data-href="<?php echo 'http://localhost/bnw/index.php/'.$assc_id;?>" data-type="button_count"></div>
+     
+                
+    <?php }
+ else {
+     if($page->allow_share==1)
+     {
+         //============== IF ONE POST ALLOW ==========//
+         ?>
+                             
+   
+<div class="fb-share-button" data-href="<?php echo 'http://localhost/bnw/index.php/'.$assc_id;?>" data-type="button_count"></div>
+     
     
-    <input id="loginButton" type="button" value="Login!" onclick="authUser();" />
-    <div id="subformDiv">
-        <?php $nav= $this->uri->uri_string();
-        $assc_id= str_replace('view/','', $nav); ?>
-        <?php echo form_open_multipart('view/addcomment/?post_id='.$assc_id); ?>
-       
-        <input type="hidden" value="<?php echo $assc_id ;?>" />
-        
-        <textarea name="comment"></textarea>
-        <input type="submit" value="Submit" />
-        <?php echo form_close();?>
-    </div>
+   
+  
      <?php }
        
     }
@@ -114,21 +191,34 @@ foreach ($selectedpagequery as $page) {
                 <?php } ?>                      
    
                         </div> 
-       
-                        
-                        
-                        
-                        
-                        
-                      
+     
+      <!--share button closed -->
+     
                     </div> 
 
-                <?php } ?>
-
-<?php } else {
+                <?php }}
+                else {
      echo '<h3> Sorry the page you requested is not found.</h3>';
-}
-    ?>        </div>
+} ?>
+
+
+
+            </div>
 
             <div class="clear"></div>
             <!class full is closed here>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        
+ 

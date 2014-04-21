@@ -152,7 +152,15 @@ class Dbmodel extends CI_Model {
             'menu_id'=> $mid);
         $this->db->where('id', $id);
         $this->db->update('navigation', $data);
-    }    
+    } 
+    public function update_edited_navigation($id, $navigationname) {
+        $this->load->database();
+        $data = array(
+        'navigation_name' => $navigationname);   
+        $this->db->where('id', $id);
+        $this->db->update('navigation', $data);
+    } 
+    
     public function update_navigation_on_page_update($pageid,$navigationName,$navigationLink,$navigationSlug){
         $this->load->database();
         $data = array(
