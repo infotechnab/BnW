@@ -1,5 +1,9 @@
 <div class="rightSide">
-<h2>Add new User</h2>
+<div class="titleArea">
+     <h2>Add new user</h2>
+<hr class="hr-gradient"/>   
+    </div>
+
   <?php echo validation_errors();
   if(isset($error))
   {

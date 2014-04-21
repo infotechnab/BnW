@@ -15,7 +15,7 @@
        }
         }
     ?>
-<h2>Edit Media id <?php echo $id; ?></h2>
+<h2>Edit Media/ <?php echo $medianame; ?></h2>
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">

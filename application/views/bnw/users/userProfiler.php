@@ -12,6 +12,7 @@
             foreach ($query as $data){
             ?>
        <h2>Dear <?php echo $data->user_name ?>, Your profile details are listed below.</h2> 
+       <hr class="hr-gradient"/>
        <h3>Basic Details</h3>
        <table border="1" cellpadding="10">  
          <tr><td width="100"> User Name </td><td width="200"><?php echo $data->user_name ?></td>

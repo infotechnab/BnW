@@ -20,6 +20,19 @@ body
     height: 51px;
     background-color: #222;
 }
+
+hr.hr-gradient
+{
+    background: -webkit-linear-gradient(to right, #FFFFFF, #6A6868 0%, #FFFFFF);
+    background: -o-linear-gradient(to right, #FFFFFF, #6A6868 0%, #FFFFFF);
+    background: -moz-linear-gradient(to right, #FFFFFF, #6A6868 0%, #FFFFFF);
+    background:  linear-gradient(to right, #FFFFFF, #6A6868 0%, #FFFFFF);
+    background-repeat: no-repeat;
+    border: 0 none;
+    height: 3px;
+}
+
+
 #topLeft
 {
     float: left;

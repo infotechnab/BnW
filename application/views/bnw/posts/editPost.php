@@ -11,8 +11,8 @@ if ($miscSetting)
     }
  }
  ?>
-    <div id="forLeftPage">
- <?php
+    
+    <?php
  if(isset($error))
   {
      echo $error;
@@ -35,7 +35,12 @@ if ($miscSetting)
        }
         }
     ?>
-<h2>Edit Post id <?php echo $id; ?></h2>
+   <div class="titleArea">
+     <h2>Edit Post/ <?php echo $post_title; ?></h2>
+<hr class="hr-gradient"/>   
+    </div> 
+    <div id="forLeftPage">
+ 
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">

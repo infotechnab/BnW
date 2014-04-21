@@ -1,7 +1,7 @@
 
 <div class="rightSide">
-    <h2><a href="#">Add New Category</a></h2>
-
+    <h2>Add New Category</a></h2>
+<hr class="hr-gradient"/>
      <?php echo validation_errors();
   if(isset($error))
   {

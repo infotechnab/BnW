@@ -11,8 +11,13 @@ if ($query)
     }
  }
  ?>
+    <div class="titleArea">
+     <h2>Add new post</h2>
+<hr class="hr-gradient"/>   
+    </div>
+    
     <div id="forLeftPage">
-<h2>Add new post</h2>
+
   <?php echo validation_errors();
   if(isset($error))
   {

@@ -13,9 +13,9 @@
        }
         }
     ?>
-<h2>Edit Category id <?php echo $id; ?></h2>
+<h2>Edit Category/ <?php echo $categoryname; ?></h2>
   <?php echo validation_errors(); ?>
- 
+ <hr class="hr-gradient"/>
   <p id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
     </p>

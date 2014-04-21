@@ -5,7 +5,8 @@
   <?php echo $this->session->flashdata('message'); ?>
     </p>
     <h2>All Pages</h2>
-    <table border="1" cellpadding="10">
+    <hr class="hr-gradient"/>
+    <table border="1" cellpadding="10" >
         <tr>
            
             <th>Page</th>

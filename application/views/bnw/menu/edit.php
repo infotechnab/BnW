@@ -6,7 +6,8 @@
            }
         }
     ?>
-<h2>Edit Menu id <?php echo $id; ?></h2>
+<h2>Edit Menu/ <?php echo $menuname; ?></h2>
+<hr class="hr-gradient"/>
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">

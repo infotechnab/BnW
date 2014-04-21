@@ -1,5 +1,6 @@
 <div class="rightSide">
 <h2>Add new Media</h2>
+<hr class="hr-gradient"/>
 <p>Allowed file types: jpg, jpeg, png, gif, pdf, doc, ppt, odt, pptx, docx, xls, xlsx, key</p>
   <?php echo validation_errors();
   if(isset($error))

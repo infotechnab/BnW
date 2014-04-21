@@ -17,7 +17,8 @@
        }
         }
     ?>
-<h2>Edit user id <?php echo $id; ?></h2>
+<h2>Edit user/ <?php echo $name; ?></h2>
+<hr class="hr-gradient"/>
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">
