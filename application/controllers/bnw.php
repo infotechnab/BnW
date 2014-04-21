@@ -34,18 +34,10 @@ class bnw extends CI_Controller {
         redirect('login', 'refresh');
     }
 
-  /*  public function menuDropDown(){
-        $tnmnt_id = $this->input->post('tnmnt');
-        die($tnmnt_id);
-    }*/
-
-
  public function menu_id_from_ajax(){
    $this->load->helper('myHelper_helper'); 
    
     $menu_id_next = ($_POST['menu_id_next']);
-   
-      
     
     fetch_menu (query(0));
   }
@@ -88,11 +80,7 @@ class bnw extends CI_Controller {
                 {
                     $parent_id= $pid->id;
                 }
-            }
-           
-             
-            
-                 
+            }                
                  
             foreach ($listOfSelectedMenu as $myData)
             {
@@ -211,8 +199,7 @@ class bnw extends CI_Controller {
          
     }
     
-
-        public function addCustomLink(){
+    public function addCustomLink(){
          if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
             $listOfMenu = $this->dbmodel->get_list_of_menu();           
@@ -251,7 +238,7 @@ class bnw extends CI_Controller {
                 $navigationType= " ";
                 $navigation_slug= preg_replace('/\s+/', '', $navigationName); 
                 $this->dbmodel->add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menu_id);
-                //$this->session->set_flashdata('message', 'One N added sucessfully');
+                $this->session->set_flashdata('message', 'One Navigation item added sucessfully');
                 redirect('bnw/navigation');
             }
             $this->load->view('bnw/templates/footer', $data);
@@ -283,7 +270,7 @@ class bnw extends CI_Controller {
             $data["listOfMenu"] = $this->dbmodel->get_list_of_menu();
             $data["listOfNavigation"] = $this->dbmodel->get_list_of_navigation();
             $data["listOfNavigationID"] = $this->dbmodel->get_list_of_navigationID();
-            //$data['menulisting']= $this->dbmodel->get_menu_list();
+            
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
             $this->load->view('bnw/menu/listOfItems', $data);
@@ -295,39 +282,7 @@ class bnw extends CI_Controller {
 
     //===========================================To Add Navigation=====================================================
 
-    public function addnavigation() {
-        if ($this->session->userdata('logged_in')) {
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->helper('form');
-            $this->load->library(array('form_validation', 'session'));
-            $this->form_validation->set_rules('navigation_name', 'Navigation Name', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('navigation_link', 'Link', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('navigation_type', 'Type', 'required|xss_clean|max_length[200]');
-
-            if ($this->form_validation->run() == FALSE) {
-
-                $this->load->view('bnw/menu/addNavigation');
-            } else {
-
-                //if valid
-                $navigationname = $this->input->post('navigation_name');
-                $navigationlink = $this->input->post('navigation_link');
-                $pid = $this->input->post('parent_id');
-                $navigationtype = $this->input->post('navigation_type');
-                $navigationslug = $this->input->post('navigation_slug');
-                $mid = $this->input->post('menu_id');
-                $this->dbmodel->add_new_navigation($navigationname, $navigationlink, $pid, $navigationtype, $navigationslug, $mid);
-                $this->session->set_flashdata('message', 'One Navigation Menu added sucessfully');
-                //redirect('bnw/menu/navigationListing');
-            }
-            redirect('bnw/menu/navigation');
-        } else {
-
-            redirect('login', 'refresh');
-        }
-    }
+   
 
    public function editnavigation($id) {
         if ($this->session->userdata('logged_in')) {
@@ -346,7 +301,6 @@ class bnw extends CI_Controller {
 
     public function showNavigation($id) {
         if ($this->session->userdata('logged_in')) {
-            //die($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
             
             $data['query'] = $this->dbmodel->get_list_of_selected_menu_navigation($id);
@@ -373,10 +327,7 @@ class bnw extends CI_Controller {
 
 
             if ($this->form_validation->run() == FALSE) {
-                //if not valid
-               //  $id=  $this->input->post('id');
-               // $data['query'] = $this->dbmodel->findnavigation($id);
-               // $this->load->view('bnw/menu/navigationListing', $data);
+               
             } else {
                 //if valid
                 $id = $this->input->post('id');
@@ -590,10 +541,8 @@ class bnw extends CI_Controller {
 
             $data["query"] = $this->dbmodel->get_all_posts($config["per_page"], $page);
             $data["links"] = $this->pagination->create_links();
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            
+            $data['meta'] = $this->dbmodel->get_meta_data();            
            
-
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/posts/postListing', $data);
@@ -765,8 +714,7 @@ class bnw extends CI_Controller {
                         $data['query'] = $this->dbmodel->findpost($id);
                         $this->load->view('bnw/posts/editPost', $data);
                     } else {
-                        //$data = array('upload_data' => $this->upload->data('file'));
-                        //$image = $data['upload_data']['file_name'];
+                        
                         $id = $this->input->post('id');
                         $post_title = $this->input->post('post_title');
                         $post_content = $this->input->post('post_content');
@@ -885,7 +833,7 @@ class bnw extends CI_Controller {
             $allowShare = $this->input->post('allow_share');
             $this->form_validation->set_rules('page_name', 'Page Name', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
-            $this->form_validation->set_rules('page_summary', 'Summary', 'xss_clean');
+            
 
 
             if (($this->form_validation->run() == TRUE)) {
@@ -913,7 +861,6 @@ class bnw extends CI_Controller {
                       $string = $this->input->post('page_content');
                            $summary= substr("$string", 0, 100);
                          
-                    //$summary = $this->input->post('page_summary');
                     $status = $this->input->post('page_status');
                     $order = $this->input->post('page_order');
                     
@@ -982,7 +929,7 @@ class bnw extends CI_Controller {
             //set validation rules
             $this->form_validation->set_rules('page_name', 'Page Name', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
-          //  $this->form_validation->set_rules('page_summary', 'Page summary', 'required|xss_clean');
+         
 
 
 
@@ -994,8 +941,7 @@ class bnw extends CI_Controller {
                         $data['query'] = $this->dbmodel->findpage($id);
                         $this->load->view('bnw/pages/edit', $data);
                     } else {
-                        //$data = array('upload_data' => $this->upload->data('file'));
-                        //$image = $data['upload_data']['file_name'];
+                       
 
                         $id = $this->input->post('id');
                         $name = $this->input->post('page_name');
@@ -1074,16 +1020,6 @@ class bnw extends CI_Controller {
         }
     }
 
-   /* public function delete_page_image($id) {
-        if ($this->session->userdata('logged_in')) {
-            $this->dbmodel->delete_page_image($id);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('bnw/pages');
-        } else {
-            redirect('login', 'refresh');
-        }
-    }*/
-
     //============================================================================//
     //=============================USER===========================================//
     //============================================================================//
@@ -1156,7 +1092,6 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $data['query'] = $this->dbmodel->finduser($id);
             $data['meta'] = $this->dbmodel->get_meta_data();
-            //var_dump($data);
             
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
@@ -1301,7 +1236,7 @@ class bnw extends CI_Controller {
                 }
             }
             $this->form_validation->set_rules('media_name', 'media Name', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('media_type', 'Type of Media', 'required|xss_clean|max_length[200]');
+          
 
 
             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
@@ -1372,7 +1307,7 @@ class bnw extends CI_Controller {
                 }
             }
             $this->form_validation->set_rules('media_name', 'media Name', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('media_type', 'Type of Media', 'required|xss_clean|max_length[200]');
+            
 
             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
                 $data['error'] = $this->upload->display_errors();
@@ -1414,7 +1349,6 @@ public function delmedia($id) {
     public function deletemedia($id) {
         if ($this->session->userdata('logged_in')) {
              $id=$_GET['image'];
-          //  die($a);
            unlink('./content/images/'.$id);  
                 
             $this->dbmodel->delete_media($id);
@@ -1477,7 +1411,7 @@ public function delmedia($id) {
             } else {
 
                 //if valid
-                //$imagedata = Array($this->upload->data());
+               
                 $name = $this->input->post('album_name');
 
                 $this->dbmodel->add_new_album($name);
@@ -1520,7 +1454,7 @@ public function delmedia($id) {
 
                 //if valid
                 $data = array('upload_data' => $this->upload->data());
-                //$photoid= $data->this->input->post('id');
+              
                 $mediatype = $data['upload_data']['file_name'];
                 $medianame = $this->input->post('title');
                 $albumid = $this->input->post('id');
@@ -1607,7 +1541,7 @@ public function delphoto($photoid) {
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('slide_name', 'Title', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('slide_image', 'Image', 'required|xss_clean|max_length[200]');
+            
 
 
             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
@@ -1712,7 +1646,7 @@ public function delphoto($photoid) {
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('slide_name', 'Title', 'required|xss_clean|max_length[200]');
-            //$this->form_validation->set_rules('slide_image', 'Image', 'required|xss_clean|max_length[200]');
+            
 
 
             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
@@ -1743,7 +1677,7 @@ public function delphoto($photoid) {
     public function deleteslider($a) {
         if ($this->session->userdata('logged_in')) {
             $a=$_GET['image'];
-          //  die($a);
+          
            unlink('./content/images/'.$a);  
                 
             
@@ -1755,129 +1689,11 @@ public function delphoto($photoid) {
         }
     }
 
-    //==========================================================================================================//
-    //===============================Setting/ Gadgets===========================================================//
-    //==========================================================================================================//
-    
-    /* public function gadgets() {
-        if ($this->session->userdata('logged_in')) {
-            //$data['username'] = Array($this->session->userdata('logged_in'));
-            $config = array();
-            $config["base_url"] = base_url() . "index.php/bnw/pages";
-            $config["total_rows"] = $this->dbmodel->record_count_gadget();
-            $config["per_page"] = 6;
-            //$config["uri_segment"] = 3;
-
-            $this->pagination->initialize($config);
-
-            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-
-            $data["query"] = $this->dbmodel->get_gadgets($config["per_page"], $page);
-            $data["links"] = $this->pagination->create_links();
-            $data['query'] = $this->dbmodel->get_gadgets();
-            $data['meta'] = $this->dbmodel->get_meta_data();
-           
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/gadget/index', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-    public function editgadget($id) {
-        if ($this->session->userdata('logged_in')) {
-            $data['query'] = $this->dbmodel->findgadget($id);
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/gadget/edit', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-    function deletegadget($id) {
-        if ($this->session->userdata('logged_in')) {
-            $this->dbmodel->delete_gadget($id);
-            redirect('bnw/gadget');
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-    function updategadget() {
-        if ($this->session->userdata('logged_in')) {
-            $header = "bnw/templates/header";
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view($header, $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->helper('form');
-            $this->load->library(array('form_validation', 'session'));
-            //set validation rules
-            $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('body', 'Body', 'required|xss_clean');
-
-            if ($this->form_validation->run() == FALSE) {
-                //if not valid
-                $data['query'] = $this->dbmodel->findgadget($gid);
-                $this->load->view('bnw/gadget/edit', $data);
-            } else {
-                //if valid
-                $type = $this->input->post('type');
-                $id = $this->input->post('id');
-                $title = $this->input->post('title');
-                $body = $this->input->post('body');
-                $status = $this->input->post('status');
-                $this->dbmodel->update_gadget($id, $title, $body, $status, $type);
-                $this->session->set_flashdata('message', 'Data Modified Sucessfully');
-
-                redirect('bnw/gadget');
-            }
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
-    function addgadget() {
-        if ($this->session->userdata('logged_in')) {
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/header";
-            $this->load->view($header, $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->helper('form');
-            $this->load->library(array('form_validation', 'session'));
-            //set validation rules
-            $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('body', 'Body', 'required|xss_clean');
-
-            if ($this->form_validation->run() == FALSE) {
-                //if not valid
-                $this->load->view('bnw/gadget/addnew');
-            } else {
-                //if valid
-                $type = $this->input->post('type');
-                $name = $this->input->post('title');
-                $body = $this->input->post('body');
-                $status = $this->input->post('status');
-                $this->dbmodel->add_new_gadget($name, $body, $status, $type);
-                $this->session->set_flashdata('message', 'One gadget added sucessfully');
-                redirect('bnw/gadget');
-            }
-
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }*/
-
+   
     //============================================================================================================//
     //================================Settings/ Setup ============================================================//
     //============================================================================================================//
-    
+      
     public function setup() {
         if ($this->session->userdata('logged_in')) {
             $data['meta'] = $this->dbmodel->get_meta_data();
@@ -2393,21 +2209,7 @@ public function delphoto($photoid) {
 
     //==========================Result management controler
 
-    public function download() {
-        if ($this->session->userdata('logged_in')) {
-            $data['username'] = Array($this->session->userdata('logged_in'));
-            $data['query'] = $this->dbmodel->get_documents();
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $header = "bnw/templates/";
-            $this->load->view($header . 'header', $data);
-            $this->load->view($header . 'menu');
-            $this->load->view('bnw/download/index', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login', 'refresh');
-        }
-    }
-
+   
     public function upload() {
         if ($this->session->userdata('logged_in')) {
 
@@ -2463,13 +2265,7 @@ public function delphoto($photoid) {
         }
     }
 */
-    //======================================Dashboard setup page
     
-
-    //alumnae controlers
-    
-
-    //----------------------------album----------------
     //============album=====
 
 
@@ -2544,7 +2340,7 @@ public function delphoto($photoid) {
                  
             $this->dbmodel->delete_photo($id);
             $this->dbmodel->delete_album($id);
-           // redirect('bnw/album');
+           
         } else {
             redirect('login', 'refresh');
         }
@@ -2599,14 +2395,14 @@ public function delphoto($photoid) {
             $config["base_url"] = base_url() . "index.php/bnw/menu";
             $config["total_rows"] = $this->dbmodel->record_count_menu();
             $config["per_page"] = 6;
-            //$config["uri_segment"] = 3;
+            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
             $this->pagination->initialize($config);
 
-            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            
             $data["query"] = $this->dbmodel->get_menu($config["per_page"], $page);
             $data["links"] = $this->pagination->create_links();
-            // $data['query'] = $this->dbmodel->get_menu();
+           
             $data['meta'] = $this->dbmodel->get_meta_data();
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
@@ -2774,49 +2570,7 @@ public function delphoto($photoid) {
     }
    
     */
-   /* public function test()
-    {
-         function query($parent_id) { //function to run a query
-	//$query = mysql_query ( "SELECT * FROM menus WHERE parent_id=$parent_id" );
-        $query = $this->dbmodel->get_list_by_parent_id($parent_id);
-	return $query;
-        
-        }
    
-
-function has_child($query) { //This function checks if the menus has childs or not
-	$rows = mysql_num_rows ( $query );
-	if ($rows > 0) {
-		return true;
-	} else {
-		return false;
-	}
-}
-function fetch_menu($query) {
-	while ( $result = mysql_fetch_array ( $query ) ) {
-		$menu_id = $result ['id'];
-		$menu_name = $result ['menu_name'];
-		$menu_link = $result ['menu_link'];
-		echo "<li  class='has-sub '><a href='{$menu_link}'><span>{$menu_name}</span></a>";
-		if (has_child ( query ( $menu_id ) )) {
-			echo "<ul>";
-			$this->fetch_menu( $this->dbmodel->get_list_by_parent_id($menu_id ) );
-			echo "</ul>";
-		}
-		echo "</li>";
-	}
-}
-fetch_menu (query(0)); //call this function with 0 parent id
-
-		
     
-    }*/
-    
-    
- public function editSelectedNavigation($id)
- {
-     die($id);
-     
- }
  
     }

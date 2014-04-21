@@ -1,5 +1,5 @@
 <?php
-
+/*
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -28,4 +28,4 @@ class login_status_cheack extends CI_Controller {
         
     
 
-} ?>
+}*/ ?> 
