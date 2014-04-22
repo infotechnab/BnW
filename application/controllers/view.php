@@ -66,6 +66,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerColor']= $this->viewmodel->get_header_color();
          $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
@@ -93,6 +94,46 @@ public function index()
         $this->load->view('menuview/footer',$data);  
         
     }
+    
+    public function pages(){
+         $nav= $this->uri->uri_string();
+        $assc_id= str_replace('view/','', $nav);
+        $data['meta'] = $this->dbmodel->get_meta_data();
+        $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
+        $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
+       // $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
+        $data['pagequery'] = $this->viewmodel->get_all_pages();
+        $data['slidequery'] = $this->viewmodel->get_slider();
+        $data['headerquery']= $this->viewmodel->get_design_setup();
+        $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerColor']= $this->viewmodel->get_header_color();
+         $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
+        $data['headerlogo']= $this->viewmodel->get_header_logo();
+        $data['faviconicon']= $this->viewmodel->get_favicon_icon();
+        $data['commentallowquery']= $this->viewmodel->get_comment_allow();
+        $data['headerdescription']= $this->viewmodel->get_header_description();
+        //$data['selectedpagequery'] = $this->viewmodel->get_desired_page($id);
+       $data['commentallowquery']= $this->viewmodel->get_comment_allow();
+        $data['likeallowquery']= $this->viewmodel->get_like_allow();
+        $data['shareallowquery']= $this->viewmodel->get_share_allow();
+       $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
+        $data['recentPost']= $this->model1->get_gaget_recentPost();   //for recent post gadget.
+         foreach ($data['recentPost'] as $dat)
+        {
+             $setting = $dat->setting;
+             parse_str($setting);
+            
+        }
+         $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);
+        
+        $this->load->view('menuview/header',$data);
+        $this->load->view('menuview/menu',$data);
+        $this->load->view('menuview/event',$data);
+        $this->load->view('menuview/slider',$data);
+        $this->load->view('menuview/pages',$data);
+        $this->load->view('menuview/footer',$data);  
+    }
+    
     public function category($id)
     {
         $nav= $this->uri->uri_string();
@@ -104,6 +145,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerColor']= $this->viewmodel->get_header_color();
          $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
@@ -141,6 +183,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerColor']= $this->viewmodel->get_header_color();
          $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
@@ -184,6 +227,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerColor']= $this->viewmodel->get_header_color();
          $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();        
@@ -221,6 +265,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerColor']= $this->viewmodel->get_header_color();
          $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
@@ -255,6 +300,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerColor']= $this->viewmodel->get_header_color();
          $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
@@ -304,6 +350,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['headerColor']= $this->viewmodel->get_header_color();
          $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();

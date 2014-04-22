@@ -4,6 +4,9 @@
 ?>
 
 
+    <div id="footer">
+        
+     <div style="alignment-adjust: central">
     
     <!--for default gadget start -->
     <?php
@@ -58,8 +61,12 @@
     ?>
     </div>
     
-    
-    <div id="footer">
+</div>
+        <div class="clear"></div>   
+        
+        
+        
+        
                 <div  id="copyright">  Copyright &copy;  2013. B&W </div> 
 
                 <div class="credit"> Designed By: 
