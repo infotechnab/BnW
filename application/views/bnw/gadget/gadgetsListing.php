@@ -1,10 +1,10 @@
 <?php
-$this->load->view('menuview/template_meta_data');
+//$this->load->view('menuview/template_meta_data');
 
-foreach($navigation_site as $d)
-{
- echo $d;
-}
+//foreach($navigation_site as $d)
+//{
+ //echo $d;
+//}
     $this->load->helper('tamplate_helper'); 
     $gadgetDisplay = tamplate_function(); 
     $recentPostGadget = recent_post();
@@ -26,6 +26,12 @@ foreach($navigation_site as $d)
                                 
                                 if($datas->display == "Header")
                                 {
+                                    $setting = $datas->setting;
+                                    parse_str($setting);
+                                    echo $post;
+                                    echo $titleBold;
+                                    echo $titleUnderline;
+                                    echo $titleColor;
                                 ?>
                                 <li>
                                 <div class='whole'>
