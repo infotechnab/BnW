@@ -25,6 +25,14 @@ Spectrum.css and specturm.js
 
 Add this two files css and js file which is jquery plugin of color chooser. I used it to add option on default gadget about what color the title of post to be displayed.
 
+Added method in conroller/gadgets.php and model/model1.php
+
+Added defaultGadgetUpdate method and textBoxUpdate method in gadgets.php controller which is used to update the gadget of default recent post gadget and textbox gadget respectivley. And added defaultGadgetUpdate and textBoxUpdate method in model1.php for updating recent post gadget and textbox gadget respectively.
+
+Added single field in database's gadgets table
+
+Added textBox field in gadget table for specifying the inserted gadget is textbox and working with textbox according to it.
+
 
 ###Functions:
 =====================================================================================================================
