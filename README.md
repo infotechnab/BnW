@@ -25,6 +25,13 @@ Spectrum.css and specturm.js
 
 Add this two files css and js file which is jquery plugin of color chooser. I used it to add option on default gadget about what color the title of post to be displayed.
 
+
+###Functions:
+=====================================================================================================================
+validate_credentials
+
+In Validate_credentials function in login controller session time is set 2 hours if user didn't checked the stay logged in checkbox and 7 days if checked the checkbox.
+
 ##BnW 1.1 
 Working on. 
 Changes: 
