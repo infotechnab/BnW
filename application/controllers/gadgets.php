@@ -44,9 +44,9 @@ class Gadgets extends CI_Controller {
             $name = $this->input->post('name_gadget');
             $type = $this->input->post('type_gadget');
              $display  = $this->input->post('wheretodisplay');
-        
+             $textBox  = $this->input->post('textBox');
             
-             $this->model1->addText($name,$type,$display);
+             $this->model1->addText($name,$textBox,$type,$display);
             
              redirect('gadgets', 'refresh');
              
@@ -120,5 +120,49 @@ class Gadgets extends CI_Controller {
             } else {
             redirect('login', 'refresh');
           }
+          }
+          
+          
+          function defaultGadgetUpdate()
+          {
+               if ($this->session->userdata('logged_in')) {
+             $this->load->model('model1');
+            $data['gaget']= $this->model1->get_gaget();
+             $data['meta'] = $this->dbmodel->get_meta_data();
+            
+            $name_title = $this->input->post('name_gadget');
+            $recentPost = $this->input->post('recentPost_gadget');
+            
+            $NoOfPost = $this->input->post('noOfPost');
+            $titleBold = $this->input->post('titleBold');
+            $titleUnderline = $this->input->post('titleUnderline');
+             $titleColor = $this->input->post('titleColor');
+              $gadget_update = $this->input->post('display');
+             
+            $arr = "post=$NoOfPost&titleBold=$titleBold&titleUnderline=$titleUnderline&titleColor=$titleColor";
+            $this->model1->defaultGadgetUpdate($name_title,$recentPost,$arr,$gadget_update);
+           redirect('gadgets', 'refresh');
+            } else {
+            redirect('login', 'refresh');
+          } 
+          }
+          
+          function textBoxUpdate()
+          {
+               if ($this->session->userdata('logged_in')) {
+             $this->load->model('model1');
+            $data['gaget']= $this->model1->get_gaget();
+             $data['meta'] = $this->dbmodel->get_meta_data();
+            
+            $name_title = $this->input->post('name_gadget');
+            $type = $this->input->post('type');
+           
+            $gadget_update = $this->input->post('display');
+           
+            $this->model1->textBoxUpdate($name_title,$type,$gadget_update);
+           redirect('gadgets', 'refresh');
+            } else {
+            redirect('login', 'refresh');
+          } 
           }
 }

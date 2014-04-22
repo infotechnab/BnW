@@ -63,9 +63,7 @@
     ?>
                                 
     
-                            <div style="text-align: center">
-                   <?php $return['rows'] = $this->db->query('SELECT FOUND_ROWS() count;')->row()->count; if($return>700) echo  anchor('view/posts', 'View All News') ;  ?>       
-                    </div>
+                           
     <?php    }  ?>
                             </p>
                             

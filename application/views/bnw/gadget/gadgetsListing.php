@@ -36,14 +36,13 @@
                                 <li>
                                     <div id='single_gadget_edit'>
                                 <div class='whole'>
-                                <?php echo form_open('gadgets/update'); ?>
                                 <div class='name'>
                                 <?php echo $datas->name; ?> 
                                 </div>              <!-- close name div-->
                                 <div id='option'>
                                 <div id='edit'>Edit</div> <!--close edit div-->
                                 <div id='delete_option'>
-                                 
+                                <?php echo form_open('gadgets/delete'); ?> 
                                 <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
                                 <input type='hidden' value='header' name='display'>
                                 <input type='submit' value='' name='delete' id='delete'>
@@ -58,10 +57,10 @@
                                         <?php if($datas->defaultGadget == 'recent post') { ?>
                                         <div id="recentPostEdit">
                                          <div id="description_for_gadget">
-                    <?php echo form_open('gadgets/defaultGadget'); ?>
+                    <?php echo form_open('gadgets/defaultGadgetUpdate'); ?>
                     <input type="text" id="inputtype" placeholder="Title" name="name_gadget" value="<?php echo $datas->name; ?>" required>
                 <input type="hidden" value="recent post" name="recentPost_gadget">
-              
+                <input type='hidden' value='header' name='display'>
                 <table id="table" border="0">
                     
              <?php
@@ -79,17 +78,7 @@
                 </table>    
             </div>
                                             <div>
-            Choose Template:<br>
-                <select name="wheretodisplay">
-                    <?php 
-                    foreach($gadgetDisplay as $temp)
-                    {
-                        echo "<option value=".$temp.">".$temp."</option>";
-
-                    }
-                        ?>
-                    </select>
-                    
+           
                    
                     <input type="submit" value="Update Gadget" id="btn" name="submit">
                     <?php echo form_close(); ?>
@@ -104,19 +93,12 @@
                                             ?>
                                         
                                              <div id="textEdit">
-                                     <input type="text" value="<?php echo $datas->name; ?>" id='inputtype'>
-                                     <textarea id='txtarea'><?php echo $datas->type; ?></textarea>
+                                     <?php echo form_open('gadgets/textBoxUpdate'); ?>
+                                                 <input type="text" value="<?php echo $datas->name; ?>" id='inputtype' name="name_gadget">
+                                                 <textarea id='txtarea' name="type"><?php echo $datas->type; ?></textarea>
+                                      <input type='hidden' value='header' name='display'>
                                     <div>
-            Choose Template:<br>
-                <select name="wheretodisplay">
-                    <?php 
-                    foreach($gadgetDisplay as $temp)
-                    {
-                        echo "<option value=".$temp.">".$temp."</option>";
-
-                    }
-                        ?>
-                    </select>
+           
                     
                    
                     <input type="submit" value="Update Gadget" id="btn" name="submit">
@@ -160,16 +142,15 @@
                                 <li>
                                     <div id='single_gadget_edit'>
                                 <div class='whole'>
-                                    <?php echo form_open('gadgets/update'); ?> 
                                 <div class='name'>
                                 <?php echo $datas->name; ?> 
                                 </div>              <!-- close name div-->
                                 <div id='option'>
                                 <div id='edit'>Edit</div> <!--close edit div-->
                                 <div id='delete_option'>
-                                
+                                <?php echo form_open('gadgets/delete'); ?> 
                                 <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
-                                <input type='hidden' value='header' name='display'>
+                                <input type='hidden' value='sidebar' name='display'>
                                 <input type='submit' value='' name='delete' id='delete'>
                                 <?php echo form_close(); ?>
                                 </div> <!--delete_option div close-->
@@ -182,10 +163,10 @@
                                         <?php if($datas->defaultGadget == 'recent post') { ?>
                                         <div id="recentPostEdit">
                                          <div id="description_for_gadget">
-                    <?php echo form_open('gadgets/defaultGadget'); ?>
+                    <?php echo form_open('gadgets/defaultGadgetUpdate'); ?>
                     <input type="text" id="inputtype" placeholder="Title" name="name_gadget" value="<?php echo $datas->name; ?>" required>
                 <input type="hidden" value="recent post" name="recentPost_gadget">
-              
+                <input type='hidden' value='sidebar' name='display'>
                 <table id="table" border="0">
                     
              <?php
@@ -203,16 +184,7 @@
                 </table>    
             </div>
                                             <div>
-            Choose Template:<br>
-                <select name="wheretodisplay">
-                    <?php 
-                    foreach($gadgetDisplay as $temp)
-                    {
-                        echo "<option value=".$temp.">".$temp."</option>";
-
-                    }
-                        ?>
-                    </select>
+          
                     
                    
                     <input type="submit" value="Update Gadget" id="btn" name="submit">
@@ -228,19 +200,12 @@
                                             ?>
                                         
                                              <div id="textEdit">
-                                     <input type="text" value="<?php echo $datas->name; ?>" id='inputtype'>
-                                     <textarea id='txtarea'><?php echo $datas->type; ?></textarea>
+                                     <?php echo form_open('gadgets/textBoxUpdate'); ?>
+                                                 <input type="text" value="<?php echo $datas->name; ?>" id='inputtype' name="name_gadget">
+                                                 <textarea id='txtarea' name="type"><?php echo $datas->type; ?></textarea>
+                                       <input type='hidden' value='sidebar' name='display'>
                                     <div>
-            Choose Template:<br>
-                <select name="wheretodisplay">
-                    <?php 
-                    foreach($gadgetDisplay as $temp)
-                    {
-                        echo "<option value=".$temp.">".$temp."</option>";
-
-                    }
-                        ?>
-                    </select>
+         
                     
                    
                     <input type="submit" value="Update Gadget" id="btn" name="submit">
@@ -284,16 +249,15 @@
                                 <li>
                                     <div id='single_gadget_edit'>
                                 <div class='whole'>
-                                    <?php echo form_open('gadgets/update'); ?> 
                                 <div class='name'>
                                 <?php echo $datas->name; ?> 
                                 </div>              <!-- close name div-->
                                 <div id='option'>
                                 <div id='edit'>Edit</div> <!--close edit div-->
                                 <div id='delete_option'>
-                                
+                                <?php echo form_open('gadgets/delete'); ?> 
                                 <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
-                                <input type='hidden' value='header' name='display'>
+                                <input type='hidden' value='body' name='display'>
                                 <input type='submit' value='' name='delete' id='delete'>
                                 <?php echo form_close(); ?>
                                 </div> <!--delete_option div close-->
@@ -306,10 +270,10 @@
                                         <?php if($datas->defaultGadget == 'recent post') { ?>
                                         <div id="recentPostEdit">
                                          <div id="description_for_gadget">
-                    <?php echo form_open('gadgets/defaultGadget'); ?>
+                    <?php echo form_open('gadgets/defaultGadgetUpdate'); ?>
                     <input type="text" id="inputtype" placeholder="Title" name="name_gadget" value="<?php echo $datas->name; ?>" required>
                 <input type="hidden" value="recent post" name="recentPost_gadget">
-              
+              <input type='hidden' value='body' name='display'>
                 <table id="table" border="0">
                     
              <?php
@@ -327,16 +291,7 @@
                 </table>    
             </div>
                                             <div>
-            Choose Template:<br>
-                <select name="wheretodisplay">
-                    <?php 
-                    foreach($gadgetDisplay as $temp)
-                    {
-                        echo "<option value=".$temp.">".$temp."</option>";
-
-                    }
-                        ?>
-                    </select>
+           
                     
                    
                     <input type="submit" value="Update Gadget" id="btn" name="submit">
@@ -352,20 +307,12 @@
                                             ?>
                                         
                                              <div id="textEdit">
-                                     <input type="text" value="<?php echo $datas->name; ?>" id='inputtype'>
-                                     <textarea id='txtarea'><?php echo $datas->type; ?></textarea>
+                                     <?php echo form_open('gadgets/textBoxUpdate'); ?>
+                                                 <input type="text" value="<?php echo $datas->name; ?>" id='inputtype' name="name_gadget">
+                                                 <textarea id='txtarea' name="type"><?php echo $datas->type; ?></textarea>
+                                                 <input type='hidden' value='body' name='display'>
                                     <div>
-            Choose Template:<br>
-                <select name="wheretodisplay">
-                    <?php 
-                    foreach($gadgetDisplay as $temp)
-                    {
-                        echo "<option value=".$temp.">".$temp."</option>";
-
-                    }
-                        ?>
-                    </select>
-                    
+            
                    
                     <input type="submit" value="Update Gadget" id="btn" name="submit">
                     <?php echo form_close(); ?>
@@ -408,16 +355,15 @@
                                 <li>
                                     <div id='single_gadget_edit'>
                                 <div class='whole'>
-                                    <?php echo form_open('gadgets/update'); ?> 
                                 <div class='name'>
                                 <?php echo $datas->name; ?> 
                                 </div>              <!-- close name div-->
                                 <div id='option'>
                                 <div id='edit'>Edit</div> <!--close edit div-->
                                 <div id='delete_option'>
-                                
+                                <?php echo form_open('gadgets/delete'); ?> 
                                 <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
-                                <input type='hidden' value='header' name='display'>
+                                <input type='hidden' value='footer' name='display'>
                                 <input type='submit' value='' name='delete' id='delete'>
                                 <?php echo form_close(); ?>
                                 </div> <!--delete_option div close-->
@@ -430,10 +376,10 @@
                                         <?php if($datas->defaultGadget == 'recent post') { ?>
                                         <div id="recentPostEdit">
                                          <div id="description_for_gadget">
-                    <?php echo form_open('gadgets/defaultGadget'); ?>
+                    <?php echo form_open('gadgets/defaultGadgetUpdate'); ?>
                     <input type="text" id="inputtype" placeholder="Title" name="name_gadget" value="<?php echo $datas->name; ?>" required>
                 <input type="hidden" value="recent post" name="recentPost_gadget">
-              
+               <input type='hidden' value='footer' name='display'>
                 <table id="table" border="0">
                     
              <?php
@@ -451,16 +397,7 @@
                 </table>    
             </div>
                                             <div>
-            Choose Template:<br>
-                <select name="wheretodisplay">
-                    <?php 
-                    foreach($gadgetDisplay as $temp)
-                    {
-                        echo "<option value=".$temp.">".$temp."</option>";
-
-                    }
-                        ?>
-                    </select>
+          
                     
                    
                     <input type="submit" value="Update Gadget" id="btn" name="submit">
@@ -476,20 +413,12 @@
                                             ?>
                                         
                                              <div id="textEdit">
-                                     <input type="text" value="<?php echo $datas->name; ?>" id='inputtype'>
-                                     <textarea id='txtarea'><?php echo $datas->type; ?></textarea>
+                                                  <?php echo form_open('gadgets/textBoxUpdate'); ?>
+                                                 <input type="text" value="<?php echo $datas->name; ?>" id='inputtype' name="name_gadget">
+                                                 <textarea id='txtarea' name="type"><?php echo $datas->type; ?></textarea>
+                                                   <input type='hidden' value='footer' name='display'>
                                     <div>
-            Choose Template:<br>
-                <select name="wheretodisplay">
-                    <?php 
-                    foreach($gadgetDisplay as $temp)
-                    {
-                        echo "<option value=".$temp.">".$temp."</option>";
-
-                    }
-                        ?>
-                    </select>
-                    
+          
                    
                     <input type="submit" value="Update Gadget" id="btn" name="submit">
                     <?php echo form_close(); ?>
@@ -540,7 +469,7 @@
                 <div id="description">
                     <?php echo form_open('gadgets/addText'); ?>
                     <input type="text" id="inputtype" placeholder="Title" name="name_gadget" required="required">
-             
+                    <input type="hidden" name="textBox" value="textBox">
                 <textarea id="txtarea" placeholder="Description" name="type_gadget" ></textarea>
             </div>
             Choose Template:<br>

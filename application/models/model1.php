@@ -7,10 +7,11 @@ class model1 extends CI_Model {
 	}
         
              
-        function addText($name,$type,$display)
+        function addText($name,$textBox,$type,$display)
         {
             $data = array(
                 'name'=>$name,
+                'textBox'=>$textBox,
                 'type'=>$type,
                 'display'=>$display,
                 );
@@ -89,4 +90,28 @@ class model1 extends CI_Model {
         return $query->result();  
         }
     
+         function defaultGadgetUpdate($name_title,$recentPost,$arr,$gadget_update)
+        {
+             $data = array(
+                'name'=>$name_title,
+                'setting'=>$arr
+            );
+
+            $this->db->where(array('defaultGadget' => 'recent post','display' => $gadget_update));
+            $this->db->update('gadgets', $data);
+
+        }
+        
+        
+        function textBoxUpdate($name_title,$type,$gadget_update)
+        {
+             $data = array(
+                'name'=>$name_title,
+                'type'=>$type
+            );
+
+            $this->db->where(array('textBox' => 'textBox','display' => $gadget_update));
+            $this->db->update('gadgets', $data);
+
+        }
 }
