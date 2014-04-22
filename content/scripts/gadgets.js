@@ -23,7 +23,7 @@
                 $('#description').slideToggle("fast");
         });
         
-        
+   /*         
         $('#recentpostedit').click(function() {
                 $('#edit_recentPost_toggle').slideToggle("fast");
         });
@@ -33,7 +33,7 @@
         $('#textedit').click(function() {
                 $('edit_text_toggle').slideToggle("fast");
         });
-      /*  
+    
          //This is to toggle for header
         $('.arrow').html("˅");
         $('#header_display').click(function() {
