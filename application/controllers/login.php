@@ -27,6 +27,19 @@ class Login extends CI_Controller {
  
     function validate_credentials()
 	{	$this->load->library('session');
+    $a=$_POST['checkMe'];
+   if($a==1)
+{
+   $this->session->sess_expiration = 60*60*24*31;
+   $this->session->sess_expire_on_close = FALSE;
+   
+}
+else
+{
+   $this->session->sess_expiration = 5;
+   $this->session->sess_expire_on_close = FALSE;
+}  
+    
                 $this->load->library('form_validation');
                 $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
                 $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
@@ -43,6 +56,7 @@ class Login extends CI_Controller {
 			$data = array(
 				'username' => $this->input->post('username'),
 				'logged_in' => true
+                            
 			);
 			$this->session->set_userdata($data);
 			redirect('bnw/index');
