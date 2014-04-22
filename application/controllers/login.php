@@ -30,13 +30,13 @@ class Login extends CI_Controller {
     $a=$_POST['checkMe'];
    if($a==1)
 {
-   $this->session->sess_expiration = 60*60*24*31;
+   $this->session->sess_expiration = 60*60*24*7;
    $this->session->sess_expire_on_close = FALSE;
    
 }
 else
 {
-   $this->session->sess_expiration = 5;
+   $this->session->sess_expiration = 60*60;
    $this->session->sess_expire_on_close = FALSE;
 }  
     
