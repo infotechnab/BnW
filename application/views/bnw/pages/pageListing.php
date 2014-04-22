@@ -6,6 +6,13 @@
     </p>
     <h2>All Pages</h2>
     <hr class="hr-gradient"/>
+    
+    
+    <?php
+    
+    
+        if(!empty($query)){
+            ?>
     <table border="1" cellpadding="10" >
         <tr>
            
@@ -14,12 +21,7 @@
             <th>Status</th>
             <th>Action</th>
         </tr>
-    
     <?php
-    
-    
-        if(!empty($query)){
-            
             foreach ($query as $data){
             ?>
           <tr>

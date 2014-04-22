@@ -6,6 +6,10 @@
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
     <h2>List of Navigation</h2>
+    <hr class="hr-gradient"/>
+    <?php    
+        if(!empty($query)){
+            ?>
     <table border="1" cellpadding="10">
         <tr>
             <th>S.N.</th>
@@ -18,8 +22,7 @@
             <th>Action</th>
         </tr>
     
-    <?php    
-        if(isset($query)){
+    <?php
             foreach ($query as $data){
                 
             ?>
@@ -37,6 +40,9 @@
             <?php    
             }
         }
+ else {
+            echo '<h3>Sorry navigation items are not available</h3>';
+ }
     ?>
        
     </table>

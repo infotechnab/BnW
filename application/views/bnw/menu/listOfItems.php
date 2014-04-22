@@ -81,6 +81,10 @@ $(document).ready(function() {
 
 <!-- NAvigation items list shown here  -->
  <div class="rightSide">
+     <div class="titleArea">
+     <h2>Navigation</h2>
+<hr class="hr-gradient"/>   
+    </div>
     <div class="forLeft">
     <div class="left">
         <div id="navigationLeftUp"> 
@@ -209,7 +213,10 @@ $(document).ready(function() {
         
     </div> 
     <div class="right">
-        <h2>List Of all Navigation</h2>
+        <div id="navigationLeftMiddle">
+           <h3>Available Navigations</h3> 
+        </div>
+        
         
        <script type="text/javascript">
    function changeFunc() {

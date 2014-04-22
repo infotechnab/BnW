@@ -21,6 +21,9 @@
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
     <p>List of all menu</p>
+     <?php    
+        if(!empty($query)){
+            ?>
     <table border="1" cellpadding="10">
         <tr>
             <th>S.N.</th>
@@ -28,8 +31,7 @@
             <th>Action</th>
         </tr>
     
-    <?php    
-        if(isset($query)){
+   <?php
             foreach ($query as $data){
                 
             ?>
@@ -41,6 +43,9 @@
         </tr>
             <?php    
             }
+        }
+        else{
+            echo '<h3>Sorry menu are not available</h3>';
         }
     ?>
        

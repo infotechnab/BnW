@@ -6,6 +6,11 @@
     </p>
     <h2>Media Libraries</h2>
     <hr class="hr-gradient"/>
+     <?php
+    
+    
+         if(!empty($query)){
+             ?>
     <table border="1" cellpadding="10">
         <tr>
             
@@ -16,10 +21,7 @@
             <th>Activity</th>
         </tr>
     
-    <?php
-    
-    
-         if(!empty($query)){
+   <?php
             foreach ($query as $data){
             ?>
           <tr>

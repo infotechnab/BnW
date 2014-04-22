@@ -22,6 +22,9 @@
 
 <div id="body">
     <p>List of all Categories</p>
+    <?php    
+        if(!empty($query)){
+            ?>
     <table border="1" cellpadding="10">
         <tr>
             <th>S.N.</th>
@@ -29,8 +32,7 @@
             <th>Action</th>
         </tr>
     
-    <?php    
-        if(isset($query)){
+    <?php
             foreach ($query as $data){
             ?>
           <tr>
@@ -41,6 +43,9 @@
         </tr>
             <?php    
             }
+        }
+        else{
+            echo '<h3>Sorry Categories are not available</h3>';
         }
     ?>
        

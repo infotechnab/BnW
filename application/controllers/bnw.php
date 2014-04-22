@@ -1986,7 +1986,8 @@ public function delphoto($photoid) {
                  
             $this->dbmodel->delete_photo($id);
             $this->dbmodel->delete_album($id);
-           
+            $this->session->set_flashdata('message', 'One album Deleted Sucessfully');
+           redirect('bnw/album');
         } else {
             redirect('login', 'refresh');
         }
