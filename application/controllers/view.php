@@ -19,6 +19,8 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+        $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
+        
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['allpostquery'] = $this->viewmodel->get_all_post();
       
@@ -64,6 +66,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+         $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['commentallowquery']= $this->viewmodel->get_comment_allow();
@@ -101,6 +104,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+         $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['commentallowquery']= $this->viewmodel->get_comment_allow();
@@ -137,6 +141,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+         $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['commentallowquery']= $this->viewmodel->get_comment_allow();
@@ -179,6 +184,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+         $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();        
        $data['headerdescription']= $this->viewmodel->get_header_description();
@@ -215,6 +221,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+         $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['headerdescription']= $this->viewmodel->get_header_description();
@@ -248,6 +255,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+         $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['headerdescription']= $this->viewmodel->get_header_description();
@@ -296,6 +304,7 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
+         $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['faviconicon']= $this->viewmodel->get_favicon_icon();
         $data['headerdescription']= $this->viewmodel->get_header_description();

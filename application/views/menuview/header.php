@@ -25,9 +25,14 @@
 <!--        <link rel="icon" type="image/jpg" href="<?php echo base_url(); ?>content/images/bnw.jpg">-->
     </head>
     <body>
+        
         <div class="full">
-            <div class="fullLeft">
-                <?php foreach ($headertitle as $header) {
+            <?php foreach ($sidebarColor as $bgcolor) {
+                    ?>
+            <div style="background-color: <?php echo $bgcolor->description ; ?>" class="fullLeft">
+            <?php } ?>
+
+    <?php foreach ($headertitle as $header) {
                     ?>
                 
                 <div class="header">
