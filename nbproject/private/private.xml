@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/wamp/www/BnW/content/styles/stylesForGadgets.css</file>
+            <file>file:/C:/wamp/www/BnW/application/helpers/tamplate_helper.php</file>
+            <file>file:/C:/wamp/www/BnW/content/scripts/gadgets.js</file>
             <file>file:/C:/wamp/www/BnW/application/controllers/gadgets.php</file>
-            <file>file:/C:/wamp/www/BnW/application/views/menuview/event.php</file>
+            <file>file:/C:/wamp/www/BnW/application/views/menuview/template_meta_data.php</file>
             <file>file:/C:/wamp/www/BnW/application/views/bnw/gadget/gadgetsListing.php</file>
         </group>
     </open-files>

@@ -10,7 +10,7 @@
  * 
  */
 
-$navigaton_site=array("Header","Sidebar","Body","Footer");
+$navigation_site=array("Header","Sidebar","Body","Footer");
 $menu_position=array("Header","Sidebar","Body","Footer");
 
 ?>

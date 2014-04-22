@@ -24,16 +24,27 @@
         });
         
         
+        $('#recentpostedit').click(function() {
+                $('#edit_recentPost_toggle').slideToggle("fast");
+        });
+        
+        
+        
+        $('#textedit').click(function() {
+                $('edit_text_toggle').slideToggle("fast");
+        });
+      /*  
          //This is to toggle for header
+        $('.arrow').html("˅");
         $('#header_display').click(function() {
+        $('#header_diplay .arrow').html("˄");
         $('.header_gadgets').slideToggle("fast");
-        if(!$.trim( $('.header_gadgets').html() ).length) {
-        $('.header_gadgets').text("This template has no gadgets.");
         }
         });
 
 
         // This is to toggle for sidebar 
+        $('#arro').html("˅");
         $('#sidebar_display').click(function() {
         $('.sidebar_gadgets').slideToggle("fast");
         if(!$.trim( $('.sidebar_gadgets').html() ).length) {
@@ -58,8 +69,5 @@
         $('.footer_gadgets').text("This template has no gadgets.");
         }
         });
-
+*/
     });
-
-
-

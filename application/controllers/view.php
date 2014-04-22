@@ -32,8 +32,8 @@ public function index()
         {
              $setting = $dat->setting;
         
-           parse_str($setting);  //parsing from database gadget table settings field.
-         
+            parse_str($setting);  //parsing from database gadget table settings field.
+           
             
            
              $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);  
