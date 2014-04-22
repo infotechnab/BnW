@@ -49,33 +49,68 @@
                 <div class="header">
                     <p> <?php echo $header->description ; ?> </p>
             
+                    
+                    
+                    
                 <!-- For diplaying gadgets -->
             <?php
             $this->load->helper('header_helper'); 
              $type = get_gadget_header();
              //var_dump($type);
             ?>
-
-            
-                <div class="gadget_collection">
-
-                <?php
-                if(empty($type))  //checking whether $type is null or not that is coming from database and header_helper.php and if its null then handling error.
+ <!--for default gadget start -->
+    <?php
+    foreach ($recentPost as $data)
+    {
+    if($data->display == 'Footer')
+    {
+        ?>
+             <div class="subgadget">
+        <div id='title'><?php echo $data->name; ?></div>
+          <div id='description'>
+        <?php
+          foreach($noOfRecentPost as $recent_post)
+         {
+             // var_dump($recent_post);
+        $post_id = $recent_post->id;
+        
+        echo anchor('view/post/'.$post_id , $recent_post->post_title)."<br>"; 
+         }
+         ?>
+          </div>  
+             </div>
+         <?php
+            }
+           }
+        
+    ?>
+    <!--for default gadget close -->
+    
+    
+    <div class="gadget_collection">
+     <?php
+        if(empty($type))  //checking whether $type is null or not that is coming from database and header_helper.php and if its null then handling error.
                 {
                     echo " ";
                 }
                 else {
-                   foreach ($type as $dat){ 
-                ?>
-                   <div class="subgadget">
-                   <div id='title'><?php echo $dat['name']; ?></div>
-                   <div id='description'><?php echo $dat['type']; ?> </div>
-                    </div>
-               <?php        
-               }
+                    
+                
+        foreach ($type as $dat){ 
+            if($dat['defaultGadget'] != 'recent post') {
+     ?>
+        <div class="subgadget">
+        <div id='title'><?php echo $dat['name']; ?></div>
+        <div id='description'><?php echo $dat['type']; ?> </div>
+         </div>
+    <?php        
+            }
+    }
                 }
-               ?>
-               </div>
+                
+    ?>
+    </div>
+    
             <!-- For diplaying gadgets -->
     
                 
