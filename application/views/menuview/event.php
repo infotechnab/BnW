@@ -41,17 +41,17 @@
                             <?php if(!empty($titleUnderline)) { echo "<".$titleUnderline.">"; } ?>
                             <?php if(!empty($titleBold)) { echo "<".$titleBold.">"; } ?>
                                 
-                            <?php if(!empty($titleColor)) { echo "<div style='color:$titleColor;'>"; } ?>    
+                            <?php if(!empty($titleColor)) { echo " "; } ?>    
                           
                                 
                             <a href="<?php echo base_url().'index.php/view/post/'.$post_id ?>" style="color:<?php echo $titleColor ?> ;"> <?php echo $recent_post->post_title; ?></a>
                               </<?php echo $titleUnderline; ?>>
                               </<?php echo $titleBold; ?>>
                               
-                              <?php if(!empty($titleColor)) { echo "</div>"; }?>
+                             
                             
                               <br>
-                                <font color=""><?php echo $recent_post->post_summary; ?></font>
+                                <font color="#cccccc"><?php echo $recent_post->post_summary; ?></font>
                                 
                             </p>
                             

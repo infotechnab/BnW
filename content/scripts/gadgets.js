@@ -19,55 +19,29 @@
 });
       
       
-        $('#title').click(function() {
-                $('#description').slideToggle("fast");
-        });
-        
-   /*         
-        $('#recentpostedit').click(function() {
-                $('#edit_recentPost_toggle').slideToggle("fast");
-        });
+     
         
         
-        
-        $('#textedit').click(function() {
-                $('edit_text_toggle').slideToggle("fast");
-        });
-    
-         //This is to toggle for header
-        $('.arrow').html("˅");
-        $('#header_display').click(function() {
-        $('#header_diplay .arrow').html("˄");
-        $('.header_gadgets').slideToggle("fast");
-        }
-        });
-
-
-        // This is to toggle for sidebar 
-        $('#arro').html("˅");
-        $('#sidebar_display').click(function() {
-        $('.sidebar_gadgets').slideToggle("fast");
-        if(!$.trim( $('.sidebar_gadgets').html() ).length) {
-        $('.sidebar_gadgets').text("This template has no gadgets.");
-        }
-        });
-
-
-     //This is to toggle for body
-        $('#body_display').click(function() {
-        $('.body_gadgets').slideToggle("fast");
-        if(!$.trim( $('.body_gadgets').html() ).length) {
-        $('.body_gadgets').text("This template has no gadgets.");
-        }        
-        });
-
-
-    //This is to toggle for footer 
-        $('#footer_display').click(function() {
-        $('.footer_gadgets').slideToggle("fast");
-        if(!$.trim( $('.footer_gadgets').html() ).length) {
-        $('.footer_gadgets').text("This template has no gadgets.");
-        }
-        });
-*/
-    });
+        $('#arrow').html("˅");
+$('#title').click(function() {
+  $(this).toggleClass('active');
+  if ($(this).hasClass('active'))
+    $('#title #arrow').html("˄");
+  else
+    $('#title #arrow').html("˅");
+  $('#description').slideToggle("fast");
+  });   
+  
+  
+  
+     $('#arrow1').html("˅");
+$('#title1').click(function() {
+  $(this).toggleClass('active');
+  if ($(this).hasClass('active'))
+    $('#title1 #arrow1').html("˄");
+  else
+    $('#title1 #arrow1').html("˅");
+  $('#description_for_gadget1').slideToggle("fast");
+  }); 
+  
+  });

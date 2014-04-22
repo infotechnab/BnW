@@ -1,12 +1,10 @@
 <?php
-//$this->load->view('menuview/template_meta_data');
+$data['template'] = $this->load->view('menuview/template_meta_data');
+$gadgetDisplay = template_function();
+//var_dump($gadgetDisplay);
 
-//foreach($navigation_site as $d)
-//{
- //echo $d;
-//}
+
     $this->load->helper('tamplate_helper'); 
-    $gadgetDisplay = tamplate_function(); 
     $recentPostGadget = recent_post();
     ?>
 
@@ -16,7 +14,7 @@
        
         <div id="nav_location"> <!-- nav_location open -->
             <ul>
-                <li class="list-item">Header<div class="arrow"></div></li>
+                <li class="list-item">Header</li>
                     <ul class='header_gadgets'  id='option_gadget'>
                        
                         <?php
@@ -446,7 +444,7 @@
        
     <?php
     $this->load->helper('tamplate_helper'); 
-    $gadgetDisplay = tamplate_function(); 
+   // $gadgetDisplay = tamplate_function(); 
     ?>
         
         <div id="gadget_collection"> <!-- gadget_collections open -->
@@ -463,15 +461,16 @@
         ?>
         
             <div id="title">Click to add new text box 
-                
+                <div id="arrow"></div>
             </div>
-            
+                
                 <div id="description">
                     <?php echo form_open('gadgets/addText'); ?>
                     <input type="text" id="inputtype" placeholder="Title" name="name_gadget" required="required">
                     <input type="hidden" name="textBox" value="textBox">
                 <textarea id="txtarea" placeholder="Description" name="type_gadget" ></textarea>
-            </div>
+            
+                    <div id='gadget_action'>
             Choose Template:<br>
                 <select name="wheretodisplay">
                     <?php 
@@ -484,14 +483,18 @@
                     </select>
                     <input type="submit" value="Add Gadget" id="btn" name="submit">
                     <?php echo form_close(); ?>
+                    </div>
+                </div>
+              
             </div>
      
       
             <!-- Default gadget -->
               <div id="sub_gadget"> <!-- sub_gadget open -->
-                <div id="title">Recent Post</div>
-            
-                <div id="description_for_gadget">
+                <div id="title1">Recent Post
+                    <div id="arrow1"></div>
+                </div>
+                <div id="description_for_gadget1">
                     <?php echo form_open('gadgets/defaultGadget'); ?>
                     <input type="text" id="inputtype" placeholder="Title" name="name_gadget" required>
                 <input type="hidden" value="recent post" name="recentPost_gadget">
@@ -505,7 +508,8 @@
              }
              ?>
                 
-            </div>
+            
+                <div id='gadget_action'>
             Choose Template:<br>
                 <select name="wheretodisplay">
                     <?php 
@@ -520,42 +524,14 @@
                    
                     <input type="submit" value="Add Gadget" id="btn" name="submit">
                     <?php echo form_close(); ?>
-            </div>
+                </div>
+                </div>
+            
             <!-- Default gadget - upto here-->
             
             
             
-                             <?php
-                       //foreach ($gaget as $data){ 
-                   
-                         ?>
-   
-           <!-- <div id='sub_gadget'>                     
-                          <div id='title'><?php //echo $data->name; ?></div>
-                          <div id='description_for_gadget'><?php //echo $data->type; ?> </div>                
-                Where to display:
-                <?php //echo form_open('gadgets/updateText'); ?>
-                    <select name="display">
-                    <?php 
-
-                    //foreach($gadgetDisplay as $temp)
-                    //{
-                        //echo "<option value=".$temp.">".$temp."</option>";
-
-                    //}
-                    ?>
-                    </select>
-                <input type="hidden" value="<?php //echo $data->name; ?>" name="gadget_name">
-                <input type="hidden" value="<?php //echo $data->type; ?>" name="gadget_type">
-                
-                    <input type='submit' value='Add Gadget' id='btn' name='submit'>
-                    <?php //echo form_close(); ?>
-            </div> --> 
-                  <?php
-                      //   }
-                  
-                    ?>
-                     
+              </div>  
             
         </div>
         

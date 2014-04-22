@@ -9,8 +9,12 @@
  * Template Created On: #
  * 
  */
+function template_function()
+{
+$navigation_site=array('Choose Template', 'Header','Sidebar','Body','Footer');
 
-$navigation_site=array("Header","Sidebar","Body","Footer");
-$menu_position=array("Header","Sidebar","Body","Footer");
+//$menu_position=array("Header","Sidebar","Body","Footer");
 
+return $navigation_site;
+}
 ?>

@@ -17,15 +17,15 @@
     float: left; 
 }
 
-#description, #title
+#description, #title, #title1
 {
-    background: #000;
+    
     width:290px;
     height:auto;
     padding: 5px;
     text-align:center;
     font-size: 20px;
-    color: white;
+    border-bottom: thin solid #cccccc;
 }
 
 #main #inputtype
@@ -41,7 +41,7 @@
   
 }
 
-#description
+#description, #description_for_gadget1
 {
     display: none;
 }
@@ -61,7 +61,7 @@
     height:auto;
     width: 300px;
     padding-left: 5px;
-  // border: thin solid #cccccc;
+
    
 }
 
@@ -169,8 +169,8 @@ iframe{
     border: thin solid;
     margin-bottom: 10px;
 }
-/*
-.arrow
+
+#arrow, #arrow1
 {
     float: right;
     margin-right: 5px;
@@ -178,17 +178,32 @@ iframe{
     border-bottom-right-radius: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    border:thin solid #f0f0f0;
+    
     height: 15px;
     width: 15px;
     text-align: center;
-    padding-bottom:2px;
+    padding:0px 3px 7px 3px;
+    background: #000;
+    color: white;
+    
+  
 }
 
+#gadget_action
+{
+    padding-left:5px;
+    font-size: 16px;
+}
 
+/*
 #edit_recentPost_toggle, #edit_text_toggle
 {
     display: none;
 }
 
 */
+
+
+
+
+
