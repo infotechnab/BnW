@@ -57,7 +57,8 @@
                         </tr>
                         <tr>
                         <td>
-                            <input type="checkbox" value=""/>Stay Logged In
+                            <input type="checkbox" value="1" name="checkMe"/>Stay Logged In
+                           
                         </td>
                         <td>
                             <a href="login/forgotPassword">Forgot Password</a>

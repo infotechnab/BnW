@@ -7,11 +7,15 @@
     <h2>All Slides</h2>
        
    <hr class="hr-gradient"/>
+    <?php
+    
+    
+        if(!empty($query)){
+  
+           
+   ?>
    
-   <?php     if(empty($query)){
-           echo '<h3>Sorry slides are not available</h3>' ;
-       }
-?>
+
    
     <table border="1" cellpadding="10">
         <tr>
@@ -22,11 +26,8 @@
             <th>Action</th>
         </tr>
     
-    <?php
-    
-    
-        if(!empty($query)){
-            foreach ($query as $data){
+   
+   <?php         foreach ($query as $data){
             ?>
           <tr>
             
@@ -39,6 +40,9 @@
             <?php    
             }
         }
+ else {
+            echo '<h3>Sorry slides are not available</h3>';
+ }
  
     ?>
        

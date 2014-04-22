@@ -78,7 +78,7 @@ else
  ?>     
 <div id="photodiv"> 
     
-   
+    <h4 style="text-align: center" >Please add photo to album <?php echo $data->album_name; ?></h4>
         <div id="imagetitle">
             <?php echo anchor('bnw/photos/'.$data->id,$data->album_name); ?> 
         </div>

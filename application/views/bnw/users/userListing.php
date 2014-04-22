@@ -6,7 +6,11 @@
     </p>
     <h2>All Users</h2>
      <hr class="hr-gradient"/>
-
+ <?php
+    
+    
+        if(!empty($query)){
+            ?>
     <table border="1" cellpadding="10">
         <tr>
             <th>S.N.</th>
@@ -19,11 +23,8 @@
             <th>Action</th>
         </tr>
     
-    <?php
-    
-    
-        if($query){
-            foreach ($query as $data){
+   
+     <?php       foreach ($query as $data){
             ?>
           <tr>
             <td><?php echo $data->id ?></td>
@@ -60,6 +61,9 @@
             <?php    
             }
         }
+ else {
+            echo '<h3>Sorry, users are not available</h3>';
+ }
     ?>
     </table>
     <?php echo $links; ?>

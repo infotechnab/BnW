@@ -16,7 +16,7 @@
     <table border="1" cellpadding="10" >
         <tr>
            
-            <th>Page</th>
+            <th>Page Title</th>
             <th>Page Summary</th>         
             <th>Status</th>
             <th>Action</th>

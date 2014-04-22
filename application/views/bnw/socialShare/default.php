@@ -1,5 +1,9 @@
         
 <div class="rightSide">
+    <h2>Social Share</h2>
+    <hr class="hr-gradient"/>
+    
+    
     <div id="fb-root"></div>
     <script>
         window.fbAsyncInit = function() {

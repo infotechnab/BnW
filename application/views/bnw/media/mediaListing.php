@@ -37,7 +37,7 @@
             }
         }
  else {
-     echo '<h3>Sorry Media not available</h3>';
+     echo '<h3>Sorry Library is unavailable</h3>';
  }
     ?>
     </table>
