@@ -60,7 +60,8 @@
 {
     height:auto;
     width: 300px;
-    border: thin solid #cccccc;
+    padding-left: 5px;
+  // border: thin solid #cccccc;
    
 }
 
@@ -117,19 +118,20 @@ iframe{
 {
     color: #666666;
     padding-right:10px;
-    border-right: thin solid;
+   // border-right: thin solid;
     float: left;
     width: auto;
+    padding-left: 15px;
     
 }
 
 .whole
 {
     width: 100%;
-    padding-left: 0px;
+    padding-left: 5px;
     padding-top: 5px;
     padding-bottom: 30px;
-    border-bottom: thin solid cadetblue;
+   
 }
 
 .name
@@ -143,7 +145,30 @@ iframe{
     width: 25%;
     float: left;
 }
+#delete_option
+{
+    float: left;
+    border-left: thin solid;
+}
 
+ #edit
+ {
+     float: left;
+     margin-right: 10px;
+     
+ }
+ 
+ #textEdit  #inputtype,#txtarea
+{
+    width:285px;
+    height: 30px;
+}
+
+#single_gadget_edit
+{
+    border: thin solid;
+    margin-bottom: 10px;
+}
 /*
 .arrow
 {
@@ -159,9 +184,11 @@ iframe{
     text-align: center;
     padding-bottom:2px;
 }
-*/
+
 
 #edit_recentPost_toggle, #edit_text_toggle
 {
     display: none;
 }
+
+*/
