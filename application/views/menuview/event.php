@@ -20,7 +20,7 @@
          //echo $post;
          //echo $titleBold;
          //echo $titleUnderline;
-         echo $titleColor;
+         die ($titleColor);
         ?>
                             <h3><?php echo $data->name; ?></h3>
                         </div>
@@ -33,7 +33,7 @@
          {
               ?>
          
-                            <p class="paragraph">
+                            <p style class="paragraph">
                                 <?php 
                                 $post_id = $recent_post->id;
                                ?>
