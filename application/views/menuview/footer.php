@@ -3,7 +3,8 @@
      $type = get_gadget_footer();
 ?>
 
-<div id="footer">
+
+    
     <!--for default gadget start -->
     <?php
     foreach ($recentPost as $data)
@@ -20,7 +21,7 @@
              // var_dump($recent_post);
         $post_id = $recent_post->id;
         
-        echo anchor('view/post/'.$post_id , $recent_post->post_title); 
+        echo anchor('view/post/'.$post_id , $recent_post->post_title)."<br>"; 
          }
          ?>
           </div>  
@@ -58,7 +59,7 @@
     </div>
     
     
-    
+    <div id="footer">
                 <div  id="copyright">  Copyright &copy;  2013. B&W </div> 
 
                 <div class="credit"> Designed By: 

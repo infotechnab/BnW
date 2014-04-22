@@ -13,23 +13,22 @@
  
     //tell the db class the criteria
     $ci->db->where('display', 'Header');
- 
+ $ci->db->where('defaultGadget','');
+   $ci->db->where('type IS NOT NULL',null,FALSE);
     //supply the table name and get the data
     $query = $ci->db->get('gadgets');
  
     foreach($query->result() as $row)
     {
  
-      $type[] = array('name' => $row->name, 'type' => $row->type);
+      $type[] = array('name' => $row->name, 'type' => $row->type, 'defaultGadget' => $row->defaultGadget);
     }
-    
-if(empty($type))
+ if(empty($type))
     {
        echo " ";   
     }
  else {
         return $type;
     }
- 
 
 }
