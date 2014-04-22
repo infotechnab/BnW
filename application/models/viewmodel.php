@@ -107,6 +107,17 @@ class Viewmodel extends CI_Model
         
     }
     
+    public function get_header_color()
+    {
+        $this->db->select('description');
+        $this->db->from('design_setup');
+        $this->db->where('name', 'header_bgcolor');
+        $query = $this->db->get();
+        return $query->result();
+        
+    }
+    
+    
     public function get_header_logo()
     {
         $this->db->select('description');

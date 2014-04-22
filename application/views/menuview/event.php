@@ -6,8 +6,9 @@
 
 
 <div class="eventAndDownload">
-                    
-                    <div class="event">
+         <?php foreach ($sidebarColor as $bgcolor) {
+                    ?>           
+                    <div style="background-color: <?php echo $bgcolor->description ; ?>" class="event">
                         <div class="eventHeader">
                             
  <?php
@@ -85,6 +86,7 @@
                     </div>
     
                 </div>
+    <?php } ?>
 </div>
                 <div class="clear"></div>
             </div>      

@@ -19,8 +19,8 @@ public function index()
         $data['slidequery'] = $this->viewmodel->get_slider();
         $data['headerquery']= $this->viewmodel->get_design_setup();
         $data['headertitle']= $this->viewmodel->get_header_title();
-        $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
-        
+        $data['headerColor']= $this->viewmodel->get_header_color();
+         $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['allpostquery'] = $this->viewmodel->get_all_post();
       

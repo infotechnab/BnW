@@ -27,11 +27,11 @@
     <body>
         
         <div class="full">
-            <?php foreach ($sidebarColor as $bgcolor) {
-                    ?>
-            <div style="background-color: <?php echo $bgcolor->description ; ?>" class="fullLeft">
-            <?php } ?>
-
+            
+            <div  class="fullLeft">
+    <?php foreach ($headerColor as $bgcolor) {
+                    ?>        
+                <div style="background-color: <?php echo $bgcolor->description ; ?>" >
     <?php foreach ($headertitle as $header) {
                     ?>
                 
@@ -53,10 +53,10 @@
     
                 <div class="header">
                     <p> <?php echo $header->description ; ?> </p>
-            
+            </div>
                     
-                    
-                    
+                  <?php } ?>  
+                                
                 <!-- For diplaying gadgets -->
             <?php
             $this->load->helper('header_helper'); 
@@ -64,6 +64,8 @@
              //var_dump($type);
             ?>
  <!--for default gadget start -->
+
+
     <?php
     foreach ($recentPost as $data)
     {
@@ -92,7 +94,7 @@
     <!--for default gadget close -->
     
     
-    <div class="gadget_collection">
+    <div >
      <?php
         if(empty($type))  //checking whether $type is null or not that is coming from database and header_helper.php and if its null then handling error.
                 {
@@ -104,7 +106,7 @@
         foreach ($type as $dat){ 
             if($dat['defaultGadget'] != 'recent post') {
      ?>
-        <div class="subgadget">
+        <div >
         <div id='title'><?php echo $dat['name']; ?></div>
         <div id='description'><?php echo $dat['type']; ?> </div>
          </div>
@@ -120,7 +122,7 @@
     
                 
                 
-                </div>
+       </div>         
                 <?php } ?>
 
                 <div class="clear"></div>

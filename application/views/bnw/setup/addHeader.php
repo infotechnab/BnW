@@ -44,9 +44,9 @@ if ($query)
   <p>Header Description :<br />
   <input type="text" name="header_description" value="<?php echo $set_data[2]; ?>"/>
   </p>
- <!--- <p>Header Background Color :<br />
+  <p>Header Background Color :<br />
   <input type="color" class="color" name="header_bgcolor" value="<?php echo $set_data[3]; ?>"/>
-  </p>-->
+  </p>
  <input type="submit" value="Submit" />
   <?php echo form_close();?>
 </div>
