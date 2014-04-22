@@ -20,7 +20,7 @@
          //echo $post;
          //echo $titleBold;
          //echo $titleUnderline;
-         die ($titleColor);
+         //die ($titleColor);
         ?>
                             <h3><?php echo $data->name; ?></h3>
                         </div>
@@ -33,7 +33,7 @@
          {
               ?>
          
-                            <p style class="paragraph">
+                            <p class="paragraph">
                                 <?php 
                                 $post_id = $recent_post->id;
                                ?>
@@ -43,14 +43,14 @@
                             <?php if(!empty($titleColor)) { echo "<div style='color:$titleColor;'>"; } ?>    
                           
                                 
-                                <?php echo anchor('view/post/'.$post_id , $recent_post->post_title); ?>
+                            <a href="<?php echo base_url().'index.php/view/post/'.$post_id ?>" style="color:<?php echo $titleColor ?> ;"> <?php echo $recent_post->post_title; ?></a>
                               </<?php echo $titleUnderline; ?>>
                               </<?php echo $titleBold; ?>>
                               
                               <?php if(!empty($titleColor)) { echo "</div>"; }?>
                             
                               <br>
-                                <font color="#666"><?php echo $recent_post->post_summary; ?></font>
+                                <font color=""><?php echo $recent_post->post_summary; ?></font>
                                 
                             </p>
                             
