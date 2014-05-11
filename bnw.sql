@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 26, 2014 at 11:31 AM
+-- Generation Time: May 11, 2014 at 07:51 AM
 -- Server version: 5.6.12-log
--- PHP Version: 5.4.16
+-- PHP Version: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,16 +32,16 @@ CREATE TABLE IF NOT EXISTS `album` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_name` varchar(100) NOT NULL DEFAULT 'Required',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `album`
 --
 
 INSERT INTO `album` (`id`, `album_name`) VALUES
-(8, 'my album'),
-(9, 'bhupendra'),
-(10, 'ramji');
+(13, 'diuhdjsakl'),
+(15, 'sadiashioudjasiojdkas'),
+(16, 'ljsldjlfsdljf ');
 
 -- --------------------------------------------------------
 
@@ -64,9 +64,46 @@ INSERT INTO `category` (`id`, `category_name`) VALUES
 (2, 'asdasdsa'),
 (3, 'sadsadasdas'),
 (4, 'sadsadasda'),
-(5, 'sdfvcv'),
 (6, 'fgyhtynvb'),
 (7, 'gbgfhncvv');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment_store`
+--
+
+CREATE TABLE IF NOT EXISTS `comment_store` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `comment` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `comment_association_id` varchar(64) NOT NULL,
+  `comment_user_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+
+--
+-- Dumping data for table `comment_store`
+--
+
+INSERT INTO `comment_store` (`Id`, `comment`, `comment_association_id`, `comment_user_name`) VALUES
+(9, 'djasKSJHJDIHIUDSA', 'post/3', ''),
+(10, 'djasKSJHJDIHIUDSA', 'post/3', ''),
+(11, 'comment', 'view/addcomment', ''),
+(12, 'djjkdjudhsufjdaksfoipokwDJICOUJSJA', 'page/2', ''),
+(13, 'hi this is a post comment', 'post/3', ''),
+(15, 'now the comment is added', 'post/3', ''),
+(16, 'now the comment is added', 'post/3', ''),
+(17, 'epofojigkosdk[pfs', 'page/3', ' '),
+(18, 'now the commenting is easy', 'page/3', ' '),
+(19, 'comment is added to page 4', 'page/4', ' '),
+(20, 'jewijfowpofiewpoew', 'post/3', ' '),
+(21, 'mynew comment', 'post/3', ' '),
+(22, 'The last comment', 'post/3', ' '),
+(23, 'last added is shown at first', 'post/3', ' '),
+(24, 'ramji commented', 'post/3', ' '),
+(25, '', 'post/3', ' '),
+(26, '', 'post/3', ' '),
+(27, 'hdiuhfjhf', 'post/3', ' ');
 
 -- --------------------------------------------------------
 
@@ -97,6 +134,34 @@ INSERT INTO `design_setup` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `gadgets`
+--
+
+CREATE TABLE IF NOT EXISTS `gadgets` (
+  `gadget_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `textBox` varchar(100) NOT NULL,
+  `defaultGadget` text NOT NULL,
+  `type` text NOT NULL,
+  `display` varchar(200) NOT NULL,
+  `setting` text NOT NULL,
+  PRIMARY KEY (`gadget_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=231 ;
+
+--
+-- Dumping data for table `gadgets`
+--
+
+INSERT INTO `gadgets` (`gadget_id`, `name`, `textBox`, `defaultGadget`, `type`, `display`, `setting`) VALUES
+(226, 'Social Network', 'textBox', '', 'Facebook<br>\r\nTwitter<br>\r\nLinkid<br>\r\nFacebook<br>\r\nFacebook<br>\r\nFacebook<br>', 'Footer', ''),
+(225, 'Recent Post', '', 'recent post', '', 'Sidebar', 'post=3&titleBold=&titleUnderline=&titleColor='),
+(224, '<b>Tihar Offer!!!</b>', 'textBox', '', '10% Discount in all the product you buy. Hurry your shopping.', 'Header', ''),
+(229, 'sdlfhkahadslf', 'textBox', '', 'sdf', 'Choose', ''),
+(228, 'sdhfsdfhsdfh', 'textBox', '', 'sd', 'Choose', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `media`
 --
 
@@ -115,13 +180,9 @@ CREATE TABLE IF NOT EXISTS `media` (
 --
 
 INSERT INTO `media` (`id`, `media_name`, `media_type`, `media_association_id`, `media_link`) VALUES
-(15, 'hdhfjndlk', 'New_Document.docx', NULL, '0'),
-(17, 'sfdoifh', 'whale.jpg', 8, '0'),
-(18, 'ssasadsa', 'monkey1.jpg', NULL, '0'),
-(19, 'iufhiusd', 'tree2.jpg', NULL, 'http://localhost/bnw/content/images/tree2.jpg'),
-(20, 'sajdklas', 'tree1.jpg', 8, '0'),
-(21, 'ajkshfjks', 'schema1.jpg', 9, '0'),
-(22, 'kcbjksdm.s\\''.c', 'monkey1.jpg', 9, '0');
+(20, 'sandjkaskl', 'monkey.jpg', NULL, 'http://localhost/bnw/content/images/monkey.jpg'),
+(21, 'sdlfj', 'arrow.jpg', 13, '0'),
+(22, 'ssldjflsjdf', 'images.jpg', 13, '0');
 
 -- --------------------------------------------------------
 
@@ -166,7 +227,7 @@ INSERT INTO `meta_data` (`id`, `name`, `value`) VALUES
 (2, 'title', 'B&W Dashboard'),
 (3, 'keywords', 'cms'),
 (4, 'description', 'cloud system'),
-(5, 'favicon_icon', 'logofinal3.png');
+(5, 'favicon_icon', ' ');
 
 -- --------------------------------------------------------
 
@@ -177,18 +238,22 @@ INSERT INTO `meta_data` (`id`, `name`, `value`) VALUES
 CREATE TABLE IF NOT EXISTS `misc_setting` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) CHARACTER SET utf8 NOT NULL,
-  `description` tinyint(1) NOT NULL,
+  `description` varchar(64) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `misc_setting`
 --
 
 INSERT INTO `misc_setting` (`Id`, `name`, `description`) VALUES
-(0, 'show_comment', 0),
-(1, 'show_like', 0),
-(2, 'show_share', 1);
+(0, 'show_comment', '0'),
+(1, 'show_like', '0'),
+(2, 'show_share', '0'),
+(3, 'max_post_to_show', '10'),
+(4, 'max_page_to_show', '5'),
+(5, 'slide_height', '500'),
+(6, 'slide_width', '500');
 
 -- --------------------------------------------------------
 
@@ -206,24 +271,30 @@ CREATE TABLE IF NOT EXISTS `navigation` (
   `menu_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_navigation` (`menu_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
 --
 -- Dumping data for table `navigation`
 --
 
 INSERT INTO `navigation` (`id`, `navigation_name`, `navigation_link`, `parent_id`, `navigation_type`, `navigation_slug`, `menu_id`) VALUES
-(28, 'Why Us', 'page/3', 0, 'page', 'WhyUs', 4),
+(28, 'Why Us edited from changed navigation', NULL, NULL, NULL, NULL, NULL),
 (29, 'Contact Us', 'page/4', 0, 'page', 'ContactUs', 4),
 (30, 'Gallery', 'photos', 0, ' ', 'Gallery', 4),
-(31, 'Home', 'page/1', 0, 'page', 'Home', 4),
-(32, 'Introduction', 'page/2', 0, 'page', 'Introduction', 4),
-(33, 'dsdadasd', 'page/5', 30, 'page', 'dsdadasd', NULL),
+(33, 'dsdadasd changed', 'page/5', 30, 'page', 'dsdadasd', NULL),
 (34, 'asdsaddsad', 'page/6', 30, 'page', 'asdsaddsad', NULL),
 (35, 'Why Us', 'page/3', 0, 'page', 'WhyUs', NULL),
 (36, 'Contact Us', 'page/4', 0, 'page', 'ContactUs', NULL),
-(37, 'Contact Us', 'page/4', 0, 'page', 'ContactUs', NULL),
-(38, 'dsdadasd', 'page/5', 0, 'page', 'dsdadasd', NULL);
+(37, 'Contact Us hjgjhgjhg', 'page/4', 0, 'page', 'ContactUs', NULL),
+(38, 'dsdadasd', 'page/5', 0, 'page', 'dsdadasd', NULL),
+(39, 'asdasdsa', 'category/2', 0, 'category', 'asdasdsa', NULL),
+(40, 'sdfvcv', 'category/5', 0, 'category', 'sdfvcv', NULL),
+(43, 'sdsadadsdddd', 'page/7', 42, 'page', 'sdsadadsdddd', 4),
+(44, 'axsas', 'page/8', 42, 'page', 'axsas', 4),
+(45, 'ssacdsfrgv', 'page/9', 42, 'page', 'ssacdsfrgv', 4),
+(46, 'axsas', 'page/8', NULL, 'page', 'axsas', 6),
+(47, 'Contact Us also edited', 'page/4', NULL, 'page', 'ContactUsalsoedited', 5),
+(48, 'sadsadasdas', 'category/3', 0, 'category', 'sadsadasdas', NULL);
 
 -- --------------------------------------------------------
 
@@ -255,10 +326,7 @@ CREATE TABLE IF NOT EXISTS `page` (
 --
 
 INSERT INTO `page` (`id`, `page_name`, `page_content`, `page_author_id`, `page_date`, `page_summary`, `page_status`, `page_modifed_date`, `page_parent`, `page_order`, `page_type`, `page_tags`, `allow_comment`, `allow_like`, `allow_share`) VALUES
-(1, 'Home', 'Parse is the cloud app platform for iOS, Android, JavaScript, Windows 8,\r\n Windows Phone 8, and OS X. Never worry again about setting up your own \r\nservers.<br><br>Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Facebook Platform features just download and \r\ninstall the SDK and start hacking.<br>', 10, '2014-03-14 04:42:28', 'Parse is the cloud app platform for iOS, Android, JavaScript, Windows 8,\r\n Windows Phone 8, and OS X', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
-(2, 'Introduction', '      Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Facebook Platform features just download and \r\ninstall the SDK and start hacking.<br>Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Facebook Platform features just download and \r\ninstall the SDK and start hacking.<br>', 10, '2014-03-14 04:42:49', '      Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all th', '0', '0000-00-00 00:00:00', 0, 0, '', '0', 0, 0, 0),
-(3, 'Why Us', 'Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Facebook Platform features just download and \r\ninstall the SDK and start hacking.<br>Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Facebook Platform features just download and \r\ninstall the SDK and start hacking.<br>Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Facebook Platform features just download and \r\ninstall the SDK and start hacking.<br>', 10, '2014-03-14 04:44:30', 'Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Face', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
-(4, 'Contact Us', 'Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Facebook Platform features just download and \r\ninstall the SDK and start hacking.', 10, '2014-03-14 04:44:49', 'Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Face', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
+(4, 'Contact Us also edited', '      Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Facebook Platform features just download and \r\ninstall the SDK and start hacking.', 10, '2014-03-14 04:44:49', '      Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all th', '0', '0000-00-00 00:00:00', 0, 0, '', '0', 0, 0, 0),
 (5, 'dsdadasd', 'dasddsad<br>', 10, '2014-03-18 08:28:40', 'dasddsad<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
 (6, 'asdsaddsad', 'dsadaddds<br>', 10, '2014-03-18 08:28:48', 'dsadaddds<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
 (7, 'sdsadadsdddd', 'asdasdasdsasad<br>', 10, '2014-03-18 08:28:56', 'asdasdasdsasad<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
@@ -289,16 +357,19 @@ CREATE TABLE IF NOT EXISTS `post` (
   PRIMARY KEY (`id`),
   KEY `idx_post` (`post_category`),
   KEY `idx_post_0` (`post_author_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `post`
 --
 
 INSERT INTO `post` (`id`, `post_title`, `post_author_id`, `post_date`, `post_summary`, `post_status`, `comment_status`, `post_modified_date`, `post_tags`, `post_content`, `post_category`, `allow_comment`, `allow_like`, `allow_share`) VALUES
-(1, 'Earn $100 in one day', 10, '2014-03-20 06:05:22', '      Entrepreneurs are a different kind of people. They are never \r\ncompletely satisfied with the n', '0', 2, NULL, '', '      Entrepreneurs are a different kind of people. They are never \r\ncompletely satisfied with the normal, acceptable lifestyle commonly \r\ncalled “successful” by the rest of society. This traditional “success” \r\noften includes a good job, a nice house with a 30-year mortgage, a \r\ncouple of nice cars (on which it’s considered OK to owe a lot of money),\r\n a few weeks of vacation every year from the job you don’t really enjoy,\r\n etc.<br>If you’re reading this blog, you’re probably not content with that kind of success.', 7, 0, 0, 0),
-(2, 'how can you freelance', 10, '2014-03-20 06:07:11', 'I’ve been getting a lot of emails lately from people who are looking \r\nto start working for themse', '0', 2, NULL, '', 'I’ve been getting a lot of emails lately from people who are looking \r\nto start working for themselves. &nbsp;Whether it’s a small business on \r\nthe side, or they’re looking to create a full time location independent \r\nbusiness, it’s obvious there’s a lot of entrepreneurial spirit out \r\nthere.<div absolute;="" top:="" -1999px;="" left:="" -1988px;"="" id="stcpDiv">\r\n<p>Along with questions about building a business, I’m asked frequently what business <em>I </em>run.</p>\r\n<p>If we’re going to start getting real about creating a location \r\nindependent income, I’m going to have to build a little bit of \r\ncredibilty.</p>\r\n<p>So here’s what I do:</p>\r\n<h3><em><strong>I’m an SEO Freelancer (for lack of a better term).</strong></em></h3>\r\n<p>For those of you who don’t know what SEO means, it stands for Search \r\nEngine Optimization. Essentially it’s my job to make sure my clients \r\nrank as highly as possible in Google (or other search engines) for the \r\nkey terms that we’ve decided are most important to their success.</p> - \r\nSee more at: \r\nfile:///G:/websites/How to Become an SEO Freelancer in 48 Hours — Location 180 _ Build a Business, Live Anywhere, Achieve Free.</div><div absolute;="" top:="" -1999px;="" left:="" -1988px;"="" id="stcpDiv"><p><br></p><p><br></p><br></div>', 7, 0, 0, 0),
-(3, 'Post allowing comment', 10, '2014-03-26 06:35:17', '                  duifhioakfkdopfuijcnydsbc<br>', '0', 2, NULL, '', '                  duifhioakfkdopfuijcnydsbc<br>', 7, 1, 0, 0);
+(1, 'Earn $100 in one day', 10, '2014-03-20 06:05:22', '                              Entrepreneurs are a different kind of people. They are never \r\ncomplet', '0', 2, NULL, '', '                              Entrepreneurs are a different kind of people. They are never \r\ncompletely satisfied with the normal, acceptable lifestyle commonly \r\ncalled “successful” by the rest of society. This traditional “success” \r\noften includes a good job, a nice house with a 30-year mortgage, a \r\ncouple of nice cars (on which it’s considered OK to owe a lot of money),\r\n a few weeks of vacation every year from the job you don’t really enjoy,\r\n etc.<br>If you’re reading this blog, you’re probably not content with that kind of success.', 7, 0, 1, 0),
+(2, 'how can you freelance', 10, '2014-03-20 06:07:11', '                              I’ve been getting a lot of emails lately from people who are looking', '0', 2, NULL, '', '                              I’ve been getting a lot of emails lately from people who are looking \r\nto start working for themselves. &nbsp;Whether it’s a small business on \r\nthe side, or they’re looking to create a full time location independent \r\nbusiness, it’s obvious there’s a lot of entrepreneurial spirit out \r\nthere.<div absolute;="" top:="" -1999px;="" left:="" -1988px;"="" id="stcpDiv">\r\n<p>Along with questions about building a business, I’m asked frequently what business <em>I </em>run.</p>\r\n<p>If we’re going to start getting real about creating a location \r\nindependent income, I’m going to have to build a little bit of \r\ncredibilty.</p>\r\n<p>So here’s what I do:</p>\r\n<h3><em><strong>I’m an SEO Freelancer (for lack of a better term).</strong></em></h3>\r\n<p>For those of you who don’t know what SEO means, it stands for Search \r\nEngine Optimization. Essentially it’s my job to make sure my clients \r\nrank as highly as possible in Google (or other search engines) for the \r\nkey terms that we’ve decided are most important to their success.</p> - \r\nSee more at: \r\nfile:///G:/websites/How to Become an SEO Freelancer in 48 Hours — Location 180 _ Build a Business, Live Anywhere, Achieve Free.</div><div absolute;="" top:="" -1999px;="" left:="" -1988px;"="" id="stcpDiv"><p><br></p><p><br></p><br></div>', 7, 0, 1, 1),
+(3, 'Post allowing comment', 10, '2014-03-26 06:35:17', '                                          duifhioakfkdopfuijcnydsbc wdjiofj whoidjc jwpos ciwqsf oiw', '0', 2, NULL, '', '                                          duifhioakfkdopfuijcnydsbc wdjiofj whoidjc jwpos ciwqsf oiwnsdc iwn cdoiqwos hsfoiwejsf coiwbfu d qwhoifbv eifwed wd woijdoqwf vi2whdiwe qwdb weso9jmqw<br>', 7, 1, 0, 1),
+(4, 'ijaIKJSMa changed', 10, '2014-04-04 09:32:03', '      sdajsdksal<br>', '0', 2, NULL, '', '      sdajsdksal<br>', 7, 0, 0, 0),
+(5, 'dsadasdsa', 10, '2014-04-04 09:32:12', 'dsadasdass<br>', '1', 1, NULL, '', 'dsadasdass<br>', 1, 0, 0, 0),
+(6, 'asdasdsa', 10, '2014-04-04 09:32:20', 'sadasdsadasdsa<br>', '1', 1, NULL, '', 'sadasdsadasdsa<br>', 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -312,17 +383,7 @@ CREATE TABLE IF NOT EXISTS `slide` (
   `slide_image` varchar(100) NOT NULL DEFAULT 'Required',
   `slide_content` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `slide`
---
-
-INSERT INTO `slide` (`id`, `slide_name`, `slide_image`, `slide_content`) VALUES
-(2, 'image', 'whale.jpg', 'Whale'),
-(3, 'tree', 'tree.jpg', 'tree'),
-(4, 'schema', 'schema.jpg', ''),
-(5, 'monkey', 'monkey.jpg', '');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
