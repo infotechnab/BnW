@@ -27,6 +27,9 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
+    //============= for smart service =================//
+    
+    //=========== end smart service ====================//
 
     function logout() {
         $this->session->sess_destroy();
@@ -346,6 +349,21 @@ class bnw extends CI_Controller {
         }
     }
 
+    function deletenavigation($id){
+        if ($this->session->userdata('logged_in'))
+            {
+            $this->dbmodel->delnavigation($id);
+            //die($id);
+            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+            //$this->showNavigation($id);
+            redirect('bnw/navigation');
+            }
+             else {
+            redirect('login', 'refresh');
+        }
+        
+        
+    }
 
     //======================================================================================================
     //====================================Category==========================================================
@@ -1142,12 +1160,41 @@ class bnw extends CI_Controller {
         }
     }
 
+   // public function deleteuser($id) {
+    //    if ($this->session->userdata('logged_in')) {
+    //       $status =  $this->session->userdata('username');
+           
+          // if()
+     //       $this->dbmodel->delete_user($id);
+     //       $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+     //       redirect('bnw/users');
+     //   } else {
+      //      redirect('login', 'refresh');
+     //   }
+  //  }
+    
+    
     public function deleteuser($id) {
         if ($this->session->userdata('logged_in')) {
+           $uNAme =  $this->session->userdata('username');
+           //die($uNAme);
+        $uNAme = "admin";
+        //die($id);
+          $userKey = $this->dbmodel->check_user($id);
+         // print_r($userKey);
+          foreach ($userKey as $user)
+          {
+              $userid = $user->user_name;
+          }
+          if($uNAme !== $userid){
+              die($uNAme);
             $this->dbmodel->delete_user($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('bnw/users');
-        } else {
+          redirect('bnw/users');}
+          else{
+              echo 'Sory you can not be delete this user because user is Login!';
+          }
+       } else {
             redirect('login', 'refresh');
         }
     }
@@ -1539,10 +1586,7 @@ public function delphoto($photoid) {
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('slide_name', 'Title', 'required|xss_clean|max_length[200]');
-            
-
-
-            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
+             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
                 $data['error'] = $this->upload->display_errors();
                   
                 $this->load->view('bnw/slider/addnew', $data);
@@ -1555,7 +1599,8 @@ public function delphoto($photoid) {
                 $slidecontent = $this->input->post('slide_content');
                
                 //for cropper
-                require_once('ImageManipulator.php');
+                //require_once(APPPATH.'ImageManipulator.php');
+                include_once 'ImageManipulator.php';
                 
 		$manipulator = new ImageManipulator($_FILES['file_name']['tmp_name']);
 		$width 	= $manipulator->getWidth();
@@ -2262,6 +2307,9 @@ public function delphoto($photoid) {
             $this->dbmodel->delete_notice($nid);
             redirect('bnw/notice');
         } else {
+    * 
+    * 
+    * 
             redirect('login', 'refresh');
         }
     }

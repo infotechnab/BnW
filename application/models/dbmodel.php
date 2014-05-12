@@ -33,7 +33,14 @@ class Dbmodel extends CI_Model {
             return false;
         }
     }
-    
+     function check_user($id)
+    {
+           // die('dsfgsdfg'.$id);
+        $this->db->select('user_name');
+        $this->db->where('id', $id);
+        $userKey = $this->db->get('user');
+        return $userKey->result();
+    }
     public function add_new_comment($comment, $comment_association_id, $user_name)
     {
         $data = array(
@@ -176,10 +183,11 @@ class Dbmodel extends CI_Model {
         $this->db->delete('navigation', array('navigation_link' => 'page/'.$id));
     }
 
-    
+    function delnavigation($id){
+        $this->db->delete('navigation', array('id' => $id));
+    }
 
-
-    public function add_new_navigation($navigationname, $navigationlink, $pid, $navigationtype, $navigationslug, $mid)
+        public function add_new_navigation($navigationname, $navigationlink, $pid, $navigationtype, $navigationslug, $mid)
     {   $this->load->database();        
         $data = array(
             
@@ -1240,6 +1248,24 @@ function delete_favicone($id) {
         $query = $this->db->get('navigation');
         return $query->result();
         
+    }
+    
+    function get_userKey($id)
+    {
+        $this->db->select('user_email');
+        $this->db->where('user_auth_key', $id);
+        $keys = $this->db->get('user');
+        return $keys->result();
+    }
+    
+    function user_key($email)
+    {
+        $file = " ";
+        $data = array(
+          
+            'user_auth_key' => $file);
+        $this->db->where('user_email', $email);
+        $this->db->update('user', $data);
     }
     
        }

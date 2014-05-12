@@ -10,7 +10,7 @@
     ?>
             
     
-    <p>click the following link to reset your password <a href="<?php echo base_url();?>index.php/login/resetPassword?resetPassword=<?php echo $token; ?>"> RESET PASSWORD</a></p>
+    <p>click the following link to reset your password <a href="<?php echo base_url();?>index.php/login/resetPassword?id=<?php echo $to; ?>&&resetPassword=<?php echo $token; ?>"> RESET PASSWORD</a></p>
    
 
 

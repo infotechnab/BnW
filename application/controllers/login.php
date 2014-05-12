@@ -158,14 +158,42 @@ $headers .= 'rsubedi@salyani.com.np';
 }
          
            
-  public function resetPassword() {
-            $data['meta'] = $this->dbmodel->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/resetPassword", $data);
+ // public function resetPassword() {
+ //           $data['meta'] = $this->dbmodel->get_meta_data();
+ //           $this->load->view("bnw/templates/header", $data);
+  //          $this->load->view("bnw/templates/resetPassword", $data);
             
+  //          $this->load->view('bnw/templates/footer', $data);
+         
+   // }   
+    
+    public function resetPassword() {
+      $id = $_GET['resetPassword'];
+      $email = $_GET['id'];
+      //echo $email;
+      //die($id);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $keys = $this->dbmodel->get_userKey($id);
+           
+            foreach ($keys as $uName)
+            {
+                $userName = $uName->user_email;
+            }
+            $blank = $this->dbmodel->user_key($email);
+            //die($userName);
+            $this->load->view("bnw/templates/header", $data);
+            if(isset($userName)){
+            if($email == $userName){
+            $this->load->view("bnw/templates/resetPassword", $data);
+            }else{
+                $this->load->view("bnw/templates/tokenexpiremsg");
+            }}
+            else{
+                $this->load->view("bnw/templates/tokenexpiremsg");
+            }
             $this->load->view('bnw/templates/footer', $data);
          
-    }        
+    }
  public function setpassword(){
    $data['meta'] = $this->dbmodel->get_meta_data();
    $this->load->view('bnw/templates/header', $data);
