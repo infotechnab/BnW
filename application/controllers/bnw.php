@@ -27,9 +27,7 @@ class bnw extends CI_Controller {
             redirect('login', 'refresh');
         }
     }
-    //============= for smart service =================//
     
-    //=========== end smart service ====================//
 
     function logout() {
         $this->session->sess_destroy();
