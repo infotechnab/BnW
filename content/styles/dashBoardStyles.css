@@ -86,8 +86,9 @@ h3
     width: 100%;
     padding: 0px;
     margin: 0px;
-    min-height: 15px;
+    min-height: 540px;
     float: left;
+    background-color: #000;
 }
 ul.menu
 {
