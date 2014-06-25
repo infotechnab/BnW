@@ -1,6 +1,6 @@
 
 <div class="rightSide">
-    <h2>Add New Category</a></h2>
+    <h2>Dashboard >> Add New Category</a></h2>
 <hr class="hr-gradient"/>
      <?php echo validation_errors();
   if(isset($error))
@@ -11,7 +11,7 @@
 <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
 </p>
-  <?php echo form_open_multipart('bnw/addcategory');?>
+  <?php echo form_open_multipart('dashboard/addcategory');?>
   
   <p>Name:<br />
   <input type="text" name="category_name" value="<?php echo set_value('category_name'); ?>" />
@@ -21,7 +21,9 @@
   <?php echo form_close();?>
 
 <div id="body">
-    <p>List of all Categories</p>
+    <h4 style="margin: 15px 0px 5px 5px;">All Categories</h4>
+   <hr style="width: 30%; float: left;" />
+   <div class="clear"></div>
     <?php    
         if(!empty($query)){
             ?>
@@ -34,12 +36,28 @@
     
     <?php
             foreach ($query as $data){
-            ?>
+            
+              // $catData =  $this->dbmodel->get_file($data->id);
+                                
+                ?>
           <tr>
             <td><?php echo $data->id; ?></td>
             <td><?php echo $data->category_name ?></td>
-            <td><?php echo anchor('bnw/editcategory/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('bnw/deletecategory/'.$data->id,'Delete'); ?></td>
+            <td><?php echo anchor('dashboard/editcategory/'.$data->id,'Edit'); ?> / 
+            <?php
+            if(empty($catData))
+            {
+                echo anchor('dashboard/deletecategory/'.$data->id,'Delete');
+                
+            }
+            else 
+                {
+                echo anchor('dashboard/delete_category/'.$data->id,'Delete');
+                }            ?>
+            
+           
+            
+            </td>
         </tr>
             <?php    
             }

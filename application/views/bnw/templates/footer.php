@@ -1,5 +1,10 @@
 <div id="footer">
-            B&W 1.5 Copyright &copy 2014. All rights reserved to <a href="#">B&W</a>
+            
+
+<!--<p>© Copy right to Smart Access Service.
+
+Powered by BnW CMS.
+</p>-->
         </div>
        
 </body>

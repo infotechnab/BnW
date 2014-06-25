@@ -1,10 +1,12 @@
 
 
-
-<div><?php echo form_open_multipart('login/setpassword');?>
+</div>
+<div id="contentBackground">
+        <div id="forgotpass">
+            <div><?php echo form_open_multipart('view/setpassword');?>
   
     <?php $token = $_GET['resetPassword'];
-   // echo $token;?>
+   ?>
     <input type="hidden" name="tokenid" value="<?php echo $token; ?>" />
   
   <p>New Password:<br />
@@ -18,5 +20,6 @@
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
 </div>
-<div class="clear"></div>
+        </div>
+    </div>
 </div>

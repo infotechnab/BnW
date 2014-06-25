@@ -1,7 +1,7 @@
 <hr>
 
 <div id="bnw">
-    <img src="<?php echo base_url()."/content/images/bnw.jpg"; ?>"/>
+    <img src="<?php echo base_url()."/content/bnw/images/bnw.jpg"; ?>"/>
 </div>
 <div id="loginform"/>
  <p id="sucessmsg">

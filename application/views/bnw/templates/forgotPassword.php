@@ -31,7 +31,7 @@
                     <tbody>
                         <tr>
                         <td colspan="2">
-                            <img id="name" src="<?php echo base_url()."/content/images/bnw.png"; ?>"/>
+                            <img id="name" src="<?php echo base_url()."/content/bnw/images/bnw.png"; ?>"/>
                                 <p id="sucessmsg">
                                     <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}
                                 echo validation_errors(); ?> </p>

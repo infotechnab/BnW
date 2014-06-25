@@ -31,10 +31,11 @@
                
                 <table>
                     <?php echo form_open('login/validate_credentials'); ?>
+                    <input type="hidden" name="requersUrl" value="<?php echo $link; ?>"/>
                     <tbody>
                         <tr>
                         <td colspan="2">
-                            <img id="name" src="<?php echo base_url()."/content/images/bnw.png"; ?>"/>
+                            <img id="name" src="<?php echo base_url()."content/bnw/images/bnw.png"; ?>"/>
                                 <p id="sucessmsg">
                                     <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}
                                 echo validation_errors(); ?> </p>
@@ -71,11 +72,11 @@
             </div>
          </div>
         
-        <!left side is closed here>
+        <!--left side is closed here -->
         
         <div class="right">
             <div>
-                <iframe class="frame" src="http://salyani.org/sources/iframeContent/bnwIframe.php" frameborder="0" scrolling="no"></iframe>
+             <!--   <iframe class="frame" src="http://salyani.org/sources/iframeContent/bnwIframe.php" frameborder="0" scrolling="no"></iframe>  -->
             </div>
             
         </div>

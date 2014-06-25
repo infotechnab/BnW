@@ -1,12 +1,14 @@
 <div class="rightSide">
- <h2>Add new Menu</h2>
+ <h2>Dashboard >> Add New Menu</h2>
  <hr class="hr-gradient"/>
+
   <?php echo validation_errors(); ?>
  
-  <p id="sucessmsg">
+ 
+  <p id="sucessmsg" style="color: red;">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-  <?php echo form_open_multipart('bnw/addmenu');?>
+  <?php echo form_open_multipart('dashboard/addmenu');?>
       
  <p>Menu Name:<br />
       <input type="text" name="menu_name" value="<?php echo set_value('menu_name'); ?>"  /> </p> 
@@ -17,10 +19,12 @@
 
 
 <div id="body">
-    <p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-    </p>
-    <p>List of all menu</p>
+<!--    <p id="sucessmsg">
+  <?php //if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+    </p>-->
+    <h4 style="margin: 15px 0px 5px 5px;">All Menu</h4>
+   <hr style="width: 30%; float: left;" />
+   <div class="clear"></div>
      <?php    
         if(!empty($query)){
             ?>
@@ -38,8 +42,8 @@
           <tr>
             <td><?php echo $data->id; ?></td>
             <td><?php echo $data->menu_name; ?></td>
-            <td><?php echo anchor('bnw/editmenu/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('bnw/deletemenu/'.$data->id,'Delete'); ?></td>
+            <td><?php echo anchor('dashboard/editmenu/'.$data->id,'Edit'); ?> / 
+            <?php echo anchor('dashboard/deletemenu/'.$data->id,'Delete'); ?></td>
         </tr>
             <?php    
             }

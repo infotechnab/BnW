@@ -1,4 +1,4 @@
-body
+contentbody
 {
     background-image: url(../images/bgimage.jpg);
      font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -8,6 +8,7 @@ body
     padding: 0;
     
     }
+
 #bnw
 {
     text-align: center;
@@ -102,6 +103,7 @@ root {
     padding: 10px;
     margin: 10px;
 }
+
 
 
 #close

@@ -13,7 +13,7 @@
   <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-  <?php echo form_open_multipart('bnw/updatemenu');?>
+  <?php echo form_open_multipart('dashboard/updatemenu');?>
   
       <input type="hidden" name="id" value="<?php echo $id; ?>" />
  <p>Menu Name:<br />

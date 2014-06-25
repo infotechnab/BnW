@@ -22,7 +22,7 @@ if ($miscSetting)
             $id = $data->id;
             $post_title= $data->post_title;
             $post_content= $data->post_content;
-            
+            $post_image = $data->image;
            
             $post_status= $data->post_status;
             $post_comment_status= $data->comment_status;
@@ -36,7 +36,7 @@ if ($miscSetting)
         }
     ?>
    <div class="titleArea">
-     <h2>Edit Post/ <?php echo $post_title; ?></h2>
+     <h2>Edit Offer/ <?php echo $post_title; ?></h2>
 <hr class="hr-gradient"/>   
     </div> 
     <div id="forLeftPage">
@@ -47,7 +47,8 @@ if ($miscSetting)
   <?php echo $this->session->flashdata('message'); ?>
     </p>
   <?php echo form_open_multipart('bnw/updatepost');?>
-  <p>Post Title:<br />
+    <input type="hidden" name="hidden_image" value="<?php echo $post_image; ?>"/>
+  <p>Offer Title:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
       <input type="text" name="post_title" value="<?php echo $post_title; ?>" />
   </p>
@@ -55,13 +56,27 @@ if ($miscSetting)
   <textarea name="post_content" id="area1" rows="5" cols="50" style="resize:none;">
       <?php echo $post_content; ?></textarea>
   </p>
+   <?php if($post_image==!NULL) { ?> <div  >
+    <div style="width:85px; height: 85px;">
+    <img src="<?php echo base_url()."content/uploads/images/".$post_image; ?>" width="80" height="80" alt="<?php echo $post_image; ?>" />
+    </div>
+             <a href="<?php echo base_url();?>index.php/bnw/offerImgdelete/?id=<?php echo $id; ?> " id="<?php echo $id; ?>" class="delbutton">
+        <img src="<?php echo base_url();?>content/uploads/images/delete.png" id="close"/></a>
+    </div> <?php }?>
+  <p>
+      Image:<br/> 
+      <input type="file" name="file" />
+  </p>
+  
+   <input type="submit" value="Submit" />
+  <?php echo form_close();?>
     </div>
     
-    <div id="forRightPage">
+   <!-- <div id="forRightPage">
   
    <p>Post Status:<br />
   <?php 
-  $options = array(
+  /* $options = array(
                   '1'  => 'publish',
                   '0'    => 'draft');
   echo form_dropdown('post_status',$options,'1')
@@ -93,23 +108,22 @@ if ($miscSetting)
                 
                     <?php
                 }
-                ?>
+            */    ?>
           
             </select>
        
    </p>
    
-   <input type="checkbox" name="allow_comment" value="1" <?php if($set_data[0]==1 OR $comment==1 ) echo 'checked' ;?> >Allow people to post comment</input>
+   <input type="checkbox" name="allow_comment" value="1" <?php //if($set_data[0]==1 OR $comment==1 ) echo 'checked' ;?> >Allow people to post comment</input>
 <br/>
-<input type="checkbox" name="allow_like" value="1" <?php if($set_data[1]==1 OR $like==1 ) echo 'checked' ;?> >Allow people to like </input>
+<input type="checkbox" name="allow_like" value="1" <?php //if($set_data[1]==1 OR $like==1 ) echo 'checked' ;?> >Allow people to like </input>
 <br/>
-<input type="checkbox" name="allow_share" value="1" <?php if($set_data[2]==1 OR $share==1 ) echo 'checked' ;?> >Allow people to share</input>
+<input type="checkbox" name="allow_share" value="1" <?php //if($set_data[2]==1 OR $share==1 ) echo 'checked' ;?> >Allow people to share</input>
 <br/>
   
-  <input type="submit" value="Submit" />
-  <?php echo form_close();?>
+ 
 <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>
-    </div>
-</div>
+    </div>-->
+ </div>
 <div class="clear"></div>
 </div>

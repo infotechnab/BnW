@@ -35,6 +35,15 @@
   <input type="password" name="user_pass" value="<?php echo set_value('user_pass'); ?>" />
   </p>
   
+  <p> Contact : <br/>
+  <input type="text" name="phone" value="<?php echo set_value('phone'); ?>" />
+  </p>
+  
+  <p> Address : <br/>
+      <textarea name="address"><?php echo set_value('address'); ?></textarea>
+<!--  <input type="text" name="address" value="<?php //echo set_value('address'); ?>" />-->
+  </p>
+  
    <p> User Status:<br />
   <?php 
   $options = array(
