@@ -61,8 +61,8 @@ $( "#datepicker" ).datepicker();
     <div style="width:85px; height: 85px;">
     <img src="<?php echo base_url()."content/uploads/images/".$image; ?>" width="80" height="80" alt="<?php echo $image; ?>"/>
     </div>
-             <a href="<?php echo base_url();?>index.php/bnw/Imgdelete/?id=<?php echo $id; ?> " id="<?php echo $id; ?>" class="delbutton">
-        <img src="<?php echo base_url();?>content/uploads/images/delete.png" id="close"/></a>
+             <a href="<?php echo base_url();?>index.php/events/Imgdelete/?id=<?php echo $id; ?> " id="<?php echo $id; ?>" class="delbutton">
+        <img src="<?php echo base_url();?>content/bnw/images/delete.png" id="close"/></a>
     </div> <?php }?>
   
   <input type="hidden" name="hidden_image" value="<?php echo $data->image; ?>" />

@@ -55,8 +55,8 @@
             }
             ?></td>
             
-            <td><?php echo anchor('bnw/edituser/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('bnw/deleteuser/'.$data->id,'Delete'); ?></td>
+            <td><?php echo anchor('user/edituser/'.$data->id,'Edit'); ?> / 
+            <?php echo anchor('user/deleteuser/'.$data->id,'Delete'); ?></td>
         </tr>
             <?php    
             }

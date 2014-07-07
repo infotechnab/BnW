@@ -9,6 +9,7 @@ class Login extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('dbmodel');
+        $this->load->model('dbsetting');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library("pagination");
@@ -27,7 +28,7 @@ class Login extends CI_Controller {
              redirect('login', 'refresh');
         } else {
             $this->session->sess_destroy();
-            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['meta'] = $this->dbsetting->get_meta_data();
             $this->load->view('bnw/templates/loginTemplate', $data);
             $this->load->view('bnw/templates/footer', $data);
         }
@@ -82,7 +83,7 @@ class Login extends CI_Controller {
     public function forgotPassword() {
         $this->load->library('session');
         if (!$this->session->userdata('admin_logged_in')) {
-            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['meta'] = $this->dbsetting->get_meta_data();
             $this->load->view('bnw/templates/forgotPassword', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -92,7 +93,7 @@ class Login extends CI_Controller {
     }
 
     public function email() {
-        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['meta'] = $this->dbsetting->get_meta_data();
         $this->load->view('bnw/templates/header', $data);
 
         $useremail = $_POST['username'];
@@ -192,7 +193,7 @@ class Login extends CI_Controller {
     }
 
     public function setpassword() {
-        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['meta'] = $this->dbsetting->get_meta_data();
         $this->load->view('bnw/templates/header', $data);
 
         //$this->form_validation->set_rules('user_pass', 'Password', 'required|xss_clean|md5|max_length[200]');

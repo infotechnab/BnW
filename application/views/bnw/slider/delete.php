@@ -19,7 +19,7 @@
   <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-  <?php echo form_open_multipart('bnw/deleteslider/?image='.$slideImage);?>
+  <?php echo form_open_multipart('sliders/deleteslider/?image='.$slideImage);?>
   
       <input type="hidden" name="id" value="<?php echo $id; ?>" />
       <input type="hidden" name="slide_image" value="<?php echo $slideImage; ?>" />

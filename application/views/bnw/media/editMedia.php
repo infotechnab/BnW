@@ -11,7 +11,7 @@
            $mediatype = $data->media_type;
            $media_association_id = $data->media_association_id;
            $medialink= $data->media_link;
-           $listOfAlbum = $this->dbmodel->get_list_of_album();     
+           $listOfAlbum = $this->dbalbum->get_list_of_album();     
        }
         }
     ?>
@@ -21,7 +21,7 @@
   <p id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
     </p>
-  <?php echo form_open_multipart('bnw/updatemedia');?>
+  <?php echo form_open_multipart('album/updatemedia');?>
    <p>Name:<br />
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
   <input type="text" name="media_name" value="<?php echo $medianame; ?>" />

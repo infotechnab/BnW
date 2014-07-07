@@ -41,8 +41,8 @@
                     
             }
             ?></td>
-            <td><?php echo anchor('bnw/editpage/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('bnw/deletepage/'.$data->id,'Delete'); ?></td>
+            <td><?php echo anchor('page/editpage/'.$data->id,'Edit'); ?> / 
+            <?php echo anchor('page/deletepage/'.$data->id,'Delete'); ?></td>
         </tr>
             <?php    
             }

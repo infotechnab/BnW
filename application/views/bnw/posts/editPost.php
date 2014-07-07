@@ -31,7 +31,7 @@ if ($miscSetting)
             $comment=$data->allow_comment;
            $like=$data->allow_like;
            $share=$data->allow_share;
-            $listOfCategory = $this->dbmodel->get_list_of_category();
+            $listOfCategory = $this->dbdashboard->get_list_of_category();
        }
         }
     ?>
@@ -46,7 +46,7 @@ if ($miscSetting)
   <p id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
     </p>
-  <?php echo form_open_multipart('bnw/updatepost');?>
+  <?php echo form_open_multipart('offers/updatepost');?>
     <input type="hidden" name="hidden_image" value="<?php echo $post_image; ?>"/>
   <p>Offer Title:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
@@ -60,8 +60,8 @@ if ($miscSetting)
     <div style="width:85px; height: 85px;">
     <img src="<?php echo base_url()."content/uploads/images/".$post_image; ?>" width="80" height="80" alt="<?php echo $post_image; ?>" />
     </div>
-             <a href="<?php echo base_url();?>index.php/bnw/offerImgdelete/?id=<?php echo $id; ?> " id="<?php echo $id; ?>" class="delbutton">
-        <img src="<?php echo base_url();?>content/uploads/images/delete.png" id="close"/></a>
+             <a href="<?php echo base_url();?>index.php/offers/offerImgdelete/?id=<?php echo $id; ?> " id="<?php echo $id; ?>" class="delbutton">
+        <img src="<?php echo base_url();?>content/bnw/images/delete.png" id="close"/></a>
     </div> <?php }?>
   <p>
       Image:<br/> 

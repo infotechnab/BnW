@@ -18,7 +18,7 @@
   <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-  <?php echo form_open_multipart('bnw/updateslider');?>
+  <?php echo form_open_multipart('sliders/updateslider');?>
   <p>Title:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" />
       <input type="text" name="slide_name" value="<?php echo $slidename; ?>" />
@@ -28,7 +28,7 @@
   
   <p>Existing Slide Image : <br/>
   <div style="max-width: 150px; max-height: 150px;">
-      <img src="<?php echo base_url().'content/images/'.$slideImage ?>" style="max-width: 150px; max-height: 150px;">
+      <img src="<?php echo base_url().'content/uploads/images/'.$slideImage ?>" style="max-width: 150px; max-height: 150px;">
   </div>
   <?php } ?>
   <p> Image : <br/> <input type="file" name="file_name" id="file"/> </p>

@@ -45,7 +45,7 @@ if ($miscSetting)
   <p id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
     </p>
-  <?php echo form_open_multipart('bnw/updatepage');?>
+  <?php echo form_open_multipart('page/updatepage');?>
   <p>Title:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
       <input type="text" name="page_name" value="<?php echo $name; ?>" />

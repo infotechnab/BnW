@@ -9,6 +9,7 @@ class Events extends CI_Controller {
         parent::__construct();
         $this->load->model('dbmodel');
         $this->load->model('dbdashboard');
+        $this->load->model('dbsetting');
         $this->load->model('dbevent');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
@@ -23,7 +24,7 @@ class Events extends CI_Controller {
     function event() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['meta'] = $this->dbsetting->get_meta_data();
             $config = array();
             $config["base_url"] = base_url() . "index.php/bnw/event";
             $config["total_rows"] = $this->dbevent->get_event();
@@ -48,7 +49,7 @@ class Events extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             ;
-            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['meta'] = $this->dbsetting->get_meta_data();
             $data['event'] = $this->dbevent->get_event_id($id);
 
             // $data['id'] = $id;
@@ -71,7 +72,7 @@ class Events extends CI_Controller {
             if ($img == !NULL) {
                 unlink('./content/uploads/images/' . $img);
             }
-            $this->dbmodel->delete($id);
+            $this->dbevent->delete($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
             redirect('events/event');
         } else {
@@ -183,7 +184,7 @@ class Events extends CI_Controller {
 
 
             $data["links"] = $this->pagination->create_links();
-            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['meta'] = $this->dbsetting->get_meta_data();
             $data["links"] = $this->pagination->create_links();
             $data["query"] = $this->dbdashboard->get_menu();
             $this->load->view('bnw/templates/header', $data);
@@ -253,6 +254,27 @@ class Events extends CI_Controller {
                     redirect('events/event');
                 }
             }
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+    function Imgdelete($id = 0) {
+        $url = current_url();
+        if ($this->session->userdata('admin_logged_in')) {
+
+            $id = $_GET['id'];
+            $data['event'] = $this->dbevent->get_event_id($id);
+            foreach ($data['event'] as $a) {
+                $img = $a->image;
+            }
+            // die($img);
+            if ($img == !NULL) {
+                unlink('./content/uploads/images/' . $img);
+            }
+            $this->dbevent->Imgdelete($id);
+
+            $this->editevent($id);
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }

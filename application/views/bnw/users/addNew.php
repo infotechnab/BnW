@@ -13,7 +13,7 @@
 <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
 </p>
-  <?php echo form_open_multipart('bnw/adduser');?>
+  <?php echo form_open_multipart('user/adduser');?>
   
   <p>Name:<br />
   <input type="text" name="user_name" value="<?php echo set_value('user_name'); ?>" />

@@ -17,7 +17,7 @@ if ($query)
 <h2> Sidebar Content Management</h2>
 <hr class="hr-gradient"/>
 
-<?php echo form_open('bnw/sidebarupdate');?>
+<?php echo form_open('setting/sidebarupdate');?>
   <p>Sidebar Title :<br />
   <input type="text" name="sidebar_title" value="<?php echo $set_data[4]; ?>" />
   </p>

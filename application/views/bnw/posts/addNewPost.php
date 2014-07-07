@@ -27,7 +27,7 @@ if ($query)
 <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
 </p>
-  <?php echo form_open_multipart('bnw/addpost');?>
+  <?php echo form_open_multipart('offers/addpost');?>
   
   <p>Offer Title:<br />
   <input type="text" name="post_title" value="<?php echo set_value('post_title'); ?>" />

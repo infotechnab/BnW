@@ -9,6 +9,7 @@ class Gadgets extends CI_Controller {
     parent::__construct();
     $this->load->model('dbmodel');
     $this->load->model('model1');
+    $this->load->model('dbsetting');
     $this->load->helper('url');
     $this->load->helper(array('form', 'url'));
     $this->load->library("pagination");
@@ -19,7 +20,7 @@ class Gadgets extends CI_Controller {
             
               if ($this->session->userdata('logged_in')) {
             $data['username'] = Array($this->session->userdata('logged_in'));
-            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['meta'] = $this->dbsetting->get_meta_data();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu', $data);
 
@@ -40,7 +41,7 @@ class Gadgets extends CI_Controller {
             if ($this->session->userdata('logged_in')) {
              $this->load->model('model1');
             $data['gaget']= $this->model1->get_gaget();
-             $data['meta'] = $this->dbmodel->get_meta_data();
+             $data['meta'] = $this->dbsetting->get_meta_data();
             $name = $this->input->post('name_gadget');
             $type = $this->input->post('type_gadget');
              $display  = $this->input->post('wheretodisplay');
@@ -62,7 +63,7 @@ class Gadgets extends CI_Controller {
             if ($this->session->userdata('logged_in')) {
              $this->load->model('model1');
             $data['gaget']= $this->model1->get_gaget();
-             $data['meta'] = $this->dbmodel->get_meta_data();
+             $data['meta'] = $this->dbsetting->get_meta_data();
        
              
             $updateDisplay = $this->input->post('display');
@@ -89,7 +90,7 @@ class Gadgets extends CI_Controller {
                if ($this->session->userdata('logged_in')) {
              $this->load->model('model1');
             $data['gaget']= $this->model1->get_gaget();
-             $data['meta'] = $this->dbmodel->get_meta_data();
+             $data['meta'] = $this->dbsetting->get_meta_data();
             
              $name_hide = $this->input->post('name_hide');
             $gadget_delete = $this->input->post('display');
@@ -105,7 +106,7 @@ class Gadgets extends CI_Controller {
                if ($this->session->userdata('logged_in')) {
              $this->load->model('model1');
             $data['gaget']= $this->model1->get_gaget();
-             $data['meta'] = $this->dbmodel->get_meta_data();
+             $data['meta'] = $this->dbsetting->get_meta_data();
             
             $name_title = $this->input->post('name_gadget');
             $recentPost = $this->input->post('recentPost_gadget');
@@ -128,7 +129,7 @@ class Gadgets extends CI_Controller {
                if ($this->session->userdata('logged_in')) {
              $this->load->model('model1');
             $data['gaget']= $this->model1->get_gaget();
-             $data['meta'] = $this->dbmodel->get_meta_data();
+             $data['meta'] = $this->dbsetting->get_meta_data();
             
             $name_title = $this->input->post('name_gadget');
             $recentPost = $this->input->post('recentPost_gadget');
@@ -152,7 +153,7 @@ class Gadgets extends CI_Controller {
                if ($this->session->userdata('logged_in')) {
              $this->load->model('model1');
             $data['gaget']= $this->model1->get_gaget();
-             $data['meta'] = $this->dbmodel->get_meta_data();
+             $data['meta'] = $this->dbsetting->get_meta_data();
             
             $name_title = $this->input->post('name_gadget');
             $type = $this->input->post('type');

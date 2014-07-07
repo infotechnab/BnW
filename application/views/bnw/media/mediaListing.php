@@ -7,7 +7,10 @@
     <h2>Media Libraries</h2>
     <hr class="hr-gradient"/>
      <?php
-    
+     if(isset($error))
+  {
+     echo $error;
+  }
     
          if(!empty($query)){
              ?>
@@ -29,9 +32,9 @@
             <td><?php echo $data->media_name ?></td>
             <td><?php echo $data->media_type ?></td>
             
-            <td> <img src='<?php echo base_url().'content/images/'.$data->media_type; ?>' style="height: 60px; width: 60px"/> </td>
-            <td><?php echo anchor('bnw/editmedia/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('bnw/delmedia/'.$data->id,'Delete'); ?></td>
+            <td> <img src='<?php echo base_url().'content/uploads/images/'.$data->media_type; ?>' style="height: 60px; width: 60px"/> </td>
+            <td><?php echo anchor('album/editmedia/'.$data->id,'Edit'); ?> / 
+            <?php echo anchor('album/delmedia/'.$data->id,'Delete'); ?></td>
         </tr>
             <?php    
             }

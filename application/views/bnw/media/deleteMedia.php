@@ -19,14 +19,14 @@
   <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-  <?php echo form_open_multipart('bnw/deletemedia/?image='.$mediaImage);?>
+  <?php echo form_open_multipart('album/deletemedia/?image='.$mediaImage);?>
   
       <input type="hidden" name="id" value="<?php echo $id; ?>" />
       <input type="hidden" name="slide_image" value="<?php echo $mediaImage; ?>" />
       
   </p>
     <input type="submit" value="Yes" />
-    <?php echo anchor('bnw/media', 'No');  ?>
+    <?php echo anchor('album/media', 'No');  ?>
   
 </div>
 <div class="clear"></div>

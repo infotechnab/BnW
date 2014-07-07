@@ -24,7 +24,7 @@
   <p id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
     </p>
-  <?php echo form_open_multipart('bnw/updateuser');?>
+  <?php echo form_open_multipart('user/updateuser');?>
    <p>Name:<br />
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
   <input type="text" name="user_name" value="<?php echo $name; ?>" />

@@ -11,7 +11,7 @@
 <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
 </p>
-  <?php echo form_open_multipart('bnw/addmedia');?>
+  <?php echo form_open_multipart('album/addmedia');?>
   
   <p>Name:<br />
   <input type="text" name="media_name" value="<?php echo set_value('media_name'); ?>" />

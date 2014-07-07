@@ -33,9 +33,9 @@
             
             
             
-            <td><?php if(isset($data->image)== !NULL){?> <img src="<?php echo base_url().'content/uploads/images/'.$data->image ?>" width="50" height="50" alt="<?php echo $data->image; ?>" />  <?php  }else{ echo  "Image not set";}          ?></td>
-            <td><?php echo anchor('bnw/editpost/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('bnw/deletepost/'.$data->id,'Delete'); ?></td>
+            <td><?php if(isset($data->image)== !NULL && ($data->image)==!'' ){?> <img src="<?php echo base_url().'content/uploads/images/'.$data->image ?>" width="50" height="50" alt="<?php echo $data->image; ?>" />  <?php  }else{ echo  "Image not set";}          ?></td>
+            <td><?php echo anchor('offers/editpost/'.$data->id,'Edit'); ?> / 
+            <?php echo anchor('offers/deletepost/'.$data->id,'Delete'); ?></td>
         </tr>
             <?php    
             }

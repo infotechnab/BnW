@@ -19,7 +19,7 @@ if ($meta)
 <h2><?php echo $meta_data[1]; ?> Dashboard Management</h2>
 <hr class="hr-gradient"/>
 
-<?php echo form_open_multipart('bnw/setupupdate');?>
+<?php echo form_open_multipart('setting/setupupdate');?>
   <p>Site Url :<br />
   <input type="text" name="url" value="<?php echo $meta_data[0]; ?>" />
   </p>
@@ -39,7 +39,7 @@ if ($meta)
   <div style="width: 70px; height: 70px;">
       <img src="<?php echo base_url().'content/uploads/images/'.$meta_data[4]; ?>" >
   </div>
-      <a href="<?php echo base_url();?>index.php/bnw/deletefavicone/<?php echo $meta_data[4]; ?> " id="<?php echo $meta_data[4]; ?>" class="delbutton">
+      <a href="<?php echo base_url();?>index.php/setting/deletefavicone/<?php echo $meta_data[4]; ?> " id="<?php echo $meta_data[4]; ?>" class="delbutton">
         <img src="<?php echo base_url();?>content/bnw/images/delete.png" id="close"/>
       </a>
       </p>       

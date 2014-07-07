@@ -25,7 +25,7 @@
   <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
-  <?php echo form_open_multipart('bnw/delete_album/'.$aid);?>
+  <?php echo form_open_multipart('album/delete_album/'.$aid);?>
   
       <input type="hidden" name="id" value="<?php echo $aid; ?>" />
       

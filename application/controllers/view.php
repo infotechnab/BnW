@@ -7,7 +7,7 @@ class view extends CI_Controller {
         $this->load->helper('url');
         $this->load->model('viewmodel');
         $this->load->model('dbmodel');
-        $this->load->model('dbmodel');
+        $this->load->model('dbsetting');
         $this->load->model('model1');
     }
 public function index()
@@ -24,7 +24,7 @@ public function index()
         $data['headerlogo']= $this->viewmodel->get_header_logo();
         $data['allpostquery'] = $this->viewmodel->get_all_post();
       
-        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['meta'] = $this->dbsetting->get_meta_data();
         $data['headerdescription']= $this->viewmodel->get_header_description();
       
         $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
@@ -58,7 +58,7 @@ public function index()
     {
         $nav= $this->uri->uri_string();
         $assc_id= str_replace('view/','', $nav);
-        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['meta'] = $this->dbsetting->get_meta_data();
         $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
         $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
         $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
@@ -98,7 +98,7 @@ public function index()
     public function pages(){
          $nav= $this->uri->uri_string();
         $assc_id= str_replace('view/','', $nav);
-        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['meta'] = $this->dbsetting->get_meta_data();
         $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
         $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
        // $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
@@ -138,7 +138,7 @@ public function index()
     {
         $nav= $this->uri->uri_string();
         $assc_id= str_replace('view/','', $nav);
-        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['meta'] = $this->dbsetting->get_meta_data();
        $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
         $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
     
@@ -175,7 +175,7 @@ public function index()
     {
         $nav= $this->uri->uri_string();
         $assc_id= str_replace('view/','', $nav);
-        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['meta'] = $this->dbsetting->get_meta_data();
         $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
         $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
         $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
@@ -218,7 +218,7 @@ public function index()
     {
         $nav= $this->uri->uri_string();
         $assc_id= str_replace('view/','', $nav);
-        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['meta'] = $this->dbsetting->get_meta_data();
         $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
         $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
         $data['allpostquery'] = $this->viewmodel->get_all_post();
@@ -257,7 +257,7 @@ public function index()
     
     public function photos()
     {
-        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['meta'] = $this->dbsetting->get_meta_data();
        $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
         $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
         $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
@@ -292,7 +292,7 @@ public function index()
     
     public function photo($id)
     {
-        $data['meta'] = $this->dbmodel->get_meta_data();
+        $data['meta'] = $this->dbsetting->get_meta_data();
         $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
         $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
         $limit['page_limit']=$this->viewmodel->get_max_page_to_show();
@@ -342,7 +342,7 @@ public function index()
     }
     
      public function downloads(){
-      $data['meta'] = $this->dbmodel->get_meta_data();
+      $data['meta'] = $this->dbsetting->get_meta_data();
         $limit['post_limit']=$this->viewmodel->get_max_post_to_show();
         $data['postquery'] = $this->viewmodel->get_post($limit["post_limit"]);
         $limit['page_limit']=$this->viewmodel->get_max_page_to_show();

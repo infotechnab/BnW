@@ -7,6 +7,22 @@ class Dbdashboard extends CI_Model {
     }
 
     //================================= STATR MENU ==================================//
+    
+      public function get_menu_info($menuSelected) {
+        //die($menuSelected);
+
+        $this->db->where('menu_name', $menuSelected);
+        $query = $this->db->get('menu');
+        return $query->result();
+    }
+     public function record_count_menu() {
+        return $this->db->count_all("menu");
+    }
+
+    public function get_list_of_menu() {
+        $query = $this->db->get('menu');
+        return $query->result();
+    }
     public function get_menu() {
 
         $query = $this->db->get('menu');
@@ -208,6 +224,43 @@ class Dbdashboard extends CI_Model {
     //======================================= CLOSE NAVIGATION ==============================================//
     //====================================== START CATEGORY ================================================//
 
+    
+     public function get_categorys($id) {
+        //$id = "<>".$id;
+        //  die($id);(array('pt_id !='=> $id))
+        $this->db->where(array('id !=' => $id));
+        $query = $this->db->get('category');
+        //var_dump($query);
+        return $query->result();
+    }
+
+    public function get_coupon($limit, $start) {
+        $this->db->limit($limit, $start);
+        $query = $this->db->get('coupon');
+        return $query->result();
+    }
+
+    public function get_category_parent_id($data) {
+        $this->db->select('id');
+        $this->db->where('category_name', $data);
+        $query = $this->db->get('category');
+        return $query->result();
+    }
+
+    public function get_page_parent_id($data) {
+        $this->db->select('id');
+
+        $this->db->where('page_name', $data);
+        $query = $this->db->get('page');
+        return $query->result();
+    }
+
+  
+
+    public function delete_related_product($id) {
+        $this->db->where('category', $id);
+        $this->db->delete('product');
+    }
     public function record_count_category() {
         return $this->db->count_all("category");
     }

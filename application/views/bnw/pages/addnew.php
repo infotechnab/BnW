@@ -27,7 +27,7 @@ if ($query)
 <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
 </p>
-  <?php echo form_open_multipart('bnw/addpage');?>
+  <?php echo form_open_multipart('page/addpage');?>
   
   <p>Title:<br />
   <input type="text" name="page_name" value="<?php echo set_value('page_name'); ?>" />

@@ -95,12 +95,12 @@ foreach ($query as $data) {
    
     
 
-    <img class="srcimage" src="<?php echo base_url(); ?>content/images/<?php echo $data->media_type; ?>" id="galleryimage" />
+    <img class="srcimage" src="<?php echo base_url(); ?>content/uploads/images/<?php echo $data->media_type; ?>" id="galleryimage" />
         <div id="imagetitle"> <?php echo $data->media_name; ?>
             
         </div>
-            <a href="<?php echo base_url();?>index.php/bnw/delphoto/<?php echo $data->id; ?> " id="<?php echo $id; ?>" class="delbutton">
-        <img src="<?php echo base_url();?>content/images/delete.png" id="close"/></a>
+            <a href="<?php echo base_url();?>index.php/album/delphoto/<?php echo $data->id; ?> " id="<?php echo $id; ?>" class="delbutton">
+        <img src="<?php echo base_url();?>content/bnw/images/delete.png" id="close"/></a>
         
     
 </div> 
@@ -120,7 +120,7 @@ else
 </div>
 
 <div class="add" style="width:250px; height:100px; margin: 10px; float: left " >
-<?php echo form_open_multipart('bnw/addphoto'); ?>
+<?php echo form_open_multipart('album/addphoto'); ?>
     <input type="hidden" name="id" value="<?php echo $id; ?>" />
     <label> Image Title :</label> <br/>
     <input type="text" name="title" required />          
