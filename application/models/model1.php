@@ -103,14 +103,14 @@ class model1 extends CI_Model {
         }
         
         
-        function textBoxUpdate($name_title,$type,$gadget_update)
+        function textBoxUpdate($id,$name_title,$type,$gadget_update)
         {
              $data = array(
                 'name'=>$name_title,
                 'type'=>$type
             );
 
-            $this->db->where(array('textBox' => 'textBox','display' => $gadget_update));
+            $this->db->where('gadget_id',$id);
             $this->db->update('gadgets', $data);
 
         }

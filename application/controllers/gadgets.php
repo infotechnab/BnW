@@ -157,10 +157,10 @@ class Gadgets extends CI_Controller {
             
             $name_title = $this->input->post('name_gadget');
             $type = $this->input->post('type');
-           
+           $id = $this->input->post('gadget_id');
             $gadget_update = $this->input->post('display');
            
-            $this->model1->textBoxUpdate($name_title,$type,$gadget_update);
+            $this->model1->textBoxUpdate($id,$name_title,$type,$gadget_update);
            redirect('gadgets', 'refresh');
             } else {
             redirect('login', 'refresh');

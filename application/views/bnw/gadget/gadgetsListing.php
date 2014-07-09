@@ -412,6 +412,8 @@ $gadgetDisplay = template_function();
                                         
                                              <div id="textEdit">
                                                   <?php echo form_open('gadgets/textBoxUpdate'); ?>
+                                                 
+                                                 <input type="hidden" value="<?php echo $datas->gadget_id; ?>" name="gadget_id" />
                                                  <input type="text" value="<?php echo $datas->name; ?>" id='inputtype' name="name_gadget">
                                                  <textarea id='txtarea' name="type"><?php echo $datas->type; ?></textarea>
                                                    <input type='hidden' value='footer' name='display'>
