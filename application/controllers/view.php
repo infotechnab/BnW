@@ -44,13 +44,16 @@ public function index()
             
          
        
-         
-        $this->load->view('menuview/header',$data);
-        $this->load->view('menuview/menu',$data);
-        $this->load->view('menuview/event',$data);
-        $this->load->view('menuview/slider',$data);
-        $this->load->view('menuview/pages',$data);
-        $this->load->view('menuview/footer',$data);
+         $this->load->view('central/header');
+               
+                $this->load->view('central/main');
+                $this->load->view('central/footer');
+//        $this->load->view('menuview/header',$data);
+//        $this->load->view('menuview/menu',$data);
+//        $this->load->view('menuview/event',$data);
+//        $this->load->view('menuview/slider',$data);
+//        $this->load->view('menuview/pages',$data);
+//        $this->load->view('menuview/footer',$data);
         
     }
     
