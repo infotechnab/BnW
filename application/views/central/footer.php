@@ -3,23 +3,21 @@
 
 
 <div class="footer">
-     <?php for($i=0;$i<3;$i++) {?>
+    <?php 
+    foreach($gadget as $info) { 
+        if ($info->display == "Footer") {?>
     <div class="box footer_box"> 
-        <div class="footer_heading">HEADING</div>
+        <div class="footer_heading"><?php echo $info->name; ?></div>
         <div class="footer_content">
-            
-                FLTDSGN IS A SHOWCASE OF SOME OF 
-                THE BEST EXAMPLES OF WEB DESIGN USING 
-                THE FLAT UI STYLE/AESTHETIC. 
-
-            
+            <?php echo $info->type; ?>
         </div>
     </div>
-    <?php } ?>
+    <?php } } ?>
     <div class="clear"></div>
     
-    <div class="copyright">© 2002-2014 Bluehost Inc. All rights reserved.<br>
-*The promotional price is for the first term only and renews at the regular rate</div>
+    <div class="copyright"> &COPY; 2002-2014 Central College Inc. All rights reserved.<br>
+        Powered by <b>SALYANI</b>
+</div>
 </div> 
 
 </div>

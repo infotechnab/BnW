@@ -48,7 +48,7 @@ public function index()
                
                 $this->load->view('central/main',$data);
                 $this->load->view('central/subscribe');
-                $this->load->view('central/footer');
+                $this->load->view('central/footer',$data);
     }
     
     public function sucess_story(){
