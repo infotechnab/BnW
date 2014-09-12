@@ -4,7 +4,7 @@
           <div class="carousel-inner">  
         <?php foreach($slidequery as $sliderimg) { ?>
            <div class="item">
-             <img src="<?php echo base_url().'content/uploads/images/'.$sliderimg->slide_image; ?>" width="100%" height="100%">
+             <img src="<?php echo base_url().'content/uploads/sliderImages/'.$sliderimg->slide_image; ?>" width="100%" height="100%">
           <div class="carousel-caption">
                  <h3><?php echo $sliderimg->slide_name; ?></h3>
                  <p><?php echo $sliderimg->slide_content ?></p>

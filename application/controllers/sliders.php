@@ -51,7 +51,7 @@ class Sliders extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 
-            $config['upload_path'] = './content/uploads/images/';
+            $config['upload_path'] = './content/uploads/sliderImages/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '2000';
             $config['max_width'] = '2000';
@@ -97,6 +97,8 @@ class Sliders extends CI_Controller {
                 }
                 $halfWidth = round($fullWidth / 2);
                 $halfHeight = round($fullHeight / 2);
+                
+                
 
                 $centreX = round($width / 2);
 
@@ -111,7 +113,8 @@ class Sliders extends CI_Controller {
                 // center cropping to 200x130
                 $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
                 // saving file to uploads folder
-                $manipulator->save('./content/uploads/images/' . $_FILES['file_name']['name']);
+               
+                $manipulator->save('./content/uploads/sliderImages/' . $_FILES['file_name']['name']);
                 //cropper closed               
                 $this->dbslider->add_new_slider($slidename, $slideimage, $slidecontent);
                 $this->session->set_flashdata('message', 'One slide added sucessfully');
@@ -156,7 +159,7 @@ class Sliders extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 
-            $config['upload_path'] = './content/uploads/images/';
+            $config['upload_path'] = './content/uploads/sliderImages/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '2000';
             $config['max_width'] = '2000';

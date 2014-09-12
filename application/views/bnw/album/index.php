@@ -60,7 +60,7 @@ foreach( $result as $abc)
    
     
 
-    <img src="<?php echo base_url(); ?>content/uploads/images/<?php echo $abc->media_type; ?>" id="galleryimage" />
+    <img src="<?php echo base_url(); ?>content/uploads/sliderImages/<?php echo $abc->media_type; ?>" id="galleryimage" />
         <div id="imagetitle">
             <?php echo anchor('album/photos/'.$data->id,$data->album_name); ?> 
         </div>
