@@ -26,7 +26,7 @@ class Events extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
             $data['meta'] = $this->dbsetting->get_meta_data();
             $config = array();
-            $config["base_url"] = base_url() . "index.php/bnw/event";
+            $config["base_url"] = base_url() . "index.php/events/event";
             $config["total_rows"] = $this->dbevent->get_event();
 
             $config["per_page"] = 6;

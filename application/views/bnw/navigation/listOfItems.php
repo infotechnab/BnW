@@ -92,8 +92,6 @@ $(document).ready(function() {
     <div class="left">
        
         <div id="navigationLeftUp"> 
-         
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     
     <h3>List of all pages</h3>
         </div>
@@ -133,9 +131,7 @@ $(document).ready(function() {
    
     <div class="left">
         <div id="navigationLeftUp">    
-        
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-    </p>
+    
     <h3>List of all category</h3>
         </div>
     <?php echo form_open_multipart('dashboard/addCategoryForNavigation',array('id' => 'search', 'name'=>'search'));?>    

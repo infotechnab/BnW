@@ -5,6 +5,10 @@
      <p style="color: red;">
             <?php if(isset($token_error)){ echo $token_error;} ?>
         </p>
+         <p style="color: green;">
+            <?php if(isset($token_sucess)){ echo $token_sucess;} ?>
+        </p>
+        
     <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>

@@ -48,7 +48,7 @@ foreach ($query as $data)
 	$aid = $data->id;	
         
                   
-	$result = $this->dbmodel->get_media_image($aid); 
+	$result = $this->dbalbum->get_media_image($aid); 
         if($result)
         {
 foreach( $result as $abc)

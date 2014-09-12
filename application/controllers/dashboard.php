@@ -645,7 +645,8 @@ class Dashboard extends CI_Controller {
                 $navigationType = " ";
                 $navigation_slug = preg_replace('/\s+/', '', $navigationName);
                 $this->dbdashboard->add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menu_id);
-                $this->session->set_flashdata('message', 'One Navigation item added sucessfully');
+               // $data['token_sucess'] = ' One Navigation item added sucessfully';                
+               $this->session->set_flashdata('message', 'One Navigation item added sucessfully');
                 redirect('dashboard/navigation');
             }
             
