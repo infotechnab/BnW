@@ -46,15 +46,29 @@ public function index()
        
          $this->load->view('central/header');
                
-                $this->load->view('central/main');
+                $this->load->view('central/main',$data);
+                $this->load->view('central/subscribe');
                 $this->load->view('central/footer');
-//        $this->load->view('menuview/header',$data);
-//        $this->load->view('menuview/menu',$data);
-//        $this->load->view('menuview/event',$data);
-//        $this->load->view('menuview/slider',$data);
-//        $this->load->view('menuview/pages',$data);
-//        $this->load->view('menuview/footer',$data);
+    }
+    
+    public function sucess_story(){
+         $data['postqueryall'] = $this->viewmodel->get_post_all();
         
+         $this->load->view('central/header');
+               
+                $this->load->view('central/sucess_story',$data);
+                $this->load->view('central/footer');
+    }
+
+ public function sucess_story_ajax(){
+         //$num = $_POST['nor'];
+         //var_dump($num);
+         $data["postqueryall"] = $this->viewmodel->get_post_all();
+        // var_dump($query);
+         
+                $this->load->view('central/header');      
+                $this->load->view('central/sucess_story',$data);
+                $this->load->view('central/footer');
     }
     
     public function page($id)

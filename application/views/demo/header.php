@@ -1,10 +1,11 @@
 <html>
     <head>
+        <title>BnW - A complete CMS</title>
         <meta name="viewport" content="width-device-width" initial-scale="1.0">
-        <link rel="stylesheet" href="<?php echo base_url().'content1/style.css';?>" type="text/css"> 
-        <link rel="stylesheet" href="<?php echo base_url().'content1/bootstrap.css';?>" type="text/css"> 
+        <link rel="stylesheet" href="<?php echo base_url().'content2/style.css';?>" type="text/css"> 
+         <link rel="stylesheet" href="<?php echo base_url().'content1/bootstrap.css';?>" type="text/css"> 
        
-        <script src="<?php echo base_url().'content1/jquery.js'; ?>"></script> 
+        <script src="<?php echo base_url().'content2/jquery.js'; ?>"></script> 
     <script>
         $(document).ready(function(){
            $('.carousal').carousel({
@@ -45,8 +46,10 @@
     <body>
         <div class="containe">
         <div class="header">
-            
-                <div id="pagetop">LOGO
+            <?php foreach ($headerlogo as $hlogo){
+                $logo = $hlogo->description;
+            } ?>
+            <div id="pagetop"><img src="<?php echo base_url().'content/uploads/images/'.$logo; ?>" alt="BnW logo" style="height: 80px;" />
                
             <div id="menu">
                  
