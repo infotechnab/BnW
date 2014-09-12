@@ -34,12 +34,18 @@
                 pagetop.style.paddingTop = "4px";
                 pagetop.style.filter  = 'alpha(opacity=50)';  //IE fallback
                 menu.style.height = "40px";
+                $(".logo_").css("background","#fff");
+                $(".logo_").css("margin-top","-7px");
+                $(".logo_").css("padding", "1%")
                 $(".logo_").html("<img src=" + base_url + "content/uploads/images/Central_College_logo_.png>");
             } else {
                 pagetop.style.filter  = 'alpha(opacity=100)';  //IE fallback
                 pagetop.style.height = "130px";
                 pagetop.style.paddingTop = "10px";
                 menu.style.height = "40px"; 
+                $(".logo_").css("background","#880000");
+                $(".logo_").css("margin-top","0px");
+                $(".logo_").css("padding", "0%")
                 $(".logo_").html(" ");
             } 
         }
@@ -137,8 +143,9 @@
                   
                     <div id="menu">
                 
-                        <div class="logo_" style="float:left;width:5%;text-align: center;padding: 3px;margin: 4px;"></div>
+                        <!--<div class="logo_" style="float:left;width:5%;text-align: center;padding: 3px;margin: 4px;"></div>-->
                 <ul>
+                    <li class="logo_"></li>
                      <?php
 
             $this->load->helper('viewMenuHelper');

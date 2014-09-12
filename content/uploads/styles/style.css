@@ -38,11 +38,11 @@ html a:hover{text-decoration: none;}
 {
     position: absolute;
     bottom: 0px;
-    width:100%;
+    width:102%;
     background:#880000;
     height: 40px;
     transition: height 0.3s linear 0s;
-    margin: -9px auto 0px auto;
+    margin: -4px auto 0px -25px;
 }
 
 
@@ -51,7 +51,7 @@ ul li{
     float: left;
     display: block;
     padding: 0px 30px;
-    margin: 1% 0%;
+    margin: 0.8% 0%;
     background: #880000;
     color: white;
     font-weight: bold;
@@ -136,7 +136,7 @@ ul li:hover {
 .footer
 {
    // margin-top: 20px;
-    background: #34495e;
+    background: #000;
    padding: 5% 5% 2% 5%;
    color: #ffffff;
  //  width: 100%;
@@ -224,7 +224,7 @@ ul li:hover {
     background: #34495e;
     width: 100%;
     margin: 0% auto;
-    padding: 5%;
+    padding: 4%;
     //text-align: center;
 }
 
