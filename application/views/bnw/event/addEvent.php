@@ -1,7 +1,10 @@
 <div class="rightSide">
  <h2>Add new Event</h2>
  <hr class="hr-gradient"/>
+  <div id="sucessmsg">
   <?php echo validation_errors(); ?>
+  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+  </div>
  <link rel="stylesheet" href="<?php echo base_url().'content/uploads/scripts/date.css';?>">
 <script src="<?php echo base_url().'content/uploads/scripts/jquery-1.10.2.js'; ?>"></script>
 
@@ -11,9 +14,7 @@
 $( "#datepicker" ).datepicker();
 });
  </script>
-  <p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-    </p>
+ 
   <?php echo form_open_multipart('events/addevent');?>
       
  <p>Name:<br />
