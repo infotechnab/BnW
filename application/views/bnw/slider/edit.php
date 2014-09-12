@@ -28,7 +28,7 @@
   
   <p>Existing Slide Image : <br/>
   <div style="max-width: 150px; max-height: 150px;">
-      <img src="<?php echo base_url().'content/uploads/images/'.$slideImage ?>" style="max-width: 150px; max-height: 150px;">
+      <img src="<?php echo base_url().'content/uploads/sliderImages/'.$slideImage ?>" style="max-width: 150px; max-height: 150px;">
   </div>
   <?php } ?>
   <p> Image : <br/> <input type="file" name="file_name" id="file"/> </p>

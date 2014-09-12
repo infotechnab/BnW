@@ -1,6 +1,4 @@
-<?php
-
-if (!defined('BASEPATH'))
+<?php if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Sliders extends CI_Controller {
@@ -161,9 +159,9 @@ class Sliders extends CI_Controller {
 
             $config['upload_path'] = './content/uploads/sliderImages/';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '2000';
-            $config['max_width'] = '2000';
-            $config['max_height'] = '2000';
+           // $config['max_size'] = '2000';
+           // $config['max_width'] = '2000';
+           // $config['max_height'] = '2000';
 
             $this->load->library('upload', $config);
 
@@ -189,7 +187,43 @@ class Sliders extends CI_Controller {
                 $slidename = $this->input->post('slide_name');
                 $slideimage = $data['upload_data']['file_name'];
                 $slidecontent = $this->input->post('slide_content');
+                
+                 include_once 'Imagemanipulator.php';
 
+                $manipulator = new ImageManipulator($_FILES['file_name']['tmp_name']);
+                $width = $manipulator->getWidth();
+                $height = $manipulator->getHeight();
+
+
+                $slideWidth = $this->dbslider->get_slide_width();
+                foreach ($slideWidth as $a) {
+                    $fullWidth = $a->description;
+                }
+                $slideHeight = $this->dbslider->get_slide_height();
+                foreach ($slideHeight as $b) {
+                    $fullHeight = $b->description;
+                }
+                $halfWidth = round($fullWidth / 2);
+                $halfHeight = round($fullHeight / 2);
+                
+                
+
+                $centreX = round($width / 2);
+
+                $centreY = round($height / 2);
+
+                // our dimensions will be 200x130
+                $x1 = $centreX - $halfWidth; // 200 / 2
+                $y1 = $centreY - $halfHeight; // 130 / 2
+
+                $x2 = $centreX + $halfWidth; // 200 / 2
+                $y2 = $centreY + $halfHeight; // 130 / 2
+                // center cropping to 200x130
+                $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
+                // saving file to uploads folder
+               
+                $manipulator->save('./content/uploads/sliderImages/' . $_FILES['file_name']['name']);
+                
                 $this->dbslider->update_slider($id, $slidename, $slideimage, $slidecontent);
                 $this->session->set_flashdata('message', 'One slide modified sucessfully');
                 redirect('sliders/slider');
