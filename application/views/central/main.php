@@ -41,9 +41,7 @@
         <div class="part">
             <div class="title">Study Abroad</div>
             <div class="circle"><img src="<?php echo base_url().'content/uploads/images/facilityImg/2.png' ?>" class="img-circle"></div>
-            <div class="summary">Check the address for typing errors such as ww.example.com instead of www.example.com
-If you are unable to load any pages, check your computer's network connection.
-If your computer or network is protected by a firewall or proxy, make sure that Firefox is permitted to access the Web.</div>
+            <div class="summary">Study Abroad in the australia and get certified from the world top university.</div>
             <div class="details"><span><b>View More </b>&rsaquo;&rsaquo;</span></div>
         </div>  
        
@@ -52,18 +50,14 @@ If your computer or network is protected by a firewall or proxy, make sure that 
         <div class="part">
             <div class="title">Test Preparation</div>
             <div class="circle"><img src="<?php echo base_url().'content/uploads/images/facilityImg/3.png' ?>" class="img-circle"></div>
-            <div class="summary">Check the address for typing errors such as ww.example.com instead of www.example.com
-If you are unable to load any pages, check your computer's network connection.
-If your computer or network is protected by a firewall or proxy, make sure that Firefox is permitted to access the Web.</div>
+            <div class="summary">Test preparation of various like IELTS, SAT, GRE with heighest score and from the most experienced teacher.</div>
             <div class="details"><span><b>View More </b>&rsaquo;&rsaquo;</span></div>
         </div>
        
         <div class="part">
             <div class="title">Computer Courses</div>
             <div class="circle"><img src="<?php echo base_url().'content/uploads/images/facilityImg/4.png' ?>" class="img-circle"></div>
-            <div class="summary">Check the address for typing errors such as ww.example.com instead of www.example.com
-If you are unable to load any pages, check your computer's network connection.
-If your computer or network is protected by a firewall or proxy, make sure that Firefox is permitted to access the Web.</div>
+            <div class="summary">Get study of various courses related to computer with great pratical knowledge and offer to work in real life projects.</div>
             <div class="details"><span><b>View More </b>&rsaquo;&rsaquo;</span></div>
         </div>
        
