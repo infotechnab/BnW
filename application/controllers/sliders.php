@@ -78,7 +78,7 @@ class Sliders extends CI_Controller {
 
                 //for cropper
                 //require_once(APPPATH.'Imagemanipulator.php');
-                include_once 'Imagemanipulator.php';
+                include_once 'imagemanipulator.php';
 
                 $manipulator = new ImageManipulator($_FILES['file_name']['tmp_name']);
                 $width = $manipulator->getWidth();

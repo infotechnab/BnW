@@ -1,0 +1,70 @@
+
+    <!-- Title mustn't exceed 60 characters and it must not be too short too -->
+    <title>
+        BnW - A Complete CMS (make content editing easy)
+    </title>
+    <!-- this meta tag is used for defining view port so use it too-->
+    <meta name="viewport" content="width-device-width" initial-scale="1.0">
+<!-- description meta name shows contents within it in serach engines with the heading of your site-->
+<meta name="description" content="BnW is a complete CMS that enables you to add, edit, delete and update your website contents in easy manner. It is the quality product from Salyani Technologies, Chitwan.">
+<!-- keywords meta name is used to show the site url in search engines if the contents here matches the key word used in search -->
+<meta name="keywords" content="bnw, BnW, BNW, CMS, Cms, cms, content management system, manage web page, page management, a complete page manager, web, webpage, webpage manager, website, website editor, update website, easy website update, website upload, easy update" >
+    
+
+<!--use following lines in .htaccess file for GZIP compression in web site-->
+<IfModule mod_deflate.c>
+  # Compress HTML, CSS, JavaScript, Text, XML and fonts
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+  AddOutputFilterByType DEFLATE application/x-font
+  AddOutputFilterByType DEFLATE application/x-font-opentype
+  AddOutputFilterByType DEFLATE application/x-font-otf
+  AddOutputFilterByType DEFLATE application/x-font-truetype
+  AddOutputFilterByType DEFLATE application/x-font-ttf
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE font/opentype
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE image/x-icon
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+
+  # Remove browser bugs (only needed for really old browsers)
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+  Header append Vary User-Agent
+</IfModule>
+
+<!-- user the following code in .htaccess file for enabling browser cache -->
+<IfModule mod_expires.c>
+
+# Enable expirations
+ExpiresActive On
+
+# Default directive
+ExpiresDefault "access plus 1 month"
+
+# My favicon
+ExpiresByType image/x-icon "access plus 1 year"
+
+# Images
+ExpiresByType image/gif "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType image/jpg "access plus 1 month"
+ExpiresByType image/jpeg "access plus 1 month"
+
+# CSS
+ExpiresByType text/css "access 1 month"
+
+# Javascript
+ExpiresByType application/javascript "access plus 1 year"
+
+</IfModule>

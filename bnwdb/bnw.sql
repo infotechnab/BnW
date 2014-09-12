@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 22, 2014 at 08:38 AM
+-- Generation Time: Sep 13, 2014 at 04:49 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `bnw`
 --
-CREATE DATABASE IF NOT EXISTS `bnw` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `bnw` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `bnw`;
 
 -- --------------------------------------------------------
@@ -123,13 +123,37 @@ CREATE TABLE IF NOT EXISTS `design_setup` (
 --
 
 INSERT INTO `design_setup` (`id`, `name`, `description`) VALUES
-(0, 'header_title', 'Chitwan Gaida Lodge'),
-(1, 'header_logo', 'logofinal1.png'),
+(0, 'header_title', 'BnW - A Complete CMS'),
+(1, 'header_logo', 'bnw.png'),
 (2, 'header_description', 'Simplifying your tour'),
-(3, 'header_bgcolor', 'FFFFFF'),
+(3, 'header_bgcolor', '#000000'),
 (4, 'sidebar_title', 'Quick navigation'),
 (5, 'sidebar_description', 'changed by ramu'),
 (6, 'sidebar_bgcolor', 'FFFFFF');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE IF NOT EXISTS `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `details` varchar(500) CHARACTER SET utf8 NOT NULL,
+  `location` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `date` timestamp NULL DEFAULT NULL,
+  `image` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `title`, `details`, `location`, `date`, `image`) VALUES
+(8, 'Elephant Riding', '<br>', '', '2014-07-08 18:15:00', NULL),
+(9, 'Special Offer', '<br>', '', '2014-07-08 18:15:00', 'logofinal.png');
 
 -- --------------------------------------------------------
 
@@ -248,10 +272,10 @@ INSERT INTO `misc_setting` (`Id`, `name`, `description`) VALUES
 (0, 'show_comment', '0'),
 (1, 'show_like', '0'),
 (2, 'show_share', '0'),
-(3, 'max_post_to_show', '10'),
+(3, 'max_post_to_show', '3'),
 (4, 'max_page_to_show', '5'),
 (5, 'slide_height', '500'),
-(6, 'slide_width', '500');
+(6, 'slide_width', '1380');
 
 -- --------------------------------------------------------
 
@@ -269,30 +293,20 @@ CREATE TABLE IF NOT EXISTS `navigation` (
   `menu_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_navigation` (`menu_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `navigation`
 --
 
 INSERT INTO `navigation` (`id`, `navigation_name`, `navigation_link`, `parent_id`, `navigation_type`, `navigation_slug`, `menu_id`) VALUES
-(28, 'Why Us edited from changed navigation', NULL, NULL, NULL, NULL, NULL),
 (29, 'Contact Us', 'page/4', 0, 'page', 'ContactUs', 4),
 (30, 'Gallery', 'photos', 0, ' ', 'Gallery', 4),
 (33, 'dsdadasd changed', 'page/5', 30, 'page', 'dsdadasd', NULL),
-(34, 'asdsaddsad', 'page/6', 30, 'page', 'asdsaddsad', NULL),
 (35, 'Why Us', 'page/3', 0, 'page', 'WhyUs', NULL),
 (36, 'Contact Us', 'page/4', 0, 'page', 'ContactUs', NULL),
 (37, 'Contact Us hjgjhgjhg', 'page/4', 0, 'page', 'ContactUs', NULL),
-(38, 'dsdadasd', 'page/5', 0, 'page', 'dsdadasd', NULL),
-(39, 'asdasdsa', 'category/2', 0, 'category', 'asdasdsa', NULL),
-(40, 'sdfvcv', 'category/5', 0, 'category', 'sdfvcv', NULL),
-(43, 'sdsadadsdddd', 'page/7', 42, 'page', 'sdsadadsdddd', 4),
-(44, 'axsas', 'page/8', 42, 'page', 'axsas', 4),
-(45, 'ssacdsfrgv', 'page/9', 42, 'page', 'ssacdsfrgv', 4),
-(46, 'axsas', 'page/8', NULL, 'page', 'axsas', 6),
-(47, 'Contact Us also edited', 'page/4', NULL, 'page', 'ContactUsalsoedited', 5),
-(48, 'sadsadasdas', 'category/3', 0, 'category', 'sadsadasdas', NULL);
+(38, 'dsdadasd', 'page/5', 0, 'page', 'dsdadasd', NULL);
 
 -- --------------------------------------------------------
 
@@ -317,19 +331,20 @@ CREATE TABLE IF NOT EXISTS `page` (
   `allow_like` tinyint(1) NOT NULL,
   `allow_share` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `page`
 --
 
 INSERT INTO `page` (`id`, `page_name`, `page_content`, `page_author_id`, `page_date`, `page_summary`, `page_status`, `page_modifed_date`, `page_parent`, `page_order`, `page_type`, `page_tags`, `allow_comment`, `allow_like`, `allow_share`) VALUES
-(4, 'Contact Us also edited', '      Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Facebook Platform features just download and \r\ninstall the SDK and start hacking.', 10, '2014-03-14 04:44:49', '      Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all th', '0', '0000-00-00 00:00:00', 0, 0, '', '0', 0, 0, 0),
+(4, 'Contact Us also edited', '      Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all the Facebook Platform features just download and \r\ninstall the SDK and start hacking.', 10, '2014-03-14 04:44:49', '      Every SDK comes bundled with a couple of sample apps. If you want to \r\nlearn how to use all th', '0', '0000-00-00 00:00:00', 0, 0, '', '0', 0, 1, 0),
 (5, 'dsdadasd', 'dasddsad<br>', 10, '2014-03-18 08:28:40', 'dasddsad<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
 (6, 'asdsaddsad', 'dsadaddds<br>', 10, '2014-03-18 08:28:48', 'dsadaddds<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
-(7, 'sdsadadsdddd', 'asdasdasdsasad<br>', 10, '2014-03-18 08:28:56', 'asdasdasdsasad<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
-(8, 'axsas', 'saxasa<br>', 10, '2014-03-18 08:42:00', 'saxasa<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
-(9, 'ssacdsfrgv', 'bgtrgtgdsfcqw<br>', 10, '2014-03-18 08:42:09', 'bgtrgtgdsfcqw<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0);
+(7, 'jksdfjsjl', 'sldkfsdjf<br>', 10, '2014-09-12 05:47:54', 'sldkfsdjf<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
+(8, 'kshdlkfhsd q', 'lsjkf sljs dlf<br>', 10, '2014-09-12 05:48:08', 'lsjkf sljs dlf<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
+(9, 'lskjdlfjsd', '<br>', 10, '2014-09-12 05:48:19', '<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0),
+(10, 'skdjhskdhfsd', '<br>', 10, '2014-09-12 05:48:27', '<br>', '1', '0000-00-00 00:00:00', 0, 0, '0', '0', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -352,6 +367,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `allow_comment` tinyint(1) NOT NULL,
   `allow_like` tinyint(1) NOT NULL,
   `allow_share` tinyint(1) NOT NULL,
+  `image` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_post` (`post_category`),
   KEY `idx_post_0` (`post_author_id`)
@@ -361,13 +377,10 @@ CREATE TABLE IF NOT EXISTS `post` (
 -- Dumping data for table `post`
 --
 
-INSERT INTO `post` (`id`, `post_title`, `post_author_id`, `post_date`, `post_summary`, `post_status`, `comment_status`, `post_modified_date`, `post_tags`, `post_content`, `post_category`, `allow_comment`, `allow_like`, `allow_share`) VALUES
-(1, 'Earn $100 in one day', 10, '2014-03-20 06:05:22', '                              Entrepreneurs are a different kind of people. They are never \r\ncomplet', '0', 2, NULL, '', '                              Entrepreneurs are a different kind of people. They are never \r\ncompletely satisfied with the normal, acceptable lifestyle commonly \r\ncalled “successful” by the rest of society. This traditional “success” \r\noften includes a good job, a nice house with a 30-year mortgage, a \r\ncouple of nice cars (on which it’s considered OK to owe a lot of money),\r\n a few weeks of vacation every year from the job you don’t really enjoy,\r\n etc.<br>If you’re reading this blog, you’re probably not content with that kind of success.', 7, 0, 1, 0),
-(2, 'how can you freelance', 10, '2014-03-20 06:07:11', '                              I’ve been getting a lot of emails lately from people who are looking', '0', 2, NULL, '', '                              I’ve been getting a lot of emails lately from people who are looking \r\nto start working for themselves. &nbsp;Whether it’s a small business on \r\nthe side, or they’re looking to create a full time location independent \r\nbusiness, it’s obvious there’s a lot of entrepreneurial spirit out \r\nthere.<div absolute;="" top:="" -1999px;="" left:="" -1988px;"="" id="stcpDiv">\r\n<p>Along with questions about building a business, I’m asked frequently what business <em>I </em>run.</p>\r\n<p>If we’re going to start getting real about creating a location \r\nindependent income, I’m going to have to build a little bit of \r\ncredibilty.</p>\r\n<p>So here’s what I do:</p>\r\n<h3><em><strong>I’m an SEO Freelancer (for lack of a better term).</strong></em></h3>\r\n<p>For those of you who don’t know what SEO means, it stands for Search \r\nEngine Optimization. Essentially it’s my job to make sure my clients \r\nrank as highly as possible in Google (or other search engines) for the \r\nkey terms that we’ve decided are most important to their success.</p> - \r\nSee more at: \r\nfile:///G:/websites/How to Become an SEO Freelancer in 48 Hours — Location 180 _ Build a Business, Live Anywhere, Achieve Free.</div><div absolute;="" top:="" -1999px;="" left:="" -1988px;"="" id="stcpDiv"><p><br></p><p><br></p><br></div>', 7, 0, 1, 1),
-(3, 'Post allowing comment', 10, '2014-03-26 06:35:17', '                                          duifhioakfkdopfuijcnydsbc wdjiofj whoidjc jwpos ciwqsf oiw', '0', 2, NULL, '', '                                          duifhioakfkdopfuijcnydsbc wdjiofj whoidjc jwpos ciwqsf oiwnsdc iwn cdoiqwos hsfoiwejsf coiwbfu d qwhoifbv eifwed wd woijdoqwf vi2whdiwe qwdb weso9jmqw<br>', 7, 1, 0, 1),
-(4, 'ijaIKJSMa changed', 10, '2014-04-04 09:32:03', '      sdajsdksal<br>', '0', 2, NULL, '', '      sdajsdksal<br>', 7, 0, 0, 0),
-(5, 'dsadasdsa', 10, '2014-04-04 09:32:12', 'dsadasdass<br>', '1', 1, NULL, '', 'dsadasdass<br>', 1, 0, 0, 0),
-(6, 'asdasdsa', 10, '2014-04-04 09:32:20', 'sadasdsadasdsa<br>', '1', 1, NULL, '', 'sadasdsadasdsa<br>', 1, 0, 0, 0);
+INSERT INTO `post` (`id`, `post_title`, `post_author_id`, `post_date`, `post_summary`, `post_status`, `comment_status`, `post_modified_date`, `post_tags`, `post_content`, `post_category`, `allow_comment`, `allow_like`, `allow_share`, `image`) VALUES
+(1, 'Earn $100 in one day', 10, '2014-03-20 06:05:22', '                                    Entrepreneurs are a different kind of people. They are never \r\nc', '0', 2, NULL, '', '                                    Entrepreneurs are a different kind of people. They are never \r\ncompletely satisfied with the normal, acceptable lifestyle commonly \r\ncalled “successful” by the rest of society. This traditional “success” \r\noften includes a good job, a nice house with a 30-year mortgage, a \r\ncouple of nice cars (on which it’s considered OK to owe a lot of money),\r\n a few weeks of vacation every year from the job you don’t really enjoy,\r\n etc.<br>If you’re reading this blog, you’re probably not content with that kind of success.', 7, 0, 1, 0, 'easy4.jpg'),
+(2, 'how can you freelance', 10, '2014-03-20 06:07:11', '                                    I’ve been getting a lot of emails lately from people who are l', '0', 2, NULL, '', '                                    I’ve been getting a lot of emails lately from people who are looking \r\nto start working for themselves. &nbsp;Whether it’s a small business on \r\nthe side, or they’re looking to create a full time location independent \r\nbusiness, it’s obvious there’s a lot of entrepreneurial spirit out \r\nthere.<div absolute;="" top:="" -1999px;="" left:="" -1988px;"="" id="stcpDiv">\r\n<p>Along with questions about building a business, I’m asked frequently what business <em>I </em>run.</p>\r\n<p>If we’re going to start getting real about creating a location \r\nindependent income, I’m going to have to build a little bit of \r\ncredibilty.</p>\r\n<p>So here’s what I do:</p>\r\n<h3><em><strong>I’m an SEO Freelancer (for lack of a better term).</strong></em></h3>\r\n<p>For those of you who don’t know what SEO means, it stands for Search \r\nEngine Optimization. Essentially it’s my job to make sure my clients \r\nrank as highly as possible in Google (or other search engines) for the \r\nkey terms that we’ve decided are most important to their success.</p> - \r\nSee more at: \r\nfile:///G:/websites/How to Become an SEO Freelancer in 48 Hours — Location 180 _ Build a Business, Live Anywhere, Achieve Free.</div><div absolute;="" top:="" -1999px;="" left:="" -1988px;"="" id="stcpDiv"><p><br></p><p><br></p><br></div>', 7, 0, 1, 1, 'easy3.jpg'),
+(6, 'new data', 10, '2014-04-04 09:32:20', '            sadasdsadasdsa<br>', '0', 2, NULL, '', '            sadasdsadasdsa<br>', 7, 1, 1, 1, 'easy2.jpg');
 
 -- --------------------------------------------------------
 
@@ -381,7 +394,15 @@ CREATE TABLE IF NOT EXISTS `slide` (
   `slide_image` varchar(100) NOT NULL DEFAULT 'Required',
   `slide_content` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `slide`
+--
+
+INSERT INTO `slide` (`id`, `slide_name`, `slide_image`, `slide_content`) VALUES
+(2, 'Codeigniter - The PHP framework', '282_codeigniter-wallpaper.jpg', ''),
+(3, 'slide', 'Codeigniter1.jpg', '');
 
 -- --------------------------------------------------------
 

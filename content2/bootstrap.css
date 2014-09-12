@@ -5971,7 +5971,7 @@ a.badge:focus {
 
 .carousel {
   position: relative;
-  margin-bottom: 38px;
+  margin-bottom: 20px;
   line-height: 1;
 }
 
@@ -6101,7 +6101,6 @@ a.badge:focus {
   padding: 15px;
   background: #333333;
   background: rgba(0, 0, 0, 0.75);
-  width: 300px;
 }
 
 .carousel-caption h4,
