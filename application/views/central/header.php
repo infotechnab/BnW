@@ -135,8 +135,14 @@
         <div class="header">
             
             <div id="pagetop">
+                <?php foreach ($headerlogo as $header) {
+                    ?>
+    
                 
-                        <img src="<?php echo base_url().'content/uploads/images/Central_College_color.png'; ?>">
+                <img src="<?php echo base_url().'content/uploads/images/'.$header->description ; ?>" style="height: 90px;" />
+               
+                <?php } ?>
+<!--                        <img src="<?php //echo base_url().'content/uploads/images/Central_College_color.png'; ?>">-->
                      
                         
                     <div class="fb-like" data-href="<?php echo base_url(); ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>

@@ -44,7 +44,7 @@ public function index()
             
          
        
-         $this->load->view('central/header');
+         $this->load->view('central/header',$data);
                
                 $this->load->view('central/main',$data);
                 $this->load->view('central/subscribe');
