@@ -12,7 +12,7 @@ if ($query)
  }
  ?>
     <div class="titleArea">
-     <h2>Add new offer</h2>
+     <h2>Add new Post</h2>
 <hr class="hr-gradient"/>   
     </div>
     

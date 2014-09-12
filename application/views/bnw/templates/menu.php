@@ -26,10 +26,10 @@
                             <li><?php echo anchor('events/addevent', 'Add New Event') ?></li>
                         </ul>
                     </li>
-                    <li class="mainMenuItem"><a href="#">Offers</a>
+                    <li class="mainMenuItem"><a href="#">Posts</a>
                         <ul class="subMenu">
-                            <li><?php echo anchor('offers/posts', 'All Offers') ?></li>
-                            <li><?php echo anchor('offers/addpost', 'Add New Offer') ?></li>
+                            <li><?php echo anchor('offers/posts', 'All Posts') ?></li>
+                            <li><?php echo anchor('offers/addpost', 'Add New Post') ?></li>
                         </ul>
                     </li>
                     <li class="mainMenuItem"><a href="#">Pages</a>

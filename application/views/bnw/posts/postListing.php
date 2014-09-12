@@ -4,7 +4,7 @@
     <p id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
     </p>
-    <h2>All Offer</h2>
+    <h2>All Posts</h2>
      <hr class="hr-gradient"/>
     
     
