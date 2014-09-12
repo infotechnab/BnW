@@ -14,6 +14,7 @@ class Events extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
+       
     }
 
     public function index() {
@@ -174,13 +175,13 @@ class Events extends CI_Controller {
     function addevent() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-            $config['upload_path'] = './content/uploads/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
-            $this->load->library('upload', $config);
-
+//            $config['upload_path'] = './content/uploads/images/';
+//            $config['allowed_types'] = 'gif|jpg|png';
+           // $config['max_size'] = '500';
+           // $config['max_width'] = '1024';
+           // $config['max_height'] = '768';
+            $this->load->library('upload');
+             
 
 
             $data["links"] = $this->pagination->create_links();
@@ -190,6 +191,8 @@ class Events extends CI_Controller {
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
             $this->load->helper('form');
+             //$this->load->library('upload');
+          
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('event_name', 'Name', 'required|xss_clean|max_length[200]');
 
@@ -197,12 +200,48 @@ class Events extends CI_Controller {
 
                 $this->load->view('bnw/event/addEvent');
             } else {
-
+//                 if (!empty($_FILES['file']['name'])) {
+//                    // Specify configuration for File 1
+//                    $config['upload_path'] = 'content/';
+//                    $config['allowed_types'] = 'gif|jpg|png';
+//
+//                   
+//                    // Initialize config for File 1
+//                    $this->upload->initialize($config);
+//
+//                    // Upload file 1
+//                    if ($this->upload->do_upload('file')) {
+//                        $data = $this->upload->data();
+//                        $img_name = $data['file_name'];
+//                        $name = $img_name;
+//                       
+//
+//                        $image_thumb = dirname('thumb_' . $name . '/demo');
+//
+//                        $config['image_library'] = 'gd2';
+//                        $config['source_image'] = 'content/' . $img_name;
+//                        $config['new_image'] = $image_thumb;
+//                        $config['maintain_ratio'] = TRUE;
+//                        $config['width'] = 100;
+//                        $config['height'] = 75;
+//
+//                        $this->load->library('image_lib', $config);
+//
+//                        $this->image_lib->resize();
+//                    } else {
+//                        echo $this->upload->display_errors();
+//                        die('error');
+//                    }
+                $config['upload_path'] = './content/uploads/images/';
+                         $config['allowed_types'] = 'gif|jpg|png';
+                         $this->upload->initialize($config); 
                 if ($_FILES && $_FILES['file']['name'] !== "") {
                     if (!$this->upload->do_upload('file')) {
                         $error = array('error' => $this->upload->display_errors('file'));
                         $this->load->view('bnw/event/addEvent', $error);
+                        die('');
                     } else {
+                                             
                         include_once 'imagemanipulator.php';
 
                         $manipulator = new ImageManipulator($_FILES['file']['tmp_name']);
@@ -223,8 +262,27 @@ class Events extends CI_Controller {
                         $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
                         // saving file to uploads folder
                         $manipulator->save('./content/uploads/images/' . $_FILES['file']['name']);
-                        $data = array('upload_data' => $this->upload->data('file'));
-                        $image = $data['upload_data']['file_name'];
+                      //  $data = array('upload_data' => $this->upload->data('file'));
+                        $this->upload->do_upload('file');
+                         $data = $this->upload->data();
+                       // $image = $data['upload_data']['file_name'];
+                        $img_name = $data['file_name'];
+                        $name = $img_name;
+                       // var_dump($img_name);
+                       // die('');
+
+                        $image_thumb = dirname('thumb_' . $name . '/demo');
+
+                        $config['image_library'] = 'gd2';
+                        $config['source_image'] = 'content/' . $img_name;
+                        $config['new_image'] = $image_thumb;
+                        $config['maintain_ratio'] = TRUE;
+                        $config['width'] = 100;
+                        $config['height'] = 75;
+
+                        $this->load->library('image_lib', $config);
+
+                        $this->image_lib->resize();
                         $name = $this->input->post('event_name');
                         $detail = $this->input->post('detail');
                         $location = $this->input->post('location');
