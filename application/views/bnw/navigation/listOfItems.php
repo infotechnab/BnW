@@ -87,6 +87,7 @@ $(document).ready(function() {
     </div>
       <p style="color: red;">
             <?php if(isset($token_error)){ echo $token_error;} ?>
+            <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
         </p>
     <div class="forLeft">
     <div class="left">
@@ -173,7 +174,7 @@ $(document).ready(function() {
       
       <div class="left">
         <div id="customLinkLeftUp">
-            <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+          
             <h3>Create Custom Menu Link</h3>
             
         </div>
