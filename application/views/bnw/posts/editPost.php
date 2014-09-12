@@ -36,7 +36,7 @@ if ($miscSetting)
         }
     ?>
    <div class="titleArea">
-     <h2>Edit Offer/ <?php echo $post_title; ?></h2>
+     <h2>Edit Post/ <?php echo $post_title; ?></h2>
 <hr class="hr-gradient"/>   
     </div> 
     <div id="forLeftPage">
