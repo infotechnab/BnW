@@ -2,6 +2,7 @@
 <div class="clear"></div>
 
 
+
 <div class="footer">
     <?php 
     foreach($gadget as $info) { 
@@ -18,6 +19,7 @@
     <div class="copyright"> &COPY; 2002-2014 Central College Inc. All rights reserved.<br>
         Powered by <b>SALYANI</b>
 </div>
+    
 </div> 
 
 </div>

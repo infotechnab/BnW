@@ -6,7 +6,7 @@
            <div class="item">
              <img src="<?php echo base_url().'content/uploads/sliderImages/'.$sliderimg->slide_image; ?>" width="100%" height="100%">
           <div class="carousel-caption">
-                 <h3><?php echo $sliderimg->slide_name; ?></h3>
+              <h3 style="color:#fff;"><?php echo $sliderimg->slide_name; ?></h3>
                  <p><?php echo $sliderimg->slide_content ?></p>
              </div>
          </div>
@@ -34,27 +34,47 @@
     
     
     
-    <div class="arrow1"></div> 
+    
  
    <div class="content">
-      
-   <?php for($i=0;$i<3;$i++) {?>
+  
         <div class="part">
-            <div class="title">Title</div>
-            <img src="<?php echo base_url().'content/uploads/images/facilityImg/2.png' ?>" class="img-circle">
+            <div class="title">Study Abroad</div>
+            <div class="circle"><img src="<?php echo base_url().'content/uploads/images/facilityImg/2.png' ?>" class="img-circle"></div>
             <div class="summary">Check the address for typing errors such as ww.example.com instead of www.example.com
 If you are unable to load any pages, check your computer's network connection.
 If your computer or network is protected by a firewall or proxy, make sure that Firefox is permitted to access the Web.</div>
             <div class="details"><span><b>View More </b>&rsaquo;&rsaquo;</span></div>
         </div>  
        
-   <?php } ?>
+  
+       
+        <div class="part">
+            <div class="title">Test Preparation</div>
+            <div class="circle"><img src="<?php echo base_url().'content/uploads/images/facilityImg/3.png' ?>" class="img-circle"></div>
+            <div class="summary">Check the address for typing errors such as ww.example.com instead of www.example.com
+If you are unable to load any pages, check your computer's network connection.
+If your computer or network is protected by a firewall or proxy, make sure that Firefox is permitted to access the Web.</div>
+            <div class="details"><span><b>View More </b>&rsaquo;&rsaquo;</span></div>
+        </div>
+       
+        <div class="part">
+            <div class="title">Computer Courses</div>
+            <div class="circle"><img src="<?php echo base_url().'content/uploads/images/facilityImg/4.png' ?>" class="img-circle"></div>
+            <div class="summary">Check the address for typing errors such as ww.example.com instead of www.example.com
+If you are unable to load any pages, check your computer's network connection.
+If your computer or network is protected by a firewall or proxy, make sure that Firefox is permitted to access the Web.</div>
+            <div class="details"><span><b>View More </b>&rsaquo;&rsaquo;</span></div>
+        </div>
+       
+       
+       
     </div>
     <div class="clear"></div>
    
    
     
-    
+    <div class="arrow1"></div> 
     
     <!--sucess story-->
     <div class="sucess-story">
@@ -69,7 +89,7 @@ If your computer or network is protected by a firewall or proxy, make sure that 
         <?php } ?>
     <div class="clear"></div>
     <div style="font-size: 16px;color: #fff;text-align: center;color:#fff;">
-        <!--<a href="<?php echo base_url().'index.php/view/sucess_story';?>" style="color: #fff;">-->
+        <a href="<?php echo base_url().'index.php/view/sucess_story';?>" style="color: #fff;">
             <b>Sell All &rsaquo;&rsaquo;</b>
     <!--</a>-->
     </div>

@@ -53,8 +53,9 @@ public function index()
     
     public function sucess_story(){
          $data['postqueryall'] = $this->viewmodel->get_post_all();
-        
-         $this->load->view('central/header');
+          $data['gadget'] = $this->model1->get_gaget();    
+           $data['headerlogo']= $this->viewmodel->get_header_logo();//for all gadget
+         $this->load->view('central/header',$data);
                
                 $this->load->view('central/sucess_story',$data);
                 $this->load->view('central/footer');
@@ -63,10 +64,12 @@ public function index()
  public function sucess_story_ajax(){
          //$num = $_POST['nor'];
          //var_dump($num);
+      $data['headerlogo']= $this->viewmodel->get_header_logo();
+       $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
          $data["postqueryall"] = $this->viewmodel->get_post_all();
         // var_dump($query);
          
-                $this->load->view('central/header');      
+                $this->load->view('central/header',$data);      
                 $this->load->view('central/sucess_story',$data);
                 $this->load->view('central/footer');
     }
