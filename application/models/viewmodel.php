@@ -45,6 +45,17 @@ class Viewmodel extends CI_Model
         return $query->result();  
     }
     
+    public function get_post_all()
+    {
+        
+        $this->db->select("image,post_title,post_content");
+		$this->db->from('post');
+               // $this->db->group_by(RAND());
+              //  $this->db->limit($limit);
+		$query = $this->db->get();		
+		return $query->result();
+    }
+    
     public function recentpost_get_post($post)
     {
       

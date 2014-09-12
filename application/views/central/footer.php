@@ -1,3 +1,6 @@
+</div>  <!--close of main div-->
+<div class="clear"></div>
+<div class="arrow"></div>
 
 <div class="footer">
      <?php for($i=0;$i<3;$i++) {?>
