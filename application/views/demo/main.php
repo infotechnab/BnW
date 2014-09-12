@@ -5,27 +5,27 @@
 <div class="main">
   
  
-    <div id="myCarousel" class="carousel slide" style="margin-top: 10px;">
+    <div id="myCarousel" class="carousel slide">
             
 
           <div class="carousel-inner">  
         
          <div class="active item">
-             <img src="<?php echo base_url().'content1/images/2.jpg'; ?>">
+             <img src="<?php echo base_url().'content2/images/mvc_role_diagram.png'; ?>">
              <div class="carousel-caption">
                  <h3>Caption1</h3>
                  <p>This is just description</p>
              </div>
          </div>
          <div class="item">
-             <img src="<?php echo base_url().'content1/images/3.jpg'; ?>">
+             <img src="<?php echo base_url().'content2/images/3.jpg'; ?>">
               <div class="carousel-caption">
                  <h3>Caption2</h3>
                  <p>This is just description.This is just description</p>
              </div>
          </div>
          <div class="item">
-             <img src="<?php echo base_url().'content1/images/4.jpg'; ?>">
+             <img src="<?php echo base_url().'content2/images/4.jpg'; ?>">
           <div class="carousel-caption">
                  <h3>Caption3</h3>
                  <p>This is just description.This is just description.This is just description</p>
@@ -38,7 +38,7 @@
 
 
     
-    <script src="<?php echo base_url().'content1/carousel.js'; ?>"></script>
+    <script src="<?php echo base_url().'content2/carousel.js'; ?>"></script>
     
   
     
