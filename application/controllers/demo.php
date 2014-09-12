@@ -22,6 +22,7 @@ public function index()
         $data['headerColor']= $this->viewmodel->get_header_color();
          $data['sidebarColor']= $this->viewmodel->get_sidebar_color();
         $data['headerlogo']= $this->viewmodel->get_header_logo();
+      
         $data['allpostquery'] = $this->viewmodel->get_all_post();
       
         $data['meta'] = $this->dbsetting->get_meta_data();
@@ -44,10 +45,10 @@ public function index()
             
          
        
-         $this->load->view('central/header');
+                $this->load->view('demo/header', $data);
                
-                $this->load->view('demo/main');
-                $this->load->view('demo/footer');
+                //$this->load->view('demo/main');
+                //$this->load->view('demo/footer');
 //        $this->load->view('menuview/header',$data);
 //        $this->load->view('menuview/menu',$data);
 //        $this->load->view('menuview/event',$data);
