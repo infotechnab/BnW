@@ -2,7 +2,7 @@ html, body{
     font-family: calibri;
    margin: 0%;
    padding: 0%;
-   background: #fff;
+   //background: #fff;
    overflow-x: hidden;
 }
 #full
@@ -14,8 +14,7 @@ html, body{
 #demo-top-header-logo
 {
     height: 70px;
-    position: fixed;
-    z-index: 99;
+   
     width: 100%;
     //background-color: #000;
 }
@@ -32,7 +31,16 @@ html, body{
     float: left;
     padding: 0% 0% 0% 5%;
 }
-
+#top-image-mvc-info
+{
+    width: 100%;
+    background: url(http://localhost/bnw/content/uploads/images/mvc_role_diagram.png);
+    height: 400px;
+    //padding: 0% 10% 0% 10%;
+    background-size: contain;
+    background-size: cover;
+    
+}
 
 
 

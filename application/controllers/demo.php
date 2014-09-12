@@ -47,8 +47,8 @@ public function index()
        
                 $this->load->view('demo/header', $data);
                
-                //$this->load->view('demo/main');
-                //$this->load->view('demo/footer');
+                $this->load->view('demo/main');
+                $this->load->view('demo/footer');
 //        $this->load->view('menuview/header',$data);
 //        $this->load->view('menuview/menu',$data);
 //        $this->load->view('menuview/event',$data);

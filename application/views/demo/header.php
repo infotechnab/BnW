@@ -3,7 +3,7 @@
         <title>BnW - A complete CMS</title>
         <meta name="viewport" content="width-device-width" initial-scale="1.0">
         <link rel="stylesheet" href="<?php echo base_url().'content2/style.css';?>" type="text/css"> 
-       
+         <link rel="stylesheet" href="<?php echo base_url().'content1/bootstrap.css';?>" type="text/css"> 
        
         <script src="<?php echo base_url().'content2/jquery.js'; ?>"></script> 
     <script>
@@ -44,19 +44,34 @@
     </script>
     </head>
     <body>
-        <div id="full">
-            <div id="demo-top-header-logo">
-                <div id="left-logo-image-on-header">
-                    <?php foreach($headerlogo as $data);{
-                        $logo = $data->description;
-                    } ?>
-                    <img src="<?php echo base_url().'content/uploads/images/'.$logo; ?>" width="50" alt="BnW logo" />
+        <div class="containe">
+        <div class="header">
+            <?php foreach ($headerlogo as $hlogo){
+                $logo = $hlogo->description;
+            } ?>
+            <div id="pagetop"><img src="<?php echo base_url().'content/uploads/images/'.$logo; ?>" alt="BnW logo" style="height: 80px;" />
+               
+            <div id="menu">
+                 
+                <div>
+                <ul>
+                    <li><a href=#>Home</a></li>
+                    <li><a href=#>Home</a></li>
+                    <li><a href=#>Home</a></li>
+                    <li><a href=#>Home</a></li>
+                    <li><a href=#>Home</a></li>
+                    <li><a href=#>Home</a></li>
+                    <li><a href=#>Home</a></li>
+                    <li id="fb"><img src="<?php echo base_url().'content1/images/fb.png';?>" height="42" width="42" style="float: left;"></li>
+                </ul>
                 </div>
-                <div id="navigation-items-on-header">
-                    
-                </div>
-                
-            </div> 
+               
+            </div>
+            </div>
+              
+            
+                  
         </div>
-    </body>
-</html>
+            
+        
+    
