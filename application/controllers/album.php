@@ -427,7 +427,7 @@ class Album extends CI_Controller {
 
             $this->dbalbum->delete_media($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('bnw/media');
+            redirect('album/media');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
