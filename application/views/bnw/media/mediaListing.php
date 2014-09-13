@@ -32,7 +32,7 @@
             <td><?php echo $data->media_name ?></td>
             <td><?php echo $data->media_type ?></td>
             
-            <td> <img src='<?php echo base_url().'content/uploads/images/'.$data->media_type; ?>' style="height: 60px; width: 60px"/> </td>
+            <td> <img src='<?php echo base_url().'content/uploads/images/thumb_'.$data->media_type; ?>' style="height: 60px; width: 60px"/> </td>
             <td><?php echo anchor('album/editmedia/'.$data->id,'Edit'); ?> / 
             <?php echo anchor('album/delmedia/'.$data->id,'Delete'); ?></td>
         </tr>

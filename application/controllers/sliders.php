@@ -71,6 +71,7 @@ class Sliders extends CI_Controller {
             } else {
 
                 //if valid
+                 
                 $data = array('upload_data' => $this->upload->data('file'));
                 $slidename = $this->input->post('slide_name');
                 $slideimage = $data['upload_data']['file_name'];
@@ -113,7 +114,20 @@ class Sliders extends CI_Controller {
                 // saving file to uploads folder
                
                 $manipulator->save('./content/uploads/sliderImages/' . $_FILES['file_name']['name']);
-                //cropper closed               
+                //cropper closed  
+                $data = $this->upload->data();
+                        $image = $data['file_name'];
+                       // die($image);
+                       // $imgname = $img_name;
+                        $image_thumb = dirname('thumb_' . $image . '/demo');
+                        $config['image_library'] = 'gd2';
+                        $config['source_image'] = './content/uploads/sliderImages/' . $image;
+                        $config['new_image'] = $image_thumb;
+                        $config['maintain_ratio'] = TRUE;
+                        $config['width'] = 100;
+                        $config['height'] = 75;
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
                 $this->dbslider->add_new_slider($slidename, $slideimage, $slidecontent);
                 $this->session->set_flashdata('message', 'One slide added sucessfully');
                 redirect('sliders/slider');
@@ -223,7 +237,19 @@ class Sliders extends CI_Controller {
                 // saving file to uploads folder
                
                 $manipulator->save('./content/uploads/sliderImages/' . $_FILES['file_name']['name']);
-                
+                 $data = $this->upload->data();
+                        $image = $data['file_name'];
+                       // die($image);
+                       // $imgname = $img_name;
+                        $image_thumb = dirname('thumb_' . $image . '/demo');
+                        $config['image_library'] = 'gd2';
+                        $config['source_image'] = './content/uploads/sliderImages/' . $image;
+                        $config['new_image'] = $image_thumb;
+                        $config['maintain_ratio'] = TRUE;
+                        $config['width'] = 100;
+                        $config['height'] = 75;
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
                 $this->dbslider->update_slider($id, $slidename, $slideimage, $slidecontent);
                 $this->session->set_flashdata('message', 'One slide modified sucessfully');
                 redirect('sliders/slider');
@@ -240,7 +266,8 @@ class Sliders extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
             $a = $_GET['image'];
 
-            unlink('./content/uploads/images/' . $a);
+            unlink('./content/uploads/sliderImages/' . $a);
+            unlink('./content/uploads/sliderImages/thumb_' . $a);
 
 
             $this->dbslider->delete_slider($a);

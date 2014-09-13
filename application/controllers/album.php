@@ -318,6 +318,18 @@ class Album extends CI_Controller {
             } else {
 
                 //if valid
+                         $data = $this->upload->data();
+                        $image = $data['file_name'];
+                       // $imgname = $img_name;
+                        $image_thumb = dirname('thumb_' . $image . '/demo');
+                        $config['image_library'] = 'gd2';
+                        $config['source_image'] = './content/uploads/images/' . $image;
+                        $config['new_image'] = $image_thumb;
+                        $config['maintain_ratio'] = TRUE;
+                        $config['width'] = 100;
+                        $config['height'] = 75;
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
                 $data = array('upload_data' => $this->upload->data('file'));
                 $medianame = $this->input->post('media_name');
                 $mediatype = $data['upload_data']['file_name'];
@@ -426,6 +438,7 @@ class Album extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
             $id = $_GET['image'];
             unlink('./content/uploads/images/' . $id);
+            unlink('./content/uploads/images/thumb_' . $id);
 
             $this->dbalbum->delete_media($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
