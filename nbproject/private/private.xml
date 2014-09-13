@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/BnW/application/models/viewmodel.php</file>
+            <file>file:/C:/wamp/www/BnW/application/views/central/subscribe.php</file>
+            <file>file:/C:/wamp/www/BnW/application/controllers/demo.php</file>
             <file>file:/C:/wamp/www/BnW/content/uploads/styles/style.css</file>
-            <file>file:/C:/wamp/www/BnW/application/controllers/view.php</file>
             <file>file:/C:/wamp/www/BnW/application/views/central/sucess_story.php</file>
-            <file>file:/C:/wamp/www/BnW/application/views/central/footer.php</file>
+            <file>file:/C:/wamp/www/BnW/content2/style.css</file>
+            <file>file:/C:/wamp/www/BnW/application/views/demo/header.php</file>
             <file>file:/C:/wamp/www/BnW/application/views/central/header.php</file>
-            <file>file:/C:/wamp/www/BnW/application/views/central/main.php</file>
+            <file>file:/C:/wamp/www/BnW/application/views/demo/main.php</file>
         </group>
     </open-files>
 </project-private>
