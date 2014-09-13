@@ -85,6 +85,39 @@ class Offers extends CI_Controller {
                         $this->load->view('bnw/posts/addNewPost', $error);
                     } else {
                         // die('img');
+                        include_once 'imagemanipulator.php';
+
+                        $manipulator = new ImageManipulator($_FILES['offreImage']['tmp_name']);
+                        $width = $manipulator->getWidth();
+                        $height = $manipulator->getHeight();
+
+                        $centreX = round($width / 2);
+
+                        $centreY = round($height / 2);
+
+                        // our dimensions will be 200x130
+                        $x1 = $centreX - 374; // 200 / 2
+                        $y1 = $centreY - 150; // 130 / 2
+
+                        $x2 = $centreX + 374; // 200 / 2
+                        $y2 = $centreY + 150; // 130 / 2
+                        // center cropping to 200x130
+                        $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
+                        // saving file to uploads folder
+                        $manipulator->save('./content/uploads/images/' . $_FILES['offreImage']['name']);
+                         $data = $this->upload->data();
+                        $image = $data['file_name'];
+                       // die($image);
+                       // $imgname = $img_name;
+                        $image_thumb = dirname('thumb_' . $image . '/demo');
+                        $config['image_library'] = 'gd2';
+                        $config['source_image'] = './content/uploads/images/' . $image;
+                        $config['new_image'] = $image_thumb;
+                        $config['maintain_ratio'] = TRUE;
+                        $config['width'] = 100;
+                        $config['height'] = 75;
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
                         $data = array('upload_data' => $this->upload->data('offreImage'));
                         $image = $data['upload_data']['file_name'];
                         $post_title = $this->input->post('post_title');
@@ -149,11 +182,33 @@ class Offers extends CI_Controller {
     }
     
      public function deletepost($id = 0) {
-        $url = current_url();
+//        $url = current_url();
+//        if ($this->session->userdata('admin_logged_in')) {
+//           // $this->dboffers->deletepost($id);
+//         
+//            $this->session->set_flashdata('message', 'Data Deleted Sucessfully');
+//            redirect('offers/posts');
+//        } else {
+//            redirect('login/index/?url=' . $url, 'refresh');
+//        }
+          $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
+
+            //$id = $_GET['id'];
+            $data['query'] = $this->dboffers->findpost($id);
+            foreach ($data['query'] as $a) {
+                $img = $a->image;
+            }
+            // die($img);
+            if ($img == !NULL) {
+                unlink('./content/uploads/images/' . $img);
+                unlink('./content/uploads/images/thumb_' . $img);
+            }
+            $this->dboffers->offerImgdelete($id);
             $this->dboffers->deletepost($id);
-            $this->session->set_flashdata('message', 'Data Deleted Sucessfully');
-            redirect('offers/posts');
+             $this->session->set_flashdata('message', 'Data Deleted Sucessfully');
+           redirect('offers/posts');
+            //$this->editpost($id);
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -166,9 +221,9 @@ class Offers extends CI_Controller {
 
             $config['upload_path'] = './content/uploads/images/';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
+            //$config['max_size'] = '500';
+           // $config['max_width'] = '1024';
+           // $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbsetting->get_meta_data();
             $data['miscSetting'] = $this->dbsetting->get_misc_setting();
@@ -205,12 +260,46 @@ class Offers extends CI_Controller {
                         $data['query'] = $this->dboffers->findpost($id);
                         $this->load->view('bnw/posts/editPost', $data);
                     } else {
+                        
+                        include_once 'imagemanipulator.php';
 
+                        $manipulator = new ImageManipulator($_FILES['file']['tmp_name']);
+                        $width = $manipulator->getWidth();
+                        $height = $manipulator->getHeight();
+
+                        $centreX = round($width / 2);
+
+                        $centreY = round($height / 2);
+
+                        // our dimensions will be 200x130
+                        $x1 = $centreX - 374; // 200 / 2
+                        $y1 = $centreY - 150; // 130 / 2
+
+                        $x2 = $centreX + 374; // 200 / 2
+                        $y2 = $centreY + 150; // 130 / 2
+                        // center cropping to 200x130
+                        $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
+                        // saving file to uploads folder
+                        $manipulator->save('./content/uploads/images/' . $_FILES['file']['name']);
+                         $data = $this->upload->data();
+                        $image = $data['file_name'];
+                       // die($image);
+                       // $imgname = $img_name;
+                        $image_thumb = dirname('thumb_' . $image . '/demo');
+                        $config['image_library'] = 'gd2';
+                        $config['source_image'] = './content/uploads/images/' . $image;
+                        $config['new_image'] = $image_thumb;
+                        $config['maintain_ratio'] = TRUE;
+                        $config['width'] = 100;
+                        $config['height'] = 75;
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
                         $id = $this->input->post('id');
                         $post_title = $this->input->post('post_title');
                         $post_content = $this->input->post('post_content');
                         $data = array('upload_data' => $this->upload->data('file'));
                         $image = $data['upload_data']['file_name'];
+                        
 //                        $post_author_info = $this->dbmodel->get_post_author_id($username);
 //                        foreach ($post_author_info as $pid) {
 //                            $post_author_id = $pid->id;
@@ -269,9 +358,10 @@ class Offers extends CI_Controller {
             foreach ($data['query'] as $a) {
                 $img = $a->image;
             }
-            // die($img);
+             die($img);
             if ($img == !NULL) {
                 unlink('./content/uploads/images/' . $img);
+                unlink('./content/uploads/images/thumb_' . $img);
             }
             $this->dboffers->offerImgdelete($id);
 
