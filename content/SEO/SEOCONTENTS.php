@@ -68,3 +68,16 @@ ExpiresByType text/css "access 1 month"
 ExpiresByType application/javascript "access plus 1 year"
 
 </IfModule>
+
+<!-- for open graph replace your html code by-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+    <!-- and then use this-->
+    <meta property="og:title" content="Central College - A Vocational Training Center."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="http://www.centralcollege.com.np"/>
+<meta property="og:image" content="http://www.centralcollege.com.np/content/uploads/images/Central_College_color.png"/>
+<meta property="og:site_name" content="Central college Of Vocational Training Pvt. Ltd."/>
+<meta property="fb:app_id" content="798589833503780"/>
+<meta property="og:description" content="Central College Of Vocational Training Pvt. Ltd. provides educational facilities like IELTS, TOEFL, GRE, GMAT, SAT, trainings and student visa services to different countries."/>
