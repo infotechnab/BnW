@@ -2,15 +2,16 @@
 <h2>Add new Media</h2>
 <hr class="hr-gradient"/>
 <p>Allowed file types: jpg, jpeg, png, gif, pdf, doc, ppt, odt, pptx, docx, xls, xlsx, key</p>
-  <?php echo validation_errors();
+  
+<div id="sucessmsg">
+  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+    <?php echo validation_errors();
   if(isset($error))
   {
       echo $error;
   }
   ?>
-<p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-</p>
+</div>
   <?php echo form_open_multipart('album/addmedia');?>
   
   <p>Name:<br />

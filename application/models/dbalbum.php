@@ -73,7 +73,11 @@ class Dbalbum extends CI_Model {
 
         $this->db->delete('media', array('media_type' => $a));
     }
-    
+    function get_meta_data() {
+        $this->db->from('meta_data');
+        $query = $this->db->get();
+        return $query->result();
+    }
      function get_media_image($aid) {
         $this->db->select();
         $this->db->where('media_association_id', $aid);

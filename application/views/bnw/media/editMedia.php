@@ -1,10 +1,7 @@
 <div class="rightSide">
  <?php
- if(isset($error))
-  {
-     echo $error;
-  }
-        if(isset($query)){
+
+        if(!empty($query)){
             foreach ($query as $data){
            $id = $data->id;
            $medianame = $data->media_name;
@@ -13,14 +10,20 @@
            $medialink= $data->media_link;
            $listOfAlbum = $this->dbalbum->get_list_of_album();     
        }
-        }
+        
     ?>
-<h2>Edit Media/ <?php echo $medianame; ?></h2>
-  <?php echo validation_errors(); ?>
+    <div class="titleArea">
+<h2>Edit Media/ <?php echo $medianame; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/album/media'; ?>">Library</a></h2>
+  <hr class="hr-gradient"/>   
+    </div> 
  
-  <p id="sucessmsg">
+  <div id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
-    </p>
+      <?php  if(isset($error))
+  {
+     echo $error;
+  } echo validation_errors(); ?>
+    </div>
   <?php echo form_open_multipart('album/updatemedia');?>
    <p>Name:<br />
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
@@ -52,6 +55,9 @@
   
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
+  <?php } else{
+     echo '<h3 id="sucessmsg">Sorry! the media is not found.</h3>';
+        } ?>
 </div>
 <div class="clear"></div>
 </div>
