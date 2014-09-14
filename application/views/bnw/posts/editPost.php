@@ -17,7 +17,7 @@ if ($miscSetting)
   {
      echo $error;
   }
-        if(isset($query)){
+        if(!empty($query)){
             foreach ($query as $data){
             $id = $data->id;
             $post_title= $data->post_title;
@@ -33,7 +33,7 @@ if ($miscSetting)
            $share=$data->allow_share;
             $listOfCategory = $this->dbdashboard->get_list_of_category();
        }
-        }
+        
     ?>
    <div class="titleArea">
      <h2>Edit Post/ <?php echo $post_title; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/offers/posts'; ?>">View All</a></h2>
@@ -71,6 +71,10 @@ if ($miscSetting)
   
    <input type="submit" value="Submit" />
   <?php echo form_close();?>
+  <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p> 
+   <?php } else{
+     echo '<h3 id="sucessmsg">Sorry! the post is not found.</h3>';
+        } ?>
     </div>
     
    <!-- <div id="forRightPage">

@@ -17,7 +17,7 @@ if ($miscSetting)
   {
      echo $error;
   }
-        if(isset($query)){
+        if(!empty($query)){
             foreach ($query as $data){
            $id = $data->id;
            $name = $data->page_name;
@@ -31,7 +31,7 @@ if ($miscSetting)
            $like=$data->allow_like;
            $share=$data->allow_share;
        }
-        }
+        
     ?>
     <div class="titleArea">
      <h2>Edit Page/ <?php echo $name; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/page/pages'; ?>">View All</a></h2>
@@ -87,7 +87,10 @@ if ($miscSetting)
   <input type="submit" value="Submit" />
   <?php echo form_close();?>
   
-<p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>
+  <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>
+        <?php } else{
+     echo '<h3 id="sucessmsg">Sorry! the page is not found.</h3>';
+        } ?>
 </div></div>
 <div class="clear"></div>
 </div>

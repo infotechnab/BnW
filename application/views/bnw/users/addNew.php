@@ -1,18 +1,19 @@
 <div class="rightSide">
 <div class="titleArea">
-     <h2>Add new user</h2>
+     <h2>Add new user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/user/users'; ?>">View All</a></h2>
 <hr class="hr-gradient"/>   
     </div>
 
-  <?php echo validation_errors();
+  
+<div id="sucessmsg">
+  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+    <?php echo validation_errors();
   if(isset($error))
   {
       echo $error;
   }
   ?>
-<p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-</p>
+</div>
   <?php echo form_open_multipart('user/adduser');?>
   
   <p>Name:<br />

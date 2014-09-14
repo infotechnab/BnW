@@ -1,10 +1,10 @@
 <div class="rightSide">
     
 <div id="body">
-    <p id="sucessmsg">
+    <div id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
-    </p>
-    <h2>All Users</h2>
+    </div>
+    <h2>All Users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/user/adduser'; ?>">Add New User</a></h2>
      <hr class="hr-gradient"/>
  <?php
     
