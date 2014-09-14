@@ -12,7 +12,7 @@ if ($query)
  }
  ?>
     <div class="titleArea">
-     <h2>Add new Post&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/offers/posts'; ?>">View All Posts</a></h2>
+     <h2>Add new Post&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/offers/posts'; ?>">View All</a></h2>
 <hr class="hr-gradient"/>   
     </div>
     
