@@ -33,16 +33,17 @@ $( "#datepicker" ).datepicker();
        
        ?>
         <div class="titleArea">
-     <h2>Edit Event</h2>
+     <h2>Edit Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/event'; ?>">View All Events</a></h2>
 <hr class="hr-gradient"/>   
     </div> 
 <!--    <div id="forLeftPage">-->
  
-  <?php echo validation_errors(); ?>
+  
  
-  <p id="sucessmsg">
-  <?php echo $this->session->flashdata('message'); ?>
-    </p>
+  <div id="sucessmsg">
+      <?php echo validation_errors(); ?>
+      <?php echo $this->session->flashdata('message'); ?>
+    </div>
   <?php echo form_open_multipart('events/update_event');?>
   <p>Name:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >

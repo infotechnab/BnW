@@ -1,9 +1,9 @@
 <div class="rightSide">
    <div id="body">
-    <p id="sucessmsg">
+    <div id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
-    </p>
-    <h2>All Events</h2>
+    </div>
+    <h2>All Events&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/addevent'; ?>">Add New Event</a></h2>
      <hr class="hr-gradient"/>
     <?php   
          if(!empty($event)){

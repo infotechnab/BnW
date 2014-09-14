@@ -36,16 +36,17 @@ if ($miscSetting)
         }
     ?>
    <div class="titleArea">
-     <h2>Edit Post/ <?php echo $post_title; ?></h2>
+     <h2>Edit Post/ <?php echo $post_title; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/offers/posts'; ?>">View All Posts</a></h2>
 <hr class="hr-gradient"/>   
     </div> 
     <div id="forLeftPage">
  
-  <?php echo validation_errors(); ?>
+  
  
-  <p id="sucessmsg">
+  <div id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
-    </p>
+      <?php echo validation_errors(); ?>
+    </div>
   <?php echo form_open_multipart('offers/updatepost');?>
     <input type="hidden" name="hidden_image" value="<?php echo $post_image; ?>"/>
   <p>Offer Title:<br />
