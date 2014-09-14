@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Central College </title>
+        <title>Central College - A Vocational Training Center.</title>
+        
+        <meta name="description" content="Central College Of Vocational Training Pvt. Ltd. provides educational facilities like IELTS, TOEFL, GRE, GMAT, SAT, trainings and student visa services to different countries.">
+        <meta name="keywords" content="IELTS preparation, test preparation, test, exams, services, chitwan, chitwan narayangarh, narayangarh chitwan, narayanghat, trainings, ielts, IELTS, Ielts, japan, Japan, Japanese language, cook trainings, cook trainings in nepal, central college, central college chitwan, private test, slc, Slc, SLC, language centres, computer institute, computer institute in chitwan, cook trainings in chitwan, cook training in nepal, visa services, student visa, visa, migration visa, consultancy, consultancy in chitwan" >
+        
+        
 <meta property="og:title" content="Central College" />
 <meta property="og:type" content="Text" />
 <meta property="og:url" content="http://www.centralcollege.com.np" />
