@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Central College </title>
+<meta property="og:title" content="Central College" />
+<meta property="og:type" content="Text" />
+<meta property="og:url" content="http://www.centralcollege.com.np" />
+<meta property="og:image" content="http://www.centralcollege.com.np/content/uploads/images/Central_College_color.png" />
+
         <meta name="viewport" content="width-device-width" initial-scale="1.0">
         <link rel="stylesheet" href="<?php echo base_url().'content/uploads/styles/style.css';?>" type="text/css"> 
         <link rel="stylesheet" href="<?php echo base_url().'content/uploads/bootstrap/css/bootstrap.min.css';?>" type="text/css"> 
@@ -154,7 +160,7 @@
                     <li class="logo_"></li>
                      <?php
 
-            $this->load->helper('viewMenuHelper');
+            $this->load->helper('viewmenuhelper');
 
             fetch_menu (query(0));
 
