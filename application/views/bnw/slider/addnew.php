@@ -1,18 +1,19 @@
 
 <div class="rightSide">
     
-<h2>Add new Slide</h2>
+<h2>Add new Slide&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/sliders/slider'; ?>">View All</a></h2>
 <hr class="hr-gradient"/>
-  <?php echo validation_errors();
+  
+
+<div id="sucessmsg">
+  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+    <?php echo validation_errors();
   if(isset($error))
   {
       echo $error;
   }
   ?>
-
-<p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-</p>
+</div>
   <?php echo form_open_multipart('sliders/addslider');?>
   <p>Title:<br />
   <input type="text" name="slide_name" value="<?php echo set_value('slide_name'); ?>" />
