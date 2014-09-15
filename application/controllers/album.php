@@ -76,7 +76,7 @@ class Album extends CI_Controller {
 
                 $this->dbalbum->add_new_album($name);
                 $this->session->set_flashdata('message', 'One Album added sucessfully');
-                redirect('album/album');
+                redirect('album/addalbum');
             }
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -228,7 +228,7 @@ class Album extends CI_Controller {
             $this->dbalbum->delete_photo($id);
             $this->dbalbum->delete_album($id);
             $this->session->set_flashdata('message', 'One album Deleted Sucessfully');
-            redirect('album/album');
+                redirect('album/addalbum');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }

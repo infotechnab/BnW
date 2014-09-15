@@ -19,12 +19,16 @@ $(document).ready(function(){
 <div class="rightSide">
     <h2> Add Album</h2>
     <hr class="hr-gradient"/>
-<?php echo validation_errors();
+    <div id="sucessmsg">
+  <?php echo $this->session->flashdata('message');
+  echo validation_errors();
 if(isset($error))
 {
     echo $error;
 }    
 ?>
+    </div>
+
 
 
 <div id="newAlbum">

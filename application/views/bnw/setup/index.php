@@ -9,15 +9,19 @@ if ($meta)
        $i++;      
     }
  }
- echo validation_errors();
- if(isset($error)){
-     echo $error;
- }
     ?>
 
 
 <h2><?php echo $meta_data[1]; ?> Dashboard Management</h2>
 <hr class="hr-gradient"/>
+<div id="sucessmsg">
+    <?php
+     echo validation_errors();
+ if(isset($error)){
+     echo $error;
+ }
+    ?>
+</div>
 
 <?php echo form_open_multipart('setting/setupupdate');?>
   <p>Site Url :<br />
