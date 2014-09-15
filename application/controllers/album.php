@@ -122,7 +122,7 @@ class Album extends CI_Controller {
                 $medialink = $this->input->post('media_link');
                 $this->dbalbum->add_new_photo($medianame, $mediatype, $albumid, $medialink);
                 $this->session->set_flashdata('message', 'One photo added sucessfully');
-                redirect('album/addalbum');
+                redirect('album/photos/'.$albumid);
             }
             $this->load->view('bnw/templates/footer', $data);
         } else {
