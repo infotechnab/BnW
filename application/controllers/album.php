@@ -312,7 +312,7 @@ class Album extends CI_Controller {
             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
                 $data['error'] = $this->upload->display_errors();
 
-                $this->load->view('bnw/media/addNew', $data);
+                $this->load->view('media/addNew', $data);
             } else {
 
                 //if valid
@@ -322,7 +322,7 @@ class Album extends CI_Controller {
                 $medialink = base_url() . 'content/images/' . $mediatype;
                 $this->dbalbum->add_new_media($medianame, $mediatype, $media_association_id, $medialink);
                 $this->session->set_flashdata('message', 'One media added sucessfully');
-                redirect('bnw/media/mediaListing');
+                redirect('media/mediaListing');
             }
             $this->load->view('bnw/templates/footer', $data);
         } else {
