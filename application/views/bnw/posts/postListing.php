@@ -1,12 +1,12 @@
 <div class="rightSide">
     
 <div id="body">
+    
+    <h2>All Posts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/offers/addpost'; ?>">Add New Post</a></h2>
+     <hr class="hr-gradient"/>
     <div id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
     </div>
-    <h2>All Posts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/offers/addpost'; ?>">Add New Post</a></h2>
-     <hr class="hr-gradient"/>
-    
     
     <?php
     

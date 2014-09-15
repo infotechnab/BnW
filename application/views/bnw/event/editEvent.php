@@ -10,11 +10,7 @@ $( "#datepicker" ).datepicker();
 <div class="rightSide">
   
     <?php
- if(isset($error))
-  {
-     echo $error;
-  }
-        if(!empty($event)){
+         if(!empty($event)){
             foreach ($event as $data){
             $id = $data->id;
             $name= $data->title;
@@ -35,15 +31,19 @@ $( "#datepicker" ).datepicker();
         <div class="titleArea">
      <h2>Edit Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/event'; ?>">View All</a></h2>
 <hr class="hr-gradient"/>   
+<div id="sucessmsg">
+      <?php echo validation_errors();
+     if(isset($error)) {
+     echo $error;
+  }?>
+      <?php echo $this->session->flashdata('message'); ?>
+    </div>
     </div> 
 <!--    <div id="forLeftPage">-->
  
   
  
-  <div id="sucessmsg">
-      <?php echo validation_errors(); ?>
-      <?php echo $this->session->flashdata('message'); ?>
-    </div>
+  
   <?php echo form_open_multipart('events/update_event');?>
   <p>Name:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >

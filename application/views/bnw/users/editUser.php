@@ -1,9 +1,6 @@
 <div class="rightSide">
  <?php
- if(isset($error))
-  {
-     echo $error;
-  }
+
         if(!empty($query)){
             foreach ($query as $data){
            $id = $data->id;
@@ -19,10 +16,15 @@
     ?>
 <h2>Edit user/ <?php echo $name; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/user/users'; ?>">View All</a></h2>
 <hr class="hr-gradient"/>
-  <?php echo validation_errors(); ?>
+  
  
   <p id="sucessmsg">
-  <?php echo $this->session->flashdata('message'); ?>
+  <?php echo $this->session->flashdata('message');
+   if(isset($error))
+  {
+     echo $error;
+  }?>
+      <?php echo validation_errors(); ?>
     </p>
   <?php echo form_open_multipart('user/updateuser');?>
    <p>Name:<br />

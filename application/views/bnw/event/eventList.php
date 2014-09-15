@@ -1,10 +1,10 @@
 <div class="rightSide">
-   <div id="body">
-    <div id="sucessmsg">
-  <?php echo $this->session->flashdata('message'); ?>
-    </div>
+   <div id="body"> 
     <h2>All Events&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/addevent'; ?>">Add New Event</a></h2>
      <hr class="hr-gradient"/>
+      <div id="sucessmsg">
+  <?php echo $this->session->flashdata('message'); ?>
+    </div>
     <?php   
          if(!empty($event)){
              ?>

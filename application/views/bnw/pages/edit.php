@@ -13,10 +13,6 @@ if ($miscSetting)
  ?>
     
     <?php
- if(isset($error))
-  {
-     echo $error;
-  }
         if(!empty($query)){
             foreach ($query as $data){
            $id = $data->id;
@@ -35,17 +31,22 @@ if ($miscSetting)
     ?>
     <div class="titleArea">
      <h2>Edit Page/ <?php echo $name; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/page/pages'; ?>">View All</a></h2>
-<hr class="hr-gradient"/>   
+<hr class="hr-gradient"/> 
+<div id="sucessmsg">
+  <?php echo $this->session->flashdata('message');
+  if(isset($error))
+  {
+     echo $error;
+  }?>
+      <?php echo validation_errors(); ?>
+    </div>
     </div>
     <div id="forLeftPage"> 
  
 
   
  
-  <div id="sucessmsg">
-  <?php echo $this->session->flashdata('message'); ?>
-      <?php echo validation_errors(); ?>
-    </div>
+  
   <?php echo form_open_multipart('page/updatepage');?>
   <p>Title:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
