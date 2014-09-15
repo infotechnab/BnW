@@ -75,14 +75,16 @@
 	
 </script>
 <div class="rightSide">
-<h2>Album/ Photos </h2>
+<h2>Album/ Photos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/album/addalbum'; ?>">View All Albums</a></h2>
 <hr class="hr-gradient"/>
+<div id="sucessmsg">
 <?php echo validation_errors();
+echo $this->session->flashdata('message');
 if(isset($error))
 {
     echo $error;
 }    
-?>
+?> </div>
 <?php
 if(isset($query))
 {

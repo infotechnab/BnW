@@ -105,12 +105,14 @@ class Album extends CI_Controller {
 
             $albumid = $this->input->post('id');
             $data['query'] = $this->dbalbum->get_album();
+            
 
 
             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload())) {
                 $data['error'] = $this->upload->display_errors();
-
-                $this->load->view('bnw/album/index', $data);
+                $data['query'] = $this->dbalbum->get_media($albumid);
+                $data['id'] = $albumid;
+                $this->load->view('bnw/album/gallery', $data);
             } else {
 
                 //if valid
@@ -154,7 +156,7 @@ class Album extends CI_Controller {
 
             unlink('./content/uploads/images/' . $a);
             $this->dbalbum->delete_photo($a);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+            $this->session->set_flashdata('message', 'Image Deleted Sucessfully');
             redirect('album/addalbum');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
