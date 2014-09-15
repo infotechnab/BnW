@@ -11,18 +11,20 @@ if ($query)
     }
  }
  ?>
+    
+    
+
+
+<h2> Header Content Management</h2>
+<hr class="hr-gradient"/>
+<div id="sucessmsg">
  <?php echo validation_errors();
   if(isset($error))
   {
       echo $error;
   }
   ?>
-
-    
-
-
-<h2> Header Content Management</h2>
-<hr class="hr-gradient"/>
+    </div>
 <?php echo form_open_multipart('setting/headerupdate');?>
  
 
@@ -44,9 +46,7 @@ if ($query)
   <p>Header Description :<br />
   <input type="text" name="header_description" value="<?php echo $set_data[2]; ?>"/>
   </p>
-  <p>Header Background Color :<br />
-  <input type="color" class="color" name="header_bgcolor" value="<?php echo $set_data[3]; ?>"/>
-  </p>
+  
  <input type="submit" value="Submit" />
   <?php echo form_close();?>
 </div>

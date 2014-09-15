@@ -69,7 +69,7 @@ class Setting extends CI_Controller {
                 $headerLogo = $data['upload_data']['file_name'];
 
                 $headerDescription = $this->input->post('header_description');
-                $headerBgColor = $this->input->post('header_bgcolor');
+                $headerBgColor = null;
                 $this->dbsetting->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
                 $this->session->set_flashdata('message', 'Header setting done sucessfully');
                 redirect('bnw');
@@ -103,18 +103,19 @@ class Setting extends CI_Controller {
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('sidebar_title', 'Title', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('sidebar_description', 'Description', 'required|xss_clean');
-            $this->form_validation->set_rules('sidebar_bgcolor', 'Background Color', 'required|xss_clean');
+            
             // $this->form_validation->set_rules('header_bgcolor', 'Description', 'required|xss_clean');
             if (($this->form_validation->run() == FALSE)) {
 
                 $data['meta'] = $this->dbsetting->get_meta_data();
+                $set['query'] = $this->dbsetting->get_design_setup();
                 $this->load->view("bnw/templates/header", $data);
                 $this->load->view("bnw/templates/menu");
-                $this->load->view('bnw/setup/addSidebar');
+                $this->load->view('bnw/setup/addSidebar', $set);
             } else {
                 $sideBarTitle = $this->input->post('sidebar_title');
                 $sideBarDescription = $this->input->post('sidebar_description');
-                $sideBarBgColor = $this->input->post('sidebar_bgcolor');
+                $sideBarBgColor = NULL;
 
                 $this->dbsetting->update_design_sidebar_setup($sideBarTitle, $sideBarDescription, $sideBarBgColor);
                 redirect('bnw');
