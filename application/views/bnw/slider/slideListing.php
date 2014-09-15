@@ -1,9 +1,7 @@
 <div class="rightSide">
 
 <div id="body">
-    <p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-    </p>
+    
     <h2>All Slides&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/sliders/addslider'; ?>">Add New Slide</a></h2>
        
    <hr class="hr-gradient"/>
@@ -22,9 +20,7 @@
     <?php
         if(!empty($query)){   
    ?>
-   
-
-   
+  
     <table border="1" cellpadding="10">
         <tr>
            

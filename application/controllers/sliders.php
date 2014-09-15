@@ -177,7 +177,7 @@ class Sliders extends CI_Controller {
             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
                 $data['error'] = $this->upload->display_errors();
                 $id = $this->input->post('id');
-                $data['query'] = $this->dbsetting->findslider($id);
+               $data['query'] = $this->dbslider->findslider($id);
                 $this->load->view('bnw/slider/edit', $data);
             } else {
 
