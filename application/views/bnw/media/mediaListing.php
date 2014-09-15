@@ -4,7 +4,7 @@
     <p id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
     </p>
-    <h2>Media Libraries</h2>
+    <h2>Media Libraries&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/album/addmedia'; ?>">Add New Media</a></h2>
     <hr class="hr-gradient"/>
      <?php
      if(isset($error))
