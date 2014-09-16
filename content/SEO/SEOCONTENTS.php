@@ -1,5 +1,5 @@
 
-    <!-- Title mustn't exceed 60 characters and it must not be too short too -->
+    <!-- Title mustn't exceed 60 characters and it must not be too short too for seo optimization -->
     <title>
         BnW - A Complete CMS (make content editing easy)
     </title>
@@ -117,3 +117,4 @@ RewriteRule ^(.*)$ /index.php/$1 [L]
 # in config.php 
  #in line $config['uri_protocol']	= 'AUTO';
  #Replace it with $config['uri_protocol']	= 'PATH_INFO';
+ # in Apache enable rewrite module
