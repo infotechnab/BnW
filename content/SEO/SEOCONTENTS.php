@@ -43,7 +43,7 @@
   Header append Vary User-Agent
 </IfModule>
 
-<!-- user the following code in .htaccess file for enabling browser cache -->
+<!-- use the following code in .htaccess file for enabling browser cache -->
 <IfModule mod_expires.c>
 
 # Enable expirations
