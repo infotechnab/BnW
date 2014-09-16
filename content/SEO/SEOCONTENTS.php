@@ -81,3 +81,39 @@ ExpiresByType application/javascript "access plus 1 year"
 <meta property="og:site_name" content="Central college Of Vocational Training Pvt. Ltd."/>
 <meta property="fb:app_id" content="798589833503780"/>
 <meta property="og:description" content="Central College Of Vocational Training Pvt. Ltd. provides educational facilities like IELTS, TOEFL, GRE, GMAT, SAT, trainings and student visa services to different countries."/>
+
+<!-- toremove index.php from url add these lines to .htaccess file-->
+
+
+   # Step 1 => Place your .htaccess file in root folder where application and system folders exist.
+
+   # Step 2 => If your web path using sub-folder like - yourdomain.com/project/ - then use following code in htaccess file
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|robots\.txt)
+RewriteRule ^(.*)$ /project/index.php/$1 [L]  
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+ 	ErrorDocument 404 /index.php
+</IfModule>
+
+   # If your web path using root-folder like - yourdomain.com - then use following code in htaccess file
+   
+   <IfModule mod_rewrite.c>
+
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|robots\.txt)
+RewriteRule ^(.*)$ /index.php/$1 [L]  
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+ 	ErrorDocument 404 /index.php
+</IfModule>
+
+
+# in config.php 
+ #in line $config['uri_protocol']	= 'AUTO';
+ #Replace it with $config['uri_protocol']	= 'PATH_INFO';
