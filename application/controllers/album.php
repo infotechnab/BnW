@@ -119,6 +119,18 @@ class Album extends CI_Controller {
                 $data = array('upload_data' => $this->upload->data());
 
                 $mediatype = $data['upload_data']['file_name'];
+                $data = $this->upload->data();
+                        $image = $data['file_name'];
+                       // $imgname = $img_name;
+                        $image_thumb = dirname('thumb_' . $image . '/demo');
+                        $config['image_library'] = 'gd2';
+                        $config['source_image'] = './content/uploads/images/' . $image;
+                        $config['new_image'] = $image_thumb;
+                        $config['maintain_ratio'] = TRUE;
+                        $config['width'] = 100;
+                        $config['height'] = 75;
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
                 $medianame = $this->input->post('title');
                 $albumid = $this->input->post('id');
                 $medialink = $this->input->post('media_link');
@@ -155,6 +167,7 @@ class Album extends CI_Controller {
             $a = $_GET['image'];
 
             unlink('./content/uploads/images/' . $a);
+            unlink('./content/uploads/images/thumb_' . $a);
             $this->dbalbum->delete_photo($a);
             $this->session->set_flashdata('message', 'Image Deleted Sucessfully');
             redirect('album/addalbum');
