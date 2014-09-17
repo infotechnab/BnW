@@ -74,8 +74,11 @@ class Login extends CI_Controller {
                  redirect($link);
              }
             } else { // incorrect username or password
+                 $data['meta'] = $this->dbsetting->get_meta_data();
                 $this->session->set_flashdata('message', 'Username or password incorrect');
-                redirect('login');
+               $data['link'] = base_url().'index.php/bnw';
+            $this->load->view('bnw/templates/loginTemplate', $data);
+            $this->load->view('bnw/templates/footer', $data);
             }
         }
     }

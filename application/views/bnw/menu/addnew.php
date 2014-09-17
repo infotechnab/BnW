@@ -5,7 +5,7 @@
   <?php echo validation_errors(); ?>
  
  
-  <p id="sucessmsg" style="color: red;">
+  <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
   <?php echo form_open_multipart('dashboard/addmenu');?>

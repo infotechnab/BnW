@@ -28,7 +28,6 @@
     <div class="container">
         <div class="left">
             <div id="loginform">
-               
                 <table>
                     <?php echo form_open('login/validate_credentials'); ?>
                     <input type="hidden" name="requersUrl" value="<?php echo $link; ?>"/>
@@ -36,9 +35,9 @@
                         <tr>
                         <td colspan="2">
                             <img id="name" src="<?php echo base_url()."content/bnw/images/bnw.png"; ?>"/>
-                                <p id="sucessmsg">
+                                <div id="sucessmsg">
                                     <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}
-                                echo validation_errors(); ?> </p>
+                                echo validation_errors(); ?> </div>
                         </td>
                         </tr>
                         <tr>
