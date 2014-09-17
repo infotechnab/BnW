@@ -1,10 +1,6 @@
-<?php
-
-if (!defined('BASEPATH'))
+<?php if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
 class bnw extends CI_Controller {
-
     function __construct() {
         parent::__construct();
         $this->load->model('dbmodel');
@@ -14,7 +10,6 @@ class bnw extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
     }
-
     public function index() {
         $url = base_url() . 'index.php/bnw';
         if ($this->session->userdata('admin_logged_in')) {
@@ -28,10 +23,8 @@ class bnw extends CI_Controller {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-
     //========================== for Cart System =======================================================//
-
-    function getRandomStringForCoupen($length) {
+   function getRandomStringForCoupen($length) {
         $validCharacters = "ABCDEFGHIJKLMNPQRSTUXYVWZ123456789";
         $validCharNumber = strlen($validCharacters);
         $result = "";
