@@ -129,6 +129,7 @@ else
     <input type="file" name="userfile" id="file"   />
     <input type="submit" name="submit" value="add photo"   />
 <?php  echo form_close(); ?>
+    <p><b>Note:</b> Max file size: 500KB,  Width: 1024px, Height: 768px </p>
 </div> 
 <div class="clear"></div>
 <div style="clear: left;" >
