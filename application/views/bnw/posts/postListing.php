@@ -16,10 +16,8 @@
         <table border="1" cellpadding="10">
         <tr>
             
-            <th>Offer Title</th>
-            <th>Offer Summary</th>
-            
-           
+            <th>Post Title</th>
+            <th>Post Summary</th>          
             <th>Image</th>
             <th>Action</th>
         </tr>

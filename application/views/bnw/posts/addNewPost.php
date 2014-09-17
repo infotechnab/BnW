@@ -31,7 +31,7 @@ if ($query)
 
   <?php echo form_open_multipart('offers/addpost');?>
   
-  <p>Offer Title:<br />
+  <p>Post Title:<br />
   <input type="text" name="post_title" value="<?php echo set_value('post_title'); ?>" />
   </p>
   <p>Body:<br />
