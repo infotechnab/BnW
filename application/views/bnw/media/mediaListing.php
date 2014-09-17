@@ -29,10 +29,12 @@
             ?>
           <tr>
             
-            <td><?php echo $data->media_name ?></td>
-            <td><?php echo $data->media_type ?></td>
+            <td><?php echo $data->media_name; ?></td>
+            <td><?php echo $data->media_type; ?></td>
             
-            <td> <img src='<?php echo base_url().'content/uploads/images/thumb_'.$data->media_type; ?>' style="height: 60px; width: 60px"/> </td>
+            <td><?php $file= $data->media_type; $info = new SplFileInfo($file); $ext = $info->getExtension(); if($ext=='jpg' || $ext=='png' || $ext=='jpeg' || $ext=='bmp'){ ?>
+                <img src='<?php echo base_url().'content/uploads/images/thumb_'.$data->media_type; ?>' style="height: 60px; width: 60px"/>
+                    <?php } else{ echo $ext.' file'; } ?> </td>
             <td><?php echo anchor('album/editmedia/'.$data->id,'Edit'); ?> / 
             <?php echo anchor('album/delmedia/'.$data->id,'Delete'); ?></td>
         </tr>
