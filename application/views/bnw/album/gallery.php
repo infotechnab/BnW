@@ -42,10 +42,11 @@
         // When site loaded, load the Popupbox First
         $('.srcimage').click(function(){
             $('#popup_box').fadeIn(2500);
-            var srcimg = $(this).attr('src');
-			
+            var srcimg = $(this).attr('name');
+            var url = "<?php echo base_url().'content/uploads/images/' ?>";
+            
             $("#pqr").attr({
-                src: srcimg
+                src: url+srcimg
 			
             });
             $('#popup_box').css({"display":"Block"});
@@ -93,11 +94,12 @@ foreach ($query as $data) {
     ?>    
 
 
+
 <div id="photodiv">
    
     
 
-    <img class="srcimage" src="<?php echo base_url(); ?>content/uploads/images/<?php echo $data->media_type; ?>" id="galleryimage" />
+    <img class="srcimage" src="<?php echo base_url(); ?>content/uploads/images/thumb_<?php echo $data->media_type; ?>" name="<?php echo $data->media_type ?>" id="galleryimage" />
         <div id="imagetitle"> <?php echo $data->media_name; ?>
             
         </div>
