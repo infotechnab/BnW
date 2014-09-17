@@ -1,7 +1,5 @@
 <div class="rightSide">
-    
 <div id="body">
-   
     <h2>All Pages&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/page/addpage'; ?>">Add New Page</a></h2>
     <hr class="hr-gradient"/>
      <div id="sucessmsg">
@@ -9,13 +7,10 @@
     </div>
     
     <?php
-    
-    
         if(!empty($query)){
             ?>
     <table border="1" cellpadding="10" >
         <tr>
-           
             <th>Page Title</th>
             <th>Page Summary</th>         
             <th>Status</th>
@@ -24,13 +19,9 @@
     <?php
             foreach ($query as $data){
             ?>
-          <tr>
-            
+          <tr>    
             <td><?php echo $data->page_name ?></td>
-            <td><?php echo $data->page_summary ?></td>
-           
-              
-            
+            <td><?php echo $data->page_summary ?></td>            
             <td><?php if($data->page_status=="Active")
             {
                 echo "Draft";
