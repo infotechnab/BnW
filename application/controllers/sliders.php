@@ -202,7 +202,7 @@ class Sliders extends CI_Controller {
                 $slideimage = $data['upload_data']['file_name'];
                 $slidecontent = $this->input->post('slide_content');
                 
-                 include_once 'Imagemanipulator.php';
+                 include_once 'imagemanipulator.php';
 
                 $manipulator = new ImageManipulator($_FILES['file_name']['tmp_name']);
                 $width = $manipulator->getWidth();
