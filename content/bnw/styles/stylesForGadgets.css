@@ -1,0 +1,209 @@
+
+#main
+{
+    
+    float: left;
+    width: 100%;
+    height: auto;
+    overflow:hidden;
+}
+
+
+#gadget_collection
+{
+    
+    width: 68%;
+    height:auto;
+    float: left; 
+}
+
+#description, #title, #title1
+{
+    
+    width:290px;
+    height:auto;
+    padding: 5px;
+    text-align:center;
+    font-size: 20px;
+    border-bottom: thin solid #cccccc;
+}
+
+#main #inputtype
+{
+    width:285px;
+    height: 30px;
+}
+
+#main #txtarea
+{
+    width:285px;
+    height:150px;
+  
+}
+
+#description, #description_for_gadget1
+{
+    display: none;
+}
+
+
+#sub_gadget
+{
+    margin: 20px;
+    float: left;
+    height:auto;
+    width: 300px;
+    border: thin solid #cccccc;
+}
+
+#description_for_gadget
+{
+    height:auto;
+    width: 300px;
+    padding-left: 5px;
+
+   
+}
+
+
+#nav_location
+{
+    float: left;
+    width: 300px;
+    height: auto;
+}
+
+iframe{
+    height: 300px;
+}
+
+.list-item
+{
+   
+    list-style: none;
+    background: #000;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 2px;
+    margin-top:5px;
+    padding: 5px;
+}
+
+
+#option_gadget
+{
+    list-style: none;
+    background:#f0f0f0;
+    
+}
+
+
+
+#nav_location ul
+{
+    margin-left:-40px;
+}
+
+#delete
+{
+    margin-left: 10px;
+    cursor: pointer;
+    border: none;
+    background-size: 100%;
+    background-image:  url(../bnw/images/delete.png);
+    height: 20px;
+}
+
+#recentpostedit, #textedit
+{
+    color: #666666;
+    padding-right:10px;
+   // border-right: thin solid;
+    float: left;
+    width: auto;
+    padding-left: 15px;
+    
+}
+
+.whole
+{
+    width: 100%;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 30px;
+   
+}
+
+.name
+{
+    width: 75%;
+    float: left;
+}
+
+#option
+{
+    width: 25%;
+    float: left;
+}
+#delete_option
+{
+    float: left;
+    border-left: thin solid;
+}
+
+ #edit
+ {
+     float: left;
+     margin-right: 10px;
+     
+ }
+ 
+ #textEdit  #inputtype,#txtarea
+{
+    width:285px;
+    height: 30px;
+}
+
+#single_gadget_edit
+{
+    border: thin solid;
+    margin-bottom: 10px;
+}
+
+#arrow, #arrow1
+{
+    float: right;
+    margin-right: 5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+    height: 15px;
+    width: 15px;
+    text-align: center;
+    padding:0px 3px 7px 3px;
+    background: #000;
+    color: white;
+    
+  
+}
+
+#gadget_action
+{
+    padding-left:5px;
+    font-size: 16px;
+}
+
+/*
+#edit_recentPost_toggle, #edit_text_toggle
+{
+    display: none;
+}
+
+*/
+
+
+
+
+

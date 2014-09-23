@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/styles/stylesForLogin.css" type="text/css" /> 
-    <script src="<?php echo base_url(); ?>content/jquery-1.9.1.min.js" > </script>
-    <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js">
+    <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/bnw/styles/stylesForLogin.css" type="text/css" /> 
+    <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery-1.9.1.min.js" > </script>
     </script> <script type="text/javascript">
-//<![CDATA[
         bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-  //]]>
   </script>
 	<meta charset="utf-8">
 <?php if(isset($meta))

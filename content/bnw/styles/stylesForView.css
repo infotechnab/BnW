@@ -1,0 +1,938 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color: #e0e0e0;
+     font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.clear
+{
+    clear: both;
+}
+.eventAndDownload
+{   
+    background-color: #fff;
+    width: 96.5%;
+    float:left;
+    min-height: 150px;
+}
+.menuItem
+{
+    padding: 3px 3px 3px 3px;
+    width: 92.5%;
+    min-height: 50px;
+}
+
+
+/* for album*/
+#photodiv
+{
+    float: left;
+    width: 150px;
+  
+    border: #999999 solid 1px;
+    padding: 10px;
+    margin: 10px;
+}
+#close
+{
+    width: 20px;
+}
+#galleryimage
+{
+    width: 150px;
+    height: 150px;
+    
+}
+#imagetitle
+
+{
+    min-width: 80px;
+}
+/*album completed */
+
+.list
+{
+    margin: 0px;
+    padding: 0px;
+    height: 30px;
+}
+.list li
+{
+    border-bottom: dotted #000 1px;
+    height: 30px;
+    padding: 3px 3px 3px 5px;
+    background-color: #f4f4f4;
+    list-style-type: none;
+}
+.menuItem li.has-sub a
+{
+    text-decoration: none;
+}
+.menuItem ul ul 
+{
+    margin: 0;
+    position: relative;
+    display:none;
+}
+.menuItem .has-sub .has-sub ul
+{
+    display: none;
+}
+.menuItem ul li:hover
+{
+    background-color: #D0D0D0;   
+}
+.menuItem .has-sub .has-sub:hover > ul
+{
+    display: inline-block;
+}
+.menu-item ul li:hover ul li:hover 
+{										
+    background-color: #D0D0D0;           
+}
+a
+{
+	color:#333;
+}
+a:hover
+{
+    color: #000;
+}
+.subList
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+.eventHeader, .downloadHeader, .containerHeader
+{
+    width: 100%!important;
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    min-height: 10px;
+    float: none!important;
+    text-align: center;
+}
+.newNews
+{  
+    color: #005702;
+    text-align: center;
+    min-height: 5px;
+}
+
+p
+{
+    text-align: justify;
+}
+.container
+{
+    float:left;
+    width: 100%;
+    min-height: 200px;
+    font-size: 18px;
+}
+.slider
+{
+    background-color: #fff;
+    width: 100%;
+    height: 500px;;
+    z-index: -3000;
+    padding-bottom: 15px;
+}
+.content
+{
+    width: auto;
+    float: left;
+    min-height: 300px;
+}
+#footer
+{
+    width: auto!important;
+    min-height: 20px;
+     background-color: #fff;
+     font-size: 10px;
+     padding: 5px 10px 0px 10px;
+     border-top: 2px dotted #D0D0D0;
+}
+#copyright
+{
+   
+    font-size: 12px;
+    max-width: 300px;
+    margin: 0 auto 0 auto;   
+}
+.credit
+{
+    float: right;
+    margin-top: -25px;
+    font-size: 10px;
+}
+/* applicable for the sowing comments */
+.showComments
+{
+    width: 100%;
+    min-height: 100px;
+    
+    border: 1px dotted #000;
+}
+.showEachComment
+{
+    margin: 0px 0px 0px 5px;
+    border-bottom: 1px solid;
+        
+}
+/* for media screen max of 1500px and min of 1025px*/
+@media only screen and (max-width : 1500px)
+{
+    .full
+    {
+        margin: 0 auto 0 auto;
+        padding: 0px;
+        min-height: 200px;
+        width: 70%;
+        background-color: white;
+        box-shadow: 5px 5px 5px 0px #333;
+    }
+    .fullLeft
+    {
+        margin: 0 auto 0 auto;
+        padding: 0;
+        float: left;
+        width: 275px;
+        height: auto;
+        background-color: #fff;
+    }
+    .fullRight
+    {
+        float: left;
+        width:65%;
+        min-height: 200px;
+        margin: 0px;
+        padding: 0px;
+        margin-left: 3%;
+    }
+    .header
+    {
+        text-align: center;
+        width: auto;
+        margin: 0px;
+        padding: 0px;
+    }
+    .menuItem ul li, .menuItem ul li:hover ul, .menuItem ul li:hover ul li
+    {
+        width: 100%;
+        float: left;
+    }
+    .parList, .subList li
+    {
+        height: 30px;
+        padding: 0px;
+    }
+    .menuItem ul li:hover ul  
+    {
+        margin:0px;
+	display:block;
+        position: relative;
+        top :-23px;
+        left:86%;
+        z-index:5000;
+    }
+    .event, .download
+{
+    width: 100%;
+    min-height: 150px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.event a
+{
+    text-decoration: none;
+}
+
+    .eventHeader, .downloadHeader, .containerHeader
+    {
+        width: auto!important;
+        padding: 0px 5px 0px 5px;
+    }
+    .paragraph
+    {
+        padding: 0px 10px 0px 10px;
+        margin: 0px;
+        width: auto;
+    }
+    h3
+    {
+        margin: 0px;
+        padding: 0px;
+    }
+    #copyright
+    {
+        text-align: center;
+    }
+    
+}
+.list li:hover > ul li
+{
+    display: inline;
+}
+
+
+
+
+/* for media screen max of 1025px and min of 800px*/
+@media only screen and (max-width : 1025px)
+{
+    .full
+    {
+        margin: 0 auto 0 auto;
+        padding: 0px;
+        min-height: 200px;
+        width: 80%;
+        background-color: white;
+        box-shadow: 5px 5px 5px 0px #333;
+    }
+    .fullLeft
+    {
+        margin: 0px;
+        padding: 0px;
+        float: left;
+        width: 30%;
+        min-height: 200px;
+        background-color: #fff;
+    }
+    .fullRight
+    {
+        float: left;
+        width:67%;
+        min-height: 200px;
+        margin: 0px;
+        padding: 0px;
+        margin-left: 3%;
+    }
+    .header
+    {
+        text-align: center;
+        width: auto;
+        margin: 0px;
+        padding: 0px;
+    }
+    .menuItem ul li, .menuItem ul li:hover ul, .menuItem ul li:hover ul li
+    {
+        width: 100%;
+        float: left;
+    }
+    .menuItem ul li:hover ul  
+    {
+        margin: 0 auto 0 auto;
+	display:block;
+        position: relative;
+        top :-20px;
+        left:99%;
+        z-index:5000;
+       max-width:300%;
+    }
+    .event, .download
+{
+    width: 100%;
+    min-height: 150px;
+    margin: 0px;
+    padding: 0px;
+}
+    .eventHeader, .downloadHeader, .containerHeader
+    {
+        width: auto!important;
+        padding: 0px 5px 0px 5px;
+    }
+     #copyright
+    {
+        text-align: center;
+    }
+}
+
+
+
+/* for media screen max of 800px and min of 601px*/
+@media only screen and (max-width : 800px)
+{
+    .full
+    {
+        margin: 0 auto 0 auto;
+        padding: 0px;
+        min-height: 200px;
+        width: 90%;
+        background-color: white;
+        box-shadow: 5px 5px 5px 0px #333;
+    }
+    .fullLeft
+    {
+        margin: 0 auto 0 auto;
+        padding: 0;
+        float: left;
+        width: 30%;
+        height: auto;
+        background-color: #fff;
+    }
+    .fullRight
+    {
+        float: left;
+        width:67%;
+        min-height: 200px;
+        margin: 0px;
+        padding: 0px;
+        margin-left: 3%;
+    }
+    .header
+    {
+        text-align: center;
+        width: auto;
+        margin: 0px;
+        padding: 0px;
+    }
+    .menuItem ul li:hover ul  
+    {
+        margin: 0 auto 0 auto;
+	display:block;
+        position: relative;
+        top :-8px;
+        left:99%;
+	padding:10px;
+        z-index:5000;
+       max-width:300%;
+    }
+    .event, .download
+{
+    width: 100%;
+    min-height: 150px;
+    margin: 0px;
+    padding: 0px;
+}
+    .eventHeader, .downloadHeader, .containerHeader
+    {
+        width: auto!important;
+        padding: 0px 5px 0px 5px;
+    }
+     #copyright
+    {
+        text-align: left;
+    }
+    
+}
+
+
+
+/* for media screen max of 600px and min of 481px*/
+@media only screen and (max-width : 600px)
+{
+    .full
+    {
+        margin: 0 auto 0 auto;
+        padding: 0px;
+        min-height: 200px;
+        width: 100%;
+        background-color: white;
+        box-shadow: none;
+    }
+    .fullLeft, .fullRight
+    {
+        margin: 0 auto 0 auto;
+        padding: 0;
+        float: left;
+        width: 100%;
+        height: auto;
+        background-color: #fff;
+    }
+    .header
+    {
+        text-align: center;
+        width: auto;
+        margin: 0px;
+        padding: 0px;
+    }
+    .menuItem ul li
+    {
+        width: 100%;
+        float: left;
+    }
+    .parList, .subList li
+    {
+        height: auto;
+        padding: 0px;
+    }
+    .menuItem ul li:hover ul  
+    {
+        margin: 0 auto 0 auto;
+	display:block;
+        position: relative;
+        top :-5px;
+        left:0%;
+        z-index:5000;
+        width:100%;
+    }
+    .menuItem ul li:hover ul li
+    {
+        width: 100%;
+        border-bottom: dotted #000 1px;
+        background-color: #5D5D5D;
+    }
+    .event, .download
+{
+    width: 48%;
+    min-height: 150px;
+    margin: 0px;
+    padding: 0px;
+    margin-right: 2%;
+    float: left;
+}
+    .eventHeader, .downloadHeader, .containerHeader
+    {
+        width: auto!important;
+        padding: 0px 5px 0px 5px;
+    }
+    .slider
+    {
+        display: none;
+    }
+    #copyright
+    {
+        text-align: left;
+    }
+    
+}
+
+
+
+/* for media screen max of 480px and min of 320px*/
+@media only screen and (max-width : 480px)
+{
+    .full
+    {
+        margin: 0 auto 0 auto;
+        padding: 0px;
+        min-height: 200px;
+        width: 100%;
+        background-color: white;
+        box-shadow: none;
+    }
+    .fullLeft, .fullRight
+    {
+        margin: 0 auto 0 auto;
+        padding: 0;
+        float: left;
+        width: 100%;
+        height: auto;
+        background-color: #fff;
+    }
+    .header
+    {
+        text-align: center;
+        width: auto;
+        margin: 0px;
+        padding: 0px;
+    }
+    .menuItem ul li
+    {
+        width: 98%;
+        float: left;
+    }
+    .parList, .subList li
+    {
+        height: auto;
+        padding: 0px;
+    }
+    .menuItem ul li:hover ul  
+    {
+        margin: 0 auto 0 auto;
+	display:block;
+        position: relative;
+        top :-5px;
+        left:0%;
+        z-index:5000;
+        width:100%;
+    }
+    .menuItem ul li:hover ul li
+    {
+        width: 100%;
+        border-bottom: dotted #000 1px;
+        background-color: #5D5D5D;
+    }
+    .event, .download
+{
+    width: 100%;
+    min-height: 150px;
+    margin: 0px;
+    padding: 0px;
+}
+    .eventHeader, .downloadHeader, .containerHeader
+    {
+        width: auto!important;
+        padding: 0px 5px 0px 5px;
+    }
+    .slider
+    {
+        display: none;
+    }
+    #copyright
+    {
+        text-align: left;
+    }
+    
+}
+
+/* for media screen max of 320px and min of 100px*/
+@media only screen and (max-width : 320px)
+{
+    .full
+    {
+        margin: 0 auto 0 auto;
+        padding: 0px;
+        min-height: 200px;
+        width: 100%;
+        background-color: white;
+        box-shadow: none;
+    }
+    .fullLeft, .fullRight
+    {
+        margin: 0 auto 0 auto;
+        padding: 0;
+        float: left;
+        width: 100%;
+        height: auto;
+        background-color: #fff;
+    }
+    .header
+    {
+        text-align: center;
+        width: auto;
+        margin: 0px;
+        padding: 0px;
+    }
+    .menuItem ul li
+    {
+        width: 96%;
+        float: left;
+    }
+    .parList, .subList li
+    {
+        height: auto;
+        padding: 0px;
+    }
+    .menuItem ul li:hover ul  
+    {
+        margin: 0 auto 0 auto;
+	display:block;
+        position: relative;
+        top :-5px;
+        left:0%;
+        z-index:5000;
+        width:100%;
+    }
+    .menuItem ul li:hover ul li
+    {
+        width: 100%;
+        border-bottom: dotted #000 1px;
+        background-color: #5D5D5D;
+    }
+    .event, .download
+{
+    width: 100%;
+    min-height: 150px;
+    margin: 0px;
+    padding: 0px;
+}
+    .eventHeader, .downloadHeader, .containerHeader
+    {
+        width: auto!important;
+        padding: 0px 5px 0px 5px;
+    }
+    .slider
+    {
+        display: none;
+    }
+    #copyright
+    {
+        text-align: left;
+    }
+    
+}
+
+/* applicable for gadgets only 
+
+
+*/
+
+
+/* styles for slider*/
+/*
+ *	generated by WOW Slider 2.5
+ *	template Elemental
+ */
+ 
+
+#wowSlider
+{ 
+	zoom: 1; 
+	position: relative;
+	margin:0 auto;
+	border:none;
+	text-align:left; /* reset align=center */
+}
+* html #wowSlider
+{ width:100%; }
+#wowSlider ul{
+	position:relative;
+	width: 10000%; 
+	height:500px;
+	left:0;
+	list-style:none;
+	margin:0;
+	padding:0;
+	border-spacing:0;
+	overflow: visible;
+	/*table-layout:fixed;*/
+}
+#wowSlider .ws_images ul li{
+	
+	line-height:0; /*opera*/
+	float:left;
+	font-size:0;
+	padding:0 0 0 0 !important;
+	margin:0 0 0 0 !important;
+        height: 400px;
+        z-index: -1;
+}
+
+#wowSlider .ws_images{
+	position: relative;
+	left:0;
+	top:0;
+	width: 100%;
+	height:400px;
+	overflow:hidden;
+}
+#wowSlider .ws_images a{
+	width:100%;
+	display:block;
+	color:transparent;
+}
+#wowSlider img{
+	max-width: none !important;
+}
+#wowSlider .ws_images img{
+	width:100%;
+	border:none 0;
+	max-width: none;
+}
+#wowSlider a{ 
+	text-decoration: none; 
+	outline: none; 
+	border: none; 
+}
+
+#wowSlider .ws_bullets { 
+	font-size: 0px; 
+	float: left;
+	position:absolute;
+	z-index:-1;
+}
+#wowSlider .ws_bullets div{
+	position:relative;
+	float:left;
+}
+#wowSlider a.wsl{
+	display:none;
+}
+
+#wowSlider .ws_bullets { 
+	padding: 9px; 
+}
+#wowSlider .ws_bullets a { 
+	width:11px;
+	height:11px;
+	background: url(../images/bullet.png) left top;
+	float: left; 
+	text-indent: -4000px; 
+	position:relative;
+	margin-left:5px;
+	color:transparent;
+}
+#wowSlider .ws_bullets a:hover{
+	background-position: 0 50%;
+}
+#wowSlider .ws_bullets a.ws_selbull{
+	background-position: 0 100%;
+}
+#wowSlider a.ws_next, #wowSlider a.ws_prev {
+	position:absolute;
+	display:block;
+	top:50%;
+	margin-top:-20px;
+	z-index:-1;
+	height: 45px;
+	width: 45px;
+	background-image: url(../sripts/arrows.png);
+	opacity: 0.8;	
+}
+#wowSlider a.ws_next{
+	background-position: 100% 0;
+	right:21px;
+}
+#wowSlider a.ws_prev {
+	left:21px;
+	background-position: 0 0; 
+}
+#wowSlider a.ws_next:hover{
+	opacity: 1;
+}
+#wowslider-container1 a.ws_prev:hover {
+	opacity: 1;
+}  
+/* bottom center */
+#wowSlider .ws_bullets {
+    top: 6px;
+    right: 6px;
+}
+
+#wowSlider .ws-title{
+	position:absolute;
+	display:block;
+	bottom: 17px;
+	left: 0px;
+	margin: 9px;
+	margin-left: 0px;
+	margin-right: 9px; 
+	padding:8px;
+	background:#FFFFFF;
+	color:#5D5D5D;
+	z-index: 50;
+	font-family:'Open Sans',Arial,Helvetica,sans-serif;
+	font-size: 18px;
+	border-radius:5px;
+	-moz-border-radius:0 10px 10px 0;
+	border-radius:0 10px 10px 0;   
+	opacity:0.8;
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=90);	
+	-moz-box-shadow: 0 0 2px #5D5D5D;
+    box-shadow: 0 0 2px #5D5D5D; 
+}
+#wowSlider .ws-title div{
+	padding-top:5px;
+	font-size: 14px;
+}
+#wowSlider ul{
+	animation: wsBasic 16s infinite;
+	-moz-animation: wsBasic 16s infinite;
+	-webkit-animation: wsBasic 16s infinite;
+}
+@keyframes wsBasic{0%{left:-0%} 12.5%{left:-0%} 25%{left:-100%} 37.5%{left:-100%} 50%{left:-200%} 62.5%{left:-200%} 75%{left:-300%} 87.5%{left:-300%} }
+@-moz-keyframes wsBasic{0%{left:-0%} 12.5%{left:-0%} 25%{left:-100%} 37.5%{left:-100%} 50%{left:-200%} 62.5%{left:-200%} 75%{left:-300%} 87.5%{left:-300%} }
+@-webkit-keyframes wsBasic{0%{left:-0%} 12.5%{left:-0%} 25%{left:-100%} 37.5%{left:-100%} 50%{left:-200%} 62.5%{left:-200%} 75%{left:-300%} 87.5%{left:-300%} }
+
+#wowSlider .ws_images {
+    border-radius: 4px; 
+}
+#wowSlider .ws_effect img{
+	border-radius: 4px;
+}
+#wowSlider .ws_bullets  a img{
+	text-indent:0;
+	display:block;
+	top:20px;
+	left:-107px;
+	visibility:hidden;
+	position:absolute;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    border: 4px solid #FFF;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	max-width:none;
+}
+#wowSlider .ws_bullets a:hover img{
+	visibility:visible;
+}
+
+#wowSlider .ws_bulframe div div{
+	height:90px;
+	overflow:visible;
+	position:relative;
+}
+#wowSlider .ws_bulframe div {
+	left:0;
+	overflow:hidden;
+	position:relative;
+	width:213px;
+	background-color:#FFF;
+}
+#wowSlider .ws_bullets .ws_bulframe{
+	display:none;
+	top:18px;
+	overflow:visible;
+	position:absolute;
+	cursor:pointer;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    border: 4px solid #FFF;
+	border-radius:5px;
+	-moz-border-radius:5px;
+}
+#wowSlider .ws_bulframe span{
+	display:block;
+	position:absolute;
+	top:-10px;
+	margin-left:-6px;
+	left:107px;
+	background:url(../scripts/triangle.png);
+	width:15px;
+	height:6px;
+}
+
+
+
+<!-- This is for gadget view -->
+.gadget_collection
+{
+    width: 100%;
+    height: auto;
+    
+}
+
+.subgadget
+{
+    width: 20%;
+    float: left;
+    margin: 10px;
+}
+
+
+#description, #description a  
+{
+    height:auto;
+    padding: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #5D5D5D;
+    line-height: 1.5; 
+}
+
+#description a:hover
+{
+    color:#000;
+}
+
+#title
+{
+    border-bottom:thin solid #cccccc;
+    height:auto;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+iframe
+{
+    height: 200px;
+}

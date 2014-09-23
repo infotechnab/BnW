@@ -42,7 +42,7 @@
     
 
  
-   <div class="content">
+   <div class="content" style="height: 600px;">
        <div style="margin: 0 auto 0 auto; width: 100%; text-align: center;padding: 15px 0px 0px 0px; height: 100px;">
        <h1 style="margin: 0 auto 0 auto; opacity: 0.7; color: #fff; font-weight: 100;">Are You Bored off Using Bulky PHP Codes?</h1> 
        <h2 style="margin: 0 auto 0 auto; opacity: 0.7; color: #fff; font-weight: 100;">Let's Use BnW for simplicity.</h2></div>
@@ -55,6 +55,7 @@
        
    <?php } ?>
     </div>
+<div class="clear"></div>
     
    
     

@@ -1,0 +1,248 @@
+body
+{
+    background-color: #e0e0e0;
+    margin: 0px;
+    padding: 0px;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+}
+.container
+{
+    background-color: white;
+    margin: 0 auto 0 auto;
+    min-height: 250px;
+    box-shadow: 0px 0px 10px  #333;
+    border-radius: 5px;
+}
+#companyLogo
+{
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+a
+{
+	color:#333;
+}
+a:hover
+{
+    color: #000;
+}
+#loginform
+{
+    text-align: center;
+    width: auto!important;
+    padding: 20px;
+    margin: 0px;
+    min-height: 225px;
+}
+#form
+{
+    min-width: auto!important;
+    margin: 0px;
+    padding: 0px;
+}
+
+#username, #password
+{
+    padding: 10px;
+    margin: 0px;
+    border: 1px solid #333;
+    width: 230px;
+}
+#submitMe
+{
+    width:254px;
+    padding: 10px;
+    font-weight: bold;
+    margin: 0px; 
+}
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
+#sucessmsg
+{
+    color: red;  
+}
+.clear
+{
+    clear: both;
+}
+#rightTop
+{
+    width: 100%;
+    max-height: 300px;
+    float: left;
+    margin-top: 40px;
+}
+#footer
+    {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        margin-top: 10px;
+        padding: 0px;
+    }
+
+
+/* css for media screen max of 1500px and min of 1025px*/
+@media only screen and (max-width : 1500px)
+{
+    .container
+    {
+        width: 60%;
+        margin-top: 100px;
+    }
+    .left
+    {
+        width: 43%;
+        min-height: 150px;
+        float: left;
+    }
+    .right
+    {
+        width:48%;
+        float: left;
+        min-height: 300px;
+        padding: 20px;
+    }
+    #name
+    {
+        max-width: 100%!important;
+        min-height: 10px;
+        margin: 0%;
+        padding: 0%;  
+    }
+    .frame
+    {
+        width: 100%!important;
+        margin: 0px;
+        padding: 0px;
+        height: 300px;
+    }
+    
+}
+
+
+/* css for media screen max of 1025px and min of 800px*/
+@media only screen and (max-width : 1025px)
+{
+    .container
+    {
+        width: 80%;
+        margin-top: 80px;
+    }
+    .left
+    {
+        width: 43%;
+        min-height: 150px;
+        float: left;
+    }
+    .right
+    {
+        width: 48%;
+        padding: 20px;
+        float: left;
+        min-height: 150px;
+    }
+    .frame
+    {
+        max-width: 100%!important;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+}
+
+
+/* css for media screen max of 800px and min of 640px*/
+@media only screen and (max-width : 800px)
+{
+    .container
+    {
+        width: 90%;
+        margin-top: 60px;
+    }
+    .left
+    {
+        width: 47%;
+        min-height: 150px;
+        float: left;
+    }
+    .right
+    {
+        width: 43%;
+        float: left;
+        min-height: 125px;
+    }
+    .frame
+    {
+        max-width: 100%!important;
+        margin: 0px;
+        padding: 0px;
+    }
+}
+
+
+/* css for media screen max of 640px and min of 480px*/
+@media only screen and (max-width : 640px)
+{
+    .container
+    {
+        width: 70%;
+        margin-top: 40px;
+    }
+    .left
+    {
+        width: 100%;
+        min-height: 150px;
+    }
+    .right
+    {
+        display: none;
+    }
+}
+
+
+
+/* css for media screen max of 1500px and min of 1025px*/
+@media only screen and (max-width : 480px)
+{
+    .container
+    {
+        width: 80%;
+        margin-top: 35px;
+    }
+    .left
+    {
+        width: 100%;
+        min-height: 150px;
+    }
+    .right
+    {
+        display: none;
+    }
+}
+
+
+/* css for media screen max of 1500px and min of 1025px*/
+@media only screen and (max-width : 320px)
+{
+    .container
+    {
+        width: 100%;
+        padding: 25px 0px 0px 0px;
+    }
+    .left
+    {
+        width: 100%;
+        min-height: 150px;
+    }
+    .right
+    {
+        display: none;
+    }
+}
+
+
+
