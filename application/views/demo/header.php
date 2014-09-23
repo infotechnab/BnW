@@ -2,17 +2,10 @@
     <head>
         <title>BnW - A complete CMS</title>
         <meta name="viewport" content="width-device-width" initial-scale="1.0">
-        <link rel="stylesheet" href="<?php echo base_url().'content2/style.css';?>" type="text/css"> 
-         <link rel="stylesheet" href="<?php echo base_url().'content2/bootstrap.css';?>" type="text/css"> 
+        <link rel="stylesheet" href="<?php echo base_url().'content/uploads/styles/style.css';?>" type="text/css"> 
+         <link rel="stylesheet" href="<?php echo base_url().'content/uploads/bootstrap/css/bootstrap.css';?>" type="text/css"> 
        
-        <script src="<?php echo base_url().'content2/jquery.js'; ?>"></script> 
-    <script>
-        $(document).ready(function(){
-           $('.carousal').carousel({
-               interval:1000
-           });
-        });
-    </script>
+        <script src="<?php echo base_url().'content/uploads/scripts/jquery.js'; ?>"></script> 
     </head>
     <body>
         <div id="fb-root"></div>
@@ -95,7 +88,7 @@
             <?php foreach ($headerlogo as $hlogo){
                 $logo = $hlogo->description;
             } ?>
-            <div id="pagetop"><div id="logo" style="width: 15%; float: left;"><img src="<?php echo base_url().'content/uploads/images/'.$logo; ?>" alt="BnW logo" style="height: 80px;" /></div>
+            <div id="pagetop"><div style="background: linear-gradient(to right, #000 , #fff); width: 40%; height: 80px; float: left;"></div><div id="logo" style="width:20%; float: left;"><img src="<?php echo base_url().'content/uploads/images/'.$logo; ?>" alt="BnW logo" style="height: 80px;" /></div><div style="background: linear-gradient(to left, #000 , #fff); width: 40%; height: 80px; float: left;"></div>
                 <div class="fb-like" data-href="https://www.facebook.com/bnwcms" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div> 
             </div>
                
@@ -121,8 +114,9 @@
             
               
             
-                  
+          <div class="clear"></div>         
         </div>
+           
             
         
     

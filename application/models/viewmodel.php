@@ -238,16 +238,10 @@ class Viewmodel extends CI_Model
     
     function get_media_image($aid)
         {
-            $this->db->select();            
-            $this->db->where('media_association_id',$aid);
-            
-            $this->db->limit(1);
-                    $query = $this->db->get('media');
-           if ($query->num_rows() == 1) {
+                        
+           $this->db->where('media_association_id',$aid);
+           $query = $this->db->get('media');
             return $query->result();
-        } else {
-            return false;
-        }
         }
 
         

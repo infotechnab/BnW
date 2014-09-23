@@ -42,11 +42,16 @@ public function index()
              $data['noOfRecentPost'] = $this->viewmodel->recentpost_get_post($post);  
              
         }
-            
+   $data['albumquery'] = $this->viewmodel->get_album();
+     $data['slider_json'] = json_encode($data['slidequery']);
        // $this->load->view('document/documentation');
        
                 $this->load->view('demo/header', $data);   
-                $this->load->view('demo/main', $data);
+                $this->load->view('demo/slider', $data);
+                $this->load->view('demo/pages', $data);
+                $this->load->view('demo/posts', $data);
+                $this->load->view('demo/gallery', $data);
+                
                 $this->load->view('demo/footer');
 //        $this->load->view('menuview/header',$data);
 //        $this->load->view('menuview/menu',$data);
