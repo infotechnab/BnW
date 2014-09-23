@@ -35,7 +35,7 @@ public function index()
         {
              $setting = $dat->setting;
         
-            parse_str($setting);  //parsing from database gadget table settings field.
+           $post = parse_str($setting);  //parsing from database gadget table settings field.
            
             
            
@@ -45,8 +45,7 @@ public function index()
             
        // $this->load->view('document/documentation');
        
-                $this->load->view('demo/header', $data);
-               
+                $this->load->view('demo/header', $data);   
                 $this->load->view('demo/main', $data);
                 $this->load->view('demo/footer');
 //        $this->load->view('menuview/header',$data);
