@@ -1,8 +1,6 @@
-   <div class="titlebar">
-       <h1 class="titlebarHeading">Features</h1> 
-       </div>
-<div class="content" style="min-height: 520px; padding: 5%;">
-      
+
+<div class="content" style="display: inline-block; padding: 5%;">
+     <h1 class="titlebarHeading">Features</h1>  
        
        
     <style>

@@ -252,7 +252,7 @@
         
         
                     <!--slider is called here-->
-                    <div id="slider" style="background:#eee;">
+                    <div id="slider" style="background:#eee; padding: 0px 0px 2px 0px;">
                 <div id="slideshow"  style="height:60%;width:73%;margin:0% auto;">
                     <div id="slideshowWindow" style="height:100%;">
                         

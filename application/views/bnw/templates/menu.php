@@ -81,7 +81,14 @@
                             <li><?php echo anchor('sliders/addslider', 'Add New') ?></li>
                             <li><?php echo anchor('sliders/slider', 'View All Slider') ?></li>
                         </ul>
-                    </li>                    
+                    </li>       
+                    
+                    <li class="mainMenuItem"><a href="#">Subscriber</a>
+                        <ul class="subMenu">
+                            <li><?php echo anchor('subscribers/viewSubscriber', 'Newsletter subscriber') ?></li>
+                            <li><?php echo anchor('subscribers/slider', 'Contact List') ?></li>
+                        </ul>
+                    </li>
                    
                </ul>   
                 

@@ -51,14 +51,9 @@ public function index()
                 $this->load->view('demo/pages', $data);
                 $this->load->view('demo/posts', $data);
                 $this->load->view('demo/gallery', $data);
-                
+                $this->load->view('demo/download');
+                $this->load->view('demo/follow');
                 $this->load->view('demo/footer');
-//        $this->load->view('menuview/header',$data);
-//        $this->load->view('menuview/menu',$data);
-//        $this->load->view('menuview/event',$data);
-//        $this->load->view('menuview/slider',$data);
-//        $this->load->view('menuview/pages',$data);
-//        $this->load->view('menuview/footer',$data);
         
     }
     

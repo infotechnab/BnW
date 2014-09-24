@@ -1,6 +1,3 @@
-<div class="titlebar">
-       <h1 class="titlebarHeading">Gallery</h1> 
-       </div>
 <style>
     ul {         
           padding:0 0 0 0;
@@ -14,7 +11,8 @@
           cursor: pointer;
       }
 </style>
-<div style="padding: 2% 5% 2% 5%; background-color: #802420;">
+<div style="padding: 2% 5% 2% 5%; background-color: #f0f1d3;">
+    <h1 class="titlebarHeading">Gallery</h1> 
         <div class="container">
      <ul class="row">
          <?php  if($albumquery){
@@ -26,7 +24,8 @@ foreach ($albumquery as $data)
         $arr = array_merge($arr, $result);
 }
 foreach( $arr as $abc){   ?> 
-         <li class="col-lg-3 col-md-3 col-sm-1 col-xs-4"><img name="<?php echo $abc->media_type; ?>" src="<?php echo base_url(); ?>content/uploads/images/thumb_<?php echo $abc->media_type; ?>" width="200" /></li>
+         
+         <li class="col-lg-3 col-md-3 col-sm-1 col-xs-4" style="border:1px solid#000; width: 20%; margin-right: 5%; padding-top: 15px;"><img name="<?php echo $abc->media_type; ?>" src="<?php echo base_url(); ?>content/uploads/images/thumb_<?php echo $abc->media_type; ?>" width="100%" height="200" /><p style="font-size:20px;"><?php echo $abc->media_name; ?></p></li>
          <?php }} ?>
      </ul>
             
