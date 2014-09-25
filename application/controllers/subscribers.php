@@ -50,9 +50,10 @@ class Subscribers extends CI_Controller {
           if ($this->session->userdata('admin_logged_in')) {
               
             $data['meta'] = $this->dbsetting->get_meta_data();
+            $data['news'] = $this->contact_model->get_feedback();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/subscribers/viewContacts');
+            $this->load->view('bnw/subscribers/viewContacts', $data);
             $this->load->view('bnw/templates/footer', $data);  
           }else
           {
@@ -60,9 +61,42 @@ class Subscribers extends CI_Controller {
           }
     }
     
+    public function deletesubs($id=null)
+    {
+       if ($this->session->userdata('admin_logged_in')) {
+            $this->contact_model->delete_subscription($id);
+            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+            redirect('subscribers/viewSubscriber');
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
     
+    public function deleteRemarks($id=null)
+    {
+       if ($this->session->userdata('admin_logged_in')) {
+            $this->contact_model->delete_subscription($id);
+            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+            redirect('subscribers/viewContact');
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
     
-    
+     public function addFeedback()
+    {
+        if(isset($_POST['email']))
+        {
+            $email = $_POST['email'];
+        }
+         if(isset($_POST['remarks']))
+        {
+            $remark = $_POST['remarks'];
+        }
+        $type="feedback";
+        $this->contact_model->add_new_contact_feedback($email, $remark, $type);
+        echo "Thank you for your feedback";
+    }
     
     
     

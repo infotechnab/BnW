@@ -56,7 +56,12 @@ public function index()
                 $this->load->view('demo/footer');
         
     }
-    
+     public function newform()
+    {
+         $this->load->view('demo/angularjs');
+         $this->load->view('demo/datatable');
+         
+    }
     public function page($id)
     {
         $nav= $this->uri->uri_string();
@@ -174,6 +179,8 @@ public function index()
         $this->load->view('menuview/footer',$data);  
         
     }
+   
+
     public function post($id)
     {
         $nav= $this->uri->uri_string();

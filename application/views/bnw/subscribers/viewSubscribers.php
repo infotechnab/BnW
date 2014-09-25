@@ -23,8 +23,7 @@
           <tr>    
             <td><?php echo $data->full_name; ?></td>
             <td><?php echo $data->email; ?></td>            
-            <td><?php echo anchor('page/editpage/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('page/deletepage/'.$data->id,'Delete'); ?></td>
+            <td><?php echo anchor('subscribers/deletesubs/'.$data->id,'Delete'); ?></td>
         </tr>
             <?php    
             }
