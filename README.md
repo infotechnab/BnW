@@ -41,7 +41,7 @@ validate_credentials
 In Validate_credentials function in login controller session time is set 1 hour if user didn't checked the stay logged in checkbox and 7 days if checked the checkbox.
 
 
-###Chnage Log
+###Change Log
 ======================================================================================================================
 In current working version 
 
