@@ -1,5 +1,5 @@
 
-<?php     foreach ($listOfMenu as $data)
+<?php      foreach ($listOfMenu as $data)
                 {
                   $categories[] = array('id'=> $data->id,'menu_name'=>$data->menu_name); 
                 } 
@@ -12,7 +12,6 @@
  $jsonCats = json_encode($categories);
   $jsonSubCats = json_encode($subcats);
  
-  
 ?>
 
 <script type="text/javascript">
@@ -45,13 +44,13 @@ $.fn.changeType = function(){
               ?>
 
 
-        var options_departments = '<option value="0">Select Menu<\/option>';
+        var options_departments = '<option value="0">Select Menu</option>';
         $.each(data, function(i,d){
-            options_departments += '<option value="' + d.department + '">' + d.department + '<\/option>';
+            options_departments += '<option value="' + d.department + '">' + d.department + '</option>';
         });
-        $("select#departments", this).html(options_departments);
+        $("select#departments").html(options_departments);
        
-        $("select#departments", this).change(function(){
+        $("select#departments").change(function(){
             var index = $(this).get(0).selectedIndex;
             var d = data[index-1];  // -1 because index 0 is for empty 'Select' option
             var options = '<option>Make Parent<\/option>';
@@ -76,7 +75,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $("form#search").changeType();
 });
-/* ]]> */
+
 </script>
 
 <!-- NAvigation items list shown here  -->
@@ -190,19 +189,14 @@ $(document).ready(function() {
             <input type="text" name="navigation_link" placeholder="Type Custom Menu Link" required/>
             </p>
               
-            <select name="selectMenu" style="width: 110px">
-                <?php
-                foreach ($listOfMenu as $data)
-                {
-                    ?>
-                <option value="<?php echo $data->menu_name; ?>">
-                    <?php echo $data->menu_name; ?>
-                </option>
-                    <?php
-                }
-                ?>
-          
-            </select>             
+            <select style="width: 110px" name="departments" id="departments">
+        <option value ="0">Select Menu</option>
+    </select>  
+            
+            <select style="width: 150px" name="jobs" id="jobs">
+        <option>Make Parent</option>
+    </select> 
+            
             <input type="submit" value="Add">
         <?php echo form_close();?>
     </div></div>   

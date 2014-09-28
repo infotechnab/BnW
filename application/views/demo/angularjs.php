@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    <!-- CSS 
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />-->
     <style>
         body     { padding-top:30px; }
     </style>
@@ -26,7 +26,7 @@
         <!-- USERNAME -->
         <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
             <label>Username</label>
-            <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8">
+            <input type="text" name="username" class="" ng-model="user.username" ng-minlength="3" ng-maxlength="8">
             <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
             <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
         </div>       

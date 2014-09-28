@@ -520,10 +520,8 @@ class Dashboard extends CI_Controller {
 
             if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
                 $menuSelected = $_POST['departments'];
-               // die($menuSelected);
                 if($menuSelected==!"0")
                 {
-                   // die($menuSelected."dfdsfds");
                 $menu_info = $this->dbdashboard->get_menu_info($menuSelected);
               
                 foreach ($menu_info as $id) {
@@ -622,14 +620,6 @@ class Dashboard extends CI_Controller {
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
 
-            if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
-                $menuSelected = $_POST['selectMenu'];
-                $menu_info = $this->dbdashboard->get_menu_info($menuSelected);
-                foreach ($menu_info as $id) {
-                    $menu_id = $id->id;
-                }
-            }
-
             $this->form_validation->set_rules('navigation_name', 'Name', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('navigation_link', 'Link', 'required|xss_clean|max_length[200]');
 
@@ -637,12 +627,32 @@ class Dashboard extends CI_Controller {
 
                 $this->load->view('bnw/navigation/listOfItems', $data);
             } else {
-
-                //if valid
+                 if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
+                $menuSelected = $_POST['departments'];
+                if($menuSelected==!"0")
+                {
+                $menu_info = $this->dbdashboard->get_menu_info($menuSelected);
+              
+                foreach ($menu_info as $id) {
+                    $menu_id = $id->id;
+                }
+               
+              
+                $navigationName = $_POST['jobs'];
+                if ($navigationName == 'Make Parent'){
+                $parent_id = '0';}
+                else {
+                    $post_category_info = $this->dbdashboard->get_navigation_info($navigationName);
+                    foreach ($post_category_info as $pid) {
+                        $parent_id = $pid->id;
+                    }
+                }
+            }}
+                
                 $navigationName = $this->input->post('navigation_name');
                 $navigationLink = $this->input->post('navigation_link');
-                $parentID = "0";
-                $navigationType = " ";
+                $parentID = $parent_id;
+                $navigationType = "";
                 $navigation_slug = preg_replace('/\s+/', '', $navigationName);
                 $this->dbdashboard->add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menu_id);
                // $data['token_sucess'] = ' One Navigation item added sucessfully';                
