@@ -40,6 +40,16 @@ validate_credentials
 
 In Validate_credentials function in login controller session time is set 1 hour if user didn't checked the stay logged in checkbox and 7 days if checked the checkbox.
 
+
+###Chnage Log
+======================================================================================================================
+In current working version 
+
+In case of creating custom link, there was lack of facility to make custom link visible under other main link, now custom link could be listed as parent or as child of other parent links.
+Newsletter subscription and contact list facility is added to both of template and dashboard. Now from dashboard through the link subscription, news letter subscribers could be viewed and managed and from the same navigation the contact list as well as feed backs could be viewed and managed.
+
+
+
 ##BnW 1.1 
 Working on. 
 Changes: 
