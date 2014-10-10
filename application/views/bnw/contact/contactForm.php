@@ -14,6 +14,11 @@
     foreach ($contact as $datas){
         $name = $datas->name;
         $address= $datas->address;
+      $myArray = explode(',', $address);
+          $street = $myArray['0'];
+          $city = $myArray['1'];
+          $district = $myArray['2'];
+          $country = $myArray['3'];
         $contact1 = $datas->contact_no1;
         $contact2 = $datas->contact_no2;
         $email = $datas->email;
@@ -27,16 +32,16 @@
   <input type="text" name="title" value="<?php echo $name; ?>" />
   </p>
   <p>Address 1(Street):<br />
-  <input type="text" name="street" value="<?php echo set_value('media_name'); ?>" />
+  <input type="text" name="street" value="<?php echo $street; ?>" />
   </p>
   <p>Address 2(City):<br />
-  <input type="text" name="city" value="<?php echo set_value('media_name'); ?>" />
+  <input type="text" name="city" value="<?php echo $city; ?>" />
   </p>
   <p>District:<br />
-  <input type="text" name="district" value="<?php echo set_value('media_name'); ?>" />
+  <input type="text" name="district" value="<?php echo $district; ?>" />
   </p>
   <p>Country:<br />
-  <input type="text" name="country" value="<?php echo set_value('media_name'); ?>" />
+  <input type="text" name="country" value="<?php echo $country; ?>" />
   </p>
   <p>Contact No.(Primary):<br />
   <input type="text" name="contact1" value="<?php echo $contact1; ?>" />
@@ -47,8 +52,8 @@
   <p>Email:<br />
   <input type="email" name="email" value="<?php echo $email; ?>" />
   </p>
-  <input type="checkbox" name="showForm" value="showForm">Show Contact Form.<br/><br/>
-  <input type="checkbox" name="showMap" value="showMap">Show Location Map.<br/><br/>
+  <input type="checkbox" name="showForm" value="showForm" <?php if($showForm=='showForm') echo 'checked' ;?>>Show Contact Form.<br/><br/>
+  <input type="checkbox" name="showMap" value="showMap" <?php if($showMap=='showMap') echo 'checked' ;?>>Show Location Map.<br/><br/>
   
   
  

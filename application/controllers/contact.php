@@ -38,7 +38,7 @@ class Contact extends CI_Controller {
             $this->form_validation->set_rules('street', 'Street', 'trim|regex_match[/^[a-z,0-9,A-Z_\-. ]{5,100}$/]|required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('city', 'City', 'trim|regex_match[/^[a-z,0-9,A-Z_\-. ]{5,50}$/]|required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('district', 'District', 'trim|regex_match[/^[a-z,0-9,A-Z_\-. ]{5,50}$/]|required|xss_clean|max_length[200]');
-            $this->form_validation->set_rules('country', 'Country', 'trim|regex_match[/^[a-z,0-9,A-Z_\-. ]{5,35}$/]|required|xss_clean|md5|max_length[200]');
+            $this->form_validation->set_rules('country', 'Country', 'trim|regex_match[/^[a-z,0-9,A-Z_\-. ]{5,35}$/]|required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('contact1', 'Contact1', 'trim|regex_match[/^[0-9_\-. +]{5,15}$/]|required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('email', 'Email', 'trim|regex_match[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/]|required|xss_clean|max_length[200]');
             if ($this->form_validation->run() == FALSE) {
@@ -58,7 +58,7 @@ class Contact extends CI_Controller {
                 $showForm = $this->input->post('showForm');
                 $showMap = $this->input->post('showMap');
                 $this->contact_model->add_contact_form($name, $street, $city, $district, $country, $contact1, $contact2, $email, $showForm, $showMap);
-                $this->session->set_flashdata('message', 'Contact Address added sucessfully');
+                $this->session->set_flashdata('message', 'Contact Address updated sucessfully');
                 redirect('contact/index');
             }
     } else {

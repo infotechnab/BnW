@@ -54,7 +54,8 @@ class contact_model extends CI_Model {
             'email' => $email,
             'show_form' => $showForm,
             'show_map' => $showMap);
-        $this->db->insert('contact_address', $data);
+        $this->db->where('id', '1');
+        $this->db->update('contact_address', $data);
     }
     
     public function get_contact_form()
