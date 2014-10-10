@@ -48,6 +48,7 @@ In current working version
 In case of creating custom link, there was lack of facility to make custom link visible under other main link, now custom link could be listed as parent or as child of other parent links.
 Newsletter subscription and contact list facility is added to both of template and dashboard. Now from dashboard through the link subscription, news letter subscribers could be viewed and managed and from the same navigation the contact list as well as feed backs could be viewed and managed.
 
+Now Contact form could be generated with location map and contact address from the dashboard. For this purpose new controller contact is added
 
 
 ##BnW 1.1 
