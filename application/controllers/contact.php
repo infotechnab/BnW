@@ -17,9 +17,10 @@ class Contact extends CI_Controller {
         $url = current_url();
           if ($this->session->userdata('admin_logged_in')) {  
          $data['meta'] = $this->dbsetting->get_meta_data();
+         $data['contact'] = $this->contact_model->get_contact_form();
           $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/contact/contactForm');            
+            $this->load->view('bnw/contact/contactForm', $data);            
              $this->load->view('bnw/templates/footer', $data);   
              } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -30,6 +31,7 @@ class Contact extends CI_Controller {
     {
        if ($this->session->userdata('admin_logged_in')) {  
            $data['meta'] = $this->dbsetting->get_meta_data();
+            $data['contact'] = $this->contact_model->get_contact_form();
                 $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('title', 'Organization Name', 'trim|regex_match[/^[a-z,0-9,A-Z_\-. ]{5,100}$/]|required|xss_clean|max_length[200]');
@@ -42,7 +44,7 @@ class Contact extends CI_Controller {
             if ($this->form_validation->run() == FALSE) {
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/contact/contactForm');            
+            $this->load->view('bnw/contact/contactForm', $data);            
              $this->load->view('bnw/templates/footer', $data);
             } else {
                 $name = $this->input->post('title');
@@ -66,7 +68,20 @@ class Contact extends CI_Controller {
             
        }
     
-    
+       public function updateContact()
+       {
+            if ($this->session->userdata('admin_logged_in')) {  
+           $data['meta'] = $this->dbsetting->get_meta_data();
+           $data['contact'] = $this->contact_model->get_contact_form();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->view('bnw/contact/contactForm', $data);            
+             $this->load->view('bnw/templates/footer', $data);
+            } else {
+
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+       }
     
     
     

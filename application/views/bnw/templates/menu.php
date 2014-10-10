@@ -89,6 +89,12 @@
                             <li><?php echo anchor('subscribers/slider', 'Contact List') ?></li>
                         </ul>
                     </li>
+                    <li class="mainMenuItem"><a href="#">Contact Form</a>
+                        <ul class="subMenu">
+                            <li><?php echo anchor('contact/updateContact', 'Contact Form') ?></li>
+                            
+                        </ul>
+                    </li>
                    
                </ul>   
                 

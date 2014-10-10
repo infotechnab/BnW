@@ -57,5 +57,9 @@ class contact_model extends CI_Model {
         $this->db->insert('contact_address', $data);
     }
     
-    
+    public function get_contact_form()
+    {
+        $query = $this->db->get('contact_address');
+        return $query->result();
+    }
 }
