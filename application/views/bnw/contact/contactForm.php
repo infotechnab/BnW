@@ -36,8 +36,8 @@
   <p>Email:<br />
   <input type="email" name="email" value="<?php echo set_value('media_name'); ?>" />
   </p>
-  <input type="checkbox" value="showForm">Show Contact Form.<br/><br/>
-  <input type="checkbox" value="showMap">Show Location Map.<br/><br/>
+  <input type="checkbox" name="showForm" value="showForm">Show Contact Form.<br/><br/>
+  <input type="checkbox" name="showMap" value="showMap">Show Location Map.<br/><br/>
   
   
  

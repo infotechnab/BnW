@@ -44,7 +44,18 @@ class contact_model extends CI_Model {
         $this->db->delete('contact_list');
     }
     
-    
+    public function add_contact_form($name, $street, $city, $district, $country, $contact1, $contact2, $email, $showForm, $showMap)
+    {
+        $data = Array(
+            'name' => $name,
+            'address' => $street.','.$city.','.$district.','.$country,
+            'contact_no1' => $contact1,
+            'contact_no2' => $contact2,
+            'email' => $email,
+            'show_form' => $showForm,
+            'show_map' => $showMap);
+        $this->db->insert('contact_address', $data);
+    }
     
     
 }
