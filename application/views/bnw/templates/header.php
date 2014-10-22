@@ -9,6 +9,9 @@
       <script src="<?php echo base_url(); ?>content/bnw/scripts/nicEdit.js"></script>
        <script src="<?php echo base_url(); ?>content/bnw/scripts/gadgets.js"></script>
        <script src="<?php echo base_url(); ?>content/bnw/scripts/calendar.js"></script>
+       <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.imgareaselect.pack.js"></script>
+       <script src="<?php echo base_url(); ?>content/bnw/scripts/script.js"></script>
+       <link rel="stylesheet" type="text/css" href="<?php echo base_url().'content/bnw/styles/imgareaselect-animated.css'; ?>" />
 <script type="text/javascript">
 
 bkLib.onDomLoaded(function() {
