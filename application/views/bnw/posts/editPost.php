@@ -51,11 +51,11 @@ if ($miscSetting)
  
   <?php echo form_open_multipart('offers/updatepost');?>
     <input type="hidden" name="hidden_image" value="<?php echo $post_image; ?>"/>
-  <p>Offer Title:<br />
+  <p class="dashuppe-text-all">Title<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
       <input type="text" class="textInput" name="post_title" value="<?php echo $post_title; ?>" />
   </p>
-  <p>Body:<br />
+  <p class="dashuppe-text-all">Body<br />
   <textarea name="post_content" id="area1" rows="5" cols="50" style="resize:none;">
       <?php echo $post_content; ?></textarea>
   </p>
@@ -66,9 +66,8 @@ if ($miscSetting)
              <a href="<?php echo base_url();?>index.php/offers/offerImgdelete/?id=<?php echo $id; ?> " id="<?php echo $id; ?>" class="delbutton">
         <img src="<?php echo base_url();?>content/bnw/images/delete.png" id="close"/></a>
     </div> <?php }?>
-  <p>
-      Image:<br/> 
-     <input id="uploadImage" type="file" name="file" />
+  <p class="dashuppe-text-all">Image<br/> 
+     <input id="uploadImage" class="textInput" type="file" name="file" />
      <!-- hidden inputs -->
 		<input type="hidden" id="x" name="x" />
 		<input type="hidden" id="y" name="y" />
@@ -77,7 +76,7 @@ if ($miscSetting)
   </p>
   <img id="uploadPreview" style="display:none;width:1000px;"/>
   
-   <input type="submit" value="Submit" />
+   <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
   
    <?php } else{

@@ -31,10 +31,10 @@ if ($query)
 
   <?php echo form_open_multipart('page/addpage');?>
   
-  <p>Title:<br />
+  <p class="dashuppe-text-all">Title<br />
   <input type="text" class="textInput" name="page_name" value="<?php echo set_value('page_name'); ?>" />
   </p>
-  <p>Body:<br />
+  <p class="dashuppe-text-all">Body<br />
       <textarea name="page_content" id="area1" cols="50" rows="5" ><?php echo set_value('page_content'); ?></textarea>
   </p>    
   
@@ -42,21 +42,22 @@ if ($query)
     
     <div id="forRightPage"> 
   
-   <p> Order : <br/>
+   <p class="dashuppe-text-all">Order<br/>
        <input type="text" class="textInput" name="page_order" /> </p>
    
-   <p> Type : <br/>
+   <p class="dashuppe-text-all">Type<br/>
        <input type="text" class="textInput" name="page_order" /> </p>
    
-   <p> Tags : <br/>
+   <p class="dashuppe-text-all">Tags<br/>
        <input type="text" class="textInput" name="page_order" /> </p>
-   <p>Status:<br />
-  <?php 
-  $options = array(
-                  '1'  => 'publish',
-                  '0'    => 'draft');
-  echo form_dropdown('page_status',$options,'1')
-  ?>
+   <p class="dashuppe-text-all">Status<br />  
+  <?php $options = array('1'  => 'publish','0'    => 'draft');?>
+       <select class="textInput" name="min">
+         
+         <?php foreach ($options as $data){ ?>
+         <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+         <?php } ?>
+     </select>
   </p>
 <input type="checkbox" name="allow_comment" value="1" <?php if($set_data[0]==1) echo 'checked' ;?> >Allow people to post comment</input>
 <br/>
@@ -65,9 +66,8 @@ if ($query)
 <input type="checkbox" name="allow_share" value="1" <?php if($set_data[2]==1) echo 'checked' ;?> >Allow people to share</input>
 <br/>
   
-  <input type="submit" value="Submit" />
+  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
-  <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>
     </div>
     <div class="clear"></div>
 </div>

@@ -35,15 +35,15 @@ if ($query)
 
   <?php echo form_open_multipart('offers/addpost');?>
   
-  <p>Post Title:<br />
+  <p class="dashuppe-text-all">Post Title<br />
   <input type="text" class="textInput" name="post_title" value="<?php echo set_value('post_title'); ?>" />
   </p>
-  <p>Body:<br />
+  <p class="dashuppe-text-all">Body<br />
       <textarea name="post_content" id="area1" cols="50" rows="5" ><?php echo set_value('post_content'); ?></textarea>
   
   </p> 
-  <p>Image:<br />
-      <input id="uploadImage" type="file" name="file" />
+  <p class="dashuppe-text-all">Image<br />
+      <input id="uploadImage" class="textInput" type="file" name="file" />
      <!-- hidden inputs -->
 		<input type="hidden" id="x" name="x" />
 		<input type="hidden" id="y" name="y" />
@@ -51,7 +51,7 @@ if ($query)
 		<input type="hidden" id="h" name="h" /> 
   </p> 
   <img id="uploadPreview" style="display:none;width:1000px;"/>
-   <input type="submit" value="Submit" />
+   <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
  
     </div>

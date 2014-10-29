@@ -10,10 +10,10 @@
     </p>
   <?php echo form_open_multipart('dashboard/addmenu');?>
       
- <p>Menu Name:<br />
-      <input type="text" name="menu_name" value="<?php echo set_value('menu_name'); ?>"  /> </p> 
+ <p class="dashuppe-text-all">Menu Name<br />
+      <input type="text" class="textInput" name="menu_name" value="<?php echo set_value('menu_name'); ?>"  /> </p> 
  
- <input type="submit" value="Submit" />
+ <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
 
 
@@ -22,7 +22,7 @@
 <!--    <p id="sucessmsg">
   <?php //if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>-->
-    <h4 style="margin: 15px 0px 5px 5px;">All Menu</h4>
+    <h4 style="margin: 15px 0px 5px 5px;" class="dashuppe-text-all">All Menu</h4>
    <hr style="width: 30%; float: left;" />
    <div class="clear"></div>
      <?php    

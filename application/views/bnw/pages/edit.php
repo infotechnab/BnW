@@ -48,34 +48,34 @@ if ($miscSetting)
  
   
   <?php echo form_open_multipart('page/updatepage');?>
-  <p>Title:<br />
+  <p class="dashuppe-text-all">Title<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
       <input type="text" class="textInput" name="page_name" value="<?php echo $name; ?>" />
   </p>
-  <p>Body:<br />
+  <p class="dashuppe-text-all">Body<br />
   <textarea name="page_content" id="area1" rows="5" cols="50" style="resize:none;">
       <?php echo $body; ?></textarea>
   </p>
   </div>
   
   <div id="forRightPage"> 
-   <p> Order : <br/>
+   <p class="dashuppe-text-all">Order<br/>
        <input type="text" class="textInput" name="page_order" /> </p>
    
-   <p> Type : <br/>
+   <p class="dashuppe-text-all">Type<br/>
        <input type="text" class="textInput" name="page_type" /> </p>
    
-   <p> Tags : <br/>
+   <p class="dashuppe-text-all">Tags<br/>
        <input type="text" class="textInput" name="page_tasg "/> </p>
    
-   <p>Status:<br />
-  <?php 
-  $options = array(
-                  '1'  => 'publish',
-                  '0'    => 'draft');
-  echo form_dropdown('status',$options)
-          
-  ?>
+   <p class="dashuppe-text-all">Status<br />
+  <?php $options = array('1'  => 'publish','0'    => 'draft');?>
+       <select class="textInput" name="min">
+         
+         <?php foreach ($options as $data){ ?>
+         <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+         <?php } ?>
+     </select>
   </p>
   
   <input type="checkbox" name="allow_comment" value="1" <?php if($set_data[0]==1 OR $comment==1 ) echo 'checked' ;?>>Allow people to post comment</input>
@@ -85,7 +85,7 @@ if ($miscSetting)
 <input type="checkbox" name="allow_share" value="1" <?php if($set_data[2]==1 OR $share==1 ) echo 'checked' ;?>>Allow people to share</input>
 <br/>
   
-  <input type="submit" value="Submit" />
+  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
   
   <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>

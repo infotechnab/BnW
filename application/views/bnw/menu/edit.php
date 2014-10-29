@@ -16,10 +16,10 @@
   <?php echo form_open_multipart('dashboard/updatemenu');?>
   
       <input type="hidden" name="id" value="<?php echo $id; ?>" />
- <p>Menu Name:<br />
-      <input type="text" name="menu_name" value="<?php echo $menuname; ?>" /> </p> 
+ <p class="dashuppe-text-all">Menu Name<br />
+      <input type="text" class="textInput" name="menu_name" value="<?php echo $menuname; ?>" /> </p> 
  
-    <input type="submit" value="Submit" />
+    <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>

@@ -13,11 +13,11 @@
 </p>
   <?php echo form_open_multipart('dashboard/addcategory');?>
   
-  <p>Name:<br />
-  <input type="text" name="category_name" value="<?php echo set_value('category_name'); ?>" />
+  <p class="dashuppe-text-all">Name<br />
+  <input type="text" class="textInput" name="category_name" value="<?php echo set_value('category_name'); ?>" />
   </p>
   
-   <input type="submit" value="Submit" />
+   <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
 
 <div id="body">
