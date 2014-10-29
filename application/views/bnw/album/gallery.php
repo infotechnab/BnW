@@ -99,7 +99,7 @@ foreach ($query as $data) {
    
     
 
-    <img class="srcimage" src="<?php echo base_url(); ?>content/uploads/images/thumb_<?php echo $data->media_type; ?>" name="<?php echo $data->media_type ?>" id="galleryimage" />
+    <img class="srcimage" src="<?php echo base_url(); ?>content/uploads/images/<?php echo $data->media_type; ?>" name="<?php echo $data->media_type ?>" id="galleryimage" />
         <div id="imagetitle"> <?php echo $data->media_name; ?>
             
         </div>
@@ -123,11 +123,11 @@ else
  <a id="popupBoxClose">Close</a>	
 </div>
 
-<div class="add" style="width:250px; height:100px; margin: 10px; float: left " >
+<div class="add" style="width:250px; margin: 10px; float: left " >
 <?php echo form_open_multipart('album/addphoto'); ?>
     <input type="hidden" name="id" value="<?php echo $id; ?>" />
-    <label> Image Title :</label> <br/>
-    <input type="text" class="input-text-small" name="title" required />          
+    <p class="dashuppe-text-all">Image Title <br/>
+    <input type="text" class="input-text-small" name="title" required /> </p>         
     <input id="uploadImage" class="input-text-small" type="file" name="file" />
      <!-- hidden inputs -->
 		<input type="hidden" id="x" name="x" />
@@ -137,11 +137,9 @@ else
                  <img id="uploadPreview" style="display:none;width:1000px;"/>
     <input type="submit" name="submit" class="submit-button-small" value="add photo"   />
 <?php  echo form_close(); ?>
-    <p><b>Note:</b> Max file size: 500KB,  Width: 1024px, Height: 768px </p>
+    
 </div> 
-<div class="clear"></div>
-<div style="clear: left;" >
-</div>
+
 </div>
 <div class="clear"></div>
 </div>
