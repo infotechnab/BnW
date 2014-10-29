@@ -20,7 +20,17 @@ class Events extends CI_Controller {
     public function index() {
         redirect('bnw');
     }
-    
+     function getRandomStringForCoupen($length) {
+        $validCharacters = "ABCDEFGHIJKLMNPQRSTUXYVWZ123456789abcdefghijklmnopqrstuvwxyz";
+        $validCharNumber = strlen($validCharacters);
+        $result = "";
+
+        for ($i = 0; $i < $length; $i++) {
+            $index = mt_rand(0, $validCharNumber - 1);
+            $result .= $validCharacters[$index];
+        }
+        return $result;
+    }
     //================================ START EVENTS ======================================================//
     function event() {
         $url = current_url();
@@ -105,29 +115,31 @@ class Events extends CI_Controller {
                         $data['query'] = $this->dbevent->get_event_id($id);
                         $this->load->view('bnw/event/editEvent', $data);
                     } else {
-                        //  die('image');
                         include_once 'imagemanipulator.php';
-
                         $manipulator = new ImageManipulator($_FILES['file']['tmp_name']);
-                        $width = $manipulator->getWidth();
-                        $height = $manipulator->getHeight();
-
-                        $centreX = round($width / 2);
-
-                        $centreY = round($height / 2);
-
-                        // our dimensions will be 200x130
-                        $x1 = $centreX - 374; // 200 / 2
-                        $y1 = $centreY - 150; // 130 / 2
-
-                        $x2 = $centreX + 374; // 200 / 2
-                        $y2 = $centreY + 150; // 130 / 2
+                         $realwidth = $manipulator->getWidth();
+                        
+                        $newWidth = (int) $_POST['w'];
+                        $newHeight = (int) $_POST['h'];
+                        $ratio = $realwidth/1000;
+                        $ax1 = (int) $_POST['x']; 
+                        $ay1 = (int) $_POST['y']; 
+                        $x1 = $ax1*$ratio;
+                        $y1 = $ay1*$ratio;
+                        $height = $newHeight*$ratio;
+                        $width = $newWidth*$ratio;
+                        
+                        $x2 = $x1 + $width; 
+                        $y2 = $y1 + $height;    
+                       
                         // center cropping to 200x130
                         $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
-                        // saving file to uploads folder
-                        $manipulator->save('./content/uploads/images/' . $_FILES['file']['name']);
-                         $data = $this->upload->data();
-                        $image = $data['file_name'];
+                        $name = $_FILES['file']['name'];
+                        $key = $this->getRandomStringForCoupen(5);
+                        $image = $key.$name;
+                        $manipulator->save('./content/uploads/images/' .$image);
+                          unlink('./content/uploads/images/'.$name);
+                         
                        // $imgname = $img_name;
                         $image_thumb = dirname('thumb_' . $image . '/demo');
                         $config['image_library'] = 'gd2';
@@ -135,14 +147,13 @@ class Events extends CI_Controller {
                         $config['new_image'] = $image_thumb;
                         $config['maintain_ratio'] = TRUE;
                         $config['width'] = 100;
-                        $config['height'] = 75;
+                        $config['height'] = 100;
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
                         $id = $this->input->post('id');
                         $title = $this->input->post('Name');
                         $content = $this->input->post('description');
-                      //  $data = array('upload_data' => $this->upload->data('file'));
-                      //  $image = $data['upload_data']['file_name'];
+                     
 
                         $string = $this->input->post('description');
                         $summary = substr("$string", 0, 100);
@@ -189,7 +200,7 @@ class Events extends CI_Controller {
     function addevent() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-            $config['upload_path'] = './content/uploads/images/';
+           $config['upload_path'] = './content/uploads/images/';
             $config['allowed_types'] = 'gif|jpg|png';
            
             $data["links"] = $this->pagination->create_links();
@@ -209,34 +220,38 @@ class Events extends CI_Controller {
                 $this->load->view('bnw/event/addEvent');
             } else {
                  if (!empty($_FILES['file']['name'])) {
-                                  
+                            
                     // Initialize config for File 1
                     $this->upload->initialize($config);
                     // Upload file 1
-                    if ($this->upload->do_upload('file')) {
+                    if ($this->upload->do_upload('file')) {     
                          include_once 'imagemanipulator.php';
-
                         $manipulator = new ImageManipulator($_FILES['file']['tmp_name']);
-                        $width = $manipulator->getWidth();
-                        $height = $manipulator->getHeight();
-
-                        $centreX = round($width / 2);
-
-                        $centreY = round($height / 2);
-
-                        // our dimensions will be 200x130
-                        $x1 = $centreX - 374; // 200 / 2
-                        $y1 = $centreY - 150; // 130 / 2
-
-                        $x2 = $centreX + 374; // 200 / 2
-                        $y2 = $centreY + 150; // 130 / 2
+                         $realwidth = $manipulator->getWidth();
+                        
+                        $newWidth = (int) $_POST['w'];
+                        $newHeight = (int) $_POST['h'];
+                        $ratio = $realwidth/1000;
+                        $ax1 = (int) $_POST['x']; 
+                        $ay1 = (int) $_POST['y']; 
+                        
+                      
+                        $x1 = $ax1*$ratio;
+                        $y1 = $ay1*$ratio;
+                        $height = $newHeight*$ratio;
+                        $width = $newWidth*$ratio;
+                        
+                        $x2 = $x1 + $width; 
+                        $y2 = $y1 + $height;    
+                       
                         // center cropping to 200x130
                         $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
-                        // saving file to uploads folder
-                        $manipulator->save('./content/uploads/images/' . $_FILES['file']['name']);
-                        
-                        $data = $this->upload->data();
-                        $image = $data['file_name'];
+                        $name = $_FILES['file']['name'];
+                        $key = $this->getRandomStringForCoupen(5);
+                        $image = $key.$name;
+                        $manipulator->save('./content/uploads/images/' .$image);
+                          unlink('./content/uploads/images/'.$name);
+                          
                        // $imgname = $img_name;
                         $image_thumb = dirname('thumb_' . $image . '/demo');
                         $config['image_library'] = 'gd2';
@@ -244,10 +259,10 @@ class Events extends CI_Controller {
                         $config['new_image'] = $image_thumb;
                         $config['maintain_ratio'] = TRUE;
                         $config['width'] = 100;
-                        $config['height'] = 75;
+                        $config['height'] = 100;
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
-                         $name = $this->input->post('event_name');
+                         $eventName = $this->input->post('event_name');
                         $detail = $this->input->post('detail');
                         $location = $this->input->post('location');
                         $date = $this->input->post('date');
@@ -255,7 +270,8 @@ class Events extends CI_Controller {
                         $min = $this->input->post('min');
                         $sec = 0;
                         $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
-                        $this->dbevent->add_event($name, $detail, $location, $dateTime, $image);
+                      
+                        $this->dbevent->add_event($eventName, $detail, $location, $dateTime, $image);
                         $this->session->set_flashdata('message', 'One event added sucessfully');
                         redirect('events/event');
                     } else {

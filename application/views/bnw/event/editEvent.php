@@ -2,6 +2,9 @@
 <script src="<?php echo base_url().'content/uploads/scripts/jquery-1.10.2.js'; ?>"></script>
 
  <script src="<?php echo base_url() . 'content/uploads/scripts/jquery-ui.js'; ?>" type="text/javascript"></script>
+ <link rel="stylesheet" type="text/css" href="<?php echo base_url().'content/bnw/styles/imgareaselect-animated.css'; ?>" />
+ <script type="text/javascript" src="<?php echo base_url().'content/bnw/scripts/jquery.imgareaselect.pack.js'; ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url().'content/bnw/script/script.js'; ?>"></script>
  <script>
   $(function() {
 $( "#datepicker" ).datepicker();
@@ -69,7 +72,14 @@ $( "#datepicker" ).datepicker();
   <input type="hidden" name="hidden_image" value="<?php echo $data->image; ?>" />
  
   <p>Image: <br/>
-  <input type="file" name="file" /></p>
+  <input id="uploadImage" type="file" name="file" />
+   <!-- hidden inputs -->
+		<input type="hidden" id="x" name="x" />
+		<input type="hidden" id="y" name="y" />
+		<input type="hidden" id="w" name="w" />
+		<input type="hidden" id="h" name="h" />
+  </p>
+  <img id="uploadPreview" style="display:none;width:1000px;"/>
   <p>When: <br/>
       <input type="text" id="datepicker" name="date" placeholder="event date" value="<?php echo $date; ?>" /> 
  </p>
