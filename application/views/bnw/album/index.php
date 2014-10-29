@@ -38,9 +38,9 @@ if(isset($error))
 </div>
 <div class="frm" style="width:150px; height:90px; float: left; display:none; z-index:105; " >
     <?php echo form_open('album/addalbum'); ?>
-    <input type="text" name="album_name" placeholder="Album Name" required />
-    <input type="submit" name="submit" value="create" />        
-    <input type="button" id="albumCancel" name="close" value="cancel"/>
+    <input type="text" class="input-text-small" name="album_name" placeholder="Album Name" required />
+    <input type="submit" class="submit-button-small" name="submit" value="create" />        
+    <input type="button" class="submit-button-small" id="albumCancel" name="close" value="cancel"/>
     <?php echo form_close(); ?>
 </div>
 </div>

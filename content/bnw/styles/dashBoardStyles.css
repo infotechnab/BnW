@@ -83,6 +83,23 @@ p.dashuppe-text-all{
     white-space: nowrap;
     width: 420px;
 }
+.submit-button-small{
+     -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 5px;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 200px;
+}
 #sucessmsg
 {
     color: red;  
@@ -542,7 +559,7 @@ ul.menu li.mainMenuItem:hover
 #photodiv
 {
     float: left;
-    width: 150px;
+    width: 200px;
   
     border: #999999 solid 1px;
     padding: 10px;
@@ -564,9 +581,7 @@ border-collapse:collapse;
 }
 #galleryimage
 {
-    width: 150px;
-    height: 150px;
-    
+    height: 150px;   
 }
 #imagetitle
 
@@ -576,11 +591,12 @@ border-collapse:collapse;
 #newAlbum
 {
     float: left;
-    width: 150px;
+    width: 200px;
     border: #999999 dotted 1px;
     padding: 10px;
     margin: 10px;
     height: 200px;
+    text-align: center;
 }
 
 /*for navigation*/
