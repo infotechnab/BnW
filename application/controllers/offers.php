@@ -14,10 +14,22 @@ class Offers extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
     }
-
-    public function index() {
+public function index() {
         redirect('bnw');
     }
+     function getRandomStringForCoupen($length) {
+        $validCharacters = "ABCDEFGHIJKLMNPQRSTUXYVWZ123456789abcdefghijklmnopqrstuvwxyz";
+        $validCharNumber = strlen($validCharacters);
+        $result = "";
+
+        for ($i = 0; $i < $length; $i++) {
+            $index = mt_rand(0, $validCharNumber - 1);
+            $result .= $validCharacters[$index];
+        }
+        return $result;
+    }
+    
+   
     //============================= START OFFER =====================================//
     public function posts() {
         $url = current_url();
@@ -50,9 +62,7 @@ class Offers extends CI_Controller {
             $data['username'] = ($this->session->userdata('admin_logged_in'));
             $config['upload_path'] = './content/uploads/images/';
             $config['allowed_types'] = 'gif|jpg|png';
-            // $config['max_size'] = '500';
-            // $config['max_width'] = '1024';
-            // $config['max_height'] = '768';
+           
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbsetting->get_meta_data();
             $data['query'] = $this->dboffers->get_posts();
@@ -79,36 +89,36 @@ class Offers extends CI_Controller {
 
 
             if (($this->form_validation->run() == TRUE)) {
-                if ($_FILES && $_FILES['offreImage']['name'] !== "") {
-                    if (!$this->upload->do_upload('offreImage')) {
-                        $error = array('error' => $this->upload->display_errors('offreImage'));
+                if ($_FILES && $_FILES['file']['name'] !== "") {
+                    if (!$this->upload->do_upload('file')) {
+                        $error = array('error' => $this->upload->display_errors('file'));
                         $this->load->view('bnw/posts/addNewPost', $error);
                     } else {
-                        // die('img');
-                        include_once 'imagemanipulator.php';
-
-                        $manipulator = new ImageManipulator($_FILES['offreImage']['tmp_name']);
-                        $width = $manipulator->getWidth();
-                        $height = $manipulator->getHeight();
-
-                        $centreX = round($width / 2);
-
-                        $centreY = round($height / 2);
-
-                        // our dimensions will be 200x130
-                        $x1 = $centreX - 374; // 200 / 2
-                        $y1 = $centreY - 150; // 130 / 2
-
-                        $x2 = $centreX + 374; // 200 / 2
-                        $y2 = $centreY + 150; // 130 / 2
+                         include_once 'imagemanipulator.php';
+                        $manipulator = new ImageManipulator($_FILES['file']['tmp_name']);
+                         $realwidth = $manipulator->getWidth();
+                        
+                        $newWidth = (int) $_POST['w'];
+                        $newHeight = (int) $_POST['h'];
+                        $ratio = $realwidth/1000;
+                        $ax1 = (int) $_POST['x']; 
+                        $ay1 = (int) $_POST['y']; 
+                        $x1 = $ax1*$ratio;
+                        $y1 = $ay1*$ratio;
+                        $height = $newHeight*$ratio;
+                        $width = $newWidth*$ratio;
+                        
+                        $x2 = $x1 + $width; 
+                        $y2 = $y1 + $height;    
+                       
                         // center cropping to 200x130
                         $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
-                        // saving file to uploads folder
-                        $manipulator->save('./content/uploads/images/' . $_FILES['offreImage']['name']);
-                         $data = $this->upload->data();
-                        $image = $data['file_name'];
-                       // die($image);
-                       // $imgname = $img_name;
+                        $name = $_FILES['file']['name'];
+                        $key = $this->getRandomStringForCoupen(5);
+                        $image = $key.$name;
+                        $manipulator->save('./content/uploads/images/' .$image);
+                          unlink('./content/uploads/images/'.$name);
+                      
                         $image_thumb = dirname('thumb_' . $image . '/demo');
                         $config['image_library'] = 'gd2';
                         $config['source_image'] = './content/uploads/images/' . $image;
@@ -118,8 +128,7 @@ class Offers extends CI_Controller {
                         $config['height'] = 600;
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
-                        $data = array('upload_data' => $this->upload->data('offreImage'));
-                        $image = $data['upload_data']['file_name'];
+                                             
                         $post_title = $this->input->post('post_title');
                         $post_content = $this->input->post('post_content');
                         $string = $this->input->post('post_content');
@@ -260,31 +269,30 @@ class Offers extends CI_Controller {
                         $data['query'] = $this->dboffers->findpost($id);
                         $this->load->view('bnw/posts/editPost', $data);
                     } else {
-                        
-                        include_once 'imagemanipulator.php';
-
+                       include_once 'imagemanipulator.php';
                         $manipulator = new ImageManipulator($_FILES['file']['tmp_name']);
-                        $width = $manipulator->getWidth();
-                        $height = $manipulator->getHeight();
-
-                        $centreX = round($width / 2);
-
-                        $centreY = round($height / 2);
-
-                        // our dimensions will be 200x130
-                        $x1 = $centreX - 374; // 200 / 2
-                        $y1 = $centreY - 150; // 130 / 2
-
-                        $x2 = $centreX + 374; // 200 / 2
-                        $y2 = $centreY + 150; // 130 / 2
+                         $realwidth = $manipulator->getWidth();
+                        
+                        $newWidth = (int) $_POST['w'];
+                        $newHeight = (int) $_POST['h'];
+                        $ratio = $realwidth/1000;
+                        $ax1 = (int) $_POST['x']; 
+                        $ay1 = (int) $_POST['y']; 
+                        $x1 = $ax1*$ratio;
+                        $y1 = $ay1*$ratio;
+                        $height = $newHeight*$ratio;
+                        $width = $newWidth*$ratio;
+                        
+                        $x2 = $x1 + $width; 
+                        $y2 = $y1 + $height;    
+                       
                         // center cropping to 200x130
                         $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
-                        // saving file to uploads folder
-                        $manipulator->save('./content/uploads/images/' . $_FILES['file']['name']);
-                         $data = $this->upload->data();
-                        $image = $data['file_name'];
-                       // die($image);
-                       // $imgname = $img_name;
+                        $name = $_FILES['file']['name'];
+                        $key = $this->getRandomStringForCoupen(5);
+                        $image = $key.$name;
+                        $manipulator->save('./content/uploads/images/' .$image);
+                          unlink('./content/uploads/images/'.$name);
                         $image_thumb = dirname('thumb_' . $image . '/demo');
                         $config['image_library'] = 'gd2';
                         $config['source_image'] = './content/uploads/images/' . $image;
@@ -298,7 +306,7 @@ class Offers extends CI_Controller {
                         $post_title = $this->input->post('post_title');
                         $post_content = $this->input->post('post_content');
                         $data = array('upload_data' => $this->upload->data('file'));
-                        $image = $data['upload_data']['file_name'];
+                        
                         
 //                        $post_author_info = $this->dbmodel->get_post_author_id($username);
 //                        foreach ($post_author_info as $pid) {

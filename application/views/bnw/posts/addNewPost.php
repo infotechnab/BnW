@@ -1,3 +1,7 @@
+
+ <link rel="stylesheet" type="text/css" href="<?php echo base_url().'content/bnw/styles/imgareaselect-animated.css'; ?>" />
+ <script type="text/javascript" src="<?php echo base_url().'content/bnw/scripts/jquery.imgareaselect.pack.js'; ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url().'content/bnw/script/script.js'; ?>"></script>
 <div class="rightSide">
     <?php 
 if ($query)
@@ -39,11 +43,17 @@ if ($query)
   
   </p> 
   <p>Image:<br />
-      <input type="file" name="offreImage">  
+      <input id="uploadImage" type="file" name="file" />
+     <!-- hidden inputs -->
+		<input type="hidden" id="x" name="x" />
+		<input type="hidden" id="y" name="y" />
+		<input type="hidden" id="w" name="w" />
+		<input type="hidden" id="h" name="h" /> 
   </p> 
+  <img id="uploadPreview" style="display:none;width:1000px;"/>
    <input type="submit" value="Submit" />
   <?php echo form_close();?>
-   <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>
+ 
     </div>
     
     <div id="forRightPage"> 
