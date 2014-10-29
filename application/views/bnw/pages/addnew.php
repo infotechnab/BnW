@@ -32,7 +32,7 @@ if ($query)
   <?php echo form_open_multipart('page/addpage');?>
   
   <p>Title:<br />
-  <input type="text" name="page_name" value="<?php echo set_value('page_name'); ?>" />
+  <input type="text" class="textInput" name="page_name" value="<?php echo set_value('page_name'); ?>" />
   </p>
   <p>Body:<br />
       <textarea name="page_content" id="area1" cols="50" rows="5" ><?php echo set_value('page_content'); ?></textarea>
@@ -43,13 +43,13 @@ if ($query)
     <div id="forRightPage"> 
   
    <p> Order : <br/>
-       <input type="text" name="page_order" /> </p>
+       <input type="text" class="textInput" name="page_order" /> </p>
    
    <p> Type : <br/>
-       <input type="text" name="page_order" /> </p>
+       <input type="text" class="textInput" name="page_order" /> </p>
    
    <p> Tags : <br/>
-       <input type="text" name="page_order" /> </p>
+       <input type="text" class="textInput" name="page_order" /> </p>
    <p>Status:<br />
   <?php 
   $options = array(

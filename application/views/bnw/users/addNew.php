@@ -17,32 +17,31 @@
   <?php echo form_open_multipart('user/adduser');?>
   
   <p>Name:<br />
-  <input type="text" name="user_name" value="<?php echo set_value('user_name'); ?>" />
+  <input type="text" class="textInput" name="user_name" value="<?php echo set_value('user_name'); ?>" />
   </p>
   
   <p>First Name:<br />
-  <input type="text" name="user_fname" value="<?php echo set_value('user_fname'); ?>" />
+  <input type="text" class="textInput" name="user_fname" value="<?php echo set_value('user_fname'); ?>" />
   </p>
   
   <p>Last Name:<br />
-  <input type="text" name="user_lname" value="<?php echo set_value('user_lname'); ?>" />
+  <input type="text" class="textInput" name="user_lname" value="<?php echo set_value('user_lname'); ?>" />
   </p>
   
   <p>E-mail:<br />
-  <input type="email" name="user_email" value="<?php echo set_value('user_email'); ?>" />
+  <input type="email" class="textInput" name="user_email" value="<?php echo set_value('user_email'); ?>" />
   </p>
   
   <p>Password:<br />
-  <input type="password" name="user_pass" value="<?php echo set_value('user_pass'); ?>" />
+  <input type="password" class="textInput" name="user_pass" value="<?php echo set_value('user_pass'); ?>" />
   </p>
   
   <p> Contact : <br/>
-  <input type="text" name="phone" value="<?php echo set_value('phone'); ?>" />
+  <input type="text" class="textInput" name="phone" value="<?php echo set_value('phone'); ?>" />
   </p>
   
   <p> Address : <br/>
-      <textarea name="address"><?php echo set_value('address'); ?></textarea>
-<!--  <input type="text" name="address" value="<?php //echo set_value('address'); ?>" />-->
+      <textarea class="textInput" name="address"><?php echo set_value('address'); ?></textarea>
   </p>
   
    <p> User Status:<br />

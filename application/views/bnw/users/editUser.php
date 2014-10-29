@@ -29,23 +29,23 @@
   <?php echo form_open_multipart('user/updateuser');?>
    <p>Name:<br />
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
-  <input type="text" name="user_name" value="<?php echo $name; ?>" />
+  <input type="text" class="textInput" name="user_name" value="<?php echo $name; ?>" />
   </p>
   
   <p>First Name:<br />
-  <input type="text" name="user_fname" value="<?php echo $fname; ?>" />
+  <input type="text" class="textInput" name="user_fname" value="<?php echo $fname; ?>" />
   </p>
   
   <p>Last Name:<br />
-  <input type="text" name="user_lname" value="<?php echo $lname; ?>" />
+  <input type="text" class="textInput" name="user_lname" value="<?php echo $lname; ?>" />
   </p>
   
   <p>E-mail:<br />
-  <input type="email" name="user_email" value="<?php echo $email; ?>" />
+  <input type="email" class="textInput" name="user_email" value="<?php echo $email; ?>" />
   </p>
   
   <p>Password:<br />
-  <input type="password" name="user_pass" value="<?php //echo $pass; ?>" />
+  <input type="password" class="textInput" name="user_pass" value="<?php //echo $pass; ?>" />
   </p>
   
    <p> User Status:<br />

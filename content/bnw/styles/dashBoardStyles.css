@@ -22,6 +22,66 @@ body
     background-color:#000;
     min-height: 200px;
 }
+.textInput {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+    box-sizing: border-box;
+    color: #333;
+    font-size: 24px;
+    line-height: 1;
+    margin: 2px 6px 16px 0;
+    outline: 0 none;
+    padding: 3px;
+    transition: border-color 0.05s ease-in-out 0s;
+    width: 420px;
+}
+.input-text-small
+{
+   background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+    box-sizing: border-box;
+    color: #333;
+    font-size: 24px;
+    line-height: 1;
+    margin: 2px 6px 16px 0;
+    outline: 0 none;
+    padding: 3px;
+    transition: border-color 0.05s ease-in-out 0s;
+    width: 200px; 
+}
+p.dashuppe-text-all{
+    font-size: 20px;
+}
+.btn-lg, .btn-group-lg > .btn {
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 10px 16px;
+}
+.btn-primary {
+    background-color: #428bca;
+    border-color: #357ebd;
+    color: #fff;
+}
+.btn {
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 420px;
+}
 #sucessmsg
 {
     color: red;  
@@ -267,7 +327,7 @@ ul.menu li.mainMenuItem:hover
 }
 #forRightPage
 {
-    width:250px;
+    //width:250px;
     float: left;
     margin-left: 45px;
     min-height: 200px;

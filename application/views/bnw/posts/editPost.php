@@ -53,7 +53,7 @@ if ($miscSetting)
     <input type="hidden" name="hidden_image" value="<?php echo $post_image; ?>"/>
   <p>Offer Title:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
-      <input type="text" name="post_title" value="<?php echo $post_title; ?>" />
+      <input type="text" class="textInput" name="post_title" value="<?php echo $post_title; ?>" />
   </p>
   <p>Body:<br />
   <textarea name="post_content" id="area1" rows="5" cols="50" style="resize:none;">

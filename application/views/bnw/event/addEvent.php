@@ -5,10 +5,8 @@
   <?php echo validation_errors(); ?>
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
   </div>
- <link rel="stylesheet" href="<?php echo base_url().'content/uploads/scripts/date.css';?>">
-<script src="<?php echo base_url().'content/uploads/scripts/jquery-1.10.2.js'; ?>"></script>
-
- <script src="<?php echo base_url() . 'content/uploads/scripts/jquery-ui.js'; ?>" type="text/javascript"></script>
+ <link rel="stylesheet" href="<?php echo base_url().'content/bnw/scripts/date.css';?>">
+ <script src="<?php echo base_url() . 'content/bnw/scripts/jquery-ui.js'; ?>" type="text/javascript"></script>
  <link rel="stylesheet" type="text/css" href="<?php echo base_url().'content/bnw/styles/imgareaselect-animated.css'; ?>" />
  <script type="text/javascript" src="<?php echo base_url().'content/bnw/scripts/jquery.imgareaselect.pack.js'; ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url().'content/bnw/script/script.js'; ?>"></script>
@@ -17,21 +15,21 @@
 $( "#datepicker" ).datepicker();
 });
  </script>
- 
+ <div id="forLeftPage">  
   <?php echo form_open_multipart('events/addevent');?>
       
- <p>Name:<br />
-      <input type="text" name="event_name" value="<?php echo set_value('event_name'); ?>"  /> </p> 
- <p>Detail: <br/>
+ <p class="dashuppe-text-all">Name<br />
+     <input type="text" class="textInput" name="event_name" value="<?php echo set_value('event_name'); ?>"  /> </p> 
+ <p class="dashuppe-text-all">Detail<br/>
   <textarea name="detail" id="area1" cols="50" rows="5" ><?php echo set_value('detail'); ?></textarea>
  </p>
- <p>Location: <br/>
-  <input type="text" name="location" value="<?php echo set_value('location'); ?>"  />
+ <p class="dashuppe-text-all">Location<br/>
+  <input type="text" class="textInput" name="location" value="<?php echo set_value('location'); ?>"  />
  </p>
  
- <p>Image: <br/>
+ <p class="dashuppe-text-all">Image<br/>
      
-     <input id="uploadImage" type="file" name="file" />
+     <input id="uploadImage" class="textInput" type="file" name="file" />
      <!-- hidden inputs -->
 		<input type="hidden" id="x" name="x" />
 		<input type="hidden" id="y" name="y" />
@@ -39,17 +37,19 @@ $( "#datepicker" ).datepicker();
 		<input type="hidden" id="h" name="h" />
  </p>
  <img id="uploadPreview" style="display:none;width:1000px;"/>
- <p>When: <br/>
-      <input type="text" id="datepicker" name="date" placeholder="event date" value="<?php echo date('20y-m-d'); ?>" /> 
+ </div>
+ <div id="forRightPage"> 
+ <p class="dashuppe-text-all">When<br/>
+      <input type="text" class="textInput" id="datepicker" name="date" placeholder="event date" value="<?php echo date('20y-m-d'); ?>" /> 
  </p>
- <p>Time: <br/>
-     <select name="hour">
+ <p class="dashuppe-text-all">Time<br/>
+     <select class="input-text-small" name="hour">
          <option value="0">Hour</option>
          <?php for($i=1; $i<=24 ; $i++){ ?>
          <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
          <?php } ?>
      </select>
-     <select name="min">
+     <select class="input-text-small" name="min">
          <option value="0">Minutes</option>
          <?php for($i=1; $i<=60 ; $i++){ ?>
          <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
@@ -57,7 +57,8 @@ $( "#datepicker" ).datepicker();
      </select>
  </p>
  
- <input type="submit" value="Submit" />
+ <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+ </div>
   <?php echo form_close();?>
 
 

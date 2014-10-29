@@ -50,7 +50,7 @@ if ($miscSetting)
   <?php echo form_open_multipart('page/updatepage');?>
   <p>Title:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
-      <input type="text" name="page_name" value="<?php echo $name; ?>" />
+      <input type="text" class="textInput" name="page_name" value="<?php echo $name; ?>" />
   </p>
   <p>Body:<br />
   <textarea name="page_content" id="area1" rows="5" cols="50" style="resize:none;">
@@ -60,13 +60,13 @@ if ($miscSetting)
   
   <div id="forRightPage"> 
    <p> Order : <br/>
-       <input type="text" name="page_order" /> </p>
+       <input type="text" class="textInput" name="page_order" /> </p>
    
    <p> Type : <br/>
-       <input type="text" name="page_type" /> </p>
+       <input type="text" class="textInput" name="page_type" /> </p>
    
    <p> Tags : <br/>
-       <input type="text" name="page_tasg "/> </p>
+       <input type="text" class="textInput" name="page_tasg "/> </p>
    
    <p>Status:<br />
   <?php 

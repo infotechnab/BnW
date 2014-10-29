@@ -14,17 +14,17 @@
 </div>
   <?php echo form_open_multipart('album/addmedia');?>
   
-  <p>Name:<br />
-  <input type="text" name="media_name" value="<?php echo set_value('media_name'); ?>" />
+  <p class="dashuppe-text-all">Name<br />
+  <input type="text" class="textInput" name="media_name" value="<?php echo set_value('media_name'); ?>" />
   </p>
   
   <p>Type<br />
-  <input type="file" name="file_name" id="file" />
+  <input type="file" class="textInput" name="file_name" id="file" />
   
   </p>
   
   <p>Select Association Id:<br/>
-         <select name="selectAlbum">
+         <select class="textInput" name="selectAlbum">
              <option value=" ">Select None</option>
                 <?php
                 foreach ($listOfAlbum as $data)
