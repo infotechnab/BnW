@@ -25,17 +25,17 @@
   } echo validation_errors(); ?>
     </div>
   <?php echo form_open_multipart('album/updatemedia');?>
-   <p>Name:<br />
+   <p class="dashuppe-text-all">Name:<br />
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
-  <input type="text" name="media_name" value="<?php echo $medianame; ?>" />
+  <input type="text" class="textInput" name="media_name" value="<?php echo $medianame; ?>" />
    </p>
     
-  <p>Type<br />
-<input type="file" name="file_name" id="file"/>
+  <p class="dashuppe-text-all">Type<br />
+<input type="file" class="textInput" name="file_name" id="file"/>
   </p>
   
-  <p>Select Association Id:<br/>
-         <select name="selectAlbum">
+  <p class="dashuppe-text-all">Select Association Id<br/>
+         <select class="textInput" name="selectAlbum">
              <option value=" ">Select None</option>
                 <?php
                 foreach ($listOfAlbum as $data)
@@ -53,7 +53,7 @@
   
   
   
-  <input type="submit" value="Submit" />
+  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
   <?php } else{
      echo '<h3 id="sucessmsg">Sorry! the media is not found.</h3>';

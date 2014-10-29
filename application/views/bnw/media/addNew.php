@@ -18,12 +18,12 @@
   <input type="text" class="textInput" name="media_name" value="<?php echo set_value('media_name'); ?>" />
   </p>
   
-  <p>Type<br />
+  <p class="dashuppe-text-all">Type<br />
   <input type="file" class="textInput" name="file_name" id="file" />
   
   </p>
   
-  <p>Select Association Id:<br/>
+  <p class="dashuppe-text-all">Select Association Id<br/>
          <select class="textInput" name="selectAlbum">
              <option value=" ">Select None</option>
                 <?php
@@ -41,7 +41,7 @@
    </p>
   
   
-  <input type="submit" value="Submit" />
+  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>
