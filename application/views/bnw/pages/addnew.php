@@ -52,7 +52,7 @@ if ($query)
        <input type="text" class="textInput" name="page_order" /> </p>
    <p class="dashuppe-text-all">Status<br />  
   <?php $options = array('1'  => 'publish','0'    => 'draft');?>
-       <select class="textInput" name="min">
+       <select class="textInput" name="status">
          
          <?php foreach ($options as $data){ ?>
          <option value="<?php echo $data; ?>"><?php echo $data; ?></option>

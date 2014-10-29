@@ -27,44 +27,48 @@
       <?php echo validation_errors(); ?>
     </p>
   <?php echo form_open_multipart('user/updateuser');?>
-   <p>Name:<br />
+   <p class="dashuppe-text-all">Name<br />
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
   <input type="text" class="textInput" name="user_name" value="<?php echo $name; ?>" />
   </p>
   
-  <p>First Name:<br />
+  <p class="dashuppe-text-all">First Name<br />
   <input type="text" class="textInput" name="user_fname" value="<?php echo $fname; ?>" />
   </p>
   
-  <p>Last Name:<br />
+  <p class="dashuppe-text-all">Last Name<br />
   <input type="text" class="textInput" name="user_lname" value="<?php echo $lname; ?>" />
   </p>
   
-  <p>E-mail:<br />
+  <p class="dashuppe-text-all">E-mail<br />
   <input type="email" class="textInput" name="user_email" value="<?php echo $email; ?>" />
   </p>
   
-  <p>Password:<br />
+  <p class="dashuppe-text-all">Password<br />
   <input type="password" class="textInput" name="user_pass" value="<?php //echo $pass; ?>" />
   </p>
   
-   <p> User Status:<br />
-  <?php 
-  $status = array(
-                  '1'  => 'publish',
-                  '0'    => 'draft');
-  echo form_dropdown('user_status',$status,'1')
-  ?>
+   <p class="dashuppe-text-all">User Status<br />
+   <?php $options = array('1'  => 'publish', '0'    => 'draft');  ?>
+       <select class="textInput" name="status">
+         
+         <?php foreach ($options as $data){ ?>
+         <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+         <?php } ?>
+     </select>
   </p>
   
-  <p> User Type:<br />
-  <?php 
-  $useroptions = array('0' => 'Administrator', '1' => "User" );
-  echo form_dropdown('user_type',$useroptions)
-  ?>
+  <p class="dashuppe-text-all">User Type<br />
+ <?php $useroptions = array("0" => 'Administrator', "1" => "User" );  ?>
+      <select class="textInput" name="type">
+         
+         <?php foreach ($useroptions as $data){ ?>
+         <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+         <?php } ?>
+     </select>
   </p>
   
-  <input type="submit" value="Submit" />
+  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
    <?php } else{
      echo '<h3 id="sucessmsg">Sorry! the user is not found.</h3>';

@@ -16,52 +16,56 @@
 </div>
   <?php echo form_open_multipart('user/adduser');?>
   
-  <p>Name:<br />
+  <p class="dashuppe-text-all">Name<br />
   <input type="text" class="textInput" name="user_name" value="<?php echo set_value('user_name'); ?>" />
   </p>
   
-  <p>First Name:<br />
+  <p class="dashuppe-text-all">First Name<br />
   <input type="text" class="textInput" name="user_fname" value="<?php echo set_value('user_fname'); ?>" />
   </p>
   
-  <p>Last Name:<br />
+  <p class="dashuppe-text-all">Last Name<br />
   <input type="text" class="textInput" name="user_lname" value="<?php echo set_value('user_lname'); ?>" />
   </p>
   
-  <p>E-mail:<br />
+  <p class="dashuppe-text-all">E-mail<br />
   <input type="email" class="textInput" name="user_email" value="<?php echo set_value('user_email'); ?>" />
   </p>
   
-  <p>Password:<br />
+  <p class="dashuppe-text-all">Password<br />
   <input type="password" class="textInput" name="user_pass" value="<?php echo set_value('user_pass'); ?>" />
   </p>
   
-  <p> Contact : <br/>
+  <p class="dashuppe-text-all">Contact<br/>
   <input type="text" class="textInput" name="phone" value="<?php echo set_value('phone'); ?>" />
   </p>
   
-  <p> Address : <br/>
+  <p class="dashuppe-text-all">Address<br/>
       <textarea class="textInput" name="address"><?php echo set_value('address'); ?></textarea>
   </p>
   
-   <p> User Status:<br />
-  <?php 
-  $options = array(
-                  '1'  => 'publish',
-                  '0'    => 'draft');
-  echo form_dropdown('user_status',$options)
-  ?>
+   <p class="dashuppe-text-all">User Status<br />
+  <?php $options = array('1'  => 'publish', '0'    => 'draft');  ?>
+       <select class="textInput" name="status">
+         
+         <?php foreach ($options as $data){ ?>
+         <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+         <?php } ?>
+     </select>
   </p>
   
-  <p> User Type:<br />
-  <?php 
-  $useroptions = array("0" => 'Administrator', "1" => "User" );
-  echo form_dropdown('user_type',$useroptions)
-  ?>
+  <p class="dashuppe-text-all">User Type<br />
+  <?php $useroptions = array("0" => 'Administrator', "1" => "User" );  ?>
+      <select class="textInput" name="type">
+         
+         <?php foreach ($useroptions as $data){ ?>
+         <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+         <?php } ?>
+     </select>
   </p>
   
   
-  <input type="submit" value="Submit" />
+  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>
