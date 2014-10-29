@@ -15,6 +15,17 @@ class Album extends CI_Controller {
     public function index() {
         redirect('bnw');
     }    
+    function getRandomStringForCoupen($length) {
+        $validCharacters = "ABCDEFGHIJKLMNPQRSTUXYVWZ123456789abcdefghijklmnopqrstuvwxyz";
+        $validCharNumber = strlen($validCharacters);
+        $result = "";
+
+        for ($i = 0; $i < $length; $i++) {
+            $index = mt_rand(0, $validCharNumber - 1);
+            $result .= $validCharacters[$index];
+        }
+        return $result;
+    }
      public function album() {  //$url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config = array();
@@ -71,9 +82,7 @@ class Album extends CI_Controller {
             $data['meta'] = $this->dbsetting->get_meta_data();
             $config['upload_path'] = './content/uploads/images/';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
+            
             $this->load->library('upload', $config);
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
@@ -82,17 +91,37 @@ class Album extends CI_Controller {
             $this->form_validation->set_rules('title', 'Title', 'required|xss_clean|max_length[200]');
             $albumid = $this->input->post('id');
             $data['query'] = $this->dbalbum->get_album();
-            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload())) {
+            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file'))) {
                 $data['error'] = $this->upload->display_errors();
                 $data['query'] = $this->dbalbum->get_media($albumid);
                 $data['id'] = $albumid;
                 $this->load->view('bnw/album/gallery', $data);
             } else {
                 //if valid
-                $data = array('upload_data' => $this->upload->data());
-                $mediatype = $data['upload_data']['file_name'];
-                $data = $this->upload->data();
-                        $image = $data['file_name'];
+                include_once 'imagemanipulator.php';
+                        $manipulator = new ImageManipulator($_FILES['file']['tmp_name']);
+                         $realwidth = $manipulator->getWidth();
+                        
+                        $newWidth = (int) $_POST['w'];
+                        $newHeight = (int) $_POST['h'];
+                        $ratio = $realwidth/1000;
+                        $ax1 = (int) $_POST['x']; 
+                        $ay1 = (int) $_POST['y']; 
+                        $x1 = $ax1*$ratio;
+                        $y1 = $ay1*$ratio;
+                        $height = $newHeight*$ratio;
+                        $width = $newWidth*$ratio;
+                        
+                        $x2 = $x1 + $width; 
+                        $y2 = $y1 + $height;    
+                       
+                        // center cropping to 200x130
+                        $newImage = $manipulator->crop($x1, $y1, $x2, $y2);
+                        $name = $_FILES['file']['name'];
+                        $key = $this->getRandomStringForCoupen(5);
+                        $image = $key.$name;
+                        $manipulator->save('./content/uploads/images/' .$image);
+                          unlink('./content/uploads/images/'.$name);
                        // $imgname = $img_name;
                         $image_thumb = dirname('thumb_' . $image . '/demo');
                         $config['image_library'] = 'gd2';
@@ -106,7 +135,7 @@ class Album extends CI_Controller {
                 $medianame = $this->input->post('title');
                 $albumid = $this->input->post('id');
                 $medialink = $this->input->post('media_link');
-                $this->dbalbum->add_new_photo($medianame, $mediatype, $albumid, $medialink);
+                $this->dbalbum->add_new_photo($medianame, $image, $albumid, $medialink);
                 $this->session->set_flashdata('message', 'One photo added sucessfully');
                 redirect('album/photos/'.$albumid);
             }

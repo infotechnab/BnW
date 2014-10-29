@@ -128,7 +128,13 @@ else
     <input type="hidden" name="id" value="<?php echo $id; ?>" />
     <label> Image Title :</label> <br/>
     <input type="text" name="title" required />          
-    <input type="file" name="userfile" id="file"   />
+    <input id="uploadImage" type="file" name="file" />
+     <!-- hidden inputs -->
+		<input type="hidden" id="x" name="x" />
+		<input type="hidden" id="y" name="y" />
+		<input type="hidden" id="w" name="w" />
+		<input type="hidden" id="h" name="h" /> 
+                 <img id="uploadPreview" style="display:none;width:1000px;"/>
     <input type="submit" name="submit" value="add photo"   />
 <?php  echo form_close(); ?>
     <p><b>Note:</b> Max file size: 500KB,  Width: 1024px, Height: 768px </p>

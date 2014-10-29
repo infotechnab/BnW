@@ -230,9 +230,6 @@ public function index() {
 
             $config['upload_path'] = './content/uploads/images/';
             $config['allowed_types'] = 'gif|jpg|png';
-            //$config['max_size'] = '500';
-           // $config['max_width'] = '1024';
-           // $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbsetting->get_meta_data();
             $data['miscSetting'] = $this->dbsetting->get_misc_setting();
