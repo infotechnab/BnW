@@ -1,5 +1,5 @@
 <div class="rightSide">
-<h2>Contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/album/media'; ?>">View</a></h2>
+<h2>Contact</h2>
 <hr class="hr-gradient"/>
 <div id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
@@ -27,39 +27,37 @@
     }
 ?>
   <?php echo form_open_multipart('contact/addContact');?>
-  
-  <p>Name of Organization:<br />
-  <input type="text" name="title" value="<?php echo $name; ?>" />
+  <div id="forLeftPage">  
+  <p class="dashuppe-text-all">Name of Organization<br />
+  <input type="text" class="textInput" name="title" value="<?php echo $name; ?>" />
   </p>
-  <p>Address 1(Street):<br />
-  <input type="text" name="street" value="<?php echo $street; ?>" />
+  <p class="dashuppe-text-all">Address 1(Street)<br />
+  <input type="text" class="textInput" name="street" value="<?php echo $street; ?>" />
   </p>
-  <p>Address 2(City):<br />
-  <input type="text" name="city" value="<?php echo $city; ?>" />
+  <p class="dashuppe-text-all">Address 2(City)<br />
+  <input type="text" class="textInput" name="city" value="<?php echo $city; ?>" />
   </p>
-  <p>District:<br />
-  <input type="text" name="district" value="<?php echo $district; ?>" />
+  <p class="dashuppe-text-all">District<br />
+  <input type="text" class="textInput" name="district" value="<?php echo $district; ?>" />
   </p>
-  <p>Country:<br />
-  <input type="text" name="country" value="<?php echo $country; ?>" />
+  <p class="dashuppe-text-all">Country<br />
+  <input type="text" class="textInput" name="country" value="<?php echo $country; ?>" />
   </p>
-  <p>Contact No.(Primary):<br />
-  <input type="text" name="contact1" value="<?php echo $contact1; ?>" />
+  </div>
+<div id="forRightPage"> 
+  <p class="dashuppe-text-all">Contact No.(Primary)<br />
+  <input type="text" class="textInput" name="contact1" value="<?php echo $contact1; ?>" />
   </p>
-  <p>Contact No.(Secondary):<br />
-  <input type="text" name="contact2" value="<?php echo $contact2; ?>" />
+  <p class="dashuppe-text-all">Contact No.(Secondary)<br />
+  <input type="text" class="textInput" name="contact2" value="<?php echo $contact2; ?>" />
   </p>
-  <p>Email:<br />
-  <input type="email" name="email" value="<?php echo $email; ?>" />
+  <p class="dashuppe-text-all">Email<br />
+  <input type="email" class="textInput" name="email" value="<?php echo $email; ?>" />
   </p>
   <input type="checkbox" name="showForm" value="showForm" <?php if($showForm=='showForm') echo 'checked' ;?>>Show Contact Form.<br/><br/>
   <input type="checkbox" name="showMap" value="showMap" <?php if($showMap=='showMap') echo 'checked' ;?>>Show Location Map.<br/><br/>
-  
-  
- 
-  
-  
-  <input type="submit" value="Submit" />
+  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+</div>
   <?php echo form_close();?>
 <?php } ?>
 </div>

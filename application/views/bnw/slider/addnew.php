@@ -15,14 +15,14 @@
   ?>
 </div>
   <?php echo form_open_multipart('sliders/addslider');?>
-  <p>Title:<br />
-  <input type="text" name="slide_name" value="<?php echo set_value('slide_name'); ?>" />
+  <p class="dashuppe-text-all">Title<br />
+  <input type="text" class="textInput" name="slide_name" value="<?php echo set_value('slide_name'); ?>" />
   </p>
-   <p> Image : <br/> <input type="file" name="file_name" id="file" /> </p>
-  <p>Content:<br />
-  <input type="text" name="slide_content" />
+   <p class="dashuppe-text-all">Image<br/> <input type="file" class="textInput" name="file_name" id="file" /> </p>
+  <p class="dashuppe-text-all">Content<br />
+  <input type="text" class="textInput" name="slide_content" />
   </p>
-  <input type="submit" value="Submit" />
+  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
  <p><b>Note:</b> Max file size: 500KB,  Width: 600px, Height: 200px </p>
  </div>

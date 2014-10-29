@@ -27,23 +27,23 @@
 </div>
   
   <?php echo form_open_multipart('sliders/updateslider');?>
-  <p>Title:<br />
+  <p class="dashuppe-text-all">Title<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" />
-      <input type="text" name="slide_name" value="<?php echo $slidename; ?>" />
+      <input type="text" class="textInput" name="slide_name" value="<?php echo $slidename; ?>" />
   </p>
   
   <?php if((trim($slideImage== NULL)) || trim($slideImage !== ' ')){ ?>
   
-  <p>Existing Slide Image : <br/>
+  <p class="dashuppe-text-all">Existing Slide Image<br/>
   <div style="max-width: 150px; max-height: 150px;">
       <img src="<?php echo base_url().'content/uploads/sliderImages/'.$slideImage ?>" style="max-width: 150px; max-height: 150px;">
   </div>
   <?php } ?>
-  <p> Image : <br/> <input type="file" name="file_name" id="file"/> </p>
-  <p>Content:<br />
-   <input type="text" name="slide_content" value="<?php echo $slidecontent; ?>" />
+  <p class="dashuppe-text-all">Image<br/> <input type="file" class="textInput" name="file_name" id="file"/> </p>
+  <p class="dashuppe-text-all">Content<br />
+   <input type="text" class="textInput" name="slide_content" value="<?php echo $slidecontent; ?>" />
   </p>
-    <input type="submit" value="Submit" />
+    <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
 <p><b>Note:</b> Max file size: 2000KB,  Width: 2000px, Height: 2000px </p>
 </div>

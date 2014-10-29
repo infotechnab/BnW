@@ -28,26 +28,26 @@ if ($query)
 <?php echo form_open_multipart('setting/headerupdate');?>
  
 
-    <p>Header Title :<br />
-  <input type="text" name="header_title" value="<?php echo $set_data[0]; ?>" />
+    <p class="dashuppe-text-all">Header Title<br />
+  <input type="text" class="textInput" name="header_title" value="<?php echo $set_data[0]; ?>" />
   </p>
   <?php if((trim($set_data[1]== NULL)) || trim($set_data[1] !== ' ')){ ?>
   
-  <p>Existing Header Logo : <br/>
+  <p class="dashuppe-text-all">Existing Header Logo<br/>
   <div style="width: 125px; height: 125px;">
       <img src="<?php echo base_url().'content/uploads/images/'.$set_data[1]; ?>" style="width: 125px; height: 125px;">
   </div>
       
       </p>       
  <?php } ?>
-  <p>Header Logo :<br />
-  <input type="file" name="file_name" id="file" />
+  <p class="dashuppe-text-all">Header Logo<br />
+  <input type="file" class="textInput" name="file_name" id="file" />
   </p>
-  <p>Header Description :<br />
-  <input type="text" name="header_description" value="<?php echo $set_data[2]; ?>"/>
+  <p class="dashuppe-text-all">Header Description<br />
+  <input type="text" class="textInput" name="header_description" value="<?php echo $set_data[2]; ?>"/>
   </p>
   
- <input type="submit" value="Submit" />
+ <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>

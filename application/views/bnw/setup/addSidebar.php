@@ -25,14 +25,14 @@ if ($query)
     </div>
 
 <?php echo form_open('setting/sidebarupdate');?>
-  <p>Sidebar Title :<br />
-  <input type="text" name="sidebar_title" value="<?php echo $set_data[4]; ?>" />
+  <p class="dashuppe-text-all">Sidebar Title<br />
+  <input type="text" class="textInput" name="sidebar_title" value="<?php echo $set_data[4]; ?>" />
   </p>
-  <p>Sidebar Description :<br />
-  <input type="text" name="sidebar_description" value="<?php echo $set_data[5]; ?>"/>
+  <p class="dashuppe-text-all">Sidebar Description<br />
+  <input type="text" class="textInput" name="sidebar_description" value="<?php echo $set_data[5]; ?>"/>
   </p>
   
- <input type="submit" value="Submit" />
+ <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>
