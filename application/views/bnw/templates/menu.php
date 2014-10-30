@@ -86,7 +86,7 @@
                     <li class="mainMenuItem"><a href="#">Subscriber</a>
                         <ul class="subMenu">
                             <li><?php echo anchor('subscribers/viewSubscriber', 'Newsletter subscriber') ?></li>
-                            <li><?php echo anchor('subscribers/slider', 'Contact List') ?></li>
+                            <li><?php echo anchor('subscribers/viewContact', 'Contact List') ?></li>
                         </ul>
                     </li>
                     <li class="mainMenuItem"><a href="#">Contact Form</a>

@@ -69,9 +69,11 @@ $(document).ready(function() {
                 <img src="<?php echo base_url()."content/bnw/images/menu.png"; ?>"/>
             </div>
             <img src="<?php echo base_url()."content/bnw/images/bnw.png"; ?>"/>
+            <a href="<?php echo base_url(); ?>" target="_blank"><button type="button" id="switchLnk">View Site</button></a>
             <?php  if ($this->session->userdata('admin_logged_in')){ ?>
             <div id="topRight">
-                <p>
+             <p>    
+               
                     <?php echo $this->session->userdata ('username'); ?>
                     <?php echo anchor('bnw/logout','Log Out') ?>
                 </p>
@@ -80,3 +82,23 @@ $(document).ready(function() {
         </div>
         <div class="clear"/></div>
         <!top company name and logged in as and logout div closed here>
+        <style>
+#switchLnk {
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 3px;
+    line-height: 1.5;
+    padding: 5px 10px;
+     width: auto;
+      margin: -45px 0px 0px 40px;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+</style>
