@@ -60,7 +60,7 @@
   
   <p class="dashuppe-text-all">User Type<br />
  <?php $useroptions = array("0" => 'Administrator', "1" => "User" );  ?>
-      <select class="textInput" name="type">
+      <select class="textInput" name="user_type">
          
          <?php foreach ($useroptions as $data){ ?>
          <option value="<?php echo $data; ?>"><?php echo $data; ?></option>

@@ -228,19 +228,15 @@ class Events extends CI_Controller {
                          include_once 'imagemanipulator.php';
                         $manipulator = new ImageManipulator($_FILES['file']['tmp_name']);
                          $realwidth = $manipulator->getWidth();
-                        
                         $newWidth = (int) $_POST['w'];
                         $newHeight = (int) $_POST['h'];
                         $ratio = $realwidth/1000;
                         $ax1 = (int) $_POST['x']; 
-                        $ay1 = (int) $_POST['y']; 
-                        
-                      
+                        $ay1 = (int) $_POST['y'];                       
                         $x1 = $ax1*$ratio;
                         $y1 = $ay1*$ratio;
                         $height = $newHeight*$ratio;
-                        $width = $newWidth*$ratio;
-                        
+                        $width = $newWidth*$ratio;    
                         $x2 = $x1 + $width; 
                         $y2 = $y1 + $height;    
                        

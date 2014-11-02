@@ -88,7 +88,6 @@ if ($miscSetting)
   <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
   
-  <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>
         <?php } else{
      echo '<h3 id="sucessmsg">Sorry! the page is not found.</h3>';
         } ?>

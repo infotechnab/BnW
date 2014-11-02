@@ -36,14 +36,6 @@
   <input type="password" class="textInput" name="user_pass" value="<?php echo set_value('user_pass'); ?>" />
   </p>
   
-  <p class="dashuppe-text-all">Contact<br/>
-  <input type="text" class="textInput" name="phone" value="<?php echo set_value('phone'); ?>" />
-  </p>
-  
-  <p class="dashuppe-text-all">Address<br/>
-      <textarea class="textInput" name="address"><?php echo set_value('address'); ?></textarea>
-  </p>
-  
    <p class="dashuppe-text-all">User Status<br />
   <?php $options = array('1'  => 'publish', '0'    => 'draft');  ?>
        <select class="textInput" name="status">
@@ -56,7 +48,7 @@
   
   <p class="dashuppe-text-all">User Type<br />
   <?php $useroptions = array("0" => 'Administrator', "1" => "User" );  ?>
-      <select class="textInput" name="type">
+      <select class="textInput" name="user_type">
          
          <?php foreach ($useroptions as $data){ ?>
          <option value="<?php echo $data; ?>"><?php echo $data; ?></option>

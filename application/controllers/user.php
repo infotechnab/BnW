@@ -77,9 +77,7 @@ class User extends CI_Controller {
                 $pass = $this->input->post('user_pass');
                 $status = $this->input->post('user_status');
                 $user_type = $this->input->post('user_type');
-                $contact = $this->input->post('phone');
-                $address = $this->input->post('address');
-                $this->dbuser->add_new_user($name, $fname, $lname, $email, $pass, $status, $user_type, $contact, $address);
+                $this->dbuser->add_new_user($name, $fname, $lname, $email, $pass, $status, $user_type);
                 $this->session->set_flashdata('message', 'One user added sucessfully');
                 redirect('user/users');
             }
@@ -142,7 +140,7 @@ class User extends CI_Controller {
                 $this->dbuser->update_user($id, $name, $fname, $lname, $email, $pass, $status, $user_type);
                 $this->session->set_flashdata('message', 'User data Modified Sucessfully');
 
-                redirect('user/users');
+                redirect('bnw/logout');
             }
         } else {
             redirect('login/index/?url=' . $url, 'refresh');

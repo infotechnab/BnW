@@ -89,7 +89,7 @@ public function record_count_user() {
         $this->db->update('user', $data);
     }
 
-    public function add_new_user($name, $fname, $lname, $email, $pass, $status, $user_type, $contact, $address) {
+    public function add_new_user($name, $fname, $lname, $email, $pass, $status, $user_type) {
 
         $data = array(
             'user_name' => $name,
@@ -97,8 +97,6 @@ public function record_count_user() {
             'user_lname' => $lname,
             'user_email' => $email,
             'user_pass' => $pass,
-            'address' => $address,
-            'contact' => $contact,
             'user_status' => $status,
             'user_type' => $user_type);
         // var_dump($data);
