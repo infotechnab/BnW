@@ -24,26 +24,28 @@ class Dbevent extends CI_Model {
         return $query->result();
     }
     
-     function update_event($id, $title, $content, $summary, $location, $image, $dateTime) {
+     
+     function update_event($id, $title, $content, $location, $image, $dateTime, $type) {
         // die($id);
         $data = array(
             'title' => $title,
             'details' => $content,
             'location' => $location,
             'image' => $image,
-            'date' => $dateTime);
+            'date' => $dateTime,
+            'type'=>$type);
         $this->db->where('id', $id);
         $this->db->update('events', $data);
     }
     
-    function add_event($name, $detail, $location, $dateTime, $image) {
+    function add_event($name, $detail, $location, $dateTime, $image, $type) {
         $data = array(
             'title' => $name,
             'details' => $detail,
             'location' => $location,
             'date' => $dateTime,
-            'image' => $image
-        );
+            'image' => $image,
+            'type' => $type);
         $this->db->insert('events', $data);
     }
     

@@ -1,3 +1,6 @@
+<?php 
+$this->load->helper('summary_helper');
+?>
 <div class="rightSide">
    <div id="body"> 
     <h2>All Events&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/addevent'; ?>">Add New Event</a></h2>
@@ -25,7 +28,7 @@
           <tr>
               <td><?php echo $data->title; ?></td>
             
-            <td><?php echo $data->details; ?></td>
+            <td><?php echo custom_echo($data->details); ?></td>
             <td><?php echo $data->location ?></td>
             <td><?php  echo $data->date;?></td>
             <td><?php if(isset($data->image)==!'' && ($data->image)==!NULL ) { ?><img src="<?php echo base_url()."content/uploads/images/thumb_".$data->image; ?>" width="80"  alt="<?php echo $data->image; ?>" /><?php } else { echo 'image not set' ;} ?></td>
