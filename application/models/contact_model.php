@@ -15,9 +15,10 @@ class contact_model extends CI_Model {
         $this->db->insert('contact_list', $data);
     }
     
-    public function add_new_contact_feedback($email, $remark, $type)
+    public function add_new_contact_feedback($name, $email, $remark, $type)
     {
         $data = Array(
+            'full_name' => $name,
             'email' => $email,
             'remarks' => $remark,
             'type' => $type);

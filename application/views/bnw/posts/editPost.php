@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url().'content/bnw/styles/imgareaselect-animated.css'; ?>" />
  <script type="text/javascript" src="<?php echo base_url().'content/bnw/scripts/jquery.imgareaselect.pack.js'; ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url().'content/bnw/script/script.js'; ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url().'content/bnw/scripts/script.js'; ?>"></script>
         
         <div class="rightSide">
     <?php 
@@ -67,7 +67,7 @@ if ($miscSetting)
         <img src="<?php echo base_url();?>content/bnw/images/delete.png" id="close"/></a>
     </div> <?php }?>
   <p class="dashuppe-text-all">Image<br/> 
-     <input id="uploadImage" class="textInput" type="file" name="file" />
+      <input id="uploadImage" class="textInput" type="file" name="file" />
      <!-- hidden inputs -->
 		<input type="hidden" id="x" name="x" />
 		<input type="hidden" id="y" name="y" />
@@ -75,10 +75,28 @@ if ($miscSetting)
 		<input type="hidden" id="h" name="h" /> 
   </p>
   <img id="uploadPreview" style="display:none;width:1000px;"/>
+   <p class="dashuppe-text-all">Select Category<br/>
+      
+       <select class="textInput" name="selectCategory">
+                <?php
+                foreach ($listOfCategory as $data)
+                {
+                    ?>
+           <option value="0">Select None</option>
+              <option value="<?php echo $data->id; ?>" <?php if($data->id==$post_category_id){?> selected="selected" <?php } ?> >
+                    <?php echo $data->category_name; ?>
+                </option>
+                
+                    <?php
+                }
+              ?>
+          
+            </select>
+       
+   </p>
   
    <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
-  
    <?php } else{
      echo '<h3 id="sucessmsg">Sorry! the post is not found.</h3>';
         } ?>

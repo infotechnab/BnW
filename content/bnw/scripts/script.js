@@ -48,7 +48,7 @@ $(document).ready(function() {
                   var x2c = centre + deduct;
                   var y2c = height;  
                   var coords = { x1: x1c, y1: y1c, x2: x2c, y2: y2c };
-                  onSelectEnd: setVal
+                  onSelectEnd: setVal;
               }else{
                   var centre = h/2;
                   var nwidth = w;
@@ -59,6 +59,7 @@ $(document).ready(function() {
                   var x2c = nwidth;
                   var y2c = centre + ndeduct;
                   var coords = { x1: x1c, y1: y1c, x2: x2c, y2: y2c };
+                  onSelectEnd: setVal;
               }
                         $('img#uploadPreview').imgAreaSelect({ x1: x1c, y1: y1c, x2: x2c, y2: y2c, aspectRatio: '4:3', handles: true,onload:setInfo(x1c,y1c,x2c,y2c)  });
 		};

@@ -19,6 +19,7 @@
             <th>Post Title</th>
             <th>Post Summary</th>          
             <th>Image</th>
+            <th>Category</th>
             <th>Action</th>
         </tr>
         <?php
@@ -32,6 +33,13 @@
             
             
             <td><?php if(isset($data->image)== !NULL && ($data->image)==!'' ){?> <img src="<?php echo base_url().'content/uploads/images/thumb_'.$data->image ?>" width="80" alt="<?php echo $data->image; ?>" />  <?php  }else{ echo  "Image not set";}          ?></td>
+            <td><?php  
+            $catID = $this->dbdashboard->findcategory($data->post_category);
+            foreach ($catID as $catName)
+            {
+                echo $catName->category_name;
+            }
+            ?></td>
             <td><?php echo anchor('offers/editpost/'.$data->id,'Edit'); ?> / 
             <?php echo anchor('offers/deletepost/'.$data->id,'Delete'); ?></td>
         </tr>

@@ -14,7 +14,8 @@ class Offers extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
     }
-public function index() {
+
+    public function index() {
         redirect('bnw');
     }
      function getRandomStringForCoupen($length) {
@@ -28,8 +29,6 @@ public function index() {
         }
         return $result;
     }
-    
-   
     //============================= START OFFER =====================================//
     public function posts() {
         $url = current_url();
@@ -61,8 +60,10 @@ public function index() {
             $username = $this->session->userdata('username');
             $data['username'] = ($this->session->userdata('admin_logged_in'));
             $config['upload_path'] = './content/uploads/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-           
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            // $config['max_size'] = '500';
+            // $config['max_width'] = '1024';
+            // $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbsetting->get_meta_data();
             $data['query'] = $this->dboffers->get_posts();
@@ -91,10 +92,10 @@ public function index() {
             if (($this->form_validation->run() == TRUE)) {
                 if ($_FILES && $_FILES['file']['name'] !== "") {
                     if (!$this->upload->do_upload('file')) {
-                        $error = array('error' => $this->upload->display_errors('file'));
-                        $this->load->view('bnw/posts/addNewPost', $error);
+                        $data['error'] = array('error' => $this->upload->display_errors('file'));
+                        $this->load->view('bnw/posts/addNewPost', $data);
                     } else {
-                         include_once 'imagemanipulator.php';
+                        include_once 'imagemanipulator.php';
                         $manipulator = new ImageManipulator($_FILES['file']['tmp_name']);
                          $realwidth = $manipulator->getWidth();
                         
@@ -118,24 +119,25 @@ public function index() {
                         $image = $key.$name;
                         $manipulator->save('./content/uploads/images/' .$image);
                           unlink('./content/uploads/images/'.$name);
-                      
+                       // $imgname = $img_name;
                         $image_thumb = dirname('thumb_' . $image . '/demo');
                         $config['image_library'] = 'gd2';
                         $config['source_image'] = './content/uploads/images/' . $image;
                         $config['new_image'] = $image_thumb;
                         $config['maintain_ratio'] = TRUE;
-                        $config['width'] = 800;
-                        $config['height'] = 600;
+                        $config['width'] = 100;
+                        $config['height'] = 75;
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
-                                             
+                       
                         $post_title = $this->input->post('post_title');
                         $post_content = $this->input->post('post_content');
                         $string = $this->input->post('post_content');
                         $post_summary = substr("$string", 0, 100);
                         $post_status = $this->input->post('post_status');
+                        $selectCategory = $this->input->post('selectCategory');
 
-                        $this->dboffers->add_new_post($post_title, $post_content, $post_summary, $post_status, $image);
+                        $this->dboffers->add_new_post($post_title, $post_content, $post_summary, $post_status, $image,$selectCategory);
                         $this->session->set_flashdata('message', 'One offer added sucessfully');
                         redirect('offers/posts');
                     }
@@ -157,7 +159,8 @@ public function index() {
                     $allowComment = $this->input->post('allow_comment');
                     $allowLike = $this->input->post('allow_like');
                     $allowShare = $this->input->post('allow_share');
-                    $this->dboffers->add_new_post($post_title, $post_content, $post_summary, $post_status, $image);
+                    $selectCategory = $this->input->post('selectCategory');
+                    $this->dboffers->add_new_post($post_title, $post_content, $post_summary, $post_status, $image,$selectCategory);
                     // $this->dbmodel->add_new_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id, $allowComment, $allowLike, $allowShare);
                     $this->session->set_flashdata('message', 'One Offer added sucessfully');
                     redirect('offers/posts');
@@ -229,7 +232,10 @@ public function index() {
         if ($this->session->userdata('admin_logged_in')) {
 
             $config['upload_path'] = './content/uploads/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            //$config['max_size'] = '500';
+           // $config['max_width'] = '1024';
+           // $config['max_height'] = '768';
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbsetting->get_meta_data();
             $data['miscSetting'] = $this->dbsetting->get_misc_setting();
@@ -266,7 +272,7 @@ public function index() {
                         $data['query'] = $this->dboffers->findpost($id);
                         $this->load->view('bnw/posts/editPost', $data);
                     } else {
-                       include_once 'imagemanipulator.php';
+                        include_once 'imagemanipulator.php';
                         $manipulator = new ImageManipulator($_FILES['file']['tmp_name']);
                          $realwidth = $manipulator->getWidth();
                         
@@ -290,6 +296,7 @@ public function index() {
                         $image = $key.$name;
                         $manipulator->save('./content/uploads/images/' .$image);
                           unlink('./content/uploads/images/'.$name);
+                       // $imgname = $img_name;
                         $image_thumb = dirname('thumb_' . $image . '/demo');
                         $config['image_library'] = 'gd2';
                         $config['source_image'] = './content/uploads/images/' . $image;
@@ -302,22 +309,17 @@ public function index() {
                         $id = $this->input->post('id');
                         $post_title = $this->input->post('post_title');
                         $post_content = $this->input->post('post_content');
-                        $data = array('upload_data' => $this->upload->data('file'));
                         
-                        
-//                        $post_author_info = $this->dbmodel->get_post_author_id($username);
-//                        foreach ($post_author_info as $pid) {
-//                            $post_author_id = $pid->id;
-//                        }
                         $string = $this->input->post('post_content');
                         $post_summary = substr("$string", 0, 100);
+                        $selectCategory = $this->input->post('selectCategory');
 //                        $post_status = $this->input->post('page_status');
 //                        $post_comment_status = $this->input->post('comment_status');
 //                        $post_tags = $this->input->post('post_tags');
 //                        $allowComment = $this->input->post('allow_comment');
 //                        $allowLike = $this->input->post('allow_like');
 //                        $allowShare = $this->input->post('allow_share');
-                        $this->dboffers->update_post($id, $post_title, $post_content, $post_summary, $image);
+                        $this->dboffers->update_post($id, $post_title, $post_content, $post_summary, $image,$selectCategory);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         redirect('offers/posts');
                     }
@@ -338,7 +340,8 @@ public function index() {
 //                    $allowComment = $this->input->post('allow_comment');
 //                    $allowLike = $this->input->post('allow_like');
 //                    $allowShare = $this->input->post('allow_share');
-                    $this->dboffers->update_post($id, $post_title, $post_content, $post_summary, $post_image);
+                    $selectCategory = $this->input->post('selectCategory');
+                    $this->dboffers->update_post($id, $post_title, $post_content, $post_summary, $post_image,$selectCategory);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     redirect('offers/posts');
                 }
@@ -363,7 +366,7 @@ public function index() {
             foreach ($data['query'] as $a) {
                 $img = $a->image;
             }
-            
+             die($img);
             if ($img == !NULL) {
                 unlink('./content/uploads/images/' . $img);
                 unlink('./content/uploads/images/thumb_' . $img);

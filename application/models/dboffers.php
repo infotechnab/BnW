@@ -55,15 +55,15 @@ class Dboffers extends CI_Model {
         }
     }
 
-    function add_new_post($post_title, $post_content, $post_summary, $post_status, $image) {
+    function add_new_post($post_title, $post_content, $post_summary, $post_status, $image, $selectCategory) {
        
         $data = array(
             'post_title' => $post_title,
             'post_content' => $post_content,
             'post_summary' => $post_summary,
             'post_status' => $post_status,
-            'image' => $image
-        );
+            'image' => $image,
+            'post_category' => $selectCategory);
         $this->db->insert('post', $data);
     }
 

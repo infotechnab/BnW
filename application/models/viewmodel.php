@@ -17,7 +17,67 @@ class Viewmodel extends CI_Model
         $query = $this->db->get();
         return $query->result();  
     }
+    function get_event_news(){
+        $this->db->order_by('id', 'DESC');
+        $this->db->where('type', 'news');
+        $this->db->limit(4);
+        $query = $this->db->get("events");
+        return $query->result();
+    }
+    function get_event_events(){
+        $this->db->order_by('id', 'DESC');
+        $this->db->where('type', 'event');
+        $this->db->limit(4);
+        $query = $this->db->get("events");
+        return $query->result();
+    }
+    public function count_events()
+    {
+         return $this->db->count_all("events");
+    }
+    public function get_event_for_all_event($limit, $start) {
+        $this->db->limit($limit, $start);      
+        $this->db->where('type','event');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get('events');   
+        return $query->result();
+    }
+     public function count_events_news()
+    {
+         return $this->db->count_all("events");
+    }
+    public function get_event_for_all_news($limit, $start) {
+        $this->db->limit($limit, $start);      
+        $this->db->where('type','news');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get('events');   
+        return $query->result();
+    }
+    public function get_event_by_id($id)
+    {
+       $this->db->where('type','event');
+        $this->db->where('id', $id);
+        $query = $this->db->get('events'); 
+         return $query->result();
+    }
+    public function get_event_by_id_for_news($id)
+    {
+       $this->db->where('type','news');
+        $this->db->where('id', $id);
+        $query = $this->db->get('events'); 
+         return $query->result();
+    }
     
+public function get_post_for_testimonials()
+{
+        $this->db->where('post_category', '2');
+        $this->db->limit('4');
+        $this->db->order_by("id", "desc");
+        $query = $this->db->get('post');
+        return $query->result();
+}
+
+
     public function get_max_post_to_show(){
         $this->db->select('description');
          $this->db->from('misc_setting');
@@ -239,12 +299,26 @@ class Viewmodel extends CI_Model
     function get_media_image($aid)
         {
                         
-           $this->db->where('media_association_id',$aid);
-           $query = $this->db->get('media');
+            $this->db->select();            
+            $this->db->where('media_association_id',$aid);
+            
+            $this->db->limit(1);
+                    $query = $this->db->get('media');
+           if ($query->num_rows() == 1) {
             return $query->result();
+        } else {
+            return false;
+        }
+        }
+        public function get_album_name_by_id($id)
+        {
+            $this->db->where('id', $id);
+             $query = $this->db->get('album');
+        return $query->result();  
         }
 
         
+
         public function get_all_media(){
         $this->db->from('media');
         $query=$this->db->get();

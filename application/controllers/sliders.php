@@ -50,10 +50,10 @@ class Sliders extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
 
             $config['upload_path'] = './content/uploads/sliderImages/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '2000';
-            $config['max_width'] = '2000';
-            $config['max_height'] = '2000';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['max_size'] = '10000';
+            $config['max_width'] = '5000';
+            $config['max_height'] = '5000';
 
             $this->load->library('upload', $config);
 
@@ -172,7 +172,7 @@ class Sliders extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
 
             $config['upload_path'] = './content/uploads/sliderImages/';
-            $config['allowed_types'] = 'gif|jpg|png';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
            // $config['max_size'] = '2000';
            // $config['max_width'] = '2000';
            // $config['max_height'] = '2000';

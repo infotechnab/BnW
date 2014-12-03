@@ -98,10 +98,8 @@ class Events extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config['upload_path'] = './content/uploads/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            // $config['max_size'] = '500';
-            // $config['max_width'] = '1024';
-            // $config['max_height'] = '768';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            
             $this->load->library('upload',$config);
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('Name', 'Name', 'required|xss_clean|max_length[200]');
@@ -153,10 +151,6 @@ class Events extends CI_Controller {
                         $id = $this->input->post('id');
                         $title = $this->input->post('Name');
                         $content = $this->input->post('description');
-                     
-
-                        $string = $this->input->post('description');
-                        $summary = substr("$string", 0, 100);
                         $location = $this->input->post('location');
                         $type = $this->input->post('event_type');
                         $date = $this->input->post('date');
@@ -164,7 +158,7 @@ class Events extends CI_Controller {
                         $min = $this->input->post('min');
                         $sec = 0;
                         $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
-                        $this->dbevent->update_event($id, $title, $content, $summary, $location, $image, $dateTime, $type);
+                        $this->dbevent->update_event($id, $title, $content, $location, $image, $dateTime, $type);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         redirect('events/event');
                     }
@@ -175,9 +169,6 @@ class Events extends CI_Controller {
                     $content = $this->input->post('description');
 
                     $image = $this->input->post('hidden_image');
-
-                    $string = $this->input->post('description');
-                    $summary = substr("$string", 0, 100);
                     $location = $this->input->post('location');
                     $type = $this->input->post('event_type');
                     $date = $this->input->post('date');
@@ -185,7 +176,7 @@ class Events extends CI_Controller {
                     $min = $this->input->post('min');
                     $sec = 0;
                     $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
-                    $this->dbevent->update_event($id, $title, $content, $summary, $location, $image, $dateTime, $type);
+                    $this->dbevent->update_event($id, $title, $content, $location, $image, $dateTime, $type);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     redirect('events/event');
                 }
@@ -203,7 +194,7 @@ class Events extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
            $config['upload_path'] = './content/uploads/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
            
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbsetting->get_meta_data();
