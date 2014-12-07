@@ -125,8 +125,8 @@ class Offers extends CI_Controller {
                         $config['source_image'] = './content/uploads/images/' . $image;
                         $config['new_image'] = $image_thumb;
                         $config['maintain_ratio'] = TRUE;
-                        $config['width'] = 100;
-                        $config['height'] = 75;
+                        $config['width'] = 240;
+                        $config['height'] = 180;
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
                        
@@ -302,8 +302,8 @@ class Offers extends CI_Controller {
                         $config['source_image'] = './content/uploads/images/' . $image;
                         $config['new_image'] = $image_thumb;
                         $config['maintain_ratio'] = TRUE;
-                        $config['width'] = 100;
-                        $config['height'] = 75;
+                        $config['width'] = 240;
+                        $config['height'] = 180;
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
                         $id = $this->input->post('id');

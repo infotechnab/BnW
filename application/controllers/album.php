@@ -128,8 +128,8 @@ class Album extends CI_Controller {
                         $config['source_image'] = './content/uploads/images/' . $image;
                         $config['new_image'] = $image_thumb;
                         $config['maintain_ratio'] = TRUE;
-                        $config['width'] = 267;
-                        $config['height'] = 200;
+                        $config['width'] = 240;
+                        $config['height'] = 180;
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
                 $medianame = $this->input->post('title');
@@ -307,8 +307,8 @@ class Album extends CI_Controller {
                         $config['source_image'] = './content/uploads/images/' . $image;
                         $config['new_image'] = $image_thumb;
                         $config['maintain_ratio'] = TRUE;
-                        $config['width'] = 267;
-                        $config['height'] = 200;
+                        $config['width'] = 240;
+                        $config['height'] = 180;
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
                 $data = array('upload_data' => $this->upload->data('file'));

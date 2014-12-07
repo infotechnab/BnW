@@ -124,8 +124,8 @@ class Sliders extends CI_Controller {
                         $config['source_image'] = './content/uploads/sliderImages/' . $image;
                         $config['new_image'] = $image_thumb;
                         $config['maintain_ratio'] = TRUE;
-                        $config['width'] = 100;
-                        $config['height'] = 75;
+                        $config['width'] = 240;
+                        $config['height'] = 180;
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
                 $this->dbslider->add_new_slider($slidename, $slideimage, $slidecontent);
@@ -246,8 +246,8 @@ class Sliders extends CI_Controller {
                         $config['source_image'] = './content/uploads/sliderImages/' . $image;
                         $config['new_image'] = $image_thumb;
                         $config['maintain_ratio'] = TRUE;
-                        $config['width'] = 100;
-                        $config['height'] = 75;
+                        $config['width'] = 240;
+                        $config['height'] = 180;
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
                 $this->dbslider->update_slider($id, $slidename, $slideimage, $slidecontent);
