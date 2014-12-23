@@ -59,6 +59,7 @@ class view extends CI_Controller {
         $data['contact'] = $this->contact_model->get_contact_form();
         $this->load->view('gardenResort/topHead', $data);
         $this->load->view('gardenResort/header', $data);
+        $this->load->view('gardenResort/links', $data);
         $this->load->view('gardenResort/reserve');
         $this->load->view('gardenResort/mailSubscription');
         $this->load->view('gardenResort/footer',$data);
@@ -84,9 +85,16 @@ class view extends CI_Controller {
            $data['headerlogo']= $this->viewmodel->get_header_logo();//for all gadget
               $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
         $data['recentPost']= $this->model1->get_gaget_recentPost(); 
-       
+       $class= $this->router->fetch_class();  
+    $method = $this->router->fetch_method();    
+        $this->load->library('breadcrumbs');
+$this->breadcrumbs->push($class, '/'.$class);
+$this->breadcrumbs->push($method, '/'.$class.'/'.$method);
+$this->breadcrumbs->unshift('Home', '/');
+$data['link'] = $this->breadcrumbs->show();
          $this->load->view('gardenResort/topHead', $data);
         $this->load->view('gardenResort/header', $data);
+         $this->load->view('gardenResort/links', $data);
          $this->load->view('gardenResort/events',$data);
          $this->load->view('gardenResort/footer',$data);
     }
@@ -109,9 +117,17 @@ class view extends CI_Controller {
            $data['headerlogo']= $this->viewmodel->get_header_logo();//for all gadget
               $data['gadget'] = $this->model1->get_gaget();                    //for all gadget
         $data['recentPost']= $this->model1->get_gaget_recentPost(); 
-       
+    $class= $this->router->fetch_class();  
+    $method = $this->router->fetch_method();    
+        $this->load->library('breadcrumbs');
+$this->breadcrumbs->push($class, '/'.$class);
+$this->breadcrumbs->push($method, '/'.$class.'/'.$method);
+$this->breadcrumbs->unshift('Home', '/');
+$data['link'] = $this->breadcrumbs->show();
+
          $this->load->view('gardenResort/topHead', $data);
         $this->load->view('gardenResort/header', $data);
+         $this->load->view('gardenResort/links', $data);
          $this->load->view('gardenResort/news',$data);
          $this->load->view('gardenResort/footer',$data);
     }
@@ -123,8 +139,21 @@ class view extends CI_Controller {
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
         $data['singleEvent'] = $this->viewmodel->get_event_by_id($id);
           $data['contact'] = $this->contact_model->get_contact_form();
+          foreach ($data['singleEvent'] as $news){
+            $title = $news->title;
+        }
+        
+$class= $this->router->fetch_class();  
+    $method = $this->router->fetch_method();    
+        $this->load->library('breadcrumbs');
+$this->breadcrumbs->push($class, '/'.$class);
+$this->breadcrumbs->push($method, '/'.$class.'/allevents');
+$this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
+$this->breadcrumbs->unshift('Home', '/');
+$data['link'] = $this->breadcrumbs->show();
          $this->load->view('gardenResort/topHead', $data);
         $this->load->view('gardenResort/header', $data);
+         $this->load->view('gardenResort/links', $data);
          $this->load->view('gardenResort/singleEvent', $data);
         $this->load->view('gardenResort/footer',$data);
     }
@@ -135,8 +164,22 @@ class view extends CI_Controller {
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
           $data['contact'] = $this->contact_model->get_contact_form();
         $data['singleNews'] = $this->viewmodel->get_event_by_id_for_news($id);
+        foreach ($data['singleNews'] as $news){
+            $title = $news->title;
+        }
+        
+$class= $this->router->fetch_class();  
+    $method = $this->router->fetch_method();    
+        $this->load->library('breadcrumbs');
+$this->breadcrumbs->push($class, '/'.$class);
+$this->breadcrumbs->push($method, '/'.$class.'/allnews');
+$this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
+$this->breadcrumbs->unshift('Home', '/');
+$data['link'] = $this->breadcrumbs->show();
+
          $this->load->view('gardenResort/topHead', $data);
         $this->load->view('gardenResort/header', $data);
+         $this->load->view('gardenResort/links', $data);
          $this->load->view('gardenResort/singleNews', $data);
         $this->load->view('gardenResort/footer',$data);
     }
@@ -148,8 +191,16 @@ class view extends CI_Controller {
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
         $data['contact'] = $this->contact_model->get_contact_form();
         $data['albumquery'] = $this->viewmodel->get_album();
+         $class= $this->router->fetch_class();  
+    $method = $this->router->fetch_method();    
+        $this->load->library('breadcrumbs');
+$this->breadcrumbs->push($class, '/'.$class);
+$this->breadcrumbs->push($method, '/'.$class.'/'.$method);
+$this->breadcrumbs->unshift('Home', '/');
+$data['link'] = $this->breadcrumbs->show();
         $this->load->view('gardenResort/topHead', $data);
         $this->load->view('gardenResort/header', $data);
+         $this->load->view('gardenResort/links', $data);
         $this->load->view('gardenResort/album',$data);
         $this->load->view('gardenResort/footer',$data);
     }
@@ -162,9 +213,20 @@ class view extends CI_Controller {
         $data['contact'] = $this->contact_model->get_contact_form();
         $data['albumName'] = $this->viewmodel->get_album_name_by_id($id);
          $data['selectedalbumquery'] =  $this->viewmodel->get_selected_album($id);
-        
+         foreach ($data['albumName'] as $galls){
+             $title= $galls->album_name;
+        }
+       $class= $this->router->fetch_class();  
+    $method = $this->router->fetch_method();    
+        $this->load->library('breadcrumbs');
+$this->breadcrumbs->push($class, '/'.$class);
+$this->breadcrumbs->push($method, '/'.$class.'/gallery');
+$this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
+$this->breadcrumbs->unshift('Home', '/');
+$data['link'] = $this->breadcrumbs->show(); 
          $this->load->view('gardenResort/topHead', $data);
         $this->load->view('gardenResort/header', $data);
+         $this->load->view('gardenResort/links', $data);
         $this->load->view('gardenResort/photo', $data);
          $this->load->view('gardenResort/footer',$data);
     }
@@ -175,8 +237,16 @@ class view extends CI_Controller {
         $data['headertitle'] = $this->viewmodel->get_header_title();
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
         $data['contact'] = $this->contact_model->get_contact_form();
+         $class= $this->router->fetch_class();  
+    $method = $this->router->fetch_method();    
+        $this->load->library('breadcrumbs');
+$this->breadcrumbs->push($class, '/'.$class);
+$this->breadcrumbs->push($method, '/'.$class.'/'.$method);
+$this->breadcrumbs->unshift('Home', '/');
+$data['link'] = $this->breadcrumbs->show();
          $this->load->view('gardenResort/topHead', $data);
         $this->load->view('gardenResort/header', $data);
+         $this->load->view('gardenResort/links', $data);
         $this->load->view('gardenResort/contactForm', $data);
          $this->load->view('gardenResort/footer',$data);
     }
@@ -188,9 +258,20 @@ class view extends CI_Controller {
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
         $data['contact'] = $this->contact_model->get_contact_form();
         $data['selectedpagequery'] = $this->viewmodel->get_desired_page($id);
-        
+        foreach ($data['selectedpagequery'] as $name){
+            $title = $name->page_title;
+        }
+        $class= $this->router->fetch_class();  
+    $method = $this->router->fetch_method();    
+        $this->load->library('breadcrumbs');
+$this->breadcrumbs->push($class, '/'.$class);
+$this->breadcrumbs->push($method, '/'.$class.'/index');
+$this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
+$this->breadcrumbs->unshift('Home', '/');
+$data['link'] = $this->breadcrumbs->show(); 
          $this->load->view('gardenResort/topHead', $data);
         $this->load->view('gardenResort/header', $data);
+         $this->load->view('gardenResort/links', $data);
          $this->load->view('gardenResort/page', $data);
          $this->load->view('gardenResort/footer',$data);
     }
@@ -201,10 +282,21 @@ class view extends CI_Controller {
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
         $data['contact'] = $this->contact_model->get_contact_form();
         $data['selectedpostquery'] = $this->viewmodel->get_desired_post($id);
+        foreach ($data['selectedpostquery'] as $name){
+            $title = $name->post_title;
+        }
        
-
+$class= $this->router->fetch_class();  
+    $method = $this->router->fetch_method();    
+        $this->load->library('breadcrumbs');
+$this->breadcrumbs->push($class, '/'.$class);
+$this->breadcrumbs->push($method, '/'.$class.'/index');
+$this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
+$this->breadcrumbs->unshift('Home', '/');
+$data['link'] = $this->breadcrumbs->show(); 
         $this->load->view('gardenResort/topHead', $data);
         $this->load->view('gardenResort/header', $data);
+         $this->load->view('gardenResort/links', $data);
          $this->load->view('gardenResort/posts', $data);
          $this->load->view('gardenResort/footer',$data);
     }
