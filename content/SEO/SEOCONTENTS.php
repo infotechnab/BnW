@@ -118,3 +118,12 @@ RewriteRule ^(.*)$ /index.php/$1 [L]
  #in line $config['uri_protocol']	= 'AUTO';
  #Replace it with $config['uri_protocol']	= 'PATH_INFO';
  # in Apache enable rewrite module
+ 
+ <!-- the CORS for all in .htaccess -->
+ SetEnvIf Origin ^(.*)$ ORIGIN_DOMAIN=$0
+<files "*"="">
+Header set Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Methods "GET, OPTIONS"
+Header add Access-Control-Allow-Headers "Authorization, X-Requested-With, Content-Type, Origin, Accept"
+Header add Access-Control-Allow-Credentials "true"
+</files>
