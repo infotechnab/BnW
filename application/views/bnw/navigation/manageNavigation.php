@@ -1,56 +1,212 @@
-
-<div class="rightSide">
-
 <div id="body">
-     <p style="color: red;">
-            <?php if(isset($token_error)){ echo $token_error;} ?>
-        </p>
-         <p style="color: green;">
-            <?php if(isset($token_sucess)){ echo $token_sucess;} ?>
-        </p>
-        
-    <p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+    <p style="color: red;">
+        <?php if (isset($token_error)) {
+            echo $token_error;
+        } ?>
     </p>
-    <h2>List of Navigation</h2>
+    <p style="color: green;">
+<?php if (isset($token_sucess)) {
+    echo $token_sucess;
+} ?>
+    </p>
+    
+    <p id="sucessmsg">
+    <?php if ($this->session->flashdata('message')) {
+        echo $this->session->flashdata('message');
+    } ?>
+    </p>
+    <h5>List of Navigation</h5>
     <hr class="hr-gradient"/>
-    <?php    
-        if(!empty($query)){
-            ?>
-    <table border="1" cellpadding="10">
-        <tr>
-            <th>S.N.</th>
-            <th>Title</th> 
-            <th>Link</th>
-            <th>Parent</th>
-                    
-            <th>Action</th>
-        </tr>
     
     <?php
-            foreach ($query as $data){
-                
-            ?>
-          <tr>
-            <td><?php echo $data->id; ?></td>
-            <td><?php echo $data->navigation_name; ?></td>
-            <td><?php echo $data->navigation_link; ?>  </td>
-            <td><?php echo $data->parent_id; ?>  </td>
-          
-            <td><?php echo anchor('dashboard/up/'.$data->id,'<img title="move up" src="'.base_url().'content/bnw/images/up.png" width="15" height="15" />'); ?> | 
-            <?php echo anchor('dashboard/down/'.$data->id,'<img title="move down " src="'.base_url().'content/bnw/images/down.png" width="15" height="15" />'); ?></td>
-        </tr>
-            <?php    
-            }
-        }
- else {
-            echo '<h3>Sorry navigation items are not available</h3>';
- }
+    if (!empty($query)) {
+        ?>
+        <?php
+        $this->load->helper('manageNav_helper');
+
+        fetch_menu(query(0));
+        ?>
+    <?php
+    } else {
+        echo '<h3>Sorry navigation items are not available</h3>';
+    }
     ?>
-       
-    </table>
-   
-</div>
+
+
+
 </div>
 <div class="clear"></div>
 </div>
+<div id="fadeDiv"></div>
+<script>
+    $(document).ready(function () {
+        $(document).on("click", "#fadeDiv", function(){
+            $("#editBoxNav").hide();
+            $(this).hide();
+        });
+        
+        $(document).on("click", ".editNavName", function () {
+            var selectedValue = $("#NavNameId").val();
+            var navname = $("#navigation_name").val();
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url() . 'index.php/dashboard/updatenavigation'; ?>",
+                data: {
+                    'id': selectedValue,
+                    'navName': navname
+                },
+                success: function (msg)
+                {
+                    $("#editBoxNav").hide();
+                    $("#fadeDiv").hide();
+                    $("#msges").html("Navigation Updated");
+                    //refresh latest data.
+                    var selectBox = document.getElementById("selectBox");
+                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                    var dataString = 'menu_id_next=' + selectedValue;
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url() . 'index.php/dashboard/manageNavigation'; ?>",
+                        data: dataString,
+                        success: function (msg)
+                        {
+                            $("#cssmenu").html(msg);
+                        }
+                    });
+                }
+
+
+            });
+        });
+
+        $(document).on("click", ".editNavs", function (e) {
+            var id = $(this).attr("id");
+            var name = $(this).parent().prev("#navName").html();
+            var p = $("#editBoxNav").width();
+            var hp = $("#editBoxNav").height();
+            var w = $(window).width();
+            var h = $(window).height();
+            var topp = $(window).scrollTop();
+
+            var b = w - p;
+            var lr = b / 2;
+            var tp = (h - hp) / 2;
+            var toppos = topp + tp;
+            $("#fadeDiv").width($(document).width());
+            $("#fadeDiv").height($(document).height());
+            $("#fadeDiv").show();
+            $('.editBoxNav').css("left", lr);
+            $('.editBoxNav').css("top", toppos - 200);
+            $('.editBoxNav').show();
+            $("#navigation_name").val(name);
+            $("#NavNameId").val(id);
+
+            $("#editBoxNav").show();
+            e.preventDefault();
+        });
+        $(document).on("click", ".deleteNav", function () {
+              var id = $(this).attr("id");
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url() . 'index.php/dashboard/deletenavigation'; ?>",
+                data: {
+                    'id': id
+                },
+                success: function (msg)
+                {
+                    //refresh latest data.
+                    $("#msges").html("Navigation Deleted");
+                    var selectBox = document.getElementById("selectBox");
+                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                    var dataString = 'menu_id_next=' + selectedValue;
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url() . 'index.php/dashboard/manageNavigation'; ?>",
+                        data: dataString,
+                        success: function (msg)
+                        {
+                            $("#cssmenu").html(msg);
+                        }
+                    });
+                }
+
+
+            });
+        });
+        $(document).on("click", ".upNav", function () {
+        var id = $(this).attr("id");
+                $.ajax({
+                type: "POST",
+                url: "<?php echo base_url() . 'index.php/dashboard/up'; ?>",
+                data: {
+                    'id': id
+                },
+                success: function (msg)
+                {
+                    //refresh latest data.
+                    var selectBox = document.getElementById("selectBox");
+                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                    var dataString = 'menu_id_next=' + selectedValue;
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url() . 'index.php/dashboard/manageNavigation'; ?>",
+                        data: dataString,
+                        success: function (msg)
+                        {
+                            $("#cssmenu").html(msg);
+                        }
+                    });
+                }
+
+
+            });
+        });
+        $(document).on("click", ".downNav", function () {
+            var id = $(this).attr("id");
+                $.ajax({
+                type: "POST",
+                url: "<?php echo base_url() . 'index.php/dashboard/down'; ?>",
+                data: {
+                    'id': id
+                },
+                success: function (msg)
+                {
+                    //refresh latest data.
+                    var selectBox = document.getElementById("selectBox");
+                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                    var dataString = 'menu_id_next=' + selectedValue;
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url() . 'index.php/dashboard/manageNavigation'; ?>",
+                        data: dataString,
+                        success: function (msg)
+                        {
+                            $("#cssmenu").html(msg);
+                        }
+                    });
+                }
+
+
+            });
+        });
+    });
+</script>
+
+<div id="editBoxNav" class="editBoxNav">
+    <div>
+        <div style="background: #ddd;padding: 3%;"><h3>Edit Navigation</h3></div>
+        <div style="padding: 4%;">
+            <div> Enter Navigation Name :</div>
+            <div style="margin: 3% 0"><input type="text" value="" id='navigation_name' style="width: 100%;" /></div>
+            <input type="hidden" value="" id="NavNameId">
+            <input type="button" value="Update" class="editNavName" />
+        </div>
+
+        
+    </div>
+</div>
+
+<style>
+    .editBoxNav{position: absolute;display: none;border: 1px solid #eee;height: 150px;width: 300px;background: #fff;z-index: 9999}
+    #fadeDiv{position: absolute;background: rgba(0,0,0,0.9);z-index: 999;top: 0;left: 0;}
+</style>

@@ -39,9 +39,12 @@
             {
                 echo $catName->category_name;
             }
-            ?></td>
-            <td><?php echo anchor('offers/editpost/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('offers/deletepost/'.$data->id,'Delete'); ?></td>
+            ?>
+            </td>
+            <td>
+                <a href="<?php echo base_url().'index.php/offers/editpost/'.$data->id; ?>"><i class="fa fa-pencil-square-o"></i></a> | 
+                <a href="<?php echo base_url().'index.php/offers/deletepost/'.$data->id; ?>"><i class="fa fa-trash-o"></i></a> 
+            </td>
         </tr>
             <?php    
             }

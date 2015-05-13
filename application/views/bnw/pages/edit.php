@@ -26,6 +26,7 @@ if ($miscSetting)
            $comment=$data->allow_comment;
            $like=$data->allow_like;
            $share=$data->allow_share;
+           $image = $data->images;
        }
         
     ?>
@@ -55,6 +56,10 @@ if ($miscSetting)
   <p class="dashuppe-text-all">Body<br />
   <textarea name="page_content" id="area1" rows="5" cols="50" style="resize:none;">
       <?php echo $body; ?></textarea>
+  </p>
+  <p>
+  <input type="file" name="file" multiple>
+  <input type="hidden" name="imageName" value="<?php echo $image; ?>">
   </p>
   </div>
   

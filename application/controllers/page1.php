@@ -94,7 +94,7 @@ class Page extends CI_Controller {
                     } else {
                         $data = array('upload_data' => $this->upload->data('file'));
                         $image = $data['upload_data']['file_name'];
-                        $this->dbpage->add_new_page($name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare,$image);
+                        $this->dbpage->add_new_page($name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare);
                         $this->session->set_flashdata('message', 'One pages added sucessfully');
                         redirect('page/pages');
                     }
@@ -106,7 +106,7 @@ class Page extends CI_Controller {
                     foreach ($page_author_info as $id) {
                         $page_author_id = $id->id;
                     }
-                    $image = "";
+
                     $string = $this->input->post('page_content');
                     $summary = substr("$string", 0, 100);
 
@@ -118,7 +118,7 @@ class Page extends CI_Controller {
                     $allowComment = $this->input->post('allow_comment');
                     $allowLike = $this->input->post('allow_like');
                     $allowShare = $this->input->post('allow_share');
-                    $this->dbpage->add_new_page($name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare,$image);
+                    $this->dbpage->add_new_page($name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare);
 
                     $page = $this->dbpage->find_page_id($name);
                     $this->session->set_flashdata('message', 'One pages added sucessfully');
@@ -182,17 +182,14 @@ class Page extends CI_Controller {
 
             if (($this->form_validation->run() == TRUE)) {
                 if ($_FILES && $_FILES['file']['name'] !== "") {
-                  
-                    
-                    if (!$this->upload->do_upload('file')) {
-                        $error = array('error' => $this->upload->display_errors('file'));
+                    if (!$this->upload->do_upload('slide_image')) {
                         $data['error'] = $this->upload->display_errors('file');
                         $id = $this->input->post('id');
                         $data['query'] = $this->dbpage->findpage($id);
                         $this->load->view('bnw/pages/edit', $data);
                     } else {
-                        $data = array('upload_data' => $this->upload->data('file'));
-                        $image = $data['upload_data']['file_name'];
+
+
                         $id = $this->input->post('id');
                         $name = $this->input->post('page_name');
                         $body = $this->input->post('page_content');
@@ -213,13 +210,13 @@ class Page extends CI_Controller {
                         $navigationLink = 'page/' . $id;
                         $navigationSlug = preg_replace('/\s+/', '', $name);
                         $pageid = $id;
-                        $this->dbpage->update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare,$image);
+                        $this->dbpage->update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare);
                         $this->dbpage->update_navigation_on_page_update($pageid, $navigationName, $navigationLink, $navigationSlug);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         redirect('page/pages');
                     }
                 } else {
-                    $image = $this->input->post('imageName');
+
                     $id = $this->input->post('id');
                     $name = $this->input->post('page_name');
                     $body = $this->input->post('page_content');
@@ -240,7 +237,7 @@ class Page extends CI_Controller {
                     $navigationLink = 'page/' . $id;
                     $navigationSlug = preg_replace('/\s+/', '', $name);
                     $pageid = $id;
-                    $this->dbpage->update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare,$image);
+                    $this->dbpage->update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare);
                     $this->dbpage->update_navigation_on_page_update($pageid, $navigationName, $navigationLink, $navigationSlug);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     redirect('page/pages');

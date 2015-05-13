@@ -12,6 +12,7 @@
        <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.imgareaselect.pack.js"></script>
        <script src="<?php echo base_url(); ?>content/bnw/scripts/script.js"></script>
        <link rel="stylesheet" type="text/css" href="<?php echo base_url().'content/bnw/styles/imgareaselect-animated.css'; ?>" />
+       <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <script type="text/javascript">
 
 bkLib.onDomLoaded(function() {

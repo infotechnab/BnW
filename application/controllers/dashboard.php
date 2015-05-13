@@ -180,15 +180,14 @@ class Dashboard extends CI_Controller {
         }
     }
     
-    function manageNavigation($id=0)
+    function manageNavigation()
     {
+        $id = $_POST['menu_id_next'];
         $url = current_url();
          if ($this->session->userdata('admin_logged_in')) {
          $data['meta'] = $this->dbsetting->get_meta_data();
 
             $data['query'] = $this->dbdashboard->get_list_of_selected_menu_navigation($id);
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/navigation/manageNavigation', $data);
             
              
@@ -198,8 +197,9 @@ class Dashboard extends CI_Controller {
          
     }
     
-    function up($id=0)
+    function up()
     {
+        $id = $_POST['id'];
         $url = current_url();
        if ($this->session->userdata('admin_logged_in')) {
           
@@ -241,13 +241,13 @@ class Dashboard extends CI_Controller {
            $updateUP = $this->dbdashboard->update_up($tempID,$previousID);
            $updateParentID_UP = $this->dbdashboard->update_parentID_UP($tempID,$previousID);
            
-           redirect('dashboard/manageNavigation/4');
+//           redirect('dashboard/navigation');
            }
            else
            {
            ///   echo " sdlfjsdajfsldjf";
            $this->session->set_flashdata('message', 'Upper level not available');
-           redirect('dashboard/manageNavigation/4');
+//           redirect('dashboard/navigation');
            
            }
          } 
@@ -258,10 +258,10 @@ class Dashboard extends CI_Controller {
                $data['meta'] = $this->dbsetting->get_meta_data();
 
             $data['query'] = $this->dbdashboard->get_list_of_selected_menu_navigation($id);
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/templetes/error_landing_page', $data);
-            
+//            $this->load->view("bnw/templates/header", $data);
+//            $this->load->view("bnw/templates/menu");
+//            $this->load->view('bnw/templetes/error_landing_page', $data);
+//            
          }
        }
     else {
@@ -271,9 +271,9 @@ class Dashboard extends CI_Controller {
                $data['meta'] = $this->dbsetting->get_meta_data();
 
             $data['query'] = $this->dbdashboard->get_list_of_selected_menu_navigation($id);
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/templetes/error_landing_page', $data);
+//            $this->load->view("bnw/templates/header", $data);
+//            $this->load->view("bnw/templates/menu");
+//            $this->load->view('bnw/templetes/error_landing_page', $data);
             
      
             }
@@ -285,8 +285,10 @@ class Dashboard extends CI_Controller {
        } 
     }
     
-    function down($id)
-    { $url = current_url();
+    function down()
+    { 
+        $id = $_POST['id'];
+        $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
          
             if($id ==!0)
@@ -326,14 +328,13 @@ class Dashboard extends CI_Controller {
            $updatePreviousParentID = $this->dbdashboard->update_Previous_ParentID($id,$previousID);
            $updateUP = $this->dbdashboard->update_up($tempID,$previousID);
            $updateParentID_UP = $this->dbdashboard->update_parentID_UP($tempID,$previousID);
-           
-           redirect('dashboard/manageNavigation/4');
+//           redirect('dashboard/navigation');
            }
            else
            {
               // echo 'Can not process';
               $this->session->set_flashdata('message', 'Lower level not available');
-           redirect('dashboard/manageNavigation/4');
+//           redirect('dashboard/navigation');
            }
            }
            else{
@@ -343,9 +344,9 @@ class Dashboard extends CI_Controller {
                $data['meta'] = $this->dbsetting->get_meta_data();
 
             $data['query'] = $this->dddashboard->get_list_of_selected_menu_navigation($id);
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('templates/error_landing_page', $data);
+//            $this->load->view("bnw/templates/header", $data);
+//            $this->load->view("bnw/templates/menu");
+//            $this->load->view('templates/error_landing_page', $data);
             
            }
            }
@@ -355,9 +356,9 @@ class Dashboard extends CI_Controller {
                $data['meta'] = $this->dbsetting->get_meta_data();
 
             $data['query'] = $this->dbdashboard->get_list_of_selected_menu_navigation($id);
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('templates/error_landing_page', $data);
+//            $this->load->view("bnw/templates/header", $data);
+//            $this->load->view("bnw/templates/menu");
+//            $this->load->view('templates/error_landing_page', $data);
             
        }
         }
@@ -371,22 +372,9 @@ class Dashboard extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['meta'] = $this->dbsetting->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->helper('form');
-            $this->load->library(array('form_validation', 'session'));
-            //set validation rules
-            $this->form_validation->set_rules('navigation_name', 'Navigation Name', 'required|xss_clean|max_length[200]');
-            // $this->form_validation->set_rules('navigation_link', 'Link', 'required|xss_clean|max_length[200]');
-            // $this->form_validation->set_rules('navigation_type', 'Type', 'required|xss_clean|max_length[200]');
-
-
-            if ($this->form_validation->run() == FALSE) {
-                
-            } else {
                 //if valid
-                $id = $this->input->post('id');
-                $navigationname = $this->input->post('navigation_name');
+                $id = $_POST['id'];
+                $navigationname = $_POST['navName'];
                 // $navigationlink = $this->input->post('navigation_link');
                 //  $pid = $this->input->post('parent_id');
                 //  $navigationtype = $this->input->post('navigation_type');
@@ -394,23 +382,18 @@ class Dashboard extends CI_Controller {
                 // $mid = $this->input->post('menu_id');
                 $this->dbdashboard->update_edited_navigation($id, $navigationname);
                 //  $this->session->set_flashdata('message', 'Navigation Menu Modified Sucessfully');
-
-                redirect('dashboard/navigation');
             }
             
-        } else {
+         else {
             redirect('login/index/?url='.$url, 'refresh');
         }
     }
 
-    function deletenavigation($id=0) {
+    function deletenavigation() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
+            $id = $_POST['id'];
             $this->dbdashboard->delnavigation($id);
-            //die($id);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            //$this->showNavigation($id);
-            redirect('dashboard/showNavigation/4');
         } else {
             redirect('login/index/?url='.$url, 'refresh');
         }

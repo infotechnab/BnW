@@ -50,7 +50,7 @@ class Dbpage extends CI_Model {
         return $query->result();
     }
 
-    public function add_new_page($name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allow_comment, $allow_like, $allow_share) {
+    public function add_new_page($name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allow_comment, $allow_like, $allow_share,$image) {
         $data = Array(
             'page_name' => $name,
             'page_content' => $body,
@@ -62,7 +62,9 @@ class Dbpage extends CI_Model {
             'page_tags' => $tags,
             'allow_comment' => $allow_comment,
             'allow_like' => $allow_like,
-            'allow_share' => $allow_share);
+            'allow_share' => $allow_share,
+            'images' => $image
+                );
         $this->db->insert('page', $data);
     }
 
@@ -84,7 +86,7 @@ class Dbpage extends CI_Model {
         return $page->result();
     }
 
-    public function update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allow_comment, $allow_like, $allow_share) {
+     public function update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allow_comment, $allow_like, $allow_share,$image) {
 
         $data = array
             (
@@ -98,7 +100,8 @@ class Dbpage extends CI_Model {
             'page_tags' => $tags,
             'allow_comment' => $allow_comment,
             'allow_like' => $allow_like,
-            'allow_share' => $allow_share);
+            'allow_share' => $allow_share,
+            'images' => $image);
         $this->db->where('id', $id);
         $this->db->update('page', $data);
     }

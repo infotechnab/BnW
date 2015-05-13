@@ -35,8 +35,8 @@ $this->load->helper('summary_helper');
             <td><?php if(isset($data->image)==!'' && ($data->image)==!NULL ) { ?><img src="<?php echo base_url()."content/uploads/images/thumb_".$data->image; ?>" width="80" alt="<?php echo $data->image; ?>" /><?php } else { echo 'image not set' ;} ?></td>
             <td><?php echo $data->type; ?></td>
              
-            <td><?php echo anchor('events/editevent/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('events/delevent/'.$data->id,'Delete'); ?></td>
+            <td><?php echo anchor('events/editevent/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
+            <?php echo anchor('events/delevent/'.$data->id,'<i class="fa fa-trash-o"></i>'); ?></td>
         </tr>
             <?php    
             }

@@ -37,7 +37,9 @@ if ($query)
   <p class="dashuppe-text-all">Body<br />
       <textarea name="page_content" id="area1" cols="50" rows="5" ><?php echo set_value('page_content'); ?></textarea>
   </p>    
-  
+  <p>
+  <input type="file" name="file" multiple>
+  </p>
     </div>
     
     <div id="forRightPage"> 

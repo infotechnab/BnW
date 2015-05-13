@@ -38,8 +38,8 @@
             <td><?php echo $data->slide_name ?></td>
             <td><img src="<?php echo base_url()."content/uploads/sliderImages/thumb_".$data->slide_image; ?>" width="50px" height="50px" />  </td>
             <td><?php echo $data->slide_content ?></td>
-            <td><?php echo anchor('sliders/editslider/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('sliders/delslider/'.$data->id,'Delete'); ?></td>
+            <td><?php echo anchor('sliders/editslider/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
+            <?php echo anchor('sliders/delslider/'.$data->id,'<i class="fa fa-trash-o"></i>'); ?></td>
         </tr>
             <?php    
             }

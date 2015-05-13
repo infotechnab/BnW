@@ -214,40 +214,24 @@ $(document).ready(function() {
         
         
        <script type="text/javascript">
-   function changeFunc() {
-    var selectBox = document.getElementById("selectBox");
-    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    
-    var dataString = 'menu_id_next=' + selectedValue;
-    $a= dataString;
-    var link = '<?php echo base_url();?>'+'index.php/dashboard/showNavigation/'+selectedValue;
-    var editLink = '<a href='+link+'>'+'Edit Navigation'+'</a>';
-    var mLink = '<?php echo base_url();?>'+'index.php/dashboard/manageNavigation/'+selectedValue;
-    var manageLink = '<a href='+mLink+'>'+'Manage Navigation'+'</a>';
-   var blank = '';
-  $.ajax({
-  type: "POST",
-  url: "<?php echo base_url().'index.php/bnw/menu_id_from_ajax' ;?>",
-  data: dataString,
-   success: function(msg) 
-         {
-             $("#cssmenu").html(msg);
-             if(selectedValue >0)
-                 {
-                  
-             $("#editLink").html(editLink);
-             $("#manLink").html(manageLink);
-                 }
-                 else{
-                     $("#editLink").html(blank);
-             $("#manLink").html(blank);
-                 }
-                 
-         }
-  
-    
-  });
-   }
+           function changeFunc()
+           {
+                var selectBox = document.getElementById("selectBox");
+                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                var dataString = 'menu_id_next=' + selectedValue;
+                 $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url().'index.php/dashboard/manageNavigation' ;?>",
+                        data: dataString,
+                         success: function(msg) 
+                               {
+                                   $("#cssmenu").html(msg);
+                               }
+
+
+                        });
+               
+           }
 
   </script>
   <div id="navigation">
@@ -266,33 +250,27 @@ $(document).ready(function() {
                 ?>
           
             </select>
-  
+  <p style="color: green;"><span id="msges"></span></p>
         <div id='cssmenu'>
-		
-                    
-<?php 
-$this->load->helper('myhelper_helper');
-
-fetch_menu (query(0));
-
-?>
-
-		
+	
 	</div>
   </div> 
   
-  <p id="editLink"> </p>   <p id="manLink" > </p>
     </div>
-    
+       
     <div class="clear"></div> 
 </div>
 <div class="clear"></div>
 </div>
 
 
-
+<style>
+    ul li, li.has-sub {list-style: none;padding: 1%;}
+</style>
 
 
 <!-- upto here -->
 
- 
+<style>
+    .left{margin:0 0 5% 0;}
+    </style>
