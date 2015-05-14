@@ -53,6 +53,11 @@ public function index() {
         
         
         $this->load->view('template/topHead', $data);
+         $this->load->view('template/navigation', $data);
+         $this->load->view('template/slider', $data);
+          $this->load->view('template/download', $data);
+          $this->load->view('template/gadgets', $data);
+          $this->load->view('template/footer', $data);
 }
 
     
