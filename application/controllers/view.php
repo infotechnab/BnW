@@ -13,7 +13,7 @@ class view extends CI_Controller {
          $this->load->library('pagination');
     }
 
-    public function index() {
+public function index() {
         $data['meta'] = $this->dbsetting->get_meta_data();
 
         $data['gadget'] = $this->model1->get_gaget();
@@ -39,6 +39,31 @@ class view extends CI_Controller {
         $this->load->view('gardenResort/footer',$data);
     }
 
+    public function test()
+{
+    $data['meta'] = $this->dbsetting->get_meta_data();
+
+        $data['gadget'] = $this->model1->get_gaget();
+        $data['headertitle'] = $this->viewmodel->get_header_title();
+        $data['headerlogo'] = $this->viewmodel->get_header_logo();
+        $slidequery = $this->viewmodel->get_slider();
+        $slider = json_encode($slidequery);
+        $data["slider_json"] = $slider;
+        $data['contact'] = $this->contact_model->get_contact_form();
+        
+        
+        $this->load->view('template/topHead', $data);
+         $this->load->view('template/navigation', $data);
+         $this->load->view('template/slider', $data);
+          $this->load->view('template/download', $data);
+          $this->load->view('template/gadgets', $data);
+          $this->load->view('template/footer', $data);
+}
+
+    
+    
+    
+    
     public function map()
     {
          $this->load->view('gardenResort/map');
