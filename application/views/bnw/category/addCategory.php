@@ -43,16 +43,16 @@
           <tr>
             <td><?php echo $data->id; ?></td>
             <td><?php echo $data->category_name ?></td>
-            <td><?php echo anchor('dashboard/editcategory/'.$data->id,'Edit'); ?> / 
+            <td><?php echo anchor('dashboard/editcategory/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
             <?php
             if(empty($catData))
             {
-                echo anchor('dashboard/deletecategory/'.$data->id,'Delete');
+                echo anchor('dashboard/deletecategory/'.$data->id,'<i class="fa fa-trash-o"></i>');
                 
             }
             else 
                 {
-                echo anchor('dashboard/delete_category/'.$data->id,'Delete');
+                echo anchor('dashboard/delete_category/'.$data->id,'<i class="fa fa-trash-o"></i>');
                 }            ?>
             
            

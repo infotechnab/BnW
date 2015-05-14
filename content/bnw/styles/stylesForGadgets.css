@@ -110,8 +110,9 @@ iframe{
     cursor: pointer;
     border: none;
     background-size: 100%;
-    background-image:  url(../bnw/images/delete.png);
     height: 20px;
+    font-size: 18px;
+    padding: 0px;
 }
 
 #recentpostedit, #textedit

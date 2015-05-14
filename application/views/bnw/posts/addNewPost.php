@@ -53,11 +53,12 @@ if ($query)
    <img id="uploadPreview" style="display:none;width:1000px;"/>
   <p class="dashuppe-text-all">Select Category<br/>
        <select class="textInput" name="selectCategory">
+           <option value="0">Select None</option>
                 <?php
                 foreach ($listOfCategory as $data)
                 {
                     ?>
-           <option value="0">Select None</option>
+           
                 <option value="<?php echo $data->id; ?>">
                     <?php echo $data->category_name; ?>
                 </option>

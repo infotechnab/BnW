@@ -157,7 +157,8 @@ class Setting extends CI_Controller {
 
 
             $this->dbsetting->update_misc_setting($allowComment, $allowLike, $allowShare, $maximunPost, $maximumPage, $slideHeight, $slideWidth);
-            redirect('bnw');
+            $this->session->set_flashdata("misc","Miscellenious Settings Updated.");
+            redirect('setting/miscsetting');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
