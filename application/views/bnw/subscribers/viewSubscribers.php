@@ -23,8 +23,8 @@
           <tr>    
             <td><?php echo $data->full_name; ?></td>
             <td><?php echo $data->email; ?></td>            
-            <td><?php echo anchor('subscribers/deletesubs/'.$data->id,'Delete'); ?></td>
-        </tr>
+            <td><?php echo anchor('subscribers/deletesubs/'.$data->id,'<i class="fa fa-trash-o"></i>'); ?></td>
+          </tr>
             <?php    
             }
         }

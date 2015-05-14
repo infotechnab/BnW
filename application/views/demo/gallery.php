@@ -74,11 +74,7 @@ foreach( $arr as $abc){   ?>
     } 
     #popupBoxClose {
         font-size:20px;  
-        line-height:15px;  
-        right:5px;  
-        top:5px;  
-        position:absolute;  
-        color:#6fa5e2;  
+        
         font-weight:500;  	
     }</style>
 <script type="text/javascript">

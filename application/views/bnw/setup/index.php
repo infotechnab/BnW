@@ -15,7 +15,9 @@ if ($meta)
 <h2><?php echo $meta_data[1]; ?> Dashboard Management</h2>
 <hr class="hr-gradient"/>
 <div id="sucessmsg">
+    
     <?php
+        echo $this->session->flashdata("message");
      echo validation_errors();
  if(isset($error)){
      echo $error;
