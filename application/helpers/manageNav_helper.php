@@ -39,13 +39,13 @@ function fetch_menu($query) {
 		$menu_id = $result ['id'];
 		$menu_name = $result ['navigation_name'];
 		$menu_link = $result ['navigation_link'];
-		echo "<li  class='has-sub'><div id='fullNav' style='border:1px solid #ccc;width:100%;padding:1%;'><div id='navName' style='float:left;width:80%;'>".
-                "{$menu_name}</div><div style='margin-left:5%;color:#555;'>".
+		echo "<li  class='has-sub'><div id='fullNav' style='border:1px solid #ccc;width:100%;padding:1%;'><div id='navName' style='float:left;width:70%;'>".
+                "{$menu_name}</div><div style='float:right;margin-left:5%;color:#555;'>".
                         "<span id='$menu_id' class='deleteNav'><i class='fa fa-trash-o'></i></span> | ".
                         "<span id='$menu_id' class='editNavs'><i class='fa fa-pencil-square-o'></i></span> | ".
                         "<span id='$menu_id' class='upNav'><i class='fa fa-caret-square-o-up'></i></span> | ".
                         "<span id='$menu_id' class='downNav'><i class='fa fa-caret-square-o-down'></i></span>".
-                        "</div><div class='clearfix'></div></div>";
+                        "</div><div style='clear:both'></div></div>";
 		if (has_child ( query ( $menu_id, 0))) {
 			echo "<ul>";
 			fetch_menu ( query ( $menu_id, 0 ) );

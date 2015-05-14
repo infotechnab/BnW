@@ -445,7 +445,7 @@ class Dashboard extends CI_Controller {
                     }
                     $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menu_id);
                 }
-
+                $this->session->set_flashdata("message", "Navigation Added Successfully.");
                 redirect('dashboard/navigation');
                 }
                 else{

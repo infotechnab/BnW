@@ -24,7 +24,9 @@ if ($query)
 
 <h2> Miscellaneous Setting</h2>
 <hr class="hr-gradient"/>
-
+<p id="sucessmsg">
+    <?php echo $this->session->flashdata("misc"); ?>
+</p>
 <?php echo form_open_multipart('setting/miscsettingupdate');?>
 <h4>Default Article Setting</h4>
 <input type="checkbox" name="allow_comment" value="1" <?php if($set_data[0]==1) echo 'checked' ;?> >Allow people to post comment</input>
