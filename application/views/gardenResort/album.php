@@ -2,10 +2,6 @@
             <?php
 if(!empty($albumquery)){ ?>
     <div class="container">
-	<div class="row">
-            <h3 id="page-heading-top">Gallery</h3>
-	</div>
-    <hr>
     <?php foreach ($albumquery as $data)
 {
 	$aid = $data->id;	

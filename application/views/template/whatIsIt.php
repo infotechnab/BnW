@@ -2,7 +2,7 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="center-heading">
-                        <h2>What we do</h2>
+                        <h2>What It Does</h2>
                         <span class="center-line"></span>
                         <p class="sub-text margin40">
                             We want to present you a simple and functional CMS “BnW”. It is a powerful multipurpose CMS that you love to use. Build whatever you like with this CMS that looks effortlessly on-point in Business </p>

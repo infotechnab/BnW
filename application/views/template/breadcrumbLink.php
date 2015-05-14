@@ -1,15 +1,9 @@
-<div class="breadcrumb-wrap">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4>Gallery</h4>
-                    </div>
-                    <div class="col-sm-6 hidden-xs text-right">
-                        <ol class="breadcrumb">
-                            <li><a href="index.html">Portfolio</a></li>
-                            <li>gallery</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
+<header id="page-title">
+				<div class="container">
+					<h1>Gallery</h1>
+
+					<ul class="breadcrumb">
+						<?php echo $link; ?>
+					</ul>
+				</div>
+			</header>

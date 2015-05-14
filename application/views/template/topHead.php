@@ -359,15 +359,24 @@ footer {
 .bold {
     font-weight: 600;
 }
-.breadcrumb-wrap {
-    background: rgba(0, 0, 0, 0) url("../img/showcase-4.jpg") repeat fixed center top / cover ;
-    padding: 65px 0;
+header#page-title {
+    color: #2d2f3c;
 }
-ol.breadcrumb {
-    background-color: transparent;
+header#page-title {
+    background: #ddd none no-repeat scroll 50% 50% / cover ;
     color: #fff;
-    margin: 0;
+    margin-bottom: 40px;
+    padding: 20px 0;
+    position: relative;
+}
+.breadcrumb {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border-radius: 0;
+    display: inline-block;
+    font-size: 13px;
+    margin: -3px 0 0;
     padding: 0;
+    position: relative;
 }
       </style>  
       <script>

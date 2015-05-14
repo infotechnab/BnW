@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class view extends CI_Controller {
+class View extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -14,7 +14,7 @@ class view extends CI_Controller {
     }
 
 public function index() {
-        $data['meta'] = $this->dbsetting->get_meta_data();
+       $data['meta'] = $this->dbsetting->get_meta_data();
 
         $data['gadget'] = $this->model1->get_gaget();
         $data['headertitle'] = $this->viewmodel->get_header_title();
@@ -23,20 +23,16 @@ public function index() {
         $slider = json_encode($slidequery);
         $data["slider_json"] = $slider;
         $data['contact'] = $this->contact_model->get_contact_form();
-        $data["news"] = $this->viewmodel->get_event_news();
-        $data["events"] = $this->viewmodel->get_event_events();
-        $data['testimonials'] = $this->viewmodel->get_post_for_testimonials();
-        $this->load->view('gardenResort/topHead', $data);
-        $this->load->view('gardenResort/header', $data);
-        $this->load->view('gardenResort/slide',$data);
-        $this->load->view('gardenResort/reservation');
-        $this->load->view('gardenResort/services');
-         $this->load->view('gardenResort/rooms');
-        $this->load->view('gardenResort/mailSubscription');
-        $this->load->view('gardenResort/testimonials', $data);
-        $this->load->view('gardenResort/slogan');
-        $this->load->view('gardenResort/map');
-        $this->load->view('gardenResort/footer',$data);
+        
+        
+        $this->load->view('template/topHead', $data);
+         $this->load->view('template/navigation', $data);
+         $this->load->view('template/slider', $data);
+         $this->load->view('template/whatIsIt', $data);
+          $this->load->view('template/download', $data);
+          $this->load->view('template/features', $data);
+          $this->load->view('template/gadgets', $data);
+          $this->load->view('template/footer', $data);
     }
 
     public function test()
