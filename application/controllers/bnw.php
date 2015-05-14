@@ -15,6 +15,11 @@ class bnw extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
             $data['username'] = Array($this->session->userdata('admin_logged_in'));
             $data['meta'] = $this->dbsetting->get_meta_data();
+            $data["post"] = $this->dbmodel->count_post();
+            $data["page"] = $this->dbmodel->count_page();
+            $data["events"] = $this->dbmodel->count_events();
+            $data["news"] = $this->dbmodel->count_news();
+//            $data["post"] = $this->dbmodel->count_post();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu', $data);
             $this->load->view('bnw/index', $data);

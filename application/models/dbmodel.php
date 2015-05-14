@@ -103,7 +103,8 @@ class Dbmodel extends CI_Model {
 
         $this->db->insert('comment_store', $data);
     }
-
+    
+    
     public function check_user_name($name) {
         $this->db->where('user_name', $name);
         $query = $this->db->get('user');
@@ -846,6 +847,32 @@ class Dbmodel extends CI_Model {
             'user_pass' => $user_pass,
             'user_type' => $user_type);
         $this->db->insert('user', $data);
+    }
+    
+    public function count_post() {
+        $query = $this->db->get("post");
+        $rowcount = $query->num_rows();
+        return $rowcount;
+    }
+    
+    public function count_page() {
+        $query = $this->db->get("page");
+        $rowcount = $query->num_rows();
+        return $rowcount;
+    }
+    
+    public function count_events() {
+        $this->db->where("type","event");
+        $query = $this->db->get("events");
+        $rowcount = $query->num_rows();
+        return $rowcount;
+    }
+    
+    public function count_news() {
+        $this->db->where("type","news");
+        $query = $this->db->get("events");
+        $rowcount = $query->num_rows();
+        return $rowcount;
     }
 
 }
