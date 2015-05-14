@@ -235,6 +235,7 @@ class Setting extends CI_Controller {
                     $description = $this->input->post('description');
                     $this->dbsetting->update_meta_data($url, $title, $keyword, $description, $favicone);
                 }
+                $this->session->set_flashdata("message","Page setup Updated.");
                 redirect('setting/setup');
             }
         } else {

@@ -266,11 +266,9 @@ $(document).ready(function() {
 
 <style>
     ul li, li.has-sub {list-style: none;padding: 1%;}
+    #fullNav i:hover{cursor: pointer;}
+    .left{margin:0 0 5% 0;}
 </style>
 
 
 <!-- upto here -->
-
-<style>
-    .left{margin:0 0 5% 0;}
-    </style>

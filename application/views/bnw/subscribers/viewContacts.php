@@ -21,7 +21,7 @@
           <tr>    
             <td><?php echo $data->email; ?></td>
             <td><?php echo $data->remarks; ?></td>            
-            <td><?php echo anchor('subscribers/deleteRemarks/'.$data->id,'Delete'); ?></td>
+            <td><?php echo anchor('subscribers/deleteRemarks/'.$data->id,'<i class="fa fa-trash-o"></i>'); ?></td>
         </tr>
             <?php    
             }

@@ -29,11 +29,11 @@ if ($query)
 </p>
 <?php echo form_open_multipart('setting/miscsettingupdate');?>
 <h4>Default Article Setting</h4>
-<input type="checkbox" name="allow_comment" value="1" <?php if($set_data[0]==1) echo 'checked' ;?> >Allow people to post comment</input>
+<label><input type="checkbox" name="allow_comment" value="1" <?php if($set_data[0]==1) echo 'checked' ;?> >Allow people to post comment</label>
 <br/><br/>
-<input type="checkbox" name="allow_like" value="1" <?php if($set_data[1]==1) echo 'checked' ; ?> >Allow people to like page/ post</input>
+<label><input type="checkbox" name="allow_like" value="1" <?php if($set_data[1]==1) echo 'checked' ; ?> >Allow people to like page/ post</label>
 <br/><br/>
-<input type="checkbox" name="allow_share" value="1" <?php if($set_data[2]==1) echo 'checked' ; ?> >Allow people to share page/ post</input>
+<label><input type="checkbox" name="allow_share" value="1" <?php if($set_data[2]==1) echo 'checked' ; ?> >Allow people to share page/ post</label>
 <br/>
 <p>Number of post to show at most:
 <input type="text" name="max_post_to_show" size="2" value="<?php echo $set_data[3]; ?>" required/> posts</p>
