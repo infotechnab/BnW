@@ -55,7 +55,9 @@ public function index() {
         $this->load->view('template/topHead', $data);
          $this->load->view('template/navigation', $data);
          $this->load->view('template/slider', $data);
+         $this->load->view('template/whatIsIt', $data);
           $this->load->view('template/download', $data);
+          $this->load->view('template/features', $data);
           $this->load->view('template/gadgets', $data);
           $this->load->view('template/footer', $data);
 }
@@ -223,11 +225,13 @@ $this->breadcrumbs->push($class, '/'.$class);
 $this->breadcrumbs->push($method, '/'.$class.'/'.$method);
 $this->breadcrumbs->unshift('Home', '/');
 $data['link'] = $this->breadcrumbs->show();
-        $this->load->view('gardenResort/topHead', $data);
-        $this->load->view('gardenResort/header', $data);
-         $this->load->view('gardenResort/links', $data);
-        $this->load->view('gardenResort/album',$data);
-        $this->load->view('gardenResort/footer',$data);
+        $this->load->view('template/topHead', $data);
+         $this->load->view('template/navigation', $data);
+          $this->load->view('template/breadcrumbLink',$data);
+        $this->load->view('template/album',$data);
+          
+        $this->load->view('template/gadgets', $data);
+          $this->load->view('template/footer', $data);
     }
     
     public function photo($id=null)

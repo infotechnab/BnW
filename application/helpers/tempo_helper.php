@@ -1,10 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 
  function query($parent_id) { //function to run a query  
      
@@ -24,14 +19,12 @@ function fetch_menu($query) {
 		$menu_id = $result ['id'];
 		$menu_name = $result ['navigation_name'];
 		$menu_link = $result ['navigation_link'];
-		echo "<li  class='dropdown'><a data-toggle='dropdown' class='dropdown-toggle' href='{$menu_link}'>{$menu_name} ";
+		echo "<li  class='nav-item'><a style='cursor:pointer;color:green;' href='{$menu_link}'>{$menu_name}</a>";
 		if (has_child ( query ( $menu_id))) {
-			echo "<i class='fa fa-angle-down'></i></a><ul aria-labelledby='dropdownMenu' role='menu' class='dropdown-menu multi-level'>";
+			echo "<ul class='nav-submenu'>";
 			fetch_menu ( query ( $menu_id) );
 			echo "</ul>";
-		}else{
-                    echo "</a>";
-                }
+		}
 		echo "</li>";
 	}
 }
