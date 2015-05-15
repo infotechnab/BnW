@@ -13,7 +13,7 @@
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="icon-location"></span><?php echo $even->location; ?>
               </h5></div>
          <div class="row">
-        <?php if(strlen($even->image>'0')){ ?><img id='news-event-page-image' src="<?php echo base_url().'content/uploads/images/'.$even->image; ?>" alt="" /><?php } ?>
+        <?php if(strlen($even->image>'0')){ ?><img class='news-event-page-image' src="<?php echo base_url().'content/uploads/images/'.$even->image; ?>" alt="" /><?php } ?>
         
        
                

@@ -6,7 +6,7 @@ foreach ($selectedpostquery as $post){ ?>
                     
                         
                         <div class="col-md-12">
-                     <?php if(strlen($post->image>'0')){ ?><img id='news-event-page-image' src="<?php echo base_url().'content/uploads/images/'.$post->image; ?>" alt=""/> <?php } ?>  
+                     <?php if(strlen($post->image>'0')){ ?><img class='news-event-page-image' src="<?php echo base_url().'content/uploads/images/'.$post->image; ?>" alt=""/> <?php } ?>  
                             <div class="lib-row lib-desc">
                                 <p><?php echo $post->post_content; ?></p>
                             </div>
