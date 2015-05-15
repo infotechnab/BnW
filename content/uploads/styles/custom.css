@@ -101,7 +101,7 @@ img {
     max-width: 100%;
 }
 .news-event-page-image{width: 400px; height: 400px;float: left; margin: 0% 2% 1% 0%;}
-
+#pattern-3{min-height: 450px;}
  @media screen and (max-width : 1200px) {  
      #head-title-all{font-size: 17px;}
      .nav{font-size: 16px;}
