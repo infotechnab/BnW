@@ -162,10 +162,15 @@ $(function(){
         }
         else if(name() == true && email() == true && phone() == true && message() == true && captcha() == true)
                 {
+                     var aname = $("#name").val();
+                                            var aemail = $("#email").val();
+                                            var aphone = $("#phone").val();
+                                            var amessage = $("#message").val();
+                                            var acaptcha = $("#captcha").val();
                     $.ajax({
                                                     type: "POST",
                                                     url: "<?php echo base_url() . 'index.php/subscribers/addFeedback'; ?>",
-                                                    data: {'name': name, 'email': email, 'phone': phone, 'message': message},
+                                                    data: {'name': aname, 'email': aemail, 'phone': aphone, 'message': amessage, 'captcha': acaptcha},
                                                     cache: false,
                                                     success: function(msgs) {
 
@@ -239,7 +244,7 @@ $(function(){
                                                 // AJAX Code To Submit Form.
                                                 $.ajax({
                                                     type: "POST",
-                                                    url: "<?php echo base_url() . 'index.php/subscribers/addFeedback'; ?>",
+                                                    url: "<?php //echo base_url() . 'index.php/subscribers/addFeedback'; ?>",
                                                     data: {'name': name, 'email': email, 'phone': phone, 'message': message},
                                                     cache: false,
                                                     success: function(msgs) {
