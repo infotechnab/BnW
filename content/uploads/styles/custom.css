@@ -75,3 +75,7 @@ header#page-title {
     padding: 20px 0;
     position: relative;
 }
+#logo-image-header
+{
+    height: 40px;
+}
