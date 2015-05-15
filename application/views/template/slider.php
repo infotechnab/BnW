@@ -234,7 +234,7 @@
         
         
                     <!--slider is called here-->
-                    <div id="slider" style="background:darkcyan;">
+                    <div id="slider" style="background:darkcyan;margin-top: 10px;">
                 <div id="slideshow"  style="height:500px;width:100%;margin:0% auto;">
                     <div id="slideshowWindow" style="height:100%;">
                         
