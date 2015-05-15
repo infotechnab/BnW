@@ -79,3 +79,24 @@ header#page-title {
 {
     height: 40px;
 }
+.news-box h2 {
+    margin: 30px 0;
+    font-size: 30px;
+    font-family: "Oswald",sans-serif;
+}
+.newsBox {
+    margin-bottom: 12px;
+}
+.thumbnail time {
+    background: #a0a0a0 none repeat scroll 0 0;
+    color: #fff;
+    display: block;
+    padding: 5px 0;
+    text-indent: 12px;
+}
+.newsBox img {
+    width: 100% !important;
+}
+img {
+    max-width: 100%;
+}
