@@ -31,7 +31,7 @@
 	<title> <?php if(!empty($headTitles)) { echo $headTitles." - BnW CMS. "; } else { echo $title[1]; } ?>  </title>
         <link rel="stylesheet" href="<?php echo base_url().'content/uploads/styles/custom.css'; ?>">
 <link rel="stylesheet" href="<?php echo base_url().'content/uploads/bootstrap/css/bootstrap.css'; ?>">
-<!--link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">-->
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
      <script src="<?php echo base_url().'content/uploads/scripts/jquery.js'; ?>"></script>
       <script src="<?php echo base_url().'content/bootstrap/js/bootstrap.min.js'; ?>"></script>  
       

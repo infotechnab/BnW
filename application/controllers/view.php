@@ -213,11 +213,11 @@ $this->breadcrumbs->push($class, '/'.$class);
 $this->breadcrumbs->push($method, '/'.$class.'/'.$method);
 $this->breadcrumbs->unshift('Home', '/');
 $data['link'] = $this->breadcrumbs->show();
-         $this->load->view('gardenResort/topHead', $data);
-        $this->load->view('gardenResort/header', $data);
-         $this->load->view('gardenResort/links', $data);
-        $this->load->view('gardenResort/contactForm', $data);
-         $this->load->view('gardenResort/footer',$data);
+         $data['pageTitle'] = "Contact Us";
+        $this->load->view('default/template/header', $data);
+         $this->load->view('default/template/breadcrumbLink', $data);
+         $this->load->view('default/template/contactForm',$data);
+         $this->load->view('default/template/footer',$data);
     }
     
     public function page($id=NULL)

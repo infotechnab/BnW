@@ -5,10 +5,6 @@ $this->load->helper('summary_helper');
 <div id="pattern-3">
     <?php if(!empty($allevents)){ ?>
 <div class="container">
-	<div class="row">
-            <h3 id="page-heading-top">News</h3>
-	</div>
-    <hr>
 
     
      <?php foreach($allevents as $eventsData) { ?>
