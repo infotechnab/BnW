@@ -72,7 +72,7 @@
         
         <div class="right">
             <div>
-             <!--   <iframe class="frame" src="http://salyani.org/sources/iframeContent/bnwIframe.php" frameborder="0" scrolling="no"></iframe>  -->
+                <iframe class="frame" src="http://salyani.org/sources/iframeContent/bnwIframe.php" frameborder="0" scrolling="no"></iframe>  
             </div>
             
         </div>
