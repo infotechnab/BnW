@@ -29,11 +29,6 @@
         <table border="1" cellpadding="10">  
          <tr><td width="100"> Email </td><td width="200"><?php echo $data->user_email ?></td>
          </tr>
-         <tr><td> Phone </td><td></td>
-         </tr>
-         <tr><td> Mobile </td><td></td>
-         </tr>
-         
         </table>   
     
            

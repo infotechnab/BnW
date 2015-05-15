@@ -30,9 +30,9 @@
       <input type="hidden" name="id" value="<?php echo $aid; ?>" />
       
       
-  </p>
+
     <input type="submit" value="Yes" />
-    <?php echo anchor('album', '<button>No<button>');  ?>
+    <?php echo anchor('album/addalbum', 'No');  ?>
   
 </div>
 <div class="clear"></div>

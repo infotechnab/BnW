@@ -5,7 +5,7 @@
                 <?php if(!empty($latestNews)){ ?> 
                 <div class="col-lg-6 col-md-6" style="border-left: 1px solid #fff;border-right: 1px solid #fff;">
                 <h2><span>Latest News</span></h2>
-                  <?php foreach($latestEvents as $events){ ?>
+                  <?php foreach($latestNews as $events){ ?>
                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <div class="newsBox">
                         <div class="thumbnail">

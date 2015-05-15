@@ -87,7 +87,7 @@ else
         <div id="imagetitle">
             <?php echo anchor('album/photos/'.$data->id,$data->album_name); ?> 
         </div>
-            <a href="<?php echo base_url();?>index.php/album/delete_album/<?php echo $aid; ?> " id="<?php echo $aid; ?>" class="delbutton">
+            <a href="<?php echo base_url();?>index.php/album/delalbum/<?php echo $aid; ?> " id="<?php echo $aid; ?>" class="delbutton">
                 <img src="<?php echo base_url();?>content/bnw/images/delete.png" id="close"/>
             </a>
         

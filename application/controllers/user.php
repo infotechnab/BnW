@@ -177,6 +177,7 @@ class User extends CI_Controller {
     }
 
     public function profile() {
+        
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 

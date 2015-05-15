@@ -32,6 +32,7 @@
     
   <p class="dashuppe-text-all">Type<br />
 <input type="file" class="textInput" name="file_name" id="file"/>
+<input type="hidden" class="textInput" name="prevfile" id="file" value="<?php echo $mediatype; ?>"/>
   </p>
   
   <p class="dashuppe-text-all">Select Association Id<br/>

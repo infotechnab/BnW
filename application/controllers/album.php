@@ -201,6 +201,7 @@ class Album extends CI_Controller {
             redirect('login/index/?url=' . $url, 'refresh');        }
     }
     public function delalbum($id = 0) {
+        
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['photoquery'] = $this->dbalbum->get_all_photos($id);
@@ -364,23 +365,31 @@ class Album extends CI_Controller {
                 }
             }
             $this->form_validation->set_rules('media_name', 'media Name', 'required|xss_clean|max_length[200]');
-          if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
-                $data['error'] = $this->upload->display_errors();  //if not valid
+          if ($this->form_validation->run() == FALSE) {
                 $id = $this->input->post('id');
                 $data['query'] = $this->dbalbum->findmedia($id);
                 $this->load->view('bnw/media/editMedia', $data);
             } else {  //if valid
-                $id = $this->input->post('id');
-                $data = array('upload_data' => $this->upload->data('file'));
+                   if (empty($_FILES['file_name']['name'])) {
+                       $id = $this->input->post('id');
                 $medianame = $this->input->post('media_name');
-                $mediatype = $data['upload_data']['file_name'];
+                $mediatype = $this->input->post('prevfile');
+                $medialink = $this->input->post('media_link');
+                       $this->dbalbum->update_media($id, $medianame, $mediatype, $media_association_id, $medialink);
+                $this->session->set_flashdata('message', 'Media data Modified Sucessfully');
+                redirect('album/media');
+                   } else {
+                $id = $this->input->post('id');
+                $this->upload->do_upload('file_name');
+                $medianame = $this->input->post('media_name');
+                $mediatype = $_FILES['file_name']['name'];
                 $medialink = $this->input->post('media_link');
                 $this->dbalbum->update_media($id, $medianame, $mediatype, $media_association_id, $medialink);
                 $this->session->set_flashdata('message', 'Media data Modified Sucessfully');
                 redirect('album/media');
             }
             $this->load->view('bnw/templates/footer', $data);
-        } else {
+            } } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }        
         }

@@ -39,7 +39,7 @@
       <img src="<?php echo base_url().'content/uploads/sliderImages/'.$slideImage ?>" style="max-width: 150px; max-height: 150px;">
   </div>
   <?php } ?>
-  <p class="dashuppe-text-all">Image<br/> <input type="file" class="textInput" name="file_name" id="file"/> </p>
+  <p class="dashuppe-text-all">Image<br/> <input type="file" class="textInput" name="file_name" id="file"/><input type="hidden" name="prevImg" value="<?php echo $slideImage; ?>"> </p>
   <p class="dashuppe-text-all">Content<br />
    <input type="text" class="textInput" name="slide_content" value="<?php echo $slidecontent; ?>" />
   </p>
