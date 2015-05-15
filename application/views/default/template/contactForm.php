@@ -23,7 +23,174 @@
                         <div class="well well-sm">
 
     <?php if ($form == "showForm") { ?>
-                                <script>
+                            
+     <script>   
+          $(document).ready(function() {
+                                        $('.error').hide();
+                                    });
+    $('.error').hide(); 
+function validateEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+
+function name()
+{
+              var name = $("#name").val();
+        var f = name.length;
+       if( f < 1) 
+       {
+           $("label#name_error").show();
+           $("input#name").focus();
+           return false;
+       } else {
+           $("label#name_error").hide();
+           $("input#name").css("border","1px solid green");
+           return true;
+       }
+}
+
+
+function email()
+{
+     var email = $("#email").val();
+     var e = email.length;
+       if( validateEmail(email) == false) 
+       {
+           $("label#email_error").show();
+           $("input#email").focus();
+           return false;
+       } else {
+           $("label#email_error").hide();
+           $("input#email").css("border","1px solid green");
+           return true;
+       }
+}
+
+
+function phone()
+{
+      var phone = $("#phone").val();
+     var p = phone.length;
+       if( p < 5 ) 
+       {
+           $("label#phone_error").show();
+           $("input#phone").focus();
+           return false;
+       } else {
+           $("label#phone_error").hide();
+           $("input#phone").css("border","1px solid green");
+           return true;
+       }
+}
+function message()
+{
+      var message = $("#message").val();
+     var m = message.length;
+       if( m < 5 ) 
+       {
+           $("label#message_error").show();
+           $("input#message").focus();
+           return false;
+       } else {
+           $("label#message_error").hide();
+           $("input#message").css("border","1px solid green");
+           return true;
+       }
+}
+
+function captcha()
+{
+    var captcha = $("#captcha").val();
+     var sess = "<?php echo $captchass; ?>";
+    
+       if( captcha != sess ) 
+       {
+           $("label#captcha_mistake").show();
+           $("input#captcha").focus();
+           return false;
+       } else {
+           $("label#captcha_error").hide();
+           $("input#captcha").css("border","1px solid green");
+           return true;
+       }
+}
+
+$(function(){
+    
+    $(document).on("blur", "#name", function(){
+        name();
+    });
+        
+    $(document).on("blur", "#email", function(){
+        email();
+    });
+    
+    
+    $(document).on("blur", "#phone", function(){
+        phone();
+    });
+    
+    $(document).on("blur", "#message", function(){
+        message();
+    });
+ $(document).on("blur", "#captcha", function(){
+        captcha();
+    });
+
+
+    $("#submit").click(function() {
+        if(name() == false)
+        {
+            $("input#name").focus();
+        }
+        else if(email() == false)
+        {
+            $("#email").focus();
+        }
+        else if(phone() == false)
+        {
+            $("#phone").focus();
+        }
+        else if(message() == false)
+        {
+            $("#message").focus();
+        }
+        else if(captcha() == false)
+        {
+            $("#captcha").focus();
+        }
+        else if(name() == true && email() == true && phone() == true && message() == true && captcha() == true)
+                {
+                    $.ajax({
+                                                    type: "POST",
+                                                    url: "<?php echo base_url() . 'index.php/subscribers/addFeedback'; ?>",
+                                                    data: {'name': name, 'email': email, 'phone': phone, 'message': message},
+                                                    cache: false,
+                                                    success: function(msgs) {
+
+                                                        $('.well').html(msgs);
+
+
+
+
+                                                    }
+                                                });
+                }
+          
+            else
+            {
+                $("label#captcha_mistake").show();
+                $("input#captcha").focus();
+            }
+        
+    });
+    });
+</script>                       
+                            
+                            
+                            
+                               <!-- <script>
 
                                     $(document).ready(function() {
                                         $('.error').hide();
@@ -89,7 +256,7 @@
                                         });
                                     });
 
-                                </script>
+                                </script>-->
                                 <form class="form-horizontal">
 
                                     <fieldset>
