@@ -26,7 +26,7 @@
       
   </p>
     <input type="submit" value="Yes" />
-    <?php echo anchor('sliders/slider', 'No');  ?>
+    <?php echo anchor('sliders/slider', '<button>No</button>');  ?>
   
 </div>
 <div class="clear"></div>

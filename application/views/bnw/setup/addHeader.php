@@ -19,6 +19,7 @@ if ($query)
 <hr class="hr-gradient"/>
 <div id="sucessmsg">
  <?php echo validation_errors();
+ echo $this->session->flashdata("message");
   if(isset($error))
   {
       echo $error;
@@ -42,6 +43,7 @@ if ($query)
  <?php } ?>
   <p class="dashuppe-text-all">Header Logo<br />
   <input type="file" class="textInput" name="file_name" id="file" />
+  <input type="hidden" name="existingImg" value="<?php echo $set_data[1]; ?>">
   </p>
   <p class="dashuppe-text-all">Header Description<br />
   <input type="text" class="textInput" name="header_description" value="<?php echo $set_data[2]; ?>"/>
