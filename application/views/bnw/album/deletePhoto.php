@@ -24,9 +24,11 @@
       <input type="hidden" name="id" value="<?php echo $id; ?>" />
       <input type="hidden" name="slide_image" value="<?php echo $image; ?>" />
       
-  </p>
+  
     <input type="submit" value="Yes" />
-    <?php echo anchor('bnw/album', 'No');  ?>
+    <?php echo form_close(); ?>
+    
+    <?php echo anchor('album', '<button>No</button>');  ?>
   
 </div>
 <div class="clear"></div>

@@ -32,7 +32,7 @@
       
   </p>
     <input type="submit" value="Yes" />
-    <?php echo anchor('bnw/album', 'No');  ?>
+    <?php echo anchor('album', '<button>No<button>');  ?>
   
 </div>
 <div class="clear"></div>
