@@ -92,7 +92,7 @@
 ?>
     <div id="popup_box">	<!-- OUR PopupBox DIV-->
         <div style="padding: 1%;">
-            <i class="fa fa-remove" id="popupBoxClose"></i>
+            <i class="fa fa-remove" id="popupBoxClose" style="cursor: pointer;"></i>
             <div class="clear"></div>
         </div>
         

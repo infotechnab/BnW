@@ -5,9 +5,7 @@
                 <?php if(!empty($latestNews)){ ?> 
                 <div class="col-lg-6 col-md-6" style="border-left: 1px solid #fff;border-right: 1px solid #fff;">
                 <h2><span>Latest News</span></h2>
-<<<<<<< HEAD
-                  <?php foreach($latestNews as $events){ ?>
-=======
+
                   <?php foreach($latestNews as $news){
                       $id = $news->id;
                       $timestamp = strtotime($news->date);
@@ -15,7 +13,6 @@
                       $title = $news->title;
                       
                       ?>
->>>>>>> 09237bf7f6ffe4edd0067e6f3e908efc6ce220e7
                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                        <a href="<?php echo base_url().'index.php/view/news/'.$id ?>">
                     <div class="newsBox">

@@ -9,6 +9,7 @@ class Login extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('dbmodel');
+        $this->load->model('dbuser');
         $this->load->model('dbsetting');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
@@ -100,15 +101,14 @@ class Login extends CI_Controller {
         $this->load->view('bnw/templates/header', $data);
 
         $useremail = $_POST['username'];
-
-        $username = $this->dbmodel->get_selected_user($useremail);
+        $username = $this->dbuser->get_selected_user($useremail);
 
         foreach ($username as $dbemail) {
             $to = $dbemail->user_email;
         }
         if ($to == $useremail) {
             $token = $this->getRandomString(10);
-            $this->dbmodel->update_emailed_user($to, $token);
+            $this->dbuser->update_emailed_user($to, $token);
             $this->test($token);
 
             $this->mailresetlink($to, $token);
@@ -121,7 +121,7 @@ class Login extends CI_Controller {
 
     public function test($token) {
 
-        $data['query'] = $this->dbmodel->find_user_auth_key($token);
+        $data['query'] = $this->dbuser->find_user_auth_key($token);
         $this->load->view('bnw/templates/messageSent', $data);
     }
 
@@ -141,7 +141,7 @@ class Login extends CI_Controller {
 
     function mailresetlink($to, $token) {
         //   $to
-        /* $subject = "Forgot Password on Megarush.net";
+         $subject = "Reset Password of B&W";
           $uri = 'http://'. $_SERVER['HTTP_HOST'] ;
           $message = '
           <html>
@@ -154,9 +154,9 @@ class Login extends CI_Controller {
           </body>
           </html>
           ';
-          //$headers = "MIME-Version: 1.0" . "\r\n";
-          //$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
-          //$headers .= 'From: Admin<webmaster@example.com>' . "\r\n";
+          $headers = "MIME-Version: 1.0" . "\r\n";
+          $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+          $headers .= 'From: Admin<webmaster@example.com>' . "\r\n";
           $headers .= 'rsubedi@salyani.com.np';
 
           mail('bhomnath@salyani.com.np',$subject,$message,$headers);
@@ -250,11 +250,7 @@ class Login extends CI_Controller {
   
         }
         
-        
-        function oxford()
-        {
-            echo "hello oxford";
-        }
+       
 }
 
 ?>

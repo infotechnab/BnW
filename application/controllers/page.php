@@ -81,7 +81,7 @@ class Page extends CI_Controller {
             $allowComment = $this->input->post('allow_comment');
             $allowLike = $this->input->post('allow_like');
             $allowShare = $this->input->post('allow_share');
-            $this->form_validation->set_rules('page_name', 'Page Name', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('page_name', 'Title', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('page_content', 'Body', 'required|xss_clean');
 
 

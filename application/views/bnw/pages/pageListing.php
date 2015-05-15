@@ -20,7 +20,7 @@
             foreach ($query as $data){
             ?>
           <tr>    
-            <td><?php echo $data->page_name ?></td>
+              <td><?php echo substr($data->page_name, 0,50); ?></td>
             <td><?php echo $data->page_summary ?></td>            
             <td><?php if($data->page_status=="Active")
             {

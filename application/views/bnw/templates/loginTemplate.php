@@ -58,7 +58,7 @@
                            
                         </td>
                         <td>
-                            <a href="login/forgotPassword">Forgot Password</a>
+                            <a href="<?php echo base_url().'index.php/login/forgotPassword'; ?>">Forgot Password</a>
                         </td>
                         </tr>
                     </tbody>
