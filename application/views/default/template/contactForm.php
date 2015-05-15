@@ -11,7 +11,9 @@
             $map = $cinfo->show_map;
         }
         ?>
-
+        <?php $captcha_info = $this->session->userdata('captcha_info');
+        $captchass = $captcha_info['code'];
+        ?>
         <div class="container">
 
             <!-- Contact with Map - START -->
@@ -19,10 +21,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="well well-sm">
-                            
-                            <?php if ($form == "showForm") { ?>
+
+    <?php if ($form == "showForm") { ?>
                                 <script>
-                                  
+
                                     $(document).ready(function() {
                                         $('.error').hide();
                                         $("#submit").click(function() {
@@ -31,6 +33,8 @@
                                             var email = $("#email").val();
                                             var phone = $("#phone").val();
                                             var message = $("#message").val();
+                                            var captcha = $("#captcha").val();
+                                            var sess = "<?php echo $captchass; ?>";
                                             
                                             if (name == "") {
                                                 $("label#name_error").show();
@@ -52,22 +56,32 @@
                                                 $("input#message").focus();
                                                 return false;
                                             }
-                                            
-                                             if (name != '' || email != '' || phone != '' || message != '')
+                                            if (captcha == "") {
+                                                $("label#captcha_error").show();
+                                                $("input#captcha").focus();
+                                                return false;
+                                            }
+                                            if (captcha !== sess)
+                                            {
+                                                $("label#captcha_mistake").show();
+                                                $("input#captcha").focus();
+                                                return false;
+                                            }
+                                            if (name != '' || email != '' || phone != '' || message != '')
                                             {
                                                 // AJAX Code To Submit Form.
                                                 $.ajax({
                                                     type: "POST",
                                                     url: "<?php echo base_url() . 'index.php/subscribers/addFeedback'; ?>",
-                                                      data: {'name': name, 'email': email, 'phone': phone, 'message': message},
+                                                    data: {'name': name, 'email': email, 'phone': phone, 'message': message},
                                                     cache: false,
                                                     success: function(msgs) {
-                                                        
+
                                                         $('.well').html(msgs);
-                                                    
-                                                                
-                                                                
-                                                                
+
+
+
+
                                                     }
                                                 });
                                             }
@@ -110,13 +124,14 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-10 col-md-offset-1">
-                                              <img src="<?php echo $captcha['image_src'];?>" alt="CAPTCHA security code" />
+                                                <img src="<?php echo $captcha['image_src']; ?>" alt="CAPTCHA security code" />
                                             </div>
                                         </div>
-                                         <div class="form-group">
+                                        <div class="form-group">
                                             <div class="col-md-10 col-md-offset-1">
-                                                <input name="captcha" id="captcha" type="text" placeholder="captcha" required class="form-control">
-                                                <label class="error" for="name" id="message_error">This field is required.</label>
+                                                <input name="captcha" id="captcha" type="text" placeholder="Type in above text" required class="form-control">
+                                                <label class="error" for="captcha" id="captcha_error">This field is required.</label>
+                                                <label class="error" for="captcha" id="captcha_mistake">Captcha did not match.</label>
                                             </div>
                                         </div>
 
@@ -127,7 +142,7 @@
                                         </div>
                                     </fieldset>
                                 </form>
-                            <?php } ?>
+    <?php } ?>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -140,14 +155,14 @@
                                     <div>
                                         <i class="fa fa-map-marker"></i> <?php echo $address; ?><br/>
                                         <?php if (!empty($contact1)) { ?> <i class="fa fa-phone"></i> <?php echo $contact1; ?><br/> <?php } ?>
-                                        <?php if (!empty($contact2)) { ?> <i class="fa fa-skype"></i> <?php echo $contact2; ?><br/> <?php } ?>
+    <?php if (!empty($contact2)) { ?> <i class="fa fa-skype"></i> <?php echo $contact2; ?><br/> <?php } ?>
                                         <i class="fa fa-envelope"></i> <?php echo $email; ?>
                                     </div>
-                                    <?php if ($map == "showMap") { ?>
+    <?php if ($map == "showMap") { ?>
                                         <hr />
                                         <div id="map1" class="map">
                                         </div>
-                                    <?php } ?>
+    <?php } ?>
                                 </div>
                             </div>
                         </div>
