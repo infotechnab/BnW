@@ -20,7 +20,7 @@ class Viewmodel extends CI_Model
     function get_event_news(){
         $this->db->order_by('id', 'DESC');
         $this->db->where('type', 'news');
-        $this->db->limit(4);
+        $this->db->limit(2);
         $query = $this->db->get("events");
         return $query->result();
     }
@@ -41,7 +41,7 @@ class Viewmodel extends CI_Model
             function get_event_events(){
         $this->db->order_by('id', 'DESC');
         $this->db->where('type', 'event');
-        $this->db->limit(4);
+        $this->db->limit(2);
         $query = $this->db->get("events");
         return $query->result();
     }

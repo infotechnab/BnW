@@ -25,12 +25,14 @@ public function index() {
         $data['contact'] = $this->contact_model->get_contact_form();
         $data['latestPage'] = $this->viewmodel->get_latest_page();
         $data['latestPost'] = $this->viewmodel->get_latest_post();
-        
+        $data['latestNews'] = $this->viewmodel->get_event_news();
+        $data['latestEvents'] = $this->viewmodel->get_event_events();
         $this->load->view('default/template/header', $data);
         
          $this->load->view('default/template/slider', $data);
          $this->load->view('default/template/latestPage', $data);
          $this->load->view('default/template/latestPost', $data);
+          $this->load->view('default/template/latestNews', $data);
           $this->load->view('default/template/gadgets', $data);
           $this->load->view('default/template/footer', $data);
     }
