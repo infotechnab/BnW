@@ -1,6 +1,4 @@
-<?php
-
-if (!defined('BASEPATH'))
+<?php if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Setting extends CI_Controller {
@@ -55,25 +53,35 @@ class Setting extends CI_Controller {
             $this->form_validation->set_rules('header_title', 'Title', 'required|xss_clean|max_length[200]');
 
 
-            if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
+            if ($this->form_validation->run() == FALSE) {
                 //die('not image');
-                $data['error'] = $this->upload->display_errors();
+//                $data['error'] = $this->upload->display_errors();
 
                 $this->load->view('bnw/setup/addHeader', $data);
             } else {
-
-                //if valid
-                $data = array('upload_data' => $this->upload->data('file'));
+                    if (empty($_FILES['file_name']['name'])) {
 
                 $headerTitle = $this->input->post('header_title');
-                $headerLogo = $data['upload_data']['file_name'];
-
+                $headerLogo = $this->input->post('existingImg');
                 $headerDescription = $this->input->post('header_description');
                 $headerBgColor = null;
                 $this->dbsetting->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
                 $this->session->set_flashdata('message', 'Header setting done sucessfully');
-                redirect('bnw');
-            }
+                redirect('setting/header');
+                    } else {
+                //if valid
+                        $this->upload->do_upload('file_name');
+//                $data = array('upload_data' => $this->upload->data('file'));
+
+                $headerTitle = $this->input->post('header_title');
+//                $headerLogo = $data['upload_data']['file_name'];
+                $headerLogo = $_FILES['file_name']['name'];
+                $headerDescription = $this->input->post('header_description');
+                $headerBgColor = null;
+                $this->dbsetting->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
+                $this->session->set_flashdata('message', 'Header setting done sucessfully');
+                redirect('setting/header');
+            } }
         } else {
 
             redirect('login/index/?url=' . $url, 'refresh');
@@ -243,3 +251,4 @@ class Setting extends CI_Controller {
         }
     }
 }
+?>

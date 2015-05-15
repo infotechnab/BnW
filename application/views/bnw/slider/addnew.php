@@ -20,11 +20,11 @@
   </p>
    <p class="dashuppe-text-all">Image<br/> <input type="file" class="textInput" name="file_name" id="file" /> </p>
   <p class="dashuppe-text-all">Content<br />
-  <input type="text" class="textInput" name="slide_content" />
+      <input type="text" class="textInput" name="slide_content" value="<?php echo set_value('slide_content'); ?>"/>
   </p>
   <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
- <p><b>Note:</b> Max file size: 500KB,  Width: 600px, Height: 200px </p>
+ <!--<p><b>Note:</b> Max file size: 500KB,  Width: 600px, Height: 200px </p>-->
  </div>
 <div class="clear"></div>
 </div>
