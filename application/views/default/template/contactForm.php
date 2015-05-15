@@ -118,7 +118,7 @@
 
                                         <div class="form-group">
                                             <div class="col-md-10 col-md-offset-1">
-                                                <textarea class="form-control" id="message" name="message" required placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="7"></textarea>
+                                                <textarea class="form-control" id="message" name="message" required placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="4"></textarea>
                                                 <label class="error" for="name" id="message_error">This field is required.</label>
                                             </div>
                                         </div>
