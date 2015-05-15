@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" style="min-height: 300px;padding-top: 50px;">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
             <div class="error-template">
                 <h1>
                     Oops!</h1>

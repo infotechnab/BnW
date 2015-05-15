@@ -24,7 +24,21 @@ class Viewmodel extends CI_Model
         $query = $this->db->get("events");
         return $query->result();
     }
-    function get_event_events(){
+    public function get_latest_post()
+    {
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get("post");
+        return $query->result();
+    }
+    public function get_latest_page()
+    {
+        $this->db->order_by('id', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get("page");
+        return $query->result();
+    }
+            function get_event_events(){
         $this->db->order_by('id', 'DESC');
         $this->db->where('type', 'event');
         $this->db->limit(4);

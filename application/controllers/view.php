@@ -23,72 +23,17 @@ public function index() {
         $slider = json_encode($slidequery);
         $data["slider_json"] = $slider;
         $data['contact'] = $this->contact_model->get_contact_form();
+        $data['latestPage'] = $this->viewmodel->get_latest_page();
+        $data['latestPost'] = $this->viewmodel->get_latest_post();
         
+        $this->load->view('default/template/header', $data);
         
-        $this->load->view('template/topHead', $data);
-         $this->load->view('template/navigation', $data);
-         $this->load->view('template/slider', $data);
-         $this->load->view('template/whatIsIt', $data);
-          $this->load->view('template/download', $data);
-          $this->load->view('template/features', $data);
-          $this->load->view('template/gadgets', $data);
-          $this->load->view('template/footer', $data);
+         $this->load->view('default/template/slider', $data);
+         $this->load->view('default/template/latestPage', $data);
+         $this->load->view('default/template/latestPost', $data);
+          $this->load->view('default/template/gadgets', $data);
+          $this->load->view('default/template/footer', $data);
     }
-
-    public function test()
-{
-    $data['meta'] = $this->dbsetting->get_meta_data();
-
-        $data['gadget'] = $this->model1->get_gaget();
-        $data['headertitle'] = $this->viewmodel->get_header_title();
-        $data['headerlogo'] = $this->viewmodel->get_header_logo();
-        $slidequery = $this->viewmodel->get_slider();
-        $slider = json_encode($slidequery);
-        $data["slider_json"] = $slider;
-        $data['contact'] = $this->contact_model->get_contact_form();
-        
-        
-        $this->load->view('template/topHead', $data);
-         $this->load->view('template/navigation', $data);
-         $this->load->view('template/slider', $data);
-         $this->load->view('template/whatIsIt', $data);
-          $this->load->view('template/download', $data);
-          $this->load->view('template/features', $data);
-          $this->load->view('template/gadgets', $data);
-          $this->load->view('template/footer', $data);
-}
-
-    
-    
-    
-    
-    public function map()
-    {
-         $this->load->view('gardenResort/map');
-    }
-
-    public function maps()
-    {
-        $this->load->view('gardenResort/map');
-    }
-
-    public function reserve()
-    {
-        $data['meta'] = $this->dbsetting->get_meta_data();
-
-        $data['gadget'] = $this->model1->get_gaget();
-        $data['headertitle'] = $this->viewmodel->get_header_title();
-        $data['headerlogo'] = $this->viewmodel->get_header_logo();
-        $data['contact'] = $this->contact_model->get_contact_form();
-        $this->load->view('gardenResort/topHead', $data);
-        $this->load->view('gardenResort/header', $data);
-        $this->load->view('gardenResort/links', $data);
-        $this->load->view('gardenResort/reserve');
-        $this->load->view('gardenResort/mailSubscription');
-        $this->load->view('gardenResort/footer',$data);
-
-    }
-
     
 
     public function allevents(){
@@ -115,11 +60,11 @@ $this->breadcrumbs->push($class, '/'.$class);
 $this->breadcrumbs->push($method, '/'.$class.'/'.$method);
 $this->breadcrumbs->unshift('Home', '/');
 $data['link'] = $this->breadcrumbs->show();
-         $this->load->view('gardenResort/topHead', $data);
-        $this->load->view('gardenResort/header', $data);
-         $this->load->view('gardenResort/links', $data);
-         $this->load->view('gardenResort/events',$data);
-         $this->load->view('gardenResort/footer',$data);
+$data['pageTitle'] = 'Events';
+        $this->load->view('default/template/header', $data);
+         $this->load->view('default/template/breadcrumbLink', $data);
+         $this->load->view('default/template/events',$data);
+         $this->load->view('default/template/footer',$data);
     }
     
     public function allnews(){
@@ -147,12 +92,11 @@ $this->breadcrumbs->push($class, '/'.$class);
 $this->breadcrumbs->push($method, '/'.$class.'/'.$method);
 $this->breadcrumbs->unshift('Home', '/');
 $data['link'] = $this->breadcrumbs->show();
-
-         $this->load->view('gardenResort/topHead', $data);
-        $this->load->view('gardenResort/header', $data);
-         $this->load->view('gardenResort/links', $data);
-         $this->load->view('gardenResort/news',$data);
-         $this->load->view('gardenResort/footer',$data);
+$data['pageTitle'] = 'News';
+        $this->load->view('default/template/header', $data);
+         $this->load->view('default/template/breadcrumbLink', $data);
+         $this->load->view('default/template/news',$data);
+         $this->load->view('default/template/footer',$data);
     }
     
     public function event($id=null)
@@ -174,11 +118,11 @@ $this->breadcrumbs->push($method, '/'.$class.'/allevents');
 $this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
 $this->breadcrumbs->unshift('Home', '/');
 $data['link'] = $this->breadcrumbs->show();
-         $this->load->view('gardenResort/topHead', $data);
-        $this->load->view('gardenResort/header', $data);
-         $this->load->view('gardenResort/links', $data);
-         $this->load->view('gardenResort/singleEvent', $data);
-        $this->load->view('gardenResort/footer',$data);
+         $data['pageTitle'] = $title;
+        $this->load->view('default/template/header', $data);
+         $this->load->view('default/template/breadcrumbLink', $data);
+         $this->load->view('default/template/singleEvent',$data);
+         $this->load->view('default/template/footer',$data);
     }
      public function news($id=null)
     {
@@ -200,11 +144,11 @@ $this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
 $this->breadcrumbs->unshift('Home', '/');
 $data['link'] = $this->breadcrumbs->show();
 
-         $this->load->view('gardenResort/topHead', $data);
-        $this->load->view('gardenResort/header', $data);
-         $this->load->view('gardenResort/links', $data);
-         $this->load->view('gardenResort/singleNews', $data);
-        $this->load->view('gardenResort/footer',$data);
+        $data['pageTitle'] = $title;
+        $this->load->view('default/template/header', $data);
+         $this->load->view('default/template/breadcrumbLink', $data);
+         $this->load->view('default/template/singleNews',$data);
+         $this->load->view('default/template/footer',$data);
     }
 
     public function gallery()
@@ -221,13 +165,11 @@ $this->breadcrumbs->push($class, '/'.$class);
 $this->breadcrumbs->push($method, '/'.$class.'/'.$method);
 $this->breadcrumbs->unshift('Home', '/');
 $data['link'] = $this->breadcrumbs->show();
-        $this->load->view('template/topHead', $data);
-         $this->load->view('template/navigation', $data);
-          $this->load->view('template/breadcrumbLink',$data);
-        $this->load->view('template/album',$data);
-          
-        $this->load->view('template/gadgets', $data);
-          $this->load->view('template/footer', $data);
+       $data['pageTitle'] = "Gallery";
+        $this->load->view('default/template/header', $data);
+         $this->load->view('default/template/breadcrumbLink', $data);
+         $this->load->view('default/template/album',$data);
+         $this->load->view('default/template/footer',$data);
     }
     
     public function photo($id=null)
@@ -248,12 +190,12 @@ $this->breadcrumbs->push($class, '/'.$class);
 $this->breadcrumbs->push($method, '/'.$class.'/gallery');
 $this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
 $this->breadcrumbs->unshift('Home', '/');
-$data['link'] = $this->breadcrumbs->show(); 
-         $this->load->view('gardenResort/topHead', $data);
-        $this->load->view('gardenResort/header', $data);
-         $this->load->view('gardenResort/links', $data);
-        $this->load->view('gardenResort/photo', $data);
-         $this->load->view('gardenResort/footer',$data);
+$data['link'] = $this->breadcrumbs->show();
+$data['pageTitle'] = $title;
+        $this->load->view('default/template/header', $data);
+         $this->load->view('default/template/breadcrumbLink', $data);
+         $this->load->view('default/template/photo',$data);
+         $this->load->view('default/template/footer',$data);
     }
     
     public function contactUs()
@@ -284,7 +226,7 @@ $data['link'] = $this->breadcrumbs->show();
         $data['contact'] = $this->contact_model->get_contact_form();
         $data['selectedpagequery'] = $this->viewmodel->get_desired_page($id);
         foreach ($data['selectedpagequery'] as $name){
-            $title = $name->page_title;
+            $title = $name->page_name;
         }
         $class= $this->router->fetch_class();  
     $method = $this->router->fetch_method();    
@@ -294,11 +236,11 @@ $this->breadcrumbs->push($method, '/'.$class.'/index');
 $this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
 $this->breadcrumbs->unshift('Home', '/');
 $data['link'] = $this->breadcrumbs->show(); 
-         $this->load->view('gardenResort/topHead', $data);
-        $this->load->view('gardenResort/header', $data);
-         $this->load->view('gardenResort/links', $data);
-         $this->load->view('gardenResort/page', $data);
-         $this->load->view('gardenResort/footer',$data);
+        $data['pageTitle'] = $title;
+        $this->load->view('default/template/header', $data);
+         $this->load->view('default/template/breadcrumbLink', $data);
+         $this->load->view('default/template/page',$data);
+         $this->load->view('default/template/footer',$data);
     }
 
     public function post($id=NULL) {
@@ -319,11 +261,11 @@ $this->breadcrumbs->push($method, '/'.$class.'/index');
 $this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
 $this->breadcrumbs->unshift('Home', '/');
 $data['link'] = $this->breadcrumbs->show(); 
-        $this->load->view('gardenResort/topHead', $data);
-        $this->load->view('gardenResort/header', $data);
-         $this->load->view('gardenResort/links', $data);
-         $this->load->view('gardenResort/posts', $data);
-         $this->load->view('gardenResort/footer',$data);
+          $data['pageTitle'] = $title;
+        $this->load->view('default/template/header', $data);
+         $this->load->view('default/template/breadcrumbLink', $data);
+         $this->load->view('default/template/posts',$data);
+         $this->load->view('default/template/footer',$data);
     }
 
     

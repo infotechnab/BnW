@@ -1,13 +1,7 @@
 <div id="pattern-3">
     <?php if (!empty($selectedpostquery)){
 foreach ($selectedpostquery as $post){ ?>
-<div class="container">
-	<div class="row">
-            <h3 id="page-heading-top"><?php echo $post->post_title; ?></h3>
-	</div>
-    <hr>
-                
-            
+<div class="container">   
                 
                     
                         
@@ -23,6 +17,6 @@ foreach ($selectedpostquery as $post){ ?>
         
 </div>
     <?php }} else {
-         $this->load->view('gardenResort/errorPage');
+         $this->load->view('default/template/errorPage');
     } ?>
 </div>

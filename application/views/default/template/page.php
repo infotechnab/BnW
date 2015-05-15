@@ -1,14 +1,7 @@
 <div id="pattern-3">
     <?php if (!empty($selectedpagequery)){
 foreach ($selectedpagequery as $page){ ?>
-<div class="container">
-	<div class="row">
-            <h3 id="page-heading-top"><?php echo $page->page_name; ?></h3>
-	</div>
-    <hr>
-                
-            
-                
+<div class="container">      
                     
                         
                         <div class="col-md-12">
@@ -23,6 +16,6 @@ foreach ($selectedpagequery as $page){ ?>
         
 </div>
     <?php }} else {
-         $this->load->view('gardenResort/errorPage');
+         $this->load->view('default/template/errorPage');
     } ?>
 </div>

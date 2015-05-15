@@ -5,10 +5,6 @@ $this->load->helper('summary_helper');
 <div id="pattern-3">
     <?php if(!empty($allevents)){ ?>
 <div class="container">
-	<div class="row">
-            <h3 id="page-heading-top">Events</h3>
-	</div>
-    <hr>
     
      <?php foreach($allevents as $eventsData) { ?>
     <div class="col-sm-6 col-md-4">
@@ -44,6 +40,6 @@ $this->load->helper('summary_helper');
               
 </div>
     <?php }  else { 
-    $this->load->view('gardenResort/errorPage');
+    $this->load->view('default/template/errorPage');
  } ?>
 </div>

@@ -34,6 +34,6 @@
         </div>
 
     <?php    } }  else {
-      $this->load->view('gardenResort/errorPage');
+      $this->load->view('default/template/errorPage');
  }   ?>
 </div>

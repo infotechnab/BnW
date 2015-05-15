@@ -56,10 +56,7 @@ box-shadow: 0 0 10px rgba(0,0,0,.5);
 <div id="pattern-3">
             <?php if(!empty($selectedalbumquery)&&($albumName)){ foreach ($albumName as $name){ $aname = $name->album_name; } ?>
     <div class="container">
-	<div class="row">
-            <h3 id="page-heading-top"><?php echo $aname; ?></h3>
-	</div>
-    <hr>
+	
 
 <?php
 foreach ($selectedalbumquery as $data) {
@@ -76,7 +73,7 @@ foreach ($selectedalbumquery as $data) {
 <?php
 }
  } else {
-    $this->load->view('gardenResort/errorPage'); 
+    $this->load->view('default/template/errorPage'); 
  } ?>
 </div>
 </div>
