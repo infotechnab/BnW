@@ -20,17 +20,6 @@ class Dbmodel extends CI_Model {
         }
     }
 
-    public function get_selected_user($useremail) {
-        $this->db->where("user_email",$useremail);
-        $query = $this->db->get("user");
-        return $query->result();
-    }
-    
-    public function update_emailed_user($to, $token) {
-        $ar = array("user_auth_key"=>$token);
-        $this->db->where("user_email",$to);
-        $query = $this->db->update("user",$ar);
-    }
     //Get the selected category ID
     public function get_id_of_selected_category($navigation_link) {
 

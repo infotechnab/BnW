@@ -116,7 +116,8 @@ class Login extends CI_Controller {
             $this->session->set_flashdata('message', 'Please type valid Email Address');
             redirect("view/forgotPassword");
         }
-        $this->load->view('templates/footer');
+        $this->session->set_flashdata("message","Link to reset your password has been to your email.Please check your inbox.");
+        redirect('login');
     }
 
     public function test($token) {
@@ -159,7 +160,7 @@ class Login extends CI_Controller {
           $headers .= 'From: Admin<webmaster@example.com>' . "\r\n";
           $headers .= 'rsubedi@salyani.com.np';
 
-          mail('bhomnath@salyani.com.np',$subject,$message,$headers);
+          mail($to,$subject,$message,$headers);
           //echo "We have sent the password reset link to your  email id <b>".$to."</b>"; */
     }
 
