@@ -68,6 +68,7 @@ if ($miscSetting)
                         <i class="fa fa-trash-o" id="close"></i>
                     </a>
                     </div>
+                    <input type="hidden" name="imageName" value="<?php echo $image; ?>">
                 </div> <?php } ?>
             <p class="dashuppe-text-all">Image<br/> 
                 <input id="uploadImage" class="textInput" type="file" name="file" />
@@ -79,10 +80,7 @@ if ($miscSetting)
             </p>
             <img id="uploadPreview" style="display:none;width:1000px;"/>
             
-  <p>
-  <input type="file" name="file" multiple>
-  <input type="hidden" name="imageName" value="<?php echo $image; ?>">
-  </p>
+ 
   </div>
   
   <div id="forRightPage"> 

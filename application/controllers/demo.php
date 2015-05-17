@@ -298,14 +298,14 @@ $data['link'] = $this->breadcrumbs->show();
          $this->load->view('gardenResort/links', $data);
          $this->load->view('gardenResort/posts', $data);
          $this->load->view('gardenResort/footer',$data);
-    }
+    }*/
 
     
   public function download(){
 $this->load->helper('download');
 
-      $filename= $_GET['download'];
- $data = file_get_contents("./content/images/".$filename); // Read the file's contents
+      $filename= 'bnw.jpg';
+ $data = file_get_contents("./content/download/".$filename); // Read the file's contents
 $name = $filename;
 
 force_download($name, $data);      
@@ -313,7 +313,7 @@ force_download($name, $data);
 
 exit;
         
-  }*/
+  }
   
   
   

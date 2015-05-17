@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <a class="btn btn-color btn-lg" href="#"><i class="fa fa-download"></i>&nbsp; Download Now</a>
+                            <a class="btn btn-color btn-lg" href="<?php echo base_url().'index.php/demo/download'; ?>"><i class="fa fa-download"></i>&nbsp; Download Now</a>
                         </div>
                     </div>
                 </div>
