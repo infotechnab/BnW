@@ -20,7 +20,7 @@ class Subscribers extends CI_Controller {
         if(isset($_POST['fullName']))
         {
             $name = $_POST['fullName'];
-        }
+        } else { $name=""; }
          if(isset($_POST['email']))
         {
             $email = $_POST['email'];
