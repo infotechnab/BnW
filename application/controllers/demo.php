@@ -300,6 +300,37 @@ $data['link'] = $this->breadcrumbs->show();
          $this->load->view('gardenResort/footer',$data);
     }*/
 
+    public function contactUs()
+    {
+         $data['meta'] = $this->dbsetting->get_meta_data();
+
+        $data['gadget'] = $this->model1->get_gaget();
+        $data['headertitle'] = $this->viewmodel->get_header_title();
+        $data['headerlogo'] = $this->viewmodel->get_header_logo();
+        $slidequery = $this->viewmodel->get_slider();
+        $slider = json_encode($slidequery);
+        $data["slider_json"] = $slider;
+        $data['contact'] = $this->contact_model->get_contact_form();
+        
+        
+        
+         $class= $this->router->fetch_class();  
+    $method = $this->router->fetch_method();    
+        $this->load->library('breadcrumbs');
+$this->breadcrumbs->push('Home', '/');
+$this->breadcrumbs->push($method, '/'.$class.'/'.$method);
+//$this->breadcrumbs->unshift('Home', '/');
+$data['link'] = $this->breadcrumbs->show();
+         $data['pageTitle'] = "Contact Us";
+          $this->load->library('captcha');
+$data['captcha'] = $this->captcha->main();
+$this->session->set_userdata('captcha_info', $data['captcha']);
+        $this->load->view('template/topHead', $data);
+         $this->load->view('template/navigation', $data);
+         $this->load->view('template/breadcrumbLink', $data);
+         $this->load->view('template/contactForm',$data);
+         $this->load->view('template/footer',$data);
+    }
     
   public function download(){
 $this->load->helper('download');

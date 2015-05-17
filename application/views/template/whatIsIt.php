@@ -1,4 +1,4 @@
-<div class="container">
+<section id="introduction"><div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="center-heading">
@@ -54,3 +54,4 @@
                 </div><!--colored boxed col end-->
             </div>
         </div>
+</section>

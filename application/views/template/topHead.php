@@ -378,6 +378,7 @@ header#page-title {
     padding: 0;
     position: relative;
 }
+.error{color:red;}
       </style>  
       <script>
           $(document).ready(function() {
