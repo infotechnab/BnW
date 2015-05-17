@@ -53,7 +53,7 @@
                 <input type="text" class="textInput" name="post_title" value="<?php echo $post_title; ?>" />
             </p>
             <p class="dashuppe-text-all">Body<br />
-                <textarea name="post_content" id="area1" rows="5" cols="50" style="resize:none;">
+                <textarea name="post_content" id="textara" rows="5" cols="50" style="resize:none;">
     <?php echo $post_content; ?></textarea>
             </p>
                     <?php if ($post_image == !NULL) { ?> 
