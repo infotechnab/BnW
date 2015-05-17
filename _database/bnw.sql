@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 30, 2014 at 05:21 AM
+-- Generation Time: May 17, 2015 at 06:05 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -59,7 +59,6 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 INSERT INTO `category` (`id`, `category_name`) VALUES
-(7, 'a'),
 (8, 'b'),
 (9, 'c');
 
@@ -124,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `contact_address` (
 --
 
 INSERT INTO `contact_address` (`id`, `name`, `address`, `contact_no1`, `contact_no2`, `email`, `show_form`, `show_map`) VALUES
-(1, 'Central College of Vocational Training Pvt. Ltd.', 'Shaheed Chowk,Narayangarh,Chitwan,Nepal', '056-570000', '', 'info@centralcollege.com.np', 'showForm', 'showMap');
+(1, 'Salyani Technologies Pvt. Ltd.', 'Lions Chowk,Narayangarh,Chitwan,Nepal', '056-533977', '', 'info@salyani.com.np', 'showForm', 'showMap');
 
 -- --------------------------------------------------------
 
@@ -139,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `contact_list` (
   `remarks` varchar(1000) DEFAULT NULL,
   `type` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `contact_list`
@@ -150,7 +149,16 @@ INSERT INTO `contact_list` (`id`, `full_name`, `email`, `remarks`, `type`) VALUE
 (2, 'Ramji Subedi', 'rsubedi@salyani.com.np', NULL, 'newsletter subs'),
 (6, 'sushil shrestha', 'sushilsth21@gmail.com', NULL, 'newsletter subs'),
 (16, NULL, 'bhomnath@salyani.com.np', 'Well, this is embrassing!', 'feedback'),
-(17, NULL, 'bhomnath@salyani.com.np', 'Well, this is embrassing!', 'feedback');
+(17, NULL, 'bhomnath@salyani.com.np', 'Well, this is embrassing!', 'feedback'),
+(18, '', '', '', 'feedback'),
+(19, 'fagshfdgha', 'dsgahfd', '45645645', 'feedback'),
+(20, 'sadsadsa', 'asdsadas', 'asdasdasdas', 'feedback'),
+(21, 'sadsadsa', 'asdsadas', 'asdasdasdas', 'feedback'),
+(22, 'dfsfsd', 'sdfsdf', 'dfsdfsdfsdfs', 'feedback'),
+(23, 'kjhgfhgjyh', 'jfdhtdhgfdg', 'kjbh', 'feedback'),
+(24, 'true', 'true', 'true', 'feedback'),
+(25, 'true', 'true', 'true', 'feedback'),
+(26, 'saddasdsa', 'sadasdas@asd.asd', 'saddsadsadas', 'feedback');
 
 -- --------------------------------------------------------
 
@@ -170,8 +178,8 @@ CREATE TABLE IF NOT EXISTS `design_setup` (
 --
 
 INSERT INTO `design_setup` (`id`, `name`, `description`) VALUES
-(0, 'header_title', 'BCD - Nepal Serving the society'),
-(1, 'header_logo', 'logoSample1.png'),
+(0, 'header_title', 'BnW - A complete CMS'),
+(1, 'header_logo', 'bnw11.png'),
 (2, 'header_description', ''),
 (3, 'header_bgcolor', NULL),
 (4, 'sidebar_title', 'Quick navigation'),
@@ -191,6 +199,7 @@ CREATE TABLE IF NOT EXISTS `events` (
   `location` varchar(200) CHARACTER SET utf8 NOT NULL,
   `date` timestamp NULL DEFAULT NULL,
   `image` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -198,8 +207,8 @@ CREATE TABLE IF NOT EXISTS `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `details`, `location`, `date`, `image`) VALUES
-(3, 'dshkfkjsdh', '                  hkjsdhjkfhs<br>', 'hkjdshfkjs', '2014-10-21 18:15:00', 'AilVH1.jpg');
+INSERT INTO `events` (`id`, `title`, `details`, `location`, `date`, `image`, `type`) VALUES
+(3, 'dshkfkjsdh', '                        hkjsdhjkfhs<br>', 'hkjdshfkjs', '2014-10-21 18:15:00', NULL, 'event');
 
 -- --------------------------------------------------------
 
@@ -241,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `media` (
   `media_link` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_media` (`media_association_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `media`
@@ -249,9 +258,9 @@ CREATE TABLE IF NOT EXISTS `media` (
 
 INSERT INTO `media` (`id`, `media_name`, `media_type`, `media_association_id`, `media_link`) VALUES
 (4, 'adhg', 'links.docx', NULL, 'http://localhost/bnw/content/images/links.docx'),
-(10, 'eqeqw', 'nTCB41.jpg', 1, '0'),
 (11, 'sdadsa', 'i3vqh1.jpg', 2, '0'),
-(12, 'birdcut', 'b1qsc1.jpg', 1, '0');
+(12, 'birdcut', 'b1qsc1.jpg', 1, '0'),
+(13, 'vgdhafvh', 'h6i58c9deb4a3f5827c3a04ec0cf5f487171a_L.jpg', 1, '0');
 
 -- --------------------------------------------------------
 
@@ -290,8 +299,8 @@ CREATE TABLE IF NOT EXISTS `meta_data` (
 --
 
 INSERT INTO `meta_data` (`id`, `name`, `value`) VALUES
-(1, 'siteurl', 'www.bcdnepal.orn'),
-(2, 'title', 'BnW'),
+(1, 'siteurl', 'www.salyani.org'),
+(2, 'title', 'BnW - A Complete CMS'),
 (3, 'keywords', 'cms'),
 (4, 'description', 'cloud system'),
 (5, 'favicon_icon', 'favicon.png');
@@ -338,18 +347,19 @@ CREATE TABLE IF NOT EXISTS `navigation` (
   `menu_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_navigation` (`menu_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
 
 --
 -- Dumping data for table `navigation`
 --
 
 INSERT INTO `navigation` (`id`, `navigation_name`, `navigation_link`, `parent_id`, `navigation_type`, `navigation_slug`, `menu_id`) VALUES
-(38, 'Gallery', 'photos', 0, ' ', 'Gallery', 4),
-(52, 'asd', 'asd', 38, '', 'asd', 4),
-(53, 'ramji', 'ramji', 52, '', 'ramji', 4),
-(54, 'sushil', 'sushil', 0, '', 'sushil', 4),
-(55, 'Intro', 'dshjgfjhsd', 0, '', 'Intro', 4);
+(58, 'Introduction', 'http://localhost/bnw/index.php/view/page/1', 0, 'page', 'Introduction', 4),
+(59, 'Gallery', 'http://localhost/bnw/index.php/view/gallery', 0, '', 'Gallery', 4),
+(60, 'News', 'http://localhost/bnw/index.php/view/allnews', 0, '', 'News', 4),
+(61, 'Events', 'http://localhost/bnw/index.php/view/allevents', 0, '', 'Events', 4),
+(62, 'Contact Us', 'http://localhost/bnw/index.php/view/contactUs', 0, '', 'ContactUs', 4),
+(63, 'PostView', 'http://localhost/bnw/index.php/view/post/12', 0, '', 'PostView', 4);
 
 -- --------------------------------------------------------
 
@@ -373,6 +383,7 @@ CREATE TABLE IF NOT EXISTS `page` (
   `allow_comment` tinyint(1) NOT NULL,
   `allow_like` tinyint(1) NOT NULL,
   `allow_share` tinyint(1) NOT NULL,
+  `images` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
@@ -380,8 +391,8 @@ CREATE TABLE IF NOT EXISTS `page` (
 -- Dumping data for table `page`
 --
 
-INSERT INTO `page` (`id`, `page_name`, `page_content`, `page_author_id`, `page_date`, `page_summary`, `page_status`, `page_modifed_date`, `page_parent`, `page_order`, `page_type`, `page_tags`, `allow_comment`, `allow_like`, `allow_share`) VALUES
-(1, 'Introduction', '                  BnW is a MVC CMS. It is developed by using "PHP", the programming language and as framework Codeigniter is used. It is developed from Chitwan. The motto of this is to make content management and web production easy, fast, reliable and convenient.<br>', 10, '2014-09-17 11:13:36', '                  BnW is a MVC CMS. It is developed by using "PHP", the programming language and as ', '0', '0000-00-00 00:00:00', 0, 0, '', '0', 0, 0, 0);
+INSERT INTO `page` (`id`, `page_name`, `page_content`, `page_author_id`, `page_date`, `page_summary`, `page_status`, `page_modifed_date`, `page_parent`, `page_order`, `page_type`, `page_tags`, `allow_comment`, `allow_like`, `allow_share`, `images`) VALUES
+(1, 'Introduction', '                        BnW is a MVC CMS. It is developed by using "PHP", the programming language and as framework Codeigniter is used. It is developed from Chitwan. The motto of this is to make content management and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.<br>', 10, '2014-09-17 11:13:36', '                        BnW is a MVC CMS. It is developed by using "PHP", the programming language a', '0', '0000-00-00 00:00:00', 0, 0, '', '0', 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -416,7 +427,7 @@ CREATE TABLE IF NOT EXISTS `post` (
 
 INSERT INTO `post` (`id`, `post_title`, `post_author_id`, `post_date`, `post_summary`, `post_status`, `comment_status`, `post_modified_date`, `post_tags`, `post_content`, `post_category`, `allow_comment`, `allow_like`, `allow_share`, `image`) VALUES
 (12, 'chharo1', 0, '2014-10-29 07:35:19', '            <br>', '0', NULL, NULL, NULL, '            <br>', 0, 0, 0, 0, 'CPtp3birdedu.png'),
-(13, 'crop', 0, '2014-10-29 07:49:39', '      <br>', '0', NULL, NULL, NULL, '      <br>', 0, 0, 0, 0, 'Gr8Xgt.png');
+(13, 'crop', 0, '2014-10-29 07:49:39', '                                  BnW is a MVC CMS. It is developed by using \r\n"PHP", the programmin', '0', NULL, NULL, NULL, '                                  BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.<br>', 0, 0, 0, 0, 'Gr8Xgt.png');
 
 -- --------------------------------------------------------
 
@@ -430,15 +441,14 @@ CREATE TABLE IF NOT EXISTS `slide` (
   `slide_image` varchar(100) NOT NULL DEFAULT 'Required',
   `slide_content` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `slide`
 --
 
 INSERT INTO `slide` (`id`, `slide_name`, `slide_image`, `slide_content`) VALUES
-(1, 'dsbgjhfgdsjh', '000001151.png', ''),
-(2, 'College premises', 'whale1.jpg', '');
+(1, 'Complete Powerful CMS', 'DisasterRecovery.jpg', 'ghghjghj');
 
 -- --------------------------------------------------------
 
@@ -466,7 +476,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `user_name`, `user_fname`, `user_lname`, `user_email`, `user_pass`, `user_url`, `user_registered_date`, `user_auth_key`, `user_status`, `user_type`) VALUES
-(10, 'admin', 'hom nath', 'bagale', 'bhomnath@salyani.com.np', '21232f297a57a5a743894a0e4a801fc3', NULL, '2014-03-06 10:01:57', '64L3XB9ID5', '1', '0');
+(10, 'admin', 'hom nath', 'bagale', 'bhomnath@salyani.com.np', '21232f297a57a5a743894a0e4a801fc3', NULL, '2014-03-06 10:01:57', '64L3XB9ID5', '0', 'Administrator');
 
 --
 -- Constraints for dumped tables
