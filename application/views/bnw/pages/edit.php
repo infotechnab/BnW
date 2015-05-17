@@ -57,6 +57,28 @@ if ($miscSetting)
   <textarea name="page_content" id="textara" rows="5" cols="50" style="resize:none;">
       <?php echo $body; ?></textarea>
   </p>
+  
+   <?php if (!empty($image)) { ?> 
+                <div style="border: 1px solid #eee;padding: 1%;display: inline-block;min-height: 100px;">
+                    <div style="">
+                        <img src="<?php echo base_url() . "content/uploads/images/" . $image; ?>" width="80" height="80" alt="<?php echo $image; ?>" />
+                    </div>
+                    <div style="text-align: center;">
+                    <a href="<?php echo base_url(); ?>index.php/offers/offerImgdelete/?id=<?php echo $id; ?> " title="Delete" id="<?php echo $id; ?>" class="delbutton">
+                        <i class="fa fa-trash-o" id="close"></i>
+                    </a>
+                    </div>
+                </div> <?php } ?>
+            <p class="dashuppe-text-all">Image<br/> 
+                <input id="uploadImage" class="textInput" type="file" name="file" />
+                <!-- hidden inputs -->
+                <input type="hidden" id="x" name="x" />
+                <input type="hidden" id="y" name="y" />
+                <input type="hidden" id="w" name="w" />
+                <input type="hidden" id="h" name="h" /> 
+            </p>
+            <img id="uploadPreview" style="display:none;width:1000px;"/>
+            
   <p>
   <input type="file" name="file" multiple>
   <input type="hidden" name="imageName" value="<?php echo $image; ?>">
