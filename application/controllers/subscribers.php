@@ -5,6 +5,7 @@ class Subscribers extends CI_Controller {
         parent::__construct();
         $this->load->model('contact_model');
         $this->load->model('dbsetting');
+        $this->load->model('viewmodel');
         $this->load->model('dbuser');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));

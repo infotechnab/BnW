@@ -39,7 +39,7 @@ if ($query)
   <input type="text" class="textInput" name="post_title" value="<?php echo set_value('post_title'); ?>" />
   </p>
   <p class="dashuppe-text-all">Body<br />
-      <textarea name="post_content" id="area1" cols="50" rows="5" ><?php echo set_value('post_content'); ?></textarea>
+      <textarea name="post_content" id="textara" cols="50" rows="5" ><?php echo set_value('post_content'); ?></textarea>
   
   </p> 
   <p class="dashuppe-text-all">Image<br />

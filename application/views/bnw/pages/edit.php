@@ -54,7 +54,7 @@ if ($miscSetting)
       <input type="text" class="textInput" name="page_name" value="<?php echo $name; ?>" />
   </p>
   <p class="dashuppe-text-all">Body<br />
-  <textarea name="page_content" id="area1" rows="5" cols="50" style="resize:none;">
+  <textarea name="page_content" id="textara" rows="5" cols="50" style="resize:none;">
       <?php echo $body; ?></textarea>
   </p>
   <p>

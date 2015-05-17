@@ -69,7 +69,7 @@ $( "#datepicker" ).datepicker();
       <input type="text" class="textInput" name="Name" value="<?php echo $name; ?>" />
   </p>
   <p class="dashuppe-text-all">Description<br />
-  <textarea name="description" id="area1" rows="5" cols="50" style="resize:none;">
+  <textarea name="description" id="textara" rows="5" cols="50" style="resize:none;">
       <?php echo $description; ?></textarea>
   </p>
  
