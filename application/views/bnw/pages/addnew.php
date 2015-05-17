@@ -37,9 +37,17 @@ if ($query)
   <p class="dashuppe-text-all">Body<br />
       <textarea name="page_content" id="textara" cols="50" rows="5" ><?php echo set_value('page_content'); ?></textarea>
   </p>    
-  <p>
-  <input type="file" name="file" multiple>
-  </p>
+  
+  <p class="dashuppe-text-all">Image<br />
+     <input id="uploadImage" class="textInput" type="file" name="file" />
+     <!-- hidden inputs -->
+		<input type="hidden" id="x" name="x" />
+		<input type="hidden" id="y" name="y" />
+		<input type="hidden" id="w" name="w" />
+		<input type="hidden" id="h" name="h" /> 
+  </p> 
+   <img id="uploadPreview" style="display:none;width:1000px;"/>
+  
     </div>
     
     <div id="forRightPage"> 
