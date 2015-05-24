@@ -68,6 +68,7 @@ class Sliders extends CI_Controller {
             $this->form_validation->set_rules('slide_name', 'Title', 'required|xss_clean|max_length[200]');
             $this->form_validation->set_rules('slide_content', 'Content', 'trim|xss_clean');
             if (($this->form_validation->run() == FALSE) || (!$this->upload->do_upload('file_name'))) {
+                
                 $data['error'] = $this->upload->display_errors();
 
                 $this->load->view('bnw/slider/addnew', $data);

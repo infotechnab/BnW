@@ -108,9 +108,13 @@ $data['pageTitle'] = 'News';
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
         $data['singleEvent'] = $this->viewmodel->get_event_by_id($id);
           $data['contact'] = $this->contact_model->get_contact_form();
+          if(!empty($data['singleEvent'])){
           foreach ($data['singleEvent'] as $news){
             $title = $news->title;
-        }
+          }}
+         else{
+             $title = "event not found";
+         }
         
 $class= $this->router->fetch_class();  
     $method = $this->router->fetch_method();    
@@ -120,7 +124,9 @@ $this->breadcrumbs->push($method, '/'.$class.'/allevents');
 $this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
 //$this->breadcrumbs->unshift('Home', '/');
 $data['link'] = $this->breadcrumbs->show();
+
          $data['pageTitle'] = $title;
+
         $this->load->view('default/template/header', $data);
          $this->load->view('default/template/breadcrumbLink', $data);
          $this->load->view('default/template/singleEvent',$data);
@@ -133,9 +139,13 @@ $data['link'] = $this->breadcrumbs->show();
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
           $data['contact'] = $this->contact_model->get_contact_form();
         $data['singleNews'] = $this->viewmodel->get_event_by_id_for_news($id);
-        foreach ($data['singleNews'] as $news){
+        if(!empty($data['singleEvent'])){
+          foreach ($data['singleNews'] as $news){
             $title = $news->title;
-        }
+          }}
+            else{
+             $title = "news not found";
+         }
         
 $class= $this->router->fetch_class();  
     $method = $this->router->fetch_method();    
@@ -145,8 +155,9 @@ $this->breadcrumbs->push($method, '/'.$class.'/allnews');
 $this->breadcrumbs->push($title, '/'.$class.'/'.$method.'/'.$title);
 //$this->breadcrumbs->unshift('Home', '/');
 $data['link'] = $this->breadcrumbs->show();
+       
+         $data['pageTitle'] = $title;
 
-        $data['pageTitle'] = $title;
         $this->load->view('default/template/header', $data);
          $this->load->view('default/template/breadcrumbLink', $data);
          $this->load->view('default/template/singleNews',$data);
@@ -182,9 +193,12 @@ $data['link'] = $this->breadcrumbs->show();
         $data['contact'] = $this->contact_model->get_contact_form();
         $data['albumName'] = $this->viewmodel->get_album_name_by_id($id);
          $data['selectedalbumquery'] =  $this->viewmodel->get_selected_album($id);
+         if(!empty($data['albumName'])){
          foreach ($data['albumName'] as $galls){
              $title= $galls->album_name;
-        }
+         }}else{
+             $title = "album not found";
+         }
        $class= $this->router->fetch_class();  
     $method = $this->router->fetch_method();    
         $this->load->library('breadcrumbs');
@@ -230,8 +244,12 @@ $this->session->set_userdata('captcha_info', $data['captcha']);
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
         $data['contact'] = $this->contact_model->get_contact_form();
         $data['selectedpagequery'] = $this->viewmodel->get_desired_page($id);
+        if(!empty($data['selectedpagequery'])){
         foreach ($data['selectedpagequery'] as $name){
             $title = $name->page_name;
+        }}
+        else{
+            $title = "page not found";
         }
         $class= $this->router->fetch_class();  
     $method = $this->router->fetch_method();    
@@ -254,8 +272,12 @@ $data['link'] = $this->breadcrumbs->show();
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
         $data['contact'] = $this->contact_model->get_contact_form();
         $data['selectedpostquery'] = $this->viewmodel->get_desired_post($id);
+        if(!empty($data['selectedpostquery'])){
         foreach ($data['selectedpostquery'] as $name){
             $title = $name->post_title;
+        }}
+        else{
+            $title = "post not found";
         }
        
 $class= $this->router->fetch_class();  

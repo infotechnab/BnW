@@ -2,10 +2,11 @@
  <h2>Dashboard >> Add New Menu</h2>
  <hr class="hr-gradient"/>
 
-  <?php echo validation_errors(); ?>
+
  
  
   <p id="sucessmsg">
+        <?php echo validation_errors(); ?>
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
   <?php echo form_open_multipart('dashboard/addmenu');?>

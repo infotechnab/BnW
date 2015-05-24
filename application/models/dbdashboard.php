@@ -54,6 +54,12 @@ class Dbdashboard extends CI_Model {
 
         $this->db->delete('menu', array('id' => $id));
     }
+    
+    public function check_navigation_for_menu($id)
+    {
+        $this->db->where('menu_id', $id);
+        return $this->db->count_all("navigation");
+    }
 
     //====================================== CLOSE MENU =====================================================//
     //======================================= START NAVIGATION ==============================================//

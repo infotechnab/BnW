@@ -99,13 +99,20 @@ class Dashboard extends CI_Controller {
         }
     }
 
-    public function deletemenu($id = 0) {
+    public function deletemenu($id = null) {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
+            $menuNo = $this->dbdashboard->check_navigation_for_menu($id);
+            if($menuNo >0){
+                 $this->session->set_flashdata('message', 'This menu contains Navigation item associated. So to delete this menu delete navigation item associated with it first.');
+
+                redirect('dashboard/addmenu');
+            }
+            else{
             $this->dbdashboard->delete_menu($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
             redirect('dashboard/addmenu');
-        } else {
+        } }else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }

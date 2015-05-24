@@ -32,16 +32,18 @@ class Setting extends CI_Controller {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
+    
+    
 
     public function headerupdate() {
-        $url = current_url();
+          $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 
             $config['upload_path'] = './content/uploads/images/';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '786';
+            $config['max_size'] = '20000';
+            $config['max_width'] = '10000';
+            $config['max_height'] = '10000';
 
             $this->load->library('upload', $config);
             $data['meta'] = $this->dbsetting->get_meta_data();
@@ -52,24 +54,12 @@ class Setting extends CI_Controller {
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('header_title', 'Title', 'required|xss_clean|max_length[200]');
 
-
-            if ($this->form_validation->run() == FALSE) {
-                //die('not image');
-//                $data['error'] = $this->upload->display_errors();
-
-                $this->load->view('bnw/setup/addHeader', $data);
-            } else {
-                    if (empty($_FILES['file_name']['name'])) {
-
-                $headerTitle = $this->input->post('header_title');
-                $headerLogo = $this->input->post('existingImg');
-                $headerDescription = $this->input->post('header_description');
-                $headerBgColor = null;
-                $this->dbsetting->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
-                $this->session->set_flashdata('message', 'Header setting done sucessfully');
-                redirect('setting/header');
+            if (($this->form_validation->run() == TRUE)) {
+                if ($_FILES && $_FILES['file_name']['name'] !== "") {
+                    if (!$this->upload->do_upload('file_name')) {
+                        $data['error'] =  $this->upload->display_errors('');
+                      $this->load->view('bnw/setup/addHeader', $data);
                     } else {
-                //if valid
                         $this->upload->do_upload('file_name');
 //                $data = array('upload_data' => $this->upload->data('file'));
 
@@ -81,9 +71,23 @@ class Setting extends CI_Controller {
                 $this->dbsetting->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
                 $this->session->set_flashdata('message', 'Header setting done sucessfully');
                 redirect('setting/header');
-            } }
-        } else {
+                    }
+                } else {
+                     $headerTitle = $this->input->post('header_title');
+                $headerLogo = $this->input->post('existingImg');
+                $headerDescription = $this->input->post('header_description');
+                $headerBgColor = null;
+                $this->dbsetting->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
+                $this->session->set_flashdata('message', 'Header setting done sucessfully');
+                redirect('setting/header');
+                }
+            } else {
 
+                 $this->load->view('bnw/setup/addHeader', $data);
+            }
+
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
