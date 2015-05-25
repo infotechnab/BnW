@@ -1,8 +1,8 @@
 <div class="rightSide">
 <h2>Add new Media&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/album/media'; ?>">View All</a></h2>
 <hr class="hr-gradient"/>
-<p>Allowed file types: jpg, jpeg, png, gif, pdf, doc, ppt, odt, pptx, docx, xls, xlsx, key</p>
-  <p><b>Note:</b>For images : Max file size: 2000KB,  Width: 1024px, Height: 768px </p>
+<p>Allowed file types: jpg, jpeg, png, gif, pdf, doc, ppt, odt, pptx, docx, xls, xlsx, key, txt</p>
+  <p><b>Note:</b>For images : Max file size: 20000KB,  Width: 10000px, Height: 10000px </p>
 <div id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     <?php echo validation_errors();
@@ -25,7 +25,7 @@
   
   <p class="dashuppe-text-all">Select Association Id<br/>
          <select class="textInput" name="selectAlbum">
-             <option value=" ">Select None</option>
+             <option value="selectNone">Select None</option>
                 <?php
                 foreach ($listOfAlbum as $data)
                 {
