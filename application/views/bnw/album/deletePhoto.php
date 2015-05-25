@@ -28,7 +28,7 @@
     <input type="submit" value="Yes" />
     <?php echo form_close(); ?>
     
-    <?php echo anchor('album', '<button>No</button>');  ?>
+    <?php echo anchor('album/addalbum', '<button>No</button>');  ?>
   
 </div>
 <div class="clear"></div>

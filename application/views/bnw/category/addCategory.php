@@ -46,14 +46,16 @@
             <td><?php echo anchor('dashboard/editcategory/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
             <?php
             if(empty($catData))
-            {
-                echo anchor('dashboard/deletecategory/'.$data->id,'<i class="fa fa-trash-o"></i>');
+            { ?>
+                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+                <!--echo anchor('dashboard/deletecategory/'.$data->id,'<i class="fa fa-trash-o"></i>');-->
                 
-            }
+            <?php }
             else 
-                {
-                echo anchor('dashboard/delete_category/'.$data->id,'<i class="fa fa-trash-o"></i>');
-                }            ?>
+                { ?>
+                <a href="" class="del_category"><i class="fa fa-trash-o"></i></a>
+                <!--echo anchor('dashboard/delete_category/'.$data->id,'');-->
+              <?php   }            ?>
             
            
             
@@ -73,3 +75,18 @@
 </div>
 <div class="clear"></div>
 </div>
+
+<span id="confirm">sadf</span>
+
+<script>
+    $(document).ready(function(){
+       $(document).on("click", ".del_category", function(){
+           var id = $(this).attr("id");
+            $(this).confirm();
+            var url = '<?php echo base_url().'index.php/dashboard/deletecategory' ?>';
+            $(this).confirm.yes({id:id,url:url});
+            $(this).confirm.no();
+            $(this).parent().parent().remove();
+       });
+    });
+</script>
