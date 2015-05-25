@@ -99,12 +99,8 @@ class Dashboard extends CI_Controller {
         }
     }
 
-<<<<<<< HEAD
     public function deletemenu() {
         $id = $_POST['id'];
-=======
-    public function deletemenu($id = null) {
->>>>>>> 6fcf50e27bf963dd1d1ff1b4d17c5d564d453914
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $menuNo = $this->dbdashboard->check_navigation_for_menu($id);
