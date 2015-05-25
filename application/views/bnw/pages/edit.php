@@ -64,7 +64,7 @@ if ($miscSetting)
                         <img src="<?php echo base_url() . "content/uploads/images/" . $image; ?>" width="80" height="80" alt="<?php echo $image; ?>" />
                     </div>
                     <div style="text-align: center;">
-                    <a href="<?php echo base_url(); ?>index.php/offers/offerImgdelete/?id=<?php echo $id; ?> " title="Delete" id="<?php echo $id; ?>" class="delbutton">
+                    <a href="<?php echo base_url(); ?>index.php/page/pageImgdelete/?id=<?php echo $id; ?> " title="Delete" id="<?php echo $id; ?>" class="delbutton">
                         <i class="fa fa-trash-o" id="close"></i>
                     </a>
                     </div>

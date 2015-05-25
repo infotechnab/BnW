@@ -119,12 +119,12 @@ class Dbpage extends CI_Model {
     }
 
     public function delete_page_image($id) {
-        $data = Array(
-            'image' => ""
+       $image = NULL;
+        $data = array(
+            'images' => $image
         );
-
         $this->db->where('id', $id);
-
         $this->db->update('page', $data);
     }
+     
 }

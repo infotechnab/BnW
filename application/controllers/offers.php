@@ -198,19 +198,9 @@ if (file_exists($filename1)) {
     }
     
      public function deletepost($id = 0) {
-//        $url = current_url();
-//        if ($this->session->userdata('admin_logged_in')) {
-//           // $this->dboffers->deletepost($id);
-//         
-//            $this->session->set_flashdata('message', 'Data Deleted Sucessfully');
-//            redirect('offers/posts');
-//        } else {
-//            redirect('login/index/?url=' . $url, 'refresh');
-//        }
+
           $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-
-            //$id = $_GET['id'];
             $data['query'] = $this->dboffers->findpost($id);
             foreach ($data['query'] as $a) {
                 $img = $a->image;
