@@ -118,7 +118,11 @@ class Offers extends CI_Controller {
                         $key = $this->getRandomStringForCoupen(5);
                         $image = $key.$name;
                         $manipulator->save('./content/uploads/images/' .$image);
-                          unlink('./content/uploads/images/'.$name);
+                        $filename1 = './content/uploads/images/'.$name;
+if (file_exists($filename1)) {
+    unlink($filename1);
+} else {}
+                         
                        // $imgname = $img_name;
                         $image_thumb = dirname('thumb_' . $image . '/demo');
                         $config['image_library'] = 'gd2';
@@ -211,11 +215,17 @@ class Offers extends CI_Controller {
             foreach ($data['query'] as $a) {
                 $img = $a->image;
             }
-            // die($img);
-            if ($img == !NULL) {
-                unlink('./content/uploads/images/' . $img);
-                unlink('./content/uploads/images/thumb_' . $img);
-            }
+             if ($img == !NULL) {
+            $filename1 = './content/uploads/images/'.$img;
+            $filename2 = './content/uploads/images/thumb_'.$img;
+if (file_exists($filename1)) {
+    unlink($filename1);
+} else {}
+if (file_exists($filename2)) {
+    unlink($filename2);
+} else {}
+             }
+                
             $this->dboffers->offerImgdelete($id);
             $this->dboffers->deletepost($id);
              $this->session->set_flashdata('message', 'Data Deleted Sucessfully');
@@ -295,7 +305,11 @@ class Offers extends CI_Controller {
                         $key = $this->getRandomStringForCoupen(5);
                         $image = $key.$name;
                         $manipulator->save('./content/uploads/images/' .$image);
-                          unlink('./content/uploads/images/'.$name);
+                        $filename1 = './content/uploads/images/'.$name;
+if (file_exists($filename1)) {
+    unlink($filename1);
+} else {}
+                        
                        // $imgname = $img_name;
                         $image_thumb = dirname('thumb_' . $image . '/demo');
                         $config['image_library'] = 'gd2';
@@ -367,10 +381,16 @@ class Offers extends CI_Controller {
                 $img = $a->image;
             }
             
-            if ($img == !NULL) {
-                unlink('./content/uploads/images/' . $img);
-                unlink('./content/uploads/images/thumb_' . $img);
-            }
+             if ($img == !NULL) {
+            $filename1 = './content/uploads/images/'.$img;
+            $filename2 = './content/uploads/images/thumb_'.$img;
+if (file_exists($filename1)) {
+    unlink($filename1);
+} else {}
+if (file_exists($filename2)) {
+    unlink($filename2);
+} else {}
+             }
             $this->dboffers->offerImgdelete($id);
 
             $this->editpost($id);

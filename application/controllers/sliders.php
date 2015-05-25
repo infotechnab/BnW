@@ -274,11 +274,15 @@ class Sliders extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $a = $_GET['image'];
-
-            unlink('./content/uploads/sliderImages/' . $a);
-            unlink('./content/uploads/sliderImages/thumb_' . $a);
-
-
+  
+$filename1 = './content/uploads/sliderImages/' . $a;
+$filename2 = './content/uploads/sliderImages/thumb_' . $a;
+if (file_exists($filename1)) {
+    unlink($filename1);
+} else {}
+if (file_exists($filename2)) {
+    unlink($filename2);
+} else {}
             $this->dbslider->delete_slider($a);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
             redirect('sliders/slider');
