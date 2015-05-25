@@ -19,7 +19,6 @@
             
             <th>Media Name</th>
             <th>Media Type</th>
-           
             <th>Media Link</th>
             <th>Activity</th>
         </tr>
@@ -30,16 +29,22 @@
           <tr>
             
             <td><?php echo $data->media_name; ?></td>
-            <td><?php echo $data->media_type; ?></td>
             
-            <td><?php $file= $data->media_type; $info = new SplFileInfo($file); $ext = $info->getExtension(); if($ext=='jpg' || $ext=='png' || $ext=='jpeg' || $ext=='bmp'){ ?>
+            
+            <td><?php $exts = array('jpg','jpeg','png','gif','pdf','doc','ppt','odt','pptx','docx','xls','xlsx','key','txt'); $file= $data->media_type; $info = explode(".", $file); 
+             $file_ext = strtolower(end($info));
+             if(in_array($file_ext, $exts)) {
+             
+            
+         if($file_ext=='jpg' || $file_ext=='png' || $file_ext=='jpeg' || $file_ext=='bmp'){ ?>
                 <img src='<?php echo base_url().'content/uploads/images/'.$data->media_type; ?>' style="height: 60px; width: 60px"/>
-                    <?php } else{ echo $ext.' file'; } ?> </td>
+                    <?php } else{ echo $file_ext.' file'; } ?> </td>
+            <td><?php echo base_url().'content/uploads/images/'.$file; ?></td>
             <td><?php echo anchor('album/editmedia/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
             <?php echo anchor('album/delmedia/'.$data->id,'<i class="fa fa-trash-o"></i>'); ?></td>
         </tr>
             <?php    
-            }
+            } }
         }
  else {
      echo '<h3>Sorry Library is unavailable</h3>';
