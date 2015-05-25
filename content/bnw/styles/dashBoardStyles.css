@@ -350,7 +350,7 @@ ul.menu li.mainMenuItem:hover
     margin-left: 45px;
     min-height: 200px;
 }
-
+.del_category{cursor: pointer;}
 
 /*for media screen 1025-1500px*/
 @media screen and (max-width : 1500px)

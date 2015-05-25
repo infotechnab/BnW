@@ -6,6 +6,7 @@
    <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/bnw/styles/stylesForGadgets.css" type="text/css" />
     <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.min.js" > </script>
     <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.js" > </script>
+    <script src="<?php echo base_url(); ?>content/bnw/scripts/confirm.min.js" > </script>
 <!--      <script src="<?php echo base_url(); ?>content/bnw/scripts/nicEdit.js"></script>-->
        <script src="<?php echo base_url(); ?>content/bnw/scripts/gadgets.js"></script>
        <script src="<?php echo base_url(); ?>content/bnw/scripts/calendar.js"></script>

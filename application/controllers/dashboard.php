@@ -99,7 +99,8 @@ class Dashboard extends CI_Controller {
         }
     }
 
-    public function deletemenu($id = null) {
+    public function deletemenu() {
+        $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $menuNo = $this->dbdashboard->check_navigation_for_menu($id);
@@ -850,12 +851,13 @@ class Dashboard extends CI_Controller {
         }
     }
     
-    public function deletecategory($id=0) {
+    public function deletecategory() {
+        $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
           $this->dbdashboard->delete_category($id);
-              $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-                 redirect('dashboard/category');
+//              $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+//                 redirect('dashboard/category');
                 
           
         } else {

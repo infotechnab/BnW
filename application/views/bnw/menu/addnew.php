@@ -43,8 +43,9 @@
           <tr>
             <td><?php echo $data->id; ?></td>
             <td><?php echo $data->menu_name; ?></td>
-            <td><?php echo anchor('dashboard/editmenu/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('dashboard/deletemenu/'.$data->id,'Delete'); ?></td>
+            <td><?php echo anchor('dashboard/editmenu/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
+                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+            </td>
         </tr>
             <?php    
             }
@@ -60,3 +61,16 @@
  </div>
 <div class="clear"></div>
 </div>
+
+<script>
+    $(document).ready(function(){
+       $(document).on("click", ".del_category", function(){
+           var id = $(this).attr("id");
+            $(this).confirm();
+            var url = '<?php echo base_url().'index.php/dashboard/deletemenu' ?>';
+            $(this).confirm.yes({id:id,url:url});
+            $(this).confirm.no();
+            $(this).parent().parent().remove();
+       });
+    });
+</script>
