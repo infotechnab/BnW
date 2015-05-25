@@ -40,7 +40,7 @@ $( "#datepicker" ).datepicker();
   <textarea name="detail" id="textara" cols="50" rows="5" ><?php echo set_value('detail'); ?></textarea>
  </p>
   <p class="dashuppe-text-all">Image<br/>
-      <input id="uploadImage" class="textInput" type="file" name="file" />
+      <input id="uploadImage" class="textInput" type="file" name="file" accept="image/*"/>
      <!-- hidden inputs -->
 		<input type="hidden" id="x" name="x" />
 		<input type="hidden" id="y" name="y" />

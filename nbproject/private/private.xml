@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/wamp/www/bnw/application/views/bnw/category/delcategory.php</file>
             <file>file:/C:/wamp/www/bnw/application/controllers/dashboard.php</file>
             <file>file:/C:/wamp/www/bnw/application/views/bnw/album/gallery.php</file>
@@ -14,6 +15,16 @@
             <file>file:/C:/wamp/www/bnw/application/views/bnw/templates/header.php</file>
             <file>file:/C:/wamp/www/bnw/application/views/bnw/navigation/listOfItems.php</file>
             <file>file:/C:/wamp/www/bnw/application/views/bnw/category/addCategory.php</file>
+=======
+            <file>file:/C:/wamp/www/BnW/application/controllers/setting.php</file>
+            <file>file:/C:/wamp/www/BnW/application/controllers/album.php</file>
+            <file>file:/C:/wamp/www/BnW/application/controllers/view.php</file>
+            <file>file:/C:/wamp/www/BnW/application/views/bnw/slider/</file>
+            <file>file:/C:/wamp/www/BnW/application/models/dbdashboard.php</file>
+            <file>file:/C:/wamp/www/BnW/application/controllers/offers.php</file>
+            <file>file:/C:/wamp/www/BnW/.htaccess</file>
+            <file>file:/C:/wamp/www/BnW/application/controllers/dashboard.php</file>
+>>>>>>> 6fcf50e27bf963dd1d1ff1b4d17c5d564d453914
         </group>
     </open-files>
 </project-private>

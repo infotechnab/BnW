@@ -64,14 +64,14 @@ if ($miscSetting)
                         <img src="<?php echo base_url() . "content/uploads/images/" . $image; ?>" width="80" height="80" alt="<?php echo $image; ?>" />
                     </div>
                     <div style="text-align: center;">
-                    <a href="<?php echo base_url(); ?>index.php/offers/offerImgdelete/?id=<?php echo $id; ?> " title="Delete" id="<?php echo $id; ?>" class="delbutton">
+                    <a href="<?php echo base_url(); ?>index.php/page/pageImgdelete/?id=<?php echo $id; ?> " title="Delete" id="<?php echo $id; ?>" class="delbutton">
                         <i class="fa fa-trash-o" id="close"></i>
                     </a>
                     </div>
                     <input type="hidden" name="imageName" value="<?php echo $image; ?>">
                 </div> <?php } ?>
             <p class="dashuppe-text-all">Image<br/> 
-                <input id="uploadImage" class="textInput" type="file" name="file" />
+                <input id="uploadImage" class="textInput" type="file" name="file" accept="image/*"/>
                 <!-- hidden inputs -->
                 <input type="hidden" id="x" name="x" />
                 <input type="hidden" id="y" name="y" />

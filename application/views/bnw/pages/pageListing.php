@@ -14,6 +14,7 @@
             <th>Page Title</th>
             <th>Page Summary</th>         
             <th>Status</th>
+            <th>Image</th>
             <th>Action</th>
         </tr>
     <?php
@@ -32,6 +33,7 @@
                     
             }
             ?></td>
+            <td><?php if(!empty($data->images)){ ?><img src="<?php echo base_url().'content/uploads/images/'.$data->images; ?>" alt="" width="100" /> <?php }  else { echo "Image not set"; } ?></td>
             <td><?php echo anchor('page/editpage/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
             <?php echo anchor('page/deletepage/'.$data->id,'<i class="fa fa-trash-o"></i>'); ?></td>
         </tr>

@@ -103,7 +103,6 @@ class Dboffers extends CI_Model {
         $data = array(
             'image' => $image
         );
-
         $this->db->where('id', $id);
         $this->db->update('post', $data);
     }

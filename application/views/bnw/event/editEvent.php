@@ -85,7 +85,7 @@ $( "#datepicker" ).datepicker();
   <input type="hidden" name="hidden_image" value="<?php echo $data->image; ?>" />
  
   <p class="dashuppe-text-all">Image<br/>
- <input id="uploadImage" class="textInput" type="file" name="file" />
+ <input id="uploadImage" class="textInput" type="file" name="file" accept="image/*"/>
    <!-- hidden inputs -->
 		<input type="hidden" id="x" name="x" />
 		<input type="hidden" id="y" name="y" />

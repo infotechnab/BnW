@@ -42,7 +42,7 @@ if ($query)
       </p>       
  <?php } ?>
   <p class="dashuppe-text-all">Header Logo<br />
-  <input type="file" class="textInput" name="file_name" id="file" />
+  <input type="file" class="textInput" name="file_name" id="file" accept="image/*" />
   <input type="hidden" name="existingImg" value="<?php echo $set_data[1]; ?>">
   </p>
   <p class="dashuppe-text-all">Header Description<br />

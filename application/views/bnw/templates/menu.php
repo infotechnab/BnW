@@ -100,7 +100,7 @@
                 
             </div>
     <div id="bnwcredit">
-        <p>&COPY; Copy right to B&W......</p><p> Powered by BnW CMS v 1.10.30</p>
+        <p>&COPY; Copy right to B&W......</p><p> Powered by BnW CMS v 1.11</p>
     </div>
     
     

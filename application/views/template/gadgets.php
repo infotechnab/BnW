@@ -13,8 +13,6 @@
                         <li><a class="facebook" href="#"><i class="fa fa-facebook square-2 rounded-1"></i></a></li>
                         <li><a class="twitter" href="#"><i class="fa fa-twitter square-2 rounded-1"></i></a></li>
                         <li><a class="google-plus" href="#"><i class="fa fa-google-plus square-2 rounded-1"></i></a></li>
-
-<<<<<<< HEAD
                     </ul>
                 </div>                        
             </div><!--footer col-->
@@ -100,10 +98,5 @@
        });
     });
 </script>
-=======
-                </div>
-                
-            </div>
-        </footer>
 </section>
->>>>>>> 83e0bc2afad0c8b566bf60200959b9864130b9bd
+
