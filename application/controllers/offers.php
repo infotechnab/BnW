@@ -55,6 +55,7 @@ class Offers extends CI_Controller {
     }
     
      public function addpost() {
+          ini_set('memory_limit', '-1');
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $username = $this->session->userdata('username');
@@ -228,6 +229,7 @@ if (file_exists($filename2)) {
 
     
      public function updatepost() {
+          ini_set('memory_limit', '-1');
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 

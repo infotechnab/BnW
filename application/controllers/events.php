@@ -95,6 +95,7 @@ class Events extends CI_Controller {
         }
     }
     function update_event() {
+         ini_set('memory_limit', '-1');
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config['upload_path'] = './content/uploads/images/';
@@ -191,6 +192,7 @@ class Events extends CI_Controller {
     }
     
     function addevent() {
+         ini_set('memory_limit', '-1');
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
            $config['upload_path'] = './content/uploads/images/';

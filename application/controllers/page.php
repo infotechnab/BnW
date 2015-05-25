@@ -60,6 +60,7 @@ class Page extends CI_Controller {
     //============== ADD PAGE ==============//
 
     public function addpage() {
+         ini_set('memory_limit', '-1');
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $username = $this->session->userdata('username');
@@ -199,6 +200,7 @@ class Page extends CI_Controller {
 
     //======================UPDATE EDITED PAGE===============================//
   public function updatepage() {
+      ini_set('memory_limit', '-1');
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 
