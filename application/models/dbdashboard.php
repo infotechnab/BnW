@@ -75,7 +75,18 @@ class Dbdashboard extends CI_Model {
         $query = $this->db->get('navigation');
         return $query->result();
     }
-
+    
+    public function get_list_of_navigation_from_menuID($id)
+    {
+        $this->db->where('menu_id', $id);
+        $query = $this->db->get('navigation');
+        return $query->result();
+    }
+    
+    public function get_max_order() {
+        $row = $this->db->query('select max(`order`) as maxorder, id from navigation');
+        return $row->result();
+    }
     public function get_list_of_navigationID() {
         $id = 1;
         $this->db->where('menu_id', $id);
@@ -109,7 +120,7 @@ class Dbdashboard extends CI_Model {
         $resut = $this->db->get('navigation');
         return $resut->result();
     }
-
+    
     function update_navID($id, $tempID) {
         $data = array(
             'id' => $tempID
@@ -185,7 +196,15 @@ class Dbdashboard extends CI_Model {
     }
 
     function delnavigation($id) {
-        $this->db->delete('navigation', array('id' => $id));
+        $ara = array(
+            'id' => $id
+        );
+        $this->db->delete('navigation', $ara);
+        
+        $ar = array(
+            'parent_id' => $id
+        );
+        $this->db->delete('navigation', $ar);
     }
 
     public function record_count_navigation() {
@@ -204,25 +223,28 @@ class Dbdashboard extends CI_Model {
         return $query->result();
     }
 
-    public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menu_id) {
+    public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected,$maxorder) {
         $data = Array('navigation_name' => $navigation_name,
             'navigation_link' => $navigation_link,
             'parent_id' => $parent_id,
             'navigation_type' => $navigation_type,
             'navigation_slug' => $navigation_slug,
-            'menu_id' => $menu_id
+            'menu_id' => $menuSelected,
+            'order' => $maxorder
         );
         $this->db->insert('navigation', $data);
     }
 
-    public function add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menu_id) {
+    public function add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menuSelected, $maxorder) {
         $data = array(
             'navigation_name' => $navigationName,
             'navigation_link' => $navigationLink,
             'parent_id' => $parentID,
             'navigation_type' => $navigationType,
             'navigation_slug' => $navigation_slug,
-            'menu_id' => $menu_id);
+            'menu_id' => $menuSelected,
+            'order' => $maxorder
+                );
 
         $this->db->insert('navigation', $data);
     }

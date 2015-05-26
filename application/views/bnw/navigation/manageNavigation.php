@@ -39,6 +39,7 @@
 </div>
 <div id="fadeDiv"></div>
 <script>
+   
     $(document).ready(function () {
         $(document).on("click", "#fadeDiv", function(){
             $("#editBoxNav").hide();
@@ -114,6 +115,7 @@
                 },
                 success: function (msg)
                 {
+                    
                     //refresh latest data.
                     $("#msges").html("Navigation Deleted");
                     var selectBox = document.getElementById("selectBox");
@@ -126,6 +128,7 @@
                         success: function (msg)
                         {
                             $("#cssmenu").html(msg);
+                            $("#jobs").html("<option>Make Parent</option>");
                         }
                     });
                 }

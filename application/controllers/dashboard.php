@@ -21,7 +21,7 @@ class Dashboard extends CI_Controller {
     }
 
     //========================== START MENU ===========================================//
-    
+
     public function addmenu() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
@@ -104,32 +104,29 @@ class Dashboard extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $menuNo = $this->dbdashboard->check_navigation_for_menu($id);
-            if($menuNo >0){
-                 $this->session->set_flashdata('message', 'This menu contains Navigation item associated. So to delete this menu delete navigation item associated with it first.');
+            if ($menuNo > 0) {
+                $this->session->set_flashdata('message', 'This menu contains Navigation item associated. So to delete this menu delete navigation item associated with it first.');
 
                 redirect('dashboard/addmenu');
+            } else {
+                $this->dbdashboard->delete_menu($id);
+                $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+                redirect('dashboard/addmenu');
             }
-            else{
-            $this->dbdashboard->delete_menu($id);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('dashboard/addmenu');
-        } }else {
+        } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
-    //=========================== CLOSE MENU ================================================//
-    
-    
 
+    //=========================== CLOSE MENU ================================================//
     //=========================== START NAVIGATION ========================================//
-    
+
     public function navigation() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 
             $config["total_rows"] = $this->dbdashboard->record_count_navigation();
-          
+
             $config["per_navigation"] = 6;
             $this->pagination->initialize($config);
             $navigation = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
@@ -146,34 +143,41 @@ class Dashboard extends CI_Controller {
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
             $this->load->view('bnw/navigation/listOfItems', $data);
-           
         } else {
-            redirect('login/index/?url='.$url, 'refresh');
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
-    public function editnavigation($id=0) {
+
+    public function fetchMenu() {
+        $id = $_POST['id'];
+        $navigationList = $this->dbdashboard->get_list_of_navigation_from_menuID($id);
+        echo json_encode($navigationList);
+    }
+
+    public function renew_menu() {
+        $listOfMenu = $this->dbdashboard->get_list_of_menu();
+        echo json_encode($listOfMenu);
+    }
+
+    public function editnavigation($id = 0) {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-            
-          
-                
-            
+
+
+
+
             $data['query'] = $this->dbdashboard->findnavigation($id);
 
             $data['meta'] = $this->dbsetting->get_meta_data();
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/navigation/editNavigation', $data);
-            
-        }
-       
-        else {
-            redirect('login/index/?url='.$url, 'refresh');
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
-    public function showNavigation($id=0) {
+
+    public function showNavigation($id = 0) {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['meta'] = $this->dbsetting->get_meta_data();
@@ -182,218 +186,171 @@ class Dashboard extends CI_Controller {
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/navigation/navigationListing', $data);
-           
         } else {
-            redirect('login/index/?url='.$url, 'refresh');
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
-    function manageNavigation()
-    {
+
+    function manageNavigation() {
         $id = $_POST['menu_id_next'];
         $url = current_url();
-         if ($this->session->userdata('admin_logged_in')) {
-         $data['meta'] = $this->dbsetting->get_meta_data();
+        if ($this->session->userdata('admin_logged_in')) {
+            $data['meta'] = $this->dbsetting->get_meta_data();
 
             $data['query'] = $this->dbdashboard->get_list_of_selected_menu_navigation($id);
             $this->load->view('bnw/navigation/manageNavigation', $data);
-            
-             
-             } else {
-            redirect('login/index/?url='.$url, 'refresh');
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
         }
-         
     }
-    
-    function up()
-    {
+
+    function up() {
         $id = $_POST['id'];
         $url = current_url();
-       if ($this->session->userdata('admin_logged_in')) {
-          
-         if($id == !0)
-         {
-           $parent = $this->dbdashboard->get_parent_id($id);
-         //  var_dump($parent);
-           if(!empty($parent))
-           {
-           foreach ($parent as $pid)
-           {
-               $parentID = $pid->parent_id;
-           }
-           
-           $getID = $this->dbdashboard->get_data($parentID);
-           
-          $previousID = 0;
-          $tempID = 999;
-      foreach ($getID as $data)
-      {
-          if($id == $data->id )
-          {
-              break;
-          }
-          else
-          {
-             
-              $previousID = $data->id;
-          }
-      }
-           //die($previousID." ".$tempID);
-           if($previousID !==0)
-           {
-              // die('not work');
-           $updateID = $this->dbdashboard->update_navID($id , $tempID);
-           $updateParentID = $this->dbdashboard->update_navParentID($id , $tempID);
-           $updatePreviousID = $this->dbdashboard->update_previousID($id,$previousID);
-           $updatePreviousParentID = $this->dbdashboard->update_Previous_ParentID($id,$previousID);
-           $updateUP = $this->dbdashboard->update_up($tempID,$previousID);
-           $updateParentID_UP = $this->dbdashboard->update_parentID_UP($tempID,$previousID);
-           
-//           redirect('dashboard/navigation');
-           }
-           else
-           {
-           ///   echo " sdlfjsdajfsldjf";
-           $this->session->set_flashdata('message', 'Upper level not available');
-//           redirect('dashboard/navigation');
-           
-           }
-         } 
-         else {
-            
-             $data['token_error'] = 'Page not found';
-               
-               $data['meta'] = $this->dbsetting->get_meta_data();
+        if ($this->session->userdata('admin_logged_in')) {
 
-            $data['query'] = $this->dbdashboard->get_list_of_selected_menu_navigation($id);
+            if ($id == !0) {
+                $parent = $this->dbdashboard->get_parent_id($id);
+                //  var_dump($parent);
+                if (!empty($parent)) {
+                    foreach ($parent as $pid) {
+                        $parentID = $pid->parent_id;
+                    }
+
+                    $getID = $this->dbdashboard->get_data($parentID);
+
+                    $previousID = 0;
+                    $tempID = 99999;
+                    foreach ($getID as $data) {
+                        if ($id == $data->id) {
+                            break;
+                        } else {
+
+                            $previousID = $data->id;
+                        }
+                    }
+                    //die($previousID." ".$tempID);
+                    if ($previousID !== 0) {
+                        // die('not work');
+                        $updateID = $this->dbdashboard->update_navID($id, $tempID);
+                        $updateParentID = $this->dbdashboard->update_navParentID($id, $tempID);
+                        $updatePreviousID = $this->dbdashboard->update_previousID($id, $previousID);
+                        $updatePreviousParentID = $this->dbdashboard->update_Previous_ParentID($id, $previousID);
+                        $updateUP = $this->dbdashboard->update_up($tempID, $previousID);
+                        $updateParentID_UP = $this->dbdashboard->update_parentID_UP($tempID, $previousID);
+                    } else {
+                        $this->session->set_flashdata('message', 'Upper level not available');
+                    }
+                } else {
+
+                    $data['token_error'] = 'Page not found';
+
+                    $data['meta'] = $this->dbsetting->get_meta_data();
+
+                    $data['query'] = $this->dbdashboard->get_list_of_selected_menu_navigation($id);
 //            $this->load->view("bnw/templates/header", $data);
 //            $this->load->view("bnw/templates/menu");
 //            $this->load->view('bnw/templetes/error_landing_page', $data);
 //            
-         }
-       }
-    else {
-           
-            $data['token_error'] = 'Page not found';
-               
-               $data['meta'] = $this->dbsetting->get_meta_data();
+                }
+            } else {
 
-            $data['query'] = $this->dbdashboard->get_list_of_selected_menu_navigation($id);
+                $data['token_error'] = 'Page not found';
+
+                $data['meta'] = $this->dbsetting->get_meta_data();
+
+                $data['query'] = $this->dbdashboard->get_list_of_selected_menu_navigation($id);
 //            $this->load->view("bnw/templates/header", $data);
 //            $this->load->view("bnw/templates/menu");
 //            $this->load->view('bnw/templetes/error_landing_page', $data);
-            
-     
             }
-       }
-       
-       else
-       {
-            redirect('login/index/?url='.$url, 'refresh');
-       } 
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
     }
-    
-    function down()
-    { 
+
+    function down() {
         $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-         
-            if($id ==!0)
-            {
-             $parent = $this->dbdashboard->get_parent_id_down($id);
-         //  var_dump($parent);
-              if(!empty($parent))
-           {
-           foreach ($parent as $pid)
-           {
-               $parentID = $pid->parent_id;
-           }
-           
-           $getID = $this->dbdashboard->get_data_down($parentID);
-          $previousID = 0;
-          $tempID = 999;
-      foreach ($getID as $data)
-      {
-          if($id == $data->id )
-          {
-              break;
-          }
-          else
-          {
-             
-              $previousID = $data->id;
-          }
-      }
-          // die($previousID);
-           
-           if($previousID !==0)
-           {
-              // die('not work');
-           $updateID = $this->dbdashboard->update_navID($id , $tempID);
-           $updateParentID = $this->dbdashboard->update_navParentID($id , $tempID);
-           $updatePreviousID = $this->dbdashboard->update_previousID($id,$previousID);
-           $updatePreviousParentID = $this->dbdashboard->update_Previous_ParentID($id,$previousID);
-           $updateUP = $this->dbdashboard->update_up($tempID,$previousID);
-           $updateParentID_UP = $this->dbdashboard->update_parentID_UP($tempID,$previousID);
-//           redirect('dashboard/navigation');
-           }
-           else
-           {
-              // echo 'Can not process';
-              $this->session->set_flashdata('message', 'Lower level not available');
-//           redirect('dashboard/navigation');
-           }
-           }
-           else{
-           
-               $data['token_error'] = 'Page not found';
-               
-               $data['meta'] = $this->dbsetting->get_meta_data();
 
-            $data['query'] = $this->dddashboard->get_list_of_selected_menu_navigation($id);
+            if ($id == !0) {
+                $parent = $this->dbdashboard->get_parent_id_down($id);
+                //  var_dump($parent);
+                if (!empty($parent)) {
+                    foreach ($parent as $pid) {
+                        $parentID = $pid->parent_id;
+                    }
+
+                    $getID = $this->dbdashboard->get_data_down($parentID);
+                    $previousID = 0;
+                    $tempID = 999;
+                    foreach ($getID as $data) {
+                        if ($id == $data->id) {
+                            break;
+                        } else {
+
+                            $previousID = $data->id;
+                        }
+                    }
+                    // die($previousID);
+
+                    if ($previousID !== 0) {
+                        // die('not work');
+                        $updateID = $this->dbdashboard->update_navID($id, $tempID);
+                        $updateParentID = $this->dbdashboard->update_navParentID($id, $tempID);
+                        $updatePreviousID = $this->dbdashboard->update_previousID($id, $previousID);
+                        $updatePreviousParentID = $this->dbdashboard->update_Previous_ParentID($id, $previousID);
+                        $updateUP = $this->dbdashboard->update_up($tempID, $previousID);
+                        $updateParentID_UP = $this->dbdashboard->update_parentID_UP($tempID, $previousID);
+//           redirect('dashboard/navigation');
+                    } else {
+                        // echo 'Can not process';
+                        $this->session->set_flashdata('message', 'Lower level not available');
+//           redirect('dashboard/navigation');
+                    }
+                } else {
+
+                    $data['token_error'] = 'Page not found';
+
+                    $data['meta'] = $this->dbsetting->get_meta_data();
+
+                    $data['query'] = $this->dddashboard->get_list_of_selected_menu_navigation($id);
 //            $this->load->view("bnw/templates/header", $data);
 //            $this->load->view("bnw/templates/menu");
 //            $this->load->view('templates/error_landing_page', $data);
-            
-           }
-           }
-       else{
-          $data['token_error'] = 'Page not found';
-               
-               $data['meta'] = $this->dbsetting->get_meta_data();
+                }
+            } else {
+                $data['token_error'] = 'Page not found';
 
-            $data['query'] = $this->dbdashboard->get_list_of_selected_menu_navigation($id);
+                $data['meta'] = $this->dbsetting->get_meta_data();
+
+                $data['query'] = $this->dbdashboard->get_list_of_selected_menu_navigation($id);
 //            $this->load->view("bnw/templates/header", $data);
 //            $this->load->view("bnw/templates/menu");
 //            $this->load->view('templates/error_landing_page', $data);
-            
-       }
+            }
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
         }
-       else
-       {
-          redirect('login/index/?url='.$url, 'refresh');
-       } 
     }
-    
+
     public function updatenavigation() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['meta'] = $this->dbsetting->get_meta_data();
-                //if valid
-                $id = $_POST['id'];
-                $navigationname = $_POST['navName'];
-                // $navigationlink = $this->input->post('navigation_link');
-                //  $pid = $this->input->post('parent_id');
-                //  $navigationtype = $this->input->post('navigation_type');
-                // $navigationslug = $this->input->post('navigation_slug');
-                // $mid = $this->input->post('menu_id');
-                $this->dbdashboard->update_edited_navigation($id, $navigationname);
-                //  $this->session->set_flashdata('message', 'Navigation Menu Modified Sucessfully');
-            }
-            
-         else {
-            redirect('login/index/?url='.$url, 'refresh');
+            //if valid
+            $id = $_POST['id'];
+            $navigationname = $_POST['navName'];
+            // $navigationlink = $this->input->post('navigation_link');
+            //  $pid = $this->input->post('parent_id');
+            //  $navigationtype = $this->input->post('navigation_type');
+            // $navigationslug = $this->input->post('navigation_slug');
+            // $mid = $this->input->post('menu_id');
+            $this->dbdashboard->update_edited_navigation($id, $navigationname);
+            //  $this->session->set_flashdata('message', 'Navigation Menu Modified Sucessfully');
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
 
@@ -403,10 +360,10 @@ class Dashboard extends CI_Controller {
             $id = $_POST['id'];
             $this->dbdashboard->delnavigation($id);
         } else {
-            redirect('login/index/?url='.$url, 'refresh');
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
+
     public function addPageForNavigation() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
@@ -418,6 +375,7 @@ class Dashboard extends CI_Controller {
             $data["listOfCategory"] = $this->dbdashboard->get_list_of_category();
             $listOfNavigation = $this->dbdashboard->get_list_of_navigation();
             $data["listOfNavigation"] = $this->dbdashboard->get_list_of_navigation();
+
             $listOfSelectedMenu = Array();
 
             if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
@@ -428,59 +386,60 @@ class Dashboard extends CI_Controller {
                     }
                 }
                 $menuSelected = $_POST['departments'];
-                 if($menuSelected==!"0")
-                {
-                $menu_info = $this->dbdashboard->get_menu_info($menuSelected);
-                foreach ($menu_info as $id) {
-                    $menu_id = $id->id;
-                }
-                $navigationName = $_POST['jobs'];
-                if ($navigationName == 'Make Parent')
-                    $parent_id = '0';
-                else {
-                    $post_category_info = $this->dbdashboard->get_navigation_info($navigationName);
-                    foreach ($post_category_info as $pid) {
-                        $parent_id = $pid->id;
-                    }
-                }
 
-                foreach ($listOfSelectedMenu as $myData) {
-                    foreach ($myData as $k => $v) {
-                        $navigation_type = "page";
-                        $navigation_name = $v;
-                        $navigation_link = base_url()."index.php/view/".$navigation_type . "/" . $k;
-                        $navigation_slug = preg_replace('/\s+/', '', $v);
+                if ($menuSelected == !"0") {
+                    $menu_info = $this->dbdashboard->get_menu_info($menuSelected);
+                    foreach ($menu_info as $id) {
+                        $menu_id = $id->id;
                     }
-                    $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menu_id);
-                }
-                $this->session->set_flashdata("message", "Navigation Added Successfully.");
-                redirect('dashboard/navigation');
-                }
-                else{
-                   $data['token_error'] = ' Select at least one menu list!'; 
+                    $navigationName = $_POST['jobs'];
+                    if ($navigationName == 'Make Parent')
+                        $parent_id = '0';
+                    else {
+                        $post_category_info = $this->dbdashboard->get_navigation_info($navigationName);
+                        foreach ($post_category_info as $pid) {
+                            $parent_id = $pid->id;
+                        }
+                    }
+
+                    foreach ($listOfSelectedMenu as $myData) {
+                        foreach ($myData as $k => $v) {
+                            $navigation_type = "page";
+                            $navigation_name = $v;
+                            $navigation_link = base_url() . "index.php/view/" . $navigation_type . "/" . $k;
+                            $navigation_slug = preg_replace('/\s+/', '', $v);
+                        }
+                        $maxorder = $this->dbdashboard->get_max_order();
+                        foreach ($maxorder as $max) {
+                            $maxnum = $max->maxorder;
+                        }
+                        $maxorder = $maxnum + 1;
+                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected, $maxorder);
+                    }
+                    $this->session->set_flashdata("message", "Navigation Added Successfully.");
+                    redirect('dashboard/navigation');
+                } else {
+                    $data['token_error'] = ' Select at least one menu list!';
                     $config["total_rows"] = $this->dbdashboard->record_count_navigation();
-          
-            $config["per_navigation"] = 6;
-            $this->pagination->initialize($config);
-            $navigation = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-            $data["query"] = $this->dbdashboard->get_navigation($config["per_navigation"], $navigation);
-            $data["links"] = $this->pagination->create_links();
-            $data['meta'] = $this->dbsetting->get_meta_data();
-            $data["listOfPage"] = $this->dbpage->get_list_of_pages();
-            $data["listOfCategory"] = $this->dbdashboard->get_list_of_category();
-            $data["listOfMenu"] = $this->dbdashboard->get_list_of_menu();
-            $data["listOfNavigation"] = $this->dbdashboard->get_list_of_navigation();
-            $data["listOfNavigationID"] = $this->dbdashboard->get_list_of_navigationID();
+                    $config["per_navigation"] = 6;
+                    $this->pagination->initialize($config);
+                    $navigation = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-            $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/navigation/listOfItems', $data);
-            
+                    $data["query"] = $this->dbdashboard->get_navigation($config["per_navigation"], $navigation);
+                    $data["links"] = $this->pagination->create_links();
+                    $data['meta'] = $this->dbsetting->get_meta_data();
+                    $data["listOfPage"] = $this->dbpage->get_list_of_pages();
+                    $data["listOfCategory"] = $this->dbdashboard->get_list_of_category();
+                    $data["listOfMenu"] = $this->dbdashboard->get_list_of_menu();
+                    $data["listOfNavigation"] = $this->dbdashboard->get_list_of_navigation();
+                    $data["listOfNavigationID"] = $this->dbdashboard->get_list_of_navigationID();
+
+                    $this->load->view('bnw/templates/header', $data);
+                    $this->load->view('bnw/templates/menu');
+                    $this->load->view('bnw/navigation/listOfItems', $data);
                 }
-            } 
-            
-            else {
+            } else {
                 $data['meta'] = $this->dbsetting->get_meta_data();
                 $data["listOfPage"] = $this->dbpage->get_list_of_pages();
                 $data["listOfCategory"] = $this->dbdashboard->get_list_of_category();
@@ -488,13 +447,12 @@ class Dashboard extends CI_Controller {
                 $this->load->view('bnw/templates/header', $data);
                 $this->load->view('bnw/templates/menu', $data);
                 $this->load->view('bnw/navigation/listOfItems', $data);
-                
             }
         } else {
-            redirect('login/index/?url='.$url, 'refresh');
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
+
     public function addCategoryForNavigation() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
@@ -511,75 +469,75 @@ class Dashboard extends CI_Controller {
 
             if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
                 $menuSelected = $_POST['departments'];
-                if($menuSelected==!"0")
-                {
-                $menu_info = $this->dbdashboard->get_menu_info($menuSelected);
-              
-                foreach ($menu_info as $id) {
-                    $menu_id = $id->id;
-                }
-               
-              
-                $navigationName = $_POST['jobs'];
-                if ($navigationName == 'Make Parent')
-                    $parent_id = '0';
-                else {
-                    $post_category_info = $this->dbdashboard->get_navigation_info($navigationName);
-                    foreach ($post_category_info as $pid) {
-                        $parent_id = $pid->id;
+                if ($menuSelected == !"0") {
+                    $menu_info = $this->dbdashboard->get_menu_info($menuSelected);
+
+                    foreach ($menu_info as $id) {
+                        $menu_id = $id->id;
                     }
-                }
 
-                $categoryList = Array();
-                foreach ($listOfCategory as $myData) { {
-                        if (isset($_POST[preg_replace('/\s+/', '', $myData->category_name)])) {
 
-                            array_push($categoryList, array($myData->id => $myData->category_name));
+                    $navigationName = $_POST['jobs'];
+                    if ($navigationName == 'Make Parent')
+                        $parent_id = '0';
+                    else {
+                        $post_category_info = $this->dbdashboard->get_navigation_info($navigationName);
+                        foreach ($post_category_info as $pid) {
+                            $parent_id = $pid->id;
                         }
                     }
-                }
 
+                    $categoryList = Array();
+                    foreach ($listOfCategory as $myData) { {
+                            if (isset($_POST[preg_replace('/\s+/', '', $myData->category_name)])) {
 
-                foreach ($categoryList as $myData) {
-                    foreach ($myData as $k => $v) {
-                        $navigation_name = $v;
-                        $navigation_type = "category";
-                        $navigation_link = base_url()."index.php/view/".$navigation_type . "/" . $k;
-                        $navigation_slug = preg_replace('/\s+/', '', $v);
-                        ;
+                                array_push($categoryList, array($myData->id => $myData->category_name));
+                            }
+                        }
                     }
 
-                    $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menu_id);
-                }
 
-                $this->load->view('bnw/templates/header', $data);
-                $this->load->view('bnw/templates/menu', $data);
-                $this->load->view('bnw/navigation/listOfItems', $data);
-                
-                }
-                else{
-                    
-                    $data['token_error'] = ' Select at least one menu list!'; 
+                    foreach ($categoryList as $myData) {
+                        foreach ($myData as $k => $v) {
+                            $navigation_name = $v;
+                            $navigation_type = "category";
+                            $navigation_link = base_url() . "index.php/view/" . $navigation_type . "/" . $k;
+                            $navigation_slug = preg_replace('/\s+/', '', $v);
+                            ;
+                        }
+                        $maxorder = $this->dbdashboard->get_max_order();
+                        foreach ($maxorder as $max) {
+                            $maxnum = $max->maxorder;
+                        }
+                        $maxorder = $maxnum + 1;
+
+                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected, $maxorder);
+                    }
+
+                    $this->load->view('bnw/templates/header', $data);
+                    $this->load->view('bnw/templates/menu', $data);
+                    $this->load->view('bnw/navigation/listOfItems', $data);
+                } else {
+
+                    $data['token_error'] = ' Select at least one menu list!';
                     $config["total_rows"] = $this->dbdashboard->record_count_navigation();
-          
-            $config["per_navigation"] = 6;
-            $this->pagination->initialize($config);
-            $navigation = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-            $data["query"] = $this->dbdashboard->get_navigation($config["per_navigation"], $navigation);
-            $data["links"] = $this->pagination->create_links();
-            $data['meta'] = $this->dbsetting->get_meta_data();
-            $data["listOfPage"] = $this->dbpage->get_list_of_pages();
-            $data["listOfCategory"] = $this->dbdashboard->get_list_of_category();
-            $data["listOfMenu"] = $this->dbdashboard->get_list_of_menu();
-            $data["listOfNavigation"] = $this->dbdashboard->get_list_of_navigation();
-            $data["listOfNavigationID"] = $this->dbdashboard->get_list_of_navigationID();
+                    $config["per_navigation"] = 6;
+                    $this->pagination->initialize($config);
+                    $navigation = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-            $this->load->view('bnw/templates/header', $data);
-            $this->load->view('bnw/templates/menu');
-            $this->load->view('bnw/navigation/listOfItems', $data);
-            
-                  
+                    $data["query"] = $this->dbdashboard->get_navigation($config["per_navigation"], $navigation);
+                    $data["links"] = $this->pagination->create_links();
+                    $data['meta'] = $this->dbsetting->get_meta_data();
+                    $data["listOfPage"] = $this->dbpage->get_list_of_pages();
+                    $data["listOfCategory"] = $this->dbdashboard->get_list_of_category();
+                    $data["listOfMenu"] = $this->dbdashboard->get_list_of_menu();
+                    $data["listOfNavigation"] = $this->dbdashboard->get_list_of_navigation();
+                    $data["listOfNavigationID"] = $this->dbdashboard->get_list_of_navigationID();
+
+                    $this->load->view('bnw/templates/header', $data);
+                    $this->load->view('bnw/templates/menu');
+                    $this->load->view('bnw/navigation/listOfItems', $data);
                 }
             } else {
                 $data['meta'] = $this->dbsetting->get_meta_data();
@@ -589,13 +547,12 @@ class Dashboard extends CI_Controller {
                 $this->load->view('bnw/templates/header', $data);
                 $this->load->view('bnw/templates/menu', $data);
                 $this->load->view('bnw/navigation/listOfItems', $data);
-                
             }
         } else {
-            redirect('login/index/?url='.$url, 'refresh');
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
+
     public function addCustomLink() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
@@ -618,50 +575,55 @@ class Dashboard extends CI_Controller {
 
                 $this->load->view('bnw/navigation/listOfItems', $data);
             } else {
-                 if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
-                $menuSelected = $_POST['departments'];
-                if($menuSelected==!"0")
-                {
-                $menu_info = $this->dbdashboard->get_menu_info($menuSelected);
-              
-                foreach ($menu_info as $id) {
-                    $menu_id = $id->id;
-                }
-               
-              
-                $navigationName = $_POST['jobs'];
-                if ($navigationName == 'Make Parent'){
-                $parent_id = '0';}
-                else {
-                    $post_category_info = $this->dbdashboard->get_navigation_info($navigationName);
-                    foreach ($post_category_info as $pid) {
-                        $parent_id = $pid->id;
+                if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
+                    $menuSelected = $_POST['departments'];
+
+                    $maxorder = $this->dbdashboard->get_max_order();
+                    foreach ($maxorder as $max) {
+                        $maxnum = $max->maxorder;
+                    }
+                    $maxorder = $maxnum + 1;
+
+                    if ($menuSelected == !"0") {
+                        $menu_info = $this->dbdashboard->get_menu_info($menuSelected);
+
+                        foreach ($menu_info as $id) {
+                            $menu_id = $id->id;
+                        }
+
+
+                        $navigationName = $_POST['jobs'];
+                        if ($navigationName == 'Make Parent') {
+                            $parent_id = '0';
+                        } else {
+                            $post_category_info = $this->dbdashboard->get_navigation_info($navigationName);
+                            foreach ($post_category_info as $pid) {
+                                $parent_id = $pid->id;
+                            }
+                        }
                     }
                 }
-            }}
-                
+
                 $navigationName = $this->input->post('navigation_name');
                 $navigationLink = $this->input->post('navigation_link');
                 $parentID = $parent_id;
                 $navigationType = "";
                 $navigation_slug = preg_replace('/\s+/', '', $navigationName);
-                $this->dbdashboard->add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menu_id);
-               // $data['token_sucess'] = ' One Navigation item added sucessfully';                
-               $this->session->set_flashdata('message', 'One Navigation item added sucessfully');
+                $this->dbdashboard->add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menuSelected, $maxorder);
+                // $data['token_sucess'] = ' One Navigation item added sucessfully';                
+                $this->session->set_flashdata('message', 'One Navigation item added sucessfully');
                 redirect('dashboard/navigation');
             }
-            
         } else {
 
-            redirect('login/index/?url='.$url, 'refresh');
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
+
     //============================ CLOSE NAVIGATION =====================================//
-    
-    
     //============================= START CATEGORY ======================================//
-    
-     function change_category() {
+
+    function change_category() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $id = $_POST['id'];
@@ -686,36 +648,35 @@ class Dashboard extends CI_Controller {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
-     public function category() {
+
+    public function category() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 
-            
+
             $config = array();
             $config["base_url"] = base_url() . "index.php/bnw/category";
             $config["total_rows"] = $this->dbdashboard->record_count_category();
-           // var_dump($config["total_rows"]);
+            // var_dump($config["total_rows"]);
             $config["per_page"] = 6;
             $this->pagination->initialize($config);
             $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
             $data["query"] = $this->dbdashboard->get_all_category($config["per_page"], $page);
             $data["links"] = $this->pagination->create_links();
-           
-            
+
+
             $data['meta'] = $this->dbsetting->get_meta_data();
 
 
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/category/addCategory', $data);
-            
         } else {
-            redirect('login/index/?url='.$url, 'refresh');
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
+
     public function addcategory() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
@@ -768,14 +729,12 @@ class Dashboard extends CI_Controller {
 
                 $this->load->view('bnw/category/addCategory', $data);
             }
-
-           
         } else {
-            redirect('login/index/?url='.$url, 'refresh');
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
-    public function editcategory($id=0) {
+
+    public function editcategory($id = 0) {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['query'] = $this->dbdashboard->findcategory($id);
@@ -786,13 +745,11 @@ class Dashboard extends CI_Controller {
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/category/edit', $data);
-
-          
         } else {
-            redirect('login/index/?url='.$url, 'refresh');
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
+
     public function updatecategory() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
@@ -844,46 +801,36 @@ class Dashboard extends CI_Controller {
                 $data['query'] = $this->dbdashboard->findcategory($id);
                 $this->load->view('bnw/category/edit', $data);
             }
-
-           
         } else {
-            redirect('login/index/?url='.$url, 'refresh');
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
+
     public function deletecategory() {
         $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-          $this->dbdashboard->delete_category($id);
+            $this->dbdashboard->delete_category($id);
 //              $this->session->set_flashdata('message', 'Data Delete Sucessfully');
 //                 redirect('dashboard/category');
-                
-          
         } else {
-            redirect('login/index/?url='.$url, 'refresh');
+            redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
-    function delete_category($id=0)
-    {
+
+    function delete_category($id = 0) {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-             $data['meta'] = $this->dbsetting->get_meta_data();
-             $data['category'] = $this->dbdashboard->get_category_id($id);
+            $data['meta'] = $this->dbsetting->get_meta_data();
+            $data['category'] = $this->dbdashboard->get_category_id($id);
             // $data['category_list'] = $this->dbmodel->get_category();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu', $data);
             $this->load->view('bnw/category/delcategory', $data);
-           
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
         }
-        else
-        {
-             redirect('login/index/?url='.$url, 'refresh');
-        }
-        
     }
-    
+
     //============================= CLOSE CATEGORY ========================================//
-    
 }

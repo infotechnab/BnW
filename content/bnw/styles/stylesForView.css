@@ -30,10 +30,10 @@ body
 {
     float: left;
     width: 150px;
-  
     border: #999999 solid 1px;
     padding: 10px;
     margin: 10px;
+  
 }
 #close
 {
@@ -43,6 +43,7 @@ body
 {
     width: 150px;
     height: 150px;
+    overflow: hidden;
     
 }
 #imagetitle

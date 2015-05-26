@@ -1,83 +1,32 @@
-
-<?php      foreach ($listOfMenu as $data)
-                {
-                  $categories[] = array('id'=> $data->id,'menu_name'=>$data->menu_name); 
-                } 
-                if(!empty($listOfNavigation)){
-                foreach ($listOfNavigation as $data){
-                   $subcats[$data->menu_id][] = array('nid'=>$data->id,'menu_id'=>$data->menu_id,'nname'=>$data->navigation_name); 
-                }
-                
-                }
- $jsonCats = json_encode($categories);
-  $jsonSubCats = json_encode($subcats);
- 
-?>
-
-<script type="text/javascript">
-
-(function($) { 
-$.fn.changeType = function(){
-    <?php
-        echo "var categories = $jsonCats; \n";
-        echo "var subcats = $jsonSubCats; \n";
-      ?>
-              <?php
-              
-                $initial= '             
-
-    
-    var data = [';
-                echo $initial;
-                
-                foreach ($listOfMenu as $data)
-                {
-                    echo'{"department":'.'"'.$data->menu_name.'",'.'"jobs":[';
-                    $subCategory = $this->dbmodel->get_subList($data->id);
-                    foreach ($subCategory as $nextData)
-                    {
-                        echo '{"title":"'.$nextData->navigation_name.'"},';
-                    }
-                    echo "]},";
-                }
-                echo ']';
-              ?>
+<script>
+    $(document).ready(function(){
+       $(document).on("change", "#departments", function(){
+           var menu_id = $(this).val();
+           var options;
+           var thiss = $(this).next();
+           $.ajax({
+                                    type: "POST",
+                                    url: "<?php echo base_url() . 'index.php/dashboard/fetchMenu'; ?>",
+                                    data: {
+                                        id : menu_id
+                                    },
+                                    success: function (dat)
+                                    {
+                                        thiss.html(" ");
+                                        var data = JSON.parse(dat);
+                                        var initOptions = "<option>Make Parent</option>";
+                                        for(var i=0;i<data.length;i++)
+                                        {
+                                            options +="<option value='"+ data[i].navigation_name +"'>"+ data[i].navigation_name +"</option>";
+                                        }
+                                        thiss.html(initOptions + options);
+                                    }
 
 
-        var options_departments = '<option value="0">Select Menu</option>';
-        $.each(data, function(i,d){
-            options_departments += '<option value="' + d.department + '">' + d.department + '</option>';
-        });
-        $("select#departments").html(options_departments);
-       
-        $("select#departments").change(function(){
-            var index = $(this).get(0).selectedIndex;
-            var d = data[index-1];  // -1 because index 0 is for empty 'Select' option
-            var options = '<option>Make Parent<\/option>';
-            if (index > 0) {
-                $.each(d.jobs, function(i,j){
-                            options += '<option value="'+ j.title + '">' + j.title + '<\/option>';
-                });
-            } else {
-                options += '<option>Make Parent<\/option>';
-            }
-            $("select#jobs").html(options);
-        })
-};
-   
-})(jQuery);
-
-
-$(document).ready(function() {
-    $("form#search").changeType();
-});
-
-$(document).ready(function() {
-    $("form#search").changeType();
-});
-
+                                });
+       });
+    });
 </script>
-
 <!-- NAvigation items list shown here  -->
  <div class="rightSide">
      <div class="titleArea">
@@ -114,10 +63,13 @@ $(document).ready(function() {
     
     <div id="navigationLeftDown">
      <select style="width: 110px" name="departments" id="departments">
-        <option value ="0">Select Menu</option>
+         <option value ="0">Select Menu</option>
+         <?php foreach($listOfMenu as $menu) { ?>
+        <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
+         <?php } ?>
     </select>
            
-    <select style="width: 150px" name="jobs" id="jobs">
+        <select style="width: 150px" name="jobs" id="jobs" class="jobs">
         <option>Make Parent</option>
     </select>      
             <input type="submit" value="Add">
@@ -157,10 +109,13 @@ $(document).ready(function() {
         
         <div id="navigationLeftDown">
             <select style="width: 110px" name="departments" id="departments">
-        <option value="0" >Select Menu</option>
+        <option value ="0">Select Menu</option>
+         <?php foreach($listOfMenu as $menu) { ?>
+        <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
+         <?php } ?>
     </select>
            
-    <select style="width: 150px" name="jobs" id="jobs">
+    <select style="width: 150px" name="jobs" id="jobs" class="jobs">
         <option>Make Parent</option>
     </select>
             <input type="submit" value="Add">
@@ -191,9 +146,12 @@ $(document).ready(function() {
               
             <select style="width: 110px" name="departments" id="departments">
         <option value ="0">Select Menu</option>
+         <?php foreach($listOfMenu as $menu) { ?>
+        <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
+         <?php } ?>
     </select>  
             
-            <select style="width: 150px" name="jobs" id="jobs">
+            <select style="width: 150px" name="jobs" id="jobs" class="jobs">
         <option>Make Parent</option>
     </select> 
             

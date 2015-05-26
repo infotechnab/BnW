@@ -37,6 +37,7 @@ function has_child($query) { //This function checks if the menus has childs or n
 function fetch_menu($query) {
 	while ( $result = mysql_fetch_array ( $query ) ) {
 		$menu_id = $result ['id'];
+                $order = $result ['order'];
 		$menu_name = $result ['navigation_name'];
 		$menu_link = $result ['navigation_link'];
 		echo "<li  class='has-sub'><div id='fullNav' style='border:1px solid #ccc;width:100%;padding:1%;'><div id='navName' style='float:left;width:70%;'>".
