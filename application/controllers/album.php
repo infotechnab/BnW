@@ -178,8 +178,14 @@ class Album extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $a = $_GET['image'];
-            unlink('./content/uploads/images/' . $a);
-            unlink('./content/uploads/images/thumb_' . $a);
+             $filename1 = './content/uploads/images/' . $a;
+             $filename2 = './content/uploads/images/thumb_' . $a;
+                if (file_exists($filename1)) {
+                    unlink($filename1);
+                } else {}
+                if (file_exists($filename2)) {
+                    unlink($filename2);
+                } else {}
             $this->dbalbum->delete_photo($a);
             $this->session->set_flashdata('message', 'Image Deleted Sucessfully');
             redirect('album/addalbum');
