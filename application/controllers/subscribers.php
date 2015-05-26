@@ -62,23 +62,25 @@ class Subscribers extends CI_Controller {
           }
     }
     
-    public function deletesubs($id=null)
+    public function deletesubs()
     {
+        $id = $_POST['id'];
        if ($this->session->userdata('admin_logged_in')) {
             $this->contact_model->delete_subscription($id);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('subscribers/viewSubscriber');
+//            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+//            redirect('subscribers/viewSubscriber');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
     
-    public function deleteRemarks($id=null)
+    public function deleteRemarks()
     {
+        $id = $_POST['id'];
        if ($this->session->userdata('admin_logged_in')) {
             $this->contact_model->delete_subscription($id);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('subscribers/viewContact');
+//            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+//            redirect('subscribers/viewContact');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }

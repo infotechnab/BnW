@@ -159,36 +159,25 @@ class Album extends CI_Controller {
         }
     }
 
-    public function delphoto($photoid = 0) {
+     public function deletephoto() {
+         $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-            $data['query'] = $this->dbalbum->get_photo_media_id($photoid);
-
-            $data['meta'] = $this->dbsetting->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/album/deletePhoto', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }
-    }
-
-    public function deletephoto($a = 0) {
-        $url = current_url();
-        if ($this->session->userdata('admin_logged_in')) {
-            $a = $_GET['image'];
-             $filename1 = './content/uploads/images/' . $a;
-             $filename2 = './content/uploads/images/thumb_' . $a;
+            $media = $this->dbalbum->get_imagename($id);
+            foreach ($media as $med){
+                $media_type = $med->media_type;
+            }
+             $filename1 = './content/uploads/images/' . $media_type;
+             $filename2 = './content/uploads/images/thumb_' . $media_type;
                 if (file_exists($filename1)) {
                     unlink($filename1);
                 } else {}
                 if (file_exists($filename2)) {
                     unlink($filename2);
                 } else {}
-            $this->dbalbum->delete_photo($a);
-            $this->session->set_flashdata('message', 'Image Deleted Sucessfully');
-            redirect('album/addalbum');
+            $this->dbalbum->delete_photo($id);
+//            $this->session->set_flashdata('message', 'Image Deleted Sucessfully');
+//            redirect('album/addalbum');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -224,23 +213,8 @@ class Album extends CI_Controller {
         }
     }
 
-    public function delalbum($id = 0) {
-
-        $url = current_url();
-        if ($this->session->userdata('admin_logged_in')) {
-            $data['photoquery'] = $this->dbalbum->get_all_photos($id);
-            $data['albumquery'] = $this->dbalbum->get_selected_album($id);
-            $data['meta'] = $this->dbsetting->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/album/deleteAlbum', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }
-    }
-
-    function delete_album($id) {
+     function delete_album() {
+        $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['photoquery'] = $this->dbalbum->get_all_photos($id);
@@ -250,8 +224,8 @@ class Album extends CI_Controller {
             }
             $this->dbalbum->delete_photo($id);
             $this->dbalbum->delete_album($id);
-            $this->session->set_flashdata('message', 'One album Deleted Sucessfully');
-            redirect('album/addalbum');
+//            $this->session->set_flashdata('message', 'One album Deleted Sucessfully');
+//            redirect('album/addalbum');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -434,29 +408,18 @@ class Album extends CI_Controller {
         }
     }
 
-    public function delmedia($id = 0) {
+    public function deletemedia() {
+        $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-            $data['query'] = $this->dbalbum->findmedia($id);
-            $data['meta'] = $this->dbsetting->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/media/deleteMedia', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }
-    }
-
-    public function deletemedia($id) {
-        $url = current_url();
-        if ($this->session->userdata('admin_logged_in')) {
-            $id = $_GET['image'];
-            unlink('./content/uploads/images/' . $id);
-            unlink('./content/uploads/images/thumb_' . $id);
+            $media = $this->dbalbum->get_imagename($id);
+            foreach ($media as $med){
+                $media_type = $med->media_type;
+            }
+            unlink('./content/uploads/images/' . $media_type);
+            unlink('./content/uploads/images/thumb_' . $media_type);
             $this->dbalbum->delete_media($id);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('album/media');
+//            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }

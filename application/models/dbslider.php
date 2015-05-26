@@ -10,6 +10,12 @@ class Dbslider extends CI_Model {
         return $this->db->count_all("slide");
     }
 
+    public function get_imagename($id){
+        $this->db->where("id",$id);
+        $query = $this->db->get("slide");
+        return $query->result();
+    }
+    
     public function get_slider($limit, $start) {
         $this->db->limit($limit, $start);
         $this->db->order_by('id', 'DESC');
@@ -67,7 +73,7 @@ class Dbslider extends CI_Model {
         $this->db->update('slide', $data);
     }
 
-    function delete_slider($a) {
-        $this->db->delete('slide', array('slide_image' => $a));
+    function delete_slider($id) {
+        $this->db->delete('slide', array('id' => $id));
     }
 }

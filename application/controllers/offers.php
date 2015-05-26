@@ -198,8 +198,8 @@ if (file_exists($filename1)) {
         }
     }
     
-     public function deletepost($id = 0) {
-
+     public function deletepost() {
+         $id = $_POST['id'];
           $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['query'] = $this->dboffers->findpost($id);

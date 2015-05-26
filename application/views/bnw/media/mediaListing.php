@@ -26,7 +26,7 @@
    <?php
             foreach ($query as $data){
             ?>
-          <tr>
+        <tr class="action">
             
             <td><?php echo $data->media_name; ?></td>
             
@@ -41,7 +41,8 @@
                     <?php } else{ echo $file_ext.' file'; } ?> </td>
             <td><?php echo base_url().'content/uploads/images/'.$file; ?></td>
             <td><?php echo anchor('album/editmedia/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
-            <?php echo anchor('album/delmedia/'.$data->id,'<i class="fa fa-trash-o"></i>'); ?></td>
+                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+            </td>
         </tr>
             <?php    
             } }
@@ -56,4 +57,18 @@
 </div>
 <div class="clear"></div>
 </div>
+
+<script>
+    $(document).ready(function(){
+       $(document).on("click", ".del_category", function(){
+           var id = $(this).attr("id");
+            $(this).confirm();
+            var url = '<?php echo base_url().'index.php/album/deletemedia' ?>';
+            var hideid = $(this);
+            $(this).confirm.yes({id:id,url:url,thiss:hideid});
+            $(this).confirm.no();
+            
+       });
+    });
+</script>
 

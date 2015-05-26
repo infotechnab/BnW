@@ -76,14 +76,12 @@
         if (isset($query)) {
             foreach ($query as $data) {
                 ?>    
-                <div id="photodiv" style="min-height: 201px;">
+        <div id="photodiv" class="action" style="min-height: 201px;">
                     <img class="srcimage" src="<?php echo base_url(); ?>content/uploads/images/thumb_<?php echo $data->media_type; ?>" name="<?php echo $data->media_type ?>" id="galleryimage" />
                     <div id="imagetitle"> <?php echo $data->media_name; ?>
 
                     </div>
-                    <a href="<?php echo base_url(); ?>index.php/album/delphoto/<?php echo $data->id; ?> " id="<?php echo $id; ?>" class="delbutton">
-                        <img src="<?php echo base_url(); ?>content/bnw/images/delete.png" id="close"/>
-                    </a>
+                    <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
 
 
                 </div> 
@@ -127,3 +125,17 @@
 </div>
 <div class="clear"></div>
 </div>
+
+<script>
+    $(document).ready(function(){
+       $(document).on("click", ".del_category", function(){
+           var id = $(this).attr("id");
+            $(this).confirm();
+            var url = '<?php echo base_url().'index.php/album/deletephoto' ?>';
+            var hideid = $(this);
+            $(this).confirm.yes({id:id,url:url,thiss:hideid});
+            $(this).confirm.no();
+            
+       });
+    });
+</script>

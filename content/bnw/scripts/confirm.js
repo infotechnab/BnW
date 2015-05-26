@@ -30,7 +30,8 @@
         {
             
             showFunction();
-
+             var thisss = data.thiss;
+            
             $(document).on("click","#yes",function(){
                  $.ajax({
                         type: "POST",
@@ -48,6 +49,7 @@
                                {
                                    $("#pop").html("Success!!!<br>");
                                    $("#pop").append("<button id='closesuccess' style='margin-top:5%;'>Close</button>");
+                                   thisss.parents(".action").hide();
                                }
 
 
@@ -69,11 +71,11 @@
 
         jQuery.fn.confirm.no = function ()
         {
+           
             $(document).on("click","#no",function(){
-                setTimeout(function(){
+                
                                        $("#pop").hide();
                                        $("#fades").hide();
-                                   },1000);
             });
             return _this;
         };

@@ -33,13 +33,14 @@
    
    <?php         foreach ($query as $data){
             ?>
-          <tr>
+        <tr class="action">
             
             <td><?php echo $data->slide_name ?></td>
             <td><img src="<?php echo base_url()."content/uploads/sliderImages/thumb_".$data->slide_image; ?>" width="50px" height="50px" />  </td>
             <td><?php echo $data->slide_content ?></td>
             <td><?php echo anchor('sliders/editslider/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
-            <?php echo anchor('sliders/delslider/'.$data->id,'<i class="fa fa-trash-o"></i>'); ?></td>
+                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+            </td>
         </tr>
             <?php    
             }
@@ -56,3 +57,17 @@
 </div>
 <div class="clear"></div>
 </div>
+
+<script>
+    $(document).ready(function(){
+       $(document).on("click", ".del_category", function(){
+           var id = $(this).attr("id");
+            $(this).confirm();
+            var url = '<?php echo base_url().'index.php/sliders/deleteslider' ?>';
+            var hideid = $(this);
+            $(this).confirm.yes({id:id,url:url,thiss:hideid});
+            $(this).confirm.no();
+            
+       });
+    });
+</script>

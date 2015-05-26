@@ -20,7 +20,7 @@
     <?php
             foreach ($query as $data){
             ?>
-          <tr>    
+        <tr class="action">    
               <td><?php echo substr($data->page_name, 0,50); ?></td>
             <td><?php echo $data->page_summary ?></td>            
             <td><?php if($data->page_status=="Active")
@@ -35,7 +35,8 @@
             ?></td>
             <td><?php if(!empty($data->images)){ ?><img src="<?php echo base_url().'content/uploads/images/'.$data->images; ?>" alt="" width="100" /> <?php }  else { echo "Image not set"; } ?></td>
             <td><?php echo anchor('page/editpage/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
-            <?php echo anchor('page/deletepage/'.$data->id,'<i class="fa fa-trash-o"></i>'); ?></td>
+                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+            </td>
         </tr>
             <?php    
             }
@@ -50,3 +51,16 @@
 </div>
 <div class="clear"></div>
 </div>
+<script>
+    $(document).ready(function(){
+       $(document).on("click", ".del_category", function(){
+           var id = $(this).attr("id");
+            $(this).confirm();
+            var url = '<?php echo base_url().'index.php/page/deletepage' ?>';
+            var hideid = $(this);
+            $(this).confirm.yes({id:id,url:url,thiss:hideid});
+            $(this).confirm.no();
+            
+       });
+    });
+</script>

@@ -26,7 +26,7 @@ $this->load->helper('summary_helper');
         <?php
             foreach ($event as $data){
             ?>
-          <tr>
+          <tr class="action">
               <td><?php echo $data->title; ?></td>
             
             <td><?php echo custom_echo($data->details); ?></td>
@@ -36,7 +36,8 @@ $this->load->helper('summary_helper');
             <td><?php echo $data->type; ?></td>
              
             <td><?php echo anchor('events/editevent/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
-            <?php echo anchor('events/delevent/'.$data->id,'<i class="fa fa-trash-o"></i>'); ?></td>
+                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+            </td>
         </tr>
             <?php    
             }
@@ -54,3 +55,17 @@ $this->load->helper('summary_helper');
 </div>
 <div class="clear"></div>
 </div>
+<script>
+    $(document).ready(function(){
+       $(document).on("click", ".del_category", function(){
+           var id = $(this).attr("id");
+           
+            $(this).confirm();
+            var url = '<?php echo base_url().'index.php/events/delevent' ?>';
+            var hideid = $(this);
+            $(this).confirm.yes({id:id,url:url,thiss:hideid});
+            $(this).confirm.no();
+            
+       });
+    });
+</script>

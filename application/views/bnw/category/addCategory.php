@@ -40,7 +40,7 @@
               // $catData =  $this->dbmodel->get_file($data->id);
                                 
                 ?>
-          <tr>
+        <tr class="action">
             <td><?php echo $data->id; ?></td>
             <td><?php echo $data->category_name ?></td>
             <td><?php echo anchor('dashboard/editcategory/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
@@ -84,9 +84,10 @@
            var id = $(this).attr("id");
             $(this).confirm();
             var url = '<?php echo base_url().'index.php/dashboard/deletecategory' ?>';
-            $(this).confirm.yes({id:id,url:url});
+            var hideid = $(this);
+            $(this).confirm.yes({id:id,url:url,thiss:hideid});
             $(this).confirm.no();
-            $(this).parent().parent().remove();
+            
        });
     });
 </script>

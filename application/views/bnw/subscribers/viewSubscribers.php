@@ -20,10 +20,12 @@
     <?php
             foreach ($news as $data){
             ?>
-          <tr>    
+        <tr class="action">    
             <td><?php echo $data->full_name; ?></td>
             <td><?php echo $data->email; ?></td>            
-            <td><?php echo anchor('subscribers/deletesubs/'.$data->id,'<i class="fa fa-trash-o"></i>'); ?></td>
+            <td>
+                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+            </td>
           </tr>
             <?php    
             }
@@ -41,3 +43,16 @@
 </div>
 <div class="clear"></div>
 </div>
+<script>
+    $(document).ready(function(){
+       $(document).on("click", ".del_category", function(){
+           var id = $(this).attr("id");
+            $(this).confirm();
+            var url = '<?php echo base_url().'index.php/subscribers/deletesubs' ?>';
+            var hideid = $(this);
+            $(this).confirm.yes({id:id,url:url,thiss:hideid});
+            $(this).confirm.no();
+            
+       });
+    });
+</script>

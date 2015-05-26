@@ -157,20 +157,6 @@ class Sliders extends CI_Controller {
         }
     }
 
-    public function delslider($id = 0) {
-        $url = current_url();
-        if ($this->session->userdata('admin_logged_in')) {
-            $data['query'] = $this->dbslider->findslider($id);
-            $data['meta'] = $this->dbsetting->get_meta_data();
-            $this->load->view("bnw/templates/header", $data);
-            $this->load->view("bnw/templates/menu");
-            $this->load->view('bnw/slider/delete', $data);
-            $this->load->view('bnw/templates/footer', $data);
-        } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }
-    }
-
     public function updateslider() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
@@ -270,22 +256,26 @@ class Sliders extends CI_Controller {
         }
     }
 
-    public function deleteslider($a = 0) {
+    public function deleteslider() {
+        $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-            $a = $_GET['image'];
+            $slider = $this->dbslider->get_imagename($id);
+            foreach ($slider as $slide){
+                $slider_img = $slide->slide_image;
+            }
   
-$filename1 = './content/uploads/sliderImages/' . $a;
-$filename2 = './content/uploads/sliderImages/thumb_' . $a;
+$filename1 = './content/uploads/sliderImages/' . $slider_img;
+$filename2 = './content/uploads/sliderImages/thumb_' . $slider_img;
 if (file_exists($filename1)) {
     unlink($filename1);
 } else {}
 if (file_exists($filename2)) {
     unlink($filename2);
 } else {}
-            $this->dbslider->delete_slider($a);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('sliders/slider');
+            $this->dbslider->delete_slider($id);
+//            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+//            redirect('sliders/slider');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }

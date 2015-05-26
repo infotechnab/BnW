@@ -9,7 +9,12 @@ class Dbalbum extends CI_Model {
      public function record_count_album() {
         return $this->db->count_all("album");
     }
-
+    public function get_imagename($id){
+        $this->db->where("id",$id);
+        $query = $this->db->get("media");
+        return $query->result();
+    }
+  
     public function get_album() {
         $query = $this->db->get('album');
         return $query->result();
@@ -69,9 +74,9 @@ class Dbalbum extends CI_Model {
         return $aid->result();
     }
 
-    function delete_photo($a) {
-
-        $this->db->delete('media', array('media_type' => $a));
+    function delete_photo($id) {
+        $this->db->where('id',$id);
+        $this->db->delete('media');
     }
     function get_meta_data() {
         $this->db->from('meta_data');
@@ -148,8 +153,8 @@ class Dbalbum extends CI_Model {
     }
 
     public function delete_media($id) {
-
-        $this->db->delete('media', array('media_type' => $id));
+        $this->db->where('id',$id);
+        $this->db->delete('media');
     }
 
     public function get_media_association_info($mediaName) {

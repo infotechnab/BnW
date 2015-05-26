@@ -149,7 +149,7 @@ class Page extends CI_Controller {
                     }
                 } else {
                     //die('not');
-                    $image = NULL;
+                    $image = "";
                     $pageName = $this->input->post('page_name');
                     $body = $this->input->post('page_content');
                     $page_author_info = $this->dbpage->get_page_author_id($username);
@@ -164,7 +164,7 @@ class Page extends CI_Controller {
                     $allowComment = $this->input->post('allow_comment');
                     $allowLike = $this->input->post('allow_like');
                     $allowShare = $this->input->post('allow_share');
-                    $this->dbpage->add_new_page($name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare, $image);
+                    $this->dbpage->add_new_page($pageName, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare, $image);
                     $this->session->set_flashdata('message', 'One pages added sucessfully');
                     redirect('page/pages');
                 }
@@ -335,8 +335,8 @@ if (file_exists($filename1)) {
     }
 
    
-    public function deletepage($id = NULL) {
-
+    public function deletepage() {
+        $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['query'] = $this->dbpage->findpage($id);

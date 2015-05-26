@@ -72,7 +72,8 @@ class Events extends CI_Controller {
         }
     }
     
-    function delevent($id = 0) {
+    function delevent() {
+        $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['event'] = $this->dbevent->get_event_id($id);

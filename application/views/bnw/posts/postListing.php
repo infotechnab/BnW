@@ -42,7 +42,7 @@
             </td>
             <td>
                 <a href="<?php echo base_url().'index.php/offers/editpost/'.$data->id; ?>"><i class="fa fa-pencil-square-o"></i></a> | 
-                <a href="<?php echo base_url().'index.php/offers/deletepost/'.$data->id; ?>"><i class="fa fa-trash-o"></i></a> 
+                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
             </td>
         </tr>
             <?php    
@@ -65,3 +65,15 @@
  * and open the template in the editor.
  */
 ?>
+<script>
+    $(document).ready(function(){
+       $(document).on("click", ".del_category", function(){
+           var id = $(this).attr("id");
+            $(this).confirm();
+            var url = '<?php echo base_url().'index.php/offers/deletepost' ?>';
+            $(this).confirm.yes({id:id,url:url});
+            $(this).confirm.no();
+            $(this).parent().parent().remove();
+       });
+    });
+</script>

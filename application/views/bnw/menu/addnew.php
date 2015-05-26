@@ -40,7 +40,7 @@
             foreach ($query as $data){
                 
             ?>
-          <tr>
+        <tr class="action">
             <td><?php echo $data->id; ?></td>
             <td><?php echo $data->menu_name; ?></td>
             <td><?php echo anchor('dashboard/editmenu/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
@@ -68,9 +68,10 @@
            var id = $(this).attr("id");
             $(this).confirm();
             var url = '<?php echo base_url().'index.php/dashboard/deletemenu' ?>';
-            $(this).confirm.yes({id:id,url:url});
+            var hideid = $(this);
+            $(this).confirm.yes({id:id,url:url,thiss:hideid});
             $(this).confirm.no();
-            $(this).parent().parent().remove();
+            
        });
     });
 </script>
