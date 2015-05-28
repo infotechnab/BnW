@@ -110,9 +110,9 @@
     margin-top: 5px;
 }
 #mybutton > .btn-primary {
-    background-color: #337ab7;
-    border-color: #2e6da4;
-    color: #fff;
+    background-color: #eee;
+    border-color: #dedede;
+    color: #000;
     width: 60px;
 }
 button, input, select, textarea {

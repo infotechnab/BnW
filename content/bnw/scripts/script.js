@@ -9,6 +9,7 @@
 
 // set info for cropping image using hidden fields
 function setInfo(x1c, y1c, x2c, y2c) {
+    alert(y2c);
     var w = x2c - x1c;
     var h = y2c - y1c;
     $('#x').val(x1c);
@@ -61,7 +62,7 @@ function abc(newas, asp) {
             onSelectEnd: setVal;
         }
 
-
+    
         $('img#uploadPreview').imgAreaSelect({x1: x1c, y1: y1c, x2: x2c, y2: y2c, aspectRatio: newas, handles: true, onload: setInfo(x1c, y1c, x2c, y2c)});
         //$('img#uploadPreview').imgAreaSelect({aspectRatio:alert(asp),handles: true,onSelectEnd: setVal});
     };
@@ -86,7 +87,10 @@ $(document).ready(function() {
             newas = "2:3";
         }
         if (asp == "NaN") {
-            newas = "NaN";
+            var w = $('img#uploadPreview').width();
+                          var h = $('img#uploadPreview').height();  
+                          asp= w/h;
+                          newas = 0;
         }
         abc(newas, asp);
     });
@@ -126,6 +130,7 @@ $(document).ready(function() {
                   var coords = { x1: x1c, y1: y1c, x2: x2c, y2: y2c };
                   onSelectEnd: setVal;
               }
+        
                         $('img#uploadPreview').imgAreaSelect({ x1: x1c, y1: y1c, x2: x2c, y2: y2c, aspectRatio: '4:3', handles: true,onload:setInfo(x1c,y1c,x2c,y2c)  });
 		};
 	});
