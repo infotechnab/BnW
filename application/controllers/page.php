@@ -285,9 +285,9 @@ if (file_exists($filename1)) {
                         $allowComment = $this->input->post('allow_comment');
                         $allowLike = $this->input->post('allow_like');
                         $allowShare = $this->input->post('allow_share');
-                        $navigationName = $name;
+                        $navigationName = $pageName;
                         $navigationLink = 'page/' . $id;
-                        $navigationSlug = preg_replace('/\s+/', '', $name);
+                        $navigationSlug = preg_replace('/\s+/', '', $pageName);
                         $pageid = $id;
                         $this->dbpage->update_page($id, $pageName, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare, $image);
                         $this->dbpage->update_navigation_on_page_update($pageid, $navigationName, $navigationLink, $navigationSlug);
@@ -312,9 +312,9 @@ if (file_exists($filename1)) {
                         $allowComment = $this->input->post('allow_comment');
                         $allowLike = $this->input->post('allow_like');
                         $allowShare = $this->input->post('allow_share');
-                        $navigationName = $name;
+                        $navigationName = $pageName;
                         $navigationLink = 'page/' . $id;
-                        $navigationSlug = preg_replace('/\s+/', '', $name);
+                        $navigationSlug = preg_replace('/\s+/', '', $pageName);
                         $pageid = $id;
                         $past_image = $this->input->post('imageName');
                     $this->dbpage->update_page($id, $pageName, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare, $past_image);

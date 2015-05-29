@@ -1,31 +1,48 @@
-/**
- *
- * Crop Image While Uploading With jQuery
- * 
- * Copyright 2013, Resalat Haque
- * http://www.w3bees.com/
- *
- */
 
-// set info for cropping image using hidden fields
 function setInfo(x1c, y1c, x2c, y2c) {
-    alert(y2c);
     var w = x2c - x1c;
     var h = y2c - y1c;
     $('#x').val(x1c);
     $('#y').val(y1c);
     $('#w').val(w);
     $('#h').val(h);
+    
+//    $('#x1').val(x1c);
+//    $('#y1').val(y1c);
+//    $('#w1').val(w);
+//    $('#h1').val(h);
 }
 function setVal(i, e) {
+    if(e.width == 0 || e.height == 0){
+         var w = $('img#uploadPreview').width();
+        var h = $('img#uploadPreview').height(); 
+      var  x1a=0;
+       var y1a=0;
+        $('#x').val(x1a);
+    $('#y').val(y1a);
+    $('#w').val(w);
+    $('#h').val(h);
+    
+//    $('#x1').val(x1a);
+//    $('#y1').val(y1a);
+//    $('#w1').val(w);
+//    $('#h1').val(h);
+    }
+    else
+    {
     $('#x').val(e.x1);
     $('#y').val(e.y1);
     $('#w').val(e.width);
     $('#h').val(e.height);
+    
+//    $('#x1').val(e.x1);
+//    $('#y1').val(e.y1);
+//    $('#w1').val(e.width);
+//    $('#h1').val(e.height);
+    }
 }
 
 function abc(newas, asp) {
-
     var p = $("#uploadPreview");
     // var asp = $('input[name=aspestRatio]:checked').val()
     // fadeOut or hide preview
@@ -47,8 +64,6 @@ function abc(newas, asp) {
             var y1c = 0;
             var x2c = centre + deduct;
             var y2c = height;
-            var coords = {x1: x1c, y1: y1c, x2: x2c, y2: y2c};
-            onSelectEnd: setVal;
         } else {
             var centre = h / 2;
             var nwidth = w;
@@ -58,13 +73,10 @@ function abc(newas, asp) {
             var y1c = centre - ndeduct;
             var x2c = nwidth;
             var y2c = centre + ndeduct;
-            var coords = {x1: x1c, y1: y1c, x2: x2c, y2: y2c};
-            onSelectEnd: setVal;
         }
-
-    
-        $('img#uploadPreview').imgAreaSelect({x1: x1c, y1: y1c, x2: x2c, y2: y2c, aspectRatio: newas, handles: true, onload: setInfo(x1c, y1c, x2c, y2c)});
-        //$('img#uploadPreview').imgAreaSelect({aspectRatio:alert(asp),handles: true,onSelectEnd: setVal});
+       
+        $('img#uploadPreview').imgAreaSelect({x1: x1c, y1: y1c, x2: x2c, y2: y2c, aspectRatio: newas,handles: true, onload: setInfo(x1c, y1c, x2c, y2c), onSelectEnd: setVal});
+        
     };
 }
 
@@ -116,8 +128,6 @@ $(document).ready(function() {
                   var y1c = 0;
                   var x2c = centre + deduct;
                   var y2c = height;  
-                  var coords = { x1: x1c, y1: y1c, x2: x2c, y2: y2c };
-                  onSelectEnd: setVal;
               }else{
                   var centre = h/2;
                   var nwidth = w;
@@ -127,19 +137,17 @@ $(document).ready(function() {
                   var y1c = centre - ndeduct;
                   var x2c = nwidth;
                   var y2c = centre + ndeduct;
-                  var coords = { x1: x1c, y1: y1c, x2: x2c, y2: y2c };
-                  onSelectEnd: setVal;
               }
         
-                        $('img#uploadPreview').imgAreaSelect({ x1: x1c, y1: y1c, x2: x2c, y2: y2c, aspectRatio: '4:3', handles: true,onload:setInfo(x1c,y1c,x2c,y2c)  });
+                        $('img#uploadPreview').imgAreaSelect({ x1: x1c, y1: y1c, x2: x2c, y2: y2c, aspectRatio: '4:3', handles: true,onload:setInfo(x1c,y1c,x2c,y2c), onSelectEnd: setVal });
 		};
 	});
 
-        $('img#uploadPreview').imgAreaSelect({
-            
+        $('img#uploadPreview').imgAreaSelect({    
             aspectRatio: '4:3',   
           handles: true,
-        onSelectEnd: setVal
+          onload: setVal,
+         
     });
 	 
        
