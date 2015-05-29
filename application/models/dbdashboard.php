@@ -58,7 +58,9 @@ class Dbdashboard extends CI_Model {
     public function check_navigation_for_menu($id)
     {
         $this->db->where('menu_id', $id);
-        return $this->db->count_all("navigation");
+        $query = $this->db->get("navigation");
+        $rowcount = $query->num_rows();
+        return $rowcount;
     }
 
     //====================================== CLOSE MENU =====================================================//
@@ -223,27 +225,25 @@ class Dbdashboard extends CI_Model {
         return $query->result();
     }
 
-    public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected,$maxorder) {
+    public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected) {
         $data = Array('navigation_name' => $navigation_name,
             'navigation_link' => $navigation_link,
             'parent_id' => $parent_id,
             'navigation_type' => $navigation_type,
             'navigation_slug' => $navigation_slug,
-            'menu_id' => $menuSelected,
-            'order' => $maxorder
+            'menu_id' => $menuSelected
         );
         $this->db->insert('navigation', $data);
     }
 
-    public function add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menuSelected, $maxorder) {
+    public function add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menuSelected) {
         $data = array(
             'navigation_name' => $navigationName,
             'navigation_link' => $navigationLink,
             'parent_id' => $parentID,
             'navigation_type' => $navigationType,
             'navigation_slug' => $navigation_slug,
-            'menu_id' => $menuSelected,
-            'order' => $maxorder
+            'menu_id' => $menuSelected
                 );
 
         $this->db->insert('navigation', $data);

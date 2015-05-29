@@ -206,7 +206,7 @@ if (file_exists($filename1)) {
             foreach ($data['query'] as $a) {
                 $img = $a->image;
             }
-             if ($img == !NULL) {
+             if (!empty($img)) {
             $filename1 = './content/uploads/images/'.$img;
             $filename2 = './content/uploads/images/thumb_'.$img;
 if (file_exists($filename1)) {
@@ -219,8 +219,8 @@ if (file_exists($filename2)) {
                 
             $this->dboffers->offerImgdelete($id);
             $this->dboffers->deletepost($id);
-             $this->session->set_flashdata('message', 'Data Deleted Sucessfully');
-           redirect('offers/posts');
+//             $this->session->set_flashdata('message', 'Data Deleted Sucessfully');
+//           redirect('offers/posts');
             //$this->editpost($id);
         } else {
             redirect('login/index/?url=' . $url, 'refresh');

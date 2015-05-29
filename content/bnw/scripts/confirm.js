@@ -45,11 +45,18 @@
                             $("#pop").append("<button id='closeError' style='margin-top:5%;'>Close</button>");
                                    
                         },
-                         success: function() 
+                         success: function(msg) 
                                {
+                                   if(msg.length > 0)
+                                   {
+                                       $("#pop").html("Error!!!"+msg+"<br>");
+                                        $("#pop").append("<button id='closesuccess' style='margin-top:5%;'>Close</button>");
+                                        
+                                   } else {
                                    $("#pop").html("Success!!!<br>");
                                    $("#pop").append("<button id='closesuccess' style='margin-top:5%;'>Close</button>");
                                    thisss.parents(".action").hide();
+                               }
                                }
 
 

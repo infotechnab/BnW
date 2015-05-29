@@ -25,7 +25,7 @@
         <?php
             foreach ($query as $data){
             ?>
-          <tr>
+        <tr class="action">
            
             <td><?php echo $data->post_title ?></td>
             <td><?php echo $data->post_summary ?></td>
@@ -71,9 +71,9 @@
            var id = $(this).attr("id");
             $(this).confirm();
             var url = '<?php echo base_url().'index.php/offers/deletepost' ?>';
-            $(this).confirm.yes({id:id,url:url});
+            var hideid = $(this);
+            $(this).confirm.yes({id:id,url:url,thiss:hideid});
             $(this).confirm.no();
-            $(this).parent().parent().remove();
        });
     });
 </script>

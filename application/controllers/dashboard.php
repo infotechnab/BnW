@@ -105,13 +105,13 @@ class Dashboard extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
             $menuNo = $this->dbdashboard->check_navigation_for_menu($id);
             if ($menuNo > 0) {
-                $this->session->set_flashdata('message', 'This menu contains Navigation item associated. So to delete this menu delete navigation item associated with it first.');
-
-                redirect('dashboard/addmenu');
+                echo "This menu contains Navigation item associated. So to delete this menu delete navigation item associated with it first.";
+//                $this->session->set_flashdata('message', 'This menu contains Navigation item associated. So to delete this menu delete navigation item associated with it first.');
+//                redirect('dashboard/addmenu');
             } else {
                 $this->dbdashboard->delete_menu($id);
-                $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-                redirect('dashboard/addmenu');
+//                $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+//                redirect('dashboard/addmenu');
             }
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -409,12 +409,8 @@ class Dashboard extends CI_Controller {
                             $navigation_link = base_url() . "index.php/view/" . $navigation_type . "/" . $k;
                             $navigation_slug = preg_replace('/\s+/', '', $v);
                         }
-                        $maxorder = $this->dbdashboard->get_max_order();
-                        foreach ($maxorder as $max) {
-                            $maxnum = $max->maxorder;
-                        }
-                        $maxorder = $maxnum + 1;
-                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected, $maxorder);
+                        
+                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected);
                     }
                     $this->session->set_flashdata("message", "Navigation Added Successfully.");
                     redirect('dashboard/navigation');
@@ -505,13 +501,7 @@ class Dashboard extends CI_Controller {
                             $navigation_slug = preg_replace('/\s+/', '', $v);
                             ;
                         }
-                        $maxorder = $this->dbdashboard->get_max_order();
-                        foreach ($maxorder as $max) {
-                            $maxnum = $max->maxorder;
-                        }
-                        $maxorder = $maxnum + 1;
-
-                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected, $maxorder);
+                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected);
                     }
 
                     $this->load->view('bnw/templates/header', $data);
@@ -577,13 +567,6 @@ class Dashboard extends CI_Controller {
             } else {
                 if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
                     $menuSelected = $_POST['departments'];
-
-                    $maxorder = $this->dbdashboard->get_max_order();
-                    foreach ($maxorder as $max) {
-                        $maxnum = $max->maxorder;
-                    }
-                    $maxorder = $maxnum + 1;
-
                     if ($menuSelected == !"0") {
                         $menu_info = $this->dbdashboard->get_menu_info($menuSelected);
 
@@ -609,7 +592,7 @@ class Dashboard extends CI_Controller {
                 $parentID = $parent_id;
                 $navigationType = "";
                 $navigation_slug = preg_replace('/\s+/', '', $navigationName);
-                $this->dbdashboard->add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menuSelected, $maxorder);
+                $this->dbdashboard->add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menuSelected);
                 // $data['token_sucess'] = ' One Navigation item added sucessfully';                
                 $this->session->set_flashdata('message', 'One Navigation item added sucessfully');
                 redirect('dashboard/navigation');

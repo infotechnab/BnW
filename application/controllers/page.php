@@ -360,8 +360,8 @@ if (file_exists($filename1)) {
 
             $this->dbpage->delete_page($id);
             $this->dbpage->delete_navigation_related_to_page($id);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('page/pages');
+//            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+//            redirect('page/pages');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
