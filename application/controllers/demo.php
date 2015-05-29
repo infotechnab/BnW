@@ -335,7 +335,7 @@ $this->session->set_userdata('captcha_info', $data['captcha']);
   public function download(){
 $this->load->helper('download');
 
-      $filename= 'bnw.jpg';
+      $filename= 'BnW.zip';
  $data = file_get_contents("./content/download/".$filename); // Read the file's contents
 $name = $filename;
 

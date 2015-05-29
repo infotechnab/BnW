@@ -76,14 +76,16 @@
         if (isset($query)) {
             foreach ($query as $data) {
                 ?>    
-        <div id="photodiv" class="action" style="min-height: 201px;">
+        <div id="photodiv" class="action" style="min-height: 201px;overflow: hidden;">
+            <div style="width: 200px;overflow: hidden;">
                     <img class="srcimage" src="<?php echo base_url(); ?>content/uploads/images/thumb_<?php echo $data->media_type; ?>" name="<?php echo $data->media_type ?>" id="galleryimage" />
+                    </div>
                     <div id="imagetitle"> <?php echo $data->media_name; ?>
 
                     </div>
                     <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
 
-
+            
                 </div> 
                 <?php
             }
@@ -116,6 +118,23 @@
         <input type="hidden" id="y" name="y" />
         <input type="hidden" id="w" name="w" />
         <input type="hidden" id="h" name="h" /> 
+        <div data-toggle="buttons" id="mybutton" class="btn-group btn-group-justified">
+            <label title="Set Aspect Ratio" data-option="1.7777777777777777" data-method="setAspectRatio" class="btn btn-primary active">
+                <input type="radio" value="1.7777777777777777" name="aspestRatio" id="aspestRatio1" class="sr-only">16:9
+            </label>
+            <label title="Set Aspect Ratio" data-option="1.3333333333333333" data-method="setAspectRatio" class="btn btn-primary">
+                <input type="radio" value="1.3333333333333333" name="aspestRatio" id="aspestRatio2" class="sr-only" checked="checked">4:3
+            </label>
+            <label title="Set Aspect Ratio" data-option="1" data-method="setAspectRatio" class="btn btn-primary">
+                <input type="radio" value="1" name="aspestRatio" id="aspestRatio3" class="sr-only">1:1
+            </label>
+            <label title="Set Aspect Ratio" data-option="0.6666666666666666" data-method="setAspectRatio" class="btn btn-primary">
+                <input type="radio" value="0.6666666666666666" name="aspestRatio" id="aspestRatio4" class="sr-only">2:3
+            </label>
+            <label title="Set Aspect Ratio" data-option="NaN" data-method="setAspectRatio" class="btn btn-primary">
+                <input type="radio" value="NaN" name="aspestRatio" id="aspestRatio5" class="sr-only">Free
+            </label>
+        </div>
         <img id="uploadPreview" style="display:none;width:1000px;"/>
         <input type="submit" name="submit" class="submit-button-small" value="add photo"   />
         <?php echo form_close(); ?>

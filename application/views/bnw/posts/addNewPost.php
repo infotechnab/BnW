@@ -104,35 +104,6 @@
 </div>
 <div class="clear"></div>
 </div>
-<style>
-    .btn-group {
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-#mybutton > .btn-primary {
-    background-color: #eee;
-    border-color: #dedede;
-    color: #000;
-    width: 60px;
-}
-button, input, select, textarea {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-}
-button, html input[type="button"], input[type="reset"], input[type="submit"] {
-    cursor: pointer;
-}
-button, select {
-    text-transform: none;
-}
-button {
-    overflow: visible;
-}
-    
-    
-    
-</style>
 <!--
   <p>Post Status:<br />
 <?php /* $options = array(

@@ -138,7 +138,10 @@ class Events extends CI_Controller {
                         $key = $this->getRandomStringForCoupen(5);
                         $image = $key.$name;
                         $manipulator->save('./content/uploads/images/' .$image);
-                          unlink('./content/uploads/images/'.$name);
+                        $filename1 = './content/uploads/images/'.$name;
+if (file_exists($filename1)) {
+    unlink($filename1);
+} else {}
                          
                        // $imgname = $img_name;
                         $image_thumb = dirname('thumb_' . $image . '/demo');
@@ -242,7 +245,10 @@ class Events extends CI_Controller {
                         $key = $this->getRandomStringForCoupen(5);
                         $image = $key.$name;
                         $manipulator->save('./content/uploads/images/' .$image);
-                          unlink('./content/uploads/images/'.$name);
+                        $filename1 = './content/uploads/images/'.$name;
+if (file_exists($filename1)) {
+    unlink($filename1);
+} else {}
                           
                        // $imgname = $img_name;
                         $image_thumb = dirname('thumb_' . $image . '/demo');
