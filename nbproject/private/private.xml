@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/wamp/www/bnw/application/views/bnw/posts/postListing.php</file>
+            <file>file:/C:/wamp/www/bnw/application/controllers/offers.php</file>
+            <file>file:/C:/wamp/www/bnw/application/controllers/dashboard.php</file>
+            <file>file:/C:/wamp/www/bnw/application/helpers/managenav_helper.php</file>
+            <file>file:/C:/wamp/www/bnw/application/views/bnw/pages/pageListing.php</file>
+            <file>file:/C:/wamp/www/bnw/content/bnw/scripts/confirm.js</file>
+        </group>
     </open-files>
 </project-private>
