@@ -14,11 +14,8 @@
 | path to your installation.
 |
 */
-<<<<<<< HEAD
-=======
 //$config['base_url']	= 'http://192.168.1.4/bnw/';
->>>>>>> 6b2e7e2af8db69e4e938c38b71a84e0459b54456
-$config['base_url']	= 'http://localhost/bnw/';
+$config['base_url']	= 'http://192.168.1.16/bnw/';
 
 /*
 |--------------------------------------------------------------------------
