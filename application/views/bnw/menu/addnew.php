@@ -70,7 +70,7 @@
             var url = '<?php echo base_url().'index.php/dashboard/deletemenu' ?>';
             var hideid = $(this);
             $(this).confirm.yes({id:id,url:url,thiss:hideid});
-            $(this).confirm.no();
+            $(this).confirm.no({id:id});
             
        });
     });

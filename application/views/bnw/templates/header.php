@@ -17,6 +17,7 @@
        <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 
 <script type="text/javascript">
+    var base_url = '<?php echo base_url(); ?>';
 tinymce.init({
     selector: "textarea",
     plugins: [

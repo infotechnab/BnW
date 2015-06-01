@@ -62,6 +62,14 @@ class Dbdashboard extends CI_Model {
         $rowcount = $query->num_rows();
         return $rowcount;
     }
+    
+    public function check_navigation_for_page($id)
+    {
+        $this->db->where('page_id', $id);
+        $query = $this->db->get("navigation");
+        $rowcount = $query->num_rows();
+        return $rowcount;
+    }
 
     //====================================== CLOSE MENU =====================================================//
     //======================================= START NAVIGATION ==============================================//
@@ -225,13 +233,14 @@ class Dbdashboard extends CI_Model {
         return $query->result();
     }
 
-    public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected) {
+    public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected,$page_id) {
         $data = Array('navigation_name' => $navigation_name,
             'navigation_link' => $navigation_link,
             'parent_id' => $parent_id,
             'navigation_type' => $navigation_type,
             'navigation_slug' => $navigation_slug,
-            'menu_id' => $menuSelected
+            'menu_id' => $menuSelected,
+            'page_id' => $page_id
         );
         $this->db->insert('navigation', $data);
     }

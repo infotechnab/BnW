@@ -105,7 +105,7 @@ class Dashboard extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
             $menuNo = $this->dbdashboard->check_navigation_for_menu($id);
             if ($menuNo > 0) {
-                echo "This menu contains Navigation item associated. So to delete this menu delete navigation item associated with it first.";
+                echo "This menu contains Navigation item associated. So delete navigation item associated with it first.";
 //                $this->session->set_flashdata('message', 'This menu contains Navigation item associated. So to delete this menu delete navigation item associated with it first.');
 //                redirect('dashboard/addmenu');
             } else {
@@ -385,6 +385,7 @@ class Dashboard extends CI_Controller {
                         array_push($listOfSelectedMenu, array($myData->id => $myData->page_name));
                     }
                 }
+                
                 $menuSelected = $_POST['departments'];
 
                 if ($menuSelected == !"0") {
@@ -406,11 +407,12 @@ class Dashboard extends CI_Controller {
                         foreach ($myData as $k => $v) {
                             $navigation_type = "page";
                             $navigation_name = $v;
+                            $page_id = $k;
                             $navigation_link = base_url() . "index.php/view/" . $navigation_type . "/" . $k;
                             $navigation_slug = preg_replace('/\s+/', '', $v);
                         }
                         
-                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected);
+                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected, $page_id);
                     }
                     $this->session->set_flashdata("message", "Navigation Added Successfully.");
                     redirect('dashboard/navigation');
@@ -504,9 +506,8 @@ class Dashboard extends CI_Controller {
                         $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected);
                     }
 
-                    $this->load->view('bnw/templates/header', $data);
-                    $this->load->view('bnw/templates/menu', $data);
-                    $this->load->view('bnw/navigation/listOfItems', $data);
+                                        redirect('dashboard/navigation', 'refresh');
+
                 } else {
 
                     $data['token_error'] = ' Select at least one menu list!';
@@ -525,9 +526,7 @@ class Dashboard extends CI_Controller {
                     $data["listOfNavigation"] = $this->dbdashboard->get_list_of_navigation();
                     $data["listOfNavigationID"] = $this->dbdashboard->get_list_of_navigationID();
 
-                    $this->load->view('bnw/templates/header', $data);
-                    $this->load->view('bnw/templates/menu');
-                    $this->load->view('bnw/navigation/listOfItems', $data);
+                    redirect('dashboard/navigation', 'refresh');
                 }
             } else {
                 $data['meta'] = $this->dbsetting->get_meta_data();
@@ -539,7 +538,7 @@ class Dashboard extends CI_Controller {
                 $this->load->view('bnw/navigation/listOfItems', $data);
             }
         } else {
-            redirect('login/index/?url=' . $url, 'refresh');
+            redirect('dashboard/navigation', 'refresh');
         }
     }
 

@@ -105,36 +105,15 @@
             $("#editBoxNav").show();
             e.preventDefault();
         });
-        $(document).on("click", ".deleteNav", function () {
+        $(document).on("click", ".deleteNav", function (e) {
+            e.preventDefault();
               var id = $(this).attr("id");
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url() . 'index.php/dashboard/deletenavigation'; ?>",
-                data: {
-                    'id': id
-                },
-                success: function (msg)
-                {
-                    
-                    //refresh latest data.
-                    $("#msges").html("Navigation Deleted");
-                    var selectBox = document.getElementById("selectBox");
-                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                    var dataString = 'menu_id_next=' + selectedValue;
-                    $.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url() . 'index.php/dashboard/manageNavigation'; ?>",
-                        data: dataString,
-                        success: function (msg)
-                        {
-                            $("#cssmenu").html(msg);
-                            $("#jobs").html("<option>Make Parent</option>");
-                        }
-                    });
-                }
-
-
-            });
+            $(this).confirm();
+            var url = '<?php echo base_url().'index.php/dashboard/deletenavigation' ?>';
+            var hideid = $(this);
+            $(this).confirm.yes({id:id,url:url,thiss:hideid,nav:"yes"});
+            $(this).confirm.no();
+          return false;
         });
         $(document).on("click", ".upNav", function () {
         var id = $(this).attr("id");

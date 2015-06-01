@@ -343,7 +343,7 @@ if (file_exists($filename1)) {
             foreach ($data['query'] as $a) {
                 $img = $a->images;
             }
-            if ($img == !NULL) {
+            if (isset($img) && $img == " ") {
                 $filename1 = './content/uploads/images/' . $img;
                 $filename2 = './content/uploads/images/thumb_' . $img;
                 if (file_exists($filename1)) {
@@ -357,9 +357,16 @@ if (file_exists($filename1)) {
                     
                 }
             }
-
-            $this->dbpage->delete_page($id);
-            $this->dbpage->delete_navigation_related_to_page($id);
+            $menuNo = $this->dbdashboard->check_navigation_for_page($id);
+            if ($menuNo > 0) {
+                echo "This page contains Navigation item associated. So delete navigation item associated with it first.";
+//                $this->session->set_flashdata('message', 'This menu contains Navigation item associated. So to delete this menu delete navigation item associated with it first.');
+//                redirect('dashboard/addmenu');
+            } else {
+                $this->dbpage->delete_page($id);
+//                $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+//                redirect('dashboard/addmenu');
+            }
 //            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
 //            redirect('page/pages');
         } else {
