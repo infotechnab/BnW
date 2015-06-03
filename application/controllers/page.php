@@ -336,7 +336,11 @@ if (file_exists($filename1)) {
 
    
     public function deletepage() {
+        if(isset($_POST['id'])){
         $id = $_POST['id'];
+        } else {
+            $id = 0;
+        }
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['query'] = $this->dbpage->findpage($id);

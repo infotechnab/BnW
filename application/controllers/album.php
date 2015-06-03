@@ -219,8 +219,15 @@ class Album extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
             $data['photoquery'] = $this->dbalbum->get_all_photos($id);
             foreach ($data['photoquery'] as $photo) {
-                $image = $photo->media_type;
-                unlink('./content/uploads/images/' . $image);
+                $image = $photo->media_type;             
+                $filename1 = './content/uploads/images/' . $image;
+             $filename2 = './content/uploads/images/thumb_' . $image;
+                if (file_exists($filename1)) {
+                    unlink($filename1);
+                } else {}
+                if (file_exists($filename2)) {
+                    unlink($filename2);
+                } else {}
             }
             $this->dbalbum->delete_photo($id);
             $this->dbalbum->delete_album($id);
@@ -415,9 +422,16 @@ class Album extends CI_Controller {
             $media = $this->dbalbum->get_imagename($id);
             foreach ($media as $med){
                 $media_type = $med->media_type;
+                $filename1 = './content/uploads/images/' . $media_type;
+             $filename2 = './content/uploads/images/thumb_' . $media_type;
+                if (file_exists($filename1)) {
+                    unlink($filename1);
+                } else {}
+                if (file_exists($filename2)) {
+                    unlink($filename2);
+                } else {}
             }
-            unlink('./content/uploads/images/' . $media_type);
-            unlink('./content/uploads/images/thumb_' . $media_type);
+          
             $this->dbalbum->delete_media($id);
 //            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
         } else {

@@ -58,8 +58,9 @@
             $(this).confirm();
             var url = '<?php echo base_url().'index.php/page/deletepage' ?>';
             var hideid = $(this);
-            $(this).confirm.yes({id:id,url:url,thiss:hideid});
             $(this).confirm.no();
+            $(this).confirm.yes({id:id,url:url,thiss:hideid});
+            
             
        });
     });

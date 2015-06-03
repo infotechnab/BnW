@@ -8,10 +8,12 @@ function showFunction() {
     var windowW = $(window).width();     //width of the window
     var popupH = $("#pop").height();    //height of the popup confirmation
     var popupW = $("#pop").width();     //width of the popup confirmation
-    var top = (windowH - popupH) / 2;
+    
     var left = (windowW - popupW) / 2;
     var docH = $(document).height();    //height of the window
     var docW = $(document).width();     //width of the window
+    var scrollT = $(window).scrollTop();
+    var top = scrollT + (windowH - popupH) / 2;
     $("#fades").css("height", docH);
     $("#fades").css("width", docW);
     $("#fades").show();
@@ -27,9 +29,8 @@ jQuery.fn.confirm = function ()
         showFunction();
         var thisss = data.thiss;
         var nav = data.nav;
-
+        
         $(document).on("click", "#yes", function () {
-            alert(JSON.stringify(data));
             $.ajax({
                 type: "POST",
                 url: data.url,
@@ -75,6 +76,7 @@ jQuery.fn.confirm = function ()
                             }
                         });
                     }
+                   
                 }
 
 
@@ -91,16 +93,18 @@ jQuery.fn.confirm = function ()
             $("#pop").hide();
             $("#fades").hide();
         });
-
-    };
-
-    jQuery.fn.confirm.no = function (data)
-    {
-        $(document).on("click", "#no", function () {
+        
+         $(document).on("click", "#no", function () {
 
             $("#pop").hide();
             $("#fades").hide();
-            return false;
+            delete data.id;
         });
+
+    };
+
+    jQuery.fn.confirm.no = function ()
+    {
+       
     };
 };
