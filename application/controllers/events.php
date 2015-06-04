@@ -82,9 +82,15 @@ class Events extends CI_Controller {
             }
             // die($img);
             if ($img == !NULL) {
-               // die($img);
-                unlink('./content/uploads/images/' . $img);
-                 unlink('./content/uploads/images/thumb_'.$img);
+               $filename1 = './content/uploads/images/'.$img;
+            $filename2 = './content/uploads/images/thumb_'.$img;
+if (file_exists($filename1)) {
+    unlink($filename1);
+} else {}
+if (file_exists($filename2)) {
+    unlink($filename2);
+} else {}
+               
             }
             $this->dbevent->delete($id);
             $this->session->set_flashdata('message', 'Data Delete Sucessfully');
@@ -313,8 +319,14 @@ if (file_exists($filename1)) {
             // die($img);
             if ($img == !NULL) {
                // die($img);
-                unlink('./content/uploads/images/'.$img);
-               
+                $filename1 = './content/uploads/images/'.$img;
+            $filename2 = './content/uploads/images/thumb_'.$img;
+if (file_exists($filename1)) {
+    unlink($filename1);
+} else {}
+if (file_exists($filename2)) {
+    unlink($filename2);
+} else {}
             }
             $this->dbevent->Imgdelete($id);
 
