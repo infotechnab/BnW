@@ -100,6 +100,7 @@ class Dashboard extends CI_Controller {
     }
 
     public function deletemenu() {
+        if($_POST['id']){
         $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
@@ -116,6 +117,11 @@ class Dashboard extends CI_Controller {
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
+    } else {
+        $id = NULL;
+        var_dump("ASF");
+        die;
+    }
     }
 
     //=========================== CLOSE MENU ================================================//

@@ -85,7 +85,7 @@ class Page extends CI_Controller {
                 if ($_FILES && $_FILES['file']['name'] !== "") {
                     if (!$this->upload->do_upload('file')) {
                         $data['error'] = array('error' => $this->upload->display_errors('file'));
-                        $this->load->view('bnw/pages/addnew', $error);
+                        $this->load->view('bnw/pages/addnew', $data);
                     } else {
                         include_once 'imagemanipulator.php';
                         $manipulator = new ImageManipulator($_FILES['file']['tmp_name']);
