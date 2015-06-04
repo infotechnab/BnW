@@ -69,9 +69,9 @@
             $(this).confirm();
             var url = '<?php echo base_url().'index.php/dashboard/deletemenu' ?>';
             var hideid = $(this);
-            $(this).confirm.yes({id:id,url:url,thiss:hideid});
-            $(this).confirm.no({id:id});
             
+            $(this).confirm.no({id:id});
+            $(this).confirm.yes({id:id,url:url,thiss:hideid});
        });
     });
 </script>

@@ -169,7 +169,7 @@ class User extends CI_Controller {
                 $data['token_error'] = "Sory you can not be delete this user because user is Login!";
                 $this->load->view("bnw/templates/header", $data);
                 $this->load->view("bnw/templates/menu");
-                $this->load->view('templates/error_landing_page', $data);
+                $this->load->view('template/errorPage', $data);
             }
         } else {
             redirect('login/index/?url=' . $url, 'refresh');

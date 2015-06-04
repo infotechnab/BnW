@@ -27,10 +27,19 @@ jQuery.fn.confirm = function ()
     jQuery.fn.confirm.yes = function (data)
     {
         showFunction();
+        
+        $(document).on("click", "#no", function () {
+
+            $("#pop").hide();
+            $("#fades").hide();
+            delete data.id;
+        });
+        
         var thisss = data.thiss;
         var nav = data.nav;
-        
         $(document).on("click", "#yes", function () {
+            alert(data);
+            
             $.ajax({
                 type: "POST",
                 url: data.url,
@@ -72,11 +81,10 @@ jQuery.fn.confirm = function ()
                                 $("#jobs").html("<option>Make Parent</option>");
                                 $("#pop").hide();
                                 $("#fades").hide();
-                                return false;
                             }
                         });
                     }
-                   
+                   //jQuery.fn.confirm.yes().clearQueue();
                 }
 
 
@@ -94,13 +102,8 @@ jQuery.fn.confirm = function ()
             $("#fades").hide();
         });
         
-         $(document).on("click", "#no", function () {
-
-            $("#pop").hide();
-            $("#fades").hide();
-            delete data.id;
-        });
-
+         
+            return false;
     };
 
     jQuery.fn.confirm.no = function ()
