@@ -38,7 +38,7 @@ jQuery.fn.confirm = function ()
         var thisss = data.thiss;
         var nav = data.nav;
         $(document).on("click", "#yes", function () {
-            alert(data);
+//            alert(data);
             
             $.ajax({
                 type: "POST",
@@ -62,7 +62,7 @@ jQuery.fn.confirm = function ()
                     } else {
                         $("#pop").html("Success!!!<br>");
                         $("#pop").append("<button id='closesuccess' style='margin-top:5%;'>Close</button>");
-                        thisss.parents(".action").hide();
+                        thisss.parents(".action").hide(1000);
                     }
                     if (nav == "yes")
                     {
@@ -79,8 +79,8 @@ jQuery.fn.confirm = function ()
                             {
                                 $("#cssmenu").html(msg);
                                 $("#jobs").html("<option>Make Parent</option>");
-                                $("#pop").hide();
-                                $("#fades").hide();
+                                $("#pop").hide(500);
+                                $("#fades").hide(500);
                             }
                         });
                     }

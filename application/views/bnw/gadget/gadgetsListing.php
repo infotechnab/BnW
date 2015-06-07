@@ -32,16 +32,15 @@ $recentPostGadget = recent_post();
                                 <div id='single_gadget_edit'>
                                     <div class='whole'>
                                         <div class='name'>
-        <?php echo $datas->name; ?> 
+                                            <?php echo $datas->name; ?> 
                                         </div>              <!-- close name div-->
                                         <div id='option'>
-                                            <div id='edit'><i class="fa fa-pencil-square-o"></i></div> <!--close edit div-->
-                                            <div id='delete_option'>
-        <?php echo form_open('gadgets/delete'); ?> 
+                                            <div id='delete_option' class="del_category">
+                                                <?php echo form_open('gadgets/delete'); ?> 
                                                 <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
                                                 <input type='hidden' value='header' name='display'>
                                                 <button type='submit' name='delete' id='delete'><i class="fa fa-trash-o"></i></button>
-        <?php echo form_close(); ?>
+                                                <?php echo form_close(); ?>
                                             </div> <!--delete_option div close-->
                                         </div> <!--option div close-->
                                     </div> <!--close whole div-->
@@ -49,52 +48,60 @@ $recentPostGadget = recent_post();
                                     <div>
                                         <div id="edit_recentPost_toggle">
 
-        <?php if ($datas->defaultGadget == 'recent post') { ?>
+                                            <?php if ($datas->defaultGadget == 'recent post') { ?>
                                                 <div id="recentPostEdit">
                                                     <div id="description_for_gadget">
-                                                <?php echo form_open('gadgets/defaultGadgetUpdate'); ?>
+                                                        <?php echo form_open('gadgets/defaultGadgetUpdate'); ?>
                                                         <input type="text" id="inputtype" placeholder="Title" name="name_gadget" value="<?php echo $datas->name; ?>" required>
                                                         <input type="hidden" value="recent post" name="recentPost_gadget">
                                                         <input type='hidden' value='header' name='display'>
                                                         <table id="table" border="0">
 
-            <?php
-            //   var_dump($a);
-            foreach ($recentPostGadget as $element) {
-                ?>
-                                                                <tr><td>No. of Post:</td><td><input type="<?php echo $element['noOfPost']; ?>" name='noOfPost' class='onlyNumerics' size='5' value='<?php if (!empty($post)) {
-                                                    echo $post;
-                                                } ?>' required><div style='font-size:12px; float:right;'> Enter Only numbers.</div></td></tr>
-                                                                <tr><td>Title Bold:</td><td><input type="<?php echo $element['titleBold']; ?>" name='titleBold' value='b' <?php if (!empty($titleBold)) {
-                                                    echo 'checked';
-                                                } ?>></td></tr>
-                                                                <tr><td>Title Underline:</td><td><input type="<?php echo $element['titleUnderline']; ?>" name='titleUnderline' value='u' <?php if (!empty($titleUnderline)) {
-                                                    echo 'checked';
-                                                } ?>></td></tr>
-                                                                <tr><td>Title Color:</td><td><input type="<?php echo $element['titleColor']; ?>" name='titleColor' value='<?php if (!empty($titleColor)) {
-                                                    echo $titleColor;
-                                                } ?>'></td></tr>
-                <?php
-            }
-            ?>
+                                                            <?php
+                                                            //   var_dump($a);
+                                                            foreach ($recentPostGadget as $element) {
+                                                                ?>
+                                                                <tr><td>No. of Post:</td><td><input type="<?php echo $element['noOfPost']; ?>" name='noOfPost' class='onlyNumerics' size='5' value='<?php
+                                                                        if (!empty($post)) {
+                                                                            echo $post;
+                                                                        }
+                                                                        ?>' required><div style='font-size:12px; float:right;'> Enter Only numbers.</div></td></tr>
+                                                                <tr><td>Title Bold:</td><td><input type="<?php echo $element['titleBold']; ?>" name='titleBold' value='b' <?php
+                                                                        if (!empty($titleBold)) {
+                                                                            echo 'checked';
+                                                                        }
+                                                                        ?>></td></tr>
+                                                                <tr><td>Title Underline:</td><td><input type="<?php echo $element['titleUnderline']; ?>" name='titleUnderline' value='u' <?php
+                                                                        if (!empty($titleUnderline)) {
+                                                                            echo 'checked';
+                                                                        }
+                                                                        ?>></td></tr>
+                                                                <tr><td>Title Color:</td><td><input type="<?php echo $element['titleColor']; ?>" name='titleColor' value='<?php
+                                                                        if (!empty($titleColor)) {
+                                                                            echo $titleColor;
+                                                                        }
+                                                                        ?>'></td></tr>
+                                                                    <?php
+                                                                }
+                                                                ?>
                                                         </table>    
                                                     </div>
                                                     <div>
 
 
                                                         <input type="submit" value="Update Gadget" id="btn" name="submit">
-            <?php echo form_close(); ?>
+                                                        <?php echo form_close(); ?>
                                                     </div>
 
                                                 </div> <!-- recentPostEdit div close -->
                                             </div>
                                         </div>
-        <?php
-        } else if ($datas->defaultGadget !== 'recent post') {
-            ?>
+                                        <?php
+                                    } else if ($datas->defaultGadget !== 'recent post') {
+                                        ?>
 
                                         <div id="textEdit">
-            <?php echo form_open('gadgets/textBoxUpdate'); ?>
+                                            <?php echo form_open('gadgets/textBoxUpdate'); ?>
                                             <input type="text" value="<?php echo $datas->name; ?>" id='inputtype' name="name_gadget">
                                             <textarea id='txtarea' name="type"><?php echo $datas->type; ?></textarea>
                                             <input type='hidden' value='header' name='display'>
@@ -103,12 +110,12 @@ $recentPostGadget = recent_post();
 
 
                                                 <input type="submit" value="Update Gadget" id="btn" name="submit">
-                                        <?php echo form_close(); ?>
+                                                <?php echo form_close(); ?>
                                             </div>
                                         </div>
 
-        <?php }
-        ?> 
+                                    <?php }
+                                    ?> 
 
                                     <div>
 
@@ -139,16 +146,15 @@ $recentPostGadget = recent_post();
                                 <div id='single_gadget_edit'>
                                     <div class='whole'>
                                         <div class='name'>
-        <?php echo $datas->name; ?> 
+                                            <?php echo $datas->name; ?> 
                                         </div>              <!-- close name div-->
                                         <div id='option'>
-                                            <div id='edit'><i class="fa fa-pencil-square-o"></i></div> <!--close edit div-->
-                                            <div id='delete_option'>
-        <?php echo form_open('gadgets/delete'); ?> 
+                                            <div id='delete_option' class="del_category">
+                                                <?php echo form_open('gadgets/delete'); ?> 
                                                 <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
                                                 <input type='hidden' value='sidebar' name='display'>
                                                 <button type='submit' name='delete' id='delete'><i class="fa fa-trash-o"></i></button>
-        <?php echo form_close(); ?>
+                                                <?php echo form_close(); ?>
                                             </div> <!--delete_option div close-->
                                         </div> <!--option div close-->
                                     </div> <!--close whole div-->
@@ -156,34 +162,42 @@ $recentPostGadget = recent_post();
                                     <div>
                                         <div id="edit_recentPost_toggle">
 
-        <?php if ($datas->defaultGadget == 'recent post') { ?>
+                                            <?php if ($datas->defaultGadget == 'recent post') { ?>
                                                 <div id="recentPostEdit">
                                                     <div id="description_for_gadget">
-            <?php echo form_open('gadgets/defaultGadgetUpdate'); ?>
+                                                        <?php echo form_open('gadgets/defaultGadgetUpdate'); ?>
                                                         <input type="text" id="inputtype" placeholder="Title" name="name_gadget" value="<?php echo $datas->name; ?>" required>
                                                         <input type="hidden" value="recent post" name="recentPost_gadget">
                                                         <input type='hidden' value='sidebar' name='display'>
                                                         <table id="table" border="0">
 
-            <?php
-            //   var_dump($a);
-            foreach ($recentPostGadget as $element) {
-                ?>
-                                                                <tr><td>No. of Post:</td><td><input type="<?php echo $element['noOfPost']; ?>" name='noOfPost' class='onlyNumerics' size='5' value='<?php if (!empty($post)) {
-                                                    echo $post;
-                                                } ?>' required><div style='font-size:12px; float:right;'> Enter Only numbers.</div></td></tr>
-                                                                <tr><td>Title Bold:</td><td><input type="<?php echo $element['titleBold']; ?>" name='titleBold' value='b' <?php if (!empty($titleBold)) {
-                                                    echo 'checked';
-                                                } ?>></td></tr>
-                                                                <tr><td>Title Underline:</td><td><input type="<?php echo $element['titleUnderline']; ?>" name='titleUnderline' value='u' <?php if (!empty($titleUnderline)) {
-                                                    echo 'checked';
-                                                } ?>></td></tr>
-                                                                <tr><td>Title Color:</td><td><input type="<?php echo $element['titleColor']; ?>" name='titleColor' value='<?php if (!empty($titleColor)) {
-                                                    echo $titleColor;
-                                                } ?>'></td></tr>
-                <?php
-            }
-            ?>
+                                                            <?php
+                                                            //   var_dump($a);
+                                                            foreach ($recentPostGadget as $element) {
+                                                                ?>
+                                                                <tr><td>No. of Post:</td><td><input type="<?php echo $element['noOfPost']; ?>" name='noOfPost' class='onlyNumerics' size='5' value='<?php
+                                                                        if (!empty($post)) {
+                                                                            echo $post;
+                                                                        }
+                                                                        ?>' required><div style='font-size:12px; float:right;'> Enter Only numbers.</div></td></tr>
+                                                                <tr><td>Title Bold:</td><td><input type="<?php echo $element['titleBold']; ?>" name='titleBold' value='b' <?php
+                                                                        if (!empty($titleBold)) {
+                                                                            echo 'checked';
+                                                                        }
+                                                                        ?>></td></tr>
+                                                                <tr><td>Title Underline:</td><td><input type="<?php echo $element['titleUnderline']; ?>" name='titleUnderline' value='u' <?php
+                                                                        if (!empty($titleUnderline)) {
+                                                                            echo 'checked';
+                                                                        }
+                                                                        ?>></td></tr>
+                                                                <tr><td>Title Color:</td><td><input type="<?php echo $element['titleColor']; ?>" name='titleColor' value='<?php
+                                                                        if (!empty($titleColor)) {
+                                                                            echo $titleColor;
+                                                                        }
+                                                                        ?>'></td></tr>
+                                                                    <?php
+                                                                }
+                                                                ?>
                                                         </table>    
                                                     </div>
                                                     <div>
@@ -191,18 +205,18 @@ $recentPostGadget = recent_post();
 
 
                                                         <input type="submit" value="Update Gadget" id="btn" name="submit">
-                                        <?php echo form_close(); ?>
+                                                        <?php echo form_close(); ?>
                                                     </div>
 
                                                 </div> <!-- recentPostEdit div close -->
                                             </div>
                                         </div>
                                         <?php
-                                        } else if ($datas->defaultGadget !== 'recent post') {
-                                            ?>
+                                    } else if ($datas->defaultGadget !== 'recent post') {
+                                        ?>
 
                                         <div id="textEdit">
-            <?php echo form_open('gadgets/textBoxUpdate'); ?>
+                                            <?php echo form_open('gadgets/textBoxUpdate'); ?>
                                             <input type="text" value="<?php echo $datas->name; ?>" id='inputtype' name="name_gadget">
                                             <textarea id='txtarea' name="type"><?php echo $datas->type; ?></textarea>
                                             <input type='hidden' value='sidebar' name='display'>
@@ -211,12 +225,12 @@ $recentPostGadget = recent_post();
 
 
                                                 <input type="submit" value="Update Gadget" id="btn" name="submit">
-                                        <?php echo form_close(); ?>
+                                                <?php echo form_close(); ?>
                                             </div>
                                         </div>
 
-        <?php }
-        ?> 
+                                    <?php }
+                                    ?> 
 
                                     <div>
 
@@ -250,8 +264,7 @@ $recentPostGadget = recent_post();
                                             <?php echo $datas->name; ?> 
                                         </div>              <!-- close name div-->
                                         <div id='option'>
-                                            <div id='edit'><i class="fa fa-pencil-square-o"></i></div> <!--close edit div-->
-                                            <div id='delete_option'>
+                                            <div id='delete_option' class="del_category">
                                                 <?php echo form_open('gadgets/delete'); ?> 
                                                 <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
                                                 <input type='hidden' value='body' name='display'>
@@ -277,21 +290,29 @@ $recentPostGadget = recent_post();
                                                             //   var_dump($a);
                                                             foreach ($recentPostGadget as $element) {
                                                                 ?>
-                                                                <tr><td>No. of Post:</td><td><input type="<?php echo $element['noOfPost']; ?>" name='noOfPost' class='onlyNumerics' size='5' value='<?php if (!empty($post)) {
-                                                    echo $post;
-                                                } ?>' required><div style='font-size:12px; float:right;'> Enter Only numbers.</div></td></tr>
-                                                                <tr><td>Title Bold:</td><td><input type="<?php echo $element['titleBold']; ?>" name='titleBold' value='b' <?php if (!empty($titleBold)) {
-                                                    echo 'checked';
-                                                } ?>></td></tr>
-                                                                <tr><td>Title Underline:</td><td><input type="<?php echo $element['titleUnderline']; ?>" name='titleUnderline' value='u' <?php if (!empty($titleUnderline)) {
-                                                    echo 'checked';
-                                                } ?>></td></tr>
-                                                                <tr><td>Title Color:</td><td><input type="<?php echo $element['titleColor']; ?>" name='titleColor' value='<?php if (!empty($titleColor)) {
-                                                    echo $titleColor;
-                                                } ?>'></td></tr>
-                <?php
-            }
-            ?>
+                                                                <tr><td>No. of Post:</td><td><input type="<?php echo $element['noOfPost']; ?>" name='noOfPost' class='onlyNumerics' size='5' value='<?php
+                                                                        if (!empty($post)) {
+                                                                            echo $post;
+                                                                        }
+                                                                        ?>' required><div style='font-size:12px; float:right;'> Enter Only numbers.</div></td></tr>
+                                                                <tr><td>Title Bold:</td><td><input type="<?php echo $element['titleBold']; ?>" name='titleBold' value='b' <?php
+                                                                        if (!empty($titleBold)) {
+                                                                            echo 'checked';
+                                                                        }
+                                                                        ?>></td></tr>
+                                                                <tr><td>Title Underline:</td><td><input type="<?php echo $element['titleUnderline']; ?>" name='titleUnderline' value='u' <?php
+                                                                        if (!empty($titleUnderline)) {
+                                                                            echo 'checked';
+                                                                        }
+                                                                        ?>></td></tr>
+                                                                <tr><td>Title Color:</td><td><input type="<?php echo $element['titleColor']; ?>" name='titleColor' value='<?php
+                                                                        if (!empty($titleColor)) {
+                                                                            echo $titleColor;
+                                                                        }
+                                                                        ?>'></td></tr>
+                                                                    <?php
+                                                                }
+                                                                ?>
                                                         </table>    
                                                     </div>
                                                     <div>
@@ -299,18 +320,18 @@ $recentPostGadget = recent_post();
 
 
                                                         <input type="submit" value="Update Gadget" id="btn" name="submit">
-                                        <?php echo form_close(); ?>
+                                                        <?php echo form_close(); ?>
                                                     </div>
 
                                                 </div> <!-- recentPostEdit div close -->
                                             </div>
                                         </div>
                                         <?php
-                                        } else if ($datas->defaultGadget !== 'recent post') {
-                                            ?>
+                                    } else if ($datas->defaultGadget !== 'recent post') {
+                                        ?>
 
                                         <div id="textEdit">
-            <?php echo form_open('gadgets/textBoxUpdate'); ?>
+                                            <?php echo form_open('gadgets/textBoxUpdate'); ?>
                                             <input type="text" value="<?php echo $datas->name; ?>" id='inputtype' name="name_gadget">
                                             <textarea id='txtarea' name="type"><?php echo $datas->type; ?></textarea>
                                             <input type='hidden' value='body' name='display'>
@@ -318,12 +339,12 @@ $recentPostGadget = recent_post();
 
 
                                                 <input type="submit" value="Update Gadget" id="btn" name="submit">
-                                        <?php echo form_close(); ?>
+                                                <?php echo form_close(); ?>
                                             </div>
                                         </div>
 
-        <?php }
-        ?> 
+                                    <?php }
+                                    ?> 
 
                                     <div>
 
@@ -357,8 +378,7 @@ $recentPostGadget = recent_post();
                                             <?php echo $datas->name; ?> 
                                         </div>              <!-- close name div-->
                                         <div id='option'>
-                                            <div id='edit'><i class="fa fa-pencil-square-o"></i></div> <!--close edit div-->
-                                            <div id='delete_option'>
+                                            <div id='delete_option' class="del_category">
                                                 <?php echo form_open('gadgets/delete'); ?> 
                                                 <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
                                                 <input type='hidden' value='footer' name='display'>
@@ -384,21 +404,29 @@ $recentPostGadget = recent_post();
                                                             //   var_dump($a);
                                                             foreach ($recentPostGadget as $element) {
                                                                 ?>
-                                                                <tr><td>No. of Post:</td><td><input type="<?php echo $element['noOfPost']; ?>" name='noOfPost' class='onlyNumerics' size='5' value='<?php if (!empty($post)) {
-                                                    echo $post;
-                                                } ?>' required><div style='font-size:12px; float:right;'> Enter Only numbers.</div></td></tr>
-                                                                <tr><td>Title Bold:</td><td><input type="<?php echo $element['titleBold']; ?>" name='titleBold' value='b' <?php if (!empty($titleBold)) {
-                                                    echo 'checked';
-                                                } ?>></td></tr>
-                                                                <tr><td>Title Underline:</td><td><input type="<?php echo $element['titleUnderline']; ?>" name='titleUnderline' value='u' <?php if (!empty($titleUnderline)) {
-                                                    echo 'checked';
-                                                } ?>></td></tr>
-                                                                <tr><td>Title Color:</td><td><input type="<?php echo $element['titleColor']; ?>" name='titleColor' value='<?php if (!empty($titleColor)) {
-                                                    echo $titleColor;
-                                                } ?>'></td></tr>
-                <?php
-            }
-            ?>
+                                                                <tr><td>No. of Post:</td><td><input type="<?php echo $element['noOfPost']; ?>" name='noOfPost' class='onlyNumerics' size='5' value='<?php
+                                                                        if (!empty($post)) {
+                                                                            echo $post;
+                                                                        }
+                                                                        ?>' required><div style='font-size:12px; float:right;'> Enter Only numbers.</div></td></tr>
+                                                                <tr><td>Title Bold:</td><td><input type="<?php echo $element['titleBold']; ?>" name='titleBold' value='b' <?php
+                                                                        if (!empty($titleBold)) {
+                                                                            echo 'checked';
+                                                                        }
+                                                                        ?>></td></tr>
+                                                                <tr><td>Title Underline:</td><td><input type="<?php echo $element['titleUnderline']; ?>" name='titleUnderline' value='u' <?php
+                                                                        if (!empty($titleUnderline)) {
+                                                                            echo 'checked';
+                                                                        }
+                                                                        ?>></td></tr>
+                                                                <tr><td>Title Color:</td><td><input type="<?php echo $element['titleColor']; ?>" name='titleColor' value='<?php
+                                                                        if (!empty($titleColor)) {
+                                                                            echo $titleColor;
+                                                                        }
+                                                                        ?>'></td></tr>
+                                                                    <?php
+                                                                }
+                                                                ?>
                                                         </table>    
                                                     </div>
                                                     <div>
@@ -406,18 +434,18 @@ $recentPostGadget = recent_post();
 
 
                                                         <input type="submit" value="Update Gadget" id="btn" name="submit">
-                                        <?php echo form_close(); ?>
+                                                        <?php echo form_close(); ?>
                                                     </div>
 
                                                 </div> <!-- recentPostEdit div close -->
                                             </div>
                                         </div>
-        <?php
-        } else if ($datas->defaultGadget !== 'recent post') {
-            ?>
+                                        <?php
+                                    } else if ($datas->defaultGadget !== 'recent post') {
+                                        ?>
 
                                         <div id="textEdit">
-            <?php echo form_open('gadgets/textBoxUpdate'); ?>
+                                            <?php echo form_open('gadgets/textBoxUpdate'); ?>
 
                                             <input type="hidden" value="<?php echo $datas->gadget_id; ?>" name="gadget_id" />
                                             <input type="text" value="<?php echo $datas->name; ?>" id='inputtype' name="name_gadget">
@@ -427,31 +455,31 @@ $recentPostGadget = recent_post();
 
 
                                                 <input type="submit" value="Update Gadget" id="btn" name="submit">
-            <?php echo form_close(); ?>
+                                                <?php echo form_close(); ?>
                                             </div>
                                         </div>
 
-        <?php }
-        ?> 
+                                    <?php }
+                                    ?> 
 
                                     <div>
 
                                     </div>
                                 </div>
                             </li>
-        <?php
-    }
-}
-?>
+                            <?php
+                        }
+                    }
+                    ?>
                 </ul>
 
             </ul>
         </div> <!-- nav_location close -->
 
-<?php
-$this->load->helper('tamplate_helper');
+        <?php
+        $this->load->helper('tamplate_helper');
 // $gadgetDisplay = tamplate_function(); 
-?>
+        ?>
 
         <div id="gadget_collection"> <!-- gadget_collections open -->
 
@@ -459,10 +487,10 @@ $this->load->helper('tamplate_helper');
             <div id="sub_gadget"> <!-- sub_gadget open -->
 
                 <?php
-                //if($this->session->flashdata('mess'))
-                //  {
-                //  echo $this->session->flashdata('mess');
-                //  }
+//if($this->session->flashdata('mess'))
+//  {
+//  echo $this->session->flashdata('mess');
+//  }
                 ?>
 
                 <div id="title">Click to add new text box 
@@ -470,7 +498,7 @@ $this->load->helper('tamplate_helper');
                 </div>
 
                 <div id="description">
-<?php echo form_open('gadgets/addText'); ?>
+                    <?php echo form_open('gadgets/addText'); ?>
                     <input type="text" id="inputtype" placeholder="Title" name="name_gadget" required="required">
                     <input type="hidden" name="textBox" value="textBox">
                     <textarea id="txtarea" placeholder="Description" name="type_gadget" ></textarea>
@@ -485,7 +513,7 @@ $this->load->helper('tamplate_helper');
                             ?>
                         </select>
                         <input type="submit" value="Add Gadget" id="btn" name="submit">
-<?php echo form_close(); ?>
+                        <?php echo form_close(); ?>
                     </div>
                 </div>
 
@@ -498,33 +526,66 @@ $this->load->helper('tamplate_helper');
                     <div id="arrow1"></div>
                 </div>
                 <div id="description_for_gadget1" style="padding: 1%;">
-<?php echo form_open('gadgets/defaultGadget'); ?>
+                    <?php echo form_open('gadgets/defaultGadget'); ?>
                     <input type="text" id="inputtype" placeholder="Title" name="name_gadget" required>
                     <input type="hidden" value="recent post" name="recentPost_gadget">
-                    <?php
-                    foreach ($recentPostGadget as $element) {
-                        echo "No. of Post:" . "<input type=" . $element['noOfPost'] . " name='noOfPost' class='onlyNumerics' size='5' required>" . "<div style='font-size:12px; float:right;'> Enter Only numbers.</div>" . "<br>";
-                        echo "Title Bold:" . "<input type=" . $element['titleBold'] . " name='titleBold' value='b'><br>";
-                        echo "Title Underline:" . "<input type=" . $element['titleUnderline'] . " name='titleUnderline' value='u'><br>";
-                        echo "Title Color:" . "<input type=" . $element['titleColor'] . " name='titleColor' value=''>";
-                    }
-                    ?>
-
-
-                    <div id='gadget_action'>
-                        Choose Template:<br>
-                        <select name="wheretodisplay">
-                            <?php
-                            foreach ($gadgetDisplay as $temp) {
-                                echo "<option value=" . $temp . ">" . $temp . "</option>";
-                            }
+                    <table cellpadding="5">
+                        <?php
+                        foreach ($recentPostGadget as $element) {
                             ?>
-                        </select>
+                            <tr>
+                                <td>
+                                    No. of Post:
+                                </td>
+                                <td>
+                                    <input type="<?php echo $element['noOfPost']; ?> " name='noOfPost' class='onlyNumerics' size='5' required>
+                                    <div style='font-size:12px;'> Enter Only numbers.</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Title Bold:
+                                </td>
+                                <td>
+                                    <input type="<?php echo $element['titleBold']; ?>" name='titleBold' value='b'><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Title Underline:
+                                </td>
+                                <td>
+                                    <input type="<?php echo $element['titleUnderline']; ?>" name='titleUnderline' value='u'><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Title Color:
+                                </td>
+                                <td>
+                                    <input type="<?php echo $element['titleColor']; ?>" name='titleColor' value=''>
+                                </td>
+                            </tr>
 
+                        <?php } ?>
 
-                        <input type="submit" value="Add Gadget" id="btn" name="submit">
-<?php echo form_close(); ?>
-                    </div>
+                        <tr>
+                            <td>
+
+                                <select name="wheretodisplay">
+                                    <?php
+                                    foreach ($gadgetDisplay as $temp) {
+                                        echo "<option value=" . $temp . ">" . $temp . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="submit" value="Add Gadget" id="btn" name="submit">
+                                <?php echo form_close(); ?>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
                 <!-- Default gadget - upto here-->

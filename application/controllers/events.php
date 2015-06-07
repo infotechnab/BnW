@@ -93,8 +93,8 @@ if (file_exists($filename2)) {
                
             }
             $this->dbevent->delete($id);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('events/event');
+//            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+//            redirect('events/event');
         } else {
 
 

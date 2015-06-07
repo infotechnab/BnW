@@ -185,11 +185,13 @@ class Sliders extends CI_Controller {
             } else {
                 $id = $this->input->post('id');
                 if (empty($_FILES['file_name']['name'])) {
+                    
                     $slideimage = $this->input->post('prevImg');
                     $this->dbslider->update_slider($id, $slidename, $slideimage, $slidecontent);
                     $this->session->set_flashdata('message', 'One slide modified sucessfully');
                     redirect('sliders/slider');
                 } else {
+                    
                     //if valid
                     $id = $this->input->post('id');
                      $this->upload->do_upload('file_name');

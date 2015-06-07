@@ -1,18 +1,12 @@
-<div class="container" style="min-height: 300px;padding-top: 50px;">
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <div class="error-template">
+<div class="rightSide">
+    <div class="">
+        <div class="">
+            <div class="">
                 <h1>
                     Oops!</h1>
                 <h2>
-                    404 Not Found</h2>
-                <div class="error-details">
-                    Sorry, an error has occured, Requested page not found!
-                </div>
-                <div class="error-actions">
-                    <a href="<?php echo base_url(); ?>" class="btn btn-primary btn-lg"><i class="fa fa-home"></i>
-                        Take Me Home </a>
-                </div>
+                    You cannot delete this user. It is current logged in.</h2>
+                
             </div>
         </div>
     </div>

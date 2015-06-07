@@ -1,19 +1,18 @@
 
 <script>
     $(document).ready(function () {
+        imgPos();
+        
         $(".ad").click(function () {
             $(".frm").show();
             $(".ad").hide();
         });
     });
+    $("#albumCancel").click(function () {
+        $(".frm").hide();
 
-    $(document).ready(function () {
-        $("#albumCancel").click(function () {
-            $(".frm").hide();
-
-            $("#error").hide();
-            $(".ad").show();
-        });
+        $("#error").hide();
+        $(".ad").show();
     });
 </script>
 <div class="rightSide">
@@ -57,7 +56,7 @@
                     ?> 
 
 
-    <div id="photodiv" class="action">
+                    <div id="photodiv" class="action">
 
 
                         <div class="imageContainer">
@@ -66,7 +65,7 @@
                             </span>
                         </div>
                         <div id="imagetitle">
-                <?php echo anchor('album/photos/' . $data->id, $data->album_name); ?> 
+                            <?php echo anchor('album/photos/' . $data->id, $data->album_name); ?> 
                         </div>
                         <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
 
@@ -74,15 +73,15 @@
                     </div> 
 
 
-            <?php
-            }
-        } else {
-            ?>     
-    <div id="photodiv" class="action"> 
+                    <?php
+                }
+            } else {
+                ?>     
+                <div id="photodiv" class="action"> 
 
                     <h4 style="text-align: center" >Please add photo to album <?php echo $data->album_name; ?></h4>
                     <div id="imagetitle">
-            <?php echo anchor('album/photos/' . $data->id, $data->album_name); ?> 
+                        <?php echo anchor('album/photos/' . $data->id, $data->album_name); ?> 
                     </div>
                     <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
 
@@ -91,31 +90,33 @@
 
 
 
-            <?php }
+                <?php
+            }
+        }
+        ?> 
+
+
+
+        <?php
     }
-    ?> 
 
-
-
-<?php }
-
-if ($this->session->userdata('logged_in'))
-    
-    ?>
+    if ($this->session->userdata('logged_in'))
+        
+        ?>
 
 
 </div>
 <div class="clear"></div>
 </div>
 <script>
-    $(document).ready(function(){
-       $(document).on("click", ".del_category", function(){
-           var id = $(this).attr("id");
+    $(document).ready(function () {
+        $(document).on("click", ".del_category", function () {
+            var id = $(this).attr("id");
             $(this).confirm();
-            var url = '<?php echo base_url().'index.php/album/delete_album' ?>';
+            var url = '<?php echo base_url() . 'index.php/album/delete_album' ?>';
             var hideid = $(this);
-            $(this).confirm.yes({id:id,url:url,thiss:hideid});
+            $(this).confirm.yes({id: id, url: url, thiss: hideid});
             $(this).confirm.no();
-       });
+        });
     });
 </script>

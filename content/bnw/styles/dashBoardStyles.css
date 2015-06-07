@@ -52,7 +52,7 @@ body
     width: 200px; 
 }
 p.dashuppe-text-all{
-    font-size: 20px;
+    font-size: 16px;
     margin: 4px 0px 2px 0px;
 }
 .btn-lg, .btn-group-lg > .btn {
@@ -375,6 +375,7 @@ ul.menu li.mainMenuItem:hover
     min-height: 200px;
 }
 .del_category{cursor: pointer;}
+.del_category:hover{color:#006dcc;}
 
 /*for media screen 1025-1500px*/
 @media screen and (max-width : 1500px)
@@ -584,10 +585,8 @@ ul.menu li.mainMenuItem:hover
 {
     float: left;
     width: 200px;
-  
     border: #999999 solid 1px;
-    padding: 10px;
-    margin: 10px;
+    margin-right: 20px;
 }
 th{background-color: #444;
 color: #fff;}
@@ -603,14 +602,12 @@ border-collapse:collapse;
 {
     width: 20px;
 }
-#galleryimage
-{
-    height: 150px;   
-}
+
 #imagetitle
 
 {
     min-width: 80px;
+    margin: 5px;
 }
 #newAlbum
 {
@@ -654,3 +651,33 @@ selectMenu
    width: 35%; float: left; 
 }
 
+
+.imageContainer
+{
+    position: relative;
+    overflow: hidden;
+    height: 155px;
+    background: #333;
+}
+
+#galleryimage
+{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+ /* popup_box DIV-Styles*/
+    #popup_box { 
+        display:none; /* Hide the DIV */
+        position:absolute;  
+        background:#FFFFFF;  
+        z-index:100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
+    }
+    #fadeDiv{position: absolute;background: rgba(0,0,0,0.7);z-index: 99;top: 0;left: 0;}
+    #popupBoxClose{float: right;}
+    #loading{position: absolute;top: 50%;left: 50%;}
+    /* This is for the positioning of the Close Link */

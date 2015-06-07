@@ -32,17 +32,26 @@
             
             
             
-            <td><?php if(isset($data->image)== !NULL && ($data->image)==!'' ){?> <img src="<?php echo base_url().'content/uploads/images/thumb_'.$data->image ?>" width="80" alt="<?php echo $data->image; ?>" />  <?php  }else{ echo  "Image not set";}          ?></td>
+            <td>
+                
+                <?php if(isset($data->image)== !NULL && ($data->image)==!'' ){?> 
+                <div class="imageContainer" style="height: 50px;width: 50px;">
+                    <span>
+                        <img class="srcimage" id="galleryimage" src="<?php echo base_url().'content/uploads/images/thumb_'.$data->image ?>" name='<?php echo $data->image; ?>' alt="<?php echo $data->image; ?>" /> 
+                 <?php  }else{ echo  "Image not set";}          ?>
+                </span>
+                </div>
+            </td>
             <td><?php  
 //            $catID = $this->dbdashboard->findcategory($data->post_category);
             
-                echo $data->post_category;
+                echo $data->category_name;
             
             ?>
             </td>
             <td>
-                <a href="<?php echo base_url().'index.php/offers/editpost/'.$data->id; ?>"><i class="fa fa-pencil-square-o"></i></a> | 
-                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+                <a href="<?php echo base_url().'index.php/offers/editpost/'.$data->pid; ?>"><i class="fa fa-pencil-square-o"></i></a> | 
+                <span class="del_category" id="<?php echo $data->pid; ?>"><i class="fa fa-trash-o"></i></span>
             </td>
         </tr>
             <?php    
@@ -67,6 +76,7 @@
 ?>
 <script>
     $(document).ready(function(){
+        imgPos();
        $(document).on("click", ".del_category", function(){
            var id = $(this).attr("id");
             $(this).confirm();
