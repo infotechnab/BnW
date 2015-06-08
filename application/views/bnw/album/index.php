@@ -67,8 +67,10 @@
                         <div id="imagetitle">
                             <?php echo anchor('album/photos/' . $data->id, $data->album_name); ?> 
                         </div>
-                        <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
-
+                        
+                        <div id="imagetitle">
+                            <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+                        </div>
 
                     </div> 
 
@@ -112,11 +114,9 @@
     $(document).ready(function () {
         $(document).on("click", ".del_category", function () {
             var id = $(this).attr("id");
-            $(this).confirm();
             var url = '<?php echo base_url() . 'index.php/album/delete_album' ?>';
             var hideid = $(this);
-            $(this).confirm.yes({id: id, url: url, thiss: hideid});
-            $(this).confirm.no();
+            senddata({id:id,url:url,thiss:hideid});
         });
     });
 </script>

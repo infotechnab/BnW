@@ -21,30 +21,34 @@ function showFunction() {
     $("#pop").css("left", left);
     $("#pop").show();
 }
-
-jQuery.fn.confirm = function ()
-{
-    jQuery.fn.confirm.yes = function (data)
+    
+    var id = "";
+    var url = "";
+    var hideid = "";
+    var nav = "";
+    function senddata(data)
     {
+        id = data.id;
+        url = data.url;
+        thisss = data.thiss;
+        nav = data.nav;
         showFunction();
+    }
         
         $(document).on("click", "#no", function () {
 
             $("#pop").hide();
             $("#fades").hide();
-            delete data.id;
         });
         
-        var thisss = data.thiss;
-        var nav = data.nav;
         $(document).on("click", "#yes", function () {
 //            alert(data);
             
             $.ajax({
                 type: "POST",
-                url: data.url,
+                url: url,
                 data: {
-                    id: data.id
+                    id: id
                 },
                 error: function ()
                 {
@@ -58,10 +62,13 @@ jQuery.fn.confirm = function ()
                     {
                         $("#pop").html("Error!!!" + msg + "<br>");
                         $("#pop").append("<button id='closesuccess' style='margin-top:5%;'>Close</button>");
+              
 
                     } else {
-                        $("#pop").html("Success!!!<br>");
-                        $("#pop").append("<button id='closesuccess' style='margin-top:5%;'>Close</button>");
+                        $("#pop").html("<span class='successDel'>Success!!!</span>");
+//                        $("#pop").append("<button id='closesuccess' style='margin-top:5%;'>Close</button>");
+                        $("#pop").fadeOut();
+                        $("#fades").fadeOut();
                         thisss.parents(".action").hide(1000);
                     }
                     if (nav == "yes")
@@ -79,12 +86,11 @@ jQuery.fn.confirm = function ()
                             {
                                 $("#cssmenu").html(msg);
                                 $("#jobs").html("<option>Make Parent</option>");
-                                $("#pop").hide(500);
-                                $("#fades").hide(500);
+                                $("#pop").fadeOut();
+                                $("#fades").fadeOut();
                             }
                         });
                     }
-                   //jQuery.fn.confirm.yes().clearQueue();
                 }
 
 
@@ -102,12 +108,3 @@ jQuery.fn.confirm = function ()
             $("#fades").hide();
         });
         
-         
-            return false;
-    };
-
-    jQuery.fn.confirm.no = function ()
-    {
-       
-    };
-};

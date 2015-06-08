@@ -9,7 +9,6 @@
     <script src="<?php echo base_url(); ?>content/bnw/scripts/confirm.js" > </script>
 <!--      <script src="<?php echo base_url(); ?>content/bnw/scripts/nicEdit.js"></script>-->
        <script src="<?php echo base_url(); ?>content/bnw/scripts/gadgets.js"></script>
-       <script src="<?php echo base_url(); ?>content/bnw/scripts/calendar.js"></script>
        <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.imgareaselect.pack.js"></script>
        <script src="<?php echo base_url(); ?>content/bnw/scripts/script.js"></script>
        <script src="<?php echo base_url(); ?>content/bnw/scripts/imgpos.js"></script>

@@ -586,7 +586,7 @@ ul.menu li.mainMenuItem:hover
     float: left;
     width: 200px;
     border: #999999 solid 1px;
-    margin-right: 20px;
+    margin:20px 20px 0 0;
 }
 th{background-color: #444;
 color: #fff;}
@@ -660,7 +660,7 @@ selectMenu
     background: #333;
 }
 
-#galleryimage
+#galleryimage, #pqr
 {
     position: absolute;
     left: 0;
@@ -673,11 +673,14 @@ selectMenu
  /* popup_box DIV-Styles*/
     #popup_box { 
         display:none; /* Hide the DIV */
+        background: #000;
+        width: 700px;
+        height: 600px;
         position:absolute;  
-        background:#FFFFFF;  
         z-index:100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
+        
     }
     #fadeDiv{position: absolute;background: rgba(0,0,0,0.7);z-index: 99;top: 0;left: 0;}
-    #popupBoxClose{float: right;}
+    #popupBoxClose{float: right;color: #fff;}
     #loading{position: absolute;top: 50%;left: 50%;}
     /* This is for the positioning of the Close Link */

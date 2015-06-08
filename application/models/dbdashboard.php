@@ -19,6 +19,16 @@ class Dbdashboard extends CI_Model {
         return $this->db->count_all("menu");
     }
 
+    public function get_nav_count()
+    {
+        $maxid = 0;
+        $row = $this->db->query('SELECT MAX(id) AS `maxid` FROM `navigation`')->row();
+        if ($row) {
+            $maxid = $row->maxid; 
+        }
+        return $maxid;
+    }
+
     public function get_list_of_menu() {
         $query = $this->db->get('menu');
         return $query->result();

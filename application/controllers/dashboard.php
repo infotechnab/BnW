@@ -239,7 +239,14 @@ class Dashboard extends CI_Controller {
                     $getID = $this->dbdashboard->get_data($parentID);
 
                     $previousID = 0;
-                    $tempID = 99999;
+                    if($id < 99999) {
+                        $tempID = 99999;
+                    } else {
+                        $getotalrows = $this->dbdashboard->get_nav_count();
+                       
+                        $tempID = $getotalrows + 10;
+                    }
+                    
                     foreach ($getID as $data) {
                         if ($id == $data->id) {
                             break;

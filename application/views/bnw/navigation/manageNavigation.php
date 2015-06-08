@@ -37,7 +37,7 @@
 </div>
 <div class="clear"></div>
 </div>
-<div id="fadeDiv"></div>
+<div id="fadeDivs"></div>
 <script>
    
     $(document).ready(function () {
@@ -59,7 +59,7 @@
                 success: function (msg)
                 {
                     $("#editBoxNav").hide();
-                    $("#fadeDiv").hide();
+                    $("#fadeDivs").hide();
                     $("#msges").html("Navigation Updated");
                     //refresh latest data.
                     var selectBox = document.getElementById("selectBox");
@@ -93,9 +93,9 @@
             var lr = b / 2;
             var tp = (h - hp) / 2;
             var toppos = topp + tp;
-            $("#fadeDiv").width($(document).width());
-            $("#fadeDiv").height($(document).height());
-            $("#fadeDiv").show();
+            $("#fadeDivs").width($(document).width());
+            $("#fadeDivs").height($(document).height());
+            $("#fadeDivs").show();
             $('.editBoxNav').css("left", lr);
             $('.editBoxNav').css("top", toppos - 200);
             $('.editBoxNav').show();
@@ -105,17 +105,15 @@
             $("#editBoxNav").show();
             e.preventDefault();
         });
-        $(document).on("click", ".deleteNav", function (e) {
-            e.preventDefault();
-              var id = $(this).attr("id");
-            $(this).confirm();
+        $(document).on("click", ".deleteNav", function () {
+            var id = $(this).attr("id");
             var url = '<?php echo base_url().'index.php/dashboard/deletenavigation' ?>';
             var hideid = $(this);
-            $(this).confirm.yes({id:id,url:url,thiss:hideid,nav:"yes"});
-            $(this).confirm.no();
-          return false;
+            senddata({id:id,url:url,thiss:hideid,nav:"yes"});
+            e.preventDefault();
         });
-        $(document).on("click", ".upNav", function () {
+        $(".upNav").one("click", function () {
+            
         var id = $(this).attr("id");
                 $.ajax({
                 type: "POST",
@@ -142,8 +140,9 @@
 
 
             });
+        return false;    
         });
-        $(document).on("click", ".downNav", function () {
+        $(".downNav").one("click", function () {
             var id = $(this).attr("id");
                 $.ajax({
                 type: "POST",
@@ -171,6 +170,8 @@
 
             });
         });
+        
+        
     });
 </script>
 
@@ -190,5 +191,5 @@
 
 <style>
     .editBoxNav{position: absolute;display: none;border: 1px solid #eee;height: 150px;width: 300px;background: #fff;z-index: 9999}
-    #fadeDiv{position: absolute;background: rgba(0,0,0,0.9);z-index: 999;top: 0;left: 0;}
+    #fadeDivs{position: absolute;background: rgba(0,0,0,0.9);z-index: 999;top: 0;left: 0;}
 </style>
