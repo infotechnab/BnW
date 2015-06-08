@@ -39,9 +39,22 @@ class Dashboard extends CI_Controller {
                 $this->load->view('bnw/menu/addnew');
             } else {
                 $menuname = $this->input->post('menu_name');
-                $this->dbdashboard->add_new_menu($menuname);
-                $this->session->set_flashdata('message', 'One menu added sucessfully');
-                redirect('dashboard/addmenu');
+                $listOfMenu = $this->dbdashboard->get_list_of_menu();
+                foreach($listOfMenu as $menus){
+                    $checkmenu = $menus->menu_name;
+                    $compare = strcasecmp("$checkmenu","$menuname");
+                    $comTrue = true;
+                    if($compare == 0){
+                        $comTrue = false;
+                        $this->session->set_flashdata('message', 'Menu name "'.$menuname.'" already exists. Try giving another name.');
+                        redirect('dashboard/addmenu');
+                    }
+                }
+                if($comTrue == TRUE){
+                        $this->dbdashboard->add_new_menu($menuname);
+                        $this->session->set_flashdata('message', 'One menu added sucessfully');
+                        redirect('dashboard/addmenu');
+                    }
             }
         } else {
 
@@ -226,7 +239,14 @@ class Dashboard extends CI_Controller {
                     $getID = $this->dbdashboard->get_data($parentID);
 
                     $previousID = 0;
-                    $tempID = 99999;
+                    if($id < 99999) {
+                        $tempID = 99999;
+                    } else {
+                        $getotalrows = $this->dbdashboard->get_nav_count();
+                       
+                        $tempID = $getotalrows + 10;
+                    }
+                    
                     foreach ($getID as $data) {
                         if ($id == $data->id) {
                             break;
@@ -490,7 +510,7 @@ class Dashboard extends CI_Controller {
                             $parent_id = $pid->id;
                         }
                     }
-
+                    
                     $categoryList = Array();
                     foreach ($listOfCategory as $myData) { {
                             if (isset($_POST[preg_replace('/\s+/', '', $myData->category_name)])) {
@@ -509,13 +529,12 @@ class Dashboard extends CI_Controller {
                             $navigation_slug = preg_replace('/\s+/', '', $v);
                             ;
                         }
-                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected);
+                        $page_id = null;
+                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected,$page_id);
                     }
-
-                                        redirect('dashboard/navigation', 'refresh');
+                redirect('dashboard/navigation', 'refresh');
 
                 } else {
-
                     $data['token_error'] = ' Select at least one menu list!';
                     $config["total_rows"] = $this->dbdashboard->record_count_navigation();
 

@@ -149,7 +149,6 @@ iframe{
 #delete_option
 {
     float: left;
-    border-left: thin solid;
 }
 
  #edit
@@ -190,11 +189,6 @@ iframe{
   
 }
 
-#gadget_action
-{
-    padding-left:5px;
-    font-size: 16px;
-}
 
 /*
 #edit_recentPost_toggle, #edit_text_toggle

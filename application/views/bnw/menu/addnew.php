@@ -66,12 +66,10 @@
     $(document).ready(function(){
        $(document).on("click", ".del_category", function(){
            var id = $(this).attr("id");
-            $(this).confirm();
             var url = '<?php echo base_url().'index.php/dashboard/deletemenu' ?>';
             var hideid = $(this);
+            senddata({id:id,url:url,thiss:hideid});
             
-            $(this).confirm.no({id:id});
-            $(this).confirm.yes({id:id,url:url,thiss:hideid});
        });
     });
 </script>

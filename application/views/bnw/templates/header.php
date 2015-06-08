@@ -9,9 +9,9 @@
     <script src="<?php echo base_url(); ?>content/bnw/scripts/confirm.js" > </script>
 <!--      <script src="<?php echo base_url(); ?>content/bnw/scripts/nicEdit.js"></script>-->
        <script src="<?php echo base_url(); ?>content/bnw/scripts/gadgets.js"></script>
-       <script src="<?php echo base_url(); ?>content/bnw/scripts/calendar.js"></script>
        <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.imgareaselect.pack.js"></script>
        <script src="<?php echo base_url(); ?>content/bnw/scripts/script.js"></script>
+       <script src="<?php echo base_url(); ?>content/bnw/scripts/imgpos.js"></script>
        <link rel="stylesheet" type="text/css" href="<?php echo base_url().'content/bnw/styles/imgareaselect-animated.css'; ?>" />
        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
        <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>

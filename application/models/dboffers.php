@@ -30,9 +30,12 @@ class Dboffers extends CI_Model {
     }
 
     public function get_all_posts($limit, $start) {
+        $this->db->select('*,post.id as pid');
+        $this->db->from('post');
         $this->db->limit($limit, $start);
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get('post');
+        $this->db->order_by('post.id', 'DESC');
+        $this->db->join('category', 'category.id = post.post_category', 'left');
+        $query = $this->db->get(); 
         return $query->result();
     }
 
