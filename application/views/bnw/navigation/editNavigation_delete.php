@@ -26,7 +26,7 @@
   <?php echo form_open_multipart('dashboard/updatenavigation');?>
   <p>Title:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
-      <input type="text" name="navigation_name" value="<?php echo $name; ?>" />
+      <input type="text" name="navigation_name" value="<?php echo htmlentities($name); ?>" />
   </p>
   
   <input type="submit" value="Submit" />

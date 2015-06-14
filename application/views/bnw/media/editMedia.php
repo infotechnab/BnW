@@ -27,7 +27,7 @@
   <?php echo form_open_multipart('media/updatemedia');?>
    <p class="dashuppe-text-all">Name:<br />
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
-  <input type="text" class="textInput" name="media_name" value="<?php echo $medianame; ?>" />
+  <input type="text" class="textInput" name="media_name" value="<?php echo htmlentities($medianame); ?>" />
    </p>
     
   <p class="dashuppe-text-all">Type<br />

@@ -23,7 +23,7 @@
   <?php echo form_open_multipart('dashboard/updatecategory');?>
   <p class="dashuppe-text-all">Name<br />
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
-  <input type="text" class="textInput" name="category_name" value="<?php echo $categoryname; ?>" />
+  <input type="text" class="textInput" name="category_name" value="<?php echo htmlentities($categoryname); ?>" />
    </p>
  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();

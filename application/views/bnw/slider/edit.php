@@ -29,7 +29,7 @@
   <?php echo form_open_multipart('sliders/updateslider');?>
   <p class="dashuppe-text-all">Title<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" />
-      <input type="text" class="textInput" name="slide_name" value="<?php echo $slidename; ?>" />
+      <input type="text" class="textInput" name="slide_name" value="<?php echo htmlentities($slidename); ?>" />
   </p>
   
   <?php if((trim($slideImage== NULL)) || trim($slideImage !== ' ')){ ?>
