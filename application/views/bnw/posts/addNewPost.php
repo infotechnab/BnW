@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div id="forLeftPage">
+    <div>
 
 
 
@@ -38,7 +38,7 @@
             <input type="text" class="textInput" name="post_title" value="<?php echo set_value('post_title'); ?>" />
         </p>
         <p class="dashuppe-text-all">Body<br />
-            <textarea name="post_content" id="textara" cols="50" rows="5" ><?php echo set_value('post_content'); ?></textarea>
+            <textarea name="post_content" id="textara" cols="50" rows="10" ><?php echo set_value('post_content'); ?></textarea>
 
         </p> 
         <p class="dashuppe-text-all">Image<br />
@@ -89,19 +89,6 @@
 <?php echo form_close(); ?>
     </div>
 
-    <div id="forRightPage"> 
-
-
-
-<!--   <input type="checkbox" name="allow_comment" value="1" <?php //if($set_data[0]==1) echo 'checked' ; ?> >Allow people to post comment</input>
-<br/>
-<input type="checkbox" name="allow_like" value="1" <?php // if($set_data[1]==1) echo 'checked' ; ?> >Allow people to like </input>
-<br/>
-<input type="checkbox" name="allow_share" value="1" <?php //if($set_data[2]==1) echo 'checked' ; ?> >Allow people to share</input>
-<br/> -->
-
-
-    </div>
 </div>
 <div class="clear"></div>
 </div>
