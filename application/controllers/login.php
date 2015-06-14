@@ -175,30 +175,30 @@ class Login extends CI_Controller {
     }
 
     public function setpassword() {
+        
+         if (isset($_POST['resetPassword'])) {
+            $token =  $_POST['resetPassword'];
+        }else{$token =NULL;}
+        if(isset($_POST['email'])) {
+            $email =  $_POST['email'];
+        }else{$email =NULL;}
+        $data['query'] = $this->dbmodel->get_user_email($token, $email);
+        
         $data['meta'] = $this->dbsetting->get_meta_data();
-        $this->load->view('bnw/templates/header', $data);
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('user_pass', 'Password', 'required|xss_clean|max_length[200]|matches[user_confirm_pass]');
+        $this->form_validation->set_rules('user_confirm_pass', 'Re-Password', 'required|xss_clean|max_length[200]');
 
-        //$this->form_validation->set_rules('user_pass', 'Password', 'required|xss_clean|md5|max_length[200]');
-        //$this->form_validation->set_rules('user_confirm_pass', 'Password', 'required|xss_clean|md5|max_length[200]');
-
-
-        $password = $_POST['user_pass'];
-        $token = $_POST['tokenid'];
-
-        $confirmPassword = $_POST['user_confirm_pass'];
-        if ($password == $confirmPassword) {
-
-            $userPassword = $this->input->post('user_pass');
-
-            $this->dbmodel->update_user_password($token, $userPassword);
-
-            $this->session->set_flashdata('message', 'Your password has been changed successfully');
-            redirect('login', 'refresh');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/login/resetPassword", $data);
+            $this->load->view('bnw/templates/footer', $data);
         } else {
-
-            $this->session->set_flashdata('message', 'Password didnot match');
-            redirect('login/forgotPassword', 'refresh');
-        }
+            $userPassword = $this->input->post('user_pass');
+            $this->dbmodel->update_user_password($email, $userPassword);
+            $this->session->set_flashdata('message', 'Your password has been reseted. Please login with new password.');
+            redirect('login', 'refresh');
+        } 
     }
 
     function userregister()

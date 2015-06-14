@@ -811,6 +811,16 @@ public function get_user_email($token, $email) {
         $query = $this->db->get('user_info');
         return $query->result();
     }
+    
+     public function update_user_password($email, $userPassword){
+        $token = "";
+        $data = array(
+        'user_pass'=>md5($userPassword),
+            'user_auth_key'=>$token);
+        $this->db->where('user_email', $email);
+        $this->db->update('user_info', $data);
+    }
+    
     function user_key($email) {
         $file = " ";
         $data = array(
