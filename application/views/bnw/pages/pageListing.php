@@ -55,11 +55,9 @@
     $(document).ready(function(){
        $(document).on("click", ".del_category", function(){
            var id = $(this).attr("id");
-            $(this).confirm();
             var url = '<?php echo base_url().'index.php/page/deletepage' ?>';
             var hideid = $(this);
-            $(this).confirm.no();
-            $(this).confirm.yes({id:id,url:url,thiss:hideid});
+            senddata({id:id,url:url,thiss:hideid});
             
             
        });

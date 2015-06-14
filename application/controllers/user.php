@@ -75,9 +75,11 @@ class User extends CI_Controller {
                 $lname = $this->input->post('user_lname');
                 $email = $this->input->post('user_email');
                 $pass = $this->input->post('user_pass');
-                $status = $this->input->post('user_status');
+                $status = $this->input->post('status');
                 $user_type = $this->input->post('user_type');
                 $this->dbuser->add_new_user($name, $fname, $lname, $email, $pass, $status, $user_type);
+                 $this->load->helper("emailsend_helper");
+                send_user_credentials($name, $fname, $lname, $email, $pass, $status);
                 $this->session->set_flashdata('message', 'One user added sucessfully');
                 redirect('user/users');
             }
@@ -134,21 +136,28 @@ class User extends CI_Controller {
                 $lname = $this->input->post('user_lname');
                 $email = $this->input->post('user_email');
                 $pass = $this->input->post('user_pass');
-                $status = $this->input->post('user_status');
+                $status = $this->input->post('status');
                 $user_type = $this->input->post('user_type');
-               
                 $this->dbuser->update_user($id, $name, $fname, $lname, $email, $pass, $status, $user_type);
-                $this->session->set_flashdata('message', 'User data Modified Sucessfully');
-
-                redirect('bnw/logout');
+                $this->load->helper("emailsend_helper");
+                send_user_credentials($name, $fname, $lname, $email, $pass, $status);
+                
+                 if($user_type == "Administrator" && $status == "0")
+                {
+                    redirect('bnw/logout');
+                } else {
+                    $this->session->set_flashdata('message', 'User data Modified Sucessfully');
+                    redirect('user/users');
+                }
             }
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
 
-    public function deleteuser($id = 0) {
+    public function deleteuser() {
         $url = current_url();
+        $id = $_POST['id'];
         if ($this->session->userdata('admin_logged_in')) {
             $uNAme = $this->session->userdata('username');
             //die($uNAme);
@@ -162,8 +171,8 @@ class User extends CI_Controller {
             if ($uNAme !== $userid) {
                 // die($uNAme);
                 $this->dbuser->delete_user($id);
-                $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-                redirect('user/users');
+//                $this->session->set_flashdata('message', 'Data Delete Sucessfully');
+//                redirect('user/users');
             } else {
                 // echo 'Sory you can not be delete this user because user is Login!';
                 $data['token_error'] = "Sory you can not be delete this user because user is Login!";

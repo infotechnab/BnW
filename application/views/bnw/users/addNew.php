@@ -37,11 +37,11 @@
   </p>
   
    <p class="dashuppe-text-all">User Status<br />
-  <?php $options = array('1'  => 'publish', '0'    => 'draft');  ?>
+  <?php $options = array('1'  => 'Active', '0'    => 'Inactive');  ?>
        <select class="textInput" name="status">
          
-         <?php foreach ($options as $data){ ?>
-         <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+         <?php foreach ($options as $key => $data){ ?>
+         <option value="<?php echo $key; ?>"><?php echo $data; ?></option>
          <?php } ?>
      </select>
   </p>

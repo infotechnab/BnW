@@ -1,3 +1,4 @@
+html, body {font-family: calibri;}
 ul.tsc_pagination { margin:4px 0; padding:0px; overflow:hidden; font:12px 'Tahoma'; list-style-type:none; }
 ul.tsc_pagination li { float:left; margin:0px; padding:0px; margin-left:5px; }
 ul.tsc_pagination li a { color:black; display:block; text-decoration:none; padding:7px 10px 7px 10px; }
@@ -195,11 +196,11 @@ hr.hr-gradient
     padding: 4px 4px 0px 0px;
 }
 
-.leftSide ul li, .leftSide ul
+.leftSide ul li
 {
     
     margin: 0;
-    padding: 0;
+    padding: 5px;
 }
 h3
 {
@@ -230,34 +231,36 @@ ul.menu
 }
 ul li.mainMenuItem a
 {
-    padding-left: 10px;
+   /*padding-left: 10px;*/
     width: 190px;
-    min-height: 30px;
+    /*min-height: 30px;*/
 }
+/*.mainMenuItem ul li a{padding-left: -22px;}*/
 ul.menu li.mainMenuItem
 {
-    
-    padding: 0px;
     font-size: 18px;
+    font-weight: 100;
     list-style-type: none;
     border-bottom: 1px solid #444;
+    font-family: calibri;
     
 }
 ul.menu li.mainMenuItem > ul.subMenu
 {
-    margin-top: 15px;
+    /*margin-top: 15px;*/
 }
 ul.subMenu
 {
      background-color: #444;
      width: 218px;
      display:none;
+     margin: 5px -5px -5px -45px;
      
 }
 ul.subMenu li
 {
     width: 208px;
-    padding-left: 10px;
+    padding-left: 35px;
 }
 ul.subMenu li:hover
 {  
@@ -267,8 +270,8 @@ ul.subMenu li:hover
 ul.menu li.mainMenuItem ul.subMenu li
 {
      font-size: 14px;
-     min-height: 25px;
      list-style-type: none;
+     
 }
 ul.menu li.mainMenuItem:hover
 {
@@ -278,6 +281,7 @@ ul.menu li.mainMenuItem:hover
 {
     color: white;
     text-decoration: none;
+    display: block;
 }
 #topRight p, #top a
 {
@@ -414,7 +418,7 @@ ul.menu li.mainMenuItem:hover
     }
     ul.menu, li.mainMenuItem
     {
-        min-height: 35px;
+        /*min-height: 35px;*/
     }
     
 }

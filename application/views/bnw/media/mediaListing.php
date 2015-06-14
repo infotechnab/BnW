@@ -4,7 +4,7 @@
     <p id="sucessmsg">
   <?php echo $this->session->flashdata('message'); ?>
     </p>
-    <h2>Media Libraries&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/album/addmedia'; ?>">Add New Media</a></h2>
+    <h2>Media Libraries&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/media/addmedia'; ?>">Add New Media</a></h2>
     <hr class="hr-gradient"/>
      <?php
      if(isset($error))
@@ -40,7 +40,7 @@
                 <img src='<?php echo base_url().'content/uploads/images/'.$data->media_type; ?>' style="height: 60px; width: 60px"/>
                     <?php } else{ echo $file_ext.' file'; } ?> </td>
             <td><?php echo base_url().'content/uploads/images/'.$file; ?></td>
-            <td><?php echo anchor('album/editmedia/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
+            <td><?php echo anchor('media/editmedia/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
                 <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
             </td>
         </tr>
@@ -62,7 +62,7 @@
     $(document).ready(function(){
        $(document).on("click", ".del_category", function(){
            var id = $(this).attr("id");
-            var url = '<?php echo base_url().'index.php/album/deletemedia' ?>';
+            var url = '<?php echo base_url().'index.php/media/deletemedia' ?>';
             var hideid = $(this);
             senddata({id:id,url:url,thiss:hideid});
             

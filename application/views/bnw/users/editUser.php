@@ -9,7 +9,8 @@
            $lname = $data->user_lname;
            $email= $data->user_email;
            $pass= $data->user_pass;
-           $status= $data->user_status;
+           $status = $data->user_status;
+           $user_type = $data->user_type;
          
        }
         
@@ -49,11 +50,11 @@
   </p>
   
    <p class="dashuppe-text-all">User Status<br />
-   <?php $options = array('1'  => 'publish', '0'    => 'draft');  ?>
+   <?php $options = array('1'  => 'Active', '0'    => 'Inactive');  ?>
        <select class="textInput" name="status">
          
-         <?php foreach ($options as $data){ ?>
-         <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+         <?php foreach ($options as $key=>$data){ ?>
+         <option value="<?php echo $key; ?>" <?php if($key == $status) { echo "selected"; } ?>><?php echo $data; ?></option>
          <?php } ?>
      </select>
   </p>
@@ -63,7 +64,7 @@
       <select class="textInput" name="user_type">
          
          <?php foreach ($useroptions as $data){ ?>
-         <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+         <option value="<?php echo $data; ?>" <?php if($data == $user_type) { echo "selected"; } ?>><?php echo $data; ?></option>
          <?php } ?>
      </select>
   </p>

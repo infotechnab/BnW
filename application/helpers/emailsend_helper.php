@@ -1,6 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
+function send_user_credentials($name, $fname, $lname, $email, $pass, $status)
+{
+    
+}
     function contact_email_hotel($name, $email, $phone, $imglink, $htitle, $messagess)
 {
     $body = '<div style="width: 750px; margin: 0 auto 0 auto; padding: 0px;font-family: calibri;border: 1px solid #000;" >

@@ -27,7 +27,7 @@
    
      <?php       foreach ($query as $data){
             ?>
-          <tr>
+        <tr class="action">
             <td><?php echo $data->id ?></td>
             <td><?php echo $data->user_name ?></td>
             <td><?php echo $data->user_fname ?></td>
@@ -36,16 +36,16 @@
 
             <td><?php if($data->user_status=="0")
             {
-                echo "Draft";
+                echo "Inactive";
             }
                 else
             {
-                    echo "Published";
+                    echo "Active";
                     
             }
             ?></td>
             
-            <td><?php if($data->user_type=="1")
+            <td><?php if($data->user_type=="User")
             {
                 echo "User";
             }
@@ -56,8 +56,10 @@
             }
             ?></td>
             
-            <td><?php echo anchor('user/edituser/'.$data->id,'Edit'); ?> / 
-            <?php echo anchor('user/deleteuser/'.$data->id,'Delete'); ?></td>
+            <td>
+                <a href="<?php echo base_url().'user/edituser/'.$data->id; ?>"><i class="fa fa-pencil-square-o"></i></a> / 
+                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+            </td>
         </tr>
             <?php    
             }
@@ -73,3 +75,14 @@
 <div class="clear"></div>
 </div>
 
+<script>
+    $(document).ready(function(){
+       $(document).on("click", ".del_category", function(){
+           var id = $(this).attr("id");
+            var url = '<?php echo base_url().'user/deleteuser' ?>';
+            var hideid = $(this);
+            senddata({id:id,url:url,thiss:hideid});
+            
+       });
+    });
+</script>

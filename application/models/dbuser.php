@@ -77,7 +77,6 @@ public function record_count_user() {
     }
 
     public function update_user($id, $name, $fname, $lname, $email, $pass, $status, $user_type) {
-
         $data = array(
             'user_name' => $name,
             'user_fname' => $fname,
