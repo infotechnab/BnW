@@ -11,7 +11,7 @@ class bnw extends CI_Controller {
         $this->load->library('pagination');
     }
     public function index() {
-        $url = base_url() . 'index.php/bnw';
+        $url = base_url() . 'bnw';
         if ($this->session->userdata('admin_logged_in')) {
             $data['username'] = Array($this->session->userdata('admin_logged_in'));
             $data['meta'] = $this->dbsetting->get_meta_data();

@@ -20,7 +20,10 @@
 </head>
 <body>
    <script language="javascript" type="text/javascript">
-         document.getElementById("username").focus();
+       $(document).ready(function(){
+             document.getElementById("username").focus();
+       });
+       
         </script>
     <div class="container">
         <div class="left">
@@ -58,7 +61,7 @@
                            
                         </td>
                         <td>
-                            <a href="<?php echo base_url().'index.php/login/forgotPassword'; ?>">Forgot Password</a>
+                            <a href="<?php echo base_url().'login/forgotPassword'; ?>">Forgot Password</a>
                         </td>
                         </tr>
                     </tbody>

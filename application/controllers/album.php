@@ -36,7 +36,7 @@ class Album extends CI_Controller {
     public function album() {  //$url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config = array();
-            $config["base_url"] = base_url() . "index.php/album/album";
+            $config["base_url"] = base_url() . "album/album";
             $config["total_rows"] = $this->dbalbum->record_count_album();
             $config["per_user"] = 6;
             $this->pagination->initialize($config);
@@ -263,7 +263,7 @@ class Album extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config = array();
-            $config["base_url"] = base_url() . "index.php/album/media";
+            $config["base_url"] = base_url() . "album/media";
             $config["total_rows"] = $this->dbuser->record_count_user();
             $config["per_media"] = 6;
             $this->pagination->initialize($config);

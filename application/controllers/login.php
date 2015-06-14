@@ -22,7 +22,7 @@ class Login extends CI_Controller {
             }
             else{
                
-                $data['link'] = base_url().'index.php/bnw';
+                $data['link'] = base_url().'bnw';
             }
             
         if ($this->session->userdata('admin_logged_in')&& $this->session->userdata('admin')) {
@@ -30,7 +30,7 @@ class Login extends CI_Controller {
         } else {
             $this->session->sess_destroy();
             $data['meta'] = $this->dbsetting->get_meta_data();
-            $this->load->view('bnw/templates/loginTemplate', $data);
+            $this->load->view('bnw/login/loginTemplate', $data);
             $this->load->view('bnw/templates/footer', $data);
         }
     }
@@ -66,7 +66,7 @@ class Login extends CI_Controller {
                    
                 );
                 $this->session->set_userdata($data);
-             if($link == base_url().'index.php/bnw/logout')
+             if($link == base_url().'/bnw/logout')
              {
                  redirect('bnw/index','refresh');
                 
@@ -77,7 +77,7 @@ class Login extends CI_Controller {
             } else { // incorrect username or password
                  $data['meta'] = $this->dbsetting->get_meta_data();
                 $this->session->set_flashdata('message', 'Username or password incorrect');
-               $data['link'] = base_url().'index.php/bnw';
+               $data['link'] = base_url().'bnw';
             $this->load->view('bnw/templates/loginTemplate', $data);
             $this->load->view('bnw/templates/footer', $data);
             }

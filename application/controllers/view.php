@@ -43,7 +43,7 @@ public function index() {
         $data['headertitle'] = $this->viewmodel->get_header_title();
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
             $config = array();
-            $config["base_url"] = base_url() . "index.php/view/allevent";
+            $config["base_url"] = base_url() . "view/allevent";
             $config["total_rows"] = $this->viewmodel->count_events();           
             $config["per_page"] = 12;
             $this->pagination->initialize($config);
@@ -75,7 +75,7 @@ $data['pageTitle'] = 'Events';
         $data['headerlogo'] = $this->viewmodel->get_header_logo();
           $data['contact'] = $this->contact_model->get_contact_form();
             $config = array();
-            $config["base_url"] = base_url() . "index.php/view/allevent";
+            $config["base_url"] = base_url() . "view/allevent";
             $config["total_rows"] = $this->viewmodel->count_events_news();           
             $config["per_page"] = 12;
             $this->pagination->initialize($config);
