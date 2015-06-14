@@ -9,6 +9,7 @@ ul.tsc_paginationA01 li:hover a,ul.tsc_paginationA01 li.current a {background:#F
 ::selection{ background-color: #E13300; color: white; }
 ::moz-selection{ background-color: #E13300; color: white; }
 ::webkit-selection{ background-color: #E13300; color: white; }
+.tbl_full_width{width:100%}
 body
 {
     margin: 0px;
