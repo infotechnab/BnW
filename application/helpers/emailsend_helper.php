@@ -90,7 +90,52 @@ function send_contact_email_user($hotelEmail,$email, $subject, $message)
          }    
    }
    
-  
+     function password_reset_email($to, $userName, $token, $link, $imglink) {
+    $body = '<div style="width: 750px; margin: 0 auto 0 auto; padding: 0px;font-family: calibri;border: 1px solid #000;" >
+        <div style="text-align:center; min-height: 70px; background-color: #222; margin: 0 auto 0 auto;width: 100%;">
+            <div style="margin: 0 auto;text-align: center;">
+            <img src="'.$imglink.'" style="width:70px; margin:10px;vertical-align:middle;"/>
+            <span style="color: #f8a54d;font-size: 40px;font-family: Trebuchet MS;font-weight:900;vertical-align:middle;">BookingPoints.com</span>
+            </div>
+            </div>
+
+   <div style="padding: 10px 20px 10px 20px;background-color: #fff;">
+   
+    
+    <h4>Dear ' . $userName . '  !</h4>
+
+    <h3>Your request to reset password for email ' . $to . ' has been confirmed.</h3>
+    
+    <p>Click on the given link to reset your password <a href="' . $link . 'login/resetPassword?id=' . $to . '&&resetPassword=' . $token . '">Reset Password</a></p>
+                <br/><br/><br/>   
+<h5>Thank You</h5>
+<h5>BookingPoints Team</h5>
+</div>
+            
+           <div style="text-align:center; height: 40px;padding-top: 10px;">
+           <p>&copy; BookingPoints</p>
+
+            </div>
+
+</div>';
+    return $body;
+}
+
+function send_password_reset_email($to, $subject, $message) {
+    //$headers = "From: admin<auseluco@box1007.bluehost.com>" . "\r\n";
+    $headers = "From: BookingPoints<noreply@bookingpoints.com>" . "\r\n";
+    $headers .="CC: infotechnab@gmail.com". "\r\n";
+    $headers .= 'Reply-To: support@bookingpoints.com' . "\r\n";
+    $headers .="MIME-Version: 1.0" . "\r\n";
+    $headers .="Content-type:text/html;charset=UTF-8" . "\r\n";    
+
+    if (mail($to, $subject, $message, $headers)) {
+        
+    } else {
+        echo '<h3>Sorry email could not be sent</h3>';
+    }
+}
+
   
    
    

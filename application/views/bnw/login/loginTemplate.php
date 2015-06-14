@@ -35,9 +35,9 @@
                         <tr>
                         <td colspan="2">
                             <img id="name" src="<?php echo base_url()."content/bnw/images/bnw.png"; ?>"/>
-                                <div id="sucessmsg">
+                                <p id="sucessmsg">
                                     <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}
-                                echo validation_errors(); ?> </div>
+                                echo validation_errors(); ?> </p>
                         </td>
                         </tr>
                         <tr>
@@ -61,7 +61,7 @@
                            
                         </td>
                         <td>
-                            <a href="<?php echo base_url().'login/forgotPassword'; ?>">Forgot Password</a>
+                            <a href="<?php echo base_url().'index.php/login/forgotPassword'; ?>">Forgot Password</a>
                         </td>
                         </tr>
                     </tbody>

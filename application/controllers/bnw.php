@@ -804,11 +804,6 @@ class bnw extends CI_Controller {
 
     //=================================== end Cart System  ========================================================//
 
-    function logout() {
-        $this->session->sess_destroy();
-        $this->index();
-        // redirect('login', 'refresh');
-    }
 
     public function menu_id_from_ajax() {
         $this->load->helper('myhelper_helper');

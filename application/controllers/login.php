@@ -28,7 +28,7 @@ class Login extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')&& $this->session->userdata('admin')) {
              redirect('login', 'refresh');
         } else {
-            $this->session->sess_destroy();
+            //$this->session->sess_destroy();
             $data['meta'] = $this->dbsetting->get_meta_data();
             $this->load->view('bnw/login/loginTemplate', $data);
             $this->load->view('bnw/templates/footer', $data);
@@ -84,47 +84,50 @@ class Login extends CI_Controller {
         }
     }
 
+        function logout() {
+        $this->session->sess_destroy();
+        $this->index();
+        // redirect('login', 'refresh');
+    }
+
+    
     public function forgotPassword() {
-        $this->load->library('session');
+         $this->load->library('session');
         if (!$this->session->userdata('admin_logged_in')) {
             $data['meta'] = $this->dbsetting->get_meta_data();
-            $this->load->view('bnw/templates/forgotPassword', $data);
+           $this->load->view('bnw/login/forgotPassword', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
-            $this->session->set_flashdata('message', 'Incorrect User Email');
-            redirect('login/forgotPassword');
+            $this->session->set_flashdata('message', 'Incorrect Email');
+            redirect('login/index');
         }
+
     }
 
     public function email() {
         $data['meta'] = $this->dbsetting->get_meta_data();
         $this->load->view('bnw/templates/header', $data);
 
-        $useremail = $_POST['username'];
+        $useremail = $_POST['user_email'];
         $username = $this->dbuser->get_selected_user($useremail);
-
+        if(!empty($username)){
         foreach ($username as $dbemail) {
             $to = $dbemail->user_email;
+            $user = $dbemail->full_name;
         }
-        if ($to == $useremail) {
             $token = $this->getRandomString(10);
             $this->dbuser->update_emailed_user($to, $token);
-            $this->test($token);
-
-            $this->mailresetlink($to, $token);
+            $this->passwordresetemail($to, $user, $token);
+              $this->session->set_flashdata('message', 'Instructions to reset your password has been emailed to you.Please check your inbox.');
+             redirect('login/index');
         } else {
             $this->session->set_flashdata('message', 'Please type valid Email Address');
-            redirect("view/forgotPassword");
+            redirect("login/forgotPassword");
         }
-        $this->session->set_flashdata("message","Link to reset your password has been to your email.Please check your inbox.");
-        redirect('login');
+      
+      
     }
 
-    public function test($token) {
-
-        $data['query'] = $this->dbuser->find_user_auth_key($token);
-        $this->load->view('bnw/templates/messageSent', $data);
-    }
 
     function getRandomString($length) {
         $validCharacters = "ABCDEFGHIJKLMNPQRSTUXYVWZ123456789";
@@ -140,59 +143,34 @@ class Login extends CI_Controller {
     
     
 
-    function mailresetlink($to, $token) {
-        //   $to
-         $subject = "Reset Password of B&W";
-          $uri = 'http://'. $_SERVER['HTTP_HOST'] ;
-          $message = '
-          <html>
-          <head>
-          <title></title>
-          </head>
-          <body>
-          <p>Click on the given link to reset your password <a href="'.$uri.'/reset.php?token='.$token.'">Reset Password</a></p>
-
-          </body>
-          </html>
-          ';
-          $headers = "MIME-Version: 1.0" . "\r\n";
-          $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
-          $headers .= 'From: Admin<webmaster@example.com>' . "\r\n";
-          $headers .= 'rsubedi@salyani.com.np';
-
-          mail($to,$subject,$message,$headers);
-          //echo "We have sent the password reset link to your  email id <b>".$to."</b>"; */
+   public function passwordresetemail($to=null, $userName=null, $token=null) {
+        $this->load->helper('emailsend_helper');
+        $subject = "Password Reset";
+         $imglink = base_url()."content/bnw/images/bnw.png";
+        $link = base_url();
+        $message = password_reset_email($to, $userName, $token, $link, $imglink);
+        send_password_reset_email($to, $subject, $message);
     }
-
-    // public function resetPassword() {
-    //           $data['meta'] = $this->dbmodel->get_meta_data();
-    //           $this->load->view("bnw/templates/header", $data);
-    //          $this->load->view("bnw/templates/resetPassword", $data);
-    //          $this->load->view('bnw/templates/footer', $data);
-    // }   
-
+    
     public function resetPassword() {
-        $id = $_GET['resetPassword'];
-        $email = $_GET['id'];
-       
+         if (isset($_GET['resetPassword'])) {
+            $token =  $_GET['resetPassword'];
+        }else{$token =NULL;}
+        if(isset($_GET['id'])){
+            $email = $_GET['id'];
+        }else{
+            $email = NULL;
+        }
+               
         $data['meta'] = $this->dbmodel->get_meta_data();
-        $keys = $this->dbmodel->get_userKey($id);
+        $data['query'] = $this->dbmodel->get_user_email($token, $email);
 
-        foreach ($keys as $uName) {
-            $userName = $uName->user_email;
-        }
-        $blank = $this->dbmodel->user_key($email);
-       
         $this->load->view("bnw/templates/header", $data);
-        if (isset($userName)) {
-            if ($email == $userName) {
-                $this->load->view("bnw/templates/resetPassword", $data);
+         if (!empty($data['query'])) {
+                $this->load->view("bnw/login/resetPassword", $data);
             } else {
-                $this->load->view("bnw/templates/tokenexpiremsg");
-            }
-        } else {
-            $this->load->view("bnw/templates/tokenexpiremsg");
-        }
+                $this->load->view("bnw/login/tokenexpiremsg");
+            } 
         $this->load->view('bnw/templates/footer', $data);
     }
 

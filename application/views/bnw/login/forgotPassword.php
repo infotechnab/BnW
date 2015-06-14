@@ -39,7 +39,7 @@
                         </tr>
                         <tr>
                         <td colspan="2">
-                            <input type="text" size="35" id="username" name="username" placeholder="User Email" required/>
+                            <input type="email" size="35" id="username" name="user_email" placeholder="User Email" required/>
                         </td>
                         </tr>
                         <tr>
