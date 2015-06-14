@@ -11,7 +11,7 @@
     <?php
         if(!empty($news)){
             ?>
-    <table border="1" cellpadding="10" >
+    <table border="1" cellpadding="10" class="tbl_full_width" >
         <tr>
             <th>Subscriber Name</th>
             <th>Email</th>         

@@ -9,7 +9,7 @@
     <?php
         if(!empty($query)){
             ?>
-    <table border="1" cellpadding="10" >
+    <table border="1" cellpadding="10" class="tbl_full_width" >
         <tr>
             <th>Page Title</th>
             <th>Page Summary</th>         
