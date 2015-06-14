@@ -38,6 +38,7 @@ class Sliders extends CI_Controller {
             $data["query"] = $this->dbslider->get_slider($config["per_page"], $slide);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbsetting->get_meta_data();
+            $this->session->set_userdata("urlPagination", $config["base_url"]."/".$slide);
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/slider/slideListing', $data);
@@ -248,7 +249,8 @@ class Sliders extends CI_Controller {
                     $this->image_lib->resize();
                     $this->dbslider->update_slider($id, $slidename, $slideimage, $slidecontent);
                     $this->session->set_flashdata('message', 'One slide modified sucessfully');
-                    redirect('sliders/slider');
+                    $redirectPagination = $this->session->userdata("urlPagination");
+                    redirect($redirectPagination);
                 }
             }
             $this->load->view('bnw/templates/footer', $data);

@@ -44,7 +44,7 @@
                 <?php echo validation_errors(); ?>
             </div>
         </div> 
-        <div id="forLeftPage">
+        <div id="">
 
     <?php echo form_open_multipart('offers/updatepost'); ?>
             <input type="hidden" name="hidden_image" value="<?php echo $post_image; ?>"/>

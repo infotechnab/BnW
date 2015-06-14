@@ -9,6 +9,17 @@ class Dboffers extends CI_Model {
      public function record_count_post() {
         return $this->db->count_all("post");
     }
+     public function record_count_post_category_id($post_category_id) {
+        $this->db->where('post_category',$post_category_id);
+        $this->db->from('post');
+        return $this->db->count_all_results();
+    }
+    
+    public function get_post_category() {
+        
+        $query = $this->db->query("SELECT DISTINCT post.post_category as id, category.category_name FROM post INNER JOIN category ON post.post_category = category.id");
+        return $query->result();
+    }
     
      public function get_posts() {
         $query = $this->db->get('post');
@@ -39,6 +50,15 @@ class Dboffers extends CI_Model {
         return $query->result();
     }
 
+    public function get_all_posts_category_id($post_category_id) {
+        $this->db->select('*,post.id as pid');
+        $this->db->from('post');
+        $this->db->where("post_category", $post_category_id);
+        $this->db->order_by('post.id', 'DESC');
+        $query = $this->db->get(); 
+        return $query->result();
+    }
+    
     public function findpost($id) {
         $this->db->select();
         $this->db->from('post');

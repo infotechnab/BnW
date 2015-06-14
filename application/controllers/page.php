@@ -47,7 +47,7 @@ class Page extends CI_Controller {
             $pagedata["query"] = $this->dbpage->get_all_pages($config["per_page"], $page);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbsetting->get_meta_data();
-
+            $this->session->set_userdata("urlPagination", $config["base_url"]."/".$page);
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/pages/pageListing', $pagedata);
@@ -320,7 +320,8 @@ if (file_exists($filename1)) {
                     $this->dbpage->update_page($id, $pageName, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare, $past_image);
                         $this->dbpage->update_navigation_on_page_update($pageid, $navigationName, $navigationLink, $navigationSlug);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
-                        redirect('page/pages');
+                        $redirectPagination = $this->session->userdata("urlPagination");
+                        redirect($redirectPagination);
                 }
             } else {
                 $id = $this->input->post('id');

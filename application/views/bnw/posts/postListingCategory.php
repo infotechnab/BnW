@@ -67,7 +67,6 @@
             
     ?>
     </table>
-    <?php  echo $links; ?>
 </div>
 </div>
 <div class="clear"></div>

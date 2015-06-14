@@ -33,7 +33,7 @@ class Offers extends CI_Controller {
     public function posts() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-
+            $data["get_post_category"] = $this->dboffers->get_post_category();
             $config = array();
             $config["base_url"] = base_url() . "offers/posts";
             $config["total_rows"] = $this->dboffers->record_count_post();
@@ -44,10 +44,33 @@ class Offers extends CI_Controller {
             $data["query"] = $this->dboffers->get_all_posts($config["per_page"], $page);
             $data["links"] = $this->pagination->create_links();
             $data['meta'] = $this->dbsetting->get_meta_data();
-
+            $this->session->set_userdata("urlPagination", $config["base_url"]."/".$page);
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/posts/postListing', $data);
+            $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+    public function searchCategory() {
+         $url = current_url();
+        if ($this->session->userdata('admin_logged_in')) {
+            $post_category_id = $this->input->post('category_name');
+            if($post_category_id == "allPost")
+            {
+                redirect('offers/posts');
+                exit();
+            }
+            $data["get_post_category"] = $this->dboffers->get_post_category();
+//            $config["total_rows"] = $this->dboffers->record_count_post_category_id($post_category_id);
+            $data["query"] = $this->dboffers->get_all_posts_category_id($post_category_id);
+            $data['meta'] = $this->dbsetting->get_meta_data();
+
+            $this->load->view("bnw/templates/header", $data);
+            $this->load->view("bnw/templates/menu");
+            $this->load->view('bnw/posts/postListingCategory', $data);
             $this->load->view('bnw/templates/footer', $data);
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -349,7 +372,8 @@ if (file_exists($filename1)) {
                     $selectCategory = $this->input->post('selectCategory');
                     $this->dboffers->update_post($id, $post_title, $post_content, $post_summary, $post_image,$selectCategory);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
-                    redirect('offers/posts');
+                    $redirectPagination = $this->session->userdata("urlPagination");
+                    redirect($redirectPagination);
                 }
             } else {
                 $id = $this->input->post('id');

@@ -48,6 +48,7 @@ class Events extends CI_Controller {
             $data["links"] = $this->pagination->create_links();
             $data["query"] = $this->dbdashboard->get_menu();
             //  $data["event"] = $this->dbmodel->get_event_data();
+            $this->session->set_userdata("urlPagination", $config["base_url"]."/".$page);
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
             $this->load->view('bnw/event/eventList', $data);
@@ -189,7 +190,8 @@ if (file_exists($filename1)) {
                     $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
                     $this->dbevent->update_event($id, $title, $content, $location, $image, $dateTime, $type);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
-                    redirect('events/event');
+                    $redirectPagination = $this->session->userdata("urlPagination");
+                    redirect($redirectPagination);
                 }
             } else {
                 $id = $this->input->post('id');

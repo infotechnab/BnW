@@ -17,11 +17,11 @@ class Media extends CI_Controller {
         $this->load->library('pagination');
     }
 
-       public function index() {
+       public function medias() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config = array();
-            $config["base_url"] = base_url() . "index.php/album/media";
+            $config["base_url"] = base_url() . "media/medias";
             $config["total_rows"] = $this->dbuser->record_count_user();
             $config["per_media"] = 6;
             $this->pagination->initialize($config);
@@ -30,6 +30,7 @@ class Media extends CI_Controller {
             $data["links"] = $this->pagination->create_links();
             $data['query'] = $this->dbalbum->get_all_media();
             $data['meta'] = $this->dbsetting->get_meta_data();
+            $this->session->set_userdata("urlPagination", $config["base_url"]."/".$media);
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/media/mediaListing', $data);
@@ -93,7 +94,7 @@ class Media extends CI_Controller {
                 $this->dbalbum->add_new_media($medianame, $mediatype, $media_association_id, $medialink);
                 $this->session->set_flashdata('message', 'One media added sucessfully');
                 
-                redirect('album/media');
+                redirect('media');
             }
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -111,6 +112,62 @@ class Media extends CI_Controller {
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/media/editMedia', $data);
             $this->load->view('bnw/templates/footer', $data);
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+    function updatemedia() {
+        $url = current_url();
+        if ($this->session->userdata('admin_logged_in')) {
+            $config['upload_path'] = './content/uploads/images/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf|doc|ppt|odt|pptx|docx|xls|xlsx|key.';
+            $config['max_size'] = '2000';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+            $this->load->library('upload', $config);
+            $listOfAlbum = $this->dbalbum->get_list_of_album();
+            $data["listOfAlbum"] = $this->dbalbum->get_list_of_album();
+            $data['meta'] = $this->dbsetting->get_meta_data();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
+                $mediaName = $_POST['selectAlbum'];
+                $media_association_info = $this->dbalbum->get_media_association_info($mediaName);
+                foreach ($media_association_info as $id) {
+                    $media_association_id = $id->id;
+                }
+            }
+            $this->form_validation->set_rules('media_name', 'media Name', 'required|xss_clean|max_length[200]');
+            if ($this->form_validation->run() == FALSE) {
+                $id = $this->input->post('id');
+                $data['query'] = $this->dbalbum->findmedia($id);
+                $this->load->view('bnw/media/editMedia', $data);
+            } else {  //if valid
+                if (empty($_FILES['file_name']['name'])) {
+                    $id = $this->input->post('id');
+                    $medianame = $this->input->post('media_name');
+                    $mediatype = $this->input->post('prevfile');
+                    $medialink = $this->input->post('media_link');
+                    $this->dbalbum->update_media($id, $medianame, $mediatype, $media_association_id, $medialink);
+                    $this->session->set_flashdata('message', 'Media data Modified Sucessfully');
+                    $redirectPagination = $this->session->userdata("urlPagination");
+                    redirect($redirectPagination);
+                } else {
+                    $id = $this->input->post('id');
+                    $this->upload->do_upload('file_name');
+                    $medianame = $this->input->post('media_name');
+                    $mediatype = $_FILES['file_name']['name'];
+                    $medialink = $this->input->post('media_link');
+                    $this->dbalbum->update_media($id, $medianame, $mediatype, $media_association_id, $medialink);
+                    $this->session->set_flashdata('message', 'Media data Modified Sucessfully');
+                    $redirectPagination = $this->session->userdata("urlPagination");
+                    redirect($redirectPagination);
+                }
+                $this->load->view('bnw/templates/footer', $data);
+            }
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }

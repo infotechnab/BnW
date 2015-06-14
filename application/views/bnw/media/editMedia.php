@@ -24,7 +24,7 @@
      echo $error;
   } echo validation_errors(); ?>
     </div>
-  <?php echo form_open_multipart('album/updatemedia');?>
+  <?php echo form_open_multipart('media/updatemedia');?>
    <p class="dashuppe-text-all">Name:<br />
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
   <input type="text" class="textInput" name="media_name" value="<?php echo $medianame; ?>" />

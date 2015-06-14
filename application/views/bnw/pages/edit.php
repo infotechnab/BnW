@@ -42,7 +42,7 @@ if ($miscSetting)
       <?php echo validation_errors(); ?>
     </div>
     </div>
-    <div id="forLeftPage"> 
+    <div id=""> 
  
 
   
@@ -100,7 +100,7 @@ if ($miscSetting)
  
   </div>
   
-  <div id="forRightPage"> 
+  <div id=""> 
    <p class="dashuppe-text-all">Order<br/>
        <input type="text" class="textInput" name="page_order" /> </p>
    

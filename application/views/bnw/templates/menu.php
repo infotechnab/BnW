@@ -55,7 +55,7 @@
                    <li class="mainMenuItem media"><a href="#"><i class="fa fa-file-video-o"></i>&nbsp;
  Media</a>
                         <ul class="subMenu">
-                            <li><?php echo anchor('media', 'Library') ?></li>
+                            <li><?php echo anchor('media/medias', 'Library') ?></li>
                             <li><?php echo anchor('media/addmedia', 'Add New') ?></li>                           
                         </ul>
                     </li>

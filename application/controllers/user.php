@@ -39,7 +39,7 @@ class User extends CI_Controller {
             $data["links"] = $this->pagination->create_links();
             $data['query'] = $this->dbuser->get_user();
             $data['meta'] = $this->dbsetting->get_meta_data();
-
+            $this->session->set_userdata("urlPagination", $config["base_url"]."/".$user);
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/users/userListing', $data);
@@ -147,7 +147,8 @@ class User extends CI_Controller {
                     redirect('bnw/logout');
                 } else {
                     $this->session->set_flashdata('message', 'User data Modified Sucessfully');
-                    redirect('user/users');
+                    $redirectPagination = $this->session->userdata("urlPagination");
+                    redirect($redirectPagination);
                 }
             }
         } else {
