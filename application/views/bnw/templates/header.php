@@ -92,7 +92,7 @@ $(document).ready(function() {
              <p>    
                
                     <?php echo $this->session->userdata ('username'); ?>
-                    <?php echo anchor('bnw/logout','Log Out') ?>
+                    <?php echo anchor('login/logout','Log Out') ?>
                 </p>
             </div>
             <?php } ?>

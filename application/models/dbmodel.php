@@ -804,7 +804,23 @@ class Dbmodel extends CI_Model {
         $keys = $this->db->get('user');
         return $keys->result();
     }
-
+public function get_user_email($token, $email) {  
+        $this->db->select('user_email,user_auth_key');
+        $this->db->where('user_auth_key', $token );
+          $this->db->where('user_email', $email );
+        $query = $this->db->get('user_info');
+        return $query->result();
+    }
+    
+     public function update_user_password($email, $userPassword){
+        $token = "";
+        $data = array(
+        'user_pass'=>md5($userPassword),
+            'user_auth_key'=>$token);
+        $this->db->where('user_email', $email);
+        $this->db->update('user_info', $data);
+    }
+    
     function user_key($email) {
         $file = " ";
         $data = array(

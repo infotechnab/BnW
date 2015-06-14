@@ -35,7 +35,7 @@ class Offers extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
 
             $config = array();
-            $config["base_url"] = base_url() . "index.php/offers/posts";
+            $config["base_url"] = base_url() . "offers/posts";
             $config["total_rows"] = $this->dboffers->record_count_post();
             $config["per_page"] = 6;
             $this->pagination->initialize($config);

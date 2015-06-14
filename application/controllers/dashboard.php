@@ -434,7 +434,7 @@ class Dashboard extends CI_Controller {
                             $navigation_type = "page";
                             $navigation_name = $v;
                             $page_id = $k;
-                            $navigation_link = base_url() . "index.php/view/" . $navigation_type . "/" . $k;
+                            $navigation_link = base_url() . "view/" . $navigation_type . "/" . $k;
                             $navigation_slug = preg_replace('/\s+/', '', $v);
                         }
                         
@@ -525,7 +525,7 @@ class Dashboard extends CI_Controller {
                         foreach ($myData as $k => $v) {
                             $navigation_name = $v;
                             $navigation_type = "category";
-                            $navigation_link = base_url() . "index.php/view/" . $navigation_type . "/" . $k;
+                            $navigation_link = base_url() . "view/" . $navigation_type . "/" . $k;
                             $navigation_slug = preg_replace('/\s+/', '', $v);
                             ;
                         }
@@ -662,7 +662,7 @@ class Dashboard extends CI_Controller {
 
 
             $config = array();
-            $config["base_url"] = base_url() . "index.php/bnw/category";
+            $config["base_url"] = base_url() . "bnw/category";
             $config["total_rows"] = $this->dbdashboard->record_count_category();
             // var_dump($config["total_rows"]);
             $config["per_page"] = 6;
