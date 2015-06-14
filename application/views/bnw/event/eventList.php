@@ -11,7 +11,7 @@ $this->load->helper('summary_helper');
     <?php   
          if(!empty($event)){
              ?>
-        <table border="1" cellpadding="10">
+        <table class="tbl_full_width" border="1" cellpadding="10">
         <tr>
             
             <th> Name</th>

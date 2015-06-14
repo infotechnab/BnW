@@ -12,7 +12,7 @@
     
         if(!empty($query)){
             ?>
-    <table border="1" cellpadding="10">
+    <table border="1" cellpadding="10" class="tbl_full_width" >
         <tr>
             <th>S.N.</th>
             <th>User Name</th>
