@@ -1,5 +1,5 @@
 <div class="rightSide">
-    <h2>Add new Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/event'; ?>">View All Events</a></h2>
+    <h2>Add new Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/allevents'; ?>">View All Events</a></h2>
  <hr class="hr-gradient"/>
   <div id="sucessmsg">
   <?php echo validation_errors(); ?>
@@ -37,7 +37,7 @@ $( "#datepicker" ).datepicker();
  <p class="dashuppe-text-all">Name<br />
       <input type="text" class="textInput" name="event_name" value="<?php echo set_value('event_name'); ?>"  /> </p> 
  <p class="dashuppe-text-all">Detail<br/>
-  <textarea name="detail" id="textara" cols="50" rows="5" ><?php echo set_value('detail'); ?></textarea>
+  <textarea name="detail" id="textara" cols="50" rows="15" ><?php echo set_value('detail'); ?></textarea>
  </p>
   <p class="dashuppe-text-all">Image<br/>
       <input id="uploadImage" class="textInput" type="file" name="file" accept="image/*"/>

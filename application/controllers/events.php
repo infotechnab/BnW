@@ -32,7 +32,7 @@ class Events extends CI_Controller {
         return $result;
     }
     //================================ START EVENTS ======================================================//
-    function event() {
+    function allevents() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['meta'] = $this->dbsetting->get_meta_data();
@@ -280,7 +280,7 @@ if (file_exists($filename1)) {
                       
                         $this->dbevent->add_event($eventName, $detail, $location, $dateTime, $image, $type);
                         $this->session->set_flashdata('message', 'One event added sucessfully');
-                        redirect('events/event');
+                        redirect('events/allevents');
                     } else {
                         $error = array('error' => $this->upload->display_errors('file'));
                         $this->load->view('bnw/event/addEvent', $error);
@@ -301,7 +301,7 @@ if (file_exists($filename1)) {
                     $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
                     $this->dbevent->add_event($name, $detail, $location, $dateTime, $image, $type);
                     $this->session->set_flashdata('message', 'One event added sucessfully');
-                    redirect('events/event');
+                    redirect('events/allevents');
                 }
             }
         } else {

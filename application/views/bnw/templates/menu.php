@@ -27,7 +27,7 @@
                     <li class="mainMenuItem events"><a href="#"><i class="fa fa-newspaper-o"></i>&nbsp;
  Events</a>
                         <ul class="subMenu">
-                            <li><?php echo anchor('events/event', 'All Event') ?></li>
+                            <li><?php echo anchor('events/allevents', 'All Event') ?></li>
                             <li><?php echo anchor('events/addevent', 'Add New Event') ?></li>
                         </ul>
                     </li>

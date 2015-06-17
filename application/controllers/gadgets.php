@@ -92,10 +92,9 @@ class Gadgets extends CI_Controller {
             $data['gaget']= $this->model1->get_gaget();
              $data['meta'] = $this->dbsetting->get_meta_data();
             
-             $name_hide = $this->input->post('name_hide');
-            $gadget_delete = $this->input->post('display');
-            $this->model1->delete($gadget_delete, $name_hide);
-           redirect('gadgets', 'refresh');
+             $id = $_POST['id'];
+            $this->model1->delete($id);
+//           redirect('gadgets', 'refresh');
             } else {
             redirect('login', 'refresh');
         } 

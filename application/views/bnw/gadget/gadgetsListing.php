@@ -28,19 +28,16 @@ $recentPostGadget = recent_post();
                             //echo $titleUnderline;
                             //echo $titleColor;
                             ?>
-                            <li>
+                    <li class="action">
                                 <div id='single_gadget_edit'>
                                     <div class='whole'>
                                         <div class='name'>
                                             <?php echo $datas->name; ?> 
                                         </div>              <!-- close name div-->
                                         <div id='option'>
-                                            <div id='delete_option' class="del_category">
-                                                <?php echo form_open('gadgets/delete'); ?> 
-                                                <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
-                                                <input type='hidden' value='header' name='display'>
-                                                <button type='submit' name='delete' id='delete'><i class="fa fa-trash-o"></i></button>
-                                                <?php echo form_close(); ?>
+                                            <div id='delete_option'>
+                                                
+                                                <span class="del_category" id="<?php echo $datas->gadget_id; ?>"><i class="fa fa-trash-o"></i></span>
                                             </div> <!--delete_option div close-->
                                         </div> <!--option div close-->
                                     </div> <!--close whole div-->
@@ -142,19 +139,15 @@ $recentPostGadget = recent_post();
                             //echo $titleUnderline;
                             //echo $titleColor;
                             ?>
-                            <li>
+                            <li class="action">
                                 <div id='single_gadget_edit'>
                                     <div class='whole'>
                                         <div class='name'>
                                             <?php echo $datas->name; ?> 
                                         </div>              <!-- close name div-->
                                         <div id='option'>
-                                            <div id='delete_option' class="del_category">
-                                                <?php echo form_open('gadgets/delete'); ?> 
-                                                <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
-                                                <input type='hidden' value='sidebar' name='display'>
-                                                <button type='submit' name='delete' id='delete'><i class="fa fa-trash-o"></i></button>
-                                                <?php echo form_close(); ?>
+                                            <div id='delete_option'>
+                                                <span class="del_category" id="<?php echo $datas->gadget_id; ?>"><i class="fa fa-trash-o"></i></span>
                                             </div> <!--delete_option div close-->
                                         </div> <!--option div close-->
                                     </div> <!--close whole div-->
@@ -257,19 +250,15 @@ $recentPostGadget = recent_post();
                             //echo $titleUnderline;
                             //echo $titleColor;
                             ?>
-                            <li>
+                            <li class="action">
                                 <div id='single_gadget_edit'>
                                     <div class='whole'>
                                         <div class='name'>
                                             <?php echo $datas->name; ?> 
                                         </div>              <!-- close name div-->
                                         <div id='option'>
-                                            <div id='delete_option' class="del_category">
-                                                <?php echo form_open('gadgets/delete'); ?> 
-                                                <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
-                                                <input type='hidden' value='body' name='display'>
-                                                <button type='submit' name='delete' id='delete'><i class="fa fa-trash-o"></i></button>
-                                                <?php echo form_close(); ?>
+                                            <div id='delete_option'>
+                                                <span class="del_category" id="<?php echo $datas->gadget_id; ?>"><i class="fa fa-trash-o"></i></span>
                                             </div> <!--delete_option div close-->
                                         </div> <!--option div close-->
                                     </div> <!--close whole div-->
@@ -371,19 +360,15 @@ $recentPostGadget = recent_post();
                             //echo $titleUnderline;
                             //echo $titleColor;
                             ?>
-                            <li>
+                            <li class="action">
                                 <div id='single_gadget_edit'>
                                     <div class='whole'>
                                         <div class='name'>
                                             <?php echo $datas->name; ?> 
                                         </div>              <!-- close name div-->
                                         <div id='option'>
-                                            <div id='delete_option' class="del_category">
-                                                <?php echo form_open('gadgets/delete'); ?> 
-                                                <input type='hidden' value='<?php echo $datas->name; ?>' name='name_hide'>
-                                                <input type='hidden' value='footer' name='display'>
-                                                <button type='submit' name='delete' id='delete'><i class="fa fa-trash-o"></i></button>
-                                                <?php echo form_close(); ?>
+                                            <div id='delete_option'>
+                                                <span class="del_category" id="<?php echo $datas->gadget_id; ?>"><i class="fa fa-trash-o"></i></span>
                                             </div> <!--delete_option div close-->
                                         </div> <!--option div close-->
                                     </div> <!--close whole div-->
@@ -493,7 +478,7 @@ $recentPostGadget = recent_post();
 //  }
                 ?>
 
-                <div id="title">Click to add new text box 
+                <div id="title" style="cursor: pointer;">Click to add new text box 
                     <div id="arrow"></div>
                 </div>
 
@@ -522,7 +507,7 @@ $recentPostGadget = recent_post();
 
             <!-- Default gadget -->
             <div id="sub_gadget"> <!-- sub_gadget open -->
-                <div id="title1">Recent Post
+                <div id="title1" style="cursor: pointer;">Recent Post
                     <div id="arrow1"></div>
                 </div>
                 <div id="description_for_gadget1" style="padding: 1%;">
@@ -601,3 +586,16 @@ $recentPostGadget = recent_post();
 </div>
 <div class="clear"></div>
 </div>
+
+
+<script>
+    $(document).ready(function(){
+       $(document).on("click", ".del_category", function(){
+           var id = $(this).attr("id");
+            var url = '<?php echo base_url().'index.php/gadgets/delete' ?>';
+            var hideid = $(this);
+            senddata({id:id,url:url,thiss:hideid});
+            
+       });
+    });
+</script>

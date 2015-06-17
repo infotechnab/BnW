@@ -39,7 +39,7 @@
         <tr class="action">
            
             <td><?php echo $data->post_title ?></td>
-            <td><?php echo $data->post_summary ?></td>
+            <td><?php echo strip_tags($data->post_summary); ?></td>
             
             
             

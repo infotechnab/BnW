@@ -1,4 +1,0 @@
-auseluco_salyanicomtest
-B.rMT{SPy).^
-auseluco_salyate
-You have successfully granted privileges on the database “auseluco_salyanicomtest” to the MySQL user “auseluco_salyate”.
