@@ -403,10 +403,10 @@ class Dashboard extends CI_Controller {
             $data["listOfNavigation"] = $this->dbdashboard->get_list_of_navigation();
 
             $listOfSelectedMenu = Array();
-die('here');
+
             if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
                 foreach ($listOfPage as $myData) {
-                    if (isset($_POST[htmlspecialchars($myData->page_name)])) {
+                    if (isset($_POST[preg_replace('/\s+/', '', $pagedata->page_name)])) {
 
                         array_push($listOfSelectedMenu, array($myData->id => $myData->page_name));
                     }
