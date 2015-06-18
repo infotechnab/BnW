@@ -53,6 +53,7 @@ class Album extends CI_Controller {
     }
 
     public function addalbum() {
+        ini_set('memory_limit', '-1');
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config['upload_path'] = './content/uploads/images/';
@@ -86,6 +87,7 @@ class Album extends CI_Controller {
 
     //===============================To Add Photo================================================================//
     public function addphoto() {
+        ini_set('memory_limit', '-1');
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $data['meta'] = $this->dbsetting->get_meta_data();
@@ -184,6 +186,7 @@ class Album extends CI_Controller {
     }
 
     public function add_new_album() {
+        ini_set('memory_limit', '-1');
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config['upload_path'] = './content/uploads/images/';

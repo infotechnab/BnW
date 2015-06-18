@@ -113,10 +113,10 @@ if ($miscSetting)
    
    <p class="dashuppe-text-all">Status<br />
   <?php $options = array('1'  => 'publish','0'    => 'draft');?>
-       <select class="textInput" name="min">
+       <select class="textInput" name="page_status">
          
-         <?php foreach ($options as $data){ ?>
-         <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+         <?php foreach ($options as $key=>$data){ ?>
+         <option value="<?php echo $key; ?>"><?php echo $data; ?></option>
          <?php } ?>
      </select>
   </p>
