@@ -406,7 +406,7 @@ class Dashboard extends CI_Controller {
 
             if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
                 foreach ($listOfPage as $myData) {
-                    if (isset($_POST[preg_replace('/\s+/', '', $pagedata->page_name)])) {
+                    if (isset($_POST[preg_replace('/\s+/', '', $myData->page_name)])) {
 
                         array_push($listOfSelectedMenu, array($myData->id => $myData->page_name));
                     }
@@ -476,6 +476,8 @@ class Dashboard extends CI_Controller {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
+
+
 
     public function addCategoryForNavigation() {
         $url = current_url();
