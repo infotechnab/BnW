@@ -32,7 +32,7 @@ class Page extends CI_Controller {
         return $result;
     }
 
-    public function pages() {
+    public function pages($id=NULL) {
 
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {

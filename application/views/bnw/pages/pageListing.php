@@ -23,7 +23,7 @@
         <tr class="action">    
               <td><?php echo substr($data->page_name, 0,50); ?></td>
             <td><?php echo $data->page_summary ?></td>            
-            <td><?php if($data->page_status=="Active")
+            <td><?php if($data->page_status==0)
             {
                 echo "Draft";
             }

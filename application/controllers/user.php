@@ -138,9 +138,15 @@ class User extends CI_Controller {
                 $pass = $this->input->post('user_pass');
                 $status = $this->input->post('status');
                 $user_type = $this->input->post('user_type');
+                $headerlogo = $this->viewmodel->get_header_logo();
+        foreach ($headerlogo as $headerData)
+        {
+            $hlogo = $headerData->description;
+        }
+         $imglink = base_url().'content/uploads/images/'.$hlogo;   
                 $this->dbuser->update_user($id, $name, $fname, $lname, $email, $pass, $status, $user_type);
                 $this->load->helper("emailsend_helper");
-                send_user_credentials($name, $fname, $lname, $email, $pass, $status);
+                send_user_credentials($name, $fname, $lname, $email, $pass, $imglink);
                 
                  if($user_type == "Administrator" && $status == "0")
                 {

@@ -1,8 +1,38 @@
-<div class="rightSide">
-<h2>Add new Media&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/media'; ?>">View All</a></h2>
+<style>
+    .alert {
+padding: 8px 35px 8px 14px;
+margin-bottom: 18px;
+color: #c09853;
+text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+background-color: #efefef;
+border: 1px solid #fbeed5;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+
+.alert-heading {
+color: inherit;
+}
+
+.alert .close {
+position: relative;
+top: -2px;
+right: -21px;
+line-height: 18px;
+}
+.alert-info {
+color: #333;
+border-color: #555;
+}
+    </style>
+    <div class="rightSide">
+        
+<h2>Add new Media&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/media/medias'; ?>">View All</a></h2>
 <hr class="hr-gradient"/>
-<p>Allowed file types: jpg, jpeg, png, gif, pdf, doc, ppt, odt, pptx, docx, xls, xlsx, key, txt</p>
-  <p><b>Note:</b>For images : Max file size: 20000KB,  Width: 10000px, Height: 10000px </p>
+<div class="alert alert-info"><b>Allowed file types:</b> jpg, jpeg, png, gif, pdf, doc, ppt, odt, pptx, docx, xls, xlsx, key, txt<br/><br/>
+<b>Note:</b> For images : Max file size: 20000KB,  Width: 10000px, Height: 10000px
+</div>
 <div id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     <?php echo validation_errors();

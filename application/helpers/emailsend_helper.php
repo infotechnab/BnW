@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-function send_user_credentials($name, $fname, $lname, $email, $pass, $status)
+function send_user_credentials($name, $fname, $lname, $email, $pass, $imglink)
 {
      $body = '<div style="width: 750px; margin: 0 auto 0 auto; padding: 0px;font-family: calibri;border: 1px solid #000;" >
         <div style="text-align:center; min-height: 70px; background-color: #222; margin: 0 auto 0 auto;width: 100%;">
@@ -13,7 +13,7 @@ function send_user_credentials($name, $fname, $lname, $email, $pass, $status)
    <div style="padding: 10px 20px 10px 20px;background-color: #fff;">
    
     
-    <h4>Dear ' . $userName . '  !</h4>
+    <h4>Dear ' . $fname . ' ' .$lname . '  !</h4>
 
     <h3>Your login credentials are given below.</h3>
     <p>

@@ -41,6 +41,7 @@ class Media extends CI_Controller {
     }
     
       public function addmedia() {
+          ini_set('memory_limit', '-1');
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config['upload_path'] = './content/uploads/images/';
@@ -94,7 +95,7 @@ class Media extends CI_Controller {
                 $this->dbalbum->add_new_media($medianame, $mediatype, $media_association_id, $medialink);
                 $this->session->set_flashdata('message', 'One media added sucessfully');
                 
-                redirect('media');
+                redirect('media/medias');
             }
             $this->load->view('bnw/templates/footer', $data);
         } else {
@@ -118,6 +119,7 @@ class Media extends CI_Controller {
     }
     
     function updatemedia() {
+        ini_set('memory_limit', '-1');
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config['upload_path'] = './content/uploads/images/';
