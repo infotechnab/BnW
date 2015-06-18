@@ -32,16 +32,11 @@ class Page extends CI_Controller {
         return $result;
     }
 
-<<<<<<< HEAD
     public function pages($id = NULL) {
         if($id == "0") {
             redirect("page,pages");
             exit();
         }
-=======
-    public function pages($id=NULL) {
-
->>>>>>> eff533dddde7ec6870d4f8f59737fc3a0b573411
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 
