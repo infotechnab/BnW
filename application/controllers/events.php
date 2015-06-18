@@ -268,7 +268,7 @@ if (file_exists($filename1)) {
                         $config['height'] = 180;
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
-                         $eventName = $this->input->post('event_name');
+                         $name = $this->input->post('event_name');
                         $detail = $this->input->post('detail');
                         $location = $this->input->post('location');
                         $type = $this->input->post('event_type');
@@ -277,9 +277,16 @@ if (file_exists($filename1)) {
                         $min = $this->input->post('min');
                         $sec = 0;
                         $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
-                      
-                        $this->dbevent->add_event($eventName, $detail, $location, $dateTime, $image, $type);
+                        $dt = new DateTime();
+                        $insert_date = $dt->format('Y-m-d H:i:s');
+                      if($type == "news") {
+                        $this->dbevent->add_news($name, $detail, $location, $insert_date, $image, $type);
+                        $this->session->set_flashdata('message', 'One news added sucessfully');
+                      }
+                      if($type == "event") {
+                        $this->dbevent->add_event($name, $detail, $location, $dateTime, $image, $type);
                         $this->session->set_flashdata('message', 'One event added sucessfully');
+                      }
                         redirect('events/allevents');
                     } else {
                         $error = array('error' => $this->upload->display_errors('file'));
@@ -287,7 +294,6 @@ if (file_exists($filename1)) {
                     }              
                }
                 else {
-
                     //if valid
                     $image = NULL;
                     $name = $this->input->post('event_name');
@@ -299,8 +305,16 @@ if (file_exists($filename1)) {
                     $min = $this->input->post('min');
                     $sec = 0;
                     $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
-                    $this->dbevent->add_event($name, $detail, $location, $dateTime, $image, $type);
-                    $this->session->set_flashdata('message', 'One event added sucessfully');
+                    $dt = new DateTime();
+                    $insert_date = $dt->format('Y-m-d H:i:s');
+                      if($type == "news") {
+                        $this->dbevent->add_news($name, $detail, $location, $insert_date, $image, $type);
+                        $this->session->set_flashdata('message', 'One news added sucessfully');
+                      }
+                      if($type == "event") {
+                        $this->dbevent->add_event($name, $detail, $location, $dateTime, $image, $type);
+                        $this->session->set_flashdata('message', 'One event added sucessfully');
+                      }
                     redirect('events/allevents');
                 }
             }

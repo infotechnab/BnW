@@ -1,5 +1,5 @@
 <div class="rightSide">
-    <h2>Add new Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/allevents'; ?>">View All Events</a></h2>
+    <h2>Add Event / News&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/allevents'; ?>">View All Events</a></h2>
  <hr class="hr-gradient"/>
   <div id="sucessmsg">
   <?php echo validation_errors(); ?>

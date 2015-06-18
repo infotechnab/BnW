@@ -51,7 +51,9 @@ class Dbpage extends CI_Model {
     }
 
     public function add_new_page($name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allow_comment, $allow_like, $allow_share,$image) {
-        $data = Array(
+        $dt = new DateTime();
+        $insert_date = $dt->format('Y-m-d H:i:s');
+        $data = array(
             'page_name' => $name,
             'page_content' => $body,
             'page_author_id' => $page_author_id,
@@ -63,6 +65,7 @@ class Dbpage extends CI_Model {
             'allow_comment' => $allow_comment,
             'allow_like' => $allow_like,
             'allow_share' => $allow_share,
+            'page_modifed_date' => $insert_date,
             'images' => $image
                 );
         $this->db->insert('page', $data);
@@ -87,7 +90,8 @@ class Dbpage extends CI_Model {
     }
 
      public function update_page($id, $name, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allow_comment, $allow_like, $allow_share,$image) {
-
+         $dt = new DateTime();
+        $insert_date = $dt->format('Y-m-d H:i:s');
         $data = array
             (
             'page_name' => $name,
@@ -101,6 +105,7 @@ class Dbpage extends CI_Model {
             'allow_comment' => $allow_comment,
             'allow_like' => $allow_like,
             'allow_share' => $allow_share,
+            'page_modifed_date' => $insert_date,
             'images' => $image);
         $this->db->where('id', $id);
         $this->db->update('page', $data);

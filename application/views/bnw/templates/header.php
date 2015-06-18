@@ -72,7 +72,7 @@ tinymce.init({
         <title><?php echo $title[1]; ?></title>
 
     </head>
-    <body onload='loadCategories()'>
+    <body>
 
         <div class="full">
             <div id="top">
