@@ -34,7 +34,7 @@ class Page extends CI_Controller {
 
     public function pages($id = NULL) {
         if($id == "0") {
-            redirect("page,pages");
+            redirect("page/pages");
             exit();
         }
         $url = current_url();
