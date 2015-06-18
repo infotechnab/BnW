@@ -58,12 +58,13 @@
 
                     <div id="photodiv" class="action">
 
-
+                        <a href="<?php echo base_url().'album/photos/'. $data->id ?>">
                         <div class="imageContainer">
                             <span>
                                 <img src="<?php echo base_url(); ?>content/uploads/images/<?php echo $abc->media_type; ?>" id="galleryimage" />
                             </span>
                         </div>
+                        </a>
                         <div id="imagetitle">
                             <?php echo anchor('album/photos/' . $data->id, $data->album_name); ?> 
                         </div>
