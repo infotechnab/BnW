@@ -52,12 +52,8 @@
         if(isset($listOfPage)){
             foreach ($listOfPage as $pagedata){
             ?>
-<<<<<<< HEAD
         <li><input type="checkbox" name="<?php echo $str = htmlspecialchars($pagedata->page_name);  ?>" value="<?php echo $str = htmlentities($pagedata->page_name); ?>"/><?php echo $pagedata->page_name; ?></li>
-=======
-        <li><input type="checkbox" name="<?php echo $str = preg_replace('/\s+/', '', $pagedata->page_name); ?>" value="<?php echo $pagedata->page_name; ?>"/><?php echo $pagedata->page_name; ?>
-        </li>
->>>>>>> cfd0f5f573a2fb55275a8295ead5ab78cd10ca53
+
           <?php    
             }
         }
