@@ -18,7 +18,7 @@ class Dbpage extends CI_Model {
             'navigation_name' => $navigationName,
             'navigation_link' => $navigationLink,
             'navigation_slug' => $navigationSlug);
-        $this->db->where('navigation_link', 'page/' . $pageid);
+        $this->db->where('page_id', $pageid);
         $this->db->update('navigation', $data);
     }
     public function get_page_author_id($username) {
