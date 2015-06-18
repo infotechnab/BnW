@@ -85,8 +85,9 @@
                     <div id="imagetitle">
                         <?php echo anchor('album/photos/' . $data->id, $data->album_name); ?> 
                     </div>
+                    <div id="imagetitle">
                     <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
-
+                    </div>
 
                 </div> 
 

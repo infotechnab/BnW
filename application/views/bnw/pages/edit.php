@@ -1,3 +1,4 @@
+<?php $this->load->helper("summary_helper"); ?>
 <div class="rightSide">
      <?php 
 if ($miscSetting)
@@ -31,7 +32,7 @@ if ($miscSetting)
         
     ?>
     <div class="titleArea">
-     <h2>Edit Page/ <?php echo $name; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/page/pages'; ?>">View All</a></h2>
+        <h2>Edit Page/ <?php echo custom_echo_ed($name); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/page/pages'; ?>">View All</a></h2>
 <hr class="hr-gradient"/> 
 <div id="sucessmsg">
   <?php echo $this->session->flashdata('message');
@@ -51,7 +52,7 @@ if ($miscSetting)
   <?php echo form_open_multipart('page/updatepage');?>
   <p class="dashuppe-text-all">Title<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
-      <input type="text" class="textInput" name="page_name" value="<?php echo $name; ?>" />
+      <input type="text" class="textInput" name="page_name" value="<?php echo htmlentities($name); ?>" />
   </p>
   <p class="dashuppe-text-all">Body<br />
   <textarea name="page_content" id="textara" rows="5" cols="50" style="resize:none;">

@@ -55,9 +55,9 @@ class model1 extends CI_Model {
             $this->db->update('gadgets',$data);
         }
         
-        function delete($gadget_delete, $name_hide)
+        function delete($id)
         {
-            $sql = "DELETE FROM gadgets WHERE name = '$name_hide' and display = '$gadget_delete'";
+            $sql = "DELETE FROM gadgets WHERE gadget_id = '$id'";
             $this->db->query($sql);
         }
             

@@ -49,6 +49,19 @@ class Dbevent extends CI_Model {
         $this->db->insert('events', $data);
     }
     
+    function add_news($name, $detail, $location, $insert_date, $image, $type)
+    {
+        $data = array(
+            'title' => $name,
+            'details' => $detail,
+            'location' => $location,
+            'insert_date' => $insert_date,
+            'image' => $image,
+            'type' => $type
+                );
+        $this->db->insert('events', $data);
+    }
+    
      function Imgdelete($id = 0) {
         $image = NULL;
         $data = array(

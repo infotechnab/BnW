@@ -22,8 +22,13 @@
             ?>
         <tr class="action">    
               <td><?php echo substr($data->page_name, 0,50); ?></td>
+<<<<<<< HEAD
             <td><?php echo $data->page_summary ?></td>            
             <td><?php if($data->page_status==0)
+=======
+              <td><?php echo strip_tags($data->page_summary); ?></td>            
+            <td><?php if($data->page_status=="Active")
+>>>>>>> f23ecf9a520baca2242e0878b14e42caf996c3ee
             {
                 echo "Draft";
             }

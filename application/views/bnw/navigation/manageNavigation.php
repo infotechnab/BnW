@@ -22,7 +22,7 @@
     if (!empty($query)) {
         ?>
         <?php
-        $this->load->helper('manageNav_helper');
+        $this->load->helper('managenav_helper');
 
         fetch_menu(query(0));
         ?>

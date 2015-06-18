@@ -25,10 +25,10 @@
                         </ul>
                     </li>-->
                     <li class="mainMenuItem events"><a href="#"><i class="fa fa-newspaper-o"></i>&nbsp;
- Events</a>
+ Events / News</a>
                         <ul class="subMenu">
-                            <li><?php echo anchor('events/event', 'All Event') ?></li>
-                            <li><?php echo anchor('events/addevent', 'Add New Event') ?></li>
+                            <li><?php echo anchor('events/allevents', 'All Event / News') ?></li>
+                            <li><?php echo anchor('events/addevent', 'Add New Event / News') ?></li>
                         </ul>
                     </li>
                     <li class="mainMenuItem posts"><a href="#"><i class="fa fa-folder-o"></i> &nbsp; Posts</a>

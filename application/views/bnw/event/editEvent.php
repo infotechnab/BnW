@@ -66,7 +66,7 @@ $( "#datepicker" ).datepicker();
   <?php echo form_open_multipart('events/update_event');?>
   <p class="dashuppe-text-all">Name<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
-      <input type="text" class="textInput" name="Name" value="<?php echo $name; ?>" />
+      <input type="text" class="textInput" name="Name" value="<?php echo htmlentities($name); ?>" />
   </p>
   <p class="dashuppe-text-all">Description<br />
   <textarea name="description" id="textara" rows="5" cols="50" style="resize:none;">

@@ -176,6 +176,7 @@
                 var selectBox = document.getElementById("selectBox");
                 var selectedValue = selectBox.options[selectBox.selectedIndex].value;
                 var dataString = 'menu_id_next=' + selectedValue;
+                if(selectedValue != "0") {
                  $.ajax({
                         type: "POST",
                         url: "<?php echo base_url().'index.php/dashboard/manageNavigation' ;?>",
@@ -187,6 +188,7 @@
 
 
                         });
+                }
                
            }
 
@@ -194,7 +196,7 @@
   <div id="navigation">
         <select name="selectMenu" style="width: 125px"  id="selectBox" onchange="changeFunc();">
              <option value="0" selected="selected"> Select Menu                    
-                </option>
+             </option>
                <?php
                 foreach ($listOfMenu as $data)
                 {

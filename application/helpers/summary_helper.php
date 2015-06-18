@@ -12,3 +12,20 @@
     echo $y;
   }
 }
+
+function custom_echo_ed($x)
+{
+   if(strlen($x)<=30)
+  {
+    echo $x;
+  }
+  else
+  {
+    $truncated = substr($x,0,strpos($x,' ',30));
+
+echo $truncated;
+  }
+  
+  
+
+}

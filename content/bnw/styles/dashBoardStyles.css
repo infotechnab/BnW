@@ -1,3 +1,42 @@
+ 
+    
+    //media
+    
+    .mediaImg{margin: 1%;}
+    .mediaImgContainer{width: 700px;float: left;padding: 2%;border-right: 1px solid #eee;height: 390px;overflow-y: scroll;overflow: hidden;}
+    .mediaDetails{width: 200px;float: left;padding: 2%}
+    .mediaPopUp img{border: 2px solid #fff;}
+    .mediaPopUp img:hover{border: 2px solid #aaa;}
+    .mediaAction{border-bottom: 1px solid #eee;padding: 2%;position: relative;}
+    .mediaUploadContainer{width: 30%;float: left;}
+    .mediaClose{position: absolute;padding: 1%;top: 0px;right: 0px;font-weight: 100;font-family: calibri;cursor: pointer;}
+    .mediabtn{border: 1px solid #aaa;box-shadow: 0 0 5px #aaa;padding:0 1%;background: #eee;cursor: pointer;}
+    #progressbar{
+        width: 100%;
+        background: #eee;
+        padding: 3px;
+        border-radius: 3px;
+        box-shadow: inset 0px 1px 3px rgba(0,0,0,0.2);
+    }
+    #progress{
+        height: 20px;
+        background: #5cb85c;
+        display: block;
+        border-radius: 3px;
+        -webkit-transition: width 0.8s ease;
+        -moz-transition: width 0.8s ease;
+        transition: width 0.8s ease;
+    }
+    #progress_bar{width: 50%;display: none;float: left;}
+    #status{width: 7%;float: left;margin-left: 5%;}
+    #mediauploads{margin: 0px;padding: 0px;}
+    .clear{clear: both;}
+    #list{display: inline;}
+    
+    .mediaPopUp{width: 1000px;height: 500px;display: none;background: #fff;z-index: 99;position: absolute;box-shadow: 0 0 5px #111;}
+    
+    //media
+    
 html, body {font-family: calibri;}
 ul.tsc_pagination { margin:4px 0; padding:0px; overflow:hidden; font:12px 'Tahoma'; list-style-type:none; }
 ul.tsc_pagination li { float:left; margin:0px; padding:0px; margin-left:5px; }
@@ -36,7 +75,7 @@ body
     outline: 0 none;
     padding: 3px;
     transition: border-color 0.05s ease-in-out 0s;
-    width: 420px;
+    width: 100%;
 }
 .input-text-small
 {
@@ -687,5 +726,6 @@ selectMenu
     }
     #fadeDiv{position: absolute;background: rgba(0,0,0,0.7);z-index: 99;top: 0;left: 0;}
     #popupBoxClose{float: right;color: #fff;}
-    #loading{position: absolute;top: 50%;left: 50%;}
+    #loading{position: absolute;top: 50%;left: 50%;display: none;}
     /* This is for the positioning of the Close Link */
+   

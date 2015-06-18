@@ -1,7 +1,9 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'content/bnw/styles/imgareaselect-animated.css'; ?>" />
 <script type="text/javascript" src="<?php echo base_url() . 'content/bnw/scripts/jquery.imgareaselect.pack.js'; ?>"></script>
 <script type="text/javascript" src="<?php echo base_url() . 'content/bnw/scripts/script.js'; ?>"></script>
-
+<?php 
+$this->load->helper('summary_helper');
+?>
 <div class="rightSide">
     <?php
     if ($miscSetting) {
@@ -32,7 +34,7 @@
         }
         ?>
         <div class="titleArea">
-            <h2>Edit Post/ <?php echo $post_title; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/offers/posts'; ?>">View All</a></h2>
+            <h2>Edit Post/ <?php echo custom_echo_ed($post_title); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/offers/posts'; ?>">View All</a></h2>
             <hr class="hr-gradient"/>  
             <div id="sucessmsg">
     <?php
@@ -50,7 +52,7 @@
             <input type="hidden" name="hidden_image" value="<?php echo $post_image; ?>"/>
             <p class="dashuppe-text-all">Title<br />
                 <input type="hidden" name="id" value="<?php echo $id; ?>" >
-                <input type="text" class="textInput" name="post_title" value="<?php echo $post_title; ?>" />
+                <input type="text" class="textInput" name="post_title" value="<?php echo htmlentities($post_title); ?>" />
             </p>
             <p class="dashuppe-text-all">Body<br />
                 <textarea name="post_content" id="textara" rows="5" cols="50" style="resize:none;">

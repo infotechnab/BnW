@@ -20,7 +20,7 @@
     <input type="text" name="type" value="gadgets" />
   <p>Title:<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" />
-      <input type="text" name="title" value="<?php echo $title; ?>" />
+      <input type="text" name="title" value="<?php echo htmlentities($title); ?>" />
   </p>
   <p>Body:<br />
   <textarea name="body" rows="5" cols="50" style="resize:none;"><?php echo $body; ?></textarea>

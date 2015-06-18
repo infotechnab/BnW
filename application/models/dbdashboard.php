@@ -8,7 +8,21 @@ class Dbdashboard extends CI_Model {
 
     //================================= STATR MENU ==================================//
     
-      public function get_menu_info($menuSelected) {
+    public function get_media()
+    {
+        $query = $this->db->get("media");
+        return $query->result();
+    }
+    
+    function set_files($image_name)
+    {
+        $ar = array(
+            "media_type" => $image_name
+        );
+        $this->db->insert("media",$ar);
+    }
+    
+    public function get_menu_info($menuSelected) {
         //die($menuSelected);
 
         $this->db->where('menu_name', $menuSelected);

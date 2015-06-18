@@ -35,7 +35,7 @@ if ($query)
   <input type="text" class="textInput" name="page_name" value="<?php echo set_value('page_name'); ?>" />
   </p>
   <p class="dashuppe-text-all">Body<br />
-      <textarea name="page_content" id="textara" cols="50" rows="10" ><?php echo set_value('page_content'); ?></textarea>
+      <textarea name="page_content" id="textara" cols="50" rows="15" ><?php echo set_value('page_content'); ?></textarea>
   </p>    
   
   <p class="dashuppe-text-all">Image<br />
