@@ -13,7 +13,7 @@ class Dbevent extends CI_Model {
     
     function get_event_data($limit, $start) {
         $this->db->limit($limit, $start);
-        $this->db->order_by('date', 'DESC');
+        $this->db->order_by('insert_date', 'DESC');
         $query = $this->db->get("events");
         return $query->result();
     }
@@ -25,25 +25,29 @@ class Dbevent extends CI_Model {
     }
     
      
-     function update_event($id, $title, $content, $location, $image, $dateTime, $type) {
+     function update_event($id, $title, $content, $location, $image, $start_dateTime, $end_dateTime, $type, $updatedOn) {
         // die($id);
         $data = array(
             'title' => $title,
             'details' => $content,
             'location' => $location,
             'image' => $image,
-            'date' => $dateTime,
+            'start_date' => $start_dateTime,
+            'end_date' => $end_dateTime,
+            'last_modified_date' => $updatedOn,
             'type'=>$type);
         $this->db->where('id', $id);
         $this->db->update('events', $data);
     }
     
-    function add_event($name, $detail, $location, $dateTime, $image, $type) {
+    function add_event($name, $detail, $location, $start_dateTime,$end_dateTime, $insert_date, $image, $type){
         $data = array(
             'title' => $name,
             'details' => $detail,
             'location' => $location,
-            'date' => $dateTime,
+            'start_date' => $start_dateTime,
+            'end_date' => $end_dateTime,
+             'insert_date' => $insert_date,
             'image' => $image,
             'type' => $type);
         $this->db->insert('events', $data);

@@ -28,6 +28,9 @@
   $(function() {
 $( "#datepicker" ).datepicker();
 });
+ $(function() {
+$( "#datepicker_end" ).datepicker();
+});
 
 
  </script>
@@ -71,29 +74,49 @@ $( "#datepicker" ).datepicker();
           <option value="event" id="evnt_show" >Event</option>
       </select>
  </p>
- <p class="dashuppe-text-all">Date<br/>
-      <input type="text" class="textInput" id="datepicker" name="date" placeholder="event date" value="<?php echo date('20y-m-d'); ?>" /> 
- </p>
  <div id="event_items" style="display: none;">
+     
  <p class="dashuppe-text-all">Location<br/>
   <input type="text" class="textInput" name="location" value="<?php echo set_value('location'); ?>"  />
  </p>
-
+<p class="dashuppe-text-all"> Start Date<br/>
+      <input type="text" class="textInput" id="datepicker" name="start_date" placeholder="event date" value="<?php echo date('20y-m-d'); ?>" /> 
+ </p>
  
- <p class="dashuppe-text-all">Time<br/>
-     <select class="input-text-small" name="hour">
+ <p class="dashuppe-text-all"> Start Time<br/>
+     <select class="input-text-small" name="start_hour">
          <option value="0">Hour</option>
          <?php for($i=1; $i<=24 ; $i++){ ?>
          <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
          <?php } ?>
      </select>
-     <select class="input-text-small" name="min">
+     <select class="input-text-small" name="start_min">
          <option value="0">Minutes</option>
          <?php for($i=1; $i<=60 ; $i++){ ?>
          <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
          <?php } ?>
      </select>
  </p>
+ 
+ <p class="dashuppe-text-all"> End Date<br/>
+      <input type="text" class="textInput" id="datepicker_end" name="end_date" placeholder="end date" value="<?php echo date('20y-m-d'); ?>" /> 
+ </p>
+ 
+ <p class="dashuppe-text-all"> End Time<br/>
+     <select class="input-text-small" name="end_hour">
+         <option value="0">Hour</option>
+         <?php for($i=1; $i<=24 ; $i++){ ?>
+         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+         <?php } ?>
+     </select>
+     <select class="input-text-small" name="end_min">
+         <option value="0">Minutes</option>
+         <?php for($i=1; $i<=60 ; $i++){ ?>
+         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+         <?php } ?>
+     </select>
+ </p>
+
  </div>
  
  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />

@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 19, 2015 at 08:43 AM
--- Server version: 5.5.16
--- PHP Version: 5.3.8
+-- Generation Time: Jun 19, 2015 at 10:05 AM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `bnw`
 --
+CREATE DATABASE IF NOT EXISTS `bnw` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `bnw`;
 
 -- --------------------------------------------------------
 
@@ -197,28 +199,35 @@ INSERT INTO `design_setup` (`id`, `name`, `description`) VALUES
 CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(200) CHARACTER SET utf8 NOT NULL,
-  `details` varchar(500) CHARACTER SET utf8 NOT NULL,
+  `details` text CHARACTER SET utf8 NOT NULL,
   `location` varchar(200) CHARACTER SET utf8 NOT NULL,
-  `date` timestamp NULL DEFAULT NULL,
-  `insert_date` datetime NOT NULL,
+  `start_date` timestamp NULL DEFAULT NULL,
+  `end_date` timestamp NULL DEFAULT NULL,
+  `insert_date` date NOT NULL,
+  `last_modified_date` date DEFAULT NULL,
   `image` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `details`, `location`, `date`, `insert_date`, `image`, `type`) VALUES
-(7, 'This is my title', '<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>', '', '2015-06-05 07:00:00', '0000-00-00 00:00:00', 'fQY7dconnect_to_world.png', 'news'),
-(10, 'asdfsaf', '<p style="text-align: center;">dgfthbfh &nbsp;sdafsd fsa sfa<strong> sadf sadf sa fsa fas<em>sa dsa sad fas fsa sa</em></strong></p>', '', '2015-06-16 18:15:00', '0000-00-00 00:00:00', '', 'news'),
-(14, 'sadf sadfsdaf a', '<p>sfs adfasf sa fsasajk gqwi7ye cmbsa fiu ewf dmnb wif heo8h ol</p>', '', NULL, '2015-06-18 05:46:18', NULL, 'news'),
-(16, 'new event', '<p>this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very so', 'Bharatpur', '2015-06-17 18:15:00', '0000-00-00 00:00:00', '', 'event'),
-(17, 'sdfgsd', '<p>fgdsgdsfgdsfg</p>', '', '0000-00-00 00:00:00', '2015-06-18 10:02:12', '', 'news'),
-(18, 'safsa f', '<p>saf saf s fsa f</p>', '', NULL, '2015-06-18 10:02:18', NULL, 'news'),
-(19, 'sdfg sdfg', '<p>dsgdsfgdsgdsgds</p>', '', NULL, '2015-06-18 10:02:24', NULL, 'news'),
-(20, 'reyreyt', '<p>reerny rye ryer rd</p>', '', NULL, '2015-06-18 10:05:38', NULL, 'news');
+INSERT INTO `events` (`id`, `title`, `details`, `location`, `start_date`, `end_date`, `insert_date`, `last_modified_date`, `image`, `type`) VALUES
+(7, 'This is my title', '<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>', '', '2015-06-05 07:00:00', NULL, '0000-00-00', NULL, 'fQY7dconnect_to_world.png', 'news'),
+(10, 'asdfsaf', '<p style="text-align: center;">dgfthbfh &nbsp;sdafsd fsa sfa<strong> sadf sadf sa fsa fas<em>sa dsa sad fas fsa sa</em></strong></p>', '', '2015-06-16 18:15:00', NULL, '0000-00-00', NULL, '', 'news'),
+(14, 'sadf sadfsdaf a', '<p>sfs adfasf sa fsasajk gqwi7ye cmbsa fiu ewf dmnb wif heo8h ol</p>', '', NULL, NULL, '2015-06-18', NULL, NULL, 'news'),
+(16, 'new event', '<p>this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very so</p>', 'Bharatpur', '2015-06-17 18:15:00', NULL, '0000-00-00', '2015-06-19', '', 'event'),
+(17, 'sdfgsd', '<p>fgdsgdsfgdsfg</p>', '', '0000-00-00 00:00:00', NULL, '2015-06-18', NULL, '', 'news'),
+(18, 'safsa f', '<p>saf saf s fsa f</p>', '', NULL, NULL, '2015-06-18', NULL, NULL, 'news'),
+(19, 'sdfg sdfg', '<p>dsgdsfgdsgdsgds</p>', '', NULL, NULL, '2015-06-18', NULL, NULL, 'news'),
+(20, 'reyreyt', '<p>reerny rye ryer rd</p>', '', NULL, NULL, '2015-06-18', NULL, NULL, 'news'),
+(21, 'Krishna ko news', '<p>asdasdasdas</p>', '', NULL, NULL, '2015-06-19', NULL, NULL, 'news'),
+(22, 'krish''s news', '<p>ZSX</p>', '', NULL, NULL, '2015-06-19', NULL, NULL, 'news'),
+(23, 'Krishna ko event', '<p>asdas</p>', 'saa', '2015-06-29 18:15:00', NULL, '0000-00-00', NULL, NULL, 'event'),
+(24, 'asdf event', '<p>asdas</p>', 'Bharatpur', '2015-06-22 18:15:00', NULL, '2015-06-19', '2015-06-19', '', 'event'),
+(25, 'sdfsfdsfd', '<p>srert</p>', '', '2015-06-24 18:15:00', '2015-06-29 18:15:00', '2015-06-19', NULL, NULL, 'event');
 
 -- --------------------------------------------------------
 

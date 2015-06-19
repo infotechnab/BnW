@@ -153,12 +153,18 @@ if (file_exists($filename1)) {
                         $content = $this->input->post('description');
                         $location = $this->input->post('location');
                         $type = $this->input->post('event_type');
-                        $date = $this->input->post('date');
-                        $hour = $this->input->post('hour');
-                        $min = $this->input->post('min');
+                        $start_date = $this->input->post('start_date');
+                        $end_date = $this->input->post('end_date');
+                        $start_hour = $this->input->post('start_hour');
+                        $end_hour = $this->input->post('end_hour');
+                        $start_min = $this->input->post('start_min');
+                         $end_min = $this->input->post('end_min');
                         $sec = 0;
-                        $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
-                        $this->dbevent->update_event($id, $title, $content, $location, $image, $dateTime, $type);
+                        $start_dateTime = $start_date . ' ' . $start_hour . ':' . $start_min . ':' . $sec;
+                        $end_dateTime = $end_date . ' ' . $end_hour . ':' . $end_min . ':' . $sec;
+                        date_default_timezone_set('Asia/Kathmandu');
+                        $updatedOn = date('Y-m-d');
+                        $this->dbevent->update_event($id, $title, $content, $location, $image, $start_dateTime, $end_dateTime, $type, $updatedOn);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                         $redirectPagination = $this->session->userdata("urlPagination");
                         redirect($redirectPagination);
@@ -172,12 +178,18 @@ if (file_exists($filename1)) {
                     $image = $this->input->post('hidden_image');
                     $location = $this->input->post('location');
                     $type = $this->input->post('event_type');
-                    $date = $this->input->post('date');
-                    $hour = $this->input->post('hour');
-                    $min = $this->input->post('min');
-                    $sec = 0;
-                    $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
-                    $this->dbevent->update_event($id, $title, $content, $location, $image, $dateTime, $type);
+                    $start_date = $this->input->post('start_date');
+                        $end_date = $this->input->post('end_date');
+                        $start_hour = $this->input->post('start_hour');
+                        $end_hour = $this->input->post('end_hour');
+                        $start_min = $this->input->post('start_min');
+                         $end_min = $this->input->post('end_min');
+                        $sec = 0;
+                        $start_dateTime = $start_date . ' ' . $start_hour . ':' . $start_min . ':' . $sec;
+                        $end_dateTime = $end_date . ' ' . $end_hour . ':' . $end_min . ':' . $sec;
+                    date_default_timezone_set('Asia/Kathmandu');
+                    $updatedOn = date('Y-m-d');
+                    $this->dbevent->update_event($id, $title, $content, $location, $image, $start_dateTime, $end_dateTime, $type, $updatedOn);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     $redirectPagination = $this->session->userdata("urlPagination");
                     redirect($redirectPagination);
@@ -261,11 +273,15 @@ if (file_exists($filename1)) {
                         $detail = $this->input->post('detail');
                         $location = $this->input->post('location');
                         $type = $this->input->post('event_type');
-                        $date = $this->input->post('date');
-                        $hour = $this->input->post('hour');
-                        $min = $this->input->post('min');
+                        $start_date = $this->input->post('start_date');
+                        $end_date = $this->input->post('end_date');
+                        $start_hour = $this->input->post('start_hour');
+                        $end_hour = $this->input->post('end_hour');
+                        $start_min = $this->input->post('start_min');
+                         $end_min = $this->input->post('end_min');
                         $sec = 0;
-                        $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
+                        $start_dateTime = $start_date . ' ' . $start_hour . ':' . $start_min . ':' . $sec;
+                        $end_dateTime = $end_date . ' ' . $end_hour . ':' . $end_min . ':' . $sec;
                         $dt = new DateTime();
                         $insert_date = $dt->format('Y-m-d H:i:s');
                       if($type == "news") {
@@ -273,7 +289,7 @@ if (file_exists($filename1)) {
                         $this->session->set_flashdata('message', 'One news added sucessfully');
                       }
                       if($type == "event") {
-                        $this->dbevent->add_event($name, $detail, $location, $dateTime, $image, $type);
+                        $this->dbevent->add_event($name, $detail, $location, $start_dateTime,$end_dateTime, $insert_date, $image, $type);
                         $this->session->set_flashdata('message', 'One event added sucessfully');
                       }
                         redirect('events/allevents');
@@ -289,11 +305,15 @@ if (file_exists($filename1)) {
                     $detail = $this->input->post('detail');
                     $location = $this->input->post('location');
                     $type = $this->input->post('event_type');
-                    $date = $this->input->post('date');
-                    $hour = $this->input->post('hour');
-                    $min = $this->input->post('min');
-                    $sec = 0;
-                    $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
+                     $start_date = $this->input->post('start_date');
+                        $end_date = $this->input->post('end_date');
+                        $start_hour = $this->input->post('start_hour');
+                        $end_hour = $this->input->post('end_hour');
+                        $start_min = $this->input->post('start_min');
+                         $end_min = $this->input->post('end_min');
+                        $sec = 0;
+                        $start_dateTime = $start_date . ' ' . $start_hour . ':' . $start_min . ':' . $sec;
+                        $end_dateTime = $end_date . ' ' . $end_hour . ':' . $end_min . ':' . $sec;
                     $dt = new DateTime();
                     $insert_date = $dt->format('Y-m-d H:i:s');
                       if($type == "news") {
@@ -301,7 +321,7 @@ if (file_exists($filename1)) {
                         $this->session->set_flashdata('message', 'One news added sucessfully');
                       }
                       if($type == "event") {
-                        $this->dbevent->add_event($name, $detail, $location, $dateTime, $image, $type);
+                        $this->dbevent->add_event($name, $detail, $location, $start_dateTime, $end_dateTime, $insert_date, $image, $type);
                         $this->session->set_flashdata('message', 'One event added sucessfully');
                       }
                     redirect('events/allevents');

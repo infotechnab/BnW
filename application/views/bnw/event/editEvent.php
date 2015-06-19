@@ -22,8 +22,9 @@
   $(function() {
 $( "#datepicker" ).datepicker();
 });
-
-
+ $(function() {
+$( "#datepicker_end" ).datepicker();
+});
  </script>
 <div class="rightSide">
   
@@ -34,21 +35,27 @@ $( "#datepicker" ).datepicker();
             $name= $data->title;
             $description = $data->details;
             $location = $data->location;
-            $dateTime= $data->date;
+            $start_dateTime= $data->start_date;
+            $end_dateTime = $data->end_date;
             $image= $data->image;
             $type = $data->type;
                       
             //$listOfCategory = $this->dbmodel->get_list_of_category();
        }
        
-       $datebrk = date_parse($dateTime);
-       $date = $datebrk['year'].'-'.$datebrk['month'].'-'.$datebrk['day'];
-       $time_hr = $datebrk['hour'];
-       $time_min = $datebrk['minute'];
+       $datebrk_start = date_parse($start_dateTime);
+       $start_date = $datebrk_start['year'].'-'.$datebrk_start['month'].'-'.$datebrk_start['day'];
+       $start_time_hr = $datebrk_start['hour'];
+       $start_time_min = $datebrk_start['minute'];
+       
+       $datebrk_end = date_parse($end_dateTime);
+       $end_date = $datebrk_end['year'].'-'.$datebrk_end['month'].'-'.$datebrk_end['day'];
+       $end_time_hr = $datebrk_end['hour'];
+       $end_time_min = $datebrk_end['minute'];
        
        ?>
         <div class="titleArea">
-     <h2>Edit Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/event'; ?>">View All</a></h2>
+     <h2>Edit Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/allevents'; ?>">View All</a></h2>
 <hr class="hr-gradient"/>   
 <div id="sucessmsg">
       <?php echo validation_errors();
@@ -115,26 +122,47 @@ $( "#datepicker" ).datepicker();
           <option value="event" id="evnt_show" <?php if($type=="event"){?> selected="selected" <?php } ?> >Event</option>
       </select>
  </p>
- <p class="dashuppe-text-all">Date<br/>
-      <input type="text" id="datepicker" class="textInput" name="date" placeholder="event date" value="<?php echo $date; ?>" /> 
- </p>
+ 
  <div id="event_items" <?php if($type=="event"){ ?>style="display: block;"<?php } else { ?>style="display: none;"<?php } ?>>
+     
    <p class="dashuppe-text-all"> Location<br/>
             <input type="text" class="textInput" name="location" value="<?php echo $location; ?>" />
 
   </p>
-  
-  <p class="dashuppe-text-all">Time<br/>
-     <select class="input-text-small" name="hour">
+  <p class="dashuppe-text-all"> Start Date<br/>
+      <input type="text" id="datepicker" class="textInput" name="start_date" placeholder="event date" value="<?php echo $start_date; ?>" /> 
+ </p>
+ 
+  <p class="dashuppe-text-all">Start Time<br/>
+     <select class="input-text-small" name="start_hour">
          <option value="0">Hour</option>
          <?php for($i=1; $i<=24 ; $i++){ ?>
-         <option <?php if ($time_hr == $i ) echo 'selected'; ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
+         <option <?php if ($start_time_hr == $i ) echo 'selected'; ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
          <?php } ?>
      </select>
-     <select class="input-text-small" name="min">
+     <select class="input-text-small" name="start_min">
          <option value="0">Minutes</option>
          <?php for($i=1; $i<=60 ; $i++){ ?>
-         <option <?php if ($time_min == $i ) echo 'selected'; ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
+         <option <?php if ($start_time_min == $i ) echo 'selected'; ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
+         <?php } ?>
+     </select>
+ </p>
+ 
+ <p class="dashuppe-text-all">End Date<br/>
+      <input type="text" id="datepicker_end" class="textInput" name="end_date" placeholder="event date" value="<?php echo $end_date; ?>" /> 
+ </p>
+ 
+  <p class="dashuppe-text-all">End Time<br/>
+     <select class="input-text-small" name="end_hour">
+         <option value="0">Hour</option>
+         <?php for($i=1; $i<=24 ; $i++){ ?>
+         <option <?php if ($end_time_hr == $i ) echo 'selected'; ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
+         <?php } ?>
+     </select>
+     <select class="input-text-small" name="end_min">
+         <option value="0">Minutes</option>
+         <?php for($i=1; $i<=60 ; $i++){ ?>
+         <option <?php if ($end_time_min == $i ) echo 'selected'; ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
          <?php } ?>
      </select>
  </p>

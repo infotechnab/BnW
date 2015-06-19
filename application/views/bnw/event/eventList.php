@@ -23,7 +23,8 @@ $this->load->helper('summary_helper');
             
             <th>Action</th>
         </tr>
-        <?php
+        <?php  
+                       
             foreach ($event as $data){
             ?>
           <tr class="action">
@@ -31,7 +32,15 @@ $this->load->helper('summary_helper');
             
               <td><?php echo custom_echo(strip_tags($data->details)); ?></td>
             <td><?php echo $data->location ?></td>
-            <td><?php  echo $data->date;?></td>
+            <td><?php 
+            if($data->type=='event'){            
+            if(!empty($data->start_date)){ $timestamp_start = strtotime($data->start_date); echo date('Y-m-d', $timestamp_start);}
+            if(!empty($data->end_date)){ $timestamp_end = strtotime($data->end_date); echo ' to '. date('Y-m-d', $timestamp_end);}
+            }
+            if($data->type == 'news'){
+                if(!empty($data->insert_date)){ $timestamp_insert = strtotime($data->insert_date); echo 'Published on '. date('Y-m-d', $timestamp_insert);} 
+            }
+            ?></td>
             <td><?php if(isset($data->image)==!'' && ($data->image)==!NULL ) { ?><img src="<?php echo base_url()."content/uploads/images/thumb_".$data->image; ?>" width="80" alt="<?php echo $data->image; ?>" /><?php } else { echo 'image not set' ;} ?></td>
             <td><?php echo $data->type; ?></td>
              
