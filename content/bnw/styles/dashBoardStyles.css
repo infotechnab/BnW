@@ -111,6 +111,7 @@ p.dashuppe-text-all{
     margin-bottom: 5px;
     margin-top: 5px;
 }
+#mybutton{display: none;}
 #mybutton > .btn-primary {
     background-color: #eee;
     border-color: #dedede;

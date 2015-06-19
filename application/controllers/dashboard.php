@@ -436,8 +436,8 @@ class Dashboard extends CI_Controller {
                             $navigation_link = base_url() . "view/" . $navigation_type . "/" . $k;
                             $navigation_slug = preg_replace('/\s+/', '', $v);
                         }
-                        
-                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected, $page_id);
+                        $category_id =NULL;
+                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected, $page_id, $category_id);
                     }
                     $this->session->set_flashdata("message", "Navigation Added Successfully.");
                     redirect('dashboard/navigation');
@@ -524,14 +524,15 @@ class Dashboard extends CI_Controller {
 
                     foreach ($categoryList as $myData) {
                         foreach ($myData as $k => $v) {
+                            
                             $navigation_name = $v;
                             $navigation_type = "category";
                             $navigation_link = base_url() . "view/" . $navigation_type . "/" . $k;
                             $navigation_slug = preg_replace('/\s+/', '', $v);
-                            ;
+                            $category_id = $k;
                         }
                         $page_id = null;
-                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected,$page_id);
+                        $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected,$page_id, $category_id);
                     }
                 redirect('dashboard/navigation', 'refresh');
 
@@ -720,7 +721,12 @@ class Dashboard extends CI_Controller {
             $this->form_validation->set_rules('category_name', 'Category Name', 'required|xss_clean|max_length[200]');
             if (($this->form_validation->run() == TRUE)) {
                     $categoryname = $this->input->post('category_name');
+                     $navigationName = $categoryname;
+                        $navigationLink = base_url() . "view/category/" . $id;
+                        $navigationSlug = preg_replace('/\s+/', '', $categoryname);
+                        $categoryId = $id;
                     $this->dbdashboard->update_category($id, $categoryname);
+                    $this->dbdashboard->update_navigation_on_category_update($categoryId, $navigationName, $navigationLink, $navigationSlug);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     redirect('dashboard/category');
             } else {
@@ -737,7 +743,12 @@ class Dashboard extends CI_Controller {
         $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-            $this->dbdashboard->delete_category($id);
+           $menuNo = $this->dbdashboard->check_navigation_for_category($id);
+            if ($menuNo > 0) {
+                echo "This category contains Navigation item associated. So delete navigation item associated with it first.";
+            } else {
+               $this->dbdashboard->delete_category($id);
+            }
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }

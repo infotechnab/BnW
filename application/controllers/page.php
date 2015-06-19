@@ -289,7 +289,7 @@ if (file_exists($filename1)) {
                         $allowLike = $this->input->post('allow_like');
                         $allowShare = $this->input->post('allow_share');
                         $navigationName = $pageName;
-                        $navigationLink = 'page/' . $id;
+                        $navigationLink = base_url() . "view/page/" . $id;
                         $navigationSlug = preg_replace('/\s+/', '', $pageName);
                         $pageid = $id;
                         $this->dbpage->update_page($id, $pageName, $body, $page_author_id, $summary, $status, $order, $type, $tags, $allowComment, $allowLike, $allowShare, $image);
@@ -316,7 +316,7 @@ if (file_exists($filename1)) {
                         $allowLike = $this->input->post('allow_like');
                         $allowShare = $this->input->post('allow_share');
                         $navigationName = $pageName;
-                        $navigationLink = 'page/' . $id;
+                         $navigationLink = base_url() . "view/page/" . $id;
                         $navigationSlug = preg_replace('/\s+/', '', $pageName);
                         $pageid = $id;
                         $past_image = $this->input->post('imageName');

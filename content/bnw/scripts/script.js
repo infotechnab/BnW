@@ -53,6 +53,7 @@ function abc(newas, asp) {
     oFReader.onload = function(oFREvent) {
 
         p.attr('src', oFREvent.target.result).fadeIn();
+        $('#mybutton').css('display','inline-block');
         var w = $('img#uploadPreview').width();
         var h = $('img#uploadPreview').height();
         if (w > h) {
@@ -117,6 +118,7 @@ $(document).ready(function() {
 		oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
 		oFReader.onload = function (oFREvent) {
 	   		p.attr('src', oFREvent.target.result).fadeIn();
+                        $('#mybutton').css('display','inline-block');
                          var w = $('img#uploadPreview').width();
                           var h = $('img#uploadPreview').height();             
               if(w>h){
@@ -146,8 +148,7 @@ $(document).ready(function() {
         $('img#uploadPreview').imgAreaSelect({    
             aspectRatio: '4:3',   
           handles: true,
-          onload: setVal,
-         
+          onload: setVal        
     });
 	 
        

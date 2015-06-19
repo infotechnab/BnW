@@ -94,7 +94,25 @@ class Dbdashboard extends CI_Model {
         $rowcount = $query->num_rows();
         return $rowcount;
     }
+    
+    public function check_navigation_for_category($id)
+    {
+        $this->db->where('category_id', $id);
+        $query = $this->db->get("navigation");
+        $rowcount = $query->num_rows();
+        return $rowcount;
+    }
 
+      public function update_navigation_on_category_update($categoryId, $navigationName, $navigationLink, $navigationSlug){
+        $this->load->database();
+        $data = array(
+            'navigation_name' => $navigationName,
+            'navigation_link' => $navigationLink,
+            'navigation_slug' => $navigationSlug);
+        $this->db->where('category_id', $categoryId);
+        $this->db->update('navigation', $data);
+    }
+    
     //====================================== CLOSE MENU =====================================================//
     //======================================= START NAVIGATION ==============================================//
 
@@ -257,14 +275,15 @@ class Dbdashboard extends CI_Model {
         return $query->result();
     }
 
-    public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected,$page_id) {
+    public function add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected,$page_id, $category_id) {
         $data = Array('navigation_name' => $navigation_name,
             'navigation_link' => $navigation_link,
             'parent_id' => $parent_id,
             'navigation_type' => $navigation_type,
             'navigation_slug' => $navigation_slug,
             'menu_id' => $menuSelected,
-            'page_id' => $page_id
+            'page_id' => $page_id,
+            'category_id'=>$category_id
         );
         $this->db->insert('navigation', $data);
     }
