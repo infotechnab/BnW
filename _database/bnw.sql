@@ -1,3 +1,26 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.5
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jun 19, 2015 at 08:43 AM
+-- Server version: 5.5.16
+-- PHP Version: 5.3.8
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `bnw`
+--
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `album`
@@ -7,15 +30,14 @@ CREATE TABLE IF NOT EXISTS `album` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_name` varchar(100) NOT NULL DEFAULT 'Required',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `album`
 --
 
 INSERT INTO `album` (`id`, `album_name`) VALUES
-(1, 'svcahgdfvgha'),
-(2, 'sdfdsfsddsfsdfsdfsd');
+(7, 'my album');
 
 -- --------------------------------------------------------
 
@@ -27,15 +49,21 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(100) NOT NULL DEFAULT 'Required',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `category_name`) VALUES
-(8, 'b'),
-(9, 'c');
+(35, 'category a'),
+(36, 'category b'),
+(37, 'a'),
+(38, 'b'),
+(41, 'e'),
+(42, 'category c'),
+(43, 'abc'),
+(44, 'ac');
 
 -- --------------------------------------------------------
 
@@ -125,7 +153,6 @@ INSERT INTO `contact_list` (`id`, `full_name`, `email`, `remarks`, `type`) VALUE
 (6, 'sushil shrestha', 'sushilsth21@gmail.com', NULL, 'newsletter subs'),
 (16, NULL, 'bhomnath@salyani.com.np', 'Well, this is embrassing!', 'feedback'),
 (17, NULL, 'bhomnath@salyani.com.np', 'Well, this is embrassing!', 'feedback'),
-(18, '', '', '', 'feedback'),
 (19, 'fagshfdgha', 'dsgahfd', '45645645', 'feedback'),
 (20, 'sadsadsa', 'asdsadas', 'asdasdasdas', 'feedback'),
 (21, 'sadsadsa', 'asdsadas', 'asdasdasdas', 'feedback'),
@@ -153,12 +180,12 @@ CREATE TABLE IF NOT EXISTS `design_setup` (
 --
 
 INSERT INTO `design_setup` (`id`, `name`, `description`) VALUES
-(0, 'header_title', 'BnW - A complete CMS'),
+(0, 'header_title', 'BnW - A complete CMS#'),
 (1, 'header_logo', 'bnw11.png'),
-(2, 'header_description', ''),
+(2, 'header_description', 'This is header..You can write whatever you want..'),
 (3, 'header_bgcolor', NULL),
-(4, 'sidebar_title', 'Quick navigation'),
-(5, 'sidebar_description', 'changed by ramu'),
+(4, 'sidebar_title', 'Quick navigation abcdefg'),
+(5, 'sidebar_description', 'changed by krishnaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
 (6, 'sidebar_bgcolor', NULL);
 
 -- --------------------------------------------------------
@@ -173,17 +200,25 @@ CREATE TABLE IF NOT EXISTS `events` (
   `details` varchar(500) CHARACTER SET utf8 NOT NULL,
   `location` varchar(200) CHARACTER SET utf8 NOT NULL,
   `date` timestamp NULL DEFAULT NULL,
+  `insert_date` datetime NOT NULL,
   `image` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `details`, `location`, `date`, `image`, `type`) VALUES
-(3, 'dshkfkjsdh', '                        hkjsdhjkfhs<br>', 'hkjdshfkjs', '2014-10-21 18:15:00', NULL, 'event');
+INSERT INTO `events` (`id`, `title`, `details`, `location`, `date`, `insert_date`, `image`, `type`) VALUES
+(7, 'This is my title', '<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>', '', '2015-06-05 07:00:00', '0000-00-00 00:00:00', 'fQY7dconnect_to_world.png', 'news'),
+(10, 'asdfsaf', '<p style="text-align: center;">dgfthbfh &nbsp;sdafsd fsa sfa<strong> sadf sadf sa fsa fas<em>sa dsa sad fas fsa sa</em></strong></p>', '', '2015-06-16 18:15:00', '0000-00-00 00:00:00', '', 'news'),
+(14, 'sadf sadfsdaf a', '<p>sfs adfasf sa fsasajk gqwi7ye cmbsa fiu ewf dmnb wif heo8h ol</p>', '', NULL, '2015-06-18 05:46:18', NULL, 'news'),
+(16, 'new event', '<p>this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very so', 'Bharatpur', '2015-06-17 18:15:00', '0000-00-00 00:00:00', '', 'event'),
+(17, 'sdfgsd', '<p>fgdsgdsfgdsfg</p>', '', '0000-00-00 00:00:00', '2015-06-18 10:02:12', '', 'news'),
+(18, 'safsa f', '<p>saf saf s fsa f</p>', '', NULL, '2015-06-18 10:02:18', NULL, 'news'),
+(19, 'sdfg sdfg', '<p>dsgdsfgdsgdsgds</p>', '', NULL, '2015-06-18 10:02:24', NULL, 'news'),
+(20, 'reyreyt', '<p>reerny rye ryer rd</p>', '', NULL, '2015-06-18 10:05:38', NULL, 'news');
 
 -- --------------------------------------------------------
 
@@ -200,16 +235,14 @@ CREATE TABLE IF NOT EXISTS `gadgets` (
   `display` varchar(200) NOT NULL,
   `setting` text NOT NULL,
   PRIMARY KEY (`gadget_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=229 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=234 ;
 
 --
 -- Dumping data for table `gadgets`
 --
 
 INSERT INTO `gadgets` (`gadget_id`, `name`, `textBox`, `defaultGadget`, `type`, `display`, `setting`) VALUES
-(226, 'Social Network', 'textBox', '', 'Facebook<br>\r\nTwitter<br>\r\nLinkid<br>\r\n', 'Footer', ''),
-(225, 'Recent Post', '', 'recent post', '', 'Sidebar', 'post=3&titleBold=&titleUnderline=&titleColor=#000000'),
-(227, 'my red gadget sjaifdjs ashjdhas sajiodjas jhsaoidjhas jsaiodhjas hoashdoi hshaiodjioas hhsaiodjoias hjhisoad', '', 'recent post', '', 'Header', 'post=5&titleBold=b&titleUnderline=u&titleColor=#80ff80');
+(226, 'Social Network', 'textBox', '', '<p>Facebook<br /> Twitter<br /> Linkid<br/> Yahoo Mail</p>\r\n', 'Footer', '');
 
 -- --------------------------------------------------------
 
@@ -220,22 +253,23 @@ INSERT INTO `gadgets` (`gadget_id`, `name`, `textBox`, `defaultGadget`, `type`, 
 CREATE TABLE IF NOT EXISTS `media` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `media_name` varchar(100) NOT NULL DEFAULT 'Required',
-  `media_type` varchar(64) DEFAULT 'Required',
+  `media_type` text,
   `media_association_id` int(11) DEFAULT NULL,
   `media_link` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_media` (`media_association_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `media`
 --
 
 INSERT INTO `media` (`id`, `media_name`, `media_type`, `media_association_id`, `media_link`) VALUES
-(4, 'adhg', 'links.docx', NULL, 'http://localhost/bnw/content/images/links.docx'),
-(11, 'sdadsa', 'i3vqh1.jpg', 2, '0'),
-(12, 'birdcut', 'b1qsc1.jpg', 1, '0'),
-(13, 'vgdhafvh', 'h6i58c9deb4a3f5827c3a04ec0cf5f487171a_L.jpg', 1, '0');
+(21, 'Required', '5581571c542891.53382514.png,5581571c69cbb3.18389309.gif,5581571c', NULL, NULL),
+(23, 'Required', '55815fcd5c94a6.20846743.jpg,55815fcd9d3226.26820418.png,55815fcdbf24e7.87275477.jpg', NULL, NULL),
+(24, 'werqwerqwer', 'iATx7Screenshot (136).png', 7, '0'),
+(25, 'aksjcn', '4X8eYScreenshot (139).png', 7, '0'),
+(26, 'gfcghcgfcgf', 'page_sts.PNG', NULL, 'http://192.168.1.16/test/bnw/content/images/page_sts.PNG');
 
 -- --------------------------------------------------------
 
@@ -275,9 +309,9 @@ CREATE TABLE IF NOT EXISTS `meta_data` (
 
 INSERT INTO `meta_data` (`id`, `name`, `value`) VALUES
 (1, 'siteurl', 'www.salyani.org'),
-(2, 'title', 'BnW - A Complete CMS'),
-(3, 'keywords', 'cms'),
-(4, 'description', 'cloud system'),
+(2, 'title', 'BnW - An complete CMS'),
+(3, 'keywords', 'BBC'),
+(4, 'description', 'Home loan'),
 (5, 'favicon_icon', 'favicon.png');
 
 -- --------------------------------------------------------
@@ -299,11 +333,11 @@ CREATE TABLE IF NOT EXISTS `misc_setting` (
 
 INSERT INTO `misc_setting` (`Id`, `name`, `description`) VALUES
 (0, 'show_comment', '0'),
-(1, 'show_like', '0'),
-(2, 'show_share', '0'),
-(3, 'max_post_to_show', '3'),
-(4, 'max_page_to_show', '3'),
-(5, 'slide_height', '400'),
+(1, 'show_like', '1'),
+(2, 'show_share', '1'),
+(3, 'max_post_to_show', '5'),
+(4, 'max_page_to_show', '5'),
+(5, 'slide_height', '800'),
 (6, 'slide_width', '1380');
 
 -- --------------------------------------------------------
@@ -320,21 +354,32 @@ CREATE TABLE IF NOT EXISTS `navigation` (
   `navigation_type` varchar(64) DEFAULT NULL,
   `navigation_slug` varchar(64) DEFAULT NULL,
   `menu_id` int(11) DEFAULT NULL,
+  `page_id` int(11) DEFAULT NULL,
+  `category_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_navigation` (`menu_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100146 ;
 
 --
 -- Dumping data for table `navigation`
 --
 
-INSERT INTO `navigation` (`id`, `navigation_name`, `navigation_link`, `parent_id`, `navigation_type`, `navigation_slug`, `menu_id`) VALUES
-(58, 'Introduction', 'http://localhost/bnw/index.php/view/page/1', 0, 'page', 'Introduction', 4),
-(59, 'Gallery', 'http://localhost/bnw/index.php/view/gallery', 0, '', 'Gallery', 4),
-(60, 'News', 'http://localhost/bnw/index.php/view/allnews', 0, '', 'News', 4),
-(61, 'Events', 'http://localhost/bnw/index.php/view/allevents', 0, '', 'Events', 4),
-(62, 'Contact Us', 'http://localhost/bnw/index.php/view/contactUs', 0, '', 'ContactUs', 4),
-(63, 'PostView', 'http://localhost/bnw/index.php/view/post/12', 0, '', 'PostView', 4);
+INSERT INTO `navigation` (`id`, `navigation_name`, `navigation_link`, `parent_id`, `navigation_type`, `navigation_slug`, `menu_id`, `page_id`, `category_id`) VALUES
+(100127, 'my new page', 'page/24', 0, 'page', 'mynewpage', 4, 24, NULL),
+(100132, ' hqwiur hqw u"SAF as F"wee"AF"87378as rsdfgsdgsd fs', 'page/29', 0, 'page', 'hqwiurhqwu"SAFasF"wee"AF"87378asrsdfgsdgsdfs', 4, 29, NULL),
+(100133, 'category b', 'http://192.168.1.16/test/bnw/view/category/36', 0, 'category', 'categoryb', 4, NULL, NULL),
+(100134, ' kamal ', 'http://192.168.1.16/test/bnw/view/page/9', 0, 'page', 'kamal', 4, 9, NULL),
+(100135, 'b', 'http://192.168.1.16/test/bnw/view/category/38', 0, 'category', 'b', 4, NULL, NULL),
+(100136, 'category a', 'http://192.168.1.16/test/bnw/view/category/35', 100133, 'category', 'categorya', 4, NULL, NULL),
+(100137, 'category a', 'http://192.168.1.16/test/bnw/view/category/35', 100133, 'category', 'categorya', 4, NULL, NULL),
+(100138, 'category b', 'http://192.168.1.16/test/bnw/view/category/36', 100133, 'category', 'categoryb', 4, NULL, NULL),
+(100139, 'category b', 'http://192.168.1.16/test/bnw/view/category/36', 100133, 'category', 'categoryb', 4, NULL, NULL),
+(100140, 'titlenav', 'http://192.168.1.16/test/bnw/index.php/dashboard/pages', 100127, '', 'titlenav', 4, NULL, NULL),
+(100141, 'Facebook', 'https://www.facebook.com', 0, '', 'Facebook', 4, NULL, NULL),
+(100142, 'category b', 'http://192.168.1.16/test/bnw/view/category/36', 100141, 'category', 'categoryb', 4, NULL, NULL),
+(100143, 'Test page & sushil fdgh ksdfgsdg', 'page/26', 100137, 'page', 'Testpage&sushilfdghksdfgsdg', 4, 26, NULL),
+(100144, 'Hari parsad shrestha', 'page/23', 0, 'page', 'Hariparsadshrestha', 4, 23, NULL),
+(100145, 'pagination trackdfh', 'http://localhost/bnw/view/page/6', 100127, 'page', 'paginationtrackdfh', 4, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -360,14 +405,20 @@ CREATE TABLE IF NOT EXISTS `page` (
   `allow_share` tinyint(1) NOT NULL,
   `images` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `page`
 --
 
 INSERT INTO `page` (`id`, `page_name`, `page_content`, `page_author_id`, `page_date`, `page_summary`, `page_status`, `page_modifed_date`, `page_parent`, `page_order`, `page_type`, `page_tags`, `allow_comment`, `allow_like`, `allow_share`, `images`) VALUES
-(1, 'Introduction', '                        BnW is a MVC CMS. It is developed by using "PHP", the programming language and as framework Codeigniter is used. It is developed from Chitwan. The motto of this is to make content management and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.<br>', 10, '2014-09-17 11:13:36', '                        BnW is a MVC CMS. It is developed by using "PHP", the programming language a', '0', '0000-00-00 00:00:00', 0, 0, '', '0', 0, 0, 0, '');
+(6, 'pagination trackdfh', '<p>sfsfdgsdfgdg</p>', 10, '2015-05-31 10:08:04', '<p>sfsfdgsdfgdg</p>', '1', '2015-06-18 05:27:01', 0, 0, '', '0', 0, 1, 1, '0'),
+(9, ' kamal ', '<p>&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;</p>\r\n<p>kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;</p>\r\n<p>kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;</p>\r\n<p>kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;</p>', 10, '2015-05-31 10:19:30', '<p>&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kam', '0', '2015-06-18 03:35:15', 0, 0, '', '0', 0, 1, 1, '0'),
+(23, 'Hari parsad shrestha', '<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>\r\n<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>\r\n<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>\r\n<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>', 10, '2015-06-01 07:48:47', '<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nb', '1', '2015-06-18 05:31:53', 0, 0, '', '0', 0, 1, 1, '0'),
+(24, 'my new page', '<ul>\r\n<li>&nbsp;wjnkjsc kjw ckjweckj</li>\r\n<li>skjdcnsdkjc</li>\r\n<li>skjdcnksdjcnkjsd</li>\r\n<li>sdncsdnckjsd</li>\r\n<li>skdjcnskdjnj</li>\r\n<li>kjbkjbkjkjkj</li>\r\n<li>kjuknnkjnkj</li>\r\n</ul>\r\n<p>hello k cha khaber</p>\r\n<p>hahhahhaha</p>', 10, '2015-06-02 09:46:50', '<ul>\r\n<li>&nbsp;wjnkjsc kjw ckjweckj</li>\r\n<li>skjdcnsdkjc</li>\r\n<li>skjdcnksdjcnkjsd</li>\r\n<li>sdnc', '0', '2015-06-18 05:12:41', 0, 0, '', '0', 1, 1, 1, 'TPuT8yesno plugin.JPG'),
+(26, 'Test page & sushil fdgh ksdfgsdg', '<p><em><strong>I am </strong></em>writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test p<em><strong>age.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;</strong></em></p>', 10, '2015-06-03 06:31:24', '<p><em><strong>I am </strong></em>writing the content for test page.&nbsp;I am writing the content f', '1', '2015-06-18 05:26:40', 0, 0, '', '0', 0, 1, 1, '0'),
+(29, ' hqwiur hqw u"SAF as F"wee"AF"87378as rsdfgsdgsd fs', '<p>"jkbkjvbfvbnjkkj kjkjfgkjdfg bkjdbgkjdfjkngjnfdjkf bdkjgbdjfkgkjdkjfgjkbjkbkj"</p>', 10, '2015-06-16 08:05:18', '<p>"jkbkjvbfvbnjkkj kjkjfgkjdfg bkjdbgkjdfjkngjnfdjkf bdkjgbdjfkgkjdkjfgjkbjkbkj"</p>', '1', '2015-06-18 05:31:04', 0, 0, '', '0', 0, 1, 1, '0'),
+(32, 'Title naviga', '<div class="stylemin" align="justify"><font size="4" face="Calibri, Verdana, Times New Roman">SER-N is pleased to announce a short-term course on Survey Data Analysis Techniques from May 11-15, 2015. We are organizing this training in collaboration with the Population Studies Center (PSC) of the University of Michigan, USA.</font> <a href="http://isernepal.org.np/news.php?topic=100#news100">More..</a></div>\r\n<p>&nbsp;</p>\r\n<div class="stylemin" align="justify"><span class="style53"><strong><a href="http://isernepal.org.np/news.php?topic=99#news99">Survey Data Analysis Training</a></strong> <br /></span><font size="3" face="Calibri, Verdana, Times New Roman">ISER-N in collaboration with the Survey Research Center of the University of Michigan, USA organized a 5-day training on Survey Data Analysis Techniques from November 24-28, 2014 at its central campus in Fulbari, Chitwan. The goal of this short course </font><a href="http://isernepal.org.np/news.php?topic=99#news99">More..</a></div>\r\n<p>&nbsp;</p>\r\n<div class="stylemin" align="justify"><span class="style53"><strong><a href="http://isernepal.org.np/news.php?topic=98#news98">Announcement: International Training on Survey Data Analysis</a></strong> <br /></span><font face="Calibri, Verdana, Times New Roman"><font size="3">ISER-N is pleased to announce short-term courses on Survey Data Analysis Techniques from November 24-28, 2014. ISER-N is organizing these trainings in collaboration with the Population Studies Center (PSC) of the University of Michigan, USA. </font></font><a href="http://isernepal.org.np/news.php?topic=98#news98">More..</a></div>\r\n<p>&nbsp;</p>\r\n<div class="stylemin" align="justify"><span class="style53"><strong><a href="http://isernepal.org.np/news.php?topic=96#news96">UNFPA Sponsored Training on Survey Data Analysis </a></strong><br /></span><font face="Calibri, Verdana, Times New Roman">ISER-N, in collaboration with the University of Michigan, USA offered a short course on Survey Data Analysis Techniques at its central campus in Fulbari, Chitwan from December 1-5, 2013.</font> <a href="http://isernepal.org.np/news.php?topic=96#news96">More..</a></div>\r\n<p>&nbsp;</p>\r\n<div class="stylemin" align="justify"><span class="style53"><strong><a href="http://isernepal.org.np/news.php?topic=95#news95">Survey Data Analysis Training</a></strong> <br /></span><font size="3" face="Calibri, Verdana, Times New Roman">ISER-N in collaboration with the University of Michigan, USA organized a training on Survey Data Analysis Techniques from November 25-29, 2013 at its central campus in Fulbari, Chitwan. The goal of this training</font> <a href="http://isernepal.org.np/news.php?topic=95#news95">More..</a></div>', 10, '2015-06-18 10:36:09', '<div class="stylemin" align="justify"><font size="4" face="Calibri, Verdana, Times New Roman">SER-N ', '1', '2015-06-19 00:33:52', 0, 0, '', '0', 0, 1, 1, '0');
 
 -- --------------------------------------------------------
 
@@ -394,15 +445,14 @@ CREATE TABLE IF NOT EXISTS `post` (
   PRIMARY KEY (`id`),
   KEY `idx_post` (`post_category`),
   KEY `idx_post_0` (`post_author_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
 
 --
 -- Dumping data for table `post`
 --
 
 INSERT INTO `post` (`id`, `post_title`, `post_author_id`, `post_date`, `post_summary`, `post_status`, `comment_status`, `post_modified_date`, `post_tags`, `post_content`, `post_category`, `allow_comment`, `allow_like`, `allow_share`, `image`) VALUES
-(12, 'chharo1', 0, '2014-10-29 07:35:19', '            <br>', '0', NULL, NULL, NULL, '            <br>', 0, 0, 0, 0, 'CPtp3birdedu.png'),
-(13, 'crop', 0, '2014-10-29 07:49:39', '                                  BnW is a MVC CMS. It is developed by using \r\n"PHP", the programmin', '0', NULL, NULL, NULL, '                                  BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.                         BnW is a MVC CMS. It is developed by using \r\n"PHP", the programming language and as framework Codeigniter is used. It\r\n is developed from Chitwan. The motto of this is to make content \r\nmanagement and web production easy, fast, reliable and convenient.<br>', 0, 0, 0, 0, 'Gr8Xgt.png');
+(32, 'post with pic sdfsfs "amrita" ''sapkota''', 0, '2015-06-08 04:55:37', '<p>fhgdfhdfh</p>', '0', NULL, NULL, NULL, '<p>fhgdfhdfh</p>', 0, 0, 0, 0, '1Bnf53jNCyDSC_3004-Optimized.JPG');
 
 -- --------------------------------------------------------
 
@@ -416,14 +466,14 @@ CREATE TABLE IF NOT EXISTS `slide` (
   `slide_image` varchar(100) NOT NULL DEFAULT 'Required',
   `slide_content` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `slide`
 --
 
 INSERT INTO `slide` (`id`, `slide_name`, `slide_image`, `slide_content`) VALUES
-(1, 'Complete Powerful CMS', 'DisasterRecovery.jpg', 'ghghjghj');
+(5, 'Doctor', '1.PNG', 'Home');
 
 -- --------------------------------------------------------
 
@@ -444,14 +494,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_status` varchar(64) DEFAULT NULL,
   `user_type` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `user_name`, `user_fname`, `user_lname`, `user_email`, `user_pass`, `user_url`, `user_registered_date`, `user_auth_key`, `user_status`, `user_type`) VALUES
-(10, 'admin', 'hom nath', 'bagale', 'bhomnath@salyani.com.np', '21232f297a57a5a743894a0e4a801fc3', NULL, '2014-03-06 10:01:57', '64L3XB9ID5', '0', 'Administrator');
+(10, 'admin', 'hom nath', 'bagale', 'bhomnath@salyani.com.np', '21232f297a57a5a743894a0e4a801fc3', NULL, '2014-03-06 10:01:57', '64L3XB9ID5', '0', 'Administrator'),
+(12, 'krishna', 'krishna', 'acharya', 'kacharya@salyani.com.np', 'fcea920f7412b5da7be0cf42b8c93759', NULL, '2015-06-16 08:34:16', NULL, '1', 'Administrator'),
+(14, 'amzz', 'Amzz', 'Sharma', 'asapkota@salyani.com.np', '3dc1e4c3bc5b2ae63520627ea44df7fd', NULL, '2015-06-18 07:53:48', NULL, '0', 'Administrator'),
+(16, 'Amri', 'Amrita', 'Sharma', 'abc@gmail.com', '74b87337454200d4d33f80c4663dc5e5', NULL, '2015-06-18 08:04:21', NULL, '1', 'Administrator');
 
 --
 -- Constraints for dumped tables
