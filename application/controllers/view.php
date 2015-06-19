@@ -113,7 +113,7 @@ $data['pageTitle'] = 'News';
             $title = $news->title;
           }}
          else{
-             $title = "event not found";
+             $title = "";
          }
         
 $class= $this->router->fetch_class();  
@@ -144,7 +144,7 @@ $data['link'] = $this->breadcrumbs->show();
             $title = $news->title;
           }}
             else{
-             $title = "news not found";
+             $title = "";
          }
         
 $class= $this->router->fetch_class();  
@@ -197,7 +197,7 @@ $data['link'] = $this->breadcrumbs->show();
          foreach ($data['albumName'] as $galls){
              $title= $galls->album_name;
          }}else{
-             $title = "album not found";
+             $title = "";
          }
        $class= $this->router->fetch_class();  
     $method = $this->router->fetch_method();    
@@ -249,7 +249,7 @@ $this->session->set_userdata('captcha_info', $data['captcha']);
             $title = $name->page_name;
         }}
         else{
-            $title = "page not found";
+            $title = "";
         }
         $class= $this->router->fetch_class();  
     $method = $this->router->fetch_method();    
@@ -277,7 +277,7 @@ $data['link'] = $this->breadcrumbs->show();
             $title = $name->post_title;
         }}
         else{
-            $title = "post not found";
+            $title = "";
         }
        
 $class= $this->router->fetch_class();  

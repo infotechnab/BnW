@@ -27,7 +27,7 @@ class User extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
 
             $config = array();
-            $config["base_url"] = base_url() . "user/users";
+            $config["base_url"] = base_url() . "index.php/user/users";
             $config["total_rows"] = $this->dbuser->record_count_user();
             $config["per_user"] = 6;
 

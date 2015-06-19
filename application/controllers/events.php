@@ -37,17 +37,14 @@ class Events extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
             $data['meta'] = $this->dbsetting->get_meta_data();
             $config = array();
-            $config["base_url"] = base_url() . "events/allevents";
+            $config["base_url"] = base_url() . "index.php/events/allevents";
             $config["total_rows"] = $this->dbevent->get_event();
-
             $config["per_page"] = 6;
             $this->pagination->initialize($config);
             $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-
             $data["event"] = $this->dbevent->get_event_data($config["per_page"], $page);
             $data["links"] = $this->pagination->create_links();
             $data["query"] = $this->dbdashboard->get_menu();
-            //  $data["event"] = $this->dbmodel->get_event_data();
             $this->session->set_userdata("urlPagination", $config["base_url"]."/".$page);
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
@@ -60,11 +57,8 @@ class Events extends CI_Controller {
      function editevent($id = 0) {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
-            ;
             $data['meta'] = $this->dbsetting->get_meta_data();
             $data['event'] = $this->dbevent->get_event_id($id);
-
-            // $data['id'] = $id;
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/event/editEvent', $data);
@@ -81,8 +75,7 @@ class Events extends CI_Controller {
             foreach ($data['event'] as $a) {
                 $img = $a->image;
             }
-            // die($img);
-            if ($img == !NULL) {
+            if (!empty($img)) {
                $filename1 = './content/uploads/images/'.$img;
             $filename2 = './content/uploads/images/thumb_'.$img;
 if (file_exists($filename1)) {
@@ -91,14 +84,9 @@ if (file_exists($filename1)) {
 if (file_exists($filename2)) {
     unlink($filename2);
 } else {}
-               
             }
             $this->dbevent->delete($id);
-//            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-//            redirect('events/event');
         } else {
-
-
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
@@ -172,7 +160,8 @@ if (file_exists($filename1)) {
                         $dateTime = $date . ' ' . $hour . ':' . $min . ':' . $sec;
                         $this->dbevent->update_event($id, $title, $content, $location, $image, $dateTime, $type);
                         $this->session->set_flashdata('message', 'Data Modified Sucessfully');
-                        redirect('events/event');
+                        $redirectPagination = $this->session->userdata("urlPagination");
+                        redirect($redirectPagination);
                     }
                 } else {
                     // die('not');
