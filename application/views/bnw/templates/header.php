@@ -17,6 +17,17 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'content/bnw/styles/imgareaselect-animated.css'; ?>" />
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+ <?php if(isset($meta))
+{
+     foreach ($meta as $data)
+     {
+         $title[] = $data->value;
+     }
+}
+?> 
+ <link rel="shortcut icon" href="<?php echo base_url().'content/uploads/images/'.$title[4]; ?>">
+
+
 
         <script type="text/javascript">
 var base_url = '<?php echo base_url(); ?>';

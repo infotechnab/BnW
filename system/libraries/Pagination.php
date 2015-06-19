@@ -37,7 +37,7 @@ class CI_Pagination {
 	var $use_page_numbers	= FALSE; // Use page number for segment instead of offset
 	var $first_link			= '&lt;&lt;';
 	var $next_link			= 'Next';
-	var $prev_link			= 'First';
+	var $prev_link			= 'Previous';
 	var $last_link			= '&gt;&gt;';
 	var $uri_segment		= 3;
 	var $full_tag_open		= '<ul class="tsc_pagination tsc_paginationA tsc_paginationA01">';
