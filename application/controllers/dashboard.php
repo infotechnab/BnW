@@ -631,32 +631,6 @@ class Dashboard extends CI_Controller {
     //============================ CLOSE NAVIGATION =====================================//
     //============================= START CATEGORY ======================================//
 
-    function change_category() {
-        $url = current_url();
-        if ($this->session->userdata('admin_logged_in')) {
-            $id = $_POST['id'];
-            $cat_id = $_POST['categoryProduct'];
-            // die($cat_id);
-            $this->dbdashboard->change_category($id, $cat_id);
-            $this->deletecategory($id);
-        } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }
-    }
-
-    function delete_Product_cat() {
-        $url = current_url();
-        if ($this->session->userdata('admin_logged_in')) {
-            $id = $_POST['id'];
-            $this->dbdashboard->delRelPro($id);
-            $this->dbdashboard->delete_category($id);
-            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-            redirect('bnw/category');
-        } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }
-    }
-
     public function category() {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
@@ -689,12 +663,6 @@ class Dashboard extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 
-            $config['upload_path'] = './content/uploads/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
-            $this->load->library('upload', $config);
             $data['meta'] = $this->dbsetting->get_meta_data();
             $data["links"] = $this->pagination->create_links();
             $data['query'] = $this->dbdashboard->get_category();
@@ -703,37 +671,14 @@ class Dashboard extends CI_Controller {
             $this->load->view("bnw/templates/menu");
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
-            //set validation rules
-            $categoryname = $this->input->post('category_name');
-
             $this->form_validation->set_rules('category_name', 'Category Name', 'required|xss_clean|max_length[200]');
-
-
-
             if (($this->form_validation->run() == TRUE)) {
-                if ($_FILES && $_FILES['file']['name'] !== "") {
-                    if (!$this->upload->do_upload('file')) {
-                        $error = array('error' => $this->upload->display_errors('file'));
-                        $this->load->view('bnw/category/addCategory', $error);
-                    } else {
-                        $data = array('upload_data' => $this->upload->data('file'));
-                        $image = $data['upload_data']['file_name'];
-
-
-                        $this->dbdashboard->add_new_category($categoryname);
-                        $this->session->set_flashdata('message', 'One category item added sucessfully');
-                        redirect('bnw/category/addCategory');
-                    }
-                } else {
                     $categoryname = $this->input->post('category_name');
-
                     $this->dbdashboard->add_new_category($categoryname);
-
-                    $pages = $this->dbdashboard->find_category_id($categoryname);
                     $this->session->set_flashdata('message', 'One category added sucessfully');
                     redirect('dashboard/category');
                 }
-            } else {
+             else {
 
                 $this->load->view('bnw/category/addCategory', $data);
             }
@@ -762,12 +707,6 @@ class Dashboard extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 
-            $config['upload_path'] = './content/uploads/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '500';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
-            $this->load->library('upload', $config);
             $data['meta'] = $this->dbsetting->get_meta_data();
             $data["links"] = $this->pagination->create_links();
 
@@ -779,31 +718,11 @@ class Dashboard extends CI_Controller {
             $id = $this->input->post('id');
             //set validation rules
             $this->form_validation->set_rules('category_name', 'Category Name', 'required|xss_clean|max_length[200]');
-
-
-
-
             if (($this->form_validation->run() == TRUE)) {
-                if ($_FILES && $_FILES['file']['name'] !== "") {
-                    if (!$this->upload->do_upload('file')) {
-                        $data['error'] = $this->upload->display_errors('file');
-                        $id = $this->input->post('id');
-                        $data['query'] = $this->dbdashboard->findcategory($id);
-                        $this->load->view('bnw/category/edit', $data);
-                    } else {
-                        $categoryname = $this->input->post('category_name');
-                        $this->dbdashboard->update_category($id, $categoryname);
-                        $this->session->set_flashdata('message', 'Data Modified Sucessfully');
-                        redirect('bnw/category/addCategory');
-                    }
-                } else {
-
-
                     $categoryname = $this->input->post('category_name');
                     $this->dbdashboard->update_category($id, $categoryname);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     redirect('dashboard/category');
-                }
             } else {
                 $id = $this->input->post('id');
                 $data['query'] = $this->dbdashboard->findcategory($id);
@@ -819,8 +738,6 @@ class Dashboard extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $this->dbdashboard->delete_category($id);
-//              $this->session->set_flashdata('message', 'Data Delete Sucessfully');
-//                 redirect('dashboard/category');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
