@@ -638,7 +638,7 @@ class Dashboard extends CI_Controller {
 
 
             $config = array();
-            $config["base_url"] = base_url() . "bnw/category";
+            $config["base_url"] = base_url() . "index.php/dashboard/category";
             $config["total_rows"] = $this->dbdashboard->record_count_category();
             // var_dump($config["total_rows"]);
             $config["per_page"] = 6;
