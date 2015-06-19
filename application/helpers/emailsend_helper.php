@@ -47,9 +47,9 @@ function send_user_credentials($name, $fname, $lname, $email, $pass, $imglink)
     $headers .="Content-type:text/html;charset=UTF-8" . "\r\n";          
     $subject = "User login Credentials";
     if (mail($email, $subject, $body, $headers)) {
-       $this->session->set_flashdata("message","User credentials has been emailed to the user $email");
+      // $this->session->set_flashdata("message","User credentials has been emailed to the user $email");
     } else {
-        $this->session->set_flashdata("message","Failed to email user cresentials to the user $email");
+       // $this->session->set_flashdata("message","Failed to email user cresentials to the user $email");
          } 
      
 }

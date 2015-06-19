@@ -23,12 +23,11 @@
             <th>Type</th>
             <th>Action</th>
         </tr>
-    
-   
-     <?php       foreach ($query as $data){
-            ?>
+         <?php $sn_count = 1;
+         foreach ($query as $data){  ?>
         <tr class="action">
-            <td><?php echo $data->id ?></td>
+            <td><?php echo $sn_count; ?></td>
+           
             <td><?php echo $data->user_name ?></td>
             <td><?php echo $data->user_fname ?></td>
             <td><?php echo $data->user_lname ?></td>
@@ -61,7 +60,7 @@
                 <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
             </td>
         </tr>
-            <?php    
+            <?php    $sn_count++; 
             }
         }
  else {

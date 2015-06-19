@@ -53,7 +53,7 @@
             foreach ($listOfPage as $pagedata){
             ?>
 
-        <li><input type="checkbox" name="<?php echo $str = preg_replace('/\s+/', '', $pagedata->page_name); ?>" value="<?php echo $pagedata->page_name; ?>"/><?php echo $pagedata->page_name; ?></li>
+        <li><input type="checkbox" name="<?php echo $str = htmlentities(preg_replace('/\s+/', '', $pagedata->page_name)); ?>" value="<?php echo htmlentities($pagedata->page_name); ?>"/><?php echo $pagedata->page_name; ?></li>
           <?php    
             }
         }
