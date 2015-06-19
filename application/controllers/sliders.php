@@ -27,7 +27,7 @@ class Sliders extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config = array();
-            $config["base_url"] = base_url() . "sliders/slider";
+            $config["base_url"] = base_url() . "index.php/sliders/slider";
             $config["total_rows"] = $this->dbslider->record_count_slider();
             $config["per_page"] = 6;
             //$config["uri_segment"] = 3;

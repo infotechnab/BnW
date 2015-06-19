@@ -41,7 +41,7 @@ class Page extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
 
             $config = array();
-            $config["base_url"] = base_url() . "page/pages";
+            $config["base_url"] = base_url() . "index.php/page/pages";
             $config["total_rows"] = $this->dbpage->record_count_page();
             $config["per_page"] = 6;
             $this->pagination->initialize($config);
