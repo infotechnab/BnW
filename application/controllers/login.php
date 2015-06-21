@@ -78,7 +78,7 @@ class Login extends CI_Controller {
                  $data['meta'] = $this->dbsetting->get_meta_data();
                 $this->session->set_flashdata('message', 'Username or password incorrect');
                $data['link'] = base_url().'bnw';
-            $this->load->view('bnw/templates/loginTemplate', $data);
+            $this->load->view('bnw/login/loginTemplate', $data);
             $this->load->view('bnw/templates/footer', $data);
             }
         }

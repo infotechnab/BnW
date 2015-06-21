@@ -10,6 +10,7 @@ class User extends CI_Controller {
         $this->load->model('dbmodel');
         $this->load->model('dbdashboard');
         $this->load->model('dbsetting');
+        $this->load->model('viewmodel');
         $this->load->model('dbuser');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
