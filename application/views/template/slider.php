@@ -111,7 +111,7 @@
            
  
         </style>
-         <script src="<?php echo base_url() . 'content/uploads/jquery.js'; ?>"></script>
+         <script src="<?php echo base_url() . 'content/uploads/scripts/jquery.js'; ?>"></script>
                <script type="text/javascript"> 
               function hideDiv(){
     if ($(window).width() > 767) {
