@@ -45,7 +45,7 @@ class Media extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
             $config['upload_path'] = './content/uploads/images/';
-            $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf|doc|ppt|odt|pptx|docx|xls|xlsx|key|txt';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf|docx|doc|ppt|odt|pptx|docx|xls|xlsx|key|txt';
             $config['max_size'] = '20000';
             $config['max_width'] = '10000';
             $config['max_height'] = '10000';

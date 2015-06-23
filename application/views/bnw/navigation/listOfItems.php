@@ -189,6 +189,8 @@
 
 
                         });
+                } else {
+                    $("#cssmenu").html("Please Select Menu.");
                 }
                
            }
