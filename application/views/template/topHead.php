@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="<?php echo base_url().'content/uploads/bootstrap/css/bootstrap.css'; ?>">
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
      <script src="<?php echo base_url().'content/uploads/scripts/jquery.js'; ?>"></script>
-      <script src="<?php echo base_url().'content/bootstrap/js/bootstrap.min.js'; ?>"></script>  
+      <script src="<?php echo base_url().'content/uploads/bootstrap/js/bootstrap.min.js'; ?>"></script>  
       
       <style>
           body {background-color: #fff;color: #424242;font-family: "Open Sans",sans-serif;font-size: 14px;line-height: 24px;margin: 0; padding: 0;}
