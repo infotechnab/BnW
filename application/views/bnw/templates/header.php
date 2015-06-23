@@ -146,7 +146,17 @@ tinymce.init({
         <div id="list"></div>
     </div>
     <div class="mediaDetails">
-        <label>Name</label> <input type="text" class="imgName">
+        ATTACHMENT DETAILS  
+        <label>Title</label> <input type="text" class="imgName">
+        <br>
+        <label>Caption</label> <input type="text" class="imgName">
+        <br>
+        <label>ALT Text</label> <input type="text" class="imgName">
+        <br>
+        <label>Details</label> <input type="text" class="imgName">
+        <br>
+        Edit Image
+        Delete Image
     </div>
     <div class="clear"></div>
 </div>
