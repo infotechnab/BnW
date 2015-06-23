@@ -1,0 +1,123 @@
+<nav class="navbar navbar-default affix-top nav-links" data-spy="affix" data-offset-top="100" role="navigation">
+    <div class="container">
+        <div class="navbar-header"> 
+            <a class="navbar-brand" href="/"><img src="media/img/nav-logo.png" alt="Driven Car Sales Logo" class="img-rounded logo-nav navbar-brand"></a>
+        </div>
+          <div class="nav-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Used Cars</a>
+                </li>
+                <li><a href="#">Get Finance</a>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">About Driven<strong class="caret"></strong></a>
+                 <ul class="dropdown-menu">
+                  <li>
+                   <a href"#">The Team</a>
+                  </li>
+                  <li>
+                   <a href"#">Our Partners</a>
+                  </li>
+                 </ul> <!--Drop Down End-->
+                </li>
+                <li><a href="#">How To Find Us</a>
+                </li>
+                <li><a href="#">Contact Us</a>
+                </li>
+            </ul>
+          </div>    
+    </div>
+</nav>
+
+
+.logo-nav {
+    height: 2.3em;
+    width: auto;
+}
+.brand {
+    font-size: 2em;
+    margin: 20px 0 25px;
+}
+.navbar-brand {
+    opacity: 0;
+    color: #ff0066;
+    -webkit-transition:opacity 0.3s ease-in;
+    -moz-transition:opacity 0.3s ease-in;
+    -o-transition:opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+
+    margin-left: 0px;
+}
+.navbar {
+    border-radius: 0px;
+    border-left: none;
+    border-right: none;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+    color: #fff;
+    background-color: #DD3B4D;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: #fff;
+}
+
+.dropdown-menu {
+    color: #fff;
+    background-color: #DD3B4D;
+}
+
+.dropdown-menu>li>a {
+    color: #fff;
+}
+
+nav.affix {
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+nav.affix .navbar-brand {
+    opacity: 1;
+    height: 2.3em;
+    width: auto;
+}
+
+.navbar-header {
+    width: 0px;
+    -webkit-transition:width .4s ease-in-out;
+    -moz-transition:width .4s ease-in-out;
+    -o-transition:width .4s ease-in-out;
+    transition:width .4s ease-in-out;
+    margin: 0 1em 0 1em
+}
+
+nav.affix .navbar-header {
+    width: 8em;
+    -webkit-transition: width .4s ease-in-out;
+    -moz-transition: width .4s ease-in-out;
+    -o-transition: width .4s ease-in-out;
+    transition: width .4s ease-in-out;
+    margin: 0 1em 0 0;
+}
+
+.nav-links {
+    font: 600 15px/1.5 'Arimo';
+}
+
+.navbar-nav > li:last-child{
+    border-right: 1px solid #475d88;
+}
+
+ul.nav a:hover { 
+    color: #fff !important;
+    background-color: #DD3B4D !important;
+    -webkit-transition: background-color 0.6s ease;
+    -moz-transition: background-color 0.6s ease;
+    -o-transition: background-color 0.6s ease;
+    transition: background-color 0.6s ease;
+}
+
+nav.affix .navbar-brand { 
+    display: inline-block; 
+}
+

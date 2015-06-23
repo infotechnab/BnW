@@ -100,15 +100,25 @@ $(document).ready(function() {
 		p.fadeOut();
 		// prepare HTML5 FileReader
 		var oFReader = new FileReader();
-                var a = document.getElementById("uploadImage").files[0];
+                var file = document.getElementById("uploadImage").files[0];
                 
-                if(a!=undefined){
+var fileType = file.type;
+var ValidImageTypes = ["image/gif", "image/jpeg", "image/jpg", "image/png"];
+if ($.inArray(fileType, ValidImageTypes) < 0) {
+   alert('invalid file type');
+}
+ else{               
+                
+                if(file!=undefined){
 		oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
 		oFReader.onload = function (oFREvent) {
 	   		p.attr('src', oFREvent.target.result).fadeIn();
                         $('#mybutton').css('display','inline-block');
                          var w = $('img#uploadPreview').width();
-                          var h = $('img#uploadPreview').height();             
+                          var h = $('img#uploadPreview').height();   
+                          alert('heree');
+                         alert(w);
+                         alert(h);
               if(w>h){
                   var centre = w/2;
                   var height = h;
@@ -143,6 +153,7 @@ $(document).ready(function() {
                 $('.imgareaselect-border4').css("display","none");
                 $('.imgareaselect-outer').prev().hide();
             }
+        }
 	});
 
         $('img#uploadPreview').imgAreaSelect({    
