@@ -606,10 +606,10 @@ class CI_Upload {
 
 		if (in_array($ext, $image_types))
 		{
-			if (getimagesize($this->file_temp) === FALSE)
-			{
-				return FALSE;
-			}
+//			if (getimagesize($this->file_temp) === FALSE)
+//			{
+//				return FALSE;
+//			}
 		}
 
 		if ($ignore_mime === TRUE)
