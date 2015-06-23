@@ -859,4 +859,9 @@ class Dashboard extends CI_Controller {
         }
     }
     //============================= CLOSE CATEGORY ========================================//
+    
+    function getimageheightwidth()
+    {
+        var_dump("Asfd");
+    }
 }

@@ -106,19 +106,25 @@ var fileType = file.type;
 var ValidImageTypes = ["image/gif", "image/jpeg", "image/jpg", "image/png"];
 if ($.inArray(fileType, ValidImageTypes) < 0) {
    alert('invalid file type');
+    p.hide();
+                $('.imgareaselect-handle').css("display","none");
+                $('.imgareaselect-selection').css("display","none");
+                $('.imgareaselect-outer').css("display","none");
+                $('.imgareaselect-border1').css("display","none");
+                $('.imgareaselect-border2').css("display","none");
+                $('.imgareaselect-border3').css("display","none");
+                $('.imgareaselect-border4').css("display","none");
+                $('.imgareaselect-outer').prev().hide();
 }
  else{               
                 
-                if(file!=undefined){
+                if(file != undefined){
 		oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
 		oFReader.onload = function (oFREvent) {
 	   		p.attr('src', oFREvent.target.result).fadeIn();
                         $('#mybutton').css('display','inline-block');
                          var w = $('img#uploadPreview').width();
                           var h = $('img#uploadPreview').height();   
-                          alert('heree');
-                         alert(w);
-                         alert(h);
               if(w>h){
                   var centre = w/2;
                   var height = h;
