@@ -3,10 +3,11 @@
     //media
     
     .mediaImg{margin: 1%;}
-    .mediaImgContainer{width: 700px;float: left;padding: 2%;border-right: 1px solid #eee;height: 390px;overflow-y: scroll;overflow: hidden;}
-    .mediaDetails{width: 200px;float: left;padding: 2%}
-    .mediaPopUp img{border: 2px solid #fff;}
+    .mediaImgContainer{width: 650px;float: left;padding: 2%;border-right: 1px solid #eee;height: 390px;overflow-y: scroll;overflow: hidden;}
+    .mediaDetails{width: 250px;float: left;padding: 2%;display: none;}
+    .mediaPopUp img{border: 2px solid #fff;margin: 1%;}
     .mediaPopUp img:hover{border: 2px solid #aaa;}
+    .imgselected{border: 2px solid #aaa;}
     .mediaAction{border-bottom: 1px solid #eee;padding: 2%;position: relative;}
     .mediaUploadContainer{width: 30%;float: left;}
     .mediaClose{position: absolute;padding: 1%;top: 0px;right: 0px;font-weight: 100;font-family: calibri;cursor: pointer;}

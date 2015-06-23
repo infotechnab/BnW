@@ -58,7 +58,7 @@ class Media extends CI_Controller {
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
-                $mediaName = $_POST['selectAlbum'];
+                $mediaName = $this->input->post("selectAlbum");
                 
                 $media_association_info = $this->dbalbum->get_media_association_info($mediaName);
                 if(!empty($media_association_info)){

@@ -88,8 +88,19 @@ function handleFileSelect(evt) {
         $(document).on("click", ".mediaPopUp img", function () {
             var imgname = $(this).attr("alt");
             var imgid = $(this).attr("id");
-            alert(imgname);
-            alert(imgid);
+            var imgsrc = $(this).attr("src");
+            $(".mediaDetails").show();
+            $(".imgprev img").attr("src", imgsrc);
+            var imgselect = $(this).hasClass("imgselected");
+            if( imgselect == true) {
+                $(this).css("border", "");
+                $(this).removeClass("imgselected");
+            } else {
+                $(this).css("border", "");
+                $(this).addClass("imgselected");
+            }
+//            alert(imgname);
+//            alert(imgid);
         });
 
         $(document).on("change", ".newuploads", function (e) {

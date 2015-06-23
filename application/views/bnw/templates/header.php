@@ -146,14 +146,47 @@ tinymce.init({
         <div id="list"></div>
     </div>
     <div class="mediaDetails">
-        ATTACHMENT DETAILS  
-        <label>Title</label> <input type="text" class="imgName">
+        ATTACHMENT DETAILS 
+        <div class="imgprev">
+            <img src="" height="100" width="100">
+        </div>
         <br>
-        <label>Caption</label> <input type="text" class="imgName">
-        <br>
-        <label>ALT Text</label> <input type="text" class="imgName">
-        <br>
-        <label>Details</label> <input type="text" class="imgName">
+        <table>
+            <tr>
+                <td>
+                    <label>Title</label>
+                </td>
+                <td>
+                    <input type="text" class="imgName">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Caption</label>
+                </td>
+                <td>
+                    <input type="text" class="imgName">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>ALT Text</label>
+                </td>
+                <td>
+                    <input type="text" class="imgName">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Details</label>
+                </td>
+                <td>
+                    <input type="text" class="imgName">
+                </td>
+            </tr>
+        </table>
+         
+        
         <br>
         Edit Image
         Delete Image
