@@ -6,11 +6,6 @@ function setInfo(x1c, y1c, x2c, y2c) {
     $('#y').val(y1c);
     $('#w').val(w);
     $('#h').val(h);
-    
-//    $('#x1').val(x1c);
-//    $('#y1').val(y1c);
-//    $('#w1').val(w);
-//    $('#h1').val(h);
 }
 function setVal(i, e) {
     if(e.width == 0 || e.height == 0){
@@ -22,11 +17,6 @@ function setVal(i, e) {
     $('#y').val(y1a);
     $('#w').val(w);
     $('#h').val(h);
-    
-//    $('#x1').val(x1a);
-//    $('#y1').val(y1a);
-//    $('#w1').val(w);
-//    $('#h1').val(h);
     }
     else
     {
@@ -34,11 +24,6 @@ function setVal(i, e) {
     $('#y').val(e.y1);
     $('#w').val(e.width);
     $('#h').val(e.height);
-    
-//    $('#x1').val(e.x1);
-//    $('#y1').val(e.y1);
-//    $('#w1').val(e.width);
-//    $('#h1').val(e.height);
     }
 }
 
@@ -115,12 +100,25 @@ $(document).ready(function() {
 		p.fadeOut();
 		// prepare HTML5 FileReader
 		var oFReader = new FileReader();
+                var file = document.getElementById("uploadImage").files[0];
+                
+var fileType = file.type;
+var ValidImageTypes = ["image/gif", "image/jpeg", "image/jpg", "image/png"];
+if ($.inArray(fileType, ValidImageTypes) < 0) {
+   alert('invalid file type');
+}
+ else{               
+                
+                if(file!=undefined){
 		oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
 		oFReader.onload = function (oFREvent) {
 	   		p.attr('src', oFREvent.target.result).fadeIn();
                         $('#mybutton').css('display','inline-block');
                          var w = $('img#uploadPreview').width();
-                          var h = $('img#uploadPreview').height();             
+                          var h = $('img#uploadPreview').height();   
+                          alert('heree');
+                         alert(w);
+                         alert(h);
               if(w>h){
                   var centre = w/2;
                   var height = h;
@@ -143,12 +141,25 @@ $(document).ready(function() {
         
                         $('img#uploadPreview').imgAreaSelect({ x1: x1c, y1: y1c, x2: x2c, y2: y2c, aspectRatio: '4:3', handles: true,onload:setInfo(x1c,y1c,x2c,y2c), onSelectEnd: setVal });
 		};
+            }
+            else{
+                p.hide();
+                $('.imgareaselect-handle').css("display","none");
+                $('.imgareaselect-selection').css("display","none");
+                $('.imgareaselect-outer').css("display","none");
+                $('.imgareaselect-border1').css("display","none");
+                $('.imgareaselect-border2').css("display","none");
+                $('.imgareaselect-border3').css("display","none");
+                $('.imgareaselect-border4').css("display","none");
+                $('.imgareaselect-outer').prev().hide();
+            }
+        }
 	});
 
         $('img#uploadPreview').imgAreaSelect({    
             aspectRatio: '4:3',   
           handles: true,
-          onload: setVal        
+          onload: setVal       
     });
 	 
        
