@@ -91,14 +91,7 @@ function handleFileSelect(evt) {
             var imgsrc = $(this).attr("src");
             $(".mediaDetails").show();
             $(".imgprev img").attr("src", imgsrc);
-            var imgselect = $(this).hasClass("imgselected");
-            if( imgselect == true) {
-                $(this).css("border", "");
-                $(this).removeClass("imgselected");
-            } else {
-                $(this).css("border", "");
-                $(this).addClass("imgselected");
-            }
+            $(this).css("border","2px solid #aaa");
 //            alert(imgname);
 //            alert(imgid);
         });

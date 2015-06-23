@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 3.4.5
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 19, 2015 at 10:05 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Generation Time: Jun 23, 2015 at 11:23 AM
+-- Server version: 5.5.16
+-- PHP Version: 5.3.8
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `bnw`
 --
-CREATE DATABASE IF NOT EXISTS `bnw` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `bnw`;
 
 -- --------------------------------------------------------
 
@@ -32,14 +30,15 @@ CREATE TABLE IF NOT EXISTS `album` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_name` varchar(100) NOT NULL DEFAULT 'Required',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `album`
 --
 
 INSERT INTO `album` (`id`, `album_name`) VALUES
-(7, 'my album');
+(7, 'my album'),
+(10, 'sf');
 
 -- --------------------------------------------------------
 
@@ -51,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(100) NOT NULL DEFAULT 'Required',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
 --
 -- Dumping data for table `category`
@@ -62,10 +61,13 @@ INSERT INTO `category` (`id`, `category_name`) VALUES
 (36, 'category b'),
 (37, 'a'),
 (38, 'b'),
-(41, 'e'),
 (42, 'category c'),
-(43, 'abc'),
-(44, 'ac');
+(43, 'abcde'),
+(44, 'ac'),
+(45, 'testimonial'),
+(46, 'news'),
+(47, 'events'),
+(48, 'zzz');
 
 -- --------------------------------------------------------
 
@@ -183,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `design_setup` (
 
 INSERT INTO `design_setup` (`id`, `name`, `description`) VALUES
 (0, 'header_title', 'BnW - A complete CMS#'),
-(1, 'header_logo', 'bnw11.png'),
+(1, 'header_logo', 'bnw1.png'),
 (2, 'header_description', 'This is header..You can write whatever you want..'),
 (3, 'header_bgcolor', NULL),
 (4, 'sidebar_title', 'Quick navigation abcdefg'),
@@ -208,26 +210,17 @@ CREATE TABLE IF NOT EXISTS `events` (
   `image` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `events`
 --
 
 INSERT INTO `events` (`id`, `title`, `details`, `location`, `start_date`, `end_date`, `insert_date`, `last_modified_date`, `image`, `type`) VALUES
-(7, 'This is my title', '<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>\r\n<p>hello my name is krishna.</p>', '', '2015-06-05 07:00:00', NULL, '0000-00-00', NULL, 'fQY7dconnect_to_world.png', 'news'),
-(10, 'asdfsaf', '<p style="text-align: center;">dgfthbfh &nbsp;sdafsd fsa sfa<strong> sadf sadf sa fsa fas<em>sa dsa sad fas fsa sa</em></strong></p>', '', '2015-06-16 18:15:00', NULL, '0000-00-00', NULL, '', 'news'),
-(14, 'sadf sadfsdaf a', '<p>sfs adfasf sa fsasajk gqwi7ye cmbsa fiu ewf dmnb wif heo8h ol</p>', '', NULL, NULL, '2015-06-18', NULL, NULL, 'news'),
 (16, 'new event', '<p>this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very soon.this is new event going to be organized very so</p>', 'Bharatpur', '2015-06-17 18:15:00', NULL, '0000-00-00', '2015-06-19', '', 'event'),
-(17, 'sdfgsd', '<p>fgdsgdsfgdsfg</p>', '', '0000-00-00 00:00:00', NULL, '2015-06-18', NULL, '', 'news'),
-(18, 'safsa f', '<p>saf saf s fsa f</p>', '', NULL, NULL, '2015-06-18', NULL, NULL, 'news'),
-(19, 'sdfg sdfg', '<p>dsgdsfgdsgdsgds</p>', '', NULL, NULL, '2015-06-18', NULL, NULL, 'news'),
-(20, 'reyreyt', '<p>reerny rye ryer rd</p>', '', NULL, NULL, '2015-06-18', NULL, NULL, 'news'),
-(21, 'Krishna ko news', '<p>asdasdasdas</p>', '', NULL, NULL, '2015-06-19', NULL, NULL, 'news'),
-(22, 'krish''s news', '<p>ZSX</p>', '', NULL, NULL, '2015-06-19', NULL, NULL, 'news'),
+(21, 'Krishna ko news', '<p>asdasdasdas</p>', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2015-06-19', '2015-06-19', '', 'news'),
 (23, 'Krishna ko event', '<p>asdas</p>', 'saa', '2015-06-29 18:15:00', NULL, '0000-00-00', NULL, NULL, 'event'),
-(24, 'asdf event', '<p>asdas</p>', 'Bharatpur', '2015-06-22 18:15:00', NULL, '2015-06-19', '2015-06-19', '', 'event'),
-(25, 'sdfsfdsfd', '<p>srert</p>', '', '2015-06-24 18:15:00', '2015-06-29 18:15:00', '2015-06-19', NULL, NULL, 'event');
+(30, 'event', '', '', NULL, NULL, '2015-06-21', NULL, NULL, 'news');
 
 -- --------------------------------------------------------
 
@@ -244,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `gadgets` (
   `display` varchar(200) NOT NULL,
   `setting` text NOT NULL,
   PRIMARY KEY (`gadget_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=234 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=236 ;
 
 --
 -- Dumping data for table `gadgets`
@@ -267,18 +260,21 @@ CREATE TABLE IF NOT EXISTS `media` (
   `media_link` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_media` (`media_association_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
 
 --
 -- Dumping data for table `media`
 --
 
 INSERT INTO `media` (`id`, `media_name`, `media_type`, `media_association_id`, `media_link`) VALUES
-(21, 'Required', '5581571c542891.53382514.png,5581571c69cbb3.18389309.gif,5581571c', NULL, NULL),
-(23, 'Required', '55815fcd5c94a6.20846743.jpg,55815fcd9d3226.26820418.png,55815fcdbf24e7.87275477.jpg', NULL, NULL),
-(24, 'werqwerqwer', 'iATx7Screenshot (136).png', 7, '0'),
-(25, 'aksjcn', '4X8eYScreenshot (139).png', 7, '0'),
-(26, 'gfcghcgfcgf', 'page_sts.PNG', NULL, 'http://192.168.1.16/test/bnw/content/images/page_sts.PNG');
+(21, 'Required', '5581571c542891.53382514.png\r\n', NULL, NULL),
+(23, 'Required', '55815fcd5c94a6.20846743.jpg', NULL, NULL),
+(24, 'werqwerqwer', 'iATx7Screenshot (136).png', 10, '0'),
+(42, 'asdfsafd', 'url.jpg', NULL, 'http://localhost/bnw/content/images/url.jpg'),
+(46, 'Required', '55890a94da8ce3.98961789.jpg', NULL, NULL),
+(50, 'sdfsfsf', 'udrl.jpg', 10, '0'),
+(52, 'sadfsafsasadf', 'hgignore_global.gif', NULL, 'http://localhost/bnw/content/images/hgignore_global.gif'),
+(54, 'drrds', 'hgignore_global2.gif', 10, '0');
 
 -- --------------------------------------------------------
 
@@ -321,7 +317,7 @@ INSERT INTO `meta_data` (`id`, `name`, `value`) VALUES
 (2, 'title', 'BnW - An complete CMS'),
 (3, 'keywords', 'BBC'),
 (4, 'description', 'Home loan'),
-(5, 'favicon_icon', 'favicon.png');
+(5, 'favicon_icon', 'favicon.ico');
 
 -- --------------------------------------------------------
 
@@ -341,12 +337,12 @@ CREATE TABLE IF NOT EXISTS `misc_setting` (
 --
 
 INSERT INTO `misc_setting` (`Id`, `name`, `description`) VALUES
-(0, 'show_comment', '0'),
+(0, 'show_comment', '1'),
 (1, 'show_like', '1'),
-(2, 'show_share', '1'),
+(2, 'show_share', '0'),
 (3, 'max_post_to_show', '5'),
 (4, 'max_page_to_show', '5'),
-(5, 'slide_height', '800'),
+(5, 'slide_height', '900'),
 (6, 'slide_width', '1380');
 
 -- --------------------------------------------------------
@@ -367,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `navigation` (
   `category_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_navigation` (`menu_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100146 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100157 ;
 
 --
 -- Dumping data for table `navigation`
@@ -378,17 +374,19 @@ INSERT INTO `navigation` (`id`, `navigation_name`, `navigation_link`, `parent_id
 (100132, ' hqwiur hqw u"SAF as F"wee"AF"87378as rsdfgsdgsd fs', 'page/29', 0, 'page', 'hqwiurhqwu"SAFasF"wee"AF"87378asrsdfgsdgsdfs', 4, 29, NULL),
 (100133, 'category b', 'http://192.168.1.16/test/bnw/view/category/36', 0, 'category', 'categoryb', 4, NULL, NULL),
 (100134, ' kamal ', 'http://192.168.1.16/test/bnw/view/page/9', 0, 'page', 'kamal', 4, 9, NULL),
-(100135, 'b', 'http://192.168.1.16/test/bnw/view/category/38', 0, 'category', 'b', 4, NULL, NULL),
 (100136, 'category a', 'http://192.168.1.16/test/bnw/view/category/35', 100133, 'category', 'categorya', 4, NULL, NULL),
 (100137, 'category a', 'http://192.168.1.16/test/bnw/view/category/35', 100133, 'category', 'categorya', 4, NULL, NULL),
 (100138, 'category b', 'http://192.168.1.16/test/bnw/view/category/36', 100133, 'category', 'categoryb', 4, NULL, NULL),
 (100139, 'category b', 'http://192.168.1.16/test/bnw/view/category/36', 100133, 'category', 'categoryb', 4, NULL, NULL),
 (100140, 'titlenav', 'http://192.168.1.16/test/bnw/index.php/dashboard/pages', 100127, '', 'titlenav', 4, NULL, NULL),
 (100141, 'Facebook', 'https://www.facebook.com', 0, '', 'Facebook', 4, NULL, NULL),
-(100142, 'category b', 'http://192.168.1.16/test/bnw/view/category/36', 100141, 'category', 'categoryb', 4, NULL, NULL),
 (100143, 'Test page & sushil fdgh ksdfgsdg', 'page/26', 100137, 'page', 'Testpage&sushilfdghksdfgsdg', 4, 26, NULL),
-(100144, 'Hari parsad shrestha', 'page/23', 0, 'page', 'Hariparsadshrestha', 4, 23, NULL),
-(100145, 'pagination trackdfh', 'http://localhost/bnw/view/page/6', 100127, 'page', 'paginationtrackdfh', 4, 6, NULL);
+(100145, 'pagination trackdfh', 'http://192.168.1.16/test/bnw/view/page/6', 100127, 'page', 'paginationtrackdfh', 4, 6, NULL),
+(100146, '& fhgfsh', 'http://192.168.1.16/test/bnw/view/page/33', 100137, 'page', '&fhgfsh', 4, 33, NULL),
+(100152, '& fhgfsh', 'http://192.168.1.16/test/bnw/view/page/33', 100134, 'page', '&fhgfsh', 4, 33, NULL),
+(100153, '& fhgfsh', 'http://192.168.1.16/test/bnw/view/page/33', 100127, 'page', '&fhgfsh', 4, 33, NULL),
+(100155, 'jpgggggg', 'http://192.168.1.16/test/bnw/view/page/38', 100127, 'page', 'jpgggggg', 4, 38, NULL),
+(100156, 'pagination trackdfh', 'http://localhost/bnw/view/page/6', 0, 'page', 'paginationtrackdfh', 4, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -414,20 +412,28 @@ CREATE TABLE IF NOT EXISTS `page` (
   `allow_share` tinyint(1) NOT NULL,
   `images` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
 --
 -- Dumping data for table `page`
 --
 
 INSERT INTO `page` (`id`, `page_name`, `page_content`, `page_author_id`, `page_date`, `page_summary`, `page_status`, `page_modifed_date`, `page_parent`, `page_order`, `page_type`, `page_tags`, `allow_comment`, `allow_like`, `allow_share`, `images`) VALUES
-(6, 'pagination trackdfh', '<p>sfsfdgsdfgdg</p>', 10, '2015-05-31 10:08:04', '<p>sfsfdgsdfgdg</p>', '1', '2015-06-18 05:27:01', 0, 0, '', '0', 0, 1, 1, '0'),
+(6, 'pagination trackdfh', '<p>sfsfdgsdfgdg</p>', 10, '2015-05-31 10:08:04', '<p>sfsfdgsdfgdg</p>', '1', '2015-06-19 04:44:25', 0, 0, '', '0', 0, 1, 1, '0'),
 (9, ' kamal ', '<p>&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;</p>\r\n<p>kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;</p>\r\n<p>kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;</p>\r\n<p>kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;</p>', 10, '2015-05-31 10:19:30', '<p>&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kamal&nbsp;kam', '0', '2015-06-18 03:35:15', 0, 0, '', '0', 0, 1, 1, '0'),
-(23, 'Hari parsad shrestha', '<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>\r\n<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>\r\n<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>\r\n<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>', 10, '2015-06-01 07:48:47', '<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nb', '1', '2015-06-18 05:31:53', 0, 0, '', '0', 0, 1, 1, '0'),
+(23, 'Hari parsad ', '<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>\r\n<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>\r\n<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>\r\n<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;</p>', 10, '2015-06-01 07:48:47', '<p>Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nbsp;Hari&nb', '1', '2015-06-19 05:11:26', 0, 0, '', '0', 0, 1, 1, '0'),
 (24, 'my new page', '<ul>\r\n<li>&nbsp;wjnkjsc kjw ckjweckj</li>\r\n<li>skjdcnsdkjc</li>\r\n<li>skjdcnksdjcnkjsd</li>\r\n<li>sdncsdnckjsd</li>\r\n<li>skdjcnskdjnj</li>\r\n<li>kjbkjbkjkjkj</li>\r\n<li>kjuknnkjnkj</li>\r\n</ul>\r\n<p>hello k cha khaber</p>\r\n<p>hahhahhaha</p>', 10, '2015-06-02 09:46:50', '<ul>\r\n<li>&nbsp;wjnkjsc kjw ckjweckj</li>\r\n<li>skjdcnsdkjc</li>\r\n<li>skjdcnksdjcnkjsd</li>\r\n<li>sdnc', '0', '2015-06-18 05:12:41', 0, 0, '', '0', 1, 1, 1, 'TPuT8yesno plugin.JPG'),
 (26, 'Test page & sushil fdgh ksdfgsdg', '<p><em><strong>I am </strong></em>writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test p<em><strong>age.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;I am writing the content for test page.&nbsp;</strong></em></p>', 10, '2015-06-03 06:31:24', '<p><em><strong>I am </strong></em>writing the content for test page.&nbsp;I am writing the content f', '1', '2015-06-18 05:26:40', 0, 0, '', '0', 0, 1, 1, '0'),
 (29, ' hqwiur hqw u"SAF as F"wee"AF"87378as rsdfgsdgsd fs', '<p>"jkbkjvbfvbnjkkj kjkjfgkjdfg bkjdbgkjdfjkngjnfdjkf bdkjgbdjfkgkjdkjfgjkbjkbkj"</p>', 10, '2015-06-16 08:05:18', '<p>"jkbkjvbfvbnjkkj kjkjfgkjdfg bkjdbgkjdfjkngjnfdjkf bdkjgbdjfkgkjdkjfgjkbjkbkj"</p>', '1', '2015-06-18 05:31:04', 0, 0, '', '0', 0, 1, 1, '0'),
-(32, 'Title naviga', '<div class="stylemin" align="justify"><font size="4" face="Calibri, Verdana, Times New Roman">SER-N is pleased to announce a short-term course on Survey Data Analysis Techniques from May 11-15, 2015. We are organizing this training in collaboration with the Population Studies Center (PSC) of the University of Michigan, USA.</font> <a href="http://isernepal.org.np/news.php?topic=100#news100">More..</a></div>\r\n<p>&nbsp;</p>\r\n<div class="stylemin" align="justify"><span class="style53"><strong><a href="http://isernepal.org.np/news.php?topic=99#news99">Survey Data Analysis Training</a></strong> <br /></span><font size="3" face="Calibri, Verdana, Times New Roman">ISER-N in collaboration with the Survey Research Center of the University of Michigan, USA organized a 5-day training on Survey Data Analysis Techniques from November 24-28, 2014 at its central campus in Fulbari, Chitwan. The goal of this short course </font><a href="http://isernepal.org.np/news.php?topic=99#news99">More..</a></div>\r\n<p>&nbsp;</p>\r\n<div class="stylemin" align="justify"><span class="style53"><strong><a href="http://isernepal.org.np/news.php?topic=98#news98">Announcement: International Training on Survey Data Analysis</a></strong> <br /></span><font face="Calibri, Verdana, Times New Roman"><font size="3">ISER-N is pleased to announce short-term courses on Survey Data Analysis Techniques from November 24-28, 2014. ISER-N is organizing these trainings in collaboration with the Population Studies Center (PSC) of the University of Michigan, USA. </font></font><a href="http://isernepal.org.np/news.php?topic=98#news98">More..</a></div>\r\n<p>&nbsp;</p>\r\n<div class="stylemin" align="justify"><span class="style53"><strong><a href="http://isernepal.org.np/news.php?topic=96#news96">UNFPA Sponsored Training on Survey Data Analysis </a></strong><br /></span><font face="Calibri, Verdana, Times New Roman">ISER-N, in collaboration with the University of Michigan, USA offered a short course on Survey Data Analysis Techniques at its central campus in Fulbari, Chitwan from December 1-5, 2013.</font> <a href="http://isernepal.org.np/news.php?topic=96#news96">More..</a></div>\r\n<p>&nbsp;</p>\r\n<div class="stylemin" align="justify"><span class="style53"><strong><a href="http://isernepal.org.np/news.php?topic=95#news95">Survey Data Analysis Training</a></strong> <br /></span><font size="3" face="Calibri, Verdana, Times New Roman">ISER-N in collaboration with the University of Michigan, USA organized a training on Survey Data Analysis Techniques from November 25-29, 2013 at its central campus in Fulbari, Chitwan. The goal of this training</font> <a href="http://isernepal.org.np/news.php?topic=95#news95">More..</a></div>', 10, '2015-06-18 10:36:09', '<div class="stylemin" align="justify"><font size="4" face="Calibri, Verdana, Times New Roman">SER-N ', '1', '2015-06-19 00:33:52', 0, 0, '', '0', 0, 1, 1, '0');
+(33, '& fhgfsh', '<p>gsdjkvkjhdv hsdkjhkjhdvk kjhskjhdvkjhsd</p>', 10, '2015-06-19 10:44:25', '<p>gsdjkvkjhdv hsdkjhkjhdvk kjhskjhdvkjhsd</p>', '1', '2015-06-19 04:59:25', 0, 0, '0', '0', 0, 1, 1, ''),
+(34, 'fghffgfhg', '<p>jhjhghjj hhjgjhj&nbsp;</p>', 10, '2015-06-19 11:11:40', '<p>jhjhghjj hhjgjhj&nbsp;</p>', '1', '2015-06-19 05:26:40', 0, 0, '0', '0', 0, 1, 1, ''),
+(35, 'testing', '<p>ghfghdiufhgiu jdfkjghdkjhf djkhfjkhfdk jdkfhguihd</p>', 10, '2015-06-19 11:12:02', '<p>ghfghdiufhgiu jdfkjghdkjhf djkhfjkhfdk jdkfhguihd</p>', '1', '2015-06-19 05:27:02', 0, 0, '0', '0', 0, 1, 1, ''),
+(36, 'pages', '<p>hhgskhkhkfg iuhdigh iuhdgh</p>', 10, '2015-06-19 11:12:30', '<p>hhgskhkhkfg iuhdigh iuhdgh</p>', '1', '2015-06-19 05:27:30', 0, 0, '0', '0', 0, 1, 1, ''),
+(37, 'abc', '<p>body &nbsp;body&nbsp;body vvbody&nbsp;body&nbsp;body vbody&nbsp;</p>', 10, '2015-06-19 11:13:41', '<p>body &nbsp;body&nbsp;body vvbody&nbsp;body&nbsp;body vbody&nbsp;</p>', '0', '2015-06-21 01:03:12', 0, 0, '', '0', 0, 1, 1, 'hofBn4QLPtevnt_img.PNG'),
+(38, 'jpgggggg', '<p>kskjvjvskjdvkjhskjhd hbfvbsjkv hfbh jvlksj.</p>\r\n<ul  circle;">\r\n<li>hgkhkghhd</li>\r\n<li>jhdfkjghfjdk</li>\r\n<li>kdhfglkhfd</li>\r\n<li>hsdkghkldfh</li>\r\n<li>dsfhfdh</li>\r\n<li>kjkjhk</li>\r\n</ul>', 10, '2015-06-19 11:14:05', '<p>kskjvjvskjdvkjhskjhd hbfvbsjkv hfbh jvlksj.</p>\r\n<ul  circle;">\r\n<li>hgkhkghhd</li>\r\n<li>jhdfkjgh', '1', '2015-06-19 05:33:20', 0, 0, '', '0', 0, 1, 1, '0'),
+(39, 'title', '<p>hfjgkhkjghkjsf dhgkjhfdkjg jhdkjfhgkjf</p>', 10, '2015-06-19 11:14:32', '<p>hfjgkhkjghkjsf dhgkjhfdkjg jhdkjfhgkjf</p>', '1', '2015-06-19 05:29:32', 0, 0, '0', '0', 0, 1, 1, ''),
+(43, 'krishna', '<p>gsjhgfjdsfkjhd</p>', 10, '2015-06-19 11:16:29', '<p>gsjhgfjdsfkjhd</p>', '1', '2015-06-19 05:31:29', 0, 0, '0', '0', 0, 1, 1, ''),
+(48, 'bbmdmx', '<p>mgdvgkj &nbsp;jhhvbsmbsd jhVDvb jhvzv hjsjd&nbsp;</p>', 10, '2015-06-23 10:48:30', '<p>mgdvgkj &nbsp;jhhvbsmbsd jhVDvb jhvzv hjsjd&nbsp;</p>', '0', '2015-06-23 05:03:30', 0, 0, '0', '0', 1, 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -454,14 +460,14 @@ CREATE TABLE IF NOT EXISTS `post` (
   PRIMARY KEY (`id`),
   KEY `idx_post` (`post_category`),
   KEY `idx_post_0` (`post_author_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
 
 --
 -- Dumping data for table `post`
 --
 
 INSERT INTO `post` (`id`, `post_title`, `post_author_id`, `post_date`, `post_summary`, `post_status`, `comment_status`, `post_modified_date`, `post_tags`, `post_content`, `post_category`, `allow_comment`, `allow_like`, `allow_share`, `image`) VALUES
-(32, 'post with pic sdfsfs "amrita" ''sapkota''', 0, '2015-06-08 04:55:37', '<p>fhgdfhdfh</p>', '0', NULL, NULL, NULL, '<p>fhgdfhdfh</p>', 0, 0, 0, 0, '1Bnf53jNCyDSC_3004-Optimized.JPG');
+(55, 'New Post ', 0, '2015-06-21 07:31:11', '<p>My Post.. jbkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjbbbbbbbbbjjkkkkkkkkkkkkkkkkkkkkkkkk</p>', '0', NULL, NULL, NULL, '<p>My Post.. jbkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjbbbbbbbbbjjkkkkkkkkkkkkkkkkkkkkkkkk</p>', 45, 0, 0, 0, '5c95ilatest bnw.PNG');
 
 -- --------------------------------------------------------
 
@@ -475,14 +481,18 @@ CREATE TABLE IF NOT EXISTS `slide` (
   `slide_image` varchar(100) NOT NULL DEFAULT 'Required',
   `slide_content` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `slide`
 --
 
 INSERT INTO `slide` (`id`, `slide_name`, `slide_image`, `slide_content`) VALUES
-(5, 'Doctor', '1.PNG', 'Home');
+(7, 'home', 'BLDHM026.JPG', 'This is home.'),
+(8, 'Mobile', 'a3price.PNG', 'A3 vs A5'),
+(9, '"3"', 'images_(1).png', 'This is image no "3"..'),
+(10, '4', 'inspiring-quotes-positive-thinking-2-600x512.jpg', 'This is image 4...Inspiring  Quotes for life..'),
+(11, 'Image 5', 'o-POSITIVE-THINKING-facebook.jpg', 'My Positive Thinking');
 
 -- --------------------------------------------------------
 
@@ -503,17 +513,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_status` varchar(64) DEFAULT NULL,
   `user_type` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `user_name`, `user_fname`, `user_lname`, `user_email`, `user_pass`, `user_url`, `user_registered_date`, `user_auth_key`, `user_status`, `user_type`) VALUES
-(10, 'admin', 'hom nath', 'bagale', 'bhomnath@salyani.com.np', '21232f297a57a5a743894a0e4a801fc3', NULL, '2014-03-06 10:01:57', '64L3XB9ID5', '0', 'Administrator'),
-(12, 'krishna', 'krishna', 'acharya', 'kacharya@salyani.com.np', 'fcea920f7412b5da7be0cf42b8c93759', NULL, '2015-06-16 08:34:16', NULL, '1', 'Administrator'),
-(14, 'amzz', 'Amzz', 'Sharma', 'asapkota@salyani.com.np', '3dc1e4c3bc5b2ae63520627ea44df7fd', NULL, '2015-06-18 07:53:48', NULL, '0', 'Administrator'),
-(16, 'Amri', 'Amrita', 'Sharma', 'abc@gmail.com', '74b87337454200d4d33f80c4663dc5e5', NULL, '2015-06-18 08:04:21', NULL, '1', 'Administrator');
+(10, 'admin', 'hom nath', 'bagale', 'bhomnath@salyani.com.np', '21232f297a57a5a743894a0e4a801fc3', NULL, '2014-03-06 10:01:57', '64L3XB9ID5', '1', 'Administrator'),
+(17, 'Amzz', 'Amzz', 'Sharma', 'asapkota@salyani.com.np', '3dc1e4c3bc5b2ae63520627ea44df7fd', NULL, '2015-06-19 10:28:31', NULL, '1', 'Administrator'),
+(18, 'Riwaz', 'Riwaz', 'Kandel', 'abc@hotmail.com', '3dc1e4c3bc5b2ae63520627ea44df7fd', NULL, '2015-06-19 11:05:26', NULL, '1', 'User');
 
 --
 -- Constraints for dumped tables

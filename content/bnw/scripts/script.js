@@ -102,21 +102,21 @@ $(document).ready(function () {
         var oFReader = new FileReader();
         var file = document.getElementById("uploadImage").files[0];
 
-        var fileType = file.type;
-        var ValidImageTypes = ["image/gif", "image/jpeg", "image/jpg", "image/png"];
-        if ($.inArray(fileType, ValidImageTypes) < 0) {
-            alert('invalid file type');
-            p.hide();
-            $('.imgareaselect-handle').css("display", "none");
-            $('.imgareaselect-selection').css("display", "none");
-            $('.imgareaselect-outer').css("display", "none");
-            $('.imgareaselect-border1').css("display", "none");
-            $('.imgareaselect-border2').css("display", "none");
-            $('.imgareaselect-border3').css("display", "none");
-            $('.imgareaselect-border4').css("display", "none");
-            $('.imgareaselect-outer').prev().hide();
-        }
-        else {
+        //var fileType = file.type;
+        //var ValidImageTypes = ["image/gif", "image/jpeg", "image/jpg", "image/png"];
+        //if ($.inArray(fileType, ValidImageTypes) < 0) {
+         //   alert('invalid file type');
+         //   p.hide();
+          //  $('.imgareaselect-handle').css("display", "none");
+            //$('.imgareaselect-selection').css("display", "none");
+          //  $('.imgareaselect-outer').css("display", "none");
+            //$('.imgareaselect-border1').css("display", "none");
+            //$('.imgareaselect-border2').css("display", "none");
+            //$('.imgareaselect-border3').css("display", "none");
+            //$('.imgareaselect-border4').css("display", "none");
+            //$('.imgareaselect-outer').prev().hide();
+        //}
+        //else {
 
             if (file != undefined) {
                 oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
@@ -158,8 +158,9 @@ $(document).ready(function () {
                 $('.imgareaselect-border3').css("display", "none");
                 $('.imgareaselect-border4').css("display", "none");
                 $('.imgareaselect-outer').prev().hide();
+				$('#mybutton').css('display', 'none');
             }
-        }
+       // }
     });
 
     $('img#uploadPreview').imgAreaSelect({
