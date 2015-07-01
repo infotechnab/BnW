@@ -65,7 +65,7 @@ function handleFileSelect(evt) {
                     var imageLoaded = function () {
                         // Run onload code.
                         $(this).addClass("mediaImg");
-                        $(this).appendTo(".mediaImgContainer");
+                        $(this).appendTo(".mediaImgContainer").wrap("<div class='some'></div>");
 
                     };
                     $.each(data, function (i, item) {

@@ -17,7 +17,7 @@ class Dboffers extends CI_Model {
     
     public function get_post_category() {
         
-        $query = $this->db->query("SELECT DISTINCT post.post_category as id, category.category_name FROM post INNER JOIN category ON post.post_category = category.id");
+        $query = $this->db->query("SELECT DISTINCT post.post_category FROM post");
         return $query->result();
     }
     
@@ -109,14 +109,15 @@ class Dboffers extends CI_Model {
 //         $this->db->insert('post', $data);
 //    }
 
-    public function update_post($id, $post_title, $post_content, $post_summary, $image) {
+    public function update_post($id, $post_title, $post_content, $post_summary, $image, $selectCategory) {
         $this->load->database();
         $data = array
             (
             'post_title' => $post_title,
             'post_content' => $post_content,
             'post_summary' => $post_summary,
-            'image' => $image);
+            'image' => $image,
+            'post_category' => $selectCategory);
         $this->db->where('id', $id);
         $this->db->update('post', $data);
     }

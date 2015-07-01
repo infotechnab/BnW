@@ -13,7 +13,7 @@
         <select name="category_name">
             <option value="allPost" selected>All</option>
             <?php foreach($get_post_category as $cat){ ?>
-            <option value="<?php echo $cat->id ?>"><?php echo $cat->category_name; ?></option>
+            <option value="<?php echo $cat->post_category; ?>"><?php echo $cat->post_category; ?></option>
             <?php } ?>
         </select>
         <input type="submit" value="Go" class="">

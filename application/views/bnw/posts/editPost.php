@@ -98,12 +98,12 @@ $this->load->helper('summary_helper');
             <p class="dashuppe-text-all">Select Category<br/>
 
                 <select class="textInput" name="selectCategory">
-                    <option value="0">Select None</option>
+                    <option value="None">Select None</option>
     <?php
     foreach ($listOfCategory as $data) {
         ?>
                         
-                        <option value="<?php echo $data->id; ?>" <?php if ($data->id == $post_category_id) { ?> selected="selected" <?php } ?> >
+                        <option value="<?php echo $data->category_name; ?>" <?php if ($data->category_name == $post_category_id) { ?> selected="selected" <?php } ?> >
                         <?php echo $data->category_name; ?>
                         </option>
 

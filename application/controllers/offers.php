@@ -188,6 +188,7 @@ if (file_exists($filename1)) {
                     $allowLike = $this->input->post('allow_like');
                     $allowShare = $this->input->post('allow_share');
                     $selectCategory = $this->input->post('selectCategory');
+                    
                     $this->dboffers->add_new_post($post_title, $post_content, $post_summary, $post_status, $image,$selectCategory);
                     // $this->dbmodel->add_new_post($post_title, $post_content, $post_author_id, $post_summary, $post_status, $post_comment_status, $post_tags, $post_category_id, $allowComment, $allowLike, $allowShare);
                     $this->session->set_flashdata('message', 'One Offer added sucessfully');
@@ -362,7 +363,7 @@ if (file_exists($filename1)) {
 //                    }
                     $string = $this->input->post('post_content');
                     $post_summary = substr("$string", 0, 100);
-                    $post_image = $this->input->post('hidden_image');
+                    $image = $this->input->post('hidden_image');
 //                    $post_status = $this->input->post('page_status');
 //                    $post_comment_status = $this->input->post('comment_status');
 //                    $post_tags = $this->input->post('post_tags');
@@ -370,7 +371,7 @@ if (file_exists($filename1)) {
 //                    $allowLike = $this->input->post('allow_like');
 //                    $allowShare = $this->input->post('allow_share');
                     $selectCategory = $this->input->post('selectCategory');
-                    $this->dboffers->update_post($id, $post_title, $post_content, $post_summary, $post_image,$selectCategory);
+                    $this->dboffers->update_post($id, $post_title, $post_content, $post_summary, $image,$selectCategory);
                     $this->session->set_flashdata('message', 'Data Modified Sucessfully');
                     $redirectPagination = $this->session->userdata("urlPagination");
                     redirect($redirectPagination);

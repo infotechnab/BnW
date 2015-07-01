@@ -38,7 +38,7 @@
         <p class="dashuppe-text-all">Post Title<br />
             <input type="text" class="textInput" name="post_title" value="<?php echo set_value('post_title'); ?>" />
         </p>
-        <!--<p><span class="mediabtn">Media</span></p>-->
+        <p><span class="mediabtn">Media</span></p>
         <p class="dashuppe-text-all">Body<br />
             <textarea name="post_content" id="textara" cols="50" rows="15" ><?php echo set_value('post_content'); ?></textarea>
 
@@ -72,12 +72,12 @@
         <img id="uploadPreview" style="display:none;width:1000px;"/>
         <p class="dashuppe-text-all">Select Category<br/>
             <select class="textInput" name="selectCategory">
-                <option value="0">Select None</option>
+                <option value="None">Select None</option>
                 <?php
                 foreach ($listOfCategory as $data) {
                     ?>
 
-                    <option value="<?php echo $data->id; ?>">
+                    <option value="<?php echo $data->category_name; ?>">
     <?php echo $data->category_name; ?>
                     </option>
                         <?php

@@ -78,15 +78,23 @@ class Login extends CI_Controller {
                  $data['meta'] = $this->dbsetting->get_meta_data();
                 $this->session->set_flashdata('message', 'Username or password incorrect');
                $data['link'] = base_url().'bnw';
-            $this->load->view('bnw/login/loginTemplate', $data);
-            $this->load->view('bnw/templates/footer', $data);
+               redirect('login');
             }
         }
     }
 
         function logout() {
-        $this->session->sess_destroy();
-        $this->index();
+            if ($this->session->userdata('admin_logged_in')) {
+                $useremail = $this->session->userdata('username');
+            $data = array(
+                    'username' => $useremail,
+                    'admin_logged_in' => true,
+                    'logged_in' =>true
+                );
+            $this->session->unset_userdata($data);
+            $this->session->sess_destroy();
+            redirect('login');
+        }
     }
 
     

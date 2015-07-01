@@ -534,7 +534,8 @@ class Dashboard extends CI_Controller {
                         $page_id = null;
                         $this->dbdashboard->add_new_navigation_item($navigation_name, $navigation_link, $parent_id, $navigation_type, $navigation_slug, $menuSelected,$page_id, $category_id);
                     }
-                redirect('dashboard/navigation', 'refresh');
+                $this->session->set_flashdata("message", "Navigation Added Successfully.");
+                    redirect('dashboard/navigation');
 
                 } else {
                     $data['token_error'] = ' Select at least one menu list!';
@@ -553,7 +554,9 @@ class Dashboard extends CI_Controller {
                     $data["listOfNavigation"] = $this->dbdashboard->get_list_of_navigation();
                     $data["listOfNavigationID"] = $this->dbdashboard->get_list_of_navigationID();
 
-                    redirect('dashboard/navigation', 'refresh');
+                    $this->load->view('bnw/templates/header', $data);
+                    $this->load->view('bnw/templates/menu');
+                    $this->load->view('bnw/navigation/listOfItems', $data);
                 }
             } else {
                 $data['meta'] = $this->dbsetting->get_meta_data();
@@ -591,7 +594,6 @@ class Dashboard extends CI_Controller {
 
                 $this->load->view('bnw/navigation/listOfItems', $data);
             } else {
-                if (($_SERVER['REQUEST_METHOD'] == 'POST')) {
                     $menuSelected = $_POST['departments'];
                     if ($menuSelected == !"0") {
                         $menu_info = $this->dbdashboard->get_menu_info($menuSelected);
@@ -599,7 +601,6 @@ class Dashboard extends CI_Controller {
                         foreach ($menu_info as $id) {
                             $menu_id = $id->id;
                         }
-
 
                         $navigationName = $_POST['jobs'];
                         if ($navigationName == 'Make Parent') {
@@ -610,19 +611,35 @@ class Dashboard extends CI_Controller {
                                 $parent_id = $pid->id;
                             }
                         }
-                    }
-                }
-
-                $navigationName = $this->input->post('navigation_name');
+                         $navigationName = $this->input->post('navigation_name');
                 $navigationLink = $this->input->post('navigation_link');
                 $parentID = $parent_id;
                 $navigationType = "";
                 $navigation_slug = preg_replace('/\s+/', '', $navigationName);
-                $this->dbdashboard->add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menuSelected);
-                // $data['token_sucess'] = ' One Navigation item added sucessfully';                
+                $page_id = NULL;
+                $category_id = null;
+                $this->dbdashboard->add_new_custom_link($navigationName, $navigationLink, $parentID, $navigationType, $navigation_slug, $menuSelected, $page_id, $category_id);               
                 $this->session->set_flashdata('message', 'One Navigation item added sucessfully');
                 redirect('dashboard/navigation');
-            }
+                    }else {
+                         $data['token_error'] = ' Select at least one menu list!';
+                    $config["total_rows"] = $this->dbdashboard->record_count_navigation();
+
+                    $config["per_navigation"] = 6;
+                    $this->pagination->initialize($config);
+                    $navigation = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+                    $data["query"] = $this->dbdashboard->get_navigation($config["per_navigation"], $navigation);
+                    $data["links"] = $this->pagination->create_links();
+                    $data['meta'] = $this->dbsetting->get_meta_data();
+                    $data["listOfPage"] = $this->dbpage->get_list_of_pages();
+                    $data["listOfCategory"] = $this->dbdashboard->get_list_of_category();
+                    $data["listOfMenu"] = $this->dbdashboard->get_list_of_menu();
+                    $data["listOfNavigation"] = $this->dbdashboard->get_list_of_navigation();
+                    $data["listOfNavigationID"] = $this->dbdashboard->get_list_of_navigationID();
+                    $this->load->view('bnw/navigation/listOfItems', $data);
+                    }
+                }
         } else {
 
             redirect('login/index/?url=' . $url, 'refresh');
@@ -859,5 +876,4 @@ class Dashboard extends CI_Controller {
         }
     }
     //============================= CLOSE CATEGORY ========================================//
-    
 }
