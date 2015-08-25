@@ -290,7 +290,7 @@ ul.menu li.mainMenuItem > ul.subMenu
 ul.subMenu
 {
      background-color: #444;
-     width: 100%;
+     width: 125%;
      display:none;
      margin: 5px -5px -5px -45px;
      
@@ -549,7 +549,7 @@ ul.menu li.mainMenuItem:hover
     }
     .leftSide
     {
-        width: 350px;
+        width: 225px;
     }
     ul.menu, li.mainMenuItem
     {
@@ -557,7 +557,7 @@ ul.menu li.mainMenuItem:hover
     }
     ul.subMenu 
     {
-        width: 350px;
+        width: 265px;
     }
     ul.subMenu li
     {
@@ -583,7 +583,7 @@ ul.menu li.mainMenuItem:hover
     }
     .leftSide
     {
-        width: 350px;
+        width: 225px;
     }
     ul.menu, li.mainMenuItem
     {
@@ -591,7 +591,7 @@ ul.menu li.mainMenuItem:hover
     }
     ul.subMenu 
     {
-        width: 350px;
+        width: 265px;
     }
     ul.subMenu li
     {
