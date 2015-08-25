@@ -14,16 +14,6 @@
                         </ul>
                     </li>
                     
-<!--                    <li class="mainMenuItem"> <a href="#">Product</a>
-                        <ul class="subMenu">
-                            <li><?php //echo anchor('bnw/product', 'Add New Product') ?></li>
-                            <li><?php //echo anchor('bnw/productList', 'Products') ?></li>
-                           <li><?php //echo anchor('bnw/disproduct', 'Sold Info') ?></li>
-                            <li><?php //echo anchor('bnw/productShipping', 'Shipping ') ?></li>
-                            <li><?php //echo anchor('bnw/coupon', 'Create Coupon ') ?></li>
-                            
-                        </ul>
-                    </li>-->
                     <li class="mainMenuItem events"><a href="#"><i class="fa fa-newspaper-o"></i>&nbsp;
  Events / News</a>
                         <ul class="subMenu">
@@ -59,21 +49,21 @@
                             <li><?php echo anchor('media/addmedia', 'Add New') ?></li>                           
                         </ul>
                     </li>
-                    <li class="mainMenuItem social-share"><a href="#"><i class="fa fa-share-square"></i>&nbsp;
+<!--                    <li class="mainMenuItem social-share"><a href="#"><i class="fa fa-share-square"></i>&nbsp;
  Social Share</a>
                         <ul class="subMenu">
-                            <li><?php echo anchor('social_share', 'Accounts') ?></li>
+                            <li><?php //echo anchor('social_share', 'Accounts') ?></li>
                             
                         </ul>
-                    </li>
+                    </li>-->
                     <li class="mainMenuItem settings"><a href="#"><i class="fa fa-cogs"></i> &nbsp; Settings</a>
                         <ul class="subMenu">
                             <li><?php echo anchor('setting/header', 'Header') ?></li>
-                            <li><?php echo anchor('setting/sidebar', 'Sidebar') ?></li>
+<!--                            <li><?php //echo anchor('setting/sidebar', 'Sidebar') ?></li>-->
                             <li><?php echo anchor('setting/miscsetting', 'Miscellaneous Setting') ?></li>
                             <li><?php echo anchor('gadgets', 'Gadgets') ?></li> 
                             
-                            <li><?php echo anchor('setting/setup', 'Setup') ?></li>
+                            <li><?php echo anchor('setting/setup', 'SEO Setup') ?></li>
                         </ul>
                     </li>
                     
