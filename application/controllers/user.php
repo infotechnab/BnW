@@ -20,8 +20,8 @@ class User extends CI_Controller {
     public function index() {
         redirect('bnw');
     }
-    
-     //=============================USER===========================================//
+
+    //=============================USER===========================================//
     //============================================================================//
     public function users() {
         $url = current_url();
@@ -40,7 +40,7 @@ class User extends CI_Controller {
             $data["links"] = $this->pagination->create_links();
             $data['query'] = $this->dbuser->get_user();
             $data['meta'] = $this->dbsetting->get_meta_data();
-            $this->session->set_userdata("urlPagination", $config["base_url"]."/".$user);
+            $this->session->set_userdata("urlPagination", $config["base_url"] . "/" . $user);
             $this->load->view("bnw/templates/header", $data);
             $this->load->view("bnw/templates/menu");
             $this->load->view('bnw/users/userListing', $data);
@@ -78,10 +78,18 @@ class User extends CI_Controller {
                 $pass = $this->input->post('user_pass');
                 $status = $this->input->post('status');
                 $user_type = $this->input->post('user_type');
-                $this->dbuser->add_new_user($name, $fname, $lname, $email, $pass, $status, $user_type);
-                 $this->load->helper("emailsend_helper");
-                send_user_credentials($name, $fname, $lname, $email, $pass, $status);
-                $this->session->set_flashdata('message', 'One user added sucessfully');
+
+                $check_user = $this->dbuser->check_email_username($name, $email);
+                if ($check_user == true) {
+                    $this->dbuser->add_new_user($name, $fname, $lname, $email, $pass, $status, $user_type);
+                    $this->load->helper("emailsend_helper");
+                    send_user_credentials($name, $fname, $lname, $email, $pass, $status);
+                    $this->session->set_flashdata('message', 'One user added sucessfully');
+                } elseif($check_user == false){
+                    $this->session->set_flashdata('message', 'Username and Email already exist');
+                } else {
+                    $this->session->set_flashdata('message', 'Error. Please Try again later.');
+                }
                 redirect('user/users');
             }
         } else {
@@ -140,17 +148,15 @@ class User extends CI_Controller {
                 $status = $this->input->post('status');
                 $user_type = $this->input->post('user_type');
                 $headerlogo = $this->viewmodel->get_header_logo();
-        foreach ($headerlogo as $headerData)
-        {
-            $hlogo = $headerData->description;
-        }
-         $imglink = base_url().'content/uploads/images/'.$hlogo;   
+                foreach ($headerlogo as $headerData) {
+                    $hlogo = $headerData->description;
+                }
+                $imglink = base_url() . 'content/uploads/images/' . $hlogo;
                 $this->dbuser->update_user($id, $name, $fname, $lname, $email, $pass, $status, $user_type);
                 $this->load->helper("emailsend_helper");
                 send_user_credentials($name, $fname, $lname, $email, $pass, $imglink);
-                
-                 if($user_type == "Administrator" && $status == "0")
-                {
+
+                if ($user_type == "Administrator" && $status == "0") {
                     redirect('bnw/logout');
                 } else {
                     $this->session->set_flashdata('message', 'User data Modified Sucessfully');
@@ -194,7 +200,7 @@ class User extends CI_Controller {
     }
 
     public function profile() {
-        
+
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
 
@@ -220,4 +226,5 @@ class User extends CI_Controller {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
+
 }

@@ -28,30 +28,30 @@
 ?>
   <?php echo form_open_multipart('contact/addContact');?>
   <div id="forLeftPage">  
-  <p class="dashuppe-text-all">Name of Organization<br />
+  <p class="dashuppe-text-all">Name of Organization *<br />
   <input type="text" class="textInput" name="title" value="<?php echo $name; ?>" />
   </p>
-  <p class="dashuppe-text-all">Address 1(Street)<br />
+  <p class="dashuppe-text-all">Address 1(Street) *<br />
   <input type="text" class="textInput" name="street" value="<?php echo $street; ?>" />
   </p>
-  <p class="dashuppe-text-all">Address 2(City)<br />
+  <p class="dashuppe-text-all">Address 2(City) *<br />
   <input type="text" class="textInput" name="city" value="<?php echo $city; ?>" />
   </p>
-  <p class="dashuppe-text-all">District<br />
+  <p class="dashuppe-text-all">District *<br />
   <input type="text" class="textInput" name="district" value="<?php echo $district; ?>" />
   </p>
-  <p class="dashuppe-text-all">Country<br />
+  <p class="dashuppe-text-all">Country *<br />
   <input type="text" class="textInput" name="country" value="<?php echo $country; ?>" />
   </p>
   </div>
 <div id="forRightPage"> 
-  <p class="dashuppe-text-all">Contact No.(Primary)<br />
+  <p class="dashuppe-text-all">Contact No.(Primary) *<br />
   <input type="text" class="textInput" name="contact1" value="<?php echo $contact1; ?>" />
   </p>
   <p class="dashuppe-text-all">Contact No.(Secondary)<br />
   <input type="text" class="textInput" name="contact2" value="<?php echo $contact2; ?>" />
   </p>
-  <p class="dashuppe-text-all">Email<br />
+  <p class="dashuppe-text-all">Email *<br />
   <input type="email" class="textInput" name="email" value="<?php echo $email; ?>" />
   </p>
   <input type="checkbox" name="showForm" value="showForm" <?php if($showForm=='showForm') echo 'checked' ;?>>Show Contact Form.<br/><br/>

@@ -64,7 +64,7 @@
          <fieldset>
   <legend><h3>Add New Image</h3></legend>
         <input type="hidden" name="id" value="<?php echo $id; ?>" />
-        <p class="dashuppe-text-all">Image Title <br/>
+        <p class="dashuppe-text-all">Image Title *<br/>
             <input type="text" class="input-text-small" name="title" required /> </p>         
         <input id="uploadImage" class="input-text-small" type="file" name="file" accept="image/*" />
 

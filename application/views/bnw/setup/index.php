@@ -26,16 +26,16 @@ if ($meta)
 </div>
 
 <?php echo form_open_multipart('setting/setupupdate');?>
-  <p class="dashuppe-text-all">Site Url<br />
+  <p class="dashuppe-text-all">Site Url *<br />
   <input type="text" class="textInput" name="url" value="<?php echo $meta_data[0]; ?>" />
   </p>
-  <p class="dashuppe-text-all">Title<br />
+  <p class="dashuppe-text-all">Title *<br />
   <input type="text" class="textInput" name="title" value="<?php echo $meta_data[1]; ?>"/>
   </p>
-  <p class="dashuppe-text-all">Keyword<br />
+  <p class="dashuppe-text-all">Keyword *<br />
   <input type="text" class="textInput" name="keyword" value="<?php echo $meta_data[2]; ?>"/>
   </p>
-  <p class="dashuppe-text-all">Description<br />
+  <p class="dashuppe-text-all">Description *<br />
   <input type="text" class="textInput" name="description" value="<?php echo $meta_data[3]; ?>"/>
   </p>
   

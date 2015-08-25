@@ -22,6 +22,19 @@ public function record_count_user() {
 
         return $query->result();
     }
+    
+    public function check_email_username($name,$email)
+    {
+       $ar = array("user_name"=>$name, "user_email"=>$email);
+        $this->db->or_where($ar);
+        $query = $this->db->get("user");
+        $count = $query->num_rows();
+        if($count > 0){
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public function update_emailed_user($to, $token) {
         $data = array(

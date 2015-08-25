@@ -15,7 +15,7 @@
   ?>
 </div>
   <?php echo form_open_multipart('sliders/addslider');?>
-  <p class="dashuppe-text-all">Title<br />
+  <p class="dashuppe-text-all">Title *<br />
   <input type="text" class="textInput" name="slide_name" value="<?php echo set_value('slide_name'); ?>" />
   </p>
    <p class="dashuppe-text-all">Image<br/> <input type="file" class="textInput" name="file_name" id="file" accept="image/*"/> </p>

@@ -12,7 +12,7 @@ class bnw extends CI_Controller {
     }
     public function index() {
         $url = base_url() . 'bnw';
-        if ($this->session->userdata('admin_logged_in')) {
+        if ($this->session->userdata('admin_logged_in') == true) {
             $data['username'] = Array($this->session->userdata('admin_logged_in'));
             $data['meta'] = $this->dbsetting->get_meta_data();
             $data["post"] = $this->dbmodel->count_post();

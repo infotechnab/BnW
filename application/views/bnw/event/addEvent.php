@@ -37,7 +37,7 @@ $( "#datepicker_end" ).datepicker();
  
   <?php echo form_open_multipart('events/addevent');?>
       
- <p class="dashuppe-text-all">Name<br />
+ <p class="dashuppe-text-all">Name *<br />
       <input type="text" class="textInput" name="event_name" value="<?php echo set_value('event_name'); ?>"  /> </p> 
  <p class="dashuppe-text-all">Detail<br/>
   <textarea name="detail" id="textara" cols="50" rows="15" ><?php echo set_value('detail'); ?></textarea>

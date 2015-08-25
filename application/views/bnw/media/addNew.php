@@ -44,7 +44,7 @@ border-color: #555;
 </div>
   <?php echo form_open_multipart('media/addmedia');?>
   
-  <p class="dashuppe-text-all">Name<br />
+  <p class="dashuppe-text-all">Name *<br />
   <input type="text" class="textInput" name="media_name" value="<?php echo set_value('media_name'); ?>" />
   </p>
   

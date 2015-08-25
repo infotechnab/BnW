@@ -29,7 +29,7 @@ if ($query)
 <?php echo form_open_multipart('setting/headerupdate');?>
  
 
-    <p class="dashuppe-text-all">Header Title<br />
+    <p class="dashuppe-text-all">Header Title *<br />
   <input type="text" class="textInput" name="header_title" value="<?php echo $set_data[0]; ?>" />
   </p>
   <?php if((trim($set_data[1]== NULL)) || trim($set_data[1] !== ' ')){ ?>

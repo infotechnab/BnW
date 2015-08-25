@@ -84,7 +84,7 @@ class Login extends CI_Controller {
     }
 
         function logout() {
-            if ($this->session->userdata('admin_logged_in')) {
+            if ($this->session->userdata('admin_logged_in') == TRUE) {
                 $useremail = $this->session->userdata('username');
             $data = array(
                     'username' => $useremail,
@@ -93,6 +93,7 @@ class Login extends CI_Controller {
                 );
             $this->session->unset_userdata($data);
             $this->session->sess_destroy();
+            $this->session->set_userdata(array('username' => '', 'admin_logged_in' => false));
             redirect('login');
         }
     }
