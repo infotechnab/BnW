@@ -1,8 +1,5 @@
- 
-    
-    //media
-    
-    .mediaImg{margin: 1%;}
+*,*:after,*:before {box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+.mediaImg{margin: 1%;}
     .mediaImgContainer{width: 650px;float: left;padding: 2%;border-right: 1px solid #eee;height: 390px;overflow-y: scroll;overflow: hidden;}
     .mediaDetails{width: 250px;float: left;padding: 2%;display: none;}
     .mediaPopUp img{border: 2px solid #fff;margin: 1%;}
@@ -221,13 +218,13 @@ hr.hr-gradient
     background-color: #fff;
 }
 .leftSide
-{
-    
+{   
     float: left;
+    
 }
 .rightSide
 {
-    float: right;
+    float: left;
     padding: 0 2% 2% 2%;
 }
 
@@ -293,14 +290,14 @@ ul.menu li.mainMenuItem > ul.subMenu
 ul.subMenu
 {
      background-color: #444;
-     width: 218px;
+     width: 100%;
      display:none;
      margin: 5px -5px -5px -45px;
      
 }
 ul.subMenu li
 {
-    width: 208px;
+    width: 100%;
     padding-left: 35px;
 }
 ul.subMenu li:hover
@@ -421,7 +418,18 @@ ul.menu li.mainMenuItem:hover
 }
 .del_category{cursor: pointer;}
 .del_category:hover{color:#006dcc;}
-
+.leftSide
+    {
+        display: block;
+        width: 15%;
+        min-height: 500px;
+        background-color: #000;
+    }
+    .rightSide
+    {
+        width: 85%;
+        min-height: 521px;
+    }
 /*for media screen 1025-1500px*/
 @media screen and (max-width : 1500px)
 {
@@ -436,7 +444,7 @@ ul.menu li.mainMenuItem:hover
     }
     .rightSide
     {
-        width: 80%;
+        width: 84%;
         min-height: 521px;
     }
     .leftSide
@@ -479,7 +487,7 @@ ul.menu li.mainMenuItem:hover
     }
     .rightSide
     {
-        width: 74.5%;
+        width: 78.5%;
     }
     .leftSide
     {
@@ -508,7 +516,7 @@ ul.menu li.mainMenuItem:hover
     .leftSide
     {
         display: block;
-        width: 30%;
+        width: 34%;
     }
     
 }
@@ -536,7 +544,7 @@ ul.menu li.mainMenuItem:hover
     }
     .rightSide
     {
-        width: 98%;
+        width: 100%;
         
     }
     .leftSide

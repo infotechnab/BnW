@@ -1,6 +1,7 @@
 <style>
     .fa{font-size: 14px;}
 </style>
+<div id="bodyWrapper" style="float:left;width: 100%;background-color: #000;">
 <div class="leftSide">
             <div class="menuItems">
                 <ul class="menu">
