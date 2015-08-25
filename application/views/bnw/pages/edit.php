@@ -50,11 +50,11 @@ if ($miscSetting)
  
   
   <?php echo form_open_multipart('page/updatepage');?>
-  <p class="dashuppe-text-all">Title<br />
+  <p class="dashuppe-text-all">Title *<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
       <input type="text" class="textInput" name="page_name" value="<?php echo htmlentities($name); ?>" />
   </p>
-  <p class="dashuppe-text-all">Body<br />
+  <p class="dashuppe-text-all">Body *<br />
   <textarea name="page_content" id="textara" rows="5" cols="50" style="resize:none;">
       <?php echo $body; ?></textarea>
   </p>

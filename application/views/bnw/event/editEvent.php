@@ -71,7 +71,7 @@ $( "#datepicker_end" ).datepicker();
  
   
   <?php echo form_open_multipart('events/update_event');?>
-  <p class="dashuppe-text-all">Name<br />
+  <p class="dashuppe-text-all">Name *<br />
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
       <input type="text" class="textInput" name="Name" value="<?php echo htmlentities($name); ?>" />
   </p>

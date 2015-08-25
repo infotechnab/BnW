@@ -50,11 +50,11 @@ $this->load->helper('summary_helper');
 
     <?php echo form_open_multipart('offers/updatepost'); ?>
             <input type="hidden" name="hidden_image" value="<?php echo $post_image; ?>"/>
-            <p class="dashuppe-text-all">Title<br />
+            <p class="dashuppe-text-all">Title *<br />
                 <input type="hidden" name="id" value="<?php echo $id; ?>" >
                 <input type="text" class="textInput" name="post_title" value="<?php echo htmlentities($post_title); ?>" />
             </p>
-            <p class="dashuppe-text-all">Body<br />
+            <p class="dashuppe-text-all">Body *<br />
                 <textarea name="post_content" id="textara" rows="5" cols="50" style="resize:none;">
     <?php echo $post_content; ?></textarea>
             </p>

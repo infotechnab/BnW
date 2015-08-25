@@ -12,7 +12,7 @@
   ?>
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
   <?php echo form_open_multipart('bnw/addphoto');?>
-  <p>Title:<br />
+  <p>Title: *<br />
   <input type="text" name="title" />
   </p>
 <input type="file" name="userfile" size="20" />
