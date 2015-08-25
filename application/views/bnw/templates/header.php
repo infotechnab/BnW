@@ -103,7 +103,7 @@ tinymce.init({
                     </div>
                 <?php } ?>
             </div>
-            <div class="clear"/></div>
+            <div class="clear"></div>
         <!top company name and logged in as and logout div closed here>
     <style>
         #switchLnk {
