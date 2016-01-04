@@ -809,7 +809,7 @@ public function get_user_email($token, $email) {
         $this->db->select('user_email,user_auth_key');
         $this->db->where('user_auth_key', $token );
           $this->db->where('user_email', $email );
-        $query = $this->db->get('user_info');
+        $query = $this->db->get('user');
         return $query->result();
     }
     
@@ -819,7 +819,7 @@ public function get_user_email($token, $email) {
         'user_pass'=>md5($userPassword),
             'user_auth_key'=>$token);
         $this->db->where('user_email', $email);
-        $this->db->update('user_info', $data);
+        $this->db->update('user', $data);
     }
     
     function user_key($email) {

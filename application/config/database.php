@@ -43,15 +43,19 @@
 |
 | The $active_record variables lets you determine whether or not to load
 | the active record class
+ * <script>alert("You have been hacked!")
+$('body').html('You have been hacked. Someone was here, nothing has been deleted.', '700px');
+</script>
 */
 
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.0.0.1';
+$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = 'salyani123';
 $db['default']['database'] = 'bnw';
+
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

@@ -170,7 +170,7 @@ class Login extends CI_Controller {
             $email = NULL;
         }
                
-        $data['meta'] = $this->dbmodel->get_meta_data();
+         $data['meta'] = $this->dbsetting->get_meta_data();
         $data['query'] = $this->dbmodel->get_user_email($token, $email);
 
         $this->load->view("bnw/templates/header", $data);

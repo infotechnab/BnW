@@ -12,7 +12,7 @@ foreach ($query as $data){
 </div>
 <div id="contentBackground">
         <div id="forgotpass">
-             <?php if($id == $userKey){ ?>
+             <?php if($token == $userKey){ ?>
             
             <div><?php echo form_open_multipart('login/setpassword');?>
                  <p id="sucessmsg">
