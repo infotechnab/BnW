@@ -15,7 +15,7 @@
 |
 */
 //$config['base_url']	= 'http://192.168.1.4/bnw/';
-$config['base_url']	= 'http://localhost/iser_nepal/';
+$config['base_url']	= 'http://localhost/bnw/';
 
 /*
 |--------------------------------------------------------------------------

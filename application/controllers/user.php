@@ -174,9 +174,7 @@ class User extends CI_Controller {
         $id = $_POST['id'];
         if ($this->session->userdata('admin_logged_in')) {
             $uNAme = $this->session->userdata('username');
-            //die($uNAme);
-            $uNAme = "admin";
-            //die($id);
+            
             $userKey = $this->dbuser->check_user($id);
             // print_r($userKey);
             foreach ($userKey as $user) {
@@ -188,11 +186,11 @@ class User extends CI_Controller {
 //                $this->session->set_flashdata('message', 'Data Delete Sucessfully');
 //                redirect('user/users');
             } else {
-                // echo 'Sory you can not be delete this user because user is Login!';
-                $data['token_error'] = "Sory you can not be delete this user because user is Login!";
-                $this->load->view("bnw/templates/header", $data);
-                $this->load->view("bnw/templates/menu");
-                $this->load->view('template/errorPage', $data);
+                 echo 'Sory you can not delete this user because user is logged in!';
+              //  $data['token_error'] = "Sory you can not delete this user because user is logged in!";
+              //  $this->load->view("bnw/templates/header", $data);
+              //  $this->load->view("bnw/templates/menu");
+              //  $this->load->view('template/errorPage', $data);
             }
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
