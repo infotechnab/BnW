@@ -18,7 +18,7 @@ $this->load->helper('summary_helper');
                 <li class=" list-group-item">
                     <b>Date:</b>
                      <?php
-                     $timestamp = strtotime($eventsData->date);
+                     $timestamp = strtotime($eventsData->start_date);
                     echo date('Y-m-d', $timestamp);   ?>
                 </li>
                  <li class=" list-group-item">

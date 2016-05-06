@@ -17,23 +17,23 @@
   <?php echo form_open_multipart('user/adduser');?>
   
   <p class="dashuppe-text-all">Name *<br />
-  <input type="text" class="textInput" name="user_name" value="<?php echo set_value('user_name'); ?>" />
+      <input type="text" class="textInput" required="" name="user_name" value="<?php echo set_value('user_name'); ?>" />
   </p>
   
   <p class="dashuppe-text-all">First Name *<br />
-  <input type="text" class="textInput" name="user_fname" value="<?php echo set_value('user_fname'); ?>" />
+      <input type="text" class="textInput" required="" name="user_fname" value="<?php echo set_value('user_fname'); ?>" />
   </p>
   
   <p class="dashuppe-text-all">Last Name *<br />
-  <input type="text" class="textInput" name="user_lname" value="<?php echo set_value('user_lname'); ?>" />
+      <input type="text" class="textInput" required="" name="user_lname" value="<?php echo set_value('user_lname'); ?>" />
   </p>
   
   <p class="dashuppe-text-all">E-mail *<br />
-  <input type="email" class="textInput" name="user_email" value="<?php echo set_value('user_email'); ?>" />
+      <input type="email" class="textInput" required="" name="user_email" value="<?php echo set_value('user_email'); ?>" />
   </p>
   
   <p class="dashuppe-text-all">Password *<br />
-  <input type="password" class="textInput" name="user_pass" value="<?php echo set_value('user_pass'); ?>" />
+      <input type="password" class="textInput" required="" name="user_pass" value="<?php echo set_value('user_pass'); ?>" />
   </p>
   
    <p class="dashuppe-text-all">User Status<br />

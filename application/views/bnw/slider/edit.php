@@ -2,7 +2,7 @@
 <?php
 
 
- if(isset($query)){
+ if(!empty($query)){
             foreach ($query as $data){
            $id = $data->id;
            $slidename = $data->slide_name;
@@ -10,7 +10,7 @@
            $slidecontent = $data->slide_content;
                  
             }
-        }
+        
     ?>
 <h2>Edit Slide/ <?php echo $slidename; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/sliders/slider'; ?>">View All</a></h2>
 <hr class="hr-gradient"/>
@@ -46,6 +46,9 @@
     <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
   <?php echo form_close();?>
 <p><b>Note:</b> Max file size: 2000KB,  Width: 2000px, Height: 2000px </p>
+ <?php } else{
+     echo '<h3 id="sucessmsg">Sorry! the slide is not found.</h3>';
+        } ?>
 </div>
 <div class="clear"></div>
 </div>

@@ -55,7 +55,7 @@ $this->load->helper('summary_helper');
                 <input type="text" class="textInput" name="post_title" value="<?php echo htmlentities($post_title); ?>" />
             </p>
             <p class="dashuppe-text-all">Body *<br />
-                <textarea name="post_content" id="textara" rows="5" cols="50" style="resize:none;">
+                <textarea name="post_content" id="textara" rows="15" cols="50" style="resize:none;">
     <?php echo $post_content; ?></textarea>
             </p>
                     <?php if ($post_image == !NULL) { ?> 

@@ -7,7 +7,7 @@
         <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.min.js" ></script>
         <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.js" ></script>
         <script src="<?php echo base_url(); ?>content/bnw/scripts/confirm.js" ></script>
-    <!--      <script src="<?php echo base_url(); ?>content/bnw/scripts/nicEdit.js"></script>-->
+<!--        <script src="<?php //echo base_url(); ?>content/bnw/scripts/DeleteImage.js"></script>-->
         <script src="<?php echo base_url(); ?>content/bnw/scripts/gadgets.js"></script>
         <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.imgareaselect.pack.js"></script>
         <script src="<?php echo base_url(); ?>content/bnw/scripts/script.js"></script>
@@ -16,7 +16,7 @@
         <script src="<?php echo base_url(); ?>content/bnw/scripts/navTrack.js"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'content/bnw/styles/imgareaselect-animated.css'; ?>" />
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-        <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+          <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
  <?php if(isset($meta))
 {
      foreach ($meta as $data)
@@ -29,17 +29,22 @@
 
 
 
-        <script type="text/javascript">
-var base_url = '<?php echo base_url(); ?>';
-tinymce.init({
-    selector: "textarea",
-    plugins: [
-        "advlist autolink lists link image charmap print preview anchor",
-        "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table contextmenu paste"
-    ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-});
+       <script type="text/javascript">
+            var base_url = '<?php echo base_url(); ?>';
+            tinymce.init({
+                fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 28pt 32pt 36pt 40pt 48pt 56pt 72pt",
+                selector: "textarea",
+                theme: "modern",
+                relative_urls : false,
+                remove_script_host : false,
+                plugins: [
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "emoticons template paste textcolor colorpicker textpattern",
+                    "insertdatetime media table contextmenu paste"
+                ],
+                toolbar: "insertfile undo redo | styleselect | sizeselect | bold italic | fontselect |  fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media | forecolor backcolor emoticons"
+            });
         </script>
         <!--<script type="text/javascript">
         

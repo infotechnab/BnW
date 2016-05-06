@@ -19,18 +19,19 @@
 <hr class="hr-gradient"/>
   
  
-  <p id="sucessmsg">
-  <?php echo $this->session->flashdata('message');
-   if(isset($error))
+  <div id="sucessmsg">
+  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+    <?php echo validation_errors();
+  if(isset($error))
   {
-     echo $error;
-  }?>
-      <?php echo validation_errors(); ?>
-    </p>
+      echo $error;
+  }
+  ?>
+</div>
   <?php echo form_open_multipart('user/updateuser');?>
    <p class="dashuppe-text-all">Name *<br />
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
-  <input type="text" class="textInput" name="user_name" value="<?php echo $name; ?>" />
+  <input type="text" class="textInput" name="user_name" required value="<?php echo $name; ?>" />
   </p>
   
   <p class="dashuppe-text-all">First Name *<br />
@@ -41,11 +42,11 @@
   <input type="text" class="textInput" name="user_lname" value="<?php echo $lname; ?>" />
   </p>
   
-  <p class="dashuppe-text-all">E-mail *<br />
+  <p class="dashuppe-text-all">E-mail <br />
   <input type="email" class="textInput" name="user_email" value="<?php echo $email; ?>" />
   </p>
   
-  <p class="dashuppe-text-all">Password *<br />
+  <p class="dashuppe-text-all">Password <br />
   <input type="password" class="textInput" name="user_pass" value="<?php //echo $pass; ?>" />
   </p>
   

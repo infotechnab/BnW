@@ -1,0 +1,75 @@
+
+  .modal-header, h4, .close {
+      background-color: #000;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  .modal-footer {
+      background-color: #f9f9f9;
+  }
+  input.ng-valid.ng-dirty{
+    border:1px solid lightblue;
+  }
+input.ng-invalid.ng-dirty{
+    border: 1px solid red;
+}
+.email{
+margin-left:15px;
+color:#fff;
+background-color:black;
+font-size:16px;padding:15px;
+
+}
+.modal-dialog {
+    margin: 16px auto;
+    width: 400px;
+}
+
+.alert {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin: auto;
+    width: 90%;
+     margin-bottom: 10px;
+    padding: 10px;
+}
+
+label {
+    display: inline-block;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.btn-block {
+   
+    margin: auto;
+    width: 90%;
+}
+
+label {
+   
+    
+    margin: auto auto auto 20px;
+    max-width: 60%;
+}
+.btn-block {
+   
+    margin: auto;
+    width: 90%;
+}
+.form-control {
+   
+    margin: auto;
+    padding: 10px;
+   
+    width: 90%;
+}
+
+.form-control {
+    margin: auto;
+   
+    width: 90%;
+}
+span#span{
+  margin-left:15px;
+}

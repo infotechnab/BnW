@@ -38,7 +38,7 @@
         <p class="dashuppe-text-all">Post Title *<br />
             <input type="text" class="textInput" name="post_title" value="<?php echo set_value('post_title'); ?>" />
         </p>
-        <p><span class="mediabtn">Media</span></p>
+        <!--<p><span class="mediabtn">Media</span></p>-->
         <p class="dashuppe-text-all">Body *<br />
             <textarea name="post_content" id="textara" cols="50" rows="15" ><?php echo set_value('post_content'); ?></textarea>
 

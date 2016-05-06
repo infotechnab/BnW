@@ -8,7 +8,8 @@
 
                   <?php foreach($latestNews as $news){
                       $id = $news->id;
-                      $timestamp = strtotime($news->date);
+                    //  var_dump($news);die;
+                      $timestamp = strtotime($news->start_date);
                       $image = $news->image;
                       $title = $news->title;
                       
@@ -39,7 +40,7 @@
                 <h2><span>Latest Events</span></h2>
                   <?php foreach($latestEvents as $events){
                       $id = $events->id;
-                      $timestamp = strtotime($events->date);
+                      $timestamp = strtotime($events->start_date);
                       $image = $events->image;
                       $title = $events->title;
                       

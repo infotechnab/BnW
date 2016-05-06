@@ -35,7 +35,7 @@
         <div id="error">
 
         </div>
-        <div class="frm" style="width:150px; height:90px; float: left; display:none; z-index:105; " >
+        <div class="frm" style="display:none;" >
             <?php echo form_open('album/addalbum'); ?>
             <input type="text" class="input-text-small" name="album_name" placeholder="Album Name" required />
             <input type="submit" class="submit-button-small" name="submit" value="Create" />        

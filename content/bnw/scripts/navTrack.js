@@ -289,4 +289,11 @@ $(document).ready(function () {
     }
     }
     
+    $("form").submit(function(){
+//        e.preventDefault();
+        $(":submit").prop("disabled", true);
+//        alert("Submitted");
+//        $(this).submit();
+    }); 
+
 });

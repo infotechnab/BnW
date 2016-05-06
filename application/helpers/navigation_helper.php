@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
+include 'POD_database_helper.php';
  function query($parent_id) { //function to run a query  
 
      
 
-	$query = mysql_query ( "SELECT * FROM navigation WHERE parent_id=$parent_id");
+	$query = pdo_db()->query  ( "SELECT * FROM navigation WHERE parent_id=$parent_id");
 
 	return $query;
 
@@ -13,7 +13,8 @@
 
 function has_child($query) { //This function checks if the menus has childs or not
 
-	$rows = mysql_num_rows ( $query );
+	$result=pdo_db()->query($query->queryString);
+	$rows =count($result->fetchObject());
 
 	if ($rows > 0) {
 
@@ -29,7 +30,7 @@ function has_child($query) { //This function checks if the menus has childs or n
 
 function fetch_menu($query) {
 
-	while ( $result = mysql_fetch_array ( $query ) ) {
+	while ( $result = $query->fetch(PDO::FETCH_ASSOC) ) {
 
 		$menu_id = $result ['id'];
 

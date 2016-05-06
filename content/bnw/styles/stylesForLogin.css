@@ -43,7 +43,7 @@ a:hover
     padding: 0px;
 }
 
-#username, #password
+#username, #password, #newPassword, #confirmPassword
 {
     padding: 10px;
     margin: 0px;

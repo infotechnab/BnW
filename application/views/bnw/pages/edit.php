@@ -55,7 +55,7 @@ if ($miscSetting)
       <input type="text" class="textInput" name="page_name" value="<?php echo htmlentities($name); ?>" />
   </p>
   <p class="dashuppe-text-all">Body *<br />
-  <textarea name="page_content" id="textara" rows="5" cols="50" style="resize:none;">
+  <textarea name="page_content" id="textara" rows="15" cols="50" style="resize:none;">
       <?php echo $body; ?></textarea>
   </p>
   
@@ -97,7 +97,16 @@ if ($miscSetting)
             </label>
         </div>
             <img id="uploadPreview" style="display:none;width:1000px;"/>
-            
+      
+            <p class="dashuppe-text-all">Select Template<br />  
+  <?php $options = array('1'  => 'Default ( full width )','2' => 'With left sidebar' ,'3' => 'With right sidebar');?>
+       <select class="textInput" name="page_status">
+         
+         <?php foreach ($options as $key=>$data){ ?>
+         <option value="<?php echo $key; ?>"><?php echo $data; ?></option>
+         <?php } ?>
+     </select>
+  </p>
  
   </div>
   

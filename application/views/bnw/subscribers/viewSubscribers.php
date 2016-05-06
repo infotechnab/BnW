@@ -31,7 +31,7 @@
             }
         }
  else {
-     echo '<h3>Sorry pages are not available</h3>';
+     echo '<h3>Sorry subscribers are not available</h3>';
  }
     ?>
     </table>
@@ -45,14 +45,12 @@
 </div>
 <script>
     $(document).ready(function(){
+      
        $(document).on("click", ".del_category", function(){
            var id = $(this).attr("id");
-            $(this).confirm();
             var url = '<?php echo base_url().'index.php/subscribers/deletesubs' ?>';
             var hideid = $(this);
-            $(this).confirm.yes({id:id,url:url,thiss:hideid});
-            $(this).confirm.no();
-            
+            senddata({id:id,url:url,thiss:hideid});
        });
     });
 </script>

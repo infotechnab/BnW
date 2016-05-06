@@ -425,8 +425,8 @@ $('.tab-links a').click(function(){
             <div class="container">
                 <div class="top-bar">
                     <div class="pull-left sample-1right hidden-xs">
-                        <a><i class="fa fa-phone"></i> Call us: <span class="colored-text">+02 34543454</span> </a> 
-                        <a><i class="fa fa-envelope"></i> Mail us: <span class="colored-text">Support@domain.com</span> </a>
+                        <a><i class="fa fa-phone"></i> Call us: <span class="colored-text">+977-56-533977</span> </a> 
+                        <a><i class="fa fa-envelope"></i> Mail us: <span class="colored-text">info@salyani.com.np</span> </a>
                     </div>
                     
                     <div class="pull-right">
@@ -442,9 +442,9 @@ $('.tab-links a').click(function(){
                     <div class="tb-social pull-right">
 						<div class="brand-bg text-right">
 							<!-- Brand Icons -->
-							<a class="facebook" href="#"><i class="fa fa-facebook square-2 rounded-1"></i></a>
-							<a class="twitter" href="#"><i class="fa fa-twitter square-2 rounded-1"></i></a>
-							<a class="google-plus" href="#"><i class="fa fa-google-plus square-2 rounded-1"></i></a>
+                                                        <a class="facebook" href="https://www.facebook.com/bnwcms" target="_blank"><i class="fa fa-facebook square-2 rounded-1"></i></a>
+<!--							<a class="twitter" href="#"><i class="fa fa-twitter square-2 rounded-1"></i></a>
+							<a class="google-plus" href="#"><i class="fa fa-google-plus square-2 rounded-1"></i></a>-->
 						</div>
 					</div>
                     

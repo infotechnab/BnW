@@ -10,9 +10,9 @@
 
 
                     <ul class="list-inline social-1">
-                        <li><a class="facebook" href="#"><i class="fa fa-facebook square-2 rounded-1"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fa fa-twitter square-2 rounded-1"></i></a></li>
-                        <li><a class="google-plus" href="#"><i class="fa fa-google-plus square-2 rounded-1"></i></a></li>
+                        <li><a class="facebook" href="https://www.facebook.com/bnwcms" target="_blank"><i class="fa fa-facebook square-2 rounded-1"></i></a></li>
+<!--                        <li><a class="twitter" href="#"><i class="fa fa-twitter square-2 rounded-1"></i></a></li>
+                        <li><a class="google-plus" href="#"><i class="fa fa-google-plus square-2 rounded-1"></i></a></li>-->
                     </ul>
                 </div>                        
             </div><!--footer col-->

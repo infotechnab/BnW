@@ -5,7 +5,7 @@
     <div class="col-md-12" style="text-align: center;"><h5>
                 <span class="icon-calendar"></span>
                      <?php
-                     $timestamp = strtotime($even->date);
+                     $timestamp = strtotime($even->start_date);
                     echo date('Y-m-d', $timestamp);   ?>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="icon-alarm2"></span>
                      <?php

@@ -354,7 +354,7 @@ ul.menu li.mainMenuItem:hover
 {
     padding: 0px 0px 5px 10px;
     margin: 0px;
-    max-height: 15px;
+    max-height: 30px;
     margin-bottom: 1px;
     width: 93.5%;
     border-bottom: 1px dotted;
@@ -372,9 +372,9 @@ ul.menu li.mainMenuItem:hover
 
 #customLinkLeftUp
 {
-    padding: 0px 0px 5px 10px;
+    padding: 0px 0px 5px 5px;
     margin: 0px;
-    max-height: 15px;
+    max-height: 30px;
     margin-bottom: 1px;
     width: 96.5%;
     border-bottom: 1px dotted;
@@ -666,7 +666,7 @@ border-collapse:collapse;
 #newAlbum
 {
     float: left;
-    width: 200px;
+    width: 221px;
     border: #999999 dotted 1px;
     padding: 10px;
     margin: 10px;

@@ -14,10 +14,11 @@
                                     {
                                         thiss.html(" ");
                                         var data = JSON.parse(dat);
-                                        var initOptions = "<option>Make Parent</option>";
+                                         var initOptions = "<option value='Make Parent'>Make Parent</option>";
+                                        var options ='';
                                         for(var i=0;i<data.length;i++)
                                         {
-                                            options +="<option value='"+ data[i].navigation_name +"'>"+ data[i].navigation_name +"</option>";
+                                            options +="<option value='"+ data[i].id +"'>"+ data[i].navigation_name +"</option>";
                                         }
                                         thiss.html(initOptions + options);
                                     }
@@ -80,6 +81,49 @@
            
       <!-- Top left div for choosing page, menu and parent is closed -->       
             
+      
+      <!-- here goes the code to choose post for navigation-->
+      <div class="left">
+       
+        <div id="navigationLeftUp"> 
+    
+    <h3>List of all posts</h3>
+        </div>
+    <?php echo form_open_multipart('dashboard/addPostForNavigation', array('id' => 'search', 'name'=>'search'));?> 
+    <div id="navigationLeftMiddle">
+    <ul>
+        
+      <?php    
+        if(isset($listOfPost)){
+            foreach ($listOfPost as $postdata){
+            ?>
+
+        <li><input type="checkbox" name="<?php echo $str = htmlentities(preg_replace('/\s+/', '', $postdata->post_title)); ?>" value="<?php echo htmlentities($postdata->post_title); ?>"/><?php echo $postdata->post_title; ?></li>
+          <?php    
+            }
+        }
+    ?>
+    </ul> 
+    </div>
+    
+    <div id="navigationLeftDown">
+     <select style="width: 110px" name="departments" id="departments">
+         <option value ="0">Select Menu</option>
+         <?php foreach($listOfMenu as $menu) { ?>
+        <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
+         <?php } ?>
+    </select>
+           
+        <select style="width: 150px" name="jobs" id="jobs" class="jobs">
+        <option>Make Parent</option>
+    </select>      
+            <input type="submit" value="Add">
+        
+    </div>
+        <?php echo form_close();?>
+    </div>
+      
+      <!-- adding post to navigation ends here -->
    
     <div class="left">
         <div id="navigationLeftUp">    
@@ -91,12 +135,12 @@
     
     <ul>
         
-      <?php    
+      <?php
         if(isset($listOfCategory)){
             foreach ($listOfCategory as $categorydata){
-                
+               
             ?>
-       <li><input type="checkbox" name="<?php echo $str = htmlentities(preg_replace('/\s+/', '', $categorydata->category_name)); ?>" value="<?php echo htmlentities($categorydata->category_name); ?>"/><?php echo $pagedata->page_name; ?></li>
+       <li><input type="checkbox" name="<?php echo $str = htmlentities(preg_replace('/\s+/', '', $categorydata->category_name)); ?>" value="<?php echo htmlentities($categorydata->category_name); ?>"/><?php echo $categorydata->category_name; ?></li>
           <?php    
             }
         }

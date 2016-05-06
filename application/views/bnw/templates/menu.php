@@ -41,6 +41,7 @@
                             <li><?php echo anchor('user/adduser', 'Add New') ?></li>
                             <li><?php echo anchor('user/users', 'All Users') ?></li>
                             <li><?php echo anchor('user/profile', 'My Profile') ?></li>
+                            <li><?php echo anchor('user/login_attempts_list', 'attempt lists') ?></li>
                         </ul>
                     </li>
                    <li class="mainMenuItem media"><a href="#"><i class="fa fa-file-video-o"></i>&nbsp;

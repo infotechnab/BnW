@@ -33,11 +33,10 @@
             
             <td><?php $exts = array('jpg','jpeg','png','gif','pdf','doc','ppt','odt','pptx','docx','xls','xlsx','key','txt'); $file= $data->media_type; $info = explode(".", $file); 
              $file_ext = strtolower(end($info));
-             if(in_array($file_ext, $exts)) {
-             
+             if(in_array(trim($file_ext), $exts)) {
             
          if($file_ext=='jpg' || $file_ext=='png' || $file_ext=='jpeg' || $file_ext=='bmp'){ ?>
-                <img src='<?php echo base_url().'content/uploads/images/'.$data->media_type; ?>' style="height: 60px; width: 60px"/>
+                <img src='<?php echo base_url().'content/uploads/images/thumb_'.$data->media_type; ?>' style="height: 60px; width: 60px"/>
                     <?php } else{ echo $file_ext.' file'; } ?> </td>
             <td><?php echo base_url().'content/uploads/images/'.$file; ?></td>
             <td><?php echo anchor('media/editmedia/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
@@ -46,6 +45,7 @@
         </tr>
             <?php    
             } }
+            
         }
  else {
      echo '<h3>Sorry Library is unavailable</h3>';
