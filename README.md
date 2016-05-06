@@ -43,12 +43,27 @@ In Validate_credentials function in login controller session time is set 1 hour 
 
 ###Change Log
 ======================================================================================================================
-In current working version 
+# bnwwithCI3
+version 1.4
+
+-> callback for xss_clean function added in controller/login.php instead of xss_clean form vlidation.
+-> database connection is maintain by pdo instead of mysql.
+-> callback for xss_clean function added in controller/slider.php instead of xss_clean form vlidation.
+-> database method nums_rows() made into models/dbmodels/validate for correcting login access.
+-> all classes file's name are changed to starting with a capital letter.
+-> seo friendly url are generated and stored into database during content addition.
+-> user are blocked temporarily for sometime if login attempt fails for continuous five times.
+
+
+
+version 1.3 
 
 In case of creating custom link, there was lack of facility to make custom link visible under other main link, now custom link could be listed as parent or as child of other parent links.
 Newsletter subscription and contact list facility is added to both of template and dashboard. Now from dashboard through the link subscription, news letter subscribers could be viewed and managed and from the same navigation the contact list as well as feed backs could be viewed and managed.
 
 Now Contact form could be generated with location map and contact address from the dashboard. For this purpose new controller contact is added
+
+
 
 
 ##BnW 1.1 

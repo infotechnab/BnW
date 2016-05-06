@@ -296,32 +296,33 @@ require_once BASEPATH.'core/CodeIgniter.php';
 
 
         $back=current_url();
-        $lower_back=strtolower ( $back );
+        $lower_back=strtolower($back);
+        var_dump($lower_back);
     if(!isset($CI->session->userdata["admin_logged_in"]) || $CI->session->userdata["admin_logged_in"]!=true){
             $url_access_array=array("bnw","album","contact","dashboard","demo","error","events","gadgets","imagemanipulator","media","offers","publication","setting","sliders","social_share","subscribers","user","viewcaptcha"); //not access
                 
-            if(has_in_url($lower_back, $url_access_array)){
+            var_dump((has_in_url($lower_back, $url_access_array)));{
                      $CI->session->set_flashdata('message', 'Unauthorized access attempted');
                     if(has_redirect($back)){
                        if(has_redirect_to_login($back)){
-                           ob_end_clean();
-                            header("location:".base_url()."login/index/");
-                       }else{
-                           ob_end_clean();
-                            header("location:".base_url()."login/index/".redirect_to($back));
-                       }
-                   }else{
-                            $xyzz=explode("/",$back);
-                            if(in_array("login", $xyzz)){
-                                ob_end_clean();
-                                header("location:".base_url()."login/index/");
-                            }else{
-                                ob_end_clean();
-                                 redirect('login/index/?url=' . $back, 'refresh');
+//                           ob_end_clean();
+//                            header("location:".base_url()."login/index/");
+//                       }else{
+//                           ob_end_clean();
+//                            header("location:".base_url()."login/index/".redirect_to($back));
+//                       }
+//                   }else{
+//                            $xyzz=explode("/",$back);
+//                            if(in_array("login", $xyzz)){
+//                                ob_end_clean();
+//                                header("location:".base_url()."login/index/");
+//                            }else{
+//                                ob_end_clean();
+//                                 redirect('login/index/?url=' . $back, 'refresh');
                             }
                    }
                }
-}
+      }
 
     
     
