@@ -25,7 +25,7 @@
      <input type="hidden" name="requersUrl" value="<?php echo $link; ?>"/><!-- send url by hidden field -->
 
               <?php  //if admin login eror occur
-              $cookie_name = "attempt";
+              $cookie_name = "attempts";
 
                  if(isset($_COOKIE[$cookie_name])) // if the cookie extis block user for 15 minutes in this pc;
                  {
@@ -38,10 +38,7 @@
                     $(document).ready(function(){
 
                       $("input").attr('disabled', true);
-                      $('p').hide();
-
-
-
+                      
 
                     });
                   </script>
@@ -70,8 +67,8 @@
               </div>
               <div class="form-group">
                 <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                <input type="text" class="form-control" id="psw"  ng-model="password" name="password" placeholder="Enter password"   required>
-                <span  id="span"style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+                <input type="password" class="form-control" id="psw"  ng-model="password" name="password" placeholder="Enter password"   required>
+                <span  id="span"style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid" >
                   <span  id="span" ng-show="myForm.password.$error.required">password is required.</span>
                 </span>
 

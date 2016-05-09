@@ -19,395 +19,436 @@ class Dbmodel extends CI_Model {
             return FALSE;
         }
     }
+    //the function which gets the ip addresss of the user
 
-    function login_attempt() {
-         $query = $this->db->get('login_attempt');
-            if($query->result()==0)
+    function get_client_ip_env() {
+        $ipaddress = '';
+        if (getenv('HTTP_CLIENT_IP'))
+        {
+          $ipaddress = getenv('HTTP_CLIENT_IP');
+      }
+      else if(getenv('HTTP_X_FORWARDED_FOR'))
+      {
+          $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+      }
+      else if(getenv('HTTP_X_FORWARDED'))
+      {
+          $ipaddress = getenv('HTTP_X_FORWARDED');
+      }
+      else if(getenv('HTTP_FORWARDED_FOR'))
+      {
+          $ipaddress = getenv('HTTP_FORWARDED_FOR');
+      }
+      else if(getenv('HTTP_FORWARDED'))
+      {
+          $ipaddress = getenv('HTTP_FORWARDED');
+      }
+      else if(getenv('REMOTE_ADDR'))
+      {
+          $ipaddress = getenv('REMOTE_ADDR');
+      }
+      else
+      {
+          $ipaddress = 'UNKNOWN';
+      }
+
+      return  $ipaddress;
+    
+    }
+// end of fucntion to get ip adress of user
+    // star of login attemp function
+      
+
+    function login_attempt() 
+    {
+       $query = $this->db->get('login_attempt');
+
+       if(!count($query->result()))//if login attempt table has o value add it with 1 value
+       {
+
+          $data = array( 'id'=>1,'attempt' => 1);
+          $this->db->insert('login_attempt', $data);
+
+
+      }
+      else //if table conatins aleray attempt list
+      {
+
+          $query = $this->db->get('login_attempt');
+
+          foreach ($query->result() as $row)
+          {
+            $db_attempt=$row->attempt;
+
+        }
+
+        $attempt= $db_attempt +1;
+        $this->session->set_userdata('attempt_session_value',$attempt);
+        $data = array( 'id'=>1,'attempt' => $attempt);
+
+        $this->db->update('login_attempt', $data);
+
+
+        $cilent_ip_address=$this->get_client_ip_env();
+        $query = $this->db->get_where('login_attempt_list', array('ip_address'=>$cilent_ip_address));
+      
+
+        if(count($query->result()))
+        {
+           // echo "<script>alert('if condition extcuets')</script>";
+
+
+            foreach($query->result() as $row)
             {
+               $db_ipaddress=$row->ip_address;
+               $db_id= $row->id;
+               $cilent_ip_address=$this->get_client_ip_env();
+               $user_attempts=$row->user_attempts;
+           }
 
-              $data = array( 'id'=>1,'attempt' => 0);
-              $this->db->insert('login_attempt', $data);
+           if($db_ipaddress == $cilent_ip_address)
 
-            }
-            else 
-            {
+            {  $last_attempt_date= date('Y-m-d H:i:s');
+        $user_attempts=$user_attempts +1;
+        $data=array('user_attempts'=>$user_attempts, 'last_attempt_date'=>$last_attempt_date);
 
-              $query = $this->db->get('login_attempt');
-
-              foreach ($query->result() as $row)
-              {
-                $db_attempt=$row->attempt;
-
-              }
-
-              $attempt= $db_attempt +1;
-              $this->session->set_userdata('attempt_session_value',$attempt);
-              $data = array( 'id'=>1,'attempt' => $attempt);
-
-              $this->db->update('login_attempt', $data);
-                // start of login-attempt list;
+        $this->db->update('login_attempt_list', $data, array('id'=>$db_id));
+    }
 
 
-              $cilent_ip_address=$this->get_client_ip_env();
-              $query = $this->db->get_where('login_attempt_list', array('ip_address'=>$cilent_ip_address));
-
-
-
-              if($query->result())
-              {
-
-                foreach($query->result() as $row)
-                {
-                 $db_ipaddress=$row->ip_address;
-                 $db_id= $row->id;
-                 $cilent_ip_address=$this->get_client_ip_env();
-                 $user_attempts=$row->user_attempts;
-               }
-
-               if($db_ipaddress == $cilent_ip_address)
-
-                {    $last_attempt_date= date('Y-m-d H:i:s');
-              $user_attempts=$user_attempts +1;
-              $data=array('id'=>$db_id,'user_attempts'=>$user_attempts, 'last_attempt_date'=>$last_attempt_date);
-              
-              $this->db->update('login_attempt_list', $data);
-              echo "<script>alert('ok updadte succcfully ')</script>";
-
-            }
-            
-
-          }//for alderyd user in database;
+        }
 
           else {
+            // echo "<script>alert('else condition extcuets')</script>";
 
-           $user_attempts=1;
-           $name=$this->input->post('username');
-           $ip_address=$this->get_client_ip_env();
-           $last_attempt_date= date('Y-m-d H:i:s');
-           $data=array(
-            'id'=>1,
-            'name' =>$name,
-            'user_attempts'=>$user_attempts,
-            'ip_address' =>$ip_address,
-            'last_attempt_date' =>$last_attempt_date
-            );
 
-           $this->db->insert('login_attempt_list', $data);
+             $user_attempts=2;
+             $name=$this->input->post('username');
+             $ip_address=$this->get_client_ip_env();
+             $last_attempt_date= date('Y-m-d H:i:s');
+             $data=array(
+                'name' =>$name,
+                'user_attempts'=>$user_attempts,
+                'ip_address' =>$ip_address,
+                'last_attempt_date' =>$last_attempt_date
+                );
+
+             $this->db->insert('login_attempt_list', $data);
          }
             ////ehd of login A-attemt list
 
 
 
-         if($attempt >=3)
+         if($attempt >3)
          {
 
-          $cookie_name = "attempt";
+          $cookie_name = "attempts";
           $cookie_value = $attempt;
-          setrawcookie($cookie_name, $cookie_value, time() + 250, "/");
-
-        }
-
+          setrawcookie($cookie_name, $cookie_value, time() + 20, "/");
 
       }
 
 
-    }
+  }
+
+
+}
 
     //Get the selected category ID
-    public function get_id_of_selected_category($navigation_link) {
+public function get_id_of_selected_category($navigation_link) {
 
-        $this->db->where('navigation_link', $navigation_link);
-        $this->db->limit(1);
-        $query = $this->db->get('navigation');
-        return $query->result();
-    }
+    $this->db->where('navigation_link', $navigation_link);
+    $this->db->limit(1);
+    $query = $this->db->get('navigation');
+    return $query->result();
+}
 
-    public function get_product_order($userID) {
+public function get_product_order($userID) {
 
-        $this->db->where('u_id', $userID);
-        $query = $this->db->get('product_oder');
-        return $query->result();
-    }
+    $this->db->where('u_id', $userID);
+    $query = $this->db->get('product_oder');
+    return $query->result();
+}
 
-    public function get_product_order_detail($product, $limit, $start) {
-        $this->db->limit($limit, $start);
-        $this->db->where('o_id', $product);
-        $query = $this->db->get('product_oder_detail');
-        return $query->result();
-    }
+public function get_product_order_detail($product, $limit, $start) {
+    $this->db->limit($limit, $start);
+    $this->db->where('o_id', $product);
+    $query = $this->db->get('product_oder_detail');
+    return $query->result();
+}
 
-    public function get_product_detail($pid) {
+public function get_product_detail($pid) {
 
-        $this->db->where('id', $pid);
-        $query = $this->db->get('product');
-        return $query->result();
-    }
+    $this->db->where('id', $pid);
+    $query = $this->db->get('product');
+    return $query->result();
+}
 
-    function validate_user($email, $pass) {
-        $password = md5($pass);
-        $this->db->where('user_email', $email);
-        $this->db->where('user_pass', $password);
-        $this->db->where('user_type', 1);
-        $query = $this->db->get('user');
-        return $query->result();
-    }
+function validate_user($email, $pass) {
+    $password = md5($pass);
+    $this->db->where('user_email', $email);
+    $this->db->where('user_pass', $password);
+    $this->db->where('user_type', 1);
+    $query = $this->db->get('user');
+    return $query->result();
+}
 
-    public function get_logged_in_user($userName) {
-        $this->db->where('user_name', $userName);
+public function get_logged_in_user($userName) {
+    $this->db->where('user_name', $userName);
         //$this->db->where('user_type',1);
-        $query = $this->db->get('user');
-        return $query->result();
-    }
+    $query = $this->db->get('user');
+    return $query->result();
+}
 
-    public function get_admin_email($userName) {
-        $this->db->where('user_name', $userName);
-        $this->db->where('user_type', 0);
-        $query = $this->db->get('user');
-        return $query->result();
-    }
+public function get_admin_email($userName) {
+    $this->db->where('user_name', $userName);
+    $this->db->where('user_type', 0);
+    $query = $this->db->get('user');
+    return $query->result();
+}
 
-    public function get_logged_in_user_by_name($userName) {
-        $this->db->where('user_name', $userName);
-        $this->db->where('user_type', 0);
-        $query = $this->db->get('user');
-        return $query->result();
-    }
+public function get_logged_in_user_by_name($userName) {
+    $this->db->where('user_name', $userName);
+    $this->db->where('user_type', 0);
+    $query = $this->db->get('user');
+    return $query->result();
+}
 
     // this is another method to get user verified 
-    function login($name, $pass) {
-        $this->db->select('id, user_name, user_pass');
-        $this->db->from('user');
-        $this->db->where('user_name= ' . "'" . $name . "'");
-        $this->db->where('user_pass = ' . "'" . MD5($pass) . "'");
-        $this->db->limit(1);
-        $query = $this->db->get();
-        if ($query->num_rows() == 1) {
-            return $query->result();
-        } else {
-            return false;
-        }
-    }
-
-    public function add_new_comment($comment, $comment_association_id, $user_name) {
-        $data = array(
-            'comment' => $comment,
-            'comment_association_id' => $comment_association_id,
-            'comment_user_name' => $user_name);
-
-        $this->db->insert('comment_store', $data);
-    }
-    
-    
-    public function check_user_name($name) {
-        $this->db->where('user_name', $name);
-        $query = $this->db->get('user');
-
+function login($name, $pass) {
+    $this->db->select('id, user_name, user_pass');
+    $this->db->from('user');
+    $this->db->where('user_name= ' . "'" . $name . "'");
+    $this->db->where('user_pass = ' . "'" . MD5($pass) . "'");
+    $this->db->limit(1);
+    $query = $this->db->get();
+    if ($query->num_rows() == 1) {
         return $query->result();
+    } else {
+        return false;
     }
+}
 
-    public function check_user_email($email) {
-        $this->db->where('user_email', $email);
-        $query = $this->db->get('user');
+public function add_new_comment($comment, $comment_association_id, $user_name) {
+    $data = array(
+        'comment' => $comment,
+        'comment_association_id' => $comment_association_id,
+        'comment_user_name' => $user_name);
 
-        return $query->result();
-    }
+    $this->db->insert('comment_store', $data);
+}
 
-    function get_file($id) {
-        $this->db->where('category', $id);
-        $query = $this->db->get('product');
-        return $query->result();
-    }
+
+public function check_user_name($name) {
+    $this->db->where('user_name', $name);
+    $query = $this->db->get('user');
+
+    return $query->result();
+}
+
+public function check_user_email($email) {
+    $this->db->where('user_email', $email);
+    $query = $this->db->get('user');
+
+    return $query->result();
+}
+
+function get_file($id) {
+    $this->db->where('category', $id);
+    $query = $this->db->get('product');
+    return $query->result();
+}
 
     // ========================== Navigation ==================================//
     ////==============================//////
 //============================    For Cart System         ========================================//
-    function getdate($key) {
-        $this->db->select('exp_date');
-        $this->db->where('key', $key);
-        $query = $this->db->get('coupon');
-        return $query->result();
-    }
+function getdate($key) {
+    $this->db->select('exp_date');
+    $this->db->where('key', $key);
+    $query = $this->db->get('coupon');
+    return $query->result();
+}
 
-    function checkkey($id, $today) {
-        $this->db->where('key', $id);
+function checkkey($id, $today) {
+    $this->db->where('key', $id);
         // $this->db->where('exp_date <=',$today);
-        $query = $this->db->get('coupon');
-        return $query->result();
-    }
+    $query = $this->db->get('coupon');
+    return $query->result();
+}
 
-    function add_coupon($key, $rate, $date) {
+function add_coupon($key, $rate, $date) {
         // die($date);
         //  $starus value 0 if coupone is new or not used 
-        $status = 0;
-        $data = array(
-            'key' => $key,
-            'rate' => $rate,
-            'exp_date' => $date,
-            'status' => $status
+    $status = 0;
+    $data = array(
+        'key' => $key,
+        'rate' => $rate,
+        'exp_date' => $date,
+        'status' => $status
         );
 
-        $this->db->insert('coupon', $data);
-    }
+    $this->db->insert('coupon', $data);
+}
 
-    function order_user($name, $address, $city, $state, $country, $zip, $email, $contact) {
-        $uid = 11;
-        $data = array(
-            'u_id' => $uid,
-            'user_name' => $name,
-            'deliver_address' => $address,
-            'city' => $city,
-            'state' => $state,
-            'zip' => $zip,
-            'country' => $country,
-            'email' => $email,
-            'contact' => $contact
+function order_user($name, $address, $city, $state, $country, $zip, $email, $contact) {
+    $uid = 11;
+    $data = array(
+        'u_id' => $uid,
+        'user_name' => $name,
+        'deliver_address' => $address,
+        'city' => $city,
+        'state' => $state,
+        'zip' => $zip,
+        'country' => $country,
+        'email' => $email,
+        'contact' => $contact
         );
-        $this->db->insert('product_oder', $data);
-    }
+    $this->db->insert('product_oder', $data);
+}
 
-    function add_new_product($cat, $des, $sum, $qty, $name, $price, $img1, $img2, $img3, $shipping, $allowLike, $allowShare, $featured) {
-        $status = 0;
-        $data = array(
-            'featured' => $featured,
-            'category' => $cat,
-            'description' => $des,
-            'summary' => $sum,
-            'qty' => $qty,
-            'price' => $price,
-            'name' => $name,
-            'image1' => $img1,
-            'image2' => $img2,
-            'image3' => $img3,
-            'shiping' => $shipping,
-            'like' => $allowLike,
-            'share' => $allowShare,
-            'status' => $status);
+function add_new_product($cat, $des, $sum, $qty, $name, $price, $img1, $img2, $img3, $shipping, $allowLike, $allowShare, $featured) {
+    $status = 0;
+    $data = array(
+        'featured' => $featured,
+        'category' => $cat,
+        'description' => $des,
+        'summary' => $sum,
+        'qty' => $qty,
+        'price' => $price,
+        'name' => $name,
+        'image1' => $img1,
+        'image2' => $img2,
+        'image3' => $img3,
+        'shiping' => $shipping,
+        'like' => $allowLike,
+        'share' => $allowShare,
+        'status' => $status);
 
-        $this->db->insert('product', $data);
-    }
+    $this->db->insert('product', $data);
+}
 
-    function quick_add_new_product($productCategory, $description, $summary, $productName, $productPrice, $productImg, $shipping) {
-        $status = 0;
-        $data = array(
-            'category' => $productCategory,
-            'description' => $description,
-            'summary' => $summary,
-            'price' => $productPrice,
-            'name' => $productName,
-            'image1' => $productImg,
-            'shiping' => $shipping,
-            'status' => $status
+function quick_add_new_product($productCategory, $description, $summary, $productName, $productPrice, $productImg, $shipping) {
+    $status = 0;
+    $data = array(
+        'category' => $productCategory,
+        'description' => $description,
+        'summary' => $summary,
+        'price' => $productPrice,
+        'name' => $productName,
+        'image1' => $productImg,
+        'shiping' => $shipping,
+        'status' => $status
         );
 
-        $this->db->insert('product', $data);
-    }
+    $this->db->insert('product', $data);
+}
 
-    function get_proID() {
-        $this->db->select('id');
+function get_proID() {
+    $this->db->select('id');
 
-        $this->db->order_by("id", "desc");
-        $this->db->limit(1);
-        $proID = $this->db->get('product');
-        return $proID->result();
-    }
+    $this->db->order_by("id", "desc");
+    $this->db->limit(1);
+    $proID = $this->db->get('product');
+    return $proID->result();
+}
 
-    function record_count_product() {
-        $this->db->where('status', '0');
-        $this->db->from("product");
-        return $this->db->count_all_results();
-    }
+function record_count_product() {
+    $this->db->where('status', '0');
+    $this->db->from("product");
+    return $this->db->count_all_results();
+}
 
-    function record_count_products($id) {
-        $this->db->where('category', $id);
-        $this->db->where('status', '0');
-        $this->db->from("product");
-        return $this->db->count_all_results();
-    }
+function record_count_products($id) {
+    $this->db->where('category', $id);
+    $this->db->where('status', '0');
+    $this->db->from("product");
+    return $this->db->count_all_results();
+}
 
-    function record_count_transaction($product) {
-        $this->db->where('o_id', $product);
-        $this->db->from('product_oder_detail');
-        return $this->db->count_all_results();
-    }
+function record_count_transaction($product) {
+    $this->db->where('o_id', $product);
+    $this->db->from('product_oder_detail');
+    return $this->db->count_all_results();
+}
 
-    function record_count_coupon() {
+function record_count_coupon() {
 
-        return $this->db->count_all("coupon");
-    }
+    return $this->db->count_all("coupon");
+}
 
-    function record_count_cat($id) {
+function record_count_cat($id) {
 
-        $this->db->where('category', $id);
-        $this->db->where('status = 0');
-        return $this->db->count_all("product");
-    }
+    $this->db->where('category', $id);
+    $this->db->where('status = 0');
+    return $this->db->count_all("product");
+}
 
-    function record_count_product_order() {
-        return $this->db->count_all("product_oder_detail");
-    }
+function record_count_product_order() {
+    return $this->db->count_all("product_oder_detail");
+}
 
-    function get_all_product_order() {
-        $this->db->order_by('o_id', 'DESC');
-        $query = $this->db->get('product_oder_detail');
-        return $query->result();
-    }
+function get_all_product_order() {
+    $this->db->order_by('o_id', 'DESC');
+    $query = $this->db->get('product_oder_detail');
+    return $query->result();
+}
 
-    function get_all_product_orderDis() {
-        $this->db->order_by('o_id', 'DESC');
-        $this->db->distinct();
-        $this->db->select("trans_id");
-        $this->db->order_by('trans_id', 'DESC');
-        $query = $this->db->get('product_oder_detail', 3);
-        return $query->result();
-    }
+function get_all_product_orderDis() {
+    $this->db->order_by('o_id', 'DESC');
+    $this->db->distinct();
+    $this->db->select("trans_id");
+    $this->db->order_by('trans_id', 'DESC');
+    $query = $this->db->get('product_oder_detail', 3);
+    return $query->result();
+}
 
-    function get_record_all_product_orderDis() {
-        $this->db->distinct();
-        $this->db->select("trans_id");
-        $query = $this->db->get('product_oder_detail');
-        return $query->result();
-    }
+function get_record_all_product_orderDis() {
+    $this->db->distinct();
+    $this->db->select("trans_id");
+    $query = $this->db->get('product_oder_detail');
+    return $query->result();
+}
 
-    function TransDetail($id) {
+function TransDetail($id) {
 
-        $this->db->where('trans_id', $id);
-        $query = $this->db->get('product_oder_detail');
-        return $query->result();
-    }
+    $this->db->where('trans_id', $id);
+    $query = $this->db->get('product_oder_detail');
+    return $query->result();
+}
 
-    function get_product_id($id) {
-        $this->db->where('id', $id);
+function get_product_id($id) {
+    $this->db->where('id', $id);
         // $this->db->where('status = 0');
-        $query = $this->db->get('product');
-        return $query->result();
-    }
+    $query = $this->db->get('product');
+    return $query->result();
+}
 
-    function get_all_productTrn($limit, $start) {
+function get_all_productTrn($limit, $start) {
 
-        $this->db->distinct();
+    $this->db->distinct();
 
-        $this->db->limit($limit, $start);
-        $this->db->order_by('trans_id', 'DESC');
-        $query = $this->db->get('product_oder_detail');
-        return $query->result();
-    }
+    $this->db->limit($limit, $start);
+    $this->db->order_by('trans_id', 'DESC');
+    $query = $this->db->get('product_oder_detail');
+    return $query->result();
+}
 
-    function get_all_product($limit, $start) {
+function get_all_product($limit, $start) {
 
-        $this->db->limit($limit, $start);
-        $this->db->where('status = 0');
-        $this->db->order_by('id', 'DESC');
+    $this->db->limit($limit, $start);
+    $this->db->where('status = 0');
+    $this->db->order_by('id', 'DESC');
 
-        $query = $this->db->get('product');
-        return $query->result();
-    }
+    $query = $this->db->get('product');
+    return $query->result();
+}
 
-    function get_all_product_for_facebook() {
-        $this->db->where('status = 0');
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get('product');
-        return $query->result();
-    }
+function get_all_product_for_facebook() {
+    $this->db->where('status = 0');
+    $this->db->order_by('id', 'DESC');
+    $query = $this->db->get('product');
+    return $query->result();
+}
 
     function get_related_product($id) {//die($id);
         // $this->db->order_by('id','DESC');
@@ -421,7 +462,7 @@ class Dbmodel extends CI_Model {
     function change_category($id, $catid) {
         $data = array(
             'category' => $catid
-        );
+            );
         $this->db->where('category', $id);
 
         $this->db->update('product', $data);
@@ -454,17 +495,17 @@ class Dbmodel extends CI_Model {
         if ($image == "image1") {
             $data = array(
                 'image1' => " "
-            );
+                );
         }
         if ($image == "image2") {
             $data = array(
                 'image2' => " "
-            );
+                );
         }
         if ($image == "image3") {
             $data = array(
                 'image3' => " "
-            );
+                );
         }
         $this->db->where('id', $id);
 
@@ -510,7 +551,7 @@ class Dbmodel extends CI_Model {
         //die($trn);
         $data = array(
             'status' => $status
-        );
+            );
         // $this->db->where('trans_id',$id);
         $this->db->where(array('trans_id' => $trn, 'p_id' => $pid));
         $this->db->update('product_oder_detail', $data);
@@ -522,7 +563,7 @@ class Dbmodel extends CI_Model {
             $status = 1;
             $data = array(
                 'status' => $status
-            );
+                );
             $this->db->where('id', $id);
             $result = $this->db->update('product', $data);
             return TRUE;
@@ -562,12 +603,12 @@ class Dbmodel extends CI_Model {
     }
 
     function get_tran_id($id) {
-        
+
     }
 
     //==========================   End Cart System               ====================================//
 
-   
+
     public function get_identity($id) {
         // die($id);
         $this->db->where('menu_id', $id);
@@ -616,11 +657,11 @@ class Dbmodel extends CI_Model {
 
     // =========================== menu =================//
 
-   
+
 
     //============================================CAtegory==========================================================
 
-   
+
 
     //======================================================================================================
     //========================================USER============================================================
@@ -628,12 +669,12 @@ class Dbmodel extends CI_Model {
     //=========================================================================================================
     //====================================MEDIA================================================================
     //=========================================================================================================
-   
+
 
     //==============================================================================================================
     //======================================ALBUM===================================================================
     //==============================================================================================================
-   
+
 
 // ==========================================Activities ----------------------------------------------------------
 
@@ -855,7 +896,7 @@ class Dbmodel extends CI_Model {
     }
 
     //========================================================================================================
-   
+
     /* function get_blog() {
       $this->db->select('id, title, image, status, date');
       $this->db->from('blog');
@@ -878,7 +919,7 @@ class Dbmodel extends CI_Model {
       navigation
      */
 
-    public function get_list_by_parent_id($parent_id) {
+      public function get_list_by_parent_id($parent_id) {
         $this->db->where('id', $parent_id);
         $query = $this->db->get('navigation');
         return $query->result();
@@ -897,18 +938,18 @@ class Dbmodel extends CI_Model {
         $keys = $this->db->get('user');
         return $keys->result();
     }
-public function get_user_email($token, $email) {  
+    public function get_user_email($token, $email) {  
         $this->db->select('user_email,user_auth_key');
         $this->db->where('user_auth_key', $token );
-          $this->db->where('user_email', $email );
+        $this->db->where('user_email', $email );
         $query = $this->db->get('user');
         return $query->result();
     }
     
-     public function update_user_password($email, $userPassword){
+    public function update_user_password($email, $userPassword){
         $token = "";
         $data = array(
-        'user_pass'=>md5($userPassword),
+            'user_pass'=>md5($userPassword),
             'user_auth_key'=>$token);
         $this->db->where('user_email', $email);
         $this->db->update('user', $data);
@@ -925,7 +966,7 @@ public function get_user_email($token, $email) {
     function addaanbieding() {
         $insert_data = array(
             'fotonaam' => $image_data['file_name']
-        );
+            );
         print_r($insert_data);
         die;
         $input = $this->input->post('userfile');
