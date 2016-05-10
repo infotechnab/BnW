@@ -5,7 +5,12 @@
     <h2>All Posts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/offers/addpost'; ?>">Add New Post</a></h2>
      <hr class="hr-gradient"/>
     <div id="sucessmsg">
-  <?php echo $this->session->flashdata('message'); ?>
+   <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+
+            }?>
+    </div>
     </div>
      <br>
     <div>

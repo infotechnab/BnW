@@ -35,8 +35,12 @@
 <hr class="hr-gradient"/>   
     </div>
       <p style="color: red;">
-            <?php if(isset($token_error)){ echo $token_error;} ?>
-            <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+            <?php if(isset($token_error)){  echo "<div class='alert alert-default fade in '><strong>".$token_error."</strong></div>"; } ?>
+            <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+
+            }?>
         </p>
     <div class="forLeft">
     <div class="left">

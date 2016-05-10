@@ -3,7 +3,10 @@
  <hr class="hr-gradient"/>
   <div id="sucessmsg">
   <?php echo validation_errors(); ?>
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+  <?php if($this->session->flashdata('message')){
+
+    echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+    }?>
   </div>
  <link rel="stylesheet" href="<?php echo base_url().'content/bnw/scripts/date.css';?>">
  <script src="<?php echo base_url() . 'content/bnw/scripts/jquery-ui.js'; ?>" type="text/javascript"></script>

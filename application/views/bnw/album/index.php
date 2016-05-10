@@ -20,7 +20,11 @@
     <hr class="hr-gradient"/>
     <div id="sucessmsg">
         <?php
-        echo $this->session->flashdata('message');
+     if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+
+            }
         echo validation_errors();
         if (isset($error)) {
             echo $error;

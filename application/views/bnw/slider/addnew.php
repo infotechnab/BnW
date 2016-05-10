@@ -6,7 +6,11 @@
   
 
 <div id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+  <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+
+            }?>
     <?php echo validation_errors();
   if(isset($error))
   {

@@ -25,7 +25,11 @@ if ($query)
 <h2> Miscellaneous Setting</h2>
 <hr class="hr-gradient"/>
 <p id="sucessmsg">
-    <?php echo $this->session->flashdata("misc"); ?>
+    <?php if($this->session->flashdata('misc'))
+            {
+            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('misc')."</strong></div>"; 
+
+            }?>
 </p>
 <?php echo form_open_multipart('setting/miscsettingupdate');?>
 <h4>Default Article Setting</h4>

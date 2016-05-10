@@ -1,39 +1,39 @@
 *,*:after,*:before {box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-rendering:optimizeLegibility;}
 .mediaImg{margin: 1%;}
-    .mediaImgContainer{width: 650px;float: left;padding: 2%;border-right: 1px solid #eee;height: 390px;overflow-y: scroll;overflow: hidden;}
-    .mediaDetails{width: 250px;float: left;padding: 2%;display: none;}
-    .mediaPopUp img{border: 2px solid #fff;margin: 1%;}
-    .mediaPopUp img:hover{border: 2px solid #aaa;}
-    .mediaAction{border-bottom: 1px solid #eee;padding: 2%;position: relative;}
-    .mediaUploadContainer{width: 30%;float: left;}
-    .mediaClose{position: absolute;padding: 1%;top: 0px;right: 0px;font-weight: 100;font-family: calibri;cursor: pointer;}
-    .mediabtn{border: 1px solid #aaa;box-shadow: 0 0 5px #aaa;padding:0 1%;background: #eee;cursor: pointer;}
-    #progressbar{
-        width: 100%;
-        background: #eee;
-        padding: 3px;
-        border-radius: 3px;
-        box-shadow: inset 0px 1px 3px rgba(0,0,0,0.2);
-    }
-    #progress{
-        height: 20px;
-        background: #5cb85c;
-        display: block;
-        border-radius: 3px;
-        -webkit-transition: width 0.8s ease;
-        -moz-transition: width 0.8s ease;
-        transition: width 0.8s ease;
-    }
-    #progress_bar{width: 50%;display: none;float: left;}
-    #status{width: 7%;float: left;margin-left: 5%;}
-    #mediauploads{margin: 0px;padding: 0px;}
-    .clear{clear: both;}
-    #list{display: inline;}
-    
-    .mediaPopUp{width: 1000px;height: 500px;display: none;background: #fff;z-index: 99;position: absolute;box-shadow: 0 0 5px #111;}
-    
-    //media
-    
+.mediaImgContainer{width: 650px;float: left;padding: 2%;border-right: 1px solid #eee;height: 390px;overflow-y: scroll;overflow: hidden;}
+.mediaDetails{width: 250px;float: left;padding: 2%;display: none;}
+.mediaPopUp img{border: 2px solid #fff;margin: 1%;}
+.mediaPopUp img:hover{border: 2px solid #aaa;}
+.mediaAction{border-bottom: 1px solid #eee;padding: 2%;position: relative;}
+.mediaUploadContainer{width: 30%;float: left;}
+.mediaClose{position: absolute;padding: 1%;top: 0px;right: 0px;font-weight: 100;font-family: calibri;cursor: pointer;}
+.mediabtn{border: 1px solid #aaa;box-shadow: 0 0 5px #aaa;padding:0 1%;background: #eee;cursor: pointer;}
+#progressbar{
+    width: 100%;
+    background: #eee;
+    padding: 3px;
+    border-radius: 3px;
+    box-shadow: inset 0px 1px 3px rgba(0,0,0,0.2);
+}
+#progress{
+    height: 20px;
+    background: #5cb85c;
+    display: block;
+    border-radius: 3px;
+    -webkit-transition: width 0.8s ease;
+    -moz-transition: width 0.8s ease;
+    transition: width 0.8s ease;
+}
+#progress_bar{width: 50%;display: none;float: left;}
+#status{width: 7%;float: left;margin-left: 5%;}
+#mediauploads{margin: 0px;padding: 0px;}
+.clear{clear: both;}
+#list{display: inline;}
+
+.mediaPopUp{width: 1000px;height: 500px;display: none;background: #fff;z-index: 99;position: absolute;box-shadow: 0 0 5px #111;}
+
+//media
+
 html, body {font-family: calibri;}
 ul.tsc_pagination { margin:4px 0; padding:0px; overflow:hidden; font:12px 'Tahoma'; list-style-type:none; }
 ul.tsc_pagination li { float:left; margin:0px; padding:0px; margin-left:5px; }
@@ -51,7 +51,7 @@ body
     margin: 0px;
     padding: 0px;
     background-color: #E0E0E0;
-     font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
 }
 .full
 {
@@ -76,18 +76,18 @@ body
 }
 .input-text-small
 {
-   background: none repeat scroll 0 0 #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
-    box-sizing: border-box;
-    color: #333;
-    font-size: 24px;
-    line-height: 1;
-    margin: 2px 6px 16px 0;
-    outline: 0 none;
-    padding: 3px;
-    transition: border-color 0.05s ease-in-out 0s;
-    width: 200px; 
+ background: none repeat scroll 0 0 #fff;
+ border: 1px solid #ddd;
+ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+ box-sizing: border-box;
+ color: #333;
+ font-size: 24px;
+ line-height: 1;
+ margin: 2px 6px 16px 0;
+ outline: 0 none;
+ padding: 3px;
+ transition: border-color 0.05s ease-in-out 0s;
+ width: 200px; 
 }
 p.dashuppe-text-all{
     font-size: 16px;
@@ -147,21 +147,21 @@ button {
     width: 420px;
 }
 .submit-button-small{
-     -moz-user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.42857;
-    margin-bottom: 5px;
-    padding: 6px 12px;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    width: 200px;
+   -moz-user-select: none;
+   background-image: none;
+   border: 1px solid transparent;
+   border-radius: 4px;
+   cursor: pointer;
+   display: inline-block;
+   font-size: 20px;
+   font-weight: 400;
+   line-height: 1.42857;
+   margin-bottom: 5px;
+   padding: 6px 12px;
+   text-align: center;
+   vertical-align: middle;
+   white-space: nowrap;
+   width: 200px;
 }
 #sucessmsg
 {
@@ -237,7 +237,7 @@ hr.hr-gradient
 
 .leftSide ul li
 {
-    
+
     margin: 0;
     padding: 5px;
 }
@@ -265,19 +265,19 @@ ul.menu
     margin: 0px;
     padding: 0px;
     background-color: #222;
-    min-height: 30px;
+    height:522px;
     
 }
 ul li.mainMenuItem a
 {
-   /*padding-left: 10px;*/
-    width: 190px;
-    /*min-height: 30px;*/
+ /*padding-left: 10px;*/
+ width: 190px;
+ /*min-height: 30px;*/
 }
 /*.mainMenuItem ul li a{padding-left: -22px;}*/
 ul.menu li.mainMenuItem
 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 100;
     list-style-type: none;
     border-bottom: 1px solid #444;
@@ -290,11 +290,11 @@ ul.menu li.mainMenuItem > ul.subMenu
 }
 ul.subMenu
 {
-     background-color: #444;
-     width: 125%;
-     display:none;
-     margin: 5px -5px -5px -45px;
-     
+   background-color: #444;
+   width: 125%;
+   display:none;
+   margin: 5px -5px -5px -45px;
+
 }
 ul.subMenu li
 {
@@ -308,9 +308,9 @@ ul.subMenu li:hover
 
 ul.menu li.mainMenuItem ul.subMenu li
 {
-     font-size: 14px;
-     list-style-type: none;
-     
+   font-size: 14px;
+   list-style-type: none;
+
 }
 ul.menu li.mainMenuItem:hover
 {
@@ -420,17 +420,112 @@ ul.menu li.mainMenuItem:hover
 .del_category{cursor: pointer;}
 .del_category:hover{color:#006dcc;}
 .leftSide
-    {
-        display: block;
-        width: 15%;
-        min-height: 500px;
-        background-color: #000;
-    }
-    .rightSide
-    {
-        width: 85%;
-        min-height: 521px;
-    }
+{
+    display: block;
+    width: 15%;
+    min-height: 500px;
+    background-color: #000;
+}
+.rightSide
+{
+    width: 85%;
+    min-height: 521px;
+}
+
+/*this is style for add new drop down and admin logout dropdownl */
+/* Style The Dropdown Button */
+.dropbtn {
+    padding: 10px;
+    font-size: 16px;
+    color:white;
+
+    top:-8px;
+
+    cursor: pointer;
+    background-color: #222;
+    border: 0px;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    display: inline-block;
+    position: relative;
+    top:-10px;
+    text-align: center;
+
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #222;
+    min-width: 160px;
+    text-align: left;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/*Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #000;}
+
+/*Show the dropdown menu on hover  */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color:black;
+}
+/*dropdownl is closed */
+
+/*this is style for home link in dashboard*/
+#switchLnk {
+    -moz-user-select: none;
+    background-image: none;
+    padding: 10px;
+    font-size: 16px;
+    color:white;
+
+    cursor: pointer;
+    background-color: #222;
+    border: 0px;
+    margin: -25px 0 0 12px;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+
+}
+#switchLnk:hover{
+  background: #000;
+}
+/*homelink style is closeed */
+
+/*styles for flashmessage success and errro messages */
+  .alert {
+  border: 1px solid transparent;
+  border-radius: 4px;
+  margin: auto;
+  width: 90%;
+  margin-left:0px;
+  margin-bottom: 10px;
+  padding: 10px;
+  padding-left:10px;
+  background-color:black;color:white;
+}
+
+
+
 /*for media screen 1025-1500px*/
 @media screen and (max-width : 1500px)
 {
@@ -472,6 +567,17 @@ ul.menu li.mainMenuItem:hover
     }
     
 }
+
+/*style for index.php file in main dashbaord*/
+.wells{width: 20%;float:left;margin: 1%;height:120px; background: #eee;padding: 1%;border-radius:10px;opacity: 0.8;}
+.wells:hover{
+    opacity: 1;
+    border: 1px solid #ccc;
+}
+.counts{font-size: 30px;font-weight: bold; color:black; text-align: center; padding:10px; padding-bottom: 0px;}
+.count-title{font-weight: bold;padding: 1%; color:black; text-align: center;  padding:10px;padding-top: 0px;}
+
+
 
 
 /*for media screen 801-1025px*/
@@ -643,71 +749,71 @@ ul.menu li.mainMenuItem:hover
     margin:20px 20px 0 0;
 }
 th{background-color: #444;
-color: #fff;}
-tr:nth-child(even) {background: #fff}
-tr:nth-child(odd) {background: #f7f6f6}
-table,th,td
-{
-border:0px solid black;
-border-collapse:collapse;
-}
+    color: #fff;}
+    tr:nth-child(even) {background: #fff}
+    tr:nth-child(odd) {background: #f7f6f6}
+    table,th,td
+    {
+        border:0px solid black;
+        border-collapse:collapse;
+    }
 
-#close
-{
-    width: 20px;
-}
+    #close
+    {
+        width: 20px;
+    }
 
-#imagetitle
+    #imagetitle
 
-{
-    min-width: 80px;
-    margin: 5px;
-}
-#newAlbum
-{
-    float: left;
-    width: 221px;
-    border: #999999 dotted 1px;
-    padding: 10px;
-    margin: 10px;
-    height: 200px;
-    text-align: center;
-}
+    {
+        min-width: 80px;
+        margin: 5px;
+    }
+    #newAlbum
+    {
+        float: left;
+        width: 221px;
+        border: #999999 dotted 1px;
+        padding: 10px;
+        margin: 10px;
+        height: 200px;
+        text-align: center;
+    }
 
-/*for navigation*/
-
-
-.right
-{
-    width: 62%;
-    float: left;
-    margin-left: 45px;
-    min-height: 400px;
-}
-.forLeft
-{
-    float: left;
-    margin: 0px;
-    padding: 0px;
-    width: 33%;
-}
-
-selectMenu
-{
-    width: 50px;
-}
-.imageUpload
-{
-   width: 25%; float: left; 
-}
-.imageUploadside
-{
-   width: 35%; float: left; 
-}
+    /*for navigation*/
 
 
-.imageContainer
-{
+    .right
+    {
+        width: 62%;
+        float: left;
+        margin-left: 45px;
+        min-height: 400px;
+    }
+    .forLeft
+    {
+        float: left;
+        margin: 0px;
+        padding: 0px;
+        width: 33%;
+    }
+
+    selectMenu
+    {
+        width: 50px;
+    }
+    .imageUpload
+    {
+     width: 25%; float: left; 
+ }
+ .imageUploadside
+ {
+     width: 35%; float: left; 
+ }
+
+
+ .imageContainer
+ {
     position: relative;
     overflow: hidden;
     height: 155px;
@@ -724,18 +830,17 @@ selectMenu
     margin: auto;
 }
 
- /* popup_box DIV-Styles*/
-    #popup_box { 
-        display:none; /* Hide the DIV */
-        background: #000;
-        width: 700px;
-        height: 600px;
-        position:absolute;  
-        z-index:100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
-        
-    }
-    #fadeDiv{position: absolute;background: rgba(0,0,0,0.7);z-index: 99;top: 0;left: 0;}
-    #popupBoxClose{float: right;color: #fff;}
-    #loading{position: absolute;top: 50%;left: 50%;display: none;}
-    /* This is for the positioning of the Close Link */
-   
+/* popup_box DIV-Styles*/
+#popup_box { 
+    display:none; /* Hide the DIV */
+    background: #000;
+    width: 700px;
+    height: 600px;
+    position:absolute;  
+    z-index:100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
+
+}
+#fadeDiv{position: absolute;background: rgba(0,0,0,0.7);z-index: 99;top: 0;left: 0;}
+#popupBoxClose{float: right;color: #fff;}
+#loading{position: absolute;top: 50%;left: 50%;display: none;}
+/* This is for the positioning of the Close Link */

@@ -236,6 +236,9 @@ if (file_exists($filename1)) {
           
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('event_name', 'Name', 'required|callback_xss_clean|max_length[200]');
+         $this->form_validation->set_rules('detail', 'detail', 'required');
+
+
 
             if ($this->form_validation->run() == FALSE) {
 

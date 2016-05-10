@@ -17,7 +17,11 @@
   <?php echo validation_errors(); ?>
  
   <p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
+ <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+
+            }?>
     </p>
   <?php echo form_open_multipart('sliders/deleteslider/?image='.$slideImage);?>
   

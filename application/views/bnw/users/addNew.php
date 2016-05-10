@@ -14,6 +14,12 @@
   }
   ?>
 </div>
+<style>
+.textInput{
+
+  width:50%;
+}
+</style>
   <?php echo form_open_multipart('user/adduser');?>
   
   <p class="dashuppe-text-all">Name *<br />

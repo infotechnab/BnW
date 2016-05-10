@@ -17,7 +17,11 @@
     <div id="sucessmsg">
         <?php
         echo validation_errors();
-        echo $this->session->flashdata('message');
+    if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+
+            }
         if (isset($error)) {
             echo $error;
         }
