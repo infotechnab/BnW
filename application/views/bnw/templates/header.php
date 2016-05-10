@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -94,122 +94,119 @@
         <div id="top">
 
             <div id="topLeft">
-               <a href="<?php echo base_url('bnw'); ?>"<img src="<?php echo base_url() . "content/bnw/images/menu.png"; ?>"/>
+                <a href="<?php echo base_url('bnw'); ?>" ><img src="<?php echo base_url() . "content/bnw/images/menu.png"; ?>"/></a>
             </div>
             <img style="height:43px;" src="<?php echo base_url() . "content/bnw/images/bnw.png"; ?>"/>
-            <a  href="<?php echo base_url(); ?>" target="_blank"><button type="button" id="switchLnk"><i  style="font-size:22px"class="fa fa-home" aria-hidden="true"></i>
-View Site</button></a>
+            <a  href="<?php echo base_url(); ?>" target="_blank" > <button type="button" id="switchLnk"> <i style="font-size:22px" class="fa fa-home" aria-hidden="true"> </i>
+                View Site</button></a>
+
+                <!-- for add new shortcut to add  some info  -->
+
+                <div class="dropdown">
+                  <button class="dropbtn"><i  style="font-size:22px" class="fa fa-plus" aria-hidden="true" >  </i>
+                    Add new</button>
+                    <div class="dropdown-content">
+                        <a href="<?php echo base_url('offers/addpost'); ?>"><i class="fa fa-file-o" aria-hidden="true"></i>
+
+                            post</a>
+                            <a href="<?php echo base_url('page/addpage'); ?>"><i class="fa fa-file-text" aria-hidden="true"></i>
+                                page</a>
+                                <a href="<?php echo base_url(''); ?>"><i class="fa fa-picture-o" aria-hidden="true"></i>
+                                    media</a>
+                                    <a href="<?php echo base_url(''); ?>"><i class="fa fa-user" aria-hidden="true"></i>
+                                        user</a>
+                                    </div> 
+                                </div>
+
+
+                                <?php if ($this->session->userdata('admin_logged_in')) { ?>
+                                <div id="topRight">
+
+
+                                    <?php $username= $this->session->userdata('username'); ?>
+
+                                    <div class="dropdown">
+                                        <p></p>
+                                        <button class="dropbtn"><i class="fa fa-user" aria-hidden="true"></i>
+                                            hellow, <?php echo $username." "; ?>
+                                        </button>
+                                        <div class="dropdown-contents">
+                                        <a href="<?php echo base_url('login/logout'); ?>" > <i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>  
+                                         </div> 
+                                        </div>
+
+
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                                <div class="clear"></div>
+                                <!top company name and logged in as and logout div closed here>
 
 
 
-            <div class="dropdown">
-              <button class="dropbtn"><i  style="font-size:22px "class="fa fa-plus" aria-hidden="true"></i>
-Add new</button>
-              <div class="dropdown-content">
-                <a href="<?php echo base_url('offers/addpost'); ?>"><i class="fa fa-file-o" aria-hidden="true"></i>
+                                <!--media-->
+                                <div class="mediaPopUp">
+                                    <div class="mediaAction">
+                                        <div class="mediaUploadContainer">
+                                            <form id="mediauploads"><input type="file" name="images[]" class="newuploads" multiple></form>
+                                        </div>
+                                        <div id="progress_bar">
+                                            <div id="progressbar">
+                                                <div id="progress" style="width:0px;"></div>
+                                            </div>
+                                        </div>
+                                        <div id="status"></div>
+                                        <div class="clear"></div>
+                                        <div class="mediaClose">X</div>
+                                    </div>
+                                    <div class="mediaImgContainer">
+                                        <div id="list"></div>
+                                    </div>
+                                    <div class="mediaDetails">
+                                        ATTACHMENT DETAILS 
+                                        <div class="imgprev">
+                                            <img src="" height="100" width="100">
+                                        </div>
+                                        <br>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <label>Title</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="imgName">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label>Caption</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="imgName">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label>ALT Text</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="imgName">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label>Details</label>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="imgName">
+                                                </td>
+                                            </tr>
+                                        </table>
 
-post</a>
-                <a href="<?php echo base_url('page/addpage'); ?>"><i class="fa fa-file-text" aria-hidden="true"></i>
-page</a>
-                <a href="<?php echo base_url('media/addmedia'); ?>"><i class="fa fa-picture-o" aria-hidden="true"></i>
-media</a>
-                <a href="<?php echo base_url('user/adduser'); ?>"><i class="fa fa-user" aria-hidden="true"></i>
-user</a>
-            </div> 
-        </div>
 
-
-        <?php if ($this->session->userdata('admin_logged_in')) { ?>
-        <div id="topRight">
-
-
-            <?php $username= $this->session->userdata('username'); ?>
-
-            <div class="dropdown">
-                <p></p>
-                <button class="dropbtn"><i class="fa fa-user" aria-hidden="true"></i>
-hellow, <?php echo $username." "; ?>
-</button>
-                <div class="dropdown-content">
-                    <a href="<?php echo base_url('login/logout'); ?>" > <i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>    </div> 
-            </div>
-
-
-
-
-
-
-        </div>
-        <?php } ?>
-    </div>
-    <div class="clear"></div>
-    <!top company name and logged in as and logout div closed here>
-
-
-
-  <!--media-->
-  <div class="mediaPopUp">
-    <div class="mediaAction">
-        <div class="mediaUploadContainer">
-            <form id="mediauploads"><input type="file" name="images[]" class="newuploads" multiple></form>
-        </div>
-        <div id="progress_bar">
-            <div id="progressbar">
-                <div id="progress" style="width:0px;"></div>
-            </div>
-        </div>
-        <div id="status"></div>
-        <div class="clear"></div>
-        <div class="mediaClose">X</div>
-    </div>
-    <div class="mediaImgContainer">
-        <div id="list"></div>
-    </div>
-    <div class="mediaDetails">
-        ATTACHMENT DETAILS 
-        <div class="imgprev">
-            <img src="" height="100" width="100">
-        </div>
-        <br>
-        <table>
-            <tr>
-                <td>
-                    <label>Title</label>
-                </td>
-                <td>
-                    <input type="text" class="imgName">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Caption</label>
-                </td>
-                <td>
-                    <input type="text" class="imgName">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>ALT Text</label>
-                </td>
-                <td>
-                    <input type="text" class="imgName">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Details</label>
-                </td>
-                <td>
-                    <input type="text" class="imgName">
-                </td>
-            </tr>
-        </table>
-
-        
-        <br>
-        Edit Image
-        Delete Image
-    </div>
-    <div class="clear"></div>
-</div>
+                                        <br>
+                                        Edit Image
+                                        Delete Image
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>

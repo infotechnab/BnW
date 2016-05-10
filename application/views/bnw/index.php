@@ -3,7 +3,6 @@
     <h2>Dashboard >> Home</h2> 
     <hr class="hr-gradient"/>
     <h1>Welcome to Dashboard</h1>
-    <h2 style="text-decoration:underline;">your activities</h2>
 
     <div>
 

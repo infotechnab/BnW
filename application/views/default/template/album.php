@@ -1,4 +1,4 @@
-<div id="pattern-3">
+@ad<div id="pattern-3">
             <?php
 if(!empty($albumquery)){ ?>
     <div class="container">

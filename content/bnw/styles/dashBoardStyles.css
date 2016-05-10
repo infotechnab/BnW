@@ -50,14 +50,14 @@ body
 {
     margin: 0px;
     padding: 0px;
-    background-color: #E0E0E0;
+    background-color:#222;
     font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
 }
 .full
 {
     margin: 0 auto 0 auto;
     padding: 0px;
-    background-color:#000;
+    background-color:#222;
     min-height: 200px;
 }
 .textInput {
@@ -255,7 +255,6 @@ h3
     min-height:200px;
 
     margin: 0px;
-    min-height: 540px;
 
     float: left;
     background-color: #000;
@@ -268,6 +267,11 @@ ul.menu
     height:522px;
     
 }
+ p#footerinfo {
+        color:#ccc;
+        font-size:13px;
+        margin-left:22px;
+    }
 ul li.mainMenuItem a
 {
  /*padding-left: 10px;*/
@@ -383,7 +387,7 @@ ul.menu li.mainMenuItem:hover
 {
     padding: 0px 0px 5px 10px;
     margin: 0px;
-    max-height: 163px;
+    max-height: 200px;
     margin-bottom: 1px;
     width: 93%;
 }
@@ -423,13 +427,14 @@ ul.menu li.mainMenuItem:hover
 {
     display: block;
     width: 15%;
-    min-height: 500px;
-    background-color: #000;
+    height:100%;
+   background-color: #222;
 }
 .rightSide
 {
     width: 85%;
-    min-height: 521px;
+
+   
 }
 
 /*this is style for add new drop down and admin logout dropdownl */
@@ -466,6 +471,7 @@ ul.menu li.mainMenuItem:hover
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
+
 /*Links inside the dropdown */
 .dropdown-content a {
     color: black;
@@ -487,6 +493,34 @@ ul.menu li.mainMenuItem:hover
     background-color:black;
 }
 /*dropdownl is closed */
+
+/*style for admin logout */
+.dropdown-contents {
+    display: none;
+    position: absolute;
+    background-color: #222;
+    min-width: 100%;
+    text-align: left;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+
+/*Links inside the dropdown */
+.dropdown-contents a {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-contents a:hover {background-color: #000;}
+
+/*Show the dropdown menu on hover  */
+.dropdown:hover .dropdown-contents {
+    display: block;
+}
+
 
 /*this is style for home link in dashboard*/
 #switchLnk {
@@ -541,15 +575,16 @@ ul.menu li.mainMenuItem:hover
     .rightSide
     {
         width: 84%;
-        min-height: 521px;
+        min-height: 680px;
     }
     .leftSide
     {
         display: block;
         width: 16%;
-        min-height: 500px;
-        background-color: #000;
+        height:100%;
+        background-color:#222;
     }
+   
     
     #bnwcredit
     {
