@@ -26,6 +26,7 @@ class Contact extends CI_Controller {
             redirect('login/index/?url=' . $url, 'refresh');
         }
           } 
+          
     
 public function xss_clean($str)
 	{
