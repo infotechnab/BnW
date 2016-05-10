@@ -11,12 +11,13 @@
     <?php
         if(!empty($news)){
             ?>
-    <table border="1" cellpadding="10" class="tbl_full_width" >
-        <tr>
+            <div class="table-responsive">
+          <table class="table table-bordered" >
+        <thead>
             <th>Subscriber Name</th>
             <th>Email</th>         
             <th>Action</th>
-        </tr>
+        </thead>
     <?php
             foreach ($news as $data){
             ?>
@@ -35,6 +36,7 @@
  }
     ?>
     </table>
+    </div>
     
     
     

@@ -30,14 +30,15 @@
     
          if(!empty($query)){
              ?>
-        <table border="1" cellpadding="10" class="tbl_full_width" >
-        <tr>
+        <div class="table-responsive">
+        <table class="table table-bordered" >
+        <thead>
             
             <th>Post Title</th>
             <th>Post Summary</th>          
             <th>Image</th>
             <th>Action</th>
-        </tr>
+        </thead>
         <?php
             foreach ($query as $data){
             ?>
@@ -72,6 +73,7 @@
             
     ?>
     </table>
+    </div>
     <?php  echo $links; ?>
 </div>
 </div>

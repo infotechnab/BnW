@@ -77,7 +77,7 @@
         <select style="width: 150px" name="jobs" id="jobs" class="jobs">
         <option>Make Parent</option>
     </select>      
-            <input type="submit" value="Add">
+            <input  type="submit" value="Add">
         
     </div>
         <?php echo form_close();?>

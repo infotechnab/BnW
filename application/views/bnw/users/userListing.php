@@ -17,8 +17,9 @@
     
         if(!empty($query)){
             ?>
-    <table border="1" cellpadding="10" class="tbl_full_width" >
-        <tr>
+            <div class="table-responsive">
+    <table class="table table-bordered" >
+        <thead>
             <th>S.N.</th>
             <th>User Name</th>
             <th>First Name</th>
@@ -27,7 +28,7 @@
             <th>Status</th>
             <th>Type</th>
             <th>Action</th>
-        </tr>
+        </thead>
          <?php $sn_count = 1;
          foreach ($query as $data){  ?>
         <tr class="action">
@@ -73,6 +74,7 @@
  }
     ?>
     </table>
+    </div>
     <?php echo $links; ?>
 </div>
 </div>

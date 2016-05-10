@@ -22,7 +22,7 @@
 <input type="file" name="userfile" size="20" />
 <br /><br />
 
-  <input type="submit" value="Submit" />
+  <input class="btn btn-default" type="submit" value="Submit" />
   <?php echo form_close();?>
 
    <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>  

@@ -95,7 +95,7 @@
             </label>
         </div>
         <img id="uploadPreview" style="display:none;width:1000px;"/>
-        <input type="submit" name="submit" class="submit-button-small" value="Add Photo"   />
+        <input type="submit" class="btn btn-default" name="submit"  value="Add Photo"   />
          </fieldset>
         <?php echo form_close(); ?>
 

@@ -53,7 +53,7 @@ if ($query)
   <input type="text" class="textInput" name="header_description" value="<?php echo $set_data[2]; ?>"/>
   </p>
   
- <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+ <input type="submit" class="btn btn-default btn-lg" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>

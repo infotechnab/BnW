@@ -103,7 +103,7 @@ if ($query)
 <input type="checkbox" name="allow_share" value="1" <?php if($set_data[2]==1) echo 'checked' ;?> >Allow people to share</input>
 <br/>
   
-  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+  <input type="submit" class="btn btn-default btn-lg" value="Submit" />
   <?php echo form_close();?>
     </div>
     <div class="clear"></div>

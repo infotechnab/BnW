@@ -15,8 +15,9 @@ $this->load->helper('summary_helper');
     <?php   
          if(!empty($event)){
              ?>
-        <table class="tbl_full_width" border="1" cellpadding="10">
-        <tr>
+             <div class="table-responsvie">
+        <table class="table table-bordered">
+        <thead>
             
             <th> Name</th>
             <th>Description</th>
@@ -26,7 +27,7 @@ $this->load->helper('summary_helper');
             <th>Type</th>
             
             <th>Action</th>
-        </tr>
+        </thead>
         <?php  
                        
             foreach ($event as $data){
@@ -61,6 +62,7 @@ $this->load->helper('summary_helper');
             
     ?>
     </table>
+    </div>
     <?php  echo $links; ?>
 </div>
     

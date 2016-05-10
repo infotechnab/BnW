@@ -47,7 +47,7 @@
   <p class="dashuppe-text-all">Content<br />
    <input type="text" class="textInput" name="slide_content" value="<?php echo $slidecontent; ?>" />
   </p>
-    <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+    <input type="submit" class="btn btn-default btn-lg" value="Submit" />
   <?php echo form_close();?>
 <p><b>Note:</b> Max file size: 2000KB,  Width: 2000px, Height: 2000px </p>
  <?php } else{

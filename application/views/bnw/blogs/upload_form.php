@@ -20,7 +20,7 @@
   echo form_dropdown('status',$options,'1')
   ?>
   </p>
-<input type="submit" value="upload" />
+<input type="submit" class="btn btn-default" value="upload" />
 </form>
  <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>  
  </div>

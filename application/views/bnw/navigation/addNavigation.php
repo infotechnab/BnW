@@ -22,7 +22,7 @@
       <input type="text" name="menu_id" /> </p>
   
  
-    <input type="submit" value="Submit" />
+    <input class="btn btn-default" type="submit" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>

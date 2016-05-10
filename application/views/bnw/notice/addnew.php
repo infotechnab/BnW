@@ -21,7 +21,7 @@
   </p>  
   	<textarea name="content" style="width:100%">
 </textarea>
-  <input type="submit" value="Submit" />
+  <input class="btn btn-default " type="submit" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>

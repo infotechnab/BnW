@@ -58,7 +58,7 @@ if ($meta)
   <input type="hidden" value="<?php echo $meta_data[4]; ?>" name="faviconeName" />
   <p class="dashuppe-text-all">Favicon Icon<br/>
   <input type="file" class="textInput" name="file_name" id="file" /></p>
- <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+ <input type="submit" class="btn btn-default btn-lg" value="Submit" />
   <?php echo form_close();?>
  <p><b>Note:</b> Max file size: 500KB,  Width: 100px, Height: 100px</p>
 </div>

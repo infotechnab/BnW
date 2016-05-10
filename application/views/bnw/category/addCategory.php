@@ -20,7 +20,7 @@
   <input type="text" class="textInput" name="category_name" value="<?php echo set_value('category_name'); ?>" />
   </p>
   
-   <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+   <input type="submit" class="btn btn-default btn-lg" value="Submit" />
   <?php echo form_close();?>
 
 <div id="body">
@@ -30,7 +30,8 @@
     <?php    
         if(!empty($query)){
             ?>
-    <table border="1" cellpadding="10">
+            <div class="table-responsive">
+    <table class="table table-bordered">
         <tr>
             <th>S.N.</th>
             <th>Name of Category</th> 
@@ -73,6 +74,7 @@
     ?>
        
     </table>
+    </div>
     <?php echo $links; ?>
 </div>
 </div>

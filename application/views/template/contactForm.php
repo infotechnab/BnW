@@ -265,7 +265,7 @@ $(function(){
                                 <form class="form-horizontal">
 
                                     <fieldset>
-                                        <legend class="text-center header">Contact us</legend>
+                                        <legend class="text-center header">Contact adfafdasfdsus</legend>
                                         <div class="form-group">
                                             <div class="col-md-10 col-md-offset-1">
                                                 <input name="name" id="name" type="text" placeholder="Full Name" required class="form-control">
@@ -309,7 +309,7 @@ $(function(){
 
                                         <div class="form-group">
                                             <div class="col-md-12 text-center">
-                                                <button class="btn btn-primary btn-lg" id="submit" type="button" value="Submit">Submit</button>
+                                                <button class="btn btn-default btn-lg" id="submit" type="button" value="Submit">Submit</button>
                                             </div>
                                         </div>
                                     </fieldset>

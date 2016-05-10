@@ -14,7 +14,7 @@
  <p class="dashuppe-text-all">Menu Name<br />
   <input type="text" class="textInput" name="menu_name" value="<?php echo set_value('menu_name'); ?>"  /> </p> 
 
-  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+  <input type="submit" class="btn btn-default btn-lg" value="Submit" />
   <?php echo form_close();?>
 
 
@@ -29,12 +29,13 @@
 <?php    
 if(!empty($query)){
   ?>
-  <table border="1" cellpadding="10">
-    <tr>
+  <div class="table table-bordered">
+  <table class="table table-bordered">
+    <thead>
       <th>S.N.</th>
       <th>Title</th>
       <th>Action</th>
-    </tr>
+    </thead>
     
     <?php
     foreach ($query as $data){
@@ -56,6 +57,7 @@ if(!empty($query)){
   ?>
 
 </table>
+</div>
 <?php echo $links; ?>
 </div>
 </div>

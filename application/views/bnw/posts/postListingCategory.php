@@ -16,7 +16,7 @@
             <option value="<?php echo $cat->post_category ?>"><?php echo $cat->post_category; ?></option>
             <?php } ?>
         </select>
-        <input type="submit" value="Go" class="">
+        <input type="submit" class="btn btn-default" value="Go" class="">
         <?php echo form_close(); ?>
     </div>
      <br>
@@ -25,14 +25,15 @@
     
          if(!empty($query)){
              ?>
-        <table border="1" cellpadding="10" class="tbl_full_width" >
-        <tr>
-            
+             <div class="table-responsive">
+        <table class="table table-bordered" >
+        <thead>
+    
             <th>Post Title</th>
             <th>Post Summary</th>          
             <th>Image</th>
             <th>Action</th>
-        </tr>
+        </thead>
         <?php
             foreach ($query as $data){
             ?>
@@ -67,6 +68,7 @@
             
     ?>
     </table>
+    </div>
 </div>
 </div>
 <div class="clear"></div>

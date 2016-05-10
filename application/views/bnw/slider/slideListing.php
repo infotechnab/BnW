@@ -26,15 +26,16 @@
   <?php
   if(!empty($query)){   
    ?>
+   <div class="table-responsive">
    
-   <table border="1" cellpadding="10" class="tbl_full_width" >
-    <tr>
+   <table class="table table-bordered">
+    <thead>
      
       <th>Title</th> 
       <th>Image</th>
       <th>Content</th>
       <th>Action</th>
-    </tr>
+    </thead>
     
     
     <?php         foreach ($query as $data){
@@ -58,6 +59,7 @@
   ?>
   
 </table>
+</div>
 <?php echo $links; ?>
 </div>
 </div>

@@ -20,14 +20,15 @@
     
          if(!empty($query)){
              ?>
-    <table border="1" cellpadding="10" class="tbl_full_width" >
-        <tr>
+             <div class="table-responsive">
+    <table class="table table-bordered" >
+        <thead>
             
             <th>Media Name</th>
             <th>Media Type</th>
             <th>Media Link</th>
             <th>Activity</th>
-        </tr>
+        </thead>
     
    <?php
             foreach ($query as $data){
@@ -58,6 +59,7 @@
  }
     ?>
     </table>
+    </div>
     <?php echo $links; ?>
 </div>
 </div>

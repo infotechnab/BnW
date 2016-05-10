@@ -60,7 +60,7 @@
   </p>
   <input type="checkbox" name="showForm" value="showForm" <?php if($showForm=='showForm') echo 'checked' ;?>>Show Contact Form.<br/><br/>
   <input type="checkbox" name="showMap" value="showMap" <?php if($showMap=='showMap') echo 'checked' ;?>>Show Location Map.<br/><br/>
-  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+  <input type="submit" class="btn btn-default btn-lg" value="Submit" />
 </div>
   <?php echo form_close();?>
 <?php } ?>

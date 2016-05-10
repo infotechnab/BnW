@@ -115,7 +115,7 @@ $this->load->helper('summary_helper');
 
             </p>
 
-            <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+            <input type="submit" class="btn btn-default btn-lg" value="Submit" />
     <?php echo form_close(); ?>
 <?php
 } else {

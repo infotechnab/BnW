@@ -19,7 +19,7 @@
  <p class="dashuppe-text-all">Menu Name<br />
       <input type="text" class="textInput" name="menu_name" value="<?php echo htmlentities($menuname); ?>" /> </p> 
  
-    <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+    <input type="submit" class="btn btn-default btn-lg" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>

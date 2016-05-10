@@ -1,14 +1,7 @@
 <div class="rightSide">
     
     <div id="body">
-        <style>
-            td {
-                text-align:center;
-                font-size:19px;
-            }
-
-
-        </style>
+      
         
         <h2>All attempted users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
         <hr class="hr-gradient"/>

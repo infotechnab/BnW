@@ -25,7 +25,7 @@
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
   <input type="text" class="textInput" name="category_name" value="<?php echo htmlentities($categoryname); ?>" />
    </p>
- <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+ <input type="submit" class="btn btn-default btn-lg" value="Submit" />
   <?php echo form_close();
         }
         else{

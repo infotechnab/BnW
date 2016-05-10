@@ -181,8 +181,8 @@
         <div style="padding: 4%;">
             <div> Enter Navigation Name :</div>
             <div style="margin: 3% 0"><input type="text" value="" id='navigation_name' style="width: 100%;" /></div>
-            <input type="hidden" value="" id="NavNameId">
-            <input type="button" value="Update" class="editNavName" />
+            <input class="btn btn-default" type="hidden" value="" id="NavNameId">
+            <input class="btn btn-default" type="button" value="Update" class="editNavName" />
         </div>
 
         

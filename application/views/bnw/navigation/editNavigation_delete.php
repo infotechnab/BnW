@@ -29,7 +29,7 @@
       <input type="text" name="navigation_name" value="<?php echo htmlentities($name); ?>" />
   </p>
   
-  <input type="submit" value="Submit" />
+  <input class="btn btn-default" type="submit" value="Submit" />
   <?php echo form_close();?>
   
 
