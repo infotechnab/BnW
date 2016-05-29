@@ -1,0 +1,242 @@
+<div class="row">
+      <div class="col-md-5 col-lg-5 col-sm-5>" >
+
+        ***************************fiirst block ****************************************
+        <div id="navigationLeftUp"> 
+          <h3>List of all pages</h3>
+        </div>
+        <?php echo form_open_multipart('dashboard/addPageForNavigation', array('id' => 'search', 'name'=>'search'));?> 
+        <div id="navigationLeftMiddle">
+          <ul>
+
+            <?php    
+            if(isset($listOfPage)){
+              foreach ($listOfPage as $pagedata){
+                ?>
+
+                <li><input type="checkbox" name="<?php echo $str = htmlentities(preg_replace('/\s+/', '', $pagedata->page_name)); ?>" value="<?php echo htmlentities($pagedata->page_name); ?>"/><?php echo $pagedata->page_name; ?></li>
+                <?php    
+              }
+            }
+            ?>
+          </ul> 
+        </div>
+
+        **************************second block *******************
+
+        <div id="navigationLeftDown">
+         <select style="width: 110px" name="departments" id="departments">
+           <option value ="0">Select Menu</option>
+           <?php foreach($listOfMenu as $menu) { ?>
+           <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
+           <?php } ?>
+         </select>
+
+         <select style="width: 150px" name="jobs" id="jobs" class="jobs">
+          <option>Make Parent</option>
+        </select>      
+        <input  type="submit" value="Add">
+
+      </div>
+      <?php echo form_close();?>
+
+
+      <!-- Top left div for choosing page, menu and parent is closed -->       
+
+
+      <!-- here goes the code to choose post for navigation-->
+       
+ ***************************third block *************************
+      <div id="navigationLeftUp"> 
+
+        <h3>List of all posts</h3>
+      </div>
+      <?php echo form_open_multipart('dashboard/addPostForNavigation', array('id' => 'search', 'name'=>'search'));?> 
+      <div id="navigationLeftMiddle">
+        <ul>
+
+          <?php    
+          if(isset($listOfPost)){
+            foreach ($listOfPost as $postdata){
+              ?>
+
+              <li><input type="checkbox" name="<?php echo $str = htmlentities(preg_replace('/\s+/', '', $postdata->post_title)); ?>" value="<?php echo htmlentities($postdata->post_title); ?>"/><?php echo $postdata->post_title; ?></li>
+              <?php    
+            }
+          }
+          ?>
+        </ul> 
+      </div>
+
+      ************* fourth blockl ******************
+
+      <div id="navigationLeftDown">
+       <select style="width: 110px" name="departments" id="departments">
+         <option value ="0">Select Menu</option>
+         <?php foreach($listOfMenu as $menu) { ?>
+         <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
+         <?php } ?>
+       </select>
+
+       <select style="width: 150px" name="jobs" id="jobs" class="jobs">
+        <option>Make Parent</option>
+      </select>      
+      <input type="submit" value="Add">
+
+    </div>
+    <?php echo form_close();?>
+
+
+    <!-- adding post to navigation ends here -->
+    *********************************fifth block *******************
+
+    <div id="navigationLeftUp">    
+
+      <h3>List of all category</h3>
+    </div>
+    <?php echo form_open_multipart('dashboard/addCategoryForNavigation',array('id' => 'search', 'name'=>'search'));?>    
+    <div id="navigationLeftMiddle">
+
+      <ul>
+
+        <?php
+        if(isset($listOfCategory)){
+          foreach ($listOfCategory as $categorydata){
+
+            ?>
+            <li><input type="checkbox" name="<?php echo $str = htmlentities(preg_replace('/\s+/', '', $categorydata->category_name)); ?>" value="<?php echo htmlentities($categorydata->category_name); ?>"/><?php echo $categorydata->category_name; ?></li>
+            <?php    
+          }
+        }
+        ?>
+      </ul> 
+    </div>
+ ************************************sixth block ********************************
+    <div id="navigationLeftDown">
+      <select style="width: 110px" name="departments" id="departments">
+        <option value ="0">Select Menu</option>
+        <?php foreach($listOfMenu as $menu) { ?>
+        <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
+        <?php } ?>
+      </select>
+
+      <select style="width: 150px" name="jobs" id="jobs" class="jobs">
+        <option>Make Parent</option>
+      </select>
+      <input type="submit" value="Add">
+
+    </div>
+    <?php echo form_close();?>
+
+
+    <!-- Middle left div for choosing category, menu and parent is closed -->   
+
+
+    ***************************seventh block **************   
+
+    <div id="customLinkLeftUp">
+
+      <h3>Create Custom Menu Link</h3>
+
+    </div>
+
+    <div id="customLinkLeftMiddle">
+      <?php echo form_open_multipart('dashboard/addCustomLink');?>
+
+      <p>Navigation Title :
+        <input type="text" name="navigation_name" placeholder="Type Navigation name" required/>
+      </p>
+
+      <p>Custom Menu Link :
+        <input type="text" name="navigation_link" placeholder="Type Custom Menu Link" required/>
+      </p>
+
+      <select style="width: 110px" name="departments" id="departments">
+        <option value ="0">Select Menu</option>
+        <?php foreach($listOfMenu as $menu) { ?>
+        <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
+        <?php } ?>
+      </select>  
+
+      <select style="width: 150px" name="jobs" id="jobs" class="jobs">
+        <option>Make Parent</option>
+      </select> 
+      <input class="" type="submit" value="Add">
+      <?php echo form_close();?>
+    </div>
+
+  </div> 
+
+
+  <!-- Bottom left div for creating custom link is closed -->       
+ <div class="col-md-7 col-lg-7 col-sm-7">
+<div class="right">
+  <div id="navigationLeftMiddle">
+   <h3>Available Navigations</h3> 
+ </div>
+
+
+ <script type="text/javascript">
+   function changeFunc()
+   {
+    var selectBox = document.getElementById("selectBox");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    var dataString = 'menu_id_next=' + selectedValue;
+    if(selectedValue != "0") {
+     $.ajax({
+      type: "POST",
+      url: "<?php echo base_url().'index.php/dashboard/manageNavigation' ;?>",
+      data: dataString,
+      success: function(msg) 
+      {
+       $("#cssmenu").html(msg);
+     }
+
+
+   });
+   } else {
+    $("#cssmenu").html("Please Select Menu.");
+  }
+
+}
+
+</script>
+<div id="navigation">
+  <select name="selectMenu" style="width: 125px"  id="selectBox" onchange="changeFunc();">
+   <option value="0" selected="selected"> Select Menu                    
+   </option>
+   <?php
+   foreach ($listOfMenu as $data)
+   {
+    ?>
+    <option value="<?php echo $data->id; ?>">
+      <?php echo $data->menu_name; ?>
+    </option>
+    <?php
+  }
+  ?>
+
+</select>
+<p style="color: green;"><span id="msges"></span></p>
+<div id='cssmenu'>
+	
+</div>
+</div> 
+
+</div>
+</div>
+</div>
+<div class="clear"></div> 
+</div>
+<div class="clear"></div>
+</div>
+
+
+<style>
+  ul li, li.has-sub {list-style: none;padding: 1%;}
+  #fullNav i:hover{cursor: pointer;}
+  .left{margin:0 0 5% 0;}
+</style>
+
+
+<!-- upto here -->

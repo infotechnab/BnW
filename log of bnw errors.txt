@@ -1,0 +1,21 @@
+log of bnw errors
+1> DAshboad.ph line number 54
+Message: Undefined variable: comTrue
+
+Filename: controllers/Dashboard.php
+
+Line Number: 54
+
+Backtrace:
+
+File: /opt/lampp/htdocs/BnWold/application/controllers/Dashboard.php
+Line: 54
+Function: _error_handler
+
+File: /opt/lampp/htdocs/BnWold/index.php
+Line: 294
+Function: require_once
+
+
+2:when emepty title then it shows a error 
+<div style="" > on title bar 
