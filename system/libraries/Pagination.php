@@ -70,14 +70,14 @@ class CI_Pagination {
 	var $prev_link			= 'Previous';
 	var $last_link			= '&gt;&gt;';
 	var $uri_segment		= 3;
-	var $full_tag_open		= '<ul class="tsc_pagination tsc_paginationA tsc_paginationA01">';
+	var $full_tag_open		= '<ul class="pagination">';
 	var $full_tag_close		= '</ul>';
 	var $first_tag_open		= '<li>';
 	var $first_tag_close	= '</li>';
 	var $last_tag_open		= '<li>';
 	var $last_tag_close		= '</li>';
 	var $first_url			= ''; // Alternative URL for the First Page.
-	var $cur_tag_open		= '<li class="current"><a href="#">';
+	var $cur_tag_open		= '<li class="active"><a href="#">';
 	var $cur_tag_close		= '</a></li>';
 	var $next_tag_open		= '<li>';
 	var $next_tag_close		= '</li>';

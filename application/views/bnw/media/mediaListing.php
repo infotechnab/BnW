@@ -1,23 +1,31 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+
     
 <div id="body">
-    <p id="sucessmsg">
+ 
      <h2>Media Libraries&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/media/addmedia'; ?>">Add New Media</a></h2>
- <?php if($this->session->flashdata('message'))
-            {
-            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
-
-            }?>
-    </div>
-    </p>
    
     <hr class="hr-gradient"/>
-     <?php
-     if(isset($error))
-  {
-     echo $error;
-  }
     
+<div id="sucessmsg">
+  <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
+
+            }?>
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
+
+    }
+  if(isset($error))
+  {
+         echo "<div class='error'>".$error."</div>"; 
+       }
+  ?>
+</div>
+     <?php
+
          if(!empty($query)){
              ?>
              <div class="table-responsive">
@@ -46,8 +54,9 @@
                 <img src='<?php echo base_url().'content/uploads/images/thumb_'.$data->media_type; ?>' style="height: 60px; width: 60px"/>
                     <?php } else{ echo $file_ext.' file'; } ?> </td>
             <td><?php echo base_url().'content/uploads/images/'.$file; ?></td>
-            <td><?php echo anchor('media/editmedia/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
-                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+            <td>
+ <a  href='<?php echo base_url().'media/editmedia/'.$data->id; ?>'  title=" Edit " data-placement="top" style='font-size:16px;text-decoration:none;'> <span id='$menu_id' class='editNavs    glyphicon glyphicon-edit'></span> | </a> 
+ <a href="#" style='font-size:16px;text-decoration:none;'  title=" Delete "> <span  id="<?php echo $data->id; ?>" class='del_category glyphicon glyphicon-trash'></span></a>
             </td>
         </tr>
             <?php    

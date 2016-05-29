@@ -1,101 +1,158 @@
 <script>
-    $(document).ready(function(){
-       $(document).on("change", "#departments", function(){
-           var menu_id = $(this).val();
-           var options;
-           var thiss = $(this).next();
-           $.ajax({
-                                    type: "POST",
-                                    url: "<?php echo base_url() . 'index.php/dashboard/fetchMenu'; ?>",
-                                    data: {
-                                        id : menu_id
-                                    },
-                                    success: function (dat)
-                                    {
-                                        thiss.html(" ");
-                                        var data = JSON.parse(dat);
-                                         var initOptions = "<option value='Make Parent'>Make Parent</option>";
-                                        var options ='';
-                                        for(var i=0;i<data.length;i++)
-                                        {
-                                            options +="<option value='"+ data[i].id +"'>"+ data[i].navigation_name +"</option>";
-                                        }
-                                        thiss.html(initOptions + options);
-                                    }
-
-
-                                });
-       });
-    });
-</script>
-<!-- NAvigation items list shown here  -->
- <div class="rightSide">
-     <div class="titleArea">
-     <h2>Dashboard >> Navigation</h2>
-<hr class="hr-gradient"/>   
-    </div>
-      <p style="color: red;">
-            <?php if(isset($token_error)){  echo "<div class='alert alert-default fade in '><strong>".$token_error."</strong></div>"; } ?>
-            <?php if($this->session->flashdata('message'))
-            {
-            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
-
-            }?>
-        </p>
-    <div class="forLeft">
-    <div class="left">
-       
-        <div id="navigationLeftUp"> 
-    
-    <h3>List of all pages</h3>
-        </div>
-    <?php echo form_open_multipart('dashboard/addPageForNavigation', array('id' => 'search', 'name'=>'search'));?> 
-    <div id="navigationLeftMiddle">
-    <ul>
-        
-      <?php    
-        if(isset($listOfPage)){
-            foreach ($listOfPage as $pagedata){
-            ?>
-
-        <li><input type="checkbox" name="<?php echo $str = htmlentities(preg_replace('/\s+/', '', $pagedata->page_name)); ?>" value="<?php echo htmlentities($pagedata->page_name); ?>"/><?php echo $pagedata->page_name; ?></li>
-          <?php    
-            }
+  $(document).ready(function(){
+   $(document).on("change", "#departments", function(){
+     var menu_id = $(this).val();
+     var options;
+     var thiss = $(this).next();
+     $.ajax({
+      type: "POST",
+      url: "<?php echo base_url() . 'index.php/dashboard/fetchMenu'; ?>",
+      data: {
+        id : menu_id
+      },
+      success: function (dat)
+      {
+        thiss.html(" ");
+        var data = JSON.parse(dat);
+        var initOptions = "<option value='Make Parent'>Make Parent</option>";
+        var options ='';
+        for(var i=0;i<data.length;i++)
+        {
+          options +="<option value='"+ data[i].id +"'>"+ data[i].navigation_name +"</option>";
         }
-    ?>
-    </ul> 
-    </div>
+        thiss.html(initOptions + options);
+      }
+
+
+    });
+   });
+ });
+</script>
+<style>
+  .modal-header,.close {
+    background-color: #222;
+    color:white !important;
+    text-align: center;
+    font-size: 19px;
+  }
+  .modal-footer {
+    background-color: #f9f9f9;
+  }
+  .modal-dialog {
+    margin:0px;
+    width:90%;
+    max-height:250px;
+    margin-bottom:99px;
+  
+}
+.modal-body{
+
+   max-height: 200px;
+    overflow:auto;
+}
+ul.blocks {
+  list-style-type: none;
+}
+ul.blocks li {
+
+  padding:5px;
+  font-size:17px;
+  list-style-type: none;
+}
+.list-group-item{
+
+  margin-bottom: 15px;
+}
+</style>
+<!-- NAvigation items list shown here  -->
+<div class=" col-md-10 col-sm-10 col-lg-10 col-xs-10 rightside">
+
+     <div class="titleArea">
+       <h2>Dashboard >> Navigation</h2>
+       <hr class="hr-gradient"/>   
+     </div>
+    <div id="sucessmsg">
+  <?php if($this->session->flashdata('message'))
+  {
+    echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
+
+  }?>
+  <?php $validation_errors= validation_errors();
+  if(isset($validation_errors)){
+   echo "<div class='error'>".$validation_errors."</div>"; 
+
+ }
+ if(isset($token_error))
+ {
+   echo "<div class='error'>".$token_error."</div>"; 
+ }
+ ?>
+</div>
+  <div class="error"><h4><span id="msges"></span></h4></div>
+<br>
     
-    <div id="navigationLeftDown">
-     <select style="width: 110px" name="departments" id="departments">
+
+
+
+    <div class="row">
+      <div class="col-md-5 col-lg-5 col-sm-5>" >
+
+       <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"></button>
+           <h4>list of all pages</h4>
+          </div>
+          <div class="modal-body">
+           <?php echo form_open_multipart('dashboard/addPageForNavigation', array('id' => 'search', 'name'=>'search'));?> 
+           <ul class="blocks">
+
+            <?php    
+            if(isset($listOfPage)){
+              foreach ($listOfPage as $pagedata){
+                ?>
+
+                <li><input type="checkbox" name="<?php echo $str = htmlentities(preg_replace('/\s+/', '', $pagedata->page_name)); ?>" value="<?php echo htmlentities($pagedata->page_name); ?>"/><?php echo $pagedata->page_name; ?></li>
+                <?php    
+              }
+            }
+            ?>
+          </ul>
+    
+  
+
+        </div>
+        <div class="modal-footer">
+          <select name="departments" id="departments">
          <option value ="0">Select Menu</option>
          <?php foreach($listOfMenu as $menu) { ?>
-        <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
+          <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
          <?php } ?>
-    </select>
+         </select>
            
-        <select style="width: 150px" name="jobs" id="jobs" class="jobs">
+     <select  name="jobs" id="jobs" class="jobs">
         <option>Make Parent</option>
     </select>      
-            <input  type="submit" value="Add">
-        
-    </div>
-        <?php echo form_close();?>
-    </div>
-           
-      <!-- Top left div for choosing page, menu and parent is closed -->       
-            
+      <input type="submit" value="Add">
       
-      <!-- here goes the code to choose post for navigation-->
-      <div class="left">
-       
-        <div id="navigationLeftUp"> 
-    
-    <h3>List of all posts</h3>
+        <?php echo form_close();?>
         </div>
-    <?php echo form_open_multipart('dashboard/addPostForNavigation', array('id' => 'search', 'name'=>'search'));?> 
-    <div id="navigationLeftMiddle">
-    <ul>
+      </div>
+    </div>
+
+
+
+
+       <div class="modal-dialog" style="margin-bottom:10px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"></button>
+
+           <h4>list of all posts</h4>
+          </div>
+          <div class="modal-body">
+           <?php echo form_open_multipart('dashboard/addPostForNavigation', array('id' => 'search', 'name'=>'search'));?>
+    <ul class="blocks">
         
       <?php    
         if(isset($listOfPost)){
@@ -108,34 +165,40 @@
         }
     ?>
     </ul> 
-    </div>
-    
-    <div id="navigationLeftDown">
-     <select style="width: 110px" name="departments" id="departments">
+  
+  
+        </div>
+        <div class="modal-footer">
+          <select  name="departments" id="departments">
          <option value ="0">Select Menu</option>
          <?php foreach($listOfMenu as $menu) { ?>
         <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
          <?php } ?>
     </select>
            
-        <select style="width: 150px" name="jobs" id="jobs" class="jobs">
+        <select  name="jobs" id="jobs" class="jobs">
         <option>Make Parent</option>
-    </select>      
+       </select>      
             <input type="submit" value="Add">
+            <?php echo form_close();?>
         
     </div>
-        <?php echo form_close();?>
-    </div>
-      
-      <!-- adding post to navigation ends here -->
-   
-    <div class="left">
-        <div id="navigationLeftUp">    
     
-    <h3>List of all category</h3>
-        </div>
-    <?php echo form_open_multipart('dashboard/addCategoryForNavigation',array('id' => 'search', 'name'=>'search'));?>    
-        <div id="navigationLeftMiddle">
+      </div>
+
+    </div>
+
+
+
+     <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"></button>
+           <h4>list of all category</h4>
+          </div>
+          <div class="modal-body">
+            <?php echo form_open_multipart('dashboard/addCategoryForNavigation',array('id' => 'search', 'name'=>'search'));?>    
+  
     
     <ul>
         
@@ -151,36 +214,35 @@
     ?>
     </ul> 
         </div>
-        
-        <div id="navigationLeftDown">
-            <select style="width: 110px" name="departments" id="departments">
+        <div class="modal-footer">
+              <select  name="departments" id="departments">
         <option value ="0">Select Menu</option>
          <?php foreach($listOfMenu as $menu) { ?>
         <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
          <?php } ?>
     </select>
            
-    <select style="width: 150px" name="jobs" id="jobs" class="jobs">
+    <select  name="jobs" id="jobs" class="jobs">
         <option>Make Parent</option>
     </select>
             <input type="submit" value="Add">
-       
-    </div>
-     <?php echo form_close();?>
-    </div>
-      
-      <!-- Middle left div for choosing category, menu and parent is closed -->      
-      
-      <div class="left">
-        <div id="customLinkLeftUp">
-          
-            <h3>Create Custom Menu Link</h3>
-            
-        </div>
+  
         
-          <div id="customLinkLeftMiddle">
-        <?php echo form_open_multipart('dashboard/addCustomLink');?>
-            
+    </div>
+    
+      </div>
+      </div>
+
+
+
+
+     <div class="modal-dialog" style="margin-top:-69px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"></button>
+           <h4>Create Custom Menu Link</h4>
+          </div>
+          <div class="modal-body">
            <p>Navigation Title :
             <input type="text" name="navigation_name" placeholder="Type Navigation name" required/>
             </p>
@@ -189,32 +251,34 @@
             <input type="text" name="navigation_link" placeholder="Type Custom Menu Link" required/>
             </p>
               
-            <select style="width: 110px" name="departments" id="departments">
+        
+  
+        </div>
+        <div class="modal-footer">
+
+        <select  name="departments" id="departments">
         <option value ="0">Select Menu</option>
          <?php foreach($listOfMenu as $menu) { ?>
         <option value ="<?php echo $menu->id; ?>"><?php echo $menu->menu_name; ?></option>
          <?php } ?>
     </select>  
             
-            <select style="width: 150px" name="jobs" id="jobs" class="jobs">
+            <select  name="jobs" id="jobs" class="jobs">
         <option>Make Parent</option>
     </select> 
-<input class="" type="submit" value="Add">
+            
+            <input type="submit" value="Add">
         <?php echo form_close();?>
-    </div></div>   
+  
+        
+    </div>
+    
+      </div>
+      </div>
 
-      
-     <!-- Bottom left div for creating custom link is closed -->       
-      
-      
-        
-    </div> 
-    <div class="right">
-        <div id="navigationLeftMiddle">
-           <h3>Available Navigations</h3> 
-        </div>
-        
-        
+
+
+
        <script type="text/javascript">
            function changeFunc()
            {
@@ -239,9 +303,38 @@
                
            }
 
-  </script>
-  <div id="navigation">
-        <select name="selectMenu" style="width: 125px"  id="selectBox" onchange="changeFunc();">
+           </script>
+
+
+
+
+
+  </div>
+  <div class="col-md-7 col-lg-7 col-sm-7" style="margin-top:-40px;">
+
+   <div class="jumbotron" style="max-height:900px;">
+        <div class="modal-content">
+          <div class="modal-header" style="padding:35px 50px;">
+            <button type="button" class="close" data-dismiss="modal"></button>
+           <h4  class='text-left'>Available Navigations</h4>
+
+     <div class="form-group">
+  <select class="form-control" style='height:42px;' name="selectMenu" id="selectBox" onchange="changeFunc();">
+ <option value="0" selected="selected"> Select Menu</option>
+ <?php
+                foreach ($listOfMenu as $data)
+                {
+                    ?>
+                <option value="<?php echo $data->id; ?>">
+                    <?php echo $data->menu_name; ?>
+                </option>
+                    <?php
+                }
+                ?>          
+   
+  </select>
+</div>
+           <!--  <select name="selectMenu" id="selectBox" onchange="changeFunc();">
              <option value="0" selected="selected"> Select Menu                    
              </option>
                <?php
@@ -255,26 +348,33 @@
                 }
                 ?>
           
-            </select>
-  <p style="color: green;"><span id="msges"></span></p>
-        <div id='cssmenu'>
-	
-	</div>
-  </div> 
+            </select> -->
+          </div>
+          <div>
+        
+            <div id='cssmenu'>
+
   
+            </div>
+
+  
+        </div>
+        <div class="modal-footer">
+      
     </div>
-       
-    <div class="clear"></div> 
+    
+      </div>
+      </div>
+
+
+
+        
+  </div>
 </div>
-<div class="clear"></div>
+
+</div>
+</div>
 </div>
 
 
-<style>
-    ul li, li.has-sub {list-style: none;padding: 1%;}
-    #fullNav i:hover{cursor: pointer;}
-    .left{margin:0 0 5% 0;}
-</style>
 
-
-<!-- upto here -->

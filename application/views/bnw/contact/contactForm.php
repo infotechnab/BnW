@@ -1,17 +1,22 @@
-<div class="rightSide">
-<h2>Contact</h2>
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+<h2>Update Contact Details</h2>
 <hr class="hr-gradient"/>
+
 <div id="sucessmsg">
- <?php if($this->session->flashdata('message'))
+  <?php if($this->session->flashdata('message'))
             {
-            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
 
             }?>
-    <?php echo validation_errors();
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
+
+    }
   if(isset($error))
   {
-      echo $error;
-  }
+         echo "<div class='error'>".$error."</div>"; 
+       }
   ?>
 </div>
 <?php if(!empty($contact)){
@@ -30,40 +35,59 @@
         $showMap = $datas->show_map;
     }
 ?>
-  <?php echo form_open_multipart('contact/addContact');?>
+
+<div class="setleftmargin">
+  <?php echo form_open_multipart('contact/addContact',array('class'=>'form-horizontal'));?>
   <div id="forLeftPage">  
-  <p class="dashuppe-text-all">Name of Organization *<br />
-  <input type="text" class="textInput" name="title" value="<?php echo $name; ?>" />
-  </p>
-  <p class="dashuppe-text-all">Address 1(Street) *<br />
-  <input type="text" class="textInput" name="street" value="<?php echo $street; ?>" />
-  </p>
-  <p class="dashuppe-text-all">Address 2(City) *<br />
-  <input type="text" class="textInput" name="city" value="<?php echo $city; ?>" />
-  </p>
-  <p class="dashuppe-text-all">District *<br />
-  <input type="text" class="textInput" name="district" value="<?php echo $district; ?>" />
-  </p>
-  <p class="dashuppe-text-all">Country *<br />
-  <input type="text" class="textInput" name="country" value="<?php echo $country; ?>" />
-  </p>
+  <div class="form-group">
+  <label>Name of Organization:</label>
+  <input type="text" class="textInput form-control" name="title" value="<?php echo $name; ?>" />
   </div>
-<div id="forRightPage"> 
-  <p class="dashuppe-text-all">Contact No.(Primary) *<br />
-  <input type="text" class="textInput" name="contact1" value="<?php echo $contact1; ?>" />
-  </p>
-  <p class="dashuppe-text-all">Contact No.(Secondary)<br />
-  <input type="text" class="textInput" name="contact2" value="<?php echo $contact2; ?>" />
-  </p>
-  <p class="dashuppe-text-all">Email *<br />
-  <input type="email" class="textInput" name="email" value="<?php echo $email; ?>" />
-  </p>
-  <input type="checkbox" name="showForm" value="showForm" <?php if($showForm=='showForm') echo 'checked' ;?>>Show Contact Form.<br/><br/>
-  <input type="checkbox" name="showMap" value="showMap" <?php if($showMap=='showMap') echo 'checked' ;?>>Show Location Map.<br/><br/>
-  <input type="submit" class="btn btn-default btn-lg" value="Submit" />
+<div class="form-group">
+  <label>Address 1(Street):</label>
+  <input type="text" class="textInput form-control" name="street" value="<?php echo $street; ?>" />
+  </div>
+  <div class="form-group">
+  
+  <label>Address 2(City):</label>
+  <input type="text" class="textInput form-control" name="city" value="<?php echo $city; ?>" />
+  </div>
+  <div class="form-group">
+  
+  <label>District:</label>
+  <input type="text" class="textInput form-control" name="district" value="<?php echo $district; ?>" />
+  </div>
+  <div class="form-group">
+
+  <label>Country:</label>
+  <input type="text" class="textInput form-control" name="country" value="<?php echo $country; ?>" />
+  </div>
+<div class="form-group">
+  <label>Contact No.(Primary)</label>
+  <input type="text" class="textInput form-control" name="contact1" value="<?php echo $contact1; ?>" />
+ </div>
+ <div class="form-group">
+  <label>Contact No.(Secondary)</label>
+  <input type="text" class="textInput form-control" name="contact2" value="<?php echo $contact2; ?>" />
+ </div>
+ <div class="form-group">
+  <label> Email </label>
+  <input type="email" class="textInput form-control" name="email" value="<?php echo $email; ?>" />
+ </div>
+<div class="form-group">
+<div class="checkbox">
+  <label><input type="checkbox" name="showForm" value="showForm" <?php if($showForm=='showForm') echo 'checked' ;?>>Show Contact Form.</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" name="showMap" value="showMap" <?php if($showMap=='showMap') echo 'checked' ;?>>Show Location Map</label>
+</div>
+</div>
+<div class="form-group">
+  <input type="submit" class="btn btn-default btn-lg btn-block " value="Submit" />
 </div>
   <?php echo form_close();?>
 <?php } ?>
 </div>
-<div class="clear"></div>
+</div>
+</div>
 </div>

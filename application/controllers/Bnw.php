@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH'))
-exit('No direct script access allowed');
+    exit('No direct script access allowed');
 class bnw extends CI_Controller {
     function __construct() {
         parent::__construct();
@@ -10,10 +10,8 @@ class bnw extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
-        
     }
-    public function index() 
-    {
+    public function index() {
         $url = base_url() . 'bnw';
         if ($this->session->userdata('admin_logged_in') == true) {
             $data['username'] = Array($this->session->userdata('admin_logged_in'));
@@ -22,7 +20,7 @@ class bnw extends CI_Controller {
             $data["page"] = $this->dbmodel->count_page();
             $data["events"] = $this->dbmodel->count_events();
             $data["news"] = $this->dbmodel->count_news();
-//            $data["post"] = $this->dbmodel->count_post(); alredt loaded not require to reload
+//            $data["post"] = $this->dbmodel->count_post();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu', $data);
             $this->load->view('bnw/index', $data);
@@ -32,7 +30,7 @@ class bnw extends CI_Controller {
         }
     }
     //========================== for Cart System =======================================================//
-    function getRandomStringForCoupen($length) {
+   function getRandomStringForCoupen($length) {
         $validCharacters = "ABCDEFGHIJKLMNPQRSTUXYVWZ123456789";
         $validCharNumber = strlen($validCharacters);
         $result = "";
@@ -41,7 +39,7 @@ class bnw extends CI_Controller {
             $index = mt_rand(0, $validCharNumber - 1);
             $result .= $validCharacters[$index];
         }
-        
+       
         return $result;
     }
 
@@ -55,7 +53,7 @@ class bnw extends CI_Controller {
         $data['abc'] = array(
             'coupon' => $_POST['coupon'],
             'subtotal' => $_POST['subtotal']
-            );
+        );
         // print_r($data['abc']);
 
         $key = $_POST['coupon'];
@@ -71,7 +69,7 @@ class bnw extends CI_Controller {
                     $disRate = $rate->rate;
                 }
                 echo '<script> var rate =' . $disRate . '; </script> 
-                <p> You have a discount ' . $disRate . ' % </p> ';
+<p> You have a discount ' . $disRate . ' % </p> ';
             } else {
                 // die('msdfdsfdsfdsf');
                 echo "Coupon has been expired!";
@@ -95,120 +93,119 @@ class bnw extends CI_Controller {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    public function xss_clean($str)
-    {
-      if ($this->security->xss_clean($str, TRUE) === FALSE)
-      {
-       $this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
-       return FALSE;
-   }
-   else
-   {
-       return TRUE;
-   }
-}
-function addcoupon() 
-{
-    $url = current_url();
-    if ($this->session->userdata('admin_logged_in')) {
-        $data['username'] = Array($this->session->userdata('admin_logged_in'));
-        $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['category'] = $this->dbmodel->get_category();
+public function xss_clean($str)
+	{
+		if ($this->security->xss_clean($str, TRUE) === FALSE)
+		{
+			$this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+    function addcoupon() {
+        $url = current_url();
+        if ($this->session->userdata('admin_logged_in')) {
+            $data['username'] = Array($this->session->userdata('admin_logged_in'));
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['category'] = $this->dbmodel->get_category();
 
-        $this->load->view('bnw/templates/header', $data);
-        $this->load->view('bnw/templates/menu');
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
 
-        $this->load->view('bnw/templates/footer', $data);
-        $this->load->helper('form');
-        $this->load->library(array('form_validation', 'session'));
-        $this->form_validation->set_rules('key', 'Coupon Key', 'required|callback_xss_clean|max_length[200]');
-        $this->form_validation->set_rules('rate', 'Discount Rate', 'required|callback_xss_clean|max_length[200]');
-        $this->form_validation->set_rules('expdate', 'Expire Date', 'required|callback_xss_clean|max_length[200]');
+            $this->load->view('bnw/templates/footer', $data);
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('key', 'Coupon Key', 'required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('rate', 'Discount Rate', 'required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('expdate', 'Expire Date', 'required|callback_xss_clean|max_length[200]');
 
-        if ($this->form_validation->run() == FALSE) {
+            if ($this->form_validation->run() == FALSE) {
 
-            $this->load->view('product/coupon');
-        } else {
+                $this->load->view('product/coupon');
+            } else {
 
                 //if valid
 
-            $key = $this->input->post('key');
-            $rate = $this->input->post('rate');
-            $date = $this->input->post('expdate');
+                $key = $this->input->post('key');
+                $rate = $this->input->post('rate');
+                $date = $this->input->post('expdate');
 
-            $this->dbmodel->add_coupon($key, $rate, $date);
-            $this->session->set_flashdata('message', 'One Coupon Created sucessfully');
-            redirect('bnw/coupon');
+                $this->dbmodel->add_coupon($key, $rate, $date);
+                $this->session->set_flashdata('message', 'One Coupon Created sucessfully');
+                redirect('bnw/coupon');
+            }
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
         }
-    } else {
-        redirect('login/index/?url=' . $url, 'refresh');
     }
-}
 
-//========================== Add Product ======================================================//
+    //========================== Add Product ======================================================//
 
-function product() {
-    $url = current_url();
-    if ($this->session->userdata('admin_logged_in')) {
-        $data['username'] = Array($this->session->userdata('admin_logged_in'));
-        $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['category'] = $this->dbmodel->get_category();
+    function product() {
+        $url = current_url();
+        if ($this->session->userdata('admin_logged_in')) {
+            $data['username'] = Array($this->session->userdata('admin_logged_in'));
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['category'] = $this->dbmodel->get_category();
 
-        $this->load->view('bnw/templates/header', $data);
-        $this->load->view('bnw/templates/menu');
-        $this->load->view('product/addProduct', $data);
-    } else {
-        redirect('login/index/?url=' . $url, 'refresh');
-    }
-}
-
-function addproduct() {
-    $url = current_url();
-    if ($this->session->userdata('admin_logged_in')) {
-        $config['upload_path'] = './content/uploads/images/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '2000';
-        $config['max_width'] = '2000';
-        $config['max_height'] = '2000';
-
-        $this->load->library('upload', $config);
-        $data['meta'] = $this->dbmodel->get_meta_data();
-        $data['category'] = $this->dbmodel->get_category();
-        $this->load->view('bnw/templates/header', $data);
-        $this->load->view('bnw/templates/menu');
-        $this->load->helper('form');
-        $this->load->library(array('form_validation', 'session'));
-        $this->form_validation->set_rules('pName', 'Name', 'required|xss_clean|max_length[200]');
-        $this->form_validation->set_rules('pPrice', 'Price', 'required|xss_clean|max_length[200]');
-
-        if (($this->form_validation->run() == FALSE)) {
-            $data['error'] = $this->upload->display_errors();
-
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
             $this->load->view('product/addProduct', $data);
         } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+
+    function addproduct() {
+        $url = current_url();
+        if ($this->session->userdata('admin_logged_in')) {
+            $config['upload_path'] = './content/uploads/images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2000';
+            $config['max_width'] = '2000';
+            $config['max_height'] = '2000';
+
+            $this->load->library('upload', $config);
+            $data['meta'] = $this->dbmodel->get_meta_data();
+            $data['category'] = $this->dbmodel->get_category();
+            $this->load->view('bnw/templates/header', $data);
+            $this->load->view('bnw/templates/menu');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('pName', 'Name', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('pPrice', 'Price', 'required|xss_clean|max_length[200]');
+
+            if (($this->form_validation->run() == FALSE)) {
+                $data['error'] = $this->upload->display_errors();
+
+                $this->load->view('product/addProduct', $data);
+            } else {
 
                 //if valid
-            if ($this->upload->do_upload('myfile')) {
-                $data = array('upload_data' => $this->upload->data('myfile'));
-                $productImg = $data['upload_data']['file_name'];
+                if ($this->upload->do_upload('myfile')) {
+                    $data = array('upload_data' => $this->upload->data('myfile'));
+                    $productImg = $data['upload_data']['file_name'];
 
                     //if valid
-                $data = array('upload_data' => $this->upload->data('file'));
-                $slidename = $this->input->post('slide_name');
-                $slideimage = $data['upload_data']['file_name'];
-                $slidecontent = $this->input->post('slide_content');
+                    $data = array('upload_data' => $this->upload->data('file'));
+                    $slidename = $this->input->post('slide_name');
+                    $slideimage = $data['upload_data']['file_name'];
+                    $slidecontent = $this->input->post('slide_content');
 
                     //for cropper
                     //require_once(APPPATH.'Imagemanipulator.php');
-                include_once 'imagemanipulator.php';
+                    include_once 'imagemanipulator.php';
 
-                $manipulator = new ImageManipulator($_FILES['myfile']['tmp_name']);
-                $width = $manipulator->getWidth();
-                $height = $manipulator->getHeight();
+                    $manipulator = new ImageManipulator($_FILES['myfile']['tmp_name']);
+                    $width = $manipulator->getWidth();
+                    $height = $manipulator->getHeight();
 
-                $centreX = round($width / 2);
+                    $centreX = round($width / 2);
 
-                $centreY = round($height / 2);
+                    $centreY = round($height / 2);
 
                     // our dimensions will be 200x130
                     $x1 = $centreX - 300; // 200 / 2
@@ -836,12 +833,12 @@ function addproduct() {
 
 
 
-    
+   
 
     //==========================================================================================================//
 
     //============================================================================//
-    
+   
 
     //=========================================================================================================
     //====================================MEDIA================================================================

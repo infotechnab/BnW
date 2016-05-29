@@ -1,4 +1,4 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-10 col-lg-10 col-xs-10 rightSide">
  <?php
 
         if(!empty($query)){
@@ -29,52 +29,58 @@
   ?>
 </div>
   <?php echo form_open_multipart('user/updateuser');?>
-   <p class="dashuppe-text-all">Name *<br />
+ <div class="form-group">
+   <label>Name :</label>
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
-  <input type="text" class="textInput" name="user_name" required value="<?php echo $name; ?>" />
-  </p>
+  <input type="text" class="form-control" name="user_name" required value="<?php echo $name; ?>" />
+</div>
   
-  <p class="dashuppe-text-all">First Name *<br />
-  <input type="text" class="textInput" name="user_fname" value="<?php echo $fname; ?>" />
-  </p>
+   <div class="form-group">
+  <label>First Name :</label>
+  <input type="text" class="form-control" name="user_fname" value="<?php echo $fname; ?>" />
+</div>
   
-  <p class="dashuppe-text-all">Last Name *<br />
-  <input type="text" class="textInput" name="user_lname" value="<?php echo $lname; ?>" />
-  </p>
+   <div class="form-group">
+  <label>Last Name :</label>
+  <input type="text" class="form-control" name="user_lname" value="<?php echo $lname; ?>" />
+</div>
   
-  <p class="dashuppe-text-all">E-mail <br />
-  <input type="email" class="textInput" name="user_email" value="<?php echo $email; ?>" />
-  </p>
+   <div class="form-group">
+  <label>E-mail :</label>
+  <input type="email" class="form-control" name="user_email" value="<?php echo $email; ?>" />
+</div>
+   <div class="form-group">
+  <label>Password :</label>
+  <input type="password" class="form-control" name="user_pass" value="<?php //echo $pass; ?>" />
+</div>
   
-  <p class="dashuppe-text-all">Password <br />
-  <input type="password" class="textInput" name="user_pass" value="<?php //echo $pass; ?>" />
-  </p>
-  
-   <p class="dashuppe-text-all">User Status<br />
+   <div class="form-group">
+   <label>User Status :</label>
    <?php $options = array('1'  => 'Active', '0'    => 'Inactive');  ?>
-       <select class="textInput" name="status">
+       <select class="form-control" name="status">
          
          <?php foreach ($options as $key=>$data){ ?>
          <option value="<?php echo $key; ?>" <?php if($key == $status) { echo "selected"; } ?>><?php echo $data; ?></option>
          <?php } ?>
      </select>
-  </p>
-  
-  <p class="dashuppe-text-all">User Type<br />
+
+</div>
+   <div class="form-group">
+  <label>User Type:</label>
  <?php $useroptions = array("0" => 'Administrator', "1" => "User" );  ?>
-      <select class="textInput" name="user_type">
+      <select class="form-control" name="user_type">
          
          <?php foreach ($useroptions as $data){ ?>
          <option value="<?php echo $data; ?>" <?php if($data == $user_type) { echo "selected"; } ?>><?php echo $data; ?></option>
          <?php } ?>
      </select>
-  </p>
+</div>
   
-  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+   <div class="form-group">
+  <input type="submit" class="btn btn-default btn-lg btn-block" value="Submit" />
+  </div>
   <?php echo form_close();?>
    <?php } else{
      echo '<h3 id="sucessmsg">Sorry! the user is not found.</h3>';
         } ?>
-</div>
-<div class="clear"></div>
 </div>

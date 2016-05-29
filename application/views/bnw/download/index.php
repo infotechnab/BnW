@@ -1,4 +1,4 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-10 col-lg-10 col-xs-10 rightSide">
 <h2>Resource Management</h2>
 <a href="upload">Upload New Document </a>
 <div id="body">

@@ -1,12 +1,28 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+
     
 <div id="body">
     
     <h2>All Posts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/offers/addpost'; ?>">Add New Post</a></h2>
      <hr class="hr-gradient"/>
-    <div id="sucessmsg">
-  <?php echo $this->session->flashdata('message'); ?>
-    </div>
+  
+<div id="sucessmsg">
+  <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
+
+            }?>
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
+
+    }
+  if(isset($error))
+  {
+         echo "<div class='error'>".$error."</div>"; 
+       }
+  ?>
+</div>
      <br>
     <div>
         <?php echo form_open('offers/searchCategory'); ?>

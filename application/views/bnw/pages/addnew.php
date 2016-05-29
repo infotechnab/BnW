@@ -1,4 +1,6 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+
+
     <?php 
 if ($query)
     
@@ -30,13 +32,14 @@ if ($query)
   
 
   <?php echo form_open_multipart('page/addpage');?>
-  
-  <p class="dashuppe-text-all">Title *<br />
-  <input type="text" class="textInput" name="page_name" value="<?php echo set_value('page_name'); ?>" />
-  </p>
-  <p class="dashuppe-text-all">Body *<br />
+ <div class="form-group"> 
+  <label>Title</label>
+  <input type="text" class="form-control" name="page_name" value="<?php echo set_value('page_name'); ?>" />
+</div>
+ <div class="form-group">
+  <label>Body</label>
       <textarea name="page_content" id="textara" cols="50" rows="15" ><?php echo set_value('page_content'); ?></textarea>
-  </p>    
+  </div> 
   
   <p class="dashuppe-text-all">Image<br />
      <input id="uploadImage" class="textInput" type="file" name="file" accept="image/*"/>
@@ -46,24 +49,27 @@ if ($query)
 		<input type="hidden" id="w" name="w" />
 		<input type="hidden" id="h" name="h" /> 
   </p> 
-  <div data-toggle="buttons" id="mybutton" class="btn-group btn-group-justified">
-            <label title="Set Aspect Ratio" data-option="1.7777777777777777" data-method="setAspectRatio" class="btn btn-primary active">
+  <hr>
+
+  <div data-toggle="buttons" id="mybutton" >
+            <label title="Set Aspect Ratio" data-option="1.7777777777777777" data-method="setAspectRatio" class="radio-inline">
                 <input type="radio" value="1.7777777777777777" name="aspestRatio" id="aspestRatio1" class="sr-only">16:9
             </label>
-            <label title="Set Aspect Ratio" data-option="1.3333333333333333" data-method="setAspectRatio" class="btn btn-primary">
+            <label title="Set Aspect Ratio" data-option="1.3333333333333333" data-method="setAspectRatio" class="radio-inline">
                 <input type="radio" value="1.3333333333333333" name="aspestRatio" id="aspestRatio2" class="sr-only" checked="checked">4:3
             </label>
-            <label title="Set Aspect Ratio" data-option="1" data-method="setAspectRatio" class="btn btn-primary">
+            <label title="Set Aspect Ratio" data-option="1" data-method="setAspectRatio" class="radio-inline">
                 <input type="radio" value="1" name="aspestRatio" id="aspestRatio3" class="sr-only">1:1
             </label>
-            <label title="Set Aspect Ratio" data-option="0.6666666666666666" data-method="setAspectRatio" class="btn btn-primary">
+            <label title="Set Aspect Ratio" data-option="0.6666666666666666" data-method="setAspectRatio" class="radio-inline">
                 <input type="radio" value="0.6666666666666666" name="aspestRatio" id="aspestRatio4" class="sr-only">2:3
             </label>
-            <label title="Set Aspect Ratio" data-option="NaN" data-method="setAspectRatio" class="btn btn-primary">
+            <label title="Set Aspect Ratio" data-option="NaN" data-method="setAspectRatio" class="radio-inline">
                 <input type="radio" value="NaN" name="aspestRatio" id="aspestRatio5" class="sr-only">Free
             </label>
         </div>
-   <img id="uploadPreview" style="display:none;width:1000px;"/>
+        <hr>
+  <img id="uploadPreview" class="img-responsive"  style="display:none;border:3px solid #ccc;box-shadow: 10px 10px 5px #888888;height:600px;"/>
    
    <p class="dashuppe-text-all">Select Template<br />  
   <?php $options = array('1'  => 'Default ( full width )','2' => 'With left sidebar' ,'3' => 'With right sidebar');?>
@@ -102,8 +108,9 @@ if ($query)
 <br/>
 <input type="checkbox" name="allow_share" value="1" <?php if($set_data[2]==1) echo 'checked' ;?> >Allow people to share</input>
 <br/>
+<br>
   
-  <input type="submit" class="btn btn-default btn-lg" value="Submit" />
+  <input type="submit" class="btn btn-default btn-lg btn-block" value="Submit" />
   <?php echo form_close();?>
     </div>
     <div class="clear"></div>

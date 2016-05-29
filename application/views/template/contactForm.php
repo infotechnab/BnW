@@ -265,7 +265,7 @@ $(function(){
                                 <form class="form-horizontal">
 
                                     <fieldset>
-                                        <legend class="text-center header">Contact adfafdasfdsus</legend>
+                                        <legend class="text-center header">Contact us</legend>
                                         <div class="form-group">
                                             <div class="col-md-10 col-md-offset-1">
                                                 <input name="name" id="name" type="text" placeholder="Full Name" required class="form-control">

@@ -1,5 +1,6 @@
 
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+ 
  <?php
  if(isset($error))
   {
@@ -14,18 +15,37 @@
         }
         if(isset($categoryname)){
     ?>
-    <h2>Edit Category/ <?php echo $categoryname;  ?></h2>
-  <?php echo validation_errors(); ?>
+<h2>Edit Category/ <?php echo $categoryname;  ?></h2>
  <hr class="hr-gradient"/>
-  <p id="sucessmsg">
-  <?php echo $this->session->flashdata('message'); ?>
-    </p>
+   
+
+<div id="sucessmsg">
+  <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
+
+            }?>
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
+
+    }
+  if(isset($error))
+  {
+         echo "<div class='error'>".$error."</div>"; 
+       }
+  ?>
+</div>
+
   <?php echo form_open_multipart('dashboard/updatecategory');?>
-  <p class="dashuppe-text-all">Name<br />
+  <div class="form-group">
+  <label>Name</label>
        <input type="hidden" name="id" value="<?php echo $id; ?>" >
-  <input type="text" class="textInput" name="category_name" value="<?php echo htmlentities($categoryname); ?>" />
-   </p>
- <input type="submit" class="btn btn-default btn-lg" value="Submit" />
+  <input type="text" class="form-control"  name="category_name" value="<?php echo htmlentities($categoryname); ?>" />
+ </div>
+ <div class="form-group">
+ <input type="submit" class="btn btn-default btn-lg btn-block" value="Submit" />
+ </div>
   <?php echo form_close();
         }
         else{
@@ -33,6 +53,4 @@
         }?>
 
 
-</div>
-<div class="clear"></div>
 </div>

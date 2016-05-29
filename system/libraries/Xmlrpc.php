@@ -1714,13 +1714,13 @@ class XML_RPC_Values extends CI_Xmlrpc
 
 		if ($this->mytype === 1)
 		{
-			echo '<strong>XML_RPC_Values</strong>: scalar can have only one value<br />';
+			echo 'XML_RPC_Values: scalar can have only one value<br />';
 			return 0;
 		}
 
 		if ($typeof != 1)
 		{
-			echo '<strong>XML_RPC_Values</strong>: not a scalar type (${typeof})<br />';
+			echo 'XML_RPC_Values: not a scalar type (${typeof})<br />';
 			return 0;
 		}
 
@@ -1758,7 +1758,7 @@ class XML_RPC_Values extends CI_Xmlrpc
 	{
 		if ($this->mytype !== 0)
 		{
-			echo '<strong>XML_RPC_Values</strong>: already initialized as a ['.$this->kindOf().']<br />';
+			echo 'XML_RPC_Values: already initialized as a ['.$this->kindOf().']<br />';
 			return 0;
 		}
 
@@ -1779,7 +1779,7 @@ class XML_RPC_Values extends CI_Xmlrpc
 	{
 		if ($this->mytype !== 0)
 		{
-			echo '<strong>XML_RPC_Values</strong>: already initialized as a ['.$this->kindOf().']<br />';
+			echo 'XML_RPC_Values: already initialized as a ['.$this->kindOf().']<br />';
 			return 0;
 		}
 		$this->mytype = $this->xmlrpcTypes['struct'];

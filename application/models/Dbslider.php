@@ -11,7 +11,7 @@ class Dbslider extends CI_Model {
     }
 
     public function get_imagename($id){
-        $this->db->where("id",$id);
+      $this->db->where("id",$id);
         $query = $this->db->get("slide");
         return $query->result();
     }

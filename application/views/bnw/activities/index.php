@@ -1,10 +1,22 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
 
-<div id="body">
-    
-     <p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-    </p>
+<div id="sucessmsg">
+  <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
+
+            }?>
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
+
+    }
+  if(isset($error))
+  {
+         echo "<div class='error'>".$error."</div>"; 
+       }
+  ?>
+</div>
     <p>List of News and Events</p>
     <table border="1" cellpadding="10">
         <tr>
@@ -41,5 +53,4 @@
     <?php echo $links; ?>
 </div>
 </div>
-<div class="clear"></div>
 </div>

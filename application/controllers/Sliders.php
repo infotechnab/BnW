@@ -168,7 +168,7 @@ class Sliders extends CI_Controller {
             // $config['max_width'] = '2000';
             // $config['max_height'] = '2000';
 
-             $this->load->library('upload', $config);
+            $this->load->library('upload', $config);
 
             $data['meta'] = $this->dbsetting->get_meta_data();
             $this->load->view('bnw/templates/header', $data);
@@ -196,7 +196,7 @@ class Sliders extends CI_Controller {
                     //if valid
                     $id = $this->input->post('id');
                     $this->upload->do_upload('file_name');
-                   $data = array('upload_data' => $this->upload->data(''));
+                    $data = array('upload_data' => $this->upload->data(''));
                     $slideimage = $data['upload_data']['file_name'];
 
                     include_once 'imagemanipulator.php';
@@ -261,6 +261,7 @@ class Sliders extends CI_Controller {
     }
 
     public function deleteslider() {
+
         $id = $_POST['id'];
         $url = current_url();
         if ($this->session->userdata('admin_logged_in')) {
@@ -268,33 +269,37 @@ class Sliders extends CI_Controller {
             foreach ($slider as $slide){
                 $slider_img = $slide->slide_image;
             }
-  
-$filename1 = './content/uploads/sliderImages/' . $slider_img;
-$filename2 = './content/uploads/sliderImages/thumb_' . $slider_img;
-if (file_exists($filename1)) {
-    unlink($filename1);
-} else {}
-if (file_exists($filename2)) {
-    unlink($filename2);
-} else {}
-            $this->dbslider->delete_slider($id);
+
+            if(isset($slider_img))
+            {
+
+                $filename1 = './content/uploads/sliderImages/' . $slider_img;
+                $filename2 = './content/uploads/sliderImages/thumb_' . $slider_img;
+                if (file_exists($filename1)) {
+                    unlink($filename1);
+                } else {}
+                if (file_exists($filename2)) {
+                    unlink($filename2);
+                } else {}
+                $this->dbslider->delete_slider($id);
 //            $this->session->set_flashdata('message', 'Data Delete Sucessfully');
 //            redirect('sliders/slider');
+            }
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-public function xss_clean($str)
-	{
-		if ($this->security->xss_clean($str, TRUE) === FALSE)
-		{
-			$this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
-			return FALSE;
-		}
-		else
-		{
-			return TRUE;
-		}
-	}
+    public function xss_clean($str)
+    {
+        if ($this->security->xss_clean($str, TRUE) === FALSE)
+        {
+            $this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
+            return FALSE;
+        }
+        else
+        {
+            return TRUE;
+        }
+    }
     //============================================================================================================//
 }

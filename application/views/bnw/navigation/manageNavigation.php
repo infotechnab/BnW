@@ -15,7 +15,7 @@
         echo $this->session->flashdata('message');
     } ?>
     </p>
-    <h5>List of Navigation</h5>
+    <h4 class="text-left">List of Navigation</h4>
     <hr class="hr-gradient"/>
     
     <?php

@@ -64,7 +64,8 @@ class Dbsetting extends CI_Model {
     function get_meta_data() {
         $this->db->from('meta_data');
         $query = $this->db->get();
-        return $query->result();
+       return $query->result();
+
     }
 
     function update_meta_data($url, $title, $keyword, $description, $favicone) {

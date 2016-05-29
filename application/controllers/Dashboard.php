@@ -23,41 +23,57 @@ class Dashboard extends CI_Controller {
 
     //========================== START MENU ===========================================//
 
-    public function addmenu() {
+    public function addmenu() 
+    {
         $url = current_url();
-        if ($this->session->userdata('admin_logged_in')) {
+        if ($this->session->userdata('admin_logged_in'))
+         {
             $data['meta'] = $this->dbsetting->get_meta_data();
             $data["links"] = $this->pagination->create_links();
             $data["query"] = $this->dbdashboard->get_menu();
             $this->load->view('bnw/templates/header', $data);
             $this->load->view('bnw/templates/menu');
+           
+            if (($_SERVER['REQUEST_METHOD'] == 'POST')) 
+            {
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('menu_name', 'Name', 'required|callback_xss_clean|max_length[200]');
-
-            if ($this->form_validation->run() == FALSE) {
-
+             if ($this->form_validation->run() == FALSE) 
+             {
+ 
                 $this->load->view('bnw/menu/addnew');
-            } else {
+             } 
+
+            else 
+             {
                 $menuname = $this->input->post('menu_name');
                 $listOfMenu = $this->dbdashboard->get_list_of_menu();
-                foreach($listOfMenu as $menus){
+                foreach($listOfMenu as $menus)
+                {
                     $checkmenu = $menus->menu_name;
                     $compare = strcasecmp("$checkmenu","$menuname");
-                    $comTrue = true;
-                    if($compare == 0){
-                        $comTrue = false;
+                    if($compare == 0)
+                    {
                         $this->session->set_flashdata('message', 'Menu name "'.$menuname.'" already exists. Try giving another name.');
-                        redirect('dashboard/addmenu');
+                        return redirect('dashboard/addmenu');
                     }
                 }
-                if($comTrue == TRUE){
-                        $this->dbdashboard->add_new_menu($menuname);
-                        $this->session->set_flashdata('message', 'One menu added sucessfully');
-                        redirect('dashboard/addmenu');
-                    }
-            }
-        } else {
+         
+    $this->dbdashboard->add_new_menu($menuname);
+    $this->session->set_flashdata('message', 'One menu added sucessfully');
+    return redirect('dashboard/addmenu');                    
+            
+         }
+        } 
+        else 
+        {
+            $this->load->view('bnw/menu/addnew'); 
+        }
+    }
+    
+        else 
+          {
 
             redirect('login/index/?url=' . $url, 'refresh');
         }

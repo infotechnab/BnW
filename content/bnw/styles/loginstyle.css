@@ -1,75 +1,156 @@
 
-.modal-header, h4, .close {
-  background-color: #000;
-  color:white !important;
-  text-align: center;
-  font-size: 30px;
+
+@media only screen and (min-width: 300px)
+{
+  
+  .modal-header, h4, .close {
+        background-color: #000;
+        color:white !important;
+        text-align: center;
+        font-size: 15px;
+   }
+   .modal-footer {
+        background-color: #f9f9f9;
+   }
+  .modal-dialog {
+    width: 100%;
+ }
+ p a{
+
+     font-size: 12px;
+ }
+
 }
-.modal-footer {
-  background-color: #f9f9f9;
+@media only screen and (min-width: 360px)
+{
+  
+  .modal-header, h4, .close {
+        background-color: #000;
+        color:white !important;
+        text-align: center;
+        font-size: 15px;
+   }
+   .modal-footer {
+        background-color: #f9f9f9;
+   }
+  .modal-dialog {
+    width: 90%;
+ }
+ p a{
+
+     font-size: 14px;
+ }
+
 }
+
+
+@media only screen and (min-width: 640px)
+{
+  
+  .modal-header, h4, .close {
+        background-color: #000;
+        color:white !important;
+        text-align: center;
+        font-size: 30px;
+   }
+   .modal-footer {
+        background-color: #f9f9f9;
+   }
+  .modal-dialog {
+    margin:15% 15%;
+    width: 65%;
+ }
+ p a{
+
+     font-size: 14px;
+ }
+
+}
+
+@media only screen and (min-width: 768px)
+{
+  
+  .modal-header, h4, .close {
+        background-color: #000;
+        color:white !important;
+        text-align: center;
+        font-size: 30px;
+   }
+   .modal-footer {
+        background-color: #f9f9f9;
+   }
+  .modal-dialog {
+    margin:15% 15%;
+    width: 60%;
+ }
+
+}
+
+
+@media only screen and (min-width: 990px)
+{
+     .modal-header, h4, .close {
+        background-color: #000;
+        color:white !important;
+        text-align: center;
+        font-size: 30px;
+   }
+   .modal-footer {
+        background-color: #f9f9f9;
+   }
+  .modal-dialog {
+    margin:15% 22%;
+    width: 50%;
+ }
+
+}
+
+
+  
+
+
+
+@media only screen and (min-width: 1200px) 
+{
+   .modal-header, h4, .close {
+        background-color: #000;
+        color:white !important;
+        text-align: center;
+        font-size: 30px;
+   }
+   .modal-footer {
+        background-color: #f9f9f9;
+   }
+  .modal-dialog {
+    margin: 15% 28%;
+    width: 40%;
+ }
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width: 1500px) 
+{
+     .modal-header, h4, .close {
+        background-color: #000;
+        color:white !important;
+        text-align: center;
+        font-size: 30px;
+   }
+   .modal-footer {
+        background-color: #f9f9f9;
+   }
+  .modal-dialog {
+    margin: 25% 27%;
+    width: 45%;
+ }
+
+}
+
+
 input.ng-valid.ng-dirty{
   border:1px solid lightblue;
 }
 input.ng-invalid.ng-dirty{
   border: 1px solid red;
-}
-.email{
-  margin-left:15px;
-  color:#fff;
-  background-color:black;
-  font-size:16px;padding:15px;
-
-}
-.modal-dialog {
-  margin: 80px auto;
-  width: 400px;
-}
-
-.alert {
-  border: 1px solid transparent;
-  border-radius: 4px;
-  margin: auto;
-  width: 90%;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-label {
-  display: inline-block;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-.btn-block {
- 
-  margin: auto;
-  width: 90%;
-}
-
-label {
- 
-  
-  margin: auto auto auto 20px;
-  max-width: 60%;
-}
-.btn-block {
- 
-  margin: auto;
-  width: 90%;
-}
-.form-control {
- 
-  margin: auto;
-  padding: 10px;
-  
-  width: 90%;
-}
-
-.form-control {
-  margin: auto;
-  
-  width: 90%;
-}
-span#span{
-  margin-left:15px;
 }

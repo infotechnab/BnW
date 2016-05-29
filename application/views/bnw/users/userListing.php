@@ -1,4 +1,4 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-10 col-lg-10 col-xs-10 rightSide">
     
 <div id="body">
   
@@ -7,7 +7,7 @@
        <div id="sucessmsg">
    <?php if($this->session->flashdata('message'))
             {
-            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
 
             }?>
     </div>
@@ -62,8 +62,9 @@
             ?></td>
             
             <td>
-                <a href="<?php echo base_url().'user/edituser/'.$data->id; ?>"><i class="fa fa-pencil-square-o"></i></a> / 
-                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+  <a  href='<?php echo base_url().'user/edituser/'.$data->id; ?>'  title=" Edit " data-placement="top" style='font-size:16px;text-decoration:none;'> <span id='$menu_id' class='editNavs    glyphicon glyphicon-edit'></span> | </a> 
+ <a href="#" style='font-size:16px;text-decoration:none;'  title=" Delete "> <span  id="<?php echo $data->id; ?>" class='del_category glyphicon glyphicon-trash'></span></a>
+
             </td>
         </tr>
             <?php    $sn_count++; 

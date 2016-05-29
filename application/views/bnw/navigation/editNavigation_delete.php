@@ -12,7 +12,9 @@
        }
         
     ?>
-<div class="rightSide">
+<div class=" col-md-10 col-sm-10 col-lg-10 col-xs-10 rightside">
+
+
     <h2>Edit Navigation/ <?php echo $name; ?></h2>
 <hr class="hr-gradient"/>
     <div id="forLeftPage"> 

@@ -33,10 +33,10 @@
                         <h3>Contact</h3>
 
                         <ul class="list-unstyled contact">
-                            <li><p><strong><i class="fa fa-map-marker"></i> Address:</strong> <?php echo $address; ?></p></li> 
-                            <li><p><strong><i class="fa fa-envelope"></i> Mail Us:</strong> <a href="#"><?php echo $email; ?></a></p></li>
-                            <li> <p><strong><i class="fa fa-phone"></i> Phone:</strong> <?php echo $contact1; ?></p></li>
-                            <li> <p><strong><i class="fa fa-skype"></i> Skype</strong> <?php echo $contact2; ?></p></li>
+                            <li><p><i class="fa fa-map-marker"></i> Address: <?php echo $address; ?></p></li> 
+                            <li><p><i class="fa fa-envelope"></i> Mail Us: <a href="#"><?php echo $email; ?></a></p></li>
+                            <li> <p><i class="fa fa-phone"></i> Phone: <?php echo $contact1; ?></p></li>
+                            <li> <p><i class="fa fa-skype"></i> Skype <?php echo $contact2; ?></p></li>
 
                         </ul>
                     <?php } ?>

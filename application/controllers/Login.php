@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH'))
-exit('No direct script access allowed');
+  exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
@@ -15,101 +15,238 @@ class Login extends CI_Controller {
 
   }
 
-  function index() {
-   if ($this->session->userdata('admin_logged_in') == true)
-   {
-     return  redirect('bnw/index' ,'refresh');
 
 
-   } 
-   if(isset($_GET['url'])){
-    $data['link'] = $_GET['url'];
-  }
-  else{
+  function get_client_ip_env() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+    {
+      $ipaddress = getenv('HTTP_CLIENT_IP');
+    }
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+    {
+      $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    }
+    else if(getenv('HTTP_X_FORWARDED'))
+    {
+      $ipaddress = getenv('HTTP_X_FORWARDED');
+    }
+    else if(getenv('HTTP_FORWARDED_FOR'))
+    {
+      $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    }
+    else if(getenv('HTTP_FORWARDED'))
+    {
+      $ipaddress = getenv('HTTP_FORWARDED');
+    }
+    else if(getenv('REMOTE_ADDR'))
+    {
+      $ipaddress = getenv('REMOTE_ADDR');
+    }
+    else
+    {
+      $ipaddress = 'UNKNOWN';
+    }
 
-    $data['link'] = base_url().'bnw';
-  }
+    return  $ipaddress;
+    //return $ipaddress;
+        /*
+
+         $this->session->set_userdata('ipaddress',$ipaddress);
+          $this->session->set_userdata('test',5);
+        echo $data=$this->session->userdata('ipaddress');
+        */
+
+
+      }
+
+      function index() {
+         if ($this->session->userdata('admin_logged_in') == true)
+     {
+       return  redirect('bnw/index' ,'refresh');
+
+
+     } 
+        if(isset($_GET['url'])){
+          $data['link'] = $_GET['url'];
+        }
+        else{
+
+          $data['link'] = base_url().'bnw';
+        }
 
 //        if ($this->session->userdata('admin_logged_in')&& $this->session->userdata('admin')) {
 //             redirect('login', 'refresh');            by krishna
 //        } else {
             //$this->session->sess_destroy();
-  $data['meta'] = $this->dbsetting->get_meta_data();
-  $this->load->view('bnw/login/loginTemplate', $data);
-  $this->load->view('bnw/templates/footer', $data);
+        $data['meta'] = $this->dbsetting->get_meta_data();
+        $this->load->view('bnw/login/loginTemplate', $data);
+        $this->load->view('bnw/templates/footer', $data);
 //        }
-}
+      }
 
-function validate_credentials() {
+      function validate_credentials() {
 
-  $cookie_name = "attempts";
-        // if the cookie extis block user for 15 minutes in this pc;
-  
-  if(isset($_COOKIE[$cookie_name])) 
-  {
-    
-   return  redirect('bnw/index','refresh');
- }
-          // if the cookie is not set then set attempt to 0 
- else
- {
-  $attempt= $this->session->userdata('attempt_session_value');
-  if($attempt >3) 
-  {
-    $attempt=0;
-    $data = array( 'id'=>1,'attempt' => $attempt);
-    $this->db->update('login_attempt', $data);
-  }
-}
+        $this->load->library('session');
+      
 
-if (isset($_POST['checkMe'])) {
 
-  $this->session->sess_expiration = 60 * 60 * 24 * 7;
-  $this->session->sess_expire_on_close = FALSE;
-} else {
-  $this->session->sess_expiration = 60 * 60;
-  $this->session->sess_expire_on_close = FALSE;
-}
-$link = $this->input->post('requersUrl');
-$this->load->library('form_validation');
-$this->form_validation->set_rules('username', 'Username', 'trim|required|callback_xss_clean');
-$this->form_validation->set_rules('password', 'Password', 'trim|required|callback_xss_clean');
-if ($this->form_validation->run() == FALSE) {
-  $this->index();
-} else {
+        $cookie_name = "attempt";
+        
+           if(isset($_COOKIE[$cookie_name])) // if the cookie extis block user for 15 minutes in this pc;
+           {
+            
+             return  redirect('bnw/index','refresh');
+           }
+           else
+           {
 
-  $query = $this->dbmodel->validate();
-  if ($query) {
+
+            $attempt= $this->session->userdata('attempt_session_value');
+            if($attempt >=3) 
+            {
+              $attempt=0;
+              $data = array( 'id'=>1,'attempt' => $attempt);
+              $this->db->update('login_attempt', $data);
+            }
+          }
+
+          if (isset($_POST['checkMe'])) {
+
+            $this->session->sess_expiration = 60 * 60 * 24 * 7;
+            $this->session->sess_expire_on_close = FALSE;
+          } else {
+            $this->session->sess_expiration = 60 * 60;
+            $this->session->sess_expire_on_close = FALSE;
+          }
+          $link = $this->input->post('requersUrl');
+          $this->load->library('form_validation');
+          $this->form_validation->set_rules('username', 'Username', 'trim|required|callback_xss_clean');
+          $this->form_validation->set_rules('password', 'Password', 'trim|required|callback_xss_clean');
+          if ($this->form_validation->run() == FALSE) {
+            $this->index();
+          } else {
+            $this->load->model('dbmodel');
+
+            $query = $this->dbmodel->validate();
+            if ($query) {
                 // if the user's credentials validated...
 
-    $data = array(
-      'username' => $this->input->post('username'),
-      'admin_logged_in' => true,
-      'logged_in' =>true
+              $data = array(
+                'username' => $this->input->post('username'),
+                'admin_logged_in' => true,
+                'logged_in' =>true
 
-      );
-    $this->session->set_userdata($data);
-    if($link == base_url().'/bnw/logout')
-    {
-     redirect('bnw/index','refresh');
+                );
+              $this->session->set_userdata($data);
+              if($link == base_url().'/bnw/logout')
+              {
+               redirect('bnw/index','refresh');
 
-   }
-   else{
-     redirect($link);
-   }
- } else { 
-              //  if user enters incorrect username or password excutes login _atemtp fucntion 
-   $this->dbmodel->login_attempt();
+             }
+             else{
+               redirect($link);
+             }
+            } else { // incorrect username or password
 
 
+              $query = $this->db->get('login_attempt');
+              if($query->result()==0)
+              {
+                $data = array( 'id'=>1,'attempt' => 0);
+                $this->db->insert('login_attempt', $data);
+              }
+              else 
+              {
 
-   $data['meta'] = $this->dbsetting->get_meta_data();
-   $this->session->set_flashdata('message', 'Username or password incorrect');
+                $query = $this->db->get('login_attempt');
+
+                foreach ($query->result() as $row)
+                {
+                  $db_attempt=$row->attempt;
+
+                }
+
+                $attempt= $db_attempt +1;
+                $this->session->set_userdata('attempt_session_value',$attempt);
+                $data = array( 'id'=>1,'attempt' => $attempt);
+
+                $this->db->update('login_attempt', $data);
+                // start of login-attempt list;
+
+
+                $cilent_ip_address=$this->get_client_ip_env();
+                $query = $this->db->get_where('login_attempt_list', array('ip_address'=>$cilent_ip_address));
+
+
+
+                if($query->result())
+                {
+
+                  foreach($query->result() as $row)
+                  {
+                   $db_ipaddress=$row->ip_address;
+                   $db_id= $row->id;
+                   $cilent_ip_address=$this->get_client_ip_env();
+                   $user_attempts=$row->user_attempts;
+                 }
+
+                 if($db_ipaddress == $cilent_ip_address)
+
+                  {    $last_attempt_date= date('Y-m-d H:i:s');
+                $user_attempts=$user_attempts +1;
+                $data=array('id'=>$db_id,'user_attempts'=>$user_attempts, 'last_attempt_date'=>$last_attempt_date);
+
+                $this->db->update('login_attempt_list', $data);
+          
+
+              }
+              
+
+          }//for alderyd user in database;
+
+          else {
+
+           $user_attempts=1;
+           $name=$this->input->post('username');
+           $ip_address=$this->get_client_ip_env();
+           $last_attempt_date= date('Y-m-d H:i:s');
+           $data=array(
+            'id'=>1,
+            'name' =>$name,
+            'user_attempts'=>$user_attempts,
+            'ip_address' =>$ip_address,
+            'last_attempt_date' =>$last_attempt_date
+            );
+
+           $this->db->insert('login_attempt_list', $data);
+         }
+            ////ehd of login A-attemt list
+
+
+
+         if($attempt >=3)
+         {
+
+          $cookie_name = "attempt";
+          $cookie_value = $attempt;
+          setrawcookie($cookie_name, $cookie_value, time() + 250, "/");
+
+        }
+
+
+      }
+
+
+
+
+      $data['meta'] = $this->dbsetting->get_meta_data();
+      $this->session->set_flashdata('message', 'Username or password incorrect');
               //$data['link'] = base_url().'bnw';  by krishna
               //redirect('login');     by krishna
-   redirect('login/index/?url=' . $link, 'refresh');
- }
-}
+      redirect('login/index/?url=' . $link, 'refresh');
+    }
+  }
 }
 
 function logout() {
