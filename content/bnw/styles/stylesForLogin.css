@@ -244,5 +244,10 @@ a:hover
     }
 }
 
+.alert-default {
+  color: #fff;
+  background-color: #222;
+  border-color: #d6e9c6;
+}
 
 

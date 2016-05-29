@@ -168,8 +168,11 @@ class Album extends CI_Controller {
         if ($this->session->userdata('admin_logged_in')) {
             $media = $this->dbalbum->get_imagename($id);
             foreach ($media as $med){
-                $media_type = $med->media_type;
+             $media_type = $med->media_type;
             }
+            if(isset($media_type))
+            {
+
              $filename1 = './content/uploads/images/' . $media_type;
              $filename2 = './content/uploads/images/thumb_' . $media_type;
                 if (file_exists($filename1)) {
@@ -181,7 +184,9 @@ class Album extends CI_Controller {
             $this->dbalbum->delete_photo($id);
 //            $this->session->set_flashdata('message', 'Image Deleted Sucessfully');
 //            redirect('album/addalbum');
-        } else {
+        }
+    }
+         else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
@@ -285,15 +290,15 @@ class Album extends CI_Controller {
         }
     }
 public function xss_clean($str)
-	{
-		if ($this->security->xss_clean($str, TRUE) === FALSE)
-		{
-			$this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
-			return FALSE;
-		}
-		else
-		{
-			return TRUE;
-		}
-	}
+    {
+        if ($this->security->xss_clean($str, TRUE) === FALSE)
+        {
+            $this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
+            return FALSE;
+        }
+        else
+        {
+            return TRUE;
+        }
+    }
 }

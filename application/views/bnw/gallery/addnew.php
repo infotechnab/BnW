@@ -1,4 +1,6 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+
+
 <?php
 
 /*
@@ -7,22 +9,35 @@
  */
 ?>
   <h2>Add New Photo </h2>
-  <?php echo validation_errors();
-    echo $error;  
-  ?>
+ 
+<div id="sucessmsg">
   <?php if($this->session->flashdata('message'))
             {
-            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
 
             }?>
-  <?php echo form_open_multipart('bnw/addphoto');?>
-  <p>Title: *<br />
-  <input type="text" name="title" />
-  </p>
-<input type="file" name="userfile" size="20" />
-<br /><br />
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
 
-  <input class="btn btn-default" type="submit" value="Submit" />
+    }
+  if(isset($error))
+  {
+         echo "<div class='error'>".$error."</div>"; 
+       }
+  ?>
+</div>
+  <?php echo form_open_multipart('bnw/addphoto');?>
+  <div class="form-group">
+  <label>Title</label>
+
+  <input type="text" class="form-control" name="title" />
+</div>
+<div class="form-group">
+<lable>upload file</lable>
+<input type="file" class="btn btn-default" name="userfile" size="20" />
+</div>
+  <input class="btn btn-default btn-lg btn-block" type="submit" value="Submit" />
   <?php echo form_close();?>
 
    <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>  

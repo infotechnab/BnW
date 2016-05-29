@@ -1,4 +1,5 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+
 <?php
 
 /*
@@ -13,13 +14,24 @@
         if($query){
             
             ?>
-    <p id="sucessmsg">
- <?php if($this->session->flashdata('message'))
+  
+<div id="sucessmsg">
+  <?php if($this->session->flashdata('message'))
             {
-            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
 
             }?>
-    </p>
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
+
+    }
+  if(isset($error))
+  {
+         echo "<div class='error'>".$error."</div>"; 
+       }
+  ?>
+</div>
     <p>Photo Listing</p>  
     <table border="1" cellpadding="10">
         <tr>

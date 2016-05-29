@@ -1,4 +1,5 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+
 <?php
 
 
@@ -14,11 +15,24 @@
     ?>
   
 <h2>Are You Sure To Delete Media <?php echo $medianame; ?>
-  <?php echo validation_errors(); ?>
- 
-  <p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-    </p>
+  
+<div id="sucessmsg">
+  <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
+
+            }?>
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
+
+    }
+  if(isset($error))
+  {
+         echo "<div class='error'>".$error."</div>"; 
+       }
+  ?>
+</div>
   <?php echo form_open_multipart('album/deletemedia/?image='.$mediaImage);?>
   
       <input type="hidden" name="id" value="<?php echo $id; ?>" />

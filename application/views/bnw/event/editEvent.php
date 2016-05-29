@@ -26,7 +26,7 @@ $( "#datepicker" ).datepicker();
 $( "#datepicker_end" ).datepicker();
 });
  </script>
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
   
     <?php
          if(!empty($event)){
@@ -57,28 +57,40 @@ $( "#datepicker_end" ).datepicker();
         <div class="titleArea">
      <h2>Edit Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/events/allevents'; ?>">View All</a></h2>
 <hr class="hr-gradient"/>   
+
 <div id="sucessmsg">
-      <?php echo validation_errors();
-     if(isset($error)) {
-     echo $error;
-  }?>
-      <?php echo $this->session->flashdata('message'); ?>
-    </div>
-    </div> 
+  <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
+
+            }?>
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
+
+    }
+  if(isset($error))
+  {
+         echo "<div class='error'>".$error."</div>"; 
+       }
+  ?>
+</div> 
 <!--    <div id="forLeftPage">-->
  
   
  
   
   <?php echo form_open_multipart('events/update_event');?>
-  <p class="dashuppe-text-all">Name *<br />
+  <div class="form-group">
+  <label class="label-control">Name</label>
       <input type="hidden" name="id" value="<?php echo $id; ?>" >
-      <input type="text" class="textInput" name="Name" value="<?php echo htmlentities($name); ?>" />
-  </p>
-  <p class="dashuppe-text-all">Description<br />
+      <input type="text" class="form-control" name="Name" value="<?php echo htmlentities($name); ?>" />
+  </div>
+  <div class="form-group">
+  <label>Description</label>
   <textarea name="description" id="textara" rows="15" cols="50" style="resize:none;">
       <?php echo $description; ?></textarea>
-  </p>
+</div>
  
    
   <?php if($image==!NULL) { ?> <div  >
@@ -99,29 +111,31 @@ $( "#datepicker_end" ).datepicker();
 		<input type="hidden" id="w" name="w" />
                 <input type="hidden" id="h" name="h" /></p>
   <div data-toggle="buttons" id="mybutton" class="btn-group btn-group-justified">
-            <label title="Set Aspect Ratio" data-option="1.7777777777777777" data-method="setAspectRatio" class="btn btn-primary active">
+            <label title="Set Aspect Ratio" data-option="1.7777777777777777" data-method="setAspectRatio" class="radio-inline">
                 <input type="radio" value="1.7777777777777777" name="aspestRatio" id="aspestRatio1" class="sr-only">16:9
             </label>
-            <label title="Set Aspect Ratio" data-option="1.3333333333333333" data-method="setAspectRatio" class="btn btn-primary">
+            <label title="Set Aspect Ratio" data-option="1.3333333333333333" data-method="setAspectRatio" class="radio-inline">
                 <input type="radio" value="1.3333333333333333" name="aspestRatio" id="aspestRatio2" class="sr-only" checked="checked">4:3
             </label>
-            <label title="Set Aspect Ratio" data-option="1" data-method="setAspectRatio" class="btn btn-primary">
+            <label title="Set Aspect Ratio" data-option="1" data-method="setAspectRatio" class="radio-inline">
                 <input type="radio" value="1" name="aspestRatio" id="aspestRatio3" class="sr-only">1:1
             </label>
-            <label title="Set Aspect Ratio" data-option="0.6666666666666666" data-method="setAspectRatio" class="btn btn-primary">
+            <label title="Set Aspect Ratio" data-option="0.6666666666666666" data-method="setAspectRatio" class="radio-inline">
                 <input type="radio" value="0.6666666666666666" name="aspestRatio" id="aspestRatio4" class="sr-only">2:3
             </label>
-            <label title="Set Aspect Ratio" data-option="NaN" data-method="setAspectRatio" class="btn btn-primary">
+            <label title="Set Aspect Ratio" data-option="NaN" data-method="setAspectRatio" class="radio-inline">
                 <input type="radio" value="NaN" name="aspestRatio" id="aspestRatio5" class="sr-only">Free
             </label>
         </div>
-  <img id="uploadPreview" style="display:none;width:1000px;"/>
-   <p class="dashuppe-text-all">Type<br/>
-      <select class="textInput" name="event_type" id="select_type">
+  <img id="uploadPreview" class="img-responsive"  style="display:none;border:3px solid #ccc;box-shadow: 10px 10px 5px #888888;height:600px;"/>  <p class="dashuppe-text-all">Type<br/>
+      
+     <div class="form-group">
+
+      <select class="form-control" style="padding:1px;"  name="event_type" id="select_type">
           <option value="news" <?php if($type=="news"){ ?> selected="selected" <?php } ?> >News</option>
           <option value="event" id="evnt_show" <?php if($type=="event"){?> selected="selected" <?php } ?> >Event</option>
       </select>
- </p>
+  </div>
  
  <div id="event_items" <?php if($type=="event"){ ?>style="display: block;"<?php } else { ?>style="display: none;"<?php } ?>>
      
@@ -169,7 +183,7 @@ $( "#datepicker_end" ).datepicker();
  </div>
 
  
-  <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+  <input type="submit" class="btn btn-default btn-lg btn-block" value="Submit" />
   <?php echo form_close();?>
   </div>
  

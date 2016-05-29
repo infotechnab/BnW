@@ -1,11 +1,24 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+
 <h2>Add New News & Events </h2>
-  <?php echo validation_errors();
-   if(isset($error))
+ 
+<div id="sucessmsg">
+  <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
+
+            }?>
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
+
+    }
+  if(isset($error))
   {
-      echo $error;
-  }
+         echo "<div class='error'>".$error."</div>"; 
+       }
   ?>
+</div>
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
   <?php echo form_open_multipart('bnw/addactivity');?>
   <input type="text" name="type" value="event" />
@@ -26,9 +39,10 @@
   ?>
   </p>  
 
-  <input type="submit" value="Submit" />
+  <input type="submit" class="btn btn-default btn-lg btn-block" value="Submit" />
   <?php echo form_close();?>
   <p><b>Note:</b> Max file size: 500KB, Max Width: 1024px, Max Height: 768px </p>
+  
 </div>
-<div class="clear"></div>
+</div>
 </div>

@@ -1,5 +1,7 @@
 
-<div class="rightSide">
+<div class=" col-md-10 col-sm-10 col-lg-10 col-xs-10 rightside">
+
+
 <h2>Add New Notice</h2>
   <?php echo validation_errors(); ?>
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>

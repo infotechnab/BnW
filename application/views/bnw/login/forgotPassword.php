@@ -27,7 +27,7 @@
            <?php  //if  eror occur
            $admin_login_error=$this->session->flashdata('message');
            if(isset($admin_login_error)) {
-            echo "<div class='alert alert-default fade in ' style='background-color:black;color:white;'><strong>".$admin_login_error."</strong></div>"; } ?>
+            echo "<div class='alert alert-default fade in ' style='background-color:black;color:white;'>".$admin_login_error."</div>"; } ?>
 
             <table>
               <tr>

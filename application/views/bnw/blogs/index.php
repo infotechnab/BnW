@@ -1,7 +1,6 @@
-<div class="rightSide">
-
-<div id="body">    
-     <p id="sucessmsg">
+<div class=" col-md-10 col-sm-10 col-lg-10 col-xs-10 rightside">
+  
+ <p id="sucessmsg">
   <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
     </p>
     <p>List of Blog Documents </p>
@@ -48,5 +47,5 @@
     </table>
 </div>
 </div>
-<div class="clear"></div>
+</div>
 </div>

@@ -8,7 +8,9 @@ $this->load->helper('tamplate_helper');
 $recentPostGadget = recent_post();
 ?>
 
-<div class="rightSide"> <!-- rightside open -->
+<div class=" col-md-10 col-sm-10 col-lg-10 col-xs-10 rightside">
+
+ <!-- rightside open -->
     <div id="forLeftPage"><h2>Gadgets</h2></div>
     <div id="main"> <!-- main open -->
 

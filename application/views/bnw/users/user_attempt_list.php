@@ -1,4 +1,4 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-10 col-lg-10 col-xs-10 rightSide">
     
     <div id="body">
       
@@ -13,14 +13,15 @@
       
       if(!empty($query)){
         ?>
-        <table border="1" cellpadding="10" class="tbl_full_width" >
-            <tr>
+        <div class="table-responsive">
+        <table class="table table-bordered" >
+            <thead>
                 <th>S.N.</th>
                 <th>User Name</th>
                 <th>ip_address</th>
                 <th>attempts</th>
                 <th>last_attempt-date</th>
-            </tr>
+            </thead>
             <?php $sn_count = 1;
             foreach ($query as $data){  ?>
             <tr >
@@ -40,6 +41,7 @@
     }
     ?>
 </table>
+</div>
 <?php echo $links; ?>
 </div>
 </div>

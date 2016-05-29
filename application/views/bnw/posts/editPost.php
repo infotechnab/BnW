@@ -4,7 +4,8 @@
 <?php 
 $this->load->helper('summary_helper');
 ?>
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+
     <?php
     if ($miscSetting) {
         $i = 0;
@@ -36,28 +37,39 @@ $this->load->helper('summary_helper');
         <div class="titleArea">
             <h2>Edit Post/ <?php echo custom_echo_ed($post_title); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/offers/posts'; ?>">View All</a></h2>
             <hr class="hr-gradient"/>  
-            <div id="sucessmsg">
-    <?php
-    echo $this->session->flashdata('message');
-    if (isset($error)) {
-        echo $error;
+  
+<div id="sucessmsg">
+  <?php if($this->session->flashdata('message'))
+            {
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
+
+            }?>
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
+
     }
-    ?>
-                <?php echo validation_errors(); ?>
-            </div>
+  if(isset($error))
+  {
+         echo "<div class='error'>".$error."</div>"; 
+       }
+  ?>
+</div>
         </div> 
         <div id="">
 
     <?php echo form_open_multipart('offers/updatepost'); ?>
             <input type="hidden" name="hidden_image" value="<?php echo $post_image; ?>"/>
-            <p class="dashuppe-text-all">Title *<br />
+            <div class="form-group">
+            <label>Title</label>
                 <input type="hidden" name="id" value="<?php echo $id; ?>" >
-                <input type="text" class="textInput" name="post_title" value="<?php echo htmlentities($post_title); ?>" />
-            </p>
-            <p class="dashuppe-text-all">Body *<br />
+                <input type="text" class="form-control" name="post_title" value="<?php echo htmlentities($post_title); ?>" />
+            </div>
+            <div class="form-group">
+            <label for="">Body</label>
                 <textarea name="post_content" id="textara" rows="15" cols="50" style="resize:none;">
     <?php echo $post_content; ?></textarea>
-            </p>
+            </div>
                     <?php if ($post_image == !NULL) { ?> 
                 <div style="border: 1px solid #eee;padding: 1%;display: inline-block;min-height: 100px;">
                     <div style="">
@@ -94,10 +106,11 @@ $this->load->helper('summary_helper');
                 <input type="radio" value="NaN" name="aspestRatio" id="aspestRatio5" class="sr-only">Free
             </label>
         </div>
-            <img id="uploadPreview" style="display:none;width:1000px;"/>
-            <p class="dashuppe-text-all">Select Category<br/>
+  <img id="uploadPreview" class="img-responsive"  style="display:none;border:3px solid #ccc;box-shadow: 10px 10px 5px #888888;height:600px;"/>
 
-                <select class="textInput" name="selectCategory">
+             <div class="form-group">
+  <label for="sel1">Select Category</label>
+      <select class="form-control" style="padding:1px" name="selectCategory">
                     <option value="None">Select None</option>
     <?php
     foreach ($listOfCategory as $data) {
@@ -113,9 +126,14 @@ $this->load->helper('summary_helper');
 
                 </select>
 
-            </p>
+  </select>
+</div>
+     
 
-            <input type="submit" class="btn btn-default btn-lg" value="Submit" />
+             
+    
+
+            <input type="submit" class="btn btn-default btn-lg  btn-block" value="Submit" />
     <?php echo form_close(); ?>
 <?php
 } else {

@@ -2,10 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" media="screen" href="<?php echo base_url().'content/bootstrap/css/bootstrap.css'; ?>">
     <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/bnw/styles/dashBoardStyles.css" type="text/css" /> 
     <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>content/bnw/styles/stylesForGadgets.css" type="text/css" />
+    <script src="<?php echo base_url().'content/angularjs/angular.min.js'; ?>"></script>
     <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.min.js" ></script>
     <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.js" ></script>
+    <script src="<?php echo base_url(); ?>content/bnw/scripts/confirm.js" ></script>
+    <script src="<?php echo base_url(); ?>content/bnw/scripts/nicEdit.js"></script>
+    <script src="<?php echo base_url(); ?>content/bnw/scripts/DeleteImage.js"></script>
+    <script src="<?php echo base_url(); ?>content/bnw/scripts/gadgets.js"></script>
+    <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.imgareaselect.pack.js"></script>
+    <script src="<?php echo base_url(); ?>content/bnw/scripts/script.js"></script>
+    <script src="<?php echo base_url(); ?>content/bnw/scripts/imgpos.js"></script>
+    <script src="<?php echo base_url(); ?>content/bnw/scripts/media.js"></script>
+    <script src="<?php echo base_url(); ?>content/bnw/scripts/navTrack.js"></script>
+    <script src="<?php echo base_url(); ?>content/bootstrap/js/bootstrap.min.js" ></script>
     <script src="<?php echo base_url(); ?>content/bnw/scripts/confirm.js" ></script>
     <!--        <script src="<?php //echo base_url(); ?>content/bnw/scripts/DeleteImage.js"></script>-->
     <script src="<?php echo base_url(); ?>content/bnw/scripts/gadgets.js"></script>
@@ -17,15 +30,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'content/bnw/styles/imgareaselect-animated.css'; ?>" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <?php if(isset($meta))
-    {
-       foreach ($meta as $data)
-       {
-           $title[] = $data->value;
-       }
-   }
-   ?> 
-   <link rel="shortcut icon" href="<?php echo base_url().'content/uploads/images/'.$title[4]; ?>">
+   
+   <!-- <link rel="shortcut icon" href="<?php echo base_url().'content/uploads/images/'.$title[4]; ?>"> -->
 
 
 
@@ -46,6 +52,7 @@
         toolbar: "insertfile undo redo | styleselect | sizeselect | bold italic | fontselect |  fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media | forecolor backcolor emoticons"
     });
 </script>
+
         <!--<script type="text/javascript">
         
         bkLib.onDomLoaded(function() {
@@ -55,20 +62,15 @@
         new nicEditor({buttonList : ['fontSize','bold','italic','underline','strikeThrough','subscript','superscript','html','image']}).panelInstance('area4');
         new nicEditor({maxHeight : 100}).panelInstance('area5');
         });
+        -->
         
-    </script>-->
+<!--     </script> -->
 
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $("#topLeft").click(function () {
-                $(".leftSide").toggle();
-            });
-        });
-
-
-        $(document).ready(function () {
             $('.mainMenuItem').click(function () {
+
                 $('.mainMenuItem').children("ul").hide();
                 $(this).children("ul").show();
             });
@@ -77,11 +79,30 @@
 
     </script>
 
+    <script>
+$(document).ready(function(){
+    $("#uploadImage").click(function(){
+ $(".leftside").css({"background-color": "#222", "height": "2200"});
+  $(".rightside").css({"background-color": "#fff", "height": "2200"});
+    });
+});
+ </script>
+     <script>
+          $(document).ready(function(){
+            $("#toggle").click(function() {
+                $(".leftside").toggle();
 
-    <?php
+            });
+
+
+        });
+
+      </script>
+ 
+    <?php 
     if (isset($meta)) {
         foreach ($meta as $data) {
-            $title[] = $data->value;
+            $title[] = $data->value;// isssue of title is solved
         }
     }
     ?>        
@@ -89,124 +110,71 @@
 
 </head>
 <body>
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+            $("#togglemenu").click(function() {
+                $(".collapse").toggle();
 
-    <div class="full">
-        <div id="top">
-
-            <div id="topLeft">
-                <a href="<?php echo base_url('bnw'); ?>" ><img src="<?php echo base_url() . "content/bnw/images/menu.png"; ?>"/></a>
-            </div>
-            <img style="height:43px;" src="<?php echo base_url() . "content/bnw/images/bnw.png"; ?>"/>
-            <a  href="<?php echo base_url(); ?>" target="_blank" > <button type="button" id="switchLnk"> <i style="font-size:22px" class="fa fa-home" aria-hidden="true"> </i>
-                View Site</button></a>
-
-                <!-- for add new shortcut to add  some info  -->
-
-                <div class="dropdown">
-                  <button class="dropbtn"><i  style="font-size:22px" class="fa fa-plus" aria-hidden="true" >  </i>
-                    Add new</button>
-                    <div class="dropdown-content">
-                        <a href="<?php echo base_url('offers/addpost'); ?>"><i class="fa fa-file-o" aria-hidden="true"></i>
-
-                            post</a>
-                            <a href="<?php echo base_url('page/addpage'); ?>"><i class="fa fa-file-text" aria-hidden="true"></i>
-                                page</a>
-                                <a href="<?php echo base_url(''); ?>"><i class="fa fa-picture-o" aria-hidden="true"></i>
-                                    media</a>
-                                    <a href="<?php echo base_url(''); ?>"><i class="fa fa-user" aria-hidden="true"></i>
-                                        user</a>
-                                    </div> 
-                                </div>
+            });
 
 
-                                <?php if ($this->session->userdata('admin_logged_in')) { ?>
-                                <div id="topRight">
+        });
+
+</script>
 
 
-                                    <?php $username= $this->session->userdata('username'); ?>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+     <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" id="togglemenu" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+        </button>
+      <a href="<?php echo base_url('bnw'); ?>"> <img style="height:43px;" src="<?php echo base_url() . "content/bnw/images/bnw.png"; ?>"/></a>
+      <a href="#" id="toggle"> <img style="height:43px;" src="<?php echo base_url() . "content/bnw/images/toggle.png"; ?>"/></a>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar">
 
-                                    <div class="dropdown">
-                                        <p></p>
-                                        <button class="dropbtn"><i class="fa fa-user" aria-hidden="true"></i>
-                                            hellow, <?php echo $username." "; ?>
-                                        </button>
-                                        <div class="dropdown-contents">
-                                        <a href="<?php echo base_url('login/logout'); ?>" > <i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>  
-                                         </div> 
-                                        </div>
+      <ul class="nav navbar-nav">
+       <li><a id="switchlink" href="<?php echo base_url(); ?>" target="_blank" ><i style="font-size:18px"  class="fa fa-home" aria-hidden="true"> View Site</i></a></li>
+       <div class="dropdown">
+          <ul class="dropbtn"><i  style="font-size:18px" class="fa fa-plus" aria-hidden="true" > Add new </i>
+            <li class="dropdown-content">
+                <a href="<?php echo base_url('offers/addpost'); ?>"><i class="fa fa-file-o" aria-hidden="true"></i>
 
+                    Post</a>
+                    <a href="<?php echo base_url('page/addpage'); ?>"><i class="fa fa-file-text" aria-hidden="true"></i>
+                        Page</a>
+                        <a href="<?php echo base_url('media/addmedia'); ?>"><i class="fa fa-picture-o" aria-hidden="true"></i>
+                            Media</a>
+                            <a href="<?php echo base_url('user/adduser'); ?>"><i class="fa fa-user" aria-hidden="true"></i>
+                                User</a>
+                            </li> 
+                        </ul>
+                    </div>
 
-                                    </div>
-                                    <?php } ?>
-                                </div>
-                                <div class="clear"></div>
-                                <!top company name and logged in as and logout div closed here>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                 <?php if ($this->session->userdata('admin_logged_in')) { ?>
+                 <?php $username= $this->session->userdata('username'); ?>
 
+                 <div class="dropdowns">
 
-
-                                <!--media-->
-                                <div class="mediaPopUp">
-                                    <div class="mediaAction">
-                                        <div class="mediaUploadContainer">
-                                            <form id="mediauploads"><input type="file" name="images[]" class="newuploads" multiple></form>
-                                        </div>
-                                        <div id="progress_bar">
-                                            <div id="progressbar">
-                                                <div id="progress" style="width:0px;"></div>
-                                            </div>
-                                        </div>
-                                        <div id="status"></div>
-                                        <div class="clear"></div>
-                                        <div class="mediaClose">X</div>
-                                    </div>
-                                    <div class="mediaImgContainer">
-                                        <div id="list"></div>
-                                    </div>
-                                    <div class="mediaDetails">
-                                        ATTACHMENT DETAILS 
-                                        <div class="imgprev">
-                                            <img src="" height="100" width="100">
-                                        </div>
-                                        <br>
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <label>Title</label>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="imgName">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Caption</label>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="imgName">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>ALT Text</label>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="imgName">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Details</label>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="imgName">
-                                                </td>
-                                            </tr>
-                                        </table>
+                   <ul  class="dropbtns"><i class="fa fa-user" aria-hidden="true"></i>
+                    hellow, <?php echo $username; ?>
+                    <li class="dropdown-contents">
+                      <a href="<?php echo base_url('login/logout'); ?>" > <span class="glyphicon glyphicon-log-in"></span>Logout</a>  
+                  </li>
+                  </ul>
 
 
-                                        <br>
-                                        Edit Image
-                                        Delete Image
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
+
+              </div>
+              <?php } ?> 
+          </ul>
+      </div>
+  </div>
+</nav>
+

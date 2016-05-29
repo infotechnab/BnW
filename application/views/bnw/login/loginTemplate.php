@@ -27,16 +27,16 @@
 <!-- main  bootstrap container class define angualr js ng-appp= login and ng-controller ="loginctrl" -->
 
  <div class="container" ng-app="login" ng-controller="loginCtrl">
-  <div class="modal-dialog">
+  <div class="modal-dialog  col-md-12 col-sm-12 col-xs-12 ">
   <!-- modal content -->
 
    <div class="modal-content">
    <!-- modal header -->
 
-    <div class="modal-header" style="padding:10px 5px;">  
+    <div class="modal-header">  
      <img  alt="bnw" src="<?php echo base_url()."content/bnw/images/bnw.png"; ?>"/>
     </div>
-   <div class="modal-body" style="padding:20px 5px;">
+   <div class="modal-body">
    <?php  //if admin login eror occur
               $cookie_name = "attempts";
 
@@ -44,7 +44,7 @@
                  {
 
                     // display error message for login attempt 
-                   echo "<div class='alert alert-default fade in ' style='background-color:black;color:white;padding:2px font-size:13px;'><strong>3 wrong attempt plz wait for 15 minutes</strong></div>"; 
+                   echo "<div class='alert alert-default fade in' style='background-color:black;color:white;'>3 wrong attempt plz wait for 15 minutes</div>"; 
                    ?>
 
                    <!-- if  3 login attempt disabled all input field  -->
@@ -67,7 +67,7 @@
                  $admin_login_error=$this->session->flashdata('message');
                  if(isset($admin_login_error))
                  {
-                   echo "<div class='alert alert-default fade in ' style='background-color:black;color:white;'><strong>".$admin_login_error."</strong></div>"; 
+                   echo "<div class='alert alert-default fade in ' style='background-color:black;color:white;'>".$admin_login_error."</div>"; 
                  } 
                }
 

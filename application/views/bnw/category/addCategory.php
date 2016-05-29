@@ -1,57 +1,71 @@
-
-<div class="rightSide">
-    <h2>Dashboard >> Add New Category</a></h2>
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+    <h2>Dashboard >>> &nbsp; &nbsp; &nbsp; &nbsp; Add New Category</h2>
 <hr class="hr-gradient"/>
-     <?php echo validation_errors();
-  if(isset($error))
+ <div id="sucessmsg">
+  <?php if($this->session->flashdata('message'))
   {
-      echo $error;
-  }
-  ?>
-<p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){
+    echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
 
-   echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
-    }?>
-</p>
+  }?>
+  <?php $validation_errors= validation_errors();
+  if(isset($validation_errors)){
+   echo "<div class='error'>".$validation_errors."</div>"; 
+
+ }
+ if(isset($error))
+ {
+   echo "<div class='error'>".$error."</div>"; 
+ }
+ ?>
+</div>
+<div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
   <?php echo form_open_multipart('dashboard/addcategory');?>
+  <div class="form-group">
+  <label class="control-label">Name :</label>
+  <input type="text" class="form-control" name="category_name" value="<?php echo set_value('category_name'); ?>" />
+  </div>
   
-  <p class="dashuppe-text-all">Name<br />
-  <input type="text" class="textInput" name="category_name" value="<?php echo set_value('category_name'); ?>" />
-  </p>
-  
-   <input type="submit" class="btn btn-default btn-lg" value="Submit" />
+   <input type="submit" class="btn btn-default btn-lg btn-block" value="Submit" />
   <?php echo form_close();?>
+</div>
 
-<div id="body">
-    <h4 style="margin: 15px 0px 5px 5px;">All Categories</h4>
-   <hr style="width: 30%; float: left;" />
-   <div class="clear"></div>
+<div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+    <h2>All Categories</h2>
+    <hr style="border:2px solid #222;margin-top:-8px;">
     <?php    
         if(!empty($query)){
             ?>
             <div class="table-responsive">
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover">
+    <thead>
         <tr>
             <th>S.N.</th>
             <th>Name of Category</th> 
             <th>Action</th>
         </tr>
-    
+    </thead>
+    <tbody>
     <?php
-            foreach ($query as $data){
+    $i=1;
+            foreach ($query as $data)
+            {
             
               // $catData =  $this->dbmodel->get_file($data->id);
                                 
                 ?>
+                
         <tr class="action">
-            <td><?php echo $data->id; ?></td>
+
+
+            <td><?php echo  $i++?></td>
             <td><?php echo $data->category_name ?></td>
-            <td><?php echo anchor('dashboard/editcategory/'.$data->id,'<i class="fa fa-pencil-square-o"></i>'); ?> / 
+
+            <td>
+ <a  href='<?php echo base_url().'dashboard/editcategory/'.$data->id; ?>'  title=" Edit " data-placement="top" style='font-size:16px;text-decoration:none;'> <span id='$menu_id' class='editNavs    glyphicon glyphicon-edit'></span> | </a> 
             <?php
             if(empty($catData))
             { ?>
-                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+ <a href="#" style='font-size:16px;text-decoration:none;'  title=" Delete "> <span  id="<?php echo $data->id; ?>" class='del_category glyphicon glyphicon-trash'></span></a>
                 <!--echo anchor('dashboard/deletecategory/'.$data->id,'<i class="fa fa-trash-o"></i>');-->
                 
             <?php }
@@ -65,8 +79,12 @@
             
             </td>
         </tr>
+    
             <?php    
             }
+            ?>
+</tbody>
+            <?php 
         }
         else{
             echo '<h3>Sorry Categories are not available</h3>';
@@ -78,10 +96,7 @@
     <?php echo $links; ?>
 </div>
 </div>
-<div class="clear"></div>
-</div>
-
-<span id="confirm">sadf</span>
+<span id="confirm"> </span>
 
 <script>
     $(document).ready(function(){

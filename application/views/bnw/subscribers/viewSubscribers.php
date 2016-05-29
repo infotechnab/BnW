@@ -1,5 +1,5 @@
-<div class="rightSide">
-<div id="body">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+
     <h2>Subscribers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url().'index.php/subscribers/viewContact'; ?>">View Contact List</a></h2>
     <hr class="hr-gradient"/>
      <div id="sucessmsg">
@@ -25,7 +25,9 @@
             <td><?php echo $data->full_name; ?></td>
             <td><?php echo $data->email; ?></td>            
             <td>
-                <span class="del_category" id="<?php echo $data->id; ?>"><i class="fa fa-trash-o"></i></span>
+
+     <a href="#" style='font-size:16px;text-decoration:none;'  title=" Delete "> <span  id="<?php echo $data->id; ?>" class='del_category glyphicon glyphicon-trash'></span></a>
+
             </td>
           </tr>
             <?php    

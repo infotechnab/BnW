@@ -1,10 +1,23 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-10 col-lg-10 col-xs-10 rightside">
+
  <h2> Add New Navigation </h2>
-  <?php echo validation_errors(); ?>
- 
-  <p id="sucessmsg">
-  <?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}?>
-    </p>
+ <div id="sucessmsg">
+  <?php if($this->session->flashdata('message'))
+  {
+    echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
+
+  }?>
+  <?php $validation_errors= validation_errors();
+  if(isset($validation_errors)){
+   echo "<div class='error'>".$validation_errors."</div>"; 
+
+ }
+ if(isset($error))
+ {
+   echo "<div class='error'>".$error."</div>"; 
+ }
+ ?>
+</div>
   <?php echo form_open_multipart('dashboard/addnavigation');?>
   
       
@@ -22,7 +35,7 @@
       <input type="text" name="menu_id" /> </p>
   
  
-    <input class="btn btn-default" type="submit" value="Submit" />
+    <input class="btn btn-default btn-block" type="submit" value="Submit" />
   <?php echo form_close();?>
 </div>
 <div class="clear"></div>

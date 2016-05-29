@@ -1,4 +1,6 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-10 col-lg-10 col-xs-10 rightside">
+
+
 <div>
     <h1>
        Are you sure want to delete this page ?

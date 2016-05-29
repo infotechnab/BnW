@@ -1,4 +1,6 @@
-<div class="rightSide">
+<div class=" col-md-10 col-sm-9 col-lg-10 col-xs-8 rightside">
+
+
 <?php
 
 
@@ -16,38 +18,50 @@
 <hr class="hr-gradient"/>
   
 
+
 <div id="sucessmsg">
- <?php if($this->session->flashdata('message'))
+  <?php if($this->session->flashdata('message'))
             {
-            echo "<div class='alert alert-default fade in '><strong>".$this->session->flashdata('message')."</strong></div>"; 
+            echo "<div class='alert alert-default fade in '>".$this->session->flashdata('message')."</div>"; 
 
             }?>
-    <?php echo validation_errors();
+    <?php $validation_errors= validation_errors();
+    if(isset($validation_errors)){
+     echo "<div class='error'>".$validation_errors."</div>"; 
+
+    }
   if(isset($error))
   {
-      echo $error;
-  }
+         echo "<div class='error'>".$error."</div>"; 
+       }
   ?>
 </div>
   
   <?php echo form_open_multipart('sliders/updateslider');?>
-  <p class="dashuppe-text-all">Title *<br />
+  <div class="form-group">
+  <label>Title</label>
+
       <input type="hidden" name="id" value="<?php echo $id; ?>" />
-      <input type="text" class="textInput" name="slide_name" value="<?php echo htmlentities($slidename); ?>" />
-  </p>
+      <input type="text" class="form-control" name="slide_name" value="<?php echo htmlentities($slidename); ?>" />
+  </div>
   
   <?php if((trim($slideImage== NULL)) || trim($slideImage !== ' ')){ ?>
-  
-  <p class="dashuppe-text-all">Existing Slide Image<br/>
+  <div class="form-group">
+  <label>Existing Slide Image</label>
   <div style="max-width: 150px; max-height: 150px;">
       <img src="<?php echo base_url().'content/uploads/sliderImages/'.$slideImage ?>" style="max-width: 150px; max-height: 150px;">
   </div>
   <?php } ?>
-  <p class="dashuppe-text-all">Image<br/> <input type="file" class="textInput" name="file_name" id="file" accept="image/*"/><input type="hidden" name="prevImg" value="<?php echo $slideImage; ?>"> </p>
-  <p class="dashuppe-text-all">Content<br />
-   <input type="text" class="textInput" name="slide_content" value="<?php echo $slidecontent; ?>" />
-  </p>
-    <input type="submit" class="btn btn-default btn-lg" value="Submit" />
+  </div>
+  <div class="form-group">
+  <label>Image</label>
+   <input type="file" class="btn btn-default" name="file_name" id="file" accept="image/*"/><input type="hidden" name="prevImg" value="<?php echo $slideImage; ?>"> </p>
+  </div>
+  <div class="form-group">
+  <label>Content</label>
+   <input type="text" class="form-control" name="slide_content" value="<?php echo $slidecontent; ?>" />
+  </div>
+    <input type="submit" class="btn btn-default btn-lg btn-block" value="Submit" />
   <?php echo form_close();?>
 <p><b>Note:</b> Max file size: 2000KB,  Width: 2000px, Height: 2000px </p>
  <?php } else{

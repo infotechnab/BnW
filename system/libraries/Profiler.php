@@ -274,7 +274,7 @@ class CI_Profiler {
 
 					foreach ($highlight as $bold)
 					{
-						$val = str_replace($bold, '<strong>'.$bold.'</strong>', $val);
+						$val = str_replace($bold, ''.$bold.'', $val);
 					}
 
 					$output .= '<tr><td style="padding:5px;vertical-align:top;width:1%;color:#900;font-weight:normal;background-color:#ddd;">'

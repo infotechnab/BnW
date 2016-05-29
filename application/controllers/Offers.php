@@ -465,15 +465,15 @@ if (file_exists($filename2)) {
     }
     
     public function xss_clean($str)
-	{
-		if ($this->security->xss_clean($str, TRUE) === FALSE)
-		{
-			$this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
-			return FALSE;
-		}
-		else
-		{
-			return TRUE;
-		}
-	}
+    {
+        if ($this->security->xss_clean($str, TRUE) === FALSE)
+        {
+            $this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
+            return FALSE;
+        }
+        else
+        {
+            return TRUE;
+        }
+    }
 }

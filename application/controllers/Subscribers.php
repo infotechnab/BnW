@@ -111,14 +111,14 @@ class Subscribers extends CI_Controller {
         $captcha_info = $this->session->userdata('captcha_info');
 if ($captcha_info['code'] != $captcha)
 {
-    echo "<strong>Sorry!</strong> Captcha did not match.";
+    echo "Sorry! Captcha did not match.";
 }
 else{
         $type="feedback";
         $this->contact_model->add_new_contact_feedback($name, $email, $message, $type);
         $this->sendhotelEmail($email, $name, $phone, $message);
         $this->sendUserEmail($email, $name);
-        echo "<strong>Success!</strong> Your message has been sent successfully.";
+        echo "Success! Your message has been sent successfully.";
     }
     } 
     
