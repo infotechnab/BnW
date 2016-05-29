@@ -38,7 +38,7 @@
     </div>
    <div class="modal-body">
    <?php  //if admin login eror occur
-              $cookie_name = "attempts";
+              $cookie_name = "attempt";
 
                  if(isset($_COOKIE[$cookie_name])) // if the cookie extis block user for 15 minutes in this pc;
                  {

@@ -63,9 +63,7 @@ class Login extends CI_Controller {
       function index() {
          if ($this->session->userdata('admin_logged_in') == true)
      {
-       return  redirect('bnw/index' ,'refresh');
-
-
+        return  redirect('bnw/index' ,'refresh');
      } 
         if(isset($_GET['url'])){
           $data['link'] = $_GET['url'];
@@ -92,9 +90,8 @@ class Login extends CI_Controller {
 
 
         $cookie_name = "attempt";
-        
            if(isset($_COOKIE[$cookie_name])) // if the cookie extis block user for 15 minutes in this pc;
-           {
+           {   
             
              return  redirect('bnw/index','refresh');
            }
@@ -106,7 +103,8 @@ class Login extends CI_Controller {
             if($attempt >=3) 
             {
               $attempt=0;
-              $data = array( 'id'=>1,'attempt' => $attempt);
+              $data = array('attempt' => $attempt);
+              $this->db->where('id','1');
               $this->db->update('login_attempt', $data);
             }
           }
@@ -195,8 +193,8 @@ class Login extends CI_Controller {
 
                   {    $last_attempt_date= date('Y-m-d H:i:s');
                 $user_attempts=$user_attempts +1;
-                $data=array('id'=>$db_id,'user_attempts'=>$user_attempts, 'last_attempt_date'=>$last_attempt_date);
-
+                $data=array('user_attempts'=>$user_attempts, 'last_attempt_date'=>$last_attempt_date);
+                $this->db->where('id',$db_id);
                 $this->db->update('login_attempt_list', $data);
           
 
@@ -230,7 +228,7 @@ class Login extends CI_Controller {
 
           $cookie_name = "attempt";
           $cookie_value = $attempt;
-          setrawcookie($cookie_name, $cookie_value, time() + 250, "/");
+          setrawcookie($cookie_name, $cookie_value, time() + 15, "/");
 
         }
 
