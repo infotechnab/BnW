@@ -42,10 +42,6 @@ class Login extends CI_Controller {
 
 function validate_credentials() {
 
-  $this->load->library('session');
-  
-
-
   $cookie_name = "attempts";
         // if the cookie extis block user for 15 minutes in this pc;
   
@@ -57,7 +53,6 @@ function validate_credentials() {
           // if the cookie is not set then set attempt to 0 
  else
  {
-
   $attempt= $this->session->userdata('attempt_session_value');
   if($attempt >3) 
   {
@@ -82,7 +77,6 @@ $this->form_validation->set_rules('password', 'Password', 'trim|required|callbac
 if ($this->form_validation->run() == FALSE) {
   $this->index();
 } else {
-            //$this->load->model('dbmodel'); modal is alery loaded so comment it
 
   $query = $this->dbmodel->validate();
   if ($query) {
