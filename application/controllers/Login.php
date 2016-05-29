@@ -83,6 +83,7 @@ class Login extends CI_Controller {
 //        }
       }
 
+/*   **********************************************VALID FOR USER LOGIN ******************8 */
       function validate_credentials() {
 
         $this->load->library('session');
@@ -228,7 +229,7 @@ class Login extends CI_Controller {
 
           $cookie_name = "attempt";
           $cookie_value = $attempt;
-          setrawcookie($cookie_name, $cookie_value, time() + 15, "/");
+          setrawcookie($cookie_name, $cookie_value, time() + 900, "/");
 
         }
 
