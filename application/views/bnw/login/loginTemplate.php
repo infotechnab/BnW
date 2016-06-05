@@ -19,7 +19,7 @@
 <script src="<?php echo base_url().'content/angularjs/angular.min.js'; ?>"></script>
 <!-- load jquery libaray -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+ <script src="<?php echo base_url(); ?>content/bnw/scripts/jquery.min.js" ></script>
  </head>  <!--head closed -->
 
 <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>body starts >>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
@@ -38,7 +38,7 @@
     </div>
    <div class="modal-body">
    <?php  //if admin login eror occur
-              $cookie_name = "attempt";
+              $cookie_name = "attempts";
 
                  if(isset($_COOKIE[$cookie_name])) // if the cookie extis block user for 15 minutes in this pc;
                  {
@@ -52,8 +52,6 @@
                     $(document).ready(function(){
 
                       $("input").attr('disabled', true);
-                      
-
                     });
                   </script>
                   <?php
@@ -105,8 +103,7 @@
              </div>
              <!-- form buttons  -->
 
-             <button type="submit" ng-disabled="myForm.password.$dirty && myForm.password.$invalid ||
-             myForm.username.$dirty && myForm.username.$invalid || incomplete " class="btn btn-default btn-lg btn-block" style="background-color:#000;color:#fff;"><span class="glyphicon glyphicon-off"></span> Login</button>
+             <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-default btn-lg btn-block" style="background-color:#000;color:#fff;"><span class="glyphicon glyphicon-off"></span> Login</button>
            
            </form>
            <br>

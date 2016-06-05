@@ -49,14 +49,6 @@ class Login extends CI_Controller {
     }
 
     return  $ipaddress;
-    //return $ipaddress;
-        /*
-
-         $this->session->set_userdata('ipaddress',$ipaddress);
-          $this->session->set_userdata('test',5);
-        echo $data=$this->session->userdata('ipaddress');
-        */
-
 
       }
 
@@ -64,7 +56,7 @@ class Login extends CI_Controller {
          if ($this->session->userdata('admin_logged_in') == true)
      {
         return  redirect('bnw/index' ,'refresh');
-     } 
+     }
         if(isset($_GET['url'])){
           $data['link'] = $_GET['url'];
         }
@@ -72,36 +64,25 @@ class Login extends CI_Controller {
 
           $data['link'] = base_url().'bnw';
         }
-
-//        if ($this->session->userdata('admin_logged_in')&& $this->session->userdata('admin')) {
-//             redirect('login', 'refresh');            by krishna
-//        } else {
-            //$this->session->sess_destroy();
         $data['meta'] = $this->dbsetting->get_meta_data();
         $this->load->view('bnw/login/loginTemplate', $data);
         $this->load->view('bnw/templates/footer', $data);
-//        }
       }
 
-/*   **********************************************VALID FOR USER LOGIN ******************8 */
+/* **********************************************VALID FOR USER LOGIN ******************8 */
       function validate_credentials() {
-
         $this->load->library('session');
-      
-
-
-        $cookie_name = "attempt";
-           if(isset($_COOKIE[$cookie_name])) // if the cookie extis block user for 15 minutes in this pc;
-           {   
-            
+        $cookie_name = "attempts";
+         // if the cookie extis block user for 15 minutes redire to login page
+           if(isset($_COOKIE[$cookie_name]))
+           {
              return  redirect('bnw/index','refresh');
            }
            else
            {
-
-
             $attempt= $this->session->userdata('attempt_session_value');
-            if($attempt >=3) 
+
+            if($attempt >=3)
             {
               $attempt=0;
               $data = array('attempt' => $attempt);
@@ -109,7 +90,6 @@ class Login extends CI_Controller {
               $this->db->update('login_attempt', $data);
             }
           }
-
           if (isset($_POST['checkMe'])) {
 
             $this->session->sess_expiration = 60 * 60 * 24 * 7;
@@ -125,120 +105,25 @@ class Login extends CI_Controller {
           if ($this->form_validation->run() == FALSE) {
             $this->index();
           } else {
-            $this->load->model('dbmodel');
-
             $query = $this->dbmodel->validate();
             if ($query) {
                 // if the user's credentials validated...
-
               $data = array(
                 'username' => $this->input->post('username'),
                 'admin_logged_in' => true,
                 'logged_in' =>true
-
                 );
               $this->session->set_userdata($data);
               if($link == base_url().'/bnw/logout')
               {
                redirect('bnw/index','refresh');
-
              }
              else{
                redirect($link);
              }
-            } else { // incorrect username or password
-
-
-              $query = $this->db->get('login_attempt');
-              if($query->result()==0)
-              {
-                $data = array( 'id'=>1,'attempt' => 0);
-                $this->db->insert('login_attempt', $data);
-              }
-              else 
-              {
-
-                $query = $this->db->get('login_attempt');
-
-                foreach ($query->result() as $row)
-                {
-                  $db_attempt=$row->attempt;
-
-                }
-
-                $attempt= $db_attempt +1;
-                $this->session->set_userdata('attempt_session_value',$attempt);
-                $data = array( 'id'=>1,'attempt' => $attempt);
-
-                $this->db->update('login_attempt', $data);
-                // start of login-attempt list;
-
-
-                $cilent_ip_address=$this->get_client_ip_env();
-                $query = $this->db->get_where('login_attempt_list', array('ip_address'=>$cilent_ip_address));
-
-
-
-                if($query->result())
-                {
-
-                  foreach($query->result() as $row)
-                  {
-                   $db_ipaddress=$row->ip_address;
-                   $db_id= $row->id;
-                   $cilent_ip_address=$this->get_client_ip_env();
-                   $user_attempts=$row->user_attempts;
-                 }
-
-                 if($db_ipaddress == $cilent_ip_address)
-
-                  {    $last_attempt_date= date('Y-m-d H:i:s');
-                $user_attempts=$user_attempts +1;
-                $data=array('user_attempts'=>$user_attempts, 'last_attempt_date'=>$last_attempt_date);
-                $this->db->where('id',$db_id);
-                $this->db->update('login_attempt_list', $data);
-          
-
-              }
-              
-
-          }//for alderyd user in database;
-
-          else {
-
-           $user_attempts=1;
-           $name=$this->input->post('username');
-           $ip_address=$this->get_client_ip_env();
-           $last_attempt_date= date('Y-m-d H:i:s');
-           $data=array(
-            'id'=>1,
-            'name' =>$name,
-            'user_attempts'=>$user_attempts,
-            'ip_address' =>$ip_address,
-            'last_attempt_date' =>$last_attempt_date
-            );
-
-           $this->db->insert('login_attempt_list', $data);
-         }
-            ////ehd of login A-attemt list
-
-
-
-         if($attempt >=3)
-         {
-
-          $cookie_name = "attempt";
-          $cookie_value = $attempt;
-          setrawcookie($cookie_name, $cookie_value, time() + 900, "/");
-
-        }
-
-
+           } else { // if user enter incorrect username or password
+            $query = $this->dbmodel->login_attempt();
       }
-
-
-
-
       $data['meta'] = $this->dbsetting->get_meta_data();
       $this->session->set_flashdata('message', 'Username or password incorrect');
               //$data['link'] = base_url().'bnw';  by krishna
@@ -246,7 +131,6 @@ class Login extends CI_Controller {
       redirect('login/index/?url=' . $link, 'refresh');
     }
   }
-}
 
 function logout() {
   if ($this->session->userdata('admin_logged_in') == TRUE) {
@@ -346,7 +230,7 @@ if (!empty($data['query'])) {
   $this->load->view('bnw/login/rePassword', $data);
 } else {
   $this->load->view("bnw/login/tokenexpiremsg");
-} 
+}
 $this->load->view('bnw/templates/footer', $data);
 }
 
@@ -373,7 +257,7 @@ if ($this->form_validation->run() == FALSE) {
     $this->load->view('bnw/login/rePassword', $data);
   } else {
     $this->load->view("bnw/login/tokenexpiremsg");
-  } 
+  }
   $this->load->view('bnw/templates/footer', $data);
 
 } else {
@@ -381,7 +265,7 @@ if ($this->form_validation->run() == FALSE) {
   $this->dbmodel->update_user_password($email, $userPassword);
   $this->session->set_flashdata('message', 'Your password has been reseted. Please login with new password.');
   redirect('login', 'refresh');
-} 
+}
 }
 
 function userregister()
@@ -392,7 +276,7 @@ function userregister()
   $pass = $_POST['pass'];
   $check = $this->dbmodel->check_data($email);
          if (!empty($check)) { //if the data exists show error message
-          echo 'FALSE';     
+          echo 'FALSE';
 
         }
         else {
@@ -407,7 +291,7 @@ function userregister()
           $this->registerEmail($email, $name);
 
           echo 'TRUE';
-          
+
         }
 
       }

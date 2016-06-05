@@ -18,7 +18,6 @@
     <script src="<?php echo base_url(); ?>content/bnw/scripts/imgpos.js"></script>
     <script src="<?php echo base_url(); ?>content/bnw/scripts/media.js"></script>
     <script src="<?php echo base_url(); ?>content/bnw/scripts/navTrack.js"></script>
-    <script src="<?php echo base_url(); ?>content/bootstrap/js/bootstrap.min.js" ></script>
     <script src="<?php echo base_url(); ?>content/bnw/scripts/confirm.js" ></script>
     <!--        <script src="<?php //echo base_url(); ?>content/bnw/scripts/DeleteImage.js"></script>-->
     <script src="<?php echo base_url(); ?>content/bnw/scripts/gadgets.js"></script>

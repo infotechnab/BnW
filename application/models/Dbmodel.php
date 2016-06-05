@@ -6,7 +6,7 @@ class Dbmodel extends CI_Model {
         $this->load->database();
     }
 
-    // This model is to user verified 
+    // This model is to user verified
     function validate() {
         $this->db->where('user_name', $this->input->post('username'));
         $this->db->where('user_pass', md5($this->input->post('password')));
@@ -53,108 +53,87 @@ class Dbmodel extends CI_Model {
       }
 
       return  $ipaddress;
-    
-    }
-// end of fucntion to get ip adress of user
-    // star of login attemp function
-      
-
-    function login_attempt() 
-    {
-       $query = $this->db->get('login_attempt');
-
-       if(!count($query->result()))//if login attempt table has o value add it with 1 value
-       {
-
-          $data = array( 'id'=>1,'attempt' => 1);
-          $this->db->insert('login_attempt', $data);
-
-
-      }
-      else //if table conatins aleray attempt list
-      {
-
-          $query = $this->db->get('login_attempt');
-
-          foreach ($query->result() as $row)
-          {
-            $db_attempt=$row->attempt;
-
-        }
-
-        $attempt= $db_attempt +1;
-        $this->session->set_userdata('attempt_session_value',$attempt);
-        $data = array( 'id'=>1,'attempt' => $attempt);
-
-        $this->db->update('login_attempt', $data);
-
-
-        $cilent_ip_address=$this->get_client_ip_env();
-        $query = $this->db->get_where('login_attempt_list', array('ip_address'=>$cilent_ip_address));
-      
-
-        if(count($query->result()))
-        {
-           // echo "<script>alert('if condition extcuets')</script>";
-
-
-            foreach($query->result() as $row)
-            {
-               $db_ipaddress=$row->ip_address;
-               $db_id= $row->id;
-               $cilent_ip_address=$this->get_client_ip_env();
-               $user_attempts=$row->user_attempts;
-           }
-
-           if($db_ipaddress == $cilent_ip_address)
-
-            {  $last_attempt_date= date('Y-m-d H:i:s');
-        $user_attempts=$user_attempts +1;
-        $data=array('user_attempts'=>$user_attempts, 'last_attempt_date'=>$last_attempt_date);
-
-        $this->db->update('login_attempt_list', $data, array('id'=>$db_id));
-    }
-
-
-        }
-
-          else {
-            // echo "<script>alert('else condition extcuets')</script>";
-
-
-             $user_attempts=2;
-             $name=$this->input->post('username');
-             $ip_address=$this->get_client_ip_env();
-             $last_attempt_date= date('Y-m-d H:i:s');
-             $data=array(
-                'name' =>$name,
-                'user_attempts'=>$user_attempts,
-                'ip_address' =>$ip_address,
-                'last_attempt_date' =>$last_attempt_date
-                );
-
-             $this->db->insert('login_attempt_list', $data);
-         }
-            ////ehd of login A-attemt list
-
-
-
-         if($attempt >3)
-         {
-
-          $cookie_name = "attempts";
-          $cookie_value = $attempt;
-          setrawcookie($cookie_name, $cookie_value, time() + 20, "/");
-
-      }
-
 
   }
+// end of fucntion to get ip adress of user
+    // star of login attemp function
 
+
+  function login_attempt()
+  {
+     $query = $this->db->get('login_attempt');
+       //if login attempt table has o value add it with 1 value
+     if(!count($query->result()))
+     {
+      $data = array( 'id'=>1,'attempt' => 1);
+      $this->db->insert('login_attempt', $data);
+  }
+      //if table conatins aleray attempt list values
+  else
+  {
+      $query = $this->db->get('login_attempt');
+      foreach ($query->result() as $row)
+      {
+        $db_attempt=$row->attempt;
+    }
+    // grap atempt value and add it to 1
+    $attempt= $db_attempt +1;
+        // set attempt session value to  increment atttemt
+    $this->session->set_userdata('attempt_session_value',$attempt);
+        // update the atemtpt table attempt value to new increment value
+    $data = array('attempt' => $attempt);
+    $this->db->where('id',1);
+    $this->db->update('login_attempt', $data);
+        // get client ip address
+    $cilent_ip_address=$this->get_client_ip_env();
+        // check current ip address in present in login_attempt_list table
+    $query = $this->db->get_where('login_attempt_list', array('ip_address'=>$cilent_ip_address));
+        // if login_attempt_list table contain the current ip
+    if(count($query->result()))
+    {  // grab value of curent ip_address status
+        foreach($query->result() as $row)
+        {
+         $db_ipaddress=$row->ip_address;
+         $db_id= $row->id;
+         $cilent_ip_address=$this->get_client_ip_env();
+         $user_attempts=$row->user_attempts;
+     }
+       //again ip match
+     if($db_ipaddress == $cilent_ip_address)
+     {
+       $last_attempt_date= date('Y-m-d H:i:s');
+       $user_attempts=$user_attempts +1;
+       $data=array('user_attempts'=>$user_attempts, 'last_attempt_date'=>$last_attempt_date);
+       // update the atttempt value of current ip
+       $this->db->where('id',$db_id);
+       $this->db->update('login_attempt_list', $data);
+   }
+}
+// if the current ip is not present then insert new row for  new ip address
+else
+{   $user_attempts=1;
+    $name=$this->input->post('username');
+    $ip_address=$this->get_client_ip_env();
+    $last_attempt_date= date('Y-m-d H:i:s');
+    $data=array(
+        'name' =>$name,
+        'user_attempts'=>$user_attempts,
+        'ip_address' =>$ip_address,
+        'last_attempt_date' =>$last_attempt_date
+        );
+    $this->db->insert('login_attempt_list', $data);
+}
+  // if attempt is greater then 3 then set cookie attemtss and block user for 15 minutes
+if($attempt >=3)
+{
+  $cookie_name = "attempts";
+  $cookie_value = $attempt;
+  setrawcookie($cookie_name, $cookie_value, time() + 10, "/");
 
 }
-
-    //Get the selected category ID
+}
+}
+//Get the selected category ID
 public function get_id_of_selected_category($navigation_link) {
 
     $this->db->where('navigation_link', $navigation_link);
@@ -214,7 +193,7 @@ public function get_logged_in_user_by_name($userName) {
     return $query->result();
 }
 
-    // this is another method to get user verified 
+    // this is another method to get user verified
 function login($name, $pass) {
     $this->db->select('id, user_name, user_pass');
     $this->db->from('user');
@@ -278,7 +257,7 @@ function checkkey($id, $today) {
 
 function add_coupon($key, $rate, $date) {
         // die($date);
-        //  $starus value 0 if coupone is new or not used 
+        //  $starus value 0 if coupone is new or not used
     $status = 0;
     $data = array(
         'key' => $key,
@@ -491,7 +470,7 @@ function get_all_product_for_facebook() {
 
     function delete_product_photo($id, $image) {
         //die($image);
-        // $this->db->delete('product', array('media_type' => $a)); 
+        // $this->db->delete('product', array('media_type' => $a));
         if ($image == "image1") {
             $data = array(
                 'image1' => " "
@@ -809,7 +788,7 @@ function get_all_product_for_facebook() {
         return $query->result();
     }
 
-    //======================others 
+    //======================others
     function get_documents() {
         $this->db->select();
         $this->db->from('download');
@@ -925,7 +904,7 @@ function get_all_product_for_facebook() {
         return $query->result();
     }
 
-    // for listing in navigation 
+    // for listing in navigation
     public function get_subList($id) {
         $this->db->where('menu_id', $id);
         $query = $this->db->get('navigation');
@@ -938,14 +917,14 @@ function get_all_product_for_facebook() {
         $keys = $this->db->get('user');
         return $keys->result();
     }
-    public function get_user_email($token, $email) {  
+    public function get_user_email($token, $email) {
         $this->db->select('user_email,user_auth_key');
         $this->db->where('user_auth_key', $token );
         $this->db->where('user_email', $email );
         $query = $this->db->get('user');
         return $query->result();
     }
-    
+
     public function update_user_password($email, $userPassword){
         $token = "";
         $data = array(
@@ -954,7 +933,7 @@ function get_all_product_for_facebook() {
         $this->db->where('user_email', $email);
         $this->db->update('user', $data);
     }
-    
+
     function user_key($email) {
         $file = " ";
         $data = array(
@@ -998,26 +977,26 @@ function get_all_product_for_facebook() {
             'user_type' => $user_type);
         $this->db->insert('user', $data);
     }
-    
+
     public function count_post() {
         $query = $this->db->get("post");
         $rowcount = $query->num_rows();
         return $rowcount;
     }
-    
+
     public function count_page() {
         $query = $this->db->get("page");
         $rowcount = $query->num_rows();
         return $rowcount;
     }
-    
+
     public function count_events() {
         $this->db->where("type","event");
         $query = $this->db->get("events");
         $rowcount = $query->num_rows();
         return $rowcount;
     }
-    
+
     public function count_news() {
         $this->db->where("type","news");
         $query = $this->db->get("events");

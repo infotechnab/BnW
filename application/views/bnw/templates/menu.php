@@ -130,8 +130,8 @@
                     </li>
 
                 </ul>
-                <p id="footerinfo"> poweredby salyni bnw<br>
-                   copyright &copy protected 2016</p>
+                <p id="footerinfo"> powered by bnw<br>
+                    &copy;copyright 2016</p>
 
 
                </div>
